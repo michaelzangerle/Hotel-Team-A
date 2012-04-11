@@ -1,4 +1,4 @@
-package Entities;
+package projekt.fhv.teama.classes;
 
 /**
  * Created with IntelliJ IDEA.
