@@ -8,7 +8,7 @@ public class Blabla {
 	public static void main(String[] args) {
 
 		
-		System.out.println("Hello World from not Patrick!");
+		System.out.println("Hello World from not Dr Randoom!");
 		
 	}
 
