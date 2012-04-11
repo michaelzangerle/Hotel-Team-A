@@ -8,7 +8,10 @@ package projekt.fhv.teama.classes;
  * To change this template use File | Settings | File Templates.
  */
 public class Kategorie {
+	
     private int kategorieId;
+    private String bezeichnung;
+    private String beschreibung;
 
     public int getKategorieId() {
         return kategorieId;
@@ -16,9 +19,7 @@ public class Kategorie {
 
     public void setKategorieId(int kategorieId) {
         this.kategorieId = kategorieId;
-    }
-
-    private String bezeichnung;
+    }  
 
     public String getBezeichnung() {
         return bezeichnung;
@@ -27,9 +28,7 @@ public class Kategorie {
     public void setBezeichnung(String bezeichnung) {
         this.bezeichnung = bezeichnung;
     }
-
-    private String beschreibung;
-
+   
     public String getBeschreibung() {
         return beschreibung;
     }
