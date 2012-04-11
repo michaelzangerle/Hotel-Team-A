@@ -3,8 +3,6 @@
  */
 package projekt.fhv.teama.hibernate;
 
-import javassist.expr.NewArray;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

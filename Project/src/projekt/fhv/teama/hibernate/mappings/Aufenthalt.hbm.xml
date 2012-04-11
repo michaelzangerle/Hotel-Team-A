@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
+        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <class name="Entities.Aufenthalt" table="aufenthalt" schema="" catalog="hibernate">
+        <composite-id mapped="true" class="Entities.AufenthaltPK">
+            <key-property name="gastId">
+                <column name="gastID" sql-type="int" length="10" not-null="true"/>
+            </key-property>
+            <key-property name="zimmerId">
+                <column name="zimmerID" sql-type="int" length="10" not-null="true"/>
+            </key-property>
+        </composite-id>
+        <property name="preis">
+            <column name="preis" sql-type="decimal" length="10" precision="2" not-null="true"/>
+        </property>
+        <property name="pfandNr">
+            <column name="pfandNr" sql-type="varchar"/>
+        </property>
+        <property name="von">
+            <column name="von" sql-type="date" length="10" not-null="true"/>
+        </property>
+        <property name="bis">
+            <column name="bis" sql-type="date" length="10" not-null="true"/>
+        </property>
+        <property name="schluessel">
+            <column name="schluessel" sql-type="bit" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

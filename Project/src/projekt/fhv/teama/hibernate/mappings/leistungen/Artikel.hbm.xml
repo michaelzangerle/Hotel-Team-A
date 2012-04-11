@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
+        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <class name="Entities.Artikel" table="artikel" schema="" catalog="hibernate">
+        <id name="artikelId">
+            <column name="artikelID" sql-type="int" length="10" not-null="true"/>
+        </id>
+        <property name="preis">
+            <column name="preis" sql-type="decimal" length="10" precision="2" not-null="true"/>
+        </property>
+        <property name="beschreibung">
+            <column name="beschreibung" sql-type="longtext" length="2147483647"/>
+        </property>
+    </class>
+</hibernate-mapping>
