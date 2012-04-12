@@ -1,4 +1,4 @@
-package projekt.fhv.teama.classes;
+package projekt.fhv.teama.classes.zimmer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -7,15 +7,15 @@ package projekt.fhv.teama.classes;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Zahlungsmethode {
-    private int zahlungsmethodeId;
+public class Zimmerstatus {
+    private int zimmerStatusId;
 
-    public int getZahlungsmethodeId() {
-        return zahlungsmethodeId;
+    public int getZimmerStatusId() {
+        return zimmerStatusId;
     }
 
-    public void setZahlungsmethodeId(int zahlungsmethodeId) {
-        this.zahlungsmethodeId = zahlungsmethodeId;
+    public void setZimmerStatusId(int zimmerStatusId) {
+        this.zimmerStatusId = zimmerStatusId;
     }
 
     private String bezeichnung;
@@ -38,25 +38,14 @@ public class Zahlungsmethode {
         this.kuerzel = kuerzel;
     }
 
-    private String beschreibung;
-
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    public void setBeschreibung(String beschreibung) {
-        this.beschreibung = beschreibung;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Zahlungsmethode that = (Zahlungsmethode) o;
+        Zimmerstatus that = (Zimmerstatus) o;
 
-        if (zahlungsmethodeId != that.zahlungsmethodeId) return false;
-        if (beschreibung != null ? !beschreibung.equals(that.beschreibung) : that.beschreibung != null) return false;
+        if (zimmerStatusId != that.zimmerStatusId) return false;
         if (bezeichnung != null ? !bezeichnung.equals(that.bezeichnung) : that.bezeichnung != null) return false;
         if (kuerzel != null ? !kuerzel.equals(that.kuerzel) : that.kuerzel != null) return false;
 
@@ -65,10 +54,9 @@ public class Zahlungsmethode {
 
     @Override
     public int hashCode() {
-        int result = zahlungsmethodeId;
+        int result = zimmerStatusId;
         result = 31 * result + (bezeichnung != null ? bezeichnung.hashCode() : 0);
         result = 31 * result + (kuerzel != null ? kuerzel.hashCode() : 0);
-        result = 31 * result + (beschreibung != null ? beschreibung.hashCode() : 0);
         return result;
     }
 }

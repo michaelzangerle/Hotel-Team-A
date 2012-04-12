@@ -6,7 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import projekt.fhv.teama.classes.Land;
+import projekt.fhv.teama.classes.personen.Land;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;

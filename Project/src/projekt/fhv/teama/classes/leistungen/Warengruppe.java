@@ -1,4 +1,4 @@
-package projekt.fhv.teama.classes;
+package projekt.fhv.teama.classes.leistungen;
 
 /**
  * Created with IntelliJ IDEA.

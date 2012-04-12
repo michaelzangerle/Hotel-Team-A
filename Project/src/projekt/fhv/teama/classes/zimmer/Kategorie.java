@@ -1,4 +1,4 @@
-package projekt.fhv.teama.classes;
+package projekt.fhv.teama.classes.zimmer;
 
 /**
  * Created with IntelliJ IDEA.

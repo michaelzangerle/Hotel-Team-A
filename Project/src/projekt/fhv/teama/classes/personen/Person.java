@@ -3,8 +3,6 @@ package projekt.fhv.teama.classes.personen;
 import java.util.Date;
 
 //import projekt.fhv.teama.classes.Bankverbindung;
-import projekt.fhv.teama.classes.Bankverbindung;
-import projekt.fhv.teama.classes.Land;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change

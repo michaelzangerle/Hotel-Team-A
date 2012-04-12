@@ -1,6 +1,7 @@
-package projekt.fhv.teama.classes;
+package projekt.fhv.teama.classes.zimmer;
 
 import java.sql.Date;
+
 
 /**
  * Created with IntelliJ IDEA.

@@ -9,7 +9,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import projekt.fhv.teama.classes.Kategorie;
+import projekt.fhv.teama.classes.zimmer.Kategorie;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 
 /**

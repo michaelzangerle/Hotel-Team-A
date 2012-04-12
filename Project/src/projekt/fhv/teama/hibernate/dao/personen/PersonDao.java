@@ -19,7 +19,7 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
  * @author mike
  *
  */
-public class PersonDao<T> extends GenericDao<T>{
+public class PersonDao extends GenericDao<Person>{
 
 	public PersonDao() {
 		super("Person");
@@ -40,6 +40,8 @@ public class PersonDao<T> extends GenericDao<T>{
 			if (results.size() == 0) {
 				throw new DatabaseNotFoundException("No results found!");
 			}	
+			
+			p = results;
 			
 		} catch (HibernateException e) {
 			throw new DatabaseException();
@@ -64,6 +66,8 @@ public class PersonDao<T> extends GenericDao<T>{
 			if (results.size() == 0) {
 				throw new DatabaseNotFoundException();
 			}	
+			
+			p = results;
 			
 		} catch (HibernateException e) {
 			throw new DatabaseException();

@@ -6,9 +6,9 @@ package projekt.fhv.teama.hibernate.dao.tests;
 import java.util.Date;
 import java.util.List;
 
-import projekt.fhv.teama.classes.Bankverbindung;
-import projekt.fhv.teama.classes.Land;
 import projekt.fhv.teama.classes.personen.Adresse;
+import projekt.fhv.teama.classes.personen.Bankverbindung;
+import projekt.fhv.teama.classes.personen.Land;
 import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.hibernate.dao.LandDao;
 import projekt.fhv.teama.hibernate.dao.personen.PersonDao;
@@ -46,7 +46,7 @@ public class PersonTest {
 		Person pers = new Person("Michael", "Zangerle", 'm', adr, new Date(1989, 12, 7), "06769470089", "michael.zangerle@gmail.com", bank, aut1);
 		
 		
-		PersonDao<Person> pd = new PersonDao<>();
+		PersonDao pd = new PersonDao();
 //		pd.create(pers);
 		System.out.println(pd.getById(1).toString());
 		//System.out.println(pd.getAll().toString());

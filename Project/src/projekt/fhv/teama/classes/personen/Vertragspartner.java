@@ -1,4 +1,4 @@
-package projekt.fhv.teama.classes;
+package projekt.fhv.teama.classes.personen;
 
 /**
  * Created with IntelliJ IDEA.

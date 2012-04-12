@@ -3,7 +3,7 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import projekt.fhv.teama.classes.Kategorie;
+import projekt.fhv.teama.classes.zimmer.Kategorie;
 import projekt.fhv.teama.hibernate.dao.KategorieDao;
 
 /**
