@@ -2,7 +2,7 @@ package projekt.fhv.teama.classes.personen;
 
 import java.util.Date;
 
-import projekt.fhv.teama.classes.Bankverbindung;
+//import projekt.fhv.teama.classes.Bankverbindung;
 import projekt.fhv.teama.classes.Land;
 
 /**
@@ -17,11 +17,11 @@ public class Person {
     private String vorname;
     private String nachname;
     private char geschlecht;
-    private Adresse adresse;
+    //private Adresse adresse;
     private Date geburtsdatum;
     private String telefonnummer;
     private String email;
-    private Bankverbindung bankverbindung;
+    //private Bankverbindung bankverbindung;
     private Land land;
     
 	public int getPersonId() {
@@ -56,13 +56,13 @@ public class Person {
         this.geschlecht = geschlecht;
     }
 
-    public Adresse getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(Adresse adresse) {
-		this.adresse = adresse;
-	}
+//    public Adresse getAdresse() {
+//		return adresse;
+//	}
+//
+//	public void setAdresse(Adresse adresse) {
+//		this.adresse = adresse;
+//	}
 
 	public Date getGeburtsdatum() {
         return geburtsdatum;
@@ -88,13 +88,13 @@ public class Person {
         this.email = email;
     }
 
-    public Bankverbindung getBankverbindung() {
-		return bankverbindung;
-	}
-
-	public void setBankverbindung(Bankverbindung bankverbindung) {
-		this.bankverbindung = bankverbindung;
-	}
+//    public Bankverbindung getBankverbindung() {
+//		return bankverbindung;
+//	}
+//
+//	public void setBankverbindung(Bankverbindung bankverbindung) {
+//		this.bankverbindung = bankverbindung;
+//	}
 	
 	public Land getLand() {
 		return land;
@@ -104,13 +104,13 @@ public class Person {
 		this.land = land;
 	}
 	
-    public Person(String vorname, String nachname, char geschlecht, Adresse adresse, Date geburtsdatum2, String telefonnummer, String email, Bankverbindung bankverbindung, Land land) {
-    	this.vorname = vorname;
-		this.nachname = nachname;
-		this.geschlecht = geschlecht;
-		this.adresse = adresse;
-		this.geburtsdatum = geburtsdatum2;
-		this.telefonnummer = telefonnummer;
-		this.bankverbindung = bankverbindung;
-	}
+//    public Person(String vorname, String nachname, char geschlecht, Adresse adresse, Date geburtsdatum2, String telefonnummer, String email, Bankverbindung bankverbindung, Land land) {
+//    	this.vorname = vorname;
+//		this.nachname = nachname;
+//		this.geschlecht = geschlecht;
+//		this.adresse = adresse;
+//		this.geburtsdatum = geburtsdatum2;
+//		this.telefonnummer = telefonnummer;
+//		this.bankverbindung = bankverbindung;
+//	}
 }

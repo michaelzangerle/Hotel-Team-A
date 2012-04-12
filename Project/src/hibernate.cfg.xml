@@ -13,8 +13,9 @@
        
 
         <!-- Mapping-Files -->
-        <!--  <mapping resource="Entities/Aufenthalt.hbm.xml"/> 
-        <mapping resource="projekt/fhv/teama/hibernate/mappings/personen/Person.hbm.xml"/> -->
+        <!--   <mapping resource="projekt/fhv/teama/hibernate/mappings/personen/Person.hbm.xml"/> -->
+        
   		<mapping resource="projekt/fhv/teama/hibernate/mappings/Land.hbm.xml"/>
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/Kategorie.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

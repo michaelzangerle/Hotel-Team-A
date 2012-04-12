@@ -9,16 +9,26 @@ package projekt.fhv.teama.classes;
  */
 public class Kategorie {
 	
-    private int kategorieId;
+    private int ID;
     private String bezeichnung;
     private String beschreibung;
+    
+    public Kategorie(){
+    	
+    }
+    
+    public Kategorie(String bezeichnung, String beschreibung) {
+		super();
+		this.bezeichnung = bezeichnung;
+		this.beschreibung = beschreibung;
+	}
 
-    public int getKategorieId() {
-        return kategorieId;
+	public int getID() {
+        return ID;
     }
 
-    public void setKategorieId(int kategorieId) {
-        this.kategorieId = kategorieId;
+    public void setID(int kategorieId) {
+        this.ID = kategorieId;
     }  
 
     public String getBezeichnung() {
@@ -44,7 +54,7 @@ public class Kategorie {
 
         Kategorie kategorie = (Kategorie) o;
 
-        if (kategorieId != kategorie.kategorieId) return false;
+        if (ID != kategorie.ID) return false;
         if (beschreibung != null ? !beschreibung.equals(kategorie.beschreibung) : kategorie.beschreibung != null)
             return false;
         if (bezeichnung != null ? !bezeichnung.equals(kategorie.bezeichnung) : kategorie.bezeichnung != null)
@@ -55,9 +65,17 @@ public class Kategorie {
 
     @Override
     public int hashCode() {
-        int result = kategorieId;
+        int result = ID;
         result = 31 * result + (bezeichnung != null ? bezeichnung.hashCode() : 0);
         result = 31 * result + (beschreibung != null ? beschreibung.hashCode() : 0);
         return result;
     }
+
+	@Override
+	public String toString() {
+		return "Kategorie [kategorieId=" + ID + ", bezeichnung="
+				+ bezeichnung + ", beschreibung=" + beschreibung + "]";
+	}
+    
+    
 }

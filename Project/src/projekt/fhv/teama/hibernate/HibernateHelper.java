@@ -13,8 +13,8 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateHelper {
 
-	private static final ThreadLocal session = new ThreadLocal<>();
-	private static final ThreadLocal transaction = new ThreadLocal<>();
+	private static final ThreadLocal session = new ThreadLocal();
+	private static final ThreadLocal transaction = new ThreadLocal();
 	private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	
 	
@@ -29,7 +29,7 @@ public class HibernateHelper {
 			HibernateHelper.session.set(session);
 			}
 		return session;
+		
 	}
-	
-	
+		
 }
