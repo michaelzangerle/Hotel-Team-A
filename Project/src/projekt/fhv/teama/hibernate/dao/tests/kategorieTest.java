@@ -1,9 +1,7 @@
 /**
  * 
  */
-package test;
-
-import java.util.List;
+package projekt.fhv.teama.hibernate.dao.tests;
 
 import projekt.fhv.teama.classes.Kategorie;
 import projekt.fhv.teama.hibernate.dao.KategorieDao;
@@ -19,10 +17,10 @@ public class kategorieTest {
 	 */
 	public static void main(String[] args) {
 		
-//		Kategorie kat = new Kategorie("Testkategorie4", "Beschreibung der Testkategorie");
+		Kategorie kat = new Kategorie("Testkategorie2", "Beschreibung der Testkategorie");
 		KategorieDao<Kategorie> kd = new KategorieDao<Kategorie>();
-//		kd.create(kat);
-		Kategorie kat = kd.getById(4);
+		kd.create(kat);
+//		Kategorie kat = kd.getById(4);
 		 
 		
 //		kat = kd.getKategorie("Juniorsuit");

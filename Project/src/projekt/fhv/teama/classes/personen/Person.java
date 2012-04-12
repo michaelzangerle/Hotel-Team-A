@@ -13,23 +13,23 @@ import projekt.fhv.teama.classes.Land;
  * To change this template use File | Settings | File Templates.
  */
 public class Person {
-    private int personId;
+    private int ID;
     private String vorname;
     private String nachname;
     private char geschlecht;
-    //private Adresse adresse;
+    private Adresse adresse;
     private Date geburtsdatum;
     private String telefonnummer;
     private String email;
-    //private Bankverbindung bankverbindung;
-    private Land land;
+    private Bankverbindung bankverbindung;
+    private Land landID;
     
-	public int getPersonId() {
-        return personId;
+	public int getID() {
+        return ID;
     }
 
-    public void setPersonId(int personId) {
-        this.personId = personId;
+    public void setID(int personId) {
+        this.ID = personId;
     }
 
     public String getVorname() {
@@ -56,13 +56,13 @@ public class Person {
         this.geschlecht = geschlecht;
     }
 
-//    public Adresse getAdresse() {
-//		return adresse;
-//	}
-//
-//	public void setAdresse(Adresse adresse) {
-//		this.adresse = adresse;
-//	}
+    public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
 
 	public Date getGeburtsdatum() {
         return geburtsdatum;
@@ -88,29 +88,29 @@ public class Person {
         this.email = email;
     }
 
-//    public Bankverbindung getBankverbindung() {
-//		return bankverbindung;
-//	}
-//
-//	public void setBankverbindung(Bankverbindung bankverbindung) {
-//		this.bankverbindung = bankverbindung;
-//	}
-	
-	public Land getLand() {
-		return land;
+    public Bankverbindung getBankverbindung() {
+		return bankverbindung;
 	}
 
-	public void setLand(Land land) {
-		this.land = land;
+	public void setBankverbindung(Bankverbindung bankverbindung) {
+		this.bankverbindung = bankverbindung;
 	}
 	
-//    public Person(String vorname, String nachname, char geschlecht, Adresse adresse, Date geburtsdatum2, String telefonnummer, String email, Bankverbindung bankverbindung, Land land) {
-//    	this.vorname = vorname;
-//		this.nachname = nachname;
-//		this.geschlecht = geschlecht;
-//		this.adresse = adresse;
-//		this.geburtsdatum = geburtsdatum2;
-//		this.telefonnummer = telefonnummer;
-//		this.bankverbindung = bankverbindung;
-//	}
+	public Land getLandID() {
+		return landID;
+	}
+
+	public void setLandID(Land land) {
+		this.landID = land;
+	}
+	
+    public Person(String vorname, String nachname, char geschlecht, Adresse adresse, Date geburtsdatum, String telefonnummer, String email, Bankverbindung bankverbindung, Land land) {
+    	this.vorname = vorname;
+		this.nachname = nachname;
+		this.geschlecht = geschlecht;
+		this.adresse = adresse;
+		this.geburtsdatum = geburtsdatum;
+		this.telefonnummer = telefonnummer;
+		this.bankverbindung = bankverbindung;
+	}
 }

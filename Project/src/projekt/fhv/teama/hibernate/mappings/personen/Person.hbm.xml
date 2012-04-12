@@ -5,57 +5,60 @@
 
 	<class name="projekt.fhv.teama.classes.personen.Person"
 		table="person" catalog="hibernate">
+		
 		<id name="personId">
-			<column name="personID" sql-type="int" length="10" not-null="true" />
+			<column name="personID" sql-type="int" type="int" length="10" not-null="true" />
 			<generator class="native" />
 		</id>
+		
 		<property name="vorname">
-			<column name="vorname" sql-type="varchar" not-null="true" />
+			<column name="vorname" sql-type="varchar" type="java.lang.String" not-null="true" />
 		</property>
 		<property name="nachname">
-			<column name="nachname" sql-type="varchar" not-null="true" />
+			<column name="nachname" sql-type="varchar" type="java.lang.String" not-null="true" />
 		</property>
 		<property name="geschlecht">
-			<column name="geschlecht" sql-type="char" length="1" not-null="true" />
+			<column name="geschlecht" sql-type="char" type="char" length="1" not-null="true" />
 		</property>
+		
 		<component name="adresse" class="projekt.fhv.teama.classes.personen.Adresse">
 			<property name="strasse">
-				<column name="strasse" sql-type="varchar" not-null="true" />
+				<column name="strasse" sql-type="varchar" type="java.lang.String" not-null="true" />
 			</property>
 			<property name="plz">
-				<column name="plz" sql-type="varchar" not-null="true" />
+				<column name="plz" sql-type="varchar"  type="java.lang.String" not-null="true" />
 			</property>
 			<property name="ort">
-				<column name="ort" sql-type="varchar" not-null="true" />
+				<column name="ort" sql-type="varchar" type="java.lang.String" not-null="true" />
 			</property>
 		</component>
+		
 		<property name="geburtsdatum">
-			<column name="geburtsdatum" sql-type="date" length="10" />
+			<column name="geburtsdatum" sql-type="date" type="java.util.Date" length="10" />
 		</property>
 		<property name="telefonnummer">
-			<column name="telefonnummer" sql-type="varchar" not-null="true" />
+			<column name="telefonnummer" sql-type="varchar" type="java.lang.String" not-null="true" />
 		</property>
 		<property name="email">
-			<column name="email" sql-type="varchar" not-null="true" />
+			<column name="email" sql-type="varchar" type="java.lang.String" not-null="true" />
 		</property>
+		
 		<component name="bankverbindung" class="projekt.fhv.teama.classes.Bankverbindung">
 			<property name="iban">
-				<column name="iban" sql-type="varchar" />
+				<column name="iban" sql-type="varchar" type="java.lang.String" />
 			</property>
 			<property name="bic">
-				<column name="bic" sql-type="varchar" />
+				<column name="bic" sql-type="varchar" type="java.lang.String" />
 			</property>
 			<property name="kontonummer">
-				<column name="kontonummer" sql-type="varchar" />
+				<column name="kontonummer" sql-type="varchar" type="java.lang.String"/>
 			</property>
 			<property name="blz">
-				<column name="blz" sql-type="varchar" />
+				<column name="blz" sql-type="varchar" type="java.lang.String"/>
 			</property>
 		</component>
-		<component name="land" class="projekt.fhv.teama.classes.Land">
-			<property name="landID">
-				<column name="landID" sql-type="int"/>
-			</property>
-		</component>
+				
+		<many-to-one name="landID" class="projekt.fhv.teama.classes.Land" column="landID" sql-type="int" type="int" not-null="true" />
+		
 	</class>
 </hibernate-mapping>

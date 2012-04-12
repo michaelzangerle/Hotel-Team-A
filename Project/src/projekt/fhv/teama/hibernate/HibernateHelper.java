@@ -13,8 +13,11 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateHelper {
 
+	@SuppressWarnings("rawtypes")
 	private static final ThreadLocal session = new ThreadLocal();
+	@SuppressWarnings("unused")
 	private static final ThreadLocal transaction = new ThreadLocal();
+	@SuppressWarnings("deprecation")
 	private static final SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 	
 	
