@@ -8,7 +8,14 @@ package projekt.fhv.teama.classes;
  * To change this template use File | Settings | File Templates.
  */
 public class Land {
-    private int landID;
+	
+    @Override
+	public String toString() {
+		return "Land [ID=" + ID + ", bezeichnung=" + bezeichnung + ", kuerzel="
+				+ kuerzel + "]";
+	}
+
+	private int ID;
     private String bezeichnung;
     private String kuerzel;
     
@@ -21,12 +28,12 @@ public class Land {
 		this.kuerzel = kuerzel;
 	}
 
-	public int getLandID() {
-        return landID;
+	public int getID() {
+        return ID;
     }
 
-    public void setLandID(int landID) {
-        this.landID = landID;
+    public void setID(int landID) {
+        this.ID = landID;
     }
 
     public String getBezeichnung() {
