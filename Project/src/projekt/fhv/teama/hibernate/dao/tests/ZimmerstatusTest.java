@@ -19,7 +19,8 @@ public class ZimmerstatusTest {
 		
 		ZimmerstatusDao zd = new ZimmerstatusDao();
 		Zimmerstatus zs = new Zimmerstatus("Voll im Arsch", "ViM");
-		zd.create(zs);
+		//zd.create(zs);
+		System.out.println(zd.getById(1));
 	}
 
 }
