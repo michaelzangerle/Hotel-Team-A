@@ -1,11 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09.04.2012 23:53:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.Land" table="LAND">
+        <id name="landID" type="int" access="field">
+            <column name="LANDID" />
+            <generator class="assigned" />
+        </id>
+        <property name="bezeichnung" type="java.lang.String">
+            <column name="BEZEICHNUNG" />
+        </property>
+        <property name="kuerzel" type="java.lang.String">
+            <column name="KUERZEL" />
+        </property>
+    </class>
+</hibernate-mapping>
+
+<!-- 
 <?xml version='1.0' encoding='utf-8'?>
 <hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
         xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <class name="Entities.Land" table="land" schema="" catalog="hibernate">
+    <class name="projekt.fhv.teama.classes.Land" table="land" catalog="hibernate">
         <id name="landId">
             <column name="landID" sql-type="int" length="10" not-null="true"/>
+            <generator class="native" />
         </id>
         <property name="bezeichnung">
             <column name="bezeichnung" sql-type="varchar" not-null="true"/>
@@ -14,4 +35,4 @@
             <column name="kuerzel" sql-type="char" length="2" not-null="true"/>
         </property>
     </class>
-</hibernate-mapping>
+</hibernate-mapping>  -->

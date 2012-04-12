@@ -11,7 +11,11 @@ import java.sql.Date;
  */
 public class Option {
     private int optionId;
-
+    private Date erfuellung;
+    private short prozentsatz;
+    private boolean erfuellt;
+    private Reservierung reservierung;
+    
     public int getOptionId() {
         return optionId;
     }
@@ -19,8 +23,6 @@ public class Option {
     public void setOptionId(int optionId) {
         this.optionId = optionId;
     }
-
-    private Date erfuellung;
 
     public Date getErfuellung() {
         return erfuellung;
@@ -30,8 +32,6 @@ public class Option {
         this.erfuellung = erfuellung;
     }
 
-    private short prozentsatz;
-
     public short getProzentsatz() {
         return prozentsatz;
     }
@@ -40,9 +40,7 @@ public class Option {
         this.prozentsatz = prozentsatz;
     }
 
-    private boolean erfuellt;
-
-    public boolean isErfuellt() {
+    public boolean getErfuellt() {
         return erfuellt;
     }
 
@@ -50,7 +48,15 @@ public class Option {
         this.erfuellt = erfuellt;
     }
 
-    @Override
+    public Reservierung getReservierung() {
+		return reservierung;
+	}
+
+	public void setReservierung(Reservierung reservierung) {
+		this.reservierung = reservierung;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

@@ -5,16 +5,16 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.password">hibernate</property>
+		<property name="hibernate.connection.password">hibernate</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost/hibernate</property>
         <property name="hibernate.connection.username">hibernate</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.show_sql">true</property>
-        
+       
+
         <!-- Mapping-Files -->
-        <!--  <mapping resource="Entities/Aufenthalt.hbm.xml"/> -->
-        
-        
-        
+        <!--  <mapping resource="Entities/Aufenthalt.hbm.xml"/> 
+        <mapping resource="projekt/fhv/teama/hibernate/mappings/personen/Person.hbm.xml"/> -->
+  		<mapping resource="projekt/fhv/teama/hibernate/mappings/Land.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
