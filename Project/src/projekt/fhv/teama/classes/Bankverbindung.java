@@ -1,7 +1,13 @@
 package projekt.fhv.teama.classes;
 
 public class Bankverbindung {
-    private String iban;
+    @Override
+	public String toString() {
+		return "Bankverbindung [iban=" + iban + ", bic=" + bic
+				+ ", kontonummer=" + kontonummer + ", blz=" + blz + "]";
+	}
+
+	private String iban;
     private String bic;
     private String kontonummer;
     private String blz;

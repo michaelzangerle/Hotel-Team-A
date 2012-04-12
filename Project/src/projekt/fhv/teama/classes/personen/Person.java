@@ -11,6 +11,16 @@ import projekt.fhv.teama.classes.Land;
  * this template use File | Settings | File Templates.
  */
 public class Person {
+	@Override
+	public String toString() {
+		return "Person [ID=" + ID + ", vorname=" + vorname + ", nachname="
+				+ nachname + ", geschlecht=" + geschlecht + ", adresse="
+				+ adresse + ", geburtsdatum=" + geburtsdatum
+				+ ", telefonnummer=" + telefonnummer + ", email=" + email
+				+ ", bankverbindung=" + bankverbindung + ", landID=" + landID
+				+ "]";
+	}
+
 	private int ID;
 	private String vorname;
 	private String nachname;
@@ -100,6 +110,11 @@ public class Person {
 
 	public void setLandID(Land land) {
 		this.landID = land;
+	}
+	
+	
+	
+	public Person() {
 	}
 
 	public Person(String vorname, String nachname, char geschlecht,

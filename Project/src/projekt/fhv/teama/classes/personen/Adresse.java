@@ -1,6 +1,12 @@
 package projekt.fhv.teama.classes.personen;
 
 public class Adresse {
+	@Override
+	public String toString() {
+		return "Adresse [strasse=" + strasse + ", plz=" + plz + ", ort=" + ort
+				+ "]";
+	}
+
 	private String strasse;
     private String plz;
     private String ort;

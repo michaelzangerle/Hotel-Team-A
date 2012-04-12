@@ -47,7 +47,9 @@ public class PersonTest {
 		
 		
 		PersonDao<Person> pd = new PersonDao<>();
-		pd.create(pers);
+//		pd.create(pers);
+		System.out.println(pd.getById(1).toString());
+		//System.out.println(pd.getAll().toString());
 		
 
 	}
