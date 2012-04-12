@@ -10,11 +10,11 @@ public class Zimmerstatus {
 	private String bezeichnung;
 	private String kuerzel;
 
-	public int getZimmerStatusId() {
+	public int getID() {
 		return ID;
 	}
 
-	public void setZimmerStatusId(int ID) {
+	public void setID(int ID) {
 		this.ID = ID;
 	}
 
@@ -43,9 +43,7 @@ public class Zimmerstatus {
 	public Zimmerstatus() {
 	}
 
-	public Zimmerstatus(int iD, String bezeichnung, String kuerzel) {
-		super();
-		ID = iD;
+	public Zimmerstatus(String bezeichnung, String kuerzel) {
 		this.bezeichnung = bezeichnung;
 		this.kuerzel = kuerzel;
 	}

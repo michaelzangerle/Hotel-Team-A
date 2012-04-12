@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 12.04.2012 10:32:13 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.Kategorie" table="KATEGORIE">
+    <class name="projekt.fhv.teama.classes.zimmer.Kategorie" table="KATEGORIE">
         <id name="ID" type="int">
             <column name="KATEGORIEID" />
             <generator class="native" />
