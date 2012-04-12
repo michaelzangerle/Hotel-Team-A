@@ -1,88 +1,143 @@
 package projekt.fhv.teama.classes.zimmer;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 09.04.12
- * Time: 22:23
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
+ * this template use File | Settings | File Templates.
  */
 public class Statusentwicklung {
-    private int zimmerId;
 
-    public int getZimmerId() {
-        return zimmerId;
-    }
+	private int ID;
+	private Zimmerstatus zimmerStatus;
+	private Date von;
+	private Date bis;
+	private String beschreibung;
+	private Zimmer zimmer;
 
-    public void setZimmerId(int zimmerId) {
-        this.zimmerId = zimmerId;
-    }
+	public Zimmer getZimmer() {
+		return zimmer;
+	}
 
-    private int zimmerStatusId;
+	public void setZimmer(Zimmer zimmer) {
+		this.zimmer = zimmer;
+	}
 
-    public int getZimmerStatusId() {
-        return zimmerStatusId;
-    }
+	public Date getVon() {
+		return von;
+	}
 
-    public void setZimmerStatusId(int zimmerStatusId) {
-        this.zimmerStatusId = zimmerStatusId;
-    }
+	public void setVon(Date von) {
+		this.von = von;
+	}
 
-    private Date von;
+	public Date getBis() {
+		return bis;
+	}
 
-    public Date getVon() {
-        return von;
-    }
+	public void setBis(Date bis) {
+		this.bis = bis;
+	}
 
-    public void setVon(Date von) {
-        this.von = von;
-    }
+	public String getBeschreibung() {
+		return beschreibung;
+	}
 
-    private Date bis;
+	public void setBeschreibung(String beschreibung) {
+		this.beschreibung = beschreibung;
+	}
 
-    public Date getBis() {
-        return bis;
-    }
+	public int getID() {
+		return ID;
+	}
 
-    public void setBis(Date bis) {
-        this.bis = bis;
-    }
+	public void setID(int iD) {
+		ID = iD;
+	}
 
-    private String beschreibung;
+	public Zimmerstatus getZimmerStatus() {
+		return zimmerStatus;
+	}
 
-    public String getBeschreibung() {
-        return beschreibung;
-    }
+	public void setZimmerStatus(Zimmerstatus zimmerStatus) {
+		this.zimmerStatus = zimmerStatus;
+	}
 
-    public void setBeschreibung(String beschreibung) {
-        this.beschreibung = beschreibung;
-    }
+	public Statusentwicklung() {
+	}
+	
+	
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	public Statusentwicklung(int iD, Zimmerstatus zimmerStatus, Date von,
+			Date bis, String beschreibung, Zimmer zimmer) {
+		ID = iD;
+		this.zimmerStatus = zimmerStatus;
+		this.von = von;
+		this.bis = bis;
+		this.beschreibung = beschreibung;
+		this.zimmer = zimmer;
+	}
 
-        Statusentwicklung that = (Statusentwicklung) o;
+	@Override
+	public String toString() {
+		return "Statusentwicklung [ID=" + ID + ", zimmerStatus=" + zimmerStatus
+				+ ", von=" + von + ", bis=" + bis + ", beschreibung="
+				+ beschreibung + ", zimmer=" + zimmer + "]";
+	}
 
-        if (zimmerId != that.zimmerId) return false;
-        if (zimmerStatusId != that.zimmerStatusId) return false;
-        if (beschreibung != null ? !beschreibung.equals(that.beschreibung) : that.beschreibung != null) return false;
-        if (bis != null ? !bis.equals(that.bis) : that.bis != null) return false;
-        if (von != null ? !von.equals(that.von) : that.von != null) return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result
+				+ ((beschreibung == null) ? 0 : beschreibung.hashCode());
+		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
+		result = prime * result + ((von == null) ? 0 : von.hashCode());
+		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
+		result = prime * result
+				+ ((zimmerStatus == null) ? 0 : zimmerStatus.hashCode());
+		return result;
+	}
 
-        return true;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Statusentwicklung other = (Statusentwicklung) obj;
+		if (ID != other.ID)
+			return false;
+		if (beschreibung == null) {
+			if (other.beschreibung != null)
+				return false;
+		} else if (!beschreibung.equals(other.beschreibung))
+			return false;
+		if (bis == null) {
+			if (other.bis != null)
+				return false;
+		} else if (!bis.equals(other.bis))
+			return false;
+		if (von == null) {
+			if (other.von != null)
+				return false;
+		} else if (!von.equals(other.von))
+			return false;
+		if (zimmer == null) {
+			if (other.zimmer != null)
+				return false;
+		} else if (!zimmer.equals(other.zimmer))
+			return false;
+		if (zimmerStatus == null) {
+			if (other.zimmerStatus != null)
+				return false;
+		} else if (!zimmerStatus.equals(other.zimmerStatus))
+			return false;
+		return true;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = zimmerId;
-        result = 31 * result + zimmerStatusId;
-        result = 31 * result + (von != null ? von.hashCode() : 0);
-        result = 31 * result + (bis != null ? bis.hashCode() : 0);
-        result = 31 * result + (beschreibung != null ? beschreibung.hashCode() : 0);
-        return result;
-    }
+	
 }
