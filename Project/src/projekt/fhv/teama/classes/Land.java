@@ -12,7 +12,16 @@ public class Land {
     private String bezeichnung;
     private String kuerzel;
     
-    public int getLandID() {
+    public Land() {
+	}
+
+	public Land(String bezeichnung, String kuerzel) {
+		super();
+		this.bezeichnung = bezeichnung;
+		this.kuerzel = kuerzel;
+	}
+
+	public int getLandID() {
         return landID;
     }
 

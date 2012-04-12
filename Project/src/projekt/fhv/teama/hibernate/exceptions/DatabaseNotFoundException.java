@@ -8,13 +8,16 @@ package projekt.fhv.teama.hibernate.exceptions;
  *
  */
 public class DatabaseNotFoundException extends DatabaseException {
+	
+	protected String message = "No results found!";
 
 	public DatabaseNotFoundException() {
 		super();
 	}
 
 	public DatabaseNotFoundException(String message) {
-		super(message);
+		super();
+		this.message = message;
 	}
 
 	/**

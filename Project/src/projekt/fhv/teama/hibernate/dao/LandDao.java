@@ -2,29 +2,43 @@ package projekt.fhv.teama.hibernate.dao;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import projekt.fhv.teama.classes.Land;
 import projekt.fhv.teama.hibernate.HibernateHelper;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
 
-public class LandDao {
-	
-	
-	public Land getLand(String bezeichnung) {
+public class LandDao<T> extends GenericDao<T> {
+
+	public LandDao() {
+		super("Land");
+	}
+
+	public Land getLand(String bezeichnung) throws DatabaseException {
+		Land p = null;
+
 		try {
 			Session session = HibernateHelper.getSession();
 			Query q = session.createQuery("from Land where bezeichnung= :bezeichnung");
 			q.setString("bezeichnung", bezeichnung);
+			
+			@SuppressWarnings("rawtypes")
 			List result = q.list();
-			Land p = null;
+
 			if (result.size() == 1) {
 				p = (Land) result.get(0);
 			}
-			return p;
-		} catch (Exception e) {
-			e.printStackTrace();
+
+			if (result.size() == 0) {
+				throw new DatabaseNotFoundException();
+			}
+
+		} catch (HibernateException e) {
+			throw new DatabaseException();
 		}
-		return null;
+		return p;
 	}
 }

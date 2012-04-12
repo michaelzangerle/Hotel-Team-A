@@ -3,6 +3,7 @@ package projekt.fhv.teama.classes.personen;
 import java.util.Date;
 
 //import projekt.fhv.teama.classes.Bankverbindung;
+import projekt.fhv.teama.classes.Bankverbindung;
 import projekt.fhv.teama.classes.Land;
 
 /**

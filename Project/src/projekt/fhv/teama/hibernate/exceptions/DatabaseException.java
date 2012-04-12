@@ -7,7 +7,14 @@ package projekt.fhv.teama.hibernate.exceptions;
  * @author mike
  *
  */
-public class DatabaseException  extends Exception {
+public class DatabaseException extends Exception {
+	
+	protected String message = "Error while checking for Name!";
+
+	@Override
+	public  String getMessage() {
+		return message;
+	}
 
 	/**
 	 * 
@@ -19,7 +26,8 @@ public class DatabaseException  extends Exception {
 	}
 
 	public DatabaseException(String message) {
-		super(message);
+		super();
+		this.message = message;
 	}
 
 	
