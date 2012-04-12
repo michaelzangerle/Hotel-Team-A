@@ -32,12 +32,12 @@ public class PersonTest {
 //		ld.create(new Land("Deutschland", "DE"));
 //		ld.create(new Land("Schweiz", "CH"));
 		
-		List<Land> laender = ld.getAll();
+//		List<Land> laender = ld.getAll();
 		Land aut1 = ld.getById(3);
 //		Land aut2 = ld.getLand("Österreich");
 		
 //		System.out.println(laender.toString());
-//		System.out.println(aut1.toString());
+		System.out.println(aut1.toString());
 //		System.out.println(aut2.toString());
 //		
 		Adresse adr = new Adresse("Dorf 46", "6491", "Schönwies");

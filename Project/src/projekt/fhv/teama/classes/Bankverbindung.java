@@ -31,6 +31,11 @@ public class Bankverbindung {
 		this.blz = blz;
 	}
 	
+	
+	
+	public Bankverbindung() {
+	}
+	
 	public Bankverbindung(String iban, String bic, String kontonummer, String blz) {
 		this.iban = iban;
 		this.bic = bic;

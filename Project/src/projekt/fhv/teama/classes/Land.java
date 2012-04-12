@@ -32,8 +32,8 @@ public class Land {
         return ID;
     }
 
-    public void setID(int landID) {
-        this.ID = landID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getBezeichnung() {

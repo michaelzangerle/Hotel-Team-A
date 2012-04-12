@@ -5,6 +5,8 @@ public class Adresse {
     private String plz;
     private String ort;
     
+    
+    
     public String getStrasse() {
         return strasse;
     }
@@ -28,6 +30,11 @@ public class Adresse {
     public void setOrt(String ort) {
         this.ort = ort;
     }
+
+    
+    
+	public Adresse() {
+	}
 
 	public Adresse(String strasse, String plz, String ort) {
 		this.strasse = strasse;
