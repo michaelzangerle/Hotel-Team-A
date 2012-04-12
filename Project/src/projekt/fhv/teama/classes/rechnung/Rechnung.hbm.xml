@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.04.2012 00:40:39 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.rechnung.Rechnung" table="RECHNUNG">
+        <id name="rechnungId" type="int">
+            <column name="RECHNUNGID" />
+            <generator class="assigned" />
+        </id>
+        <property name="bezahlerVorname" type="java.lang.String">
+            <column name="BEZAHLERVORNAME" />
+        </property>
+        <property name="bezahlerNachname" type="java.lang.String">
+            <column name="BEZAHLERNACHNAME" />
+        </property>
+        <property name="bezahlerStrasse" type="java.lang.String">
+            <column name="BEZAHLERSTRASSE" />
+        </property>
+        <property name="bezahlerOrt" type="java.lang.String">
+            <column name="BEZAHLERORT" />
+        </property>
+        <property name="bezahlerPlz" type="java.lang.String">
+            <column name="BEZAHLERPLZ" />
+        </property>
+        <property name="summe" type="java.math.BigDecimal">
+            <column name="SUMME" />
+        </property>
+        <property name="nummer" type="java.lang.String">
+            <column name="NUMMER" />
+        </property>
+    </class>
+</hibernate-mapping>

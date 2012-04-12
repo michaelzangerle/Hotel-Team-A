@@ -10,7 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import projekt.fhv.teama.classes.zimmer.Statusentwicklung;
-import projekt.fhv.teama.classes.zimmer.Zimmerstatus;
+import projekt.fhv.teama.classes.zimmer.Zimmer;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
@@ -28,30 +28,38 @@ public class StatusentwicklungDao extends GenericDao<Statusentwicklung>{
 	public List<Statusentwicklung> getStatusentwicklung(String zimmerNummer) throws DatabaseNotFoundException {
 
 		List<Statusentwicklung> status = null;
-		String nummer = "";
+		
 		
 		try {
 			Session session = HibernateHelper.getSession();
-			// Zimmerid herausfinden
 			
+			
+			// Zimmerid durch zimmernummer herausfinden
 			Query queryZimmerID = session.createQuery("from zimmer z where z.nummer = :zimmerNummer");
 			queryZimmerID.setString("zimmerNummer", zimmerNummer);
-			nummer = (String) queryZimmerID.list().get(0);
+			@SuppressWarnings("unchecked")
+			List<Zimmer> zimmer = queryZimmerID.list();
+			
+			if (zimmer.size() == 0) {
+				throw new DatabaseNotFoundException();
+			}
+			
+			int zimmerID = zimmer.get(0).getID();
+			
+			// Statusentwicklungen des zimmers finden
 			
 			Query query = session.createQuery("from " + getTable()
-					+ " z where z.zimmerID = :zimmerNummer");
-			query.setString("zimmerNummer", zimmerNummer);
+					+ " z where z.zimmerID = :zimmerID");
+			query.setString("zimmerID", String.valueOf(zimmerID));
 
 			@SuppressWarnings("rawtypes")
 			List results = query.list();
-
-//			if (results.size() == 1) {
-//				status = (Zimmerstatus) results.get(0);
-//			}
 			
-			if (results.size() == 1) {
+			if (results.size() == 0) {
 				throw new DatabaseNotFoundException();
 			}
+			
+			status = results;
 
 		} catch (HibernateException e) {
 			e.printStackTrace();

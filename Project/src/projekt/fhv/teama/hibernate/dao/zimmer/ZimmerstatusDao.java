@@ -41,7 +41,7 @@ public class ZimmerstatusDao extends GenericDao<Zimmerstatus> {
 				status = (Zimmerstatus) results.get(0);
 			}
 			
-			if (results.size() == 1) {
+			if (results.size() == 0) {
 				throw new DatabaseNotFoundException();
 			}
 

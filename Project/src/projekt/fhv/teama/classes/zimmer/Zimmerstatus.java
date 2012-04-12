@@ -9,6 +9,15 @@ public class Zimmerstatus {
 	private int ID;
 	private String bezeichnung;
 	private String kuerzel;
+	private Zimmer zimmer;
+
+	public Zimmer getZimmer() {
+		return zimmer;
+	}
+
+	public void setZimmer(Zimmer zimmer) {
+		this.zimmer = zimmer;
+	}
 
 	public int getID() {
 		return ID;
@@ -34,47 +43,64 @@ public class Zimmerstatus {
 		this.kuerzel = kuerzel;
 	}
 	
-	@Override
-	public String toString() {
-		return "Zimmerstatus [ID=" + ID + ", bezeichnung=" + bezeichnung
-				+ ", kuerzel=" + kuerzel + "]";
-	}
-
 	public Zimmerstatus() {
 	}
 
-	public Zimmerstatus(String bezeichnung, String kuerzel) {
+	public Zimmerstatus(int iD, String bezeichnung, String kuerzel,
+			Zimmer zimmer) {
+		ID = iD;
 		this.bezeichnung = bezeichnung;
 		this.kuerzel = kuerzel;
+		this.zimmer = zimmer;
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-
-		Zimmerstatus that = (Zimmerstatus) o;
-
-		if (ID != that.ID)
-			return false;
-		if (bezeichnung != null ? !bezeichnung.equals(that.bezeichnung)
-				: that.bezeichnung != null)
-			return false;
-		if (kuerzel != null ? !kuerzel.equals(that.kuerzel)
-				: that.kuerzel != null)
-			return false;
-
-		return true;
+	public String toString() {
+		return "Zimmerstatus [ID=" + ID + ", bezeichnung=" + bezeichnung
+				+ ", kuerzel=" + kuerzel + ", zimmer=" + zimmer + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		int result = ID;
-		result = 31 * result
-				+ (bezeichnung != null ? bezeichnung.hashCode() : 0);
-		result = 31 * result + (kuerzel != null ? kuerzel.hashCode() : 0);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result
+				+ ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
+		result = prime * result + ((kuerzel == null) ? 0 : kuerzel.hashCode());
+		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
 		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Zimmerstatus other = (Zimmerstatus) obj;
+		if (ID != other.ID)
+			return false;
+		if (bezeichnung == null) {
+			if (other.bezeichnung != null)
+				return false;
+		} else if (!bezeichnung.equals(other.bezeichnung))
+			return false;
+		if (kuerzel == null) {
+			if (other.kuerzel != null)
+				return false;
+		} else if (!kuerzel.equals(other.kuerzel))
+			return false;
+		if (zimmer == null) {
+			if (other.zimmer != null)
+				return false;
+		} else if (!zimmer.equals(other.zimmer))
+			return false;
+		return true;
+	}
+
+	
+	
 }

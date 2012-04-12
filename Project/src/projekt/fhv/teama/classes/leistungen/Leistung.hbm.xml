@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12.04.2012 23:35:04 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 13.04.2012 00:40:39 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="projekt.fhv.teama.classes.leistungen.Leistung" table="LEISTUNG">
         <id name="leistungId" type="int">
