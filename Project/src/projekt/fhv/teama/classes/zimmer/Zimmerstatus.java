@@ -1,62 +1,82 @@
 package projekt.fhv.teama.classes.zimmer;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 09.04.12
- * Time: 22:23
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
+ * this template use File | Settings | File Templates.
  */
 public class Zimmerstatus {
-    private int zimmerStatusId;
+	
+	private int ID;
+	private String bezeichnung;
+	private String kuerzel;
 
-    public int getZimmerStatusId() {
-        return zimmerStatusId;
-    }
+	public int getZimmerStatusId() {
+		return ID;
+	}
 
-    public void setZimmerStatusId(int zimmerStatusId) {
-        this.zimmerStatusId = zimmerStatusId;
-    }
+	public void setZimmerStatusId(int ID) {
+		this.ID = ID;
+	}
 
-    private String bezeichnung;
+	public String getBezeichnung() {
+		return bezeichnung;
+	}
 
-    public String getBezeichnung() {
-        return bezeichnung;
-    }
+	public void setBezeichnung(String bezeichnung) {
+		this.bezeichnung = bezeichnung;
+	}
 
-    public void setBezeichnung(String bezeichnung) {
-        this.bezeichnung = bezeichnung;
-    }
+	public String getKuerzel() {
+		return kuerzel;
+	}
 
-    private String kuerzel;
+	public void setKuerzel(String kuerzel) {
+		this.kuerzel = kuerzel;
+	}
+	
+	@Override
+	public String toString() {
+		return "Zimmerstatus [ID=" + ID + ", bezeichnung=" + bezeichnung
+				+ ", kuerzel=" + kuerzel + "]";
+	}
 
-    public String getKuerzel() {
-        return kuerzel;
-    }
+	public Zimmerstatus() {
+	}
 
-    public void setKuerzel(String kuerzel) {
-        this.kuerzel = kuerzel;
-    }
+	public Zimmerstatus(int iD, String bezeichnung, String kuerzel) {
+		super();
+		ID = iD;
+		this.bezeichnung = bezeichnung;
+		this.kuerzel = kuerzel;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
 
-        Zimmerstatus that = (Zimmerstatus) o;
+		Zimmerstatus that = (Zimmerstatus) o;
 
-        if (zimmerStatusId != that.zimmerStatusId) return false;
-        if (bezeichnung != null ? !bezeichnung.equals(that.bezeichnung) : that.bezeichnung != null) return false;
-        if (kuerzel != null ? !kuerzel.equals(that.kuerzel) : that.kuerzel != null) return false;
+		if (ID != that.ID)
+			return false;
+		if (bezeichnung != null ? !bezeichnung.equals(that.bezeichnung)
+				: that.bezeichnung != null)
+			return false;
+		if (kuerzel != null ? !kuerzel.equals(that.kuerzel)
+				: that.kuerzel != null)
+			return false;
 
-        return true;
-    }
+		return true;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = zimmerStatusId;
-        result = 31 * result + (bezeichnung != null ? bezeichnung.hashCode() : 0);
-        result = 31 * result + (kuerzel != null ? kuerzel.hashCode() : 0);
-        return result;
-    }
+	@Override
+	public int hashCode() {
+		int result = ID;
+		result = 31 * result
+				+ (bezeichnung != null ? bezeichnung.hashCode() : 0);
+		result = 31 * result + (kuerzel != null ? kuerzel.hashCode() : 0);
+		return result;
+	}
 }
