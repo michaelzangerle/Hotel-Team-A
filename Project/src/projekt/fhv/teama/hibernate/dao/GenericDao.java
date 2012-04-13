@@ -93,6 +93,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			e.printStackTrace();
 		}
 	}
+	
 
 	@Override
 	public void update(T obj) {

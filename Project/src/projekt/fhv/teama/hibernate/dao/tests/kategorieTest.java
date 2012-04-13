@@ -18,7 +18,7 @@ public class kategorieTest {
 	public static void main(String[] args) {
 		
 		Kategorie kat = new Kategorie("Testkategorie2", "Beschreibung der Testkategorie");
-		KategorieDao<Kategorie> kd = new KategorieDao<Kategorie>();
+		KategorieDao kd = new KategorieDao();
 		kd.create(kat);
 //		Kategorie kat = kd.getById(4);
 		 

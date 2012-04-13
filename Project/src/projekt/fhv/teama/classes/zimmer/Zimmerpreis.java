@@ -1,5 +1,7 @@
 package projekt.fhv.teama.classes.zimmer;
 
+import java.io.Serializable;
+
 import projekt.fhv.teama.classes.Saison;
 
 /**
@@ -9,7 +11,7 @@ import projekt.fhv.teama.classes.Saison;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Zimmerpreis {
+public class Zimmerpreis implements Serializable {
 	
     private Saison saison;
     private Kategorie kategorie;

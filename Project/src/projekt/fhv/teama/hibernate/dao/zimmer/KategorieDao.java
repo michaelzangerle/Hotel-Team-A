@@ -19,7 +19,7 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
  * @param <T>
  * 
  */
-public class KategorieDao<T> extends GenericDao<T> {
+public class KategorieDao extends GenericDao<Kategorie> {
 
 	public KategorieDao() {
 		super("Kategorie");

@@ -3,25 +3,27 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 13.04.2012 11:03:55 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
+
 	<class name="projekt.fhv.teama.classes.zimmer.Zimmerpreis" table="ZIMMERPREIS">
-		
-		<id name="ID" type="projekt.fhv.teama.classes.Saison">
-			<column name="SAISONID" />
-			<column name="KATEGORIEID" />
-		</id>
 
-		<many-to-one name="saison"
-			class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
-			<column name="SAISONID" />
-		</many-to-one>
+		<composite-id unsaved-value="any">
+			<key-many-to-one name="saison"
+				class="projekt.fhv.teama.classes.Saison" foreign-key="ID">
+				<column name="saisonID" not-null="true"/>
+			</key-many-to-one>
 
-		<many-to-one name="kategorie"
-			class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
-			<column name="KATEGORIEID" />
-		</many-to-one>
-		
+			<key-many-to-one name="kategorie"
+				class="projekt.fhv.teama.classes.zimmer.Kategorie"
+				foreign-key="ID">
+				<column name="kategorieID" not-null="true"/>
+			</key-many-to-one>
+
+		</composite-id>
+
 		<property name="preis" type="float">
-			<column name="PREIS" sql-type="numeric"/> 
+			<column name="PREIS" sql-type="decimal" />
 		</property>
+
 	</class>
+
 </hibernate-mapping>
