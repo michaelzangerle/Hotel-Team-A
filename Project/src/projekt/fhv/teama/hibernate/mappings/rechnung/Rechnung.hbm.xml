@@ -1,27 +1,37 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 13.04.2012 15:13:17 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 13.04.2012 16:39:38 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="projekt.fhv.teama.classes.rechnung.Rechnung" table="RECHNUNG">
         <id name="ID" type="int">
-            <column name="rechungID" />
-            <generator class="assigned" />
+            <column name="rechnungID" />
+            <generator class="native" />
         </id>
         <property name="bezahlerVorname" type="java.lang.String">
-            <column name="BEZAHLERVORNAME" />
+            <column name="BEZAHLERVORNAME" sql-type="varchar"/>
         </property>
         <property name="bezahlerNachname" type="java.lang.String">
-            <column name="BEZAHLERNACHNAME" />
+            <column name="BEZAHLERNACHNAME" sql-type="varchar"/>
         </property>
-        <many-to-one name="adresse" class="projekt.fhv.teama.classes.personen.Adresse" fetch="join">
-            <column name="ADRESSE" />
-        </many-to-one>
+        
+        <component name="adresse" class="projekt.fhv.teama.classes.personen.Adresse">
+			<property name="strasse" type="java.lang.String">
+				<column name="strasse" sql-type="varchar" not-null="true" />
+			</property>
+			<property name="plz" type="java.lang.String">
+				<column name="plz" sql-type="varchar" not-null="true" />
+			</property>
+			<property name="ort" type="java.lang.String">
+				<column name="ort" sql-type="varchar" not-null="true" />
+			</property>
+		</component>
+		
         <property name="summe" type="float">
-            <column name="SUMME" />
+            <column name="SUMME" sql-type="NUMERIC"/>
         </property>
         <property name="nummer" type="java.lang.String">
-            <column name="NUMMER" />
+            <column name="NUMMER" sql-type="varchar"/>
         </property>
         <many-to-one name="mitarbeiter" class="projekt.fhv.teama.classes.personen.Mitarbeiter" fetch="join">
             <column name="MITARBEITER" />
