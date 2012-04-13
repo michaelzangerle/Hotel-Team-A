@@ -9,7 +9,7 @@ import projekt.fhv.teama.classes.personen.Adresse;
 import projekt.fhv.teama.classes.personen.Bankverbindung;
 import projekt.fhv.teama.classes.personen.Land;
 import projekt.fhv.teama.classes.personen.Person;
-import projekt.fhv.teama.hibernate.dao.LandDao;
+import projekt.fhv.teama.hibernate.dao.personen.LandDao;
 import projekt.fhv.teama.hibernate.dao.personen.PersonDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 

@@ -1,19 +1,27 @@
-<?xml version='1.0' encoding='utf-8'?>
-<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
-        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.04.2012 11:03:55 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="projekt.fhv.teama.classes.zimmer.Zimmerpreis" table="ZIMMERPREIS">
+		
+		<id name="ID" type="projekt.fhv.teama.classes.Saison">
+			<column name="SAISONID" />
+			<column name="KATEGORIEID" />
+		</id>
 
-    <class name="Entities.Zimmerpreis" table="zimmerpreis" schema="" catalog="hibernate">
-        <composite-id mapped="true" class="Entities.ZimmerpreisPK">
-            <key-property name="saisonId">
-                <column name="saisonID" sql-type="int" length="10" not-null="true"/>
-            </key-property>
-            <key-property name="kategorieId">
-                <column name="kategorieID" sql-type="int" length="10" not-null="true"/>
-            </key-property>
-        </composite-id>
-        <property name="preis">
-            <column name="preis" sql-type="decimal" length="10" precision="2" not-null="true"/>
-        </property>
-    </class>
+		<many-to-one name="saison"
+			class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
+			<column name="SAISONID" />
+		</many-to-one>
+
+		<many-to-one name="kategorie"
+			class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
+			<column name="KATEGORIEID" />
+		</many-to-one>
+		
+		<property name="preis" type="float">
+			<column name="PREIS" sql-type="numeric"/> 
+		</property>
+	</class>
 </hibernate-mapping>

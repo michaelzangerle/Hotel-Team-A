@@ -4,7 +4,7 @@
 package projekt.fhv.teama.hibernate.dao.tests;
 
 import projekt.fhv.teama.classes.zimmer.Kategorie;
-import projekt.fhv.teama.hibernate.dao.KategorieDao;
+import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
 
 /**
  * @author mike

@@ -1,6 +1,6 @@
 package projekt.fhv.teama.classes.zimmer;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
@@ -8,12 +8,11 @@ import java.util.Date;
  */
 public class Statusentwicklung {
 
-	private int ID;
-	private Zimmerstatus zimmerStatus;
-	private Date von;
-	private Date bis;
-	private String beschreibung;
 	private Zimmer zimmer;
+	private Zimmerstatus zimmerStatus;
+	private Timestamp von;
+	private Timestamp bis;
+	private String beschreibung;
 
 	public Zimmer getZimmer() {
 		return zimmer;
@@ -23,19 +22,27 @@ public class Statusentwicklung {
 		this.zimmer = zimmer;
 	}
 
-	public Date getVon() {
+	public Zimmerstatus getZimmerStatus() {
+		return zimmerStatus;
+	}
+
+	public void setZimmerStatus(Zimmerstatus zimmerStatus) {
+		this.zimmerStatus = zimmerStatus;
+	}
+
+	public Timestamp getVon() {
 		return von;
 	}
 
-	public void setVon(Date von) {
+	public void setVon(Timestamp von) {
 		this.von = von;
 	}
 
-	public Date getBis() {
+	public Timestamp getBis() {
 		return bis;
 	}
 
-	public void setBis(Date bis) {
+	public void setBis(Timestamp bis) {
 		this.bis = bis;
 	}
 
@@ -47,49 +54,31 @@ public class Statusentwicklung {
 		this.beschreibung = beschreibung;
 	}
 
-	public int getID() {
-		return ID;
-	}
-
-	public void setID(int iD) {
-		ID = iD;
-	}
-
-	public Zimmerstatus getZimmerStatus() {
-		return zimmerStatus;
-	}
-
-	public void setZimmerStatus(Zimmerstatus zimmerStatus) {
-		this.zimmerStatus = zimmerStatus;
-	}
-
 	public Statusentwicklung() {
-	}
-	
-	
 
-	public Statusentwicklung(int iD, Zimmerstatus zimmerStatus, Date von,
-			Date bis, String beschreibung, Zimmer zimmer) {
-		ID = iD;
+	}
+
+	public Statusentwicklung(Zimmer zimmer, Zimmerstatus zimmerStatus,
+			Timestamp von, Timestamp bis, String beschreibung) {
+		super();
+		this.zimmer = zimmer;
 		this.zimmerStatus = zimmerStatus;
 		this.von = von;
 		this.bis = bis;
 		this.beschreibung = beschreibung;
-		this.zimmer = zimmer;
 	}
 
 	@Override
 	public String toString() {
-		return "Statusentwicklung [ID=" + ID + ", zimmerStatus=" + zimmerStatus
-				+ ", von=" + von + ", bis=" + bis + ", beschreibung="
-				+ beschreibung + ", zimmer=" + zimmer + "]";
+		return "Statusentwicklung [zimmer=" + zimmer + ", zimmerStatus="
+				+ zimmerStatus + ", von=" + von + ", bis=" + bis
+				+ ", beschreibung=" + beschreibung + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID;
 		result = prime * result
 				+ ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
@@ -109,8 +98,6 @@ public class Statusentwicklung {
 		if (getClass() != obj.getClass())
 			return false;
 		Statusentwicklung other = (Statusentwicklung) obj;
-		if (ID != other.ID)
-			return false;
 		if (beschreibung == null) {
 			if (other.beschreibung != null)
 				return false;
@@ -139,5 +126,4 @@ public class Statusentwicklung {
 		return true;
 	}
 
-	
 }

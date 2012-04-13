@@ -25,7 +25,8 @@ public class StatusentwicklungDao extends GenericDao<Statusentwicklung>{
 		super("Statusentwicklung");
 	}
 	
-	public List<Statusentwicklung> getStatusentwicklung(String zimmerNummer) throws DatabaseNotFoundException {
+	@SuppressWarnings("unchecked")
+	public List<Statusentwicklung> getStatusentwicklungByZimmernummer(String zimmerNummer) throws DatabaseNotFoundException {
 
 		List<Statusentwicklung> status = null;
 		
@@ -33,11 +34,10 @@ public class StatusentwicklungDao extends GenericDao<Statusentwicklung>{
 		try {
 			Session session = HibernateHelper.getSession();
 			
-			
 			// Zimmerid durch zimmernummer herausfinden
 			Query queryZimmerID = session.createQuery("from zimmer z where z.nummer = :zimmerNummer");
 			queryZimmerID.setString("zimmerNummer", zimmerNummer);
-			@SuppressWarnings("unchecked")
+
 			List<Zimmer> zimmer = queryZimmerID.list();
 			
 			if (zimmer.size() == 0) {
@@ -48,8 +48,7 @@ public class StatusentwicklungDao extends GenericDao<Statusentwicklung>{
 			
 			// Statusentwicklungen des zimmers finden
 			
-			Query query = session.createQuery("from " + getTable()
-					+ " z where z.zimmerID = :zimmerID");
+			Query query = session.createQuery("from " + getTable() + " z where z.zimmerID = :zimmerID");
 			query.setString("zimmerID", String.valueOf(zimmerID));
 
 			@SuppressWarnings("rawtypes")

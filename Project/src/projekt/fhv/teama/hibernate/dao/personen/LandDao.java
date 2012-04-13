@@ -1,4 +1,4 @@
-package projekt.fhv.teama.hibernate.dao;
+package projekt.fhv.teama.hibernate.dao.personen;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.hibernate.Session;
 
 import projekt.fhv.teama.classes.personen.Land;
 import projekt.fhv.teama.hibernate.HibernateHelper;
+import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
 

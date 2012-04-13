@@ -1,27 +1,36 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 13.04.2012 00:34:46 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 13.04.2012 10:26:32 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.zimmer.Statusentwicklung" table="STATUSENTWICKLUNG">
-        <id name="ID" type="int">
-            <column name="ID" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="zimmerStatus" class="projekt.fhv.teama.classes.zimmer.Zimmerstatus" fetch="join">
-            <column name="ZIMMERSTATUS" />
-        </many-to-one>
-        <property name="von" type="java.util.Date">
-            <column name="VON" />
-        </property>
-        <property name="bis" type="java.util.Date">
-            <column name="BIS" />
-        </property>
-        <property name="beschreibung" type="java.lang.String">
-            <column name="BESCHREIBUNG" />
-        </property>
-        <many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
-            <column name="ZIMMER" />
-        </many-to-one>
-    </class>
+	<class name="projekt.fhv.teama.classes.zimmer.Statusentwicklung"
+		table="STATUSENTWICKLUNG">
+
+		<id name="zimmer" type="projekt.fhv.teama.classes.zimmer.Zimmer">
+			<column name="ZIMMERID" />
+			<column name="ZIMMERSTATUSID" />
+			<column name="VON" sql-type="DATE" />
+		</id>
+
+		<many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
+			<column name="ZIMMERID" />
+		</many-to-one>
+
+		<many-to-one name="zimmerStatus" class="projekt.fhv.teama.classes.zimmer.Zimmerstatus" fetch="join">
+			<column name="ZIMMERSTATUSID" />
+		</many-to-one>
+
+		<property name="von" type="java.sql.Timestamp">
+			<column name="VON" sql-type="DATE" />
+		</property>
+
+		<property name="bis" type="java.sql.Timestamp">
+			<column name="BIS" sql-type="DATE" />
+		</property>
+
+		<property name="beschreibung" type="java.lang.String">
+			<column name="BESCHREIBUNG" sql-type="varchar" />
+		</property>
+
+	</class>
 </hibernate-mapping>

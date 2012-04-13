@@ -9,15 +9,6 @@ public class Zimmerstatus {
 	private int ID;
 	private String bezeichnung;
 	private String kuerzel;
-	private Zimmer zimmer;
-
-	public Zimmer getZimmer() {
-		return zimmer;
-	}
-
-	public void setZimmer(Zimmer zimmer) {
-		this.zimmer = zimmer;
-	}
 
 	public int getID() {
 		return ID;
@@ -46,18 +37,15 @@ public class Zimmerstatus {
 	public Zimmerstatus() {
 	}
 
-	public Zimmerstatus(int iD, String bezeichnung, String kuerzel,
-			Zimmer zimmer) {
-		ID = iD;
+	public Zimmerstatus(String bezeichnung, String kuerzel) {
 		this.bezeichnung = bezeichnung;
 		this.kuerzel = kuerzel;
-		this.zimmer = zimmer;
 	}
 
 	@Override
 	public String toString() {
 		return "Zimmerstatus [ID=" + ID + ", bezeichnung=" + bezeichnung
-				+ ", kuerzel=" + kuerzel + ", zimmer=" + zimmer + "]";
+				+ ", kuerzel=" + kuerzel + "]";
 	}
 
 	@Override
@@ -68,7 +56,6 @@ public class Zimmerstatus {
 		result = prime * result
 				+ ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
 		result = prime * result + ((kuerzel == null) ? 0 : kuerzel.hashCode());
-		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
 		return result;
 	}
 
@@ -93,14 +80,10 @@ public class Zimmerstatus {
 				return false;
 		} else if (!kuerzel.equals(other.kuerzel))
 			return false;
-		if (zimmer == null) {
-			if (other.zimmer != null)
-				return false;
-		} else if (!zimmer.equals(other.zimmer))
-			return false;
 		return true;
 	}
 
+	
 	
 	
 }

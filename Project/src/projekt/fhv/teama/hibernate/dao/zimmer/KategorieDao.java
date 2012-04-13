@@ -1,7 +1,7 @@
 /**
  * 
  */
-package projekt.fhv.teama.hibernate.dao;
+package projekt.fhv.teama.hibernate.dao.zimmer;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import org.hibernate.Session;
 
 import projekt.fhv.teama.classes.zimmer.Kategorie;
 import projekt.fhv.teama.hibernate.HibernateHelper;
+import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
 
 /**
@@ -40,7 +41,7 @@ public class KategorieDao<T> extends GenericDao<T> {
 				kategorie = (Kategorie) results.get(0);
 			}	
 			
-			if (results.size() == 1) {
+			if (results.size() == 0) {
 				throw new DatabaseNotFoundException();
 			}
 			

@@ -13,8 +13,6 @@
         </property>
         <property name="kuerzel" type="java.lang.String">
             <column name="KUERZEL" sql-type="varchar"/>
-        </property>
-        <!-- nicht fertig -->
-        <one-to-many name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer"></one-to-many>
+        </property>        
     </class>
 </hibernate-mapping>
