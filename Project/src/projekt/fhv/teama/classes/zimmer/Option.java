@@ -1,7 +1,7 @@
 package projekt.fhv.teama.classes.zimmer;
 
-import java.sql.Date;
 
+import java.sql.Timestamp;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,73 +11,100 @@ import java.sql.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class Option {
-    private int optionId;
-    private Date erfuellung;
+    private int ID;
+    private Timestamp erfuellung;
     private short prozentsatz;
     private boolean erfuellt;
     private Reservierung reservierung;
     
-    public int getOptionId() {
-        return optionId;
-    }
+	public Option(Timestamp erfuellung, short prozentsatz,
+			boolean erfuellt, Reservierung reservierung) {
+		this.erfuellung = erfuellung;
+		this.prozentsatz = prozentsatz;
+		this.erfuellt = erfuellt;
+		this.reservierung = reservierung;
+	}
+	public Option() {
 
-    public void setOptionId(int optionId) {
-        this.optionId = optionId;
-    }
-
-    public Date getErfuellung() {
-        return erfuellung;
-    }
-
-    public void setErfuellung(Date erfuellung) {
-        this.erfuellung = erfuellung;
-    }
-
-    public short getProzentsatz() {
-        return prozentsatz;
-    }
-
-    public void setProzentsatz(short prozentsatz) {
-        this.prozentsatz = prozentsatz;
-    }
-
-    public boolean getErfuellt() {
-        return erfuellt;
-    }
-
-    public void setErfuellt(boolean erfuellt) {
-        this.erfuellt = erfuellt;
-    }
-
-    public Reservierung getReservierung() {
+	}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+	public Timestamp getErfuellung() {
+		return erfuellung;
+	}
+	public void setErfuellung(Timestamp erfuellung) {
+		this.erfuellung = erfuellung;
+	}
+	public short getProzentsatz() {
+		return prozentsatz;
+	}
+	public void setProzentsatz(short prozentsatz) {
+		this.prozentsatz = prozentsatz;
+	}
+	public boolean isErfuellt() {
+		return erfuellt;
+	}
+	public void setErfuellt(boolean erfuellt) {
+		this.erfuellt = erfuellt;
+	}
+	public Reservierung getReservierung() {
 		return reservierung;
 	}
-
 	public void setReservierung(Reservierung reservierung) {
 		this.reservierung = reservierung;
 	}
-
 	@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Option option = (Option) o;
-
-        if (erfuellt != option.erfuellt) return false;
-        if (optionId != option.optionId) return false;
-        if (prozentsatz != option.prozentsatz) return false;
-        if (erfuellung != null ? !erfuellung.equals(option.erfuellung) : option.erfuellung != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = optionId;
-        result = 31 * result + (erfuellung != null ? erfuellung.hashCode() : 0);
-        result = 31 * result + (int) prozentsatz;
-        result = 31 * result + (erfuellt ? 1 : 0);
-        return result;
-    }
+	public String toString() {
+		return "Option [ID=" + ID + ", erfuellung=" + erfuellung
+				+ ", prozentsatz=" + prozentsatz + ", erfuellt=" + erfuellt
+				+ ", reservierung=" + reservierung + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + (erfuellt ? 1231 : 1237);
+		result = prime * result
+				+ ((erfuellung == null) ? 0 : erfuellung.hashCode());
+		result = prime * result + prozentsatz;
+		result = prime * result
+				+ ((reservierung == null) ? 0 : reservierung.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Option other = (Option) obj;
+		if (ID != other.ID)
+			return false;
+		if (erfuellt != other.erfuellt)
+			return false;
+		if (erfuellung == null) {
+			if (other.erfuellung != null)
+				return false;
+		} else if (!erfuellung.equals(other.erfuellung))
+			return false;
+		if (prozentsatz != other.prozentsatz)
+			return false;
+		if (reservierung == null) {
+			if (other.reservierung != null)
+				return false;
+		} else if (!reservierung.equals(other.reservierung))
+			return false;
+		return true;
+	}
+    
+    
+    
+   
 }

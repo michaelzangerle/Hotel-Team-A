@@ -16,7 +16,7 @@ public class ZimmerstatusTest {
 	
 	public static void main(String[] args) {
 		
-		Zimmerstatus status = new Zimmerstatus("Guten Morgen", "GM");
+//		Zimmerstatus status = new Zimmerstatus("Guten Morgen", "GM");
 		ZimmerstatusDao zd = new ZimmerstatusDao();
 		//zd.create(status);
 		

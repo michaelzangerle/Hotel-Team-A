@@ -1,20 +1,24 @@
-<?xml version='1.0' encoding='utf-8'?>
-<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
-        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-    <class name="Entities.Option" table="option" schema="" catalog="hibernate">
-        <id name="optionId">
-            <column name="optionID" sql-type="int" length="10" not-null="true"/>
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.04.2012 14:26:12 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.zimmer.Option" table="OPTION">
+        <id name="ID" type="int">
+            <column name="ID" sql-type="int" />
+            <generator class="native" />
         </id>
-        <property name="erfuellung">
-            <column name="erfuellung" sql-type="date" length="10" not-null="true"/>
+        <property name="erfuellung" type="java.sql.Timestamp">
+            <column name="ERFUELLUNG" sql-type="DATE"/>
         </property>
-        <property name="prozentsatz">
-            <column name="prozentsatz" sql-type="smallint" length="5" not-null="true"/>
+        <property name="prozentsatz" type="short">
+            <column name="PROZENTSATZ" sql-type="SMALLINT"/>
         </property>
-        <property name="erfuellt">
-            <column name="erfuellt" sql-type="bit" not-null="true"/>
+        <property name="erfuellt" type="boolean">
+            <column name="ERFUELLT" sql-type="boolean"/>
         </property>
+        <many-to-one name="reservierung" class="projekt.fhv.teama.classes.zimmer.Reservierung" fetch="join" foreign-key="ID">
+            <column name="RESERVIERUNG"  not-null="true"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>

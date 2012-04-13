@@ -3,9 +3,6 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 import projekt.fhv.teama.classes.Saison;
 import projekt.fhv.teama.classes.zimmer.Kategorie;
 import projekt.fhv.teama.classes.zimmer.Zimmerpreis;

@@ -14,7 +14,9 @@
 
         <!-- Mapping-Files -->
 <!--         <mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Statusentwicklung.hbm.xml"/> -->
-
+		
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Reservierung.hbm.xml"/>
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Option.hbm.xml"/>
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Zimmerpreis.hbm.xml"/>
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/Saison.hbm.xml"/>
         <mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Zimmerstatus.hbm.xml"/>
