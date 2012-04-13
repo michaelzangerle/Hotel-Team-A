@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.04.2012 15:41:30 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.zimmer.Option" table="OPTION">
+        <id name="ID" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="erfuellung" type="java.sql.Timestamp">
+            <column name="ERFUELLUNG" />
+        </property>
+        <property name="prozentsatz" type="short">
+            <column name="PROZENTSATZ" />
+        </property>
+        <property name="erfuellt" type="boolean">
+            <column name="ERFUELLT" />
+        </property>
+        <many-to-one name="reservierung" class="projekt.fhv.teama.classes.zimmer.Reservierung" fetch="join">
+            <column name="RESERVIERUNG" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
