@@ -8,44 +8,58 @@ package projekt.fhv.teama.classes.leistungen;
  * To change this template use File | Settings | File Templates.
  */
 public class Leistung {
-    private int leistungId;
-
-    public int getLeistungId() {
-        return leistungId;
-    }
-
-    public void setLeistungId(int leistungId) {
-        this.leistungId = leistungId;
-    }
-
+    private int ID;
     private String bezeichnung;
+    
+	public Leistung( String bezeichnung) {
+		this.bezeichnung = bezeichnung;
+	}
+	public Leistung() {
+	}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+	public String getBezeichnung() {
+		return bezeichnung;
+	}
+	public void setBezeichnung(String bezeichnung) {
+		this.bezeichnung = bezeichnung;
+	}
+	@Override
+	public String toString() {
+		return "Leistung [ID=" + ID + ", bezeichnung=" + bezeichnung + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result
+				+ ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Leistung other = (Leistung) obj;
+		if (ID != other.ID)
+			return false;
+		if (bezeichnung == null) {
+			if (other.bezeichnung != null)
+				return false;
+		} else if (!bezeichnung.equals(other.bezeichnung))
+			return false;
+		return true;
+	}
+    
+    
 
-    public String getBezeichnung() {
-        return bezeichnung;
-    }
-
-    public void setBezeichnung(String bezeichnung) {
-        this.bezeichnung = bezeichnung;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Leistung leistung = (Leistung) o;
-
-        if (leistungId != leistung.leistungId) return false;
-        if (bezeichnung != null ? !bezeichnung.equals(leistung.bezeichnung) : leistung.bezeichnung != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = leistungId;
-        result = 31 * result + (bezeichnung != null ? bezeichnung.hashCode() : 0);
-        return result;
-    }
 }

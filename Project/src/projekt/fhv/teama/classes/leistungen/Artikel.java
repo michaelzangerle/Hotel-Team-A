@@ -1,65 +1,101 @@
 package projekt.fhv.teama.classes.leistungen;
 
-import java.math.BigDecimal;
-
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 09.04.12
- * Time: 22:23
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
+ * this template use File | Settings | File Templates.
  */
 public class Artikel {
-    private int artikelId;
+	private int ID;
+	private float preis;
+	private String beschreibung;
+	private Warengruppe warengruppe;
 
-    public int getArtikelId() {
-        return artikelId;
-    }
+	public Artikel(float preis, String beschreibung, Warengruppe warengruppe) {
 
-    public void setArtikelId(int artikelId) {
-        this.artikelId = artikelId;
-    }
+		this.preis = preis;
+		this.beschreibung = beschreibung;
+		this.warengruppe = warengruppe;
+	}
 
-    private BigDecimal preis;
+	public Artikel() {
 
-    public BigDecimal getPreis() {
-        return preis;
-    }
+	}
 
-    public void setPreis(BigDecimal preis) {
-        this.preis = preis;
-    }
+	public int getID() {
+		return ID;
+	}
 
-    private String beschreibung;
+	public void setID(int iD) {
+		ID = iD;
+	}
 
-    public String getBeschreibung() {
-        return beschreibung;
-    }
+	public float getPreis() {
+		return preis;
+	}
 
-    public void setBeschreibung(String beschreibung) {
-        this.beschreibung = beschreibung;
-    }
+	public void setPreis(float preis) {
+		this.preis = preis;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	public String getBeschreibung() {
+		return beschreibung;
+	}
 
-        Artikel artikel = (Artikel) o;
+	public void setBeschreibung(String beschreibung) {
+		this.beschreibung = beschreibung;
+	}
 
-        if (artikelId != artikel.artikelId) return false;
-        if (beschreibung != null ? !beschreibung.equals(artikel.beschreibung) : artikel.beschreibung != null)
-            return false;
-        if (preis != null ? !preis.equals(artikel.preis) : artikel.preis != null) return false;
+	public Warengruppe getWarengruppe() {
+		return warengruppe;
+	}
 
-        return true;
-    }
+	public void setWarengruppe(Warengruppe warengruppe) {
+		this.warengruppe = warengruppe;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = artikelId;
-        result = 31 * result + (preis != null ? preis.hashCode() : 0);
-        result = 31 * result + (beschreibung != null ? beschreibung.hashCode() : 0);
-        return result;
-    }
+	@Override
+	public String toString() {
+		return "Artikel [ID=" + ID + ", preis=" + preis + ", beschreibung="
+				+ beschreibung + ", warengruppe=" + warengruppe + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result
+				+ ((beschreibung == null) ? 0 : beschreibung.hashCode());
+		result = prime * result + Float.floatToIntBits(preis);
+		result = prime * result
+				+ ((warengruppe == null) ? 0 : warengruppe.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Artikel other = (Artikel) obj;
+		if (ID != other.ID)
+			return false;
+		if (beschreibung == null) {
+			if (other.beschreibung != null)
+				return false;
+		} else if (!beschreibung.equals(other.beschreibung))
+			return false;
+		if (Float.floatToIntBits(preis) != Float.floatToIntBits(other.preis))
+			return false;
+		if (warengruppe == null) {
+			if (other.warengruppe != null)
+				return false;
+		} else if (!warengruppe.equals(other.warengruppe))
+			return false;
+		return true;
+	}
+
 }

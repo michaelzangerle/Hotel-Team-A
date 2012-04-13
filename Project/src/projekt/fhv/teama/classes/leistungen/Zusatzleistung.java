@@ -1,76 +1,116 @@
 package projekt.fhv.teama.classes.leistungen;
 
-import java.math.BigDecimal;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 09.04.12
- * Time: 22:23
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
+ * this template use File | Settings | File Templates.
  */
 public class Zusatzleistung {
-    private int zusatzleistungId;
+	private int ID;
+	private float preis;
+	private String beschreibung;
+	private boolean extern;
+	private Warengruppe warengruppe;
 
-    public int getZusatzleistungId() {
-        return zusatzleistungId;
-    }
+	public Zusatzleistung(float preis, String beschreibung, boolean extern,
+			Warengruppe warengruppe) {
+		this.preis = preis;
+		this.beschreibung = beschreibung;
+		this.extern = extern;
+		this.warengruppe = warengruppe;
+	}
 
-    public void setZusatzleistungId(int zusatzleistungId) {
-        this.zusatzleistungId = zusatzleistungId;
-    }
+	public Zusatzleistung() {
 
-    private BigDecimal preis;
+	}
 
-    public BigDecimal getPreis() {
-        return preis;
-    }
+	public int getID() {
+		return ID;
+	}
 
-    public void setPreis(BigDecimal preis) {
-        this.preis = preis;
-    }
+	public void setID(int iD) {
+		ID = iD;
+	}
 
-    private String beschreibung;
+	public float getPreis() {
+		return preis;
+	}
 
-    public String getBeschreibung() {
-        return beschreibung;
-    }
+	public void setPreis(float preis) {
+		this.preis = preis;
+	}
 
-    public void setBeschreibung(String beschreibung) {
-        this.beschreibung = beschreibung;
-    }
+	public String getBeschreibung() {
+		return beschreibung;
+	}
 
-    private boolean extern;
+	public void setBeschreibung(String beschreibung) {
+		this.beschreibung = beschreibung;
+	}
 
-    public boolean isExtern() {
-        return extern;
-    }
+	public boolean isExtern() {
+		return extern;
+	}
 
-    public void setExtern(boolean extern) {
-        this.extern = extern;
-    }
+	public void setExtern(boolean extern) {
+		this.extern = extern;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	public Warengruppe getWarengruppe() {
+		return warengruppe;
+	}
 
-        Zusatzleistung that = (Zusatzleistung) o;
+	public void setWarengruppe(Warengruppe warengruppe) {
+		this.warengruppe = warengruppe;
+	}
 
-        if (extern != that.extern) return false;
-        if (zusatzleistungId != that.zusatzleistungId) return false;
-        if (beschreibung != null ? !beschreibung.equals(that.beschreibung) : that.beschreibung != null) return false;
-        if (preis != null ? !preis.equals(that.preis) : that.preis != null) return false;
+	@Override
+	public String toString() {
+		return "Artikel [ID=" + ID + ", preis=" + preis + ", beschreibung="
+				+ beschreibung + ", extern=" + extern + ", warengruppe="
+				+ warengruppe + "]";
+	}
 
-        return true;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result
+				+ ((beschreibung == null) ? 0 : beschreibung.hashCode());
+		result = prime * result + (extern ? 1231 : 1237);
+		result = prime * result + Float.floatToIntBits(preis);
+		result = prime * result
+				+ ((warengruppe == null) ? 0 : warengruppe.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = zusatzleistungId;
-        result = 31 * result + (preis != null ? preis.hashCode() : 0);
-        result = 31 * result + (beschreibung != null ? beschreibung.hashCode() : 0);
-        result = 31 * result + (extern ? 1 : 0);
-        return result;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Zusatzleistung other = (Zusatzleistung) obj;
+		if (ID != other.ID)
+			return false;
+		if (beschreibung == null) {
+			if (other.beschreibung != null)
+				return false;
+		} else if (!beschreibung.equals(other.beschreibung))
+			return false;
+		if (extern != other.extern)
+			return false;
+		if (Float.floatToIntBits(preis) != Float.floatToIntBits(other.preis))
+			return false;
+		if (warengruppe == null) {
+			if (other.warengruppe != null)
+				return false;
+		} else if (!warengruppe.equals(other.warengruppe))
+			return false;
+		return true;
+	}
+
 }

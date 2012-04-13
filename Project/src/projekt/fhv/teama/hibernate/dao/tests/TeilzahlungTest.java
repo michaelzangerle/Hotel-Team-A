@@ -3,8 +3,6 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import projekt.fhv.teama.classes.rechnung.Rechnung;
-import projekt.fhv.teama.classes.rechnung.Teilzahlung;
 import projekt.fhv.teama.classes.rechnung.Zahlungsmethode;
 import projekt.fhv.teama.hibernate.dao.rechnung.TeilzahlungDao;
 import projekt.fhv.teama.hibernate.dao.rechnung.ZahlungsmethodeDao;

@@ -47,29 +47,43 @@ public class Kategorie {
         this.beschreibung = beschreibung;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Kategorie kategorie = (Kategorie) o;
 
-        if (ID != kategorie.ID) return false;
-        if (beschreibung != null ? !beschreibung.equals(kategorie.beschreibung) : kategorie.beschreibung != null)
-            return false;
-        if (bezeichnung != null ? !bezeichnung.equals(kategorie.bezeichnung) : kategorie.bezeichnung != null)
-            return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result
+				+ ((beschreibung == null) ? 0 : beschreibung.hashCode());
+		result = prime * result
+				+ ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
+		return result;
+	}
 
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = ID;
-        result = 31 * result + (bezeichnung != null ? bezeichnung.hashCode() : 0);
-        result = 31 * result + (beschreibung != null ? beschreibung.hashCode() : 0);
-        return result;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Kategorie other = (Kategorie) obj;
+		if (ID != other.ID)
+			return false;
+		if (beschreibung == null) {
+			if (other.beschreibung != null)
+				return false;
+		} else if (!beschreibung.equals(other.beschreibung))
+			return false;
+		if (bezeichnung == null) {
+			if (other.bezeichnung != null)
+				return false;
+		} else if (!bezeichnung.equals(other.bezeichnung))
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {
