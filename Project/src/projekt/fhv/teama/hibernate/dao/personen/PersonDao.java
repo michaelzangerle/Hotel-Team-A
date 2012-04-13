@@ -25,6 +25,7 @@ public class PersonDao extends GenericDao<Person>{
 		super("Person");
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Person> getPerson(String name) throws DatabaseException {
 		
 		List<Person> p = null;
@@ -51,6 +52,7 @@ public class PersonDao extends GenericDao<Person>{
 		return p;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Person> getPerson(String firstname, String lastname) throws DatabaseException {
 		
 		List<Person> p = null;

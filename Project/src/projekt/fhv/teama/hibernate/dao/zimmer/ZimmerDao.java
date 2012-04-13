@@ -1,7 +1,7 @@
 /**
  * 
  */
-package projekt.fhv.teama.hibernate.dao.leistungen;
+package projekt.fhv.teama.hibernate.dao.zimmer;
 
 import java.util.List;
 

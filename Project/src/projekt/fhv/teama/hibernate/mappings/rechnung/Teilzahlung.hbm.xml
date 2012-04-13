@@ -1,19 +1,29 @@
-<?xml version='1.0' encoding='utf-8'?>
-<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
-        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-    <class name="Entities.Teilzahlung" table="teilzahlung" schema="" catalog="hibernate">
-        <composite-id mapped="true" class="Entities.TeilzahlungPK">
-            <key-property name="zahlungsmethodeId">
-                <column name="zahlungsmethodeID" sql-type="int" length="10" not-null="true"/>
-            </key-property>
-            <key-property name="rechnungId">
-                <column name="rechnungID" sql-type="int" length="10" not-null="true"/>
-            </key-property>
-        </composite-id>
-        <property name="betrag">
-            <column name="betrag" sql-type="decimal" length="12" precision="2" not-null="true"/>
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.04.2012 15:41:30 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.rechnung.Teilzahlung" table="TEILZAHLUNG">
+    
+        <id name="zahlungsmethodeID" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        
+        <many-to-one name="rechnung" class="projekt.fhv.teama.classes.rechnung.Rechnung" fetch="join">
+            <column name="RECHNUNG" />
+        </many-to-one>
+        
+        <property name="betrag" type="float">
+            <column name="BETRAG" sql-type="NUMERIC"/>
         </property>
+        
+        <list name="zahlungsmethoden" inverse="false" table="ZAHLUNGSMETHODE" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="projekt.fhv.teama.classes.rechnung.Zahlungsmethode" />
+        </list>
     </class>
 </hibernate-mapping>

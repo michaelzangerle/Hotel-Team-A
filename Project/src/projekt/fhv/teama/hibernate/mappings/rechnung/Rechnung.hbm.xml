@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 12.04.2012 23:35:04 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 13.04.2012 15:13:17 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="projekt.fhv.teama.classes.rechnung.Rechnung" table="RECHNUNG">
-        <id name="rechnungId" type="int">
-            <column name="RECHNUNGID" />
+        <id name="ID" type="int">
+            <column name="rechungID" />
             <generator class="assigned" />
         </id>
         <property name="bezahlerVorname" type="java.lang.String">
@@ -14,20 +14,31 @@
         <property name="bezahlerNachname" type="java.lang.String">
             <column name="BEZAHLERNACHNAME" />
         </property>
-        <property name="bezahlerStrasse" type="java.lang.String">
-            <column name="BEZAHLERSTRASSE" />
-        </property>
-        <property name="bezahlerOrt" type="java.lang.String">
-            <column name="BEZAHLERORT" />
-        </property>
-        <property name="bezahlerPlz" type="java.lang.String">
-            <column name="BEZAHLERPLZ" />
-        </property>
-        <property name="summe" type="java.math.BigDecimal">
+        <many-to-one name="adresse" class="projekt.fhv.teama.classes.personen.Adresse" fetch="join">
+            <column name="ADRESSE" />
+        </many-to-one>
+        <property name="summe" type="float">
             <column name="SUMME" />
         </property>
         <property name="nummer" type="java.lang.String">
             <column name="NUMMER" />
         </property>
+        <many-to-one name="mitarbeiter" class="projekt.fhv.teama.classes.personen.Mitarbeiter" fetch="join">
+            <column name="MITARBEITER" />
+        </many-to-one>
+        <list name="rechnungspostitionen" inverse="false" table="RECHNUNGSPOSITION" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="projekt.fhv.teama.classes.rechnung.Rechnungsposition" />
+        </list>
+        <list name="teilzahlungen" inverse="false" table="TEILZAHLUNG" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="projekt.fhv.teama.classes.rechnung.Teilzahlung" />
+        </list>
     </class>
 </hibernate-mapping>

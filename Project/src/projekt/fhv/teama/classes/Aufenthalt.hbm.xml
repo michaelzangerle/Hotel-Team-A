@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.04.2012 15:41:30 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.Aufenthalt" table="AUFENTHALT">
+        <id name="gastId" type="int">
+            <column name="GASTID" />
+            <generator class="assigned" />
+        </id>
+        <property name="zimmerId" type="int">
+            <column name="ZIMMERID" />
+        </property>
+        <property name="preis" type="java.math.BigDecimal">
+            <column name="PREIS" />
+        </property>
+        <property name="pfandNr" type="java.lang.String">
+            <column name="PFANDNR" />
+        </property>
+        <property name="von" type="java.sql.Date">
+            <column name="VON" />
+        </property>
+        <property name="bis" type="java.sql.Date">
+            <column name="BIS" />
+        </property>
+        <property name="schluessel" type="boolean">
+            <column name="SCHLUESSEL" />
+        </property>
+    </class>
+</hibernate-mapping>

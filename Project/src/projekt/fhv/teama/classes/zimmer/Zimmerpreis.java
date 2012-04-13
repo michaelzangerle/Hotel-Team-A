@@ -13,7 +13,12 @@ import projekt.fhv.teama.classes.Saison;
  */
 public class Zimmerpreis implements Serializable {
 	
-    private Saison saison;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2058556279993321251L;
+	
+	private Saison saison;
     private Kategorie kategorie;
     private float preis;
     

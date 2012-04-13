@@ -1,6 +1,6 @@
 package projekt.fhv.teama.classes.rechnung;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,55 +10,99 @@ import java.math.BigDecimal;
  * To change this template use File | Settings | File Templates.
  */
 public class Teilzahlung {
-    private int zahlungsmethodeId;
+    private int ID;
+    private Rechnung rechnung;
+    private float betrag;
+    
+    private List<Zahlungsmethode> zahlungsmethoden;
 
-    public int getZahlungsmethodeId() {
-        return zahlungsmethodeId;
-    }
+	public Teilzahlung(Rechnung rechnung, float betrag,
+			List<Zahlungsmethode> zahlungsmethoden) {
+		this.rechnung = rechnung;
+		this.betrag = betrag;
+		this.zahlungsmethoden = zahlungsmethoden;
+	}
 
-    public void setZahlungsmethodeId(int zahlungsmethodeId) {
-        this.zahlungsmethodeId = zahlungsmethodeId;
-    }
+	public Teilzahlung() {
+	}
 
-    private int rechnungId;
+	public int getID() {
+		return ID;
+	}
 
-    public int getRechnungId() {
-        return rechnungId;
-    }
+	public void setID(int iD) {
+		ID = iD;
+	}
 
-    public void setRechnungId(int rechnungId) {
-        this.rechnungId = rechnungId;
-    }
+	public Rechnung getRechnung() {
+		return rechnung;
+	}
 
-    private BigDecimal betrag;
+	public void setRechnung(Rechnung rechnung) {
+		this.rechnung = rechnung;
+	}
 
-    public BigDecimal getBetrag() {
-        return betrag;
-    }
+	public float getBetrag() {
+		return betrag;
+	}
 
-    public void setBetrag(BigDecimal betrag) {
-        this.betrag = betrag;
-    }
+	public void setBetrag(float betrag) {
+		this.betrag = betrag;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	public List<Zahlungsmethode> getZahlungsmethoden() {
+		return zahlungsmethoden;
+	}
 
-        Teilzahlung that = (Teilzahlung) o;
+	public void setZahlungsmethoden(List<Zahlungsmethode> zahlungsmethoden) {
+		this.zahlungsmethoden = zahlungsmethoden;
+	}
 
-        if (rechnungId != that.rechnungId) return false;
-        if (zahlungsmethodeId != that.zahlungsmethodeId) return false;
-        if (betrag != null ? !betrag.equals(that.betrag) : that.betrag != null) return false;
+	@Override
+	public String toString() {
+		return "Teilzahlung [ID=" + ID + ", rechnung=" + rechnung + ", betrag="
+				+ betrag + ", zahlungsmethoden=" + zahlungsmethoden + "]";
+	}
 
-        return true;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + Float.floatToIntBits(betrag);
+		result = prime * result
+				+ ((rechnung == null) ? 0 : rechnung.hashCode());
+		result = prime
+				* result
+				+ ((zahlungsmethoden == null) ? 0 : zahlungsmethoden.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = zahlungsmethodeId;
-        result = 31 * result + rechnungId;
-        result = 31 * result + (betrag != null ? betrag.hashCode() : 0);
-        return result;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Teilzahlung other = (Teilzahlung) obj;
+		if (ID != other.ID)
+			return false;
+		if (Float.floatToIntBits(betrag) != Float.floatToIntBits(other.betrag))
+			return false;
+		if (rechnung == null) {
+			if (other.rechnung != null)
+				return false;
+		} else if (!rechnung.equals(other.rechnung))
+			return false;
+		if (zahlungsmethoden == null) {
+			if (other.zahlungsmethoden != null)
+				return false;
+		} else if (!zahlungsmethoden.equals(other.zahlungsmethoden))
+			return false;
+		return true;
+	}
+
+	
 }
