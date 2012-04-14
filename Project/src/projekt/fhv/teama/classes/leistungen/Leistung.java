@@ -8,8 +8,9 @@ package projekt.fhv.teama.classes.leistungen;
  * To change this template use File | Settings | File Templates.
  */
 public class Leistung {
-    private int ID;
-    private String bezeichnung;
+	
+    protected int ID;
+    protected String bezeichnung;
     
 	public Leistung( String bezeichnung) {
 		this.bezeichnung = bezeichnung;

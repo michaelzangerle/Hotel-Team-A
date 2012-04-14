@@ -16,13 +16,16 @@ public class LeistungTest {
 		LeistungDao ld = new LeistungDao();
 		WarengruppeDao wd = new WarengruppeDao();
 		
-		Warengruppe w1 = new Warengruppe("Erste Warengruppe", (short) 20, "Beschreibung der ersten Warengruppe", null, null);
-		Leistung l1 = new Leistung("Erste Leistung");
-		Artikel a1 = new Artikel(111F, "Erster Artikel", w1);
+		Warengruppe w1 = new Warengruppe("Zweite Warengruppe", (short) 20, "Beschreibung der ersten Warengruppe", null, null);
+		Leistung l1 = new Leistung("2 Leistung");
+//		Artikel a1 = new Artikel(111F, "Zweiter Artikel", "Beschreibung des zweiten Artikels", wd.getById(3));
 		
-		//ld.create(l1);
-		//ad.create(a1);
-		wd.create(w1);
+//		ld.create(l1);
+//		ad.create(a1);
+//		wd.create(w1);
+		
+//		System.out.println(wd.getById(3));
+		System.out.println(wd.getAll().toString());
 		
 		//System.out.println(ld.getLeistung("Erste Leistung").toString());
 		

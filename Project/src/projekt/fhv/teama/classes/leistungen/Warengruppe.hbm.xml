@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14.04.2012 18:01:39 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.leistungen.Warengruppe" table="WARENGRUPPE">
+        <id name="ID" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="bezeichung" type="java.lang.String">
+            <column name="BEZEICHUNG" />
+        </property>
+        <property name="steuersatz" type="short">
+            <column name="STEUERSATZ" />
+        </property>
+        <property name="beschreibung" type="java.lang.String">
+            <column name="BESCHREIBUNG" />
+        </property>
+        <list name="zusatzleistungen" inverse="false" table="ZUSATZLEISTUNG" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" />
+        </list>
+        <list name="artikel" inverse="false" table="ARTIKEL" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="projekt.fhv.teama.classes.leistungen.Artikel" />
+        </list>
+    </class>
+</hibernate-mapping>

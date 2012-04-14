@@ -16,9 +16,9 @@ import projekt.fhv.teama.hibernate.HibernateHelper;
  * 
  */
 public abstract class GenericDao<T> implements IGenericDao<T> {
-	
+
 	private String table;
-	
+
 	protected String getTable() {
 		return table;
 	}
@@ -36,23 +36,28 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
+
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getAll() {
-		
+
 		List<T> results = null;
 
 		try {
 			Session session = HibernateHelper.getSession();
-			Query query = session.createQuery("from "+this.table);
-			
+			Query query = session.createQuery("from " + this.table);
+
 			results = query.list();
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 
 		return results;
@@ -65,8 +70,8 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 		try {
 			Session session = HibernateHelper.getSession();
-			Query query = session.createQuery("from "+this.table+" t where t.ID = :id");
-			query.setString("id", id+"");
+			Query query = session.createQuery("from " + this.table + " t where t.ID = :id");
+			query.setString("id", id + "");
 
 			@SuppressWarnings("unchecked")
 			List<T> results = query.list();
@@ -76,7 +81,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			}
 
 		} catch (HibernateException e) {
+//			System.out.println(e.getMessage());
 			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 
 		return object;
@@ -91,9 +99,11 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
+
 	}
-	
 
 	@Override
 	public void update(T obj) {
@@ -104,7 +114,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
+
 	}
 
 }

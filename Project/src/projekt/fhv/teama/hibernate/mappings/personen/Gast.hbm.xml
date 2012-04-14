@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 09.04.2012 23:53:36 by Hibernate Tools 3.4.0.CR1 -->
+
 <hibernate-mapping>
     <joined-subclass name="projekt.fhv.teama.classes.personen.Gast"
     				 extends="projekt.fhv.teama.classes.personen.Person">

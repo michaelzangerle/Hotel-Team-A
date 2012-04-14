@@ -63,6 +63,14 @@ public class Warengruppe {
 	public List<Artikel> getArtikels() {
 		return artikel;
 	}
+	public List<Artikel> getArtikel() {
+		return artikel;
+	}
+
+	public void setArtikel(List<Artikel> artikel) {
+		this.artikel = artikel;
+	}
+
 	public void setArtikels(List<Artikel> artikels) {
 		this.artikel = artikels;
 	}
@@ -70,8 +78,8 @@ public class Warengruppe {
 	public String toString() {
 		return "Warengruppe [ID=" + ID + ", bezeichung=" + bezeichung
 				+ ", steuersatz=" + steuersatz + ", beschreibung="
-				+ beschreibung + ", zusatzleistungen=" + zusatzleistungen
-				+ ", artikels=" + artikel + "]";
+				+ beschreibung + ", zusatzleistungen=" + zusatzleistungen.toString()
+				+ ", artikel=" + artikel.toString() + "]";
 	}
 	@Override
 	public int hashCode() {

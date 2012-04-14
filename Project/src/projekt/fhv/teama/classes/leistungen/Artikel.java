@@ -4,29 +4,31 @@ package projekt.fhv.teama.classes.leistungen;
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Artikel {
-	private int ID;
+public class Artikel extends Leistung {
+	private int artikelID;
 	private float preis;
 	private String beschreibung;
 	private Warengruppe warengruppe;
 
-	public Artikel(float preis, String beschreibung, Warengruppe warengruppe) {
-
+	public Artikel(float preis, String bezeichnung, String beschreibung, Warengruppe warengruppe) {
 		this.preis = preis;
 		this.beschreibung = beschreibung;
 		this.warengruppe = warengruppe;
+		setBezeichnung(bezeichnung);
 	}
 
 	public Artikel() {
 
 	}
 
-	public int getID() {
-		return ID;
+
+
+	public int getArtikelID() {
+		return artikelID;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setArtikelID(int artikelID) {
+		this.artikelID = artikelID;
 	}
 
 	public float getPreis() {
@@ -55,20 +57,18 @@ public class Artikel {
 
 	@Override
 	public String toString() {
-		return "Artikel [ID=" + ID + ", preis=" + preis + ", beschreibung="
-				+ beschreibung + ", warengruppe=" + warengruppe + "]";
+		return "Artikel [ID=" + artikelID + ", preis=" + preis + ", beschreibung=" + beschreibung + ", warengruppe="
+				+ warengruppe + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID;
-		result = prime * result
-				+ ((beschreibung == null) ? 0 : beschreibung.hashCode());
+		result = prime * result + artikelID;
+		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + Float.floatToIntBits(preis);
-		result = prime * result
-				+ ((warengruppe == null) ? 0 : warengruppe.hashCode());
+		result = prime * result + ((warengruppe == null) ? 0 : warengruppe.hashCode());
 		return result;
 	}
 
@@ -81,7 +81,7 @@ public class Artikel {
 		if (getClass() != obj.getClass())
 			return false;
 		Artikel other = (Artikel) obj;
-		if (ID != other.ID)
+		if (artikelID != other.artikelID)
 			return false;
 		if (beschreibung == null) {
 			if (other.beschreibung != null)
@@ -97,5 +97,7 @@ public class Artikel {
 			return false;
 		return true;
 	}
+
+	
 
 }
