@@ -30,5 +30,4 @@ public interface IPerson {
 	public String getBlz();
 	public void setLand(ILand land);
 	public ILand getLand();
-	
 }
