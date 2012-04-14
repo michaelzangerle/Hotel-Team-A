@@ -3,16 +3,20 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 14.04.2012 15:18:31 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.leistungen.Leistung" table="LEISTUNG">
-        
-        <id name="ID" type="int">
-            <column name="leistungsID" sql-type="int" length="11"/>
-            <generator class="native" />
-        </id>
-        
-        <property name="bezeichnung" type="java.lang.String">
-            <column name="BEZEICHNUNG" sql-type="varchar" length="255" not-null="true"/>
-        </property>
-        
-    </class>
+	<class name="projekt.fhv.teama.classes.leistungen.Leistung"
+		table="LEISTUNG">
+
+		<id name="ID" type="int">
+			<column name="leistungID" sql-type="int" length="11" />
+			<generator class="native" />
+		</id>
+
+		<property name="bezeichnung" type="java.lang.String">
+			<column name="BEZEICHNUNG" sql-type="varchar" length="255"
+				not-null="true" />
+		</property>
+
+		
+
+	</class>
 </hibernate-mapping>

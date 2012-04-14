@@ -14,17 +14,17 @@ public class Warengruppe {
 	private String beschreibung;
 	
 	private List<Zusatzleistung> zusatzleistungen;
-	private List<Artikel> artikels;
+	private List<Artikel> artikel;
 	
 	public Warengruppe(String bezeichung, short steuersatz,
 			String beschreibung, List<Zusatzleistung> zusatzleistungen,
-			List<Artikel> artikels) {
+			List<Artikel> artikel) {
 
 		this.bezeichung = bezeichung;
 		this.steuersatz = steuersatz;
 		this.beschreibung = beschreibung;
 		this.zusatzleistungen = zusatzleistungen;
-		this.artikels = artikels;
+		this.artikel = artikel;
 	}
 	
 	public Warengruppe() {
@@ -61,17 +61,17 @@ public class Warengruppe {
 		this.zusatzleistungen = zusatzleistungen;
 	}
 	public List<Artikel> getArtikels() {
-		return artikels;
+		return artikel;
 	}
 	public void setArtikels(List<Artikel> artikels) {
-		this.artikels = artikels;
+		this.artikel = artikels;
 	}
 	@Override
 	public String toString() {
 		return "Warengruppe [ID=" + ID + ", bezeichung=" + bezeichung
 				+ ", steuersatz=" + steuersatz + ", beschreibung="
 				+ beschreibung + ", zusatzleistungen=" + zusatzleistungen
-				+ ", artikels=" + artikels + "]";
+				+ ", artikels=" + artikel + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -79,7 +79,7 @@ public class Warengruppe {
 		int result = 1;
 		result = prime * result + ID;
 		result = prime * result
-				+ ((artikels == null) ? 0 : artikels.hashCode());
+				+ ((artikel == null) ? 0 : artikel.hashCode());
 		result = prime * result
 				+ ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result
@@ -101,10 +101,10 @@ public class Warengruppe {
 		Warengruppe other = (Warengruppe) obj;
 		if (ID != other.ID)
 			return false;
-		if (artikels == null) {
-			if (other.artikels != null)
+		if (artikel == null) {
+			if (other.artikel != null)
 				return false;
-		} else if (!artikels.equals(other.artikels))
+		} else if (!artikel.equals(other.artikel))
 			return false;
 		if (beschreibung == null) {
 			if (other.beschreibung != null)

@@ -43,7 +43,8 @@
 			<column name="email" sql-type="varchar" not-null="true" />
 		</property>
 
-		<component name="bankverbindung" class="projekt.fhv.teama.classes.personen.Bankverbindung">
+		<component name="bankverbindung"
+			class="projekt.fhv.teama.classes.personen.Bankverbindung">
 			<property name="iban" type="java.lang.String">
 				<column name="iban" sql-type="varchar" />
 			</property>
@@ -58,8 +59,8 @@
 			</property>
 		</component>
 
-		<many-to-one name="landID" class="projekt.fhv.teama.classes.personen.Land"
-			column="landID" not-null="true" foreign-key="ID"/>
-
+		<many-to-one name="landID"
+			class="projekt.fhv.teama.classes.personen.Land" column="landID"
+			not-null="true" foreign-key="ID" />
 	</class>
 </hibernate-mapping>
