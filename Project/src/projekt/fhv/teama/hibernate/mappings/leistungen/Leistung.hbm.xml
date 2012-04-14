@@ -1,14 +1,18 @@
-<?xml version='1.0' encoding='utf-8'?>
-<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
-        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-    <class name="Entities.Leistung" table="leistung" schema="" catalog="hibernate">
-        <id name="leistungId">
-            <column name="leistungID" sql-type="int" length="10" not-null="true"/>
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14.04.2012 15:18:31 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.leistungen.Leistung" table="LEISTUNG">
+        
+        <id name="ID" type="int">
+            <column name="leistungsID" sql-type="int" length="11"/>
+            <generator class="native" />
         </id>
-        <property name="bezeichnung">
-            <column name="bezeichnung" sql-type="varchar" not-null="true"/>
+        
+        <property name="bezeichnung" type="java.lang.String">
+            <column name="BEZEICHNUNG" sql-type="varchar" length="255" not-null="true"/>
         </property>
+        
     </class>
 </hibernate-mapping>
