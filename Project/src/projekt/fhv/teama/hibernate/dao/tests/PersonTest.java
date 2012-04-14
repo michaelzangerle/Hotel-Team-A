@@ -3,6 +3,15 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
+import java.util.Date;
+import java.util.List;
+
+import projekt.fhv.teama.classes.personen.Adresse;
+import projekt.fhv.teama.classes.personen.Bankverbindung;
+import projekt.fhv.teama.classes.personen.Land;
+import projekt.fhv.teama.classes.personen.Person;
+import projekt.fhv.teama.hibernate.dao.personen.LandDao;
+import projekt.fhv.teama.hibernate.dao.personen.PersonDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 /**
@@ -24,7 +33,7 @@ public class PersonTest {
 //		ld.create(new Land("Schweiz", "CH"));
 		
 //		List<Land> laender = ld.getAll();
-//		Land aut1 = ld.getById(3);
+//		Land aut1 = ld.getLand("Österreich");
 //		Land aut2 = ld.getLand("Österreich");
 		
 //		System.out.println(laender.toString());
@@ -34,13 +43,12 @@ public class PersonTest {
 //		Adresse adr = new Adresse("Dorf 46", "6491", "Schönwies");
 //		Bankverbindung bank = new Bankverbindung("123456789", "123456", "32165498", "12345");
 //		@SuppressWarnings("deprecation")
-//		Person pers = new Person("Michael", "Zangerle", 'm', adr, new Date(1989, 12, 7), "06769470089", "michael.zangerle@gmail.com", bank, aut1);
+//		Person pers = new Person("ölkj", "Zangerle", 'm', adr, new Date(1989, 12, 7), "06769470089", "michael.zangerle@gmail.com", bank, aut1);
 		
 		
-//		PersonDao pd = new PersonDao();
-//		pd.create(pers);
-//		System.out.println(pd.getById(1).toString());
-		//System.out.println(pd.getAll().toString());
+		PersonDao pd = new PersonDao();
+		System.out.println(pd.getById(1).toString());
+		System.out.println(pd.getAll().toString());
 		
 
 	}

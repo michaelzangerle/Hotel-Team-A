@@ -1,17 +1,24 @@
-<?xml version='1.0' encoding='utf-8'?>
-<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
-        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-    <class name="Entities.Mitarbeiter" table="mitarbeiter" schema="" catalog="hibernate">
-        <id name="mitarbeiterId">
-            <column name="mitarbeiterID" sql-type="int" length="10" not-null="true"/>
-        </id>
-        <property name="passwort">
-            <column name="passwort" sql-type="varchar" not-null="true"/>
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09.04.2012 23:53:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <joined-subclass name="projekt.fhv.teama.classes.personen.Mitarbeiter"
+    				 extends="projekt.fhv.teama.classes.personen.Person">
+        
+        <key column="mitarbeiterID"/>
+        
+        <property name="passwort" type="java.lang.String">
+            <column name="passwort" sql-type="varchar" not-null="true" />
         </property>
-        <property name="einstellung">
-            <column name="einstellung" sql-type="date" length="10" not-null="true"/>
+        <property name="einstellung" type="java.util.Date">
+            <column name="einstellung" sql-type="date" length="10" not-null="true" />
         </property>
-    </class>
+        
+        <list name="berechtigungen" inverse="false" table="mitarbeiterBerechtigung" lazy="true" cascade="all">
+            <key column="mitarbeiterID"/>
+            <list-index></list-index>
+            <many-to-many column="berechtigungID" class="projekt.fhv.teama.classes.personen.Berechtigung" />
+        </list>
+    </joined-subclass>
 </hibernate-mapping>

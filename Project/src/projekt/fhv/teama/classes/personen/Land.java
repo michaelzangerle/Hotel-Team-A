@@ -8,6 +8,9 @@ package projekt.fhv.teama.classes.personen;
  * To change this template use File | Settings | File Templates.
  */
 public class Land {
+	private int ID;
+    private String bezeichnung;
+    private String kuerzel;
 	
     @Override
 	public String toString() {
@@ -15,10 +18,6 @@ public class Land {
 				+ kuerzel + "]";
 	}
 
-	private int ID;
-    private String bezeichnung;
-    private String kuerzel;
-    
     public Land() {
 	}
 

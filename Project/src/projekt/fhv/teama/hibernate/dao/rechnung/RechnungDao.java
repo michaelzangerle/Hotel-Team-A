@@ -37,7 +37,7 @@ public class RechnungDao extends GenericDao<Rechnung> {
 				throw new DatabaseNotFoundException();
 			}
 			
-			int id = mitarbeiterList.get(0).getMitarbeiterId();
+			int id = mitarbeiterList.get(0).getID();
 			
 			
 			Query query = session.createQuery("from " + getTable()

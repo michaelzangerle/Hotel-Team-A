@@ -1,5 +1,12 @@
 package projekt.fhv.teama.classes.personen;
 
+import java.util.List;
+
+import projekt.fhv.teama.classes.Aufenthalt;
+import projekt.fhv.teama.classes.rechnung.Rechnungsposition;
+import projekt.fhv.teama.classes.zimmer.Reservierung;
+import projekt.fhv.teama.classes.zimmer.Zimmer;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mike
@@ -7,9 +14,14 @@ package projekt.fhv.teama.classes.personen;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Gast {
+public class Gast extends Person {
     private int gastId;
-
+    private String nummer;
+    private Zimmer zimmer;
+    private List<Reservierung> reservierungen;
+    private List<Rechnungsposition> rechnungspositionen;
+    private List<Aufenthalt> aufenthalte;
+    
     public int getGastId() {
         return gastId;
     }
@@ -17,8 +29,6 @@ public class Gast {
     public void setGastId(int gastId) {
         this.gastId = gastId;
     }
-
-    private String nummer;
 
     public String getNummer() {
         return nummer;
@@ -47,4 +57,46 @@ public class Gast {
         result = 31 * result + (nummer != null ? nummer.hashCode() : 0);
         return result;
     }
+
+	public Zimmer getZimmer() {
+		return zimmer;
+	}
+
+	public void setZimmer(Zimmer zimmer) {
+		this.zimmer = zimmer;
+	}
+
+	public List<Reservierung> getReservierungen() {
+		return reservierungen;
+	}
+
+	public void setReservierungen(List<Reservierung> reservierungen) {
+		this.reservierungen = reservierungen;
+	}
+
+	public List<Rechnungsposition> getRechnungspositionen() {
+		return rechnungspositionen;
+	}
+
+	public void setRechnungspositionen(List<Rechnungsposition> rechnungspositionen) {
+		this.rechnungspositionen = rechnungspositionen;
+	}
+
+	public List<Aufenthalt> getAufenthalte() {
+		return aufenthalte;
+	}
+
+	public void setAufenthalte(List<Aufenthalt> aufenthalte) {
+		this.aufenthalte = aufenthalte;
+	}
+
+	public Gast() {
+		super();
+	}
+
+	public Gast(String nummer, Zimmer zimmer) {
+		super();
+		this.nummer = nummer;
+		this.zimmer = zimmer;
+	}
 }

@@ -1,20 +1,26 @@
-<?xml version='1.0' encoding='utf-8'?>
-<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
-        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-    <class name="Entities.Berechtigung" table="berechtigung" schema="" catalog="hibernate">
-        <id name="berechtigungId">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.personen.Berechtigung" table="berechtigung" catalog="hibernate">
+        <id name="ID" type="int">
             <column name="berechtigungID" sql-type="int" length="10" not-null="true"/>
+       		<generator class="native"/>
         </id>
-        <property name="bezeichnung">
+        <property name="bezeichnung" type="java.lang.String">
             <column name="bezeichnung" sql-type="varchar" not-null="true"/>
         </property>
-        <property name="kuerzel">
+        <property name="kuerzel" type="java.lang.String">
             <column name="kuerzel" sql-type="char" length="5" not-null="true"/>
         </property>
-        <property name="beschreibung">
+        <property name="beschreibung" type="java.lang.String">
             <column name="beschreibung" sql-type="longtext" length="2147483647"/>
         </property>
+        
+        <list name="berechtigte" inverse="false" table="mitarbeiterBerechtigung" lazy="true" cascade="all">
+            <key column="berechtigungID"/>
+            <list-index></list-index>
+            <many-to-many column="mitarbeiterID" class="projekt.fhv.teama.classes.personen.Mitarbeiter" />
+        </list>
     </class>
 </hibernate-mapping>
