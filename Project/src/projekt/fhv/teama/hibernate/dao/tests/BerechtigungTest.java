@@ -2,7 +2,10 @@ package projekt.fhv.teama.hibernate.dao.tests;
 
 
 
+import java.util.Set;
+
 import projekt.fhv.teama.classes.personen.Berechtigung;
+import projekt.fhv.teama.classes.personen.Mitarbeiter;
 import projekt.fhv.teama.hibernate.dao.personen.BerechtigungDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
@@ -14,7 +17,12 @@ public class BerechtigungTest {
 		//bd.create(b);
 		b = bd.getById(4);
 		System.out.print(b.toString());
-		b=bd.getBerechtigungByBezeichnung("Checkin");
+		b=bd.getBerechtigungByBezeichnung("checkin");
 		System.out.print(b.toString());
+		
+		Set<Mitarbeiter> berechtigteMitarbeiter = b.getBerechtigte();
+		for (Mitarbeiter ma : berechtigteMitarbeiter) {
+			System.out.println(ma.toString());
+		}
 	}
 }

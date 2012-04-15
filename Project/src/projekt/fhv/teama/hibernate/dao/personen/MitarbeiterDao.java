@@ -1,6 +1,7 @@
 package projekt.fhv.teama.hibernate.dao.personen;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -16,6 +17,7 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
 
 public class MitarbeiterDao extends GenericDao<Mitarbeiter> {
 
+	
 	public MitarbeiterDao() {
 		super("Mitarbeiter");
 	}

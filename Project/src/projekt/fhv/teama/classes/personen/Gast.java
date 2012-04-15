@@ -1,5 +1,6 @@
 package projekt.fhv.teama.classes.personen;
 
+import java.util.Date;
 import java.util.List;
 
 import projekt.fhv.teama.classes.Aufenthalt;
@@ -94,8 +95,11 @@ public class Gast extends Person {
 		super();
 	}
 
-	public Gast(String nummer, Zimmer zimmer) {
-		super();
+	public Gast(String vorname, String nachname, char geschlecht,
+			Adresse adresse, Date geburtsdatum, String telefonnummer,
+			String email, Bankverbindung bankverbindung, Land land, String nummer, Zimmer zimmer) {
+		super(vorname, nachname, geschlecht, adresse, geburtsdatum, telefonnummer,
+				email, bankverbindung, land);
 		this.nummer = nummer;
 		this.zimmer = zimmer;
 	}

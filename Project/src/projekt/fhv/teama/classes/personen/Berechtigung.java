@@ -1,6 +1,10 @@
 package projekt.fhv.teama.classes.personen;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,7 +18,7 @@ public class Berechtigung {
     private String bezeichnung;
     private String kuerzel;
     private String beschreibung;
-    private List<Mitarbeiter> berechtigte;
+    private Set<Mitarbeiter> berechtigte;
     
     public int getID() {
         return ID;
@@ -72,23 +76,29 @@ public class Berechtigung {
         return result;
     }
 
-	public List<Mitarbeiter> getBerechtigte() {
+	public Set<Mitarbeiter> getBerechtigte() {
 		return berechtigte;
 	}
 
-	public void setBerechtigte(List<Mitarbeiter> berechtigte) {
+	public void setBerechtigte(Set<Mitarbeiter> berechtigte) {
 		this.berechtigte = berechtigte;
+	}
+	
+	public Berechtigung() {
+		berechtigte = new HashSet<Mitarbeiter>();
 	}
 
 	public Berechtigung(String bezeichnung, String kuerzel) {
 		this.bezeichnung = bezeichnung;
 		this.kuerzel = kuerzel;
+		berechtigte = new HashSet<Mitarbeiter>();
 	}
 
 	public Berechtigung(String bezeichnung, String kuerzel, String beschreibung) {
 		this.bezeichnung = bezeichnung;
 		this.kuerzel = kuerzel;
 		this.beschreibung = beschreibung;
+		berechtigte = new HashSet<Mitarbeiter>();
 	}
 
 	@Override
@@ -98,7 +108,5 @@ public class Berechtigung {
 				+ "]";
 	}
 
-	public Berechtigung() {
-		super();
-	}
+
 }

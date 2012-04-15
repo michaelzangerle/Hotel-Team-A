@@ -14,11 +14,12 @@
         <property name="einstellung" type="java.util.Date">
             <column name="einstellung" sql-type="date" length="10" not-null="true" />
         </property>
-        
-        <list name="berechtigungen" inverse="false" table="mitarbeiterBerechtigung" lazy="true" cascade="all">
+        <!-- 
+        nach 3 stunden und 1000 versuchen di liste durch ein set ersetzt 
+         -->
+       <set name="berechtigungen" table="mitarbeiterBerechtigung" cascade="all">
             <key column="mitarbeiterID"/>
-            <list-index></list-index>
-            <many-to-many column="berechtigungID" class="projekt.fhv.teama.classes.personen.Berechtigung" />
-        </list>
+            <many-to-many column="berechtigungID" class="projekt.fhv.teama.classes.personen.Berechtigung"/>
+        </set> 
     </joined-subclass>
 </hibernate-mapping>

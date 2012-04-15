@@ -17,10 +17,12 @@
             <column name="beschreibung" sql-type="longtext" length="2147483647"/>
         </property>
         
-        <list name="berechtigte" inverse="false" table="mitarbeiterBerechtigung" lazy="true" cascade="all">
+        <!-- 
+        nach 3 stunden und 1000 versuchen di liste durch ein set ersetzt
+         -->
+        <set name="berechtigte" table="mitarbeiterBerechtigung" cascade="all">
             <key column="berechtigungID"/>
-            <list-index></list-index>
-            <many-to-many column="mitarbeiterID" class="projekt.fhv.teama.classes.personen.Mitarbeiter" />
-        </list>
+            <many-to-many column="mitarbeiterID" class="projekt.fhv.teama.classes.personen.Mitarbeiter"/>
+        </set> 
     </class>
 </hibernate-mapping>

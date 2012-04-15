@@ -1,7 +1,13 @@
 package projekt.fhv.teama.classes.personen;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
 
 import projekt.fhv.teama.classes.rechnung.Rechnung;
 
@@ -16,8 +22,8 @@ public class Mitarbeiter extends Person {
     private int ID;
     private String passwort;
     private Date einstellung;
-    private List<Berechtigung> berechtigungen;
-    private Rechnung rechnungen;
+    private Set<Berechtigung> berechtigungen;
+    private List<Rechnung> rechnungen;
     
     public int getID() {
         return ID;
@@ -42,6 +48,27 @@ public class Mitarbeiter extends Person {
     public void setEinstellung(Date einstellung) {
         this.einstellung = einstellung;
     }
+    
+	public Set<Berechtigung> getBerechtigungen() {
+		return berechtigungen;
+	}
+
+	public void setBerechtigungen(Set<Berechtigung> berechtigungen2) {
+		this.berechtigungen = berechtigungen2;
+	}
+
+	public void addBerechtigung (Berechtigung berechtigung) {
+		berechtigungen.add(berechtigung);
+	}
+
+	public List<Rechnung> getRechnungen() {
+		return rechnungen;
+	}
+
+	public void setRechnungen(List<Rechnung> rechnungen) {
+		this.rechnungen = rechnungen;
+	}
+	
 
     @Override
     public boolean equals(Object o) {
@@ -65,6 +92,11 @@ public class Mitarbeiter extends Person {
         return result;
     }
 
+	public Mitarbeiter() {
+		super();
+		this.berechtigungen = new HashSet<Berechtigung>();
+	}
+	
 	public Mitarbeiter(String vorname, String nachname, char geschlecht,
 			Adresse adresse, Date geburtsdatum, String telefonnummer,
 			String email, Bankverbindung bankverbindung, Land land,
@@ -74,6 +106,7 @@ public class Mitarbeiter extends Person {
 				telefonnummer, email, bankverbindung, land);
 		this.passwort = passwort;
 		this.einstellung = einstellung;
+		this.berechtigungen = new HashSet<Berechtigung>();
 	}
 
 	public Mitarbeiter(String vorname, String nachname, char geschlecht,
@@ -81,33 +114,13 @@ public class Mitarbeiter extends Person {
 			String email, Bankverbindung bankverbindung, Land land) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum,
 				telefonnummer, email, bankverbindung, land);
-		
+		this.berechtigungen = new HashSet<Berechtigung>();
 	}
 
-
-	public Rechnung getRechnungen() {
-		return rechnungen;
-	}
-
-	public void setRechnungen(Rechnung rechnungen) {
-		this.rechnungen = rechnungen;
-	}
 
 	@Override
 	public String toString() {
 		return "Mitarbeiter [ID=" + ID + ", passwort=" + passwort
 				+ ", einstellung=" + einstellung + "]";
-	}
-
-	public List<Berechtigung> getBerechtigungen() {
-		return berechtigungen;
-	}
-
-	public void setBerechtigungen(List<Berechtigung> berechtigungen) {
-		this.berechtigungen = berechtigungen;
-	}
-
-	public Mitarbeiter() {
-		super();
 	}
 }
