@@ -19,17 +19,18 @@
 			<column name="BESCHREIBUNG" />
 		</property>
 
-        <set name="zusatzleistungen" table="ZUSATZLEISTUNG" inverse="true" lazy="false" fetch="join" access="property" >
+        <set name="zusatzleistungen" table="ZUSATZLEISTUNG" inverse="true" >
             <key>
                 <column name="warengruppeID"/>
             </key>
             <one-to-many class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" />
         </set>
 		
-        <set name="artikel" table="ARTIKEL" inverse="true" lazy="false" fetch="join" access="property" >
+        <set name="artikel" table="ARTIKEL" >
             <key>
                 <column name="warengruppeID"/>
             </key>
+            
             <one-to-many class="projekt.fhv.teama.classes.leistungen.Artikel" />
         </set>
 

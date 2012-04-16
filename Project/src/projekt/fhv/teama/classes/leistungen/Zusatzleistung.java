@@ -7,7 +7,7 @@ package projekt.fhv.teama.classes.leistungen;
 public class Zusatzleistung extends Leistung{
 	
 	
-	private int zusatzleistungID;
+//	private int zusatzleistungID;
 	private float preis;
 	private String beschreibung;
 	private boolean extern;
@@ -27,13 +27,13 @@ public class Zusatzleistung extends Leistung{
 
 
 
-	public int getZusatzleistungID() {
-		return zusatzleistungID;
-	}
-
-	public void setZusatzleistungID(int zusatzleistungID) {
-		this.zusatzleistungID = zusatzleistungID;
-	}
+//	public int getZusatzleistungID() {
+//		return zusatzleistungID;
+//	}
+//
+//	public void setZusatzleistungID(int zusatzleistungID) {
+//		this.zusatzleistungID = zusatzleistungID;
+//	}
 
 	public float getPreis() {
 		return preis;
@@ -70,7 +70,7 @@ public class Zusatzleistung extends Leistung{
 
 	@Override
 	public String toString() {
-		return "Zusatzleistung [zusatzleistungID=" + zusatzleistungID + ", preis=" + preis + ", beschreibung="
+		return "Zusatzleistung [zusatzleistungID=" + getID() + ", preis=" + preis + ", beschreibung="
 				+ beschreibung + ", extern=" + extern + ", warengruppe=" + warengruppe.getID() + "]";
 	}
 
@@ -82,7 +82,7 @@ public class Zusatzleistung extends Leistung{
 		result = prime * result + (extern ? 1231 : 1237);
 		result = prime * result + Float.floatToIntBits(preis);
 		//result = prime * result + ((warengruppe == null) ? 0 : warengruppe.hashCode());
-		result = prime * result + zusatzleistungID;
+		result = prime * result + getID();
 		return result;
 	}
 
@@ -109,7 +109,7 @@ public class Zusatzleistung extends Leistung{
 				return false;
 		} else if (!warengruppe.equals(other.warengruppe))
 			return false;
-		if (zusatzleistungID != other.zusatzleistungID)
+		if (getID() != other.getID())
 			return false;
 		return true;
 	}

@@ -43,7 +43,7 @@ public class LeistungTest {
 //		zd.create(z1);
 		
 		
-		Warengruppe w1 = wd.getById(3);
+		Warengruppe w1 = wd.getById(1);
 		System.out.println(w1.toString());
 
 		
