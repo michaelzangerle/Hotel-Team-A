@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16.04.2012 16:54:24 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.personen.Vertragspartner" table="VERTRAGSPARTNER">
+        <id name="vertragsPartnerId" type="int">
+            <column name="VERTRAGSPARTNERID" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="strasse" type="java.lang.String">
+            <column name="STRASSE" />
+        </property>
+        <property name="plz" type="java.lang.String">
+            <column name="PLZ" />
+        </property>
+        <property name="ort" type="java.lang.String">
+            <column name="ORT" />
+        </property>
+        <property name="telefonnummer" type="java.lang.String">
+            <column name="TELEFONNUMMER" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="iban" type="java.lang.String">
+            <column name="IBAN" />
+        </property>
+        <property name="bic" type="java.lang.String">
+            <column name="BIC" />
+        </property>
+        <property name="kontonummer" type="java.lang.String">
+            <column name="KONTONUMMER" />
+        </property>
+        <property name="blz" type="java.lang.String">
+            <column name="BLZ" />
+        </property>
+    </class>
+</hibernate-mapping>
