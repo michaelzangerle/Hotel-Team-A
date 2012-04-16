@@ -37,9 +37,7 @@ public class Leistung {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID;
-		result = prime * result
-				+ ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
+		result = prime * result + ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
 		return result;
 	}
 	@Override
@@ -51,8 +49,6 @@ public class Leistung {
 		if (getClass() != obj.getClass())
 			return false;
 		Leistung other = (Leistung) obj;
-		if (ID != other.ID)
-			return false;
 		if (bezeichnung == null) {
 			if (other.bezeichnung != null)
 				return false;

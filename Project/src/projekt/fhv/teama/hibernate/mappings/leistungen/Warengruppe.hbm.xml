@@ -19,25 +19,20 @@
 			<column name="BESCHREIBUNG" />
 		</property>
 
-		<list name="artikel" table="ARTIKEL" lazy="false">
-			<key>
-				<column name="warengruppeID" />
-			</key>
-			<list-index>
-				<column name="artikelID" />
-			</list-index>
-			<one-to-many class="projekt.fhv.teama.classes.leistungen.Artikel" />
-		</list>
+        <set name="zusatzleistungen" table="ZUSATZLEISTUNG" inverse="true" >
+            <key>
+                <column name="warengruppeID"/>
+            </key>
+            <one-to-many class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" />
+        </set>
 		
-		<list name="zusatzleistungen" table="ZUSATZLEISTUNG" lazy="false">
-			<key>
-				<column name="warengruppeID" />
-			</key>
-			<list-index>
-				<column name="zusatzleistungID" />
-			</list-index>
-			<one-to-many class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" />
-		</list>
+        <set name="artikel" table="ARTIKEL" >
+            <key>
+                <column name="warengruppeID"/>
+            </key>
+            
+            <one-to-many class="projekt.fhv.teama.classes.leistungen.Artikel" />
+        </set>
 
 	</class>
 </hibernate-mapping>

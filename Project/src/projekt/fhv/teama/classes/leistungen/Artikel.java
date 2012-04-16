@@ -5,7 +5,8 @@ package projekt.fhv.teama.classes.leistungen;
  * this template use File | Settings | File Templates.
  */
 public class Artikel extends Leistung {
-	private int artikelID;
+	
+//	private int artikelID;
 	private float preis;
 	private String beschreibung;
 	private Warengruppe warengruppe;
@@ -21,15 +22,13 @@ public class Artikel extends Leistung {
 		super();
 	}
 
-
-
-	public int getArtikelID() {
-		return artikelID;
-	}
-
-	public void setArtikelID(int artikelID) {
-		this.artikelID = artikelID;
-	}
+//	public int getArtikelID() {
+//		return artikelID;
+//	}
+//
+//	public void setArtikelID(int artikelID) {
+//		this.artikelID = artikelID;
+//	}
 
 	public float getPreis() {
 		return preis;
@@ -57,18 +56,18 @@ public class Artikel extends Leistung {
 
 	@Override
 	public String toString() {
-		return "Artikel [artikelID=" + artikelID + ", preis=" + preis + ", beschreibung=" + beschreibung
-				+ ", warengruppe=" + warengruppe + "]";
+		return "Artikel [artikelID=" + getID() + ", preis=" + preis + ", beschreibung=" + beschreibung
+				+ ", warengruppe=" + warengruppe.getID() + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + artikelID;
+		result = prime * result + getID();
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + Float.floatToIntBits(preis);
-		result = prime * result + ((warengruppe == null) ? 0 : warengruppe.hashCode());
+		//result = prime * result + ((warengruppe == null) ? 0 : warengruppe.hashCode());
 		return result;
 	}
 
@@ -81,7 +80,7 @@ public class Artikel extends Leistung {
 		if (getClass() != obj.getClass())
 			return false;
 		Artikel other = (Artikel) obj;
-		if (artikelID != other.artikelID)
+		if (getID() != other.getID())
 			return false;
 		if (beschreibung == null) {
 			if (other.beschreibung != null)

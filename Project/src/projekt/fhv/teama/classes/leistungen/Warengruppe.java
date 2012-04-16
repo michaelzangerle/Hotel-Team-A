@@ -1,7 +1,6 @@
 package projekt.fhv.teama.classes.leistungen;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,11 +14,11 @@ public class Warengruppe {
 	private short steuersatz;
 	private String beschreibung;
 
-	private List<Zusatzleistung> zusatzleistungen;
-	private List<Artikel> artikel;
+	public Set<Zusatzleistung> zusatzleistungen;
+	public Set<Artikel> artikel; 
 
-	public Warengruppe(String bezeichung, short steuersatz, String beschreibung, List<Zusatzleistung> zusatzleistungen,
-			List<Artikel> artikel) {
+	public Warengruppe(String bezeichung, short steuersatz, String beschreibung, Set<Zusatzleistung> zusatzleistungen,
+			Set<Artikel> artikel) {
 
 		this.bezeichung = bezeichung;
 		this.steuersatz = steuersatz;
@@ -64,19 +63,19 @@ public class Warengruppe {
 		this.beschreibung = beschreibung;
 	}
 
-	public List<Zusatzleistung> getZusatzleistungen() {
+	public Set<Zusatzleistung> getZusatzleistungen() {
 		return zusatzleistungen;
 	}
 
-	public void setZusatzleistungen(List<Zusatzleistung> zusatzleistungen) {
+	public void setZusatzleistungen(Set<Zusatzleistung> zusatzleistungen) {
 		this.zusatzleistungen = zusatzleistungen;
 	}
 
-	public List<Artikel> getArtikel() {
+	public Set<Artikel> getArtikel() {
 		return artikel;
 	}
 
-	public void setArtikel(List<Artikel> artikel) {
+	public void setArtikel(Set<Artikel> artikel) {
 		this.artikel = artikel;
 	}
 
