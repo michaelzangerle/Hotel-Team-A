@@ -1,5 +1,7 @@
 package projekt.fhv.teama.controller.interfaces.interfacesmodel;
 
+import java.sql.Date;
+
 public interface IKontingent {
 	public void setVon(Date von);
 	public Date getVon();

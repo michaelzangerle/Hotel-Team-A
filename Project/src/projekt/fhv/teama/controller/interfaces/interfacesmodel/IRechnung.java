@@ -2,15 +2,17 @@
 package projekt.fhv.teama.controller.interfaces.interfacesmodel;
 
 public interface IRechnung {
-	public String getRechnungsnummer();
+	public String getNummer();
 	public void addRechnungsposition(IRechnungsposition rePos);
 	public void removeRechnungsposition(IRechnungsposition rePos);
+	public IRechnungsposition getRechnungspositionen();
 	public void setSumme(double summe);
 	public double getSumme();
-	public getRechnungspositionen();
 	public void addTeilzahlung(ITeilzahlung teilzahl);
 	public void removeTeilzahlung(ITeilzahlung teilzahl);
-	public getTeilzahlungen();
+	public ITeilzahlung getTeilzahlungen();
+	public void setMitarbeiter(IMitarbeiter mitarbeiter);
+	public IMitarbeiter getMitarbeiter();
 	public void setBezahlerVorname(String vorname);
 	public String getBezahlerVorname();
 	public void setBezahlerNachname(String nachname);

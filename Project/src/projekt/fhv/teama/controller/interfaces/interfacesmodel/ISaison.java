@@ -1,5 +1,7 @@
 package projekt.fhv.teama.controller.interfaces.interfacesmodel;
 
+import java.sql.Date;
+
 public interface ISaison {
 	public void setBezeichnung(String Bezeichnung);
 	public String getBezeichnung();

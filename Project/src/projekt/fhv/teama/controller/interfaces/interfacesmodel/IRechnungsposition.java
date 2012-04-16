@@ -1,5 +1,7 @@
 package projekt.fhv.teama.controller.interfaces.interfacesmodel;
 
+import java.sql.Date;
+
 public interface IRechnungsposition {
 	public void setLeistung(ILeistung leistung);
 	public ILeistung getLeistung();
