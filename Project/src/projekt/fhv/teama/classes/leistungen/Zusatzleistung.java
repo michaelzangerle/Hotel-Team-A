@@ -71,7 +71,7 @@ public class Zusatzleistung extends Leistung{
 	@Override
 	public String toString() {
 		return "Zusatzleistung [zusatzleistungID=" + zusatzleistungID + ", preis=" + preis + ", beschreibung="
-				+ beschreibung + ", extern=" + extern + ", warengruppe=" + warengruppe + "]";
+				+ beschreibung + ", extern=" + extern + ", warengruppe=" + warengruppe.getID() + "]";
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class Zusatzleistung extends Leistung{
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + (extern ? 1231 : 1237);
 		result = prime * result + Float.floatToIntBits(preis);
-		result = prime * result + ((warengruppe == null) ? 0 : warengruppe.hashCode());
+		//result = prime * result + ((warengruppe == null) ? 0 : warengruppe.hashCode());
 		result = prime * result + zusatzleistungID;
 		return result;
 	}

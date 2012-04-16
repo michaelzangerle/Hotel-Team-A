@@ -21,8 +21,6 @@ public class Artikel extends Leistung {
 		super();
 	}
 
-
-
 	public int getArtikelID() {
 		return artikelID;
 	}
@@ -58,7 +56,7 @@ public class Artikel extends Leistung {
 	@Override
 	public String toString() {
 		return "Artikel [artikelID=" + artikelID + ", preis=" + preis + ", beschreibung=" + beschreibung
-				+ ", warengruppe=" + warengruppe + "]";
+				+ ", warengruppe=" + warengruppe.getID() + "]";
 	}
 
 	@Override
@@ -68,7 +66,7 @@ public class Artikel extends Leistung {
 		result = prime * result + artikelID;
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + Float.floatToIntBits(preis);
-		result = prime * result + ((warengruppe == null) ? 0 : warengruppe.hashCode());
+		//result = prime * result + ((warengruppe == null) ? 0 : warengruppe.hashCode());
 		return result;
 	}
 
