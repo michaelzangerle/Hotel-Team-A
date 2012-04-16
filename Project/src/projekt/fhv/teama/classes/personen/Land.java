@@ -18,7 +18,41 @@ public class Land {
 				+ kuerzel + "]";
 	}
 
-    public Land() {
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
+		result = prime * result + ((kuerzel == null) ? 0 : kuerzel.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Land other = (Land) obj;
+		if (ID != other.ID)
+			return false;
+		if (bezeichnung == null) {
+			if (other.bezeichnung != null)
+				return false;
+		} else if (!bezeichnung.equals(other.bezeichnung))
+			return false;
+		if (kuerzel == null) {
+			if (other.kuerzel != null)
+				return false;
+		} else if (!kuerzel.equals(other.kuerzel))
+			return false;
+		return true;
+	}
+
+	public Land() {
 	}
 
 	public Land(String bezeichnung, String kuerzel) {

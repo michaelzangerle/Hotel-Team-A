@@ -19,6 +19,79 @@ public class Person {
 				+ "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
+		result = prime * result + ((bankverbindung == null) ? 0 : bankverbindung.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((geburtsdatum == null) ? 0 : geburtsdatum.hashCode());
+		result = prime * result + geschlecht;
+		result = prime * result + ((landID == null) ? 0 : landID.hashCode());
+		result = prime * result + ((nachname == null) ? 0 : nachname.hashCode());
+		result = prime * result + ((telefonnummer == null) ? 0 : telefonnummer.hashCode());
+		result = prime * result + ((vorname == null) ? 0 : vorname.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		if (ID != other.ID)
+			return false;
+		if (adresse == null) {
+			if (other.adresse != null)
+				return false;
+		} else if (!adresse.equals(other.adresse))
+			return false;
+		if (bankverbindung == null) {
+			if (other.bankverbindung != null)
+				return false;
+		} else if (!bankverbindung.equals(other.bankverbindung))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (geburtsdatum == null) {
+			if (other.geburtsdatum != null)
+				return false;
+		} else if (!geburtsdatum.equals(other.geburtsdatum))
+			return false;
+		if (geschlecht != other.geschlecht)
+			return false;
+		if (landID == null) {
+			if (other.landID != null)
+				return false;
+		} else if (!landID.equals(other.landID))
+			return false;
+		if (nachname == null) {
+			if (other.nachname != null)
+				return false;
+		} else if (!nachname.equals(other.nachname))
+			return false;
+		if (telefonnummer == null) {
+			if (other.telefonnummer != null)
+				return false;
+		} else if (!telefonnummer.equals(other.telefonnummer))
+			return false;
+		if (vorname == null) {
+			if (other.vorname != null)
+				return false;
+		} else if (!vorname.equals(other.vorname))
+			return false;
+		return true;
+	}
+
 	private int ID;
 	private String vorname;
 	private String nachname;

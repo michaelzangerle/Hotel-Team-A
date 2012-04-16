@@ -1,28 +1,31 @@
 package projekt.fhv.teama.classes.zimmer;
 
+import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Kategorie {
+public class Saison {
 
 	private int ID;
 	private String bezeichnung;
-	private String beschreibung;
+	private Timestamp von;
+	private Timestamp bis;
 	private Set<Zimmerpreis> zimmerpreise;
-	private Set<Reservierung> reservierungen;
 
-	public Kategorie(String bezeichnung, String beschreibung, Set<Zimmerpreis> zimmerpreise,
-			Set<Reservierung> reservierungen) {
+	public Saison(String bezeichnung, Timestamp von, Timestamp bis, Set<Zimmerpreis> zimmerpreise) {
+
 		this.bezeichnung = bezeichnung;
-		this.beschreibung = beschreibung;
+		this.von = von;
+		this.bis = bis;
 		this.zimmerpreise = zimmerpreise;
-		this.reservierungen = reservierungen;
 	}
 
-	public Kategorie() {
+	public Saison() {
+
 	}
 
 	public int getID() {
@@ -41,13 +44,23 @@ public class Kategorie {
 		this.bezeichnung = bezeichnung;
 	}
 
-	public String getBeschreibung() {
-		return beschreibung;
+	public Timestamp getVon() {
+		return von;
 	}
 
-	public void setBeschreibung(String beschreibung) {
-		this.beschreibung = beschreibung;
+	public void setVon(Timestamp von) {
+		this.von = von;
 	}
+
+	public Timestamp getBis() {
+		return bis;
+	}
+
+	public void setBis(Timestamp bis) {
+		this.bis = bis;
+	}
+
+
 
 	public Set<Zimmerpreis> getZimmerpreise() {
 		return zimmerpreise;
@@ -57,18 +70,10 @@ public class Kategorie {
 		this.zimmerpreise = zimmerpreise;
 	}
 
-	public Set<Reservierung> getReservierungen() {
-		return reservierungen;
-	}
-
-	public void setReservierungen(Set<Reservierung> reservierungen) {
-		this.reservierungen = reservierungen;
-	}
-
 	@Override
 	public String toString() {
-		return "Kategorie [ID=" + ID + ", bezeichnung=" + bezeichnung + ", beschreibung=" + beschreibung
-				+ ", zimmerpreise=" + zimmerpreise + ", reservierungen=" + reservierungen + "]";
+		return "Saison [ID=" + ID + ", bezeichnung=" + bezeichnung + ", von=" + von + ", bis=" + bis
+				+ ", zimmerpreise=" + zimmerpreise + "]";
 	}
 
 	@Override
@@ -76,9 +81,9 @@ public class Kategorie {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
-		result = prime * result + ((reservierungen == null) ? 0 : reservierungen.hashCode());
+		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
+		result = prime * result + ((von == null) ? 0 : von.hashCode());
 		result = prime * result + ((zimmerpreise == null) ? 0 : zimmerpreise.hashCode());
 		return result;
 	}
@@ -91,23 +96,23 @@ public class Kategorie {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Kategorie other = (Kategorie) obj;
+		Saison other = (Saison) obj;
 		if (ID != other.ID)
-			return false;
-		if (beschreibung == null) {
-			if (other.beschreibung != null)
-				return false;
-		} else if (!beschreibung.equals(other.beschreibung))
 			return false;
 		if (bezeichnung == null) {
 			if (other.bezeichnung != null)
 				return false;
 		} else if (!bezeichnung.equals(other.bezeichnung))
 			return false;
-		if (reservierungen == null) {
-			if (other.reservierungen != null)
+		if (bis == null) {
+			if (other.bis != null)
 				return false;
-		} else if (!reservierungen.equals(other.reservierungen))
+		} else if (!bis.equals(other.bis))
+			return false;
+		if (von == null) {
+			if (other.von != null)
+				return false;
+		} else if (!von.equals(other.von))
 			return false;
 		if (zimmerpreise == null) {
 			if (other.zimmerpreise != null)

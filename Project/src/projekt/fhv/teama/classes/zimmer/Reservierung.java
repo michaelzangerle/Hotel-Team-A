@@ -22,23 +22,23 @@ public class Reservierung {
     private Vertragspartner vertragspartner;
     
     private List<Option> optionen;
-    private List<Zimmer> zimmer;
+//    private List<Zimmer> zimmer;
     private List<Kategorie> kategorie;
-    private List<Gast> gast;
-	public Reservierung(Timestamp von, Timestamp bis, Person person,
-			Vertragspartner vertragspartner, List<Option> optionen,
-			List<Zimmer> zimmer, List<Kategorie> kategorie, List<Gast> gast) {
+//    private List<Gast> gast;
+	public Reservierung(int iD, Timestamp von, Timestamp bis, Person person, Vertragspartner vertragspartner,
+			List<Option> optionen, List<Kategorie> kategorie) {
+		super();
+		ID = iD;
 		this.von = von;
 		this.bis = bis;
 		this.person = person;
 		this.vertragspartner = vertragspartner;
 		this.optionen = optionen;
-		this.zimmer = zimmer;
 		this.kategorie = kategorie;
-		this.gast = gast;
 	}
 	public Reservierung() {
-
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	public int getID() {
 		return ID;
@@ -76,25 +76,72 @@ public class Reservierung {
 	public void setOptionen(List<Option> optionen) {
 		this.optionen = optionen;
 	}
-	public List<Zimmer> getZimmer() {
-		return zimmer;
-	}
-	public void setZimmer(List<Zimmer> zimmer) {
-		this.zimmer = zimmer;
-	}
 	public List<Kategorie> getKategorie() {
 		return kategorie;
 	}
 	public void setKategorie(List<Kategorie> kategorie) {
 		this.kategorie = kategorie;
 	}
-	public List<Gast> getGast() {
-		return gast;
+	@Override
+	public String toString() {
+		return "Reservierung [ID=" + ID + ", von=" + von + ", bis=" + bis + ", person=" + person + ", vertragspartner="
+				+ vertragspartner + ", optionen=" + optionen + ", kategorie=" + kategorie + "]";
 	}
-	public void setGast(List<Gast> gast) {
-		this.gast = gast;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
+		result = prime * result + ((kategorie == null) ? 0 : kategorie.hashCode());
+		result = prime * result + ((optionen == null) ? 0 : optionen.hashCode());
+		result = prime * result + ((person == null) ? 0 : person.hashCode());
+		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.hashCode());
+		result = prime * result + ((von == null) ? 0 : von.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reservierung other = (Reservierung) obj;
+		if (ID != other.ID)
+			return false;
+		if (bis == null) {
+			if (other.bis != null)
+				return false;
+		} else if (!bis.equals(other.bis))
+			return false;
+		if (kategorie == null) {
+			if (other.kategorie != null)
+				return false;
+		} else if (!kategorie.equals(other.kategorie))
+			return false;
+		if (optionen == null) {
+			if (other.optionen != null)
+				return false;
+		} else if (!optionen.equals(other.optionen))
+			return false;
+		if (person == null) {
+			if (other.person != null)
+				return false;
+		} else if (!person.equals(other.person))
+			return false;
+		if (vertragspartner == null) {
+			if (other.vertragspartner != null)
+				return false;
+		} else if (!vertragspartner.equals(other.vertragspartner))
+			return false;
+		if (von == null) {
+			if (other.von != null)
+				return false;
+		} else if (!von.equals(other.von))
+			return false;
+		return true;
 	}
     
-    
-
 }

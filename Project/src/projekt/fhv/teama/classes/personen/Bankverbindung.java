@@ -7,6 +7,48 @@ public class Bankverbindung {
 				+ ", kontonummer=" + kontonummer + ", blz=" + blz + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bic == null) ? 0 : bic.hashCode());
+		result = prime * result + ((blz == null) ? 0 : blz.hashCode());
+		result = prime * result + ((iban == null) ? 0 : iban.hashCode());
+		result = prime * result + ((kontonummer == null) ? 0 : kontonummer.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bankverbindung other = (Bankverbindung) obj;
+		if (bic == null) {
+			if (other.bic != null)
+				return false;
+		} else if (!bic.equals(other.bic))
+			return false;
+		if (blz == null) {
+			if (other.blz != null)
+				return false;
+		} else if (!blz.equals(other.blz))
+			return false;
+		if (iban == null) {
+			if (other.iban != null)
+				return false;
+		} else if (!iban.equals(other.iban))
+			return false;
+		if (kontonummer == null) {
+			if (other.kontonummer != null)
+				return false;
+		} else if (!kontonummer.equals(other.kontonummer))
+			return false;
+		return true;
+	}
+
 	private String iban;
     private String bic;
     private String kontonummer;

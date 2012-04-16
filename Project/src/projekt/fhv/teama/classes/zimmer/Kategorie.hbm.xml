@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 16.04.2012 16:54:24 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 16.04.2012 21:35:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.personen.Berechtigung" table="BERECHTIGUNG">
+    <class name="projekt.fhv.teama.classes.zimmer.Kategorie" table="KATEGORIE">
         <id name="ID" type="int">
             <column name="ID" />
             <generator class="assigned" />
@@ -11,17 +11,14 @@
         <property name="bezeichnung" type="java.lang.String">
             <column name="BEZEICHNUNG" />
         </property>
-        <property name="kuerzel" type="java.lang.String">
-            <column name="KUERZEL" />
-        </property>
         <property name="beschreibung" type="java.lang.String">
             <column name="BESCHREIBUNG" />
         </property>
-        <set name="berechtigte" table="MITARBEITER" inverse="false" lazy="true">
+        <set name="zimmerpreise" table="ZIMMERPREIS" inverse="false" lazy="true">
             <key>
                 <column name="ID" />
             </key>
-            <one-to-many class="projekt.fhv.teama.classes.personen.Mitarbeiter" />
+            <one-to-many class="projekt.fhv.teama.classes.zimmer.Zimmerpreis" />
         </set>
     </class>
 </hibernate-mapping>
