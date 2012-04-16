@@ -9,10 +9,6 @@ import org.apache.pivot.wtk.*;
 
 import projekt.fhv.teama.view.support.SHSDateTime;
 
-
-
-
-
 public class ViewLogin extends Window implements Application, Bindable {
 	
 	@BXML private TextInput tfUsername = null;
@@ -122,9 +118,8 @@ public class ViewLogin extends Window implements Application, Bindable {
 				if(tfUsername.getText().equals("") | tfPassword.getText().equals("")) {
 					Alert.alert("Please insert username and password.", ViewLogin.this);
 				}else {
-					ViewMain programm = new ViewMain();
 					String x[]={"--name=value"};
-					programm.main(x);	
+					ViewMain.main(x);	
 				}
 			}
 			

@@ -2,13 +2,8 @@ package projekt.fhv.teama.view;
 
 import java.net.URL;
 
-import org.apache.pivot.beans.Bindable;
-import org.apache.pivot.collections.Map;
-import org.apache.pivot.util.Resources;
 import org.apache.pivot.util.concurrent.TaskExecutionException;
 import org.apache.pivot.wtk.Border;
-import org.apache.pivot.wtk.BoxPane;
-import org.apache.pivot.wtk.ScrollPane;
 import org.apache.pivot.wtk.media.Image;
 
 public class Occupation extends Border{

@@ -7,14 +7,7 @@ import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.Application;
-import org.apache.pivot.wtk.ApplicationContext;
-import org.apache.pivot.wtk.BoxPane;
-import org.apache.pivot.wtk.DesktopApplicationContext;
-import org.apache.pivot.wtk.Display;
-import org.apache.pivot.wtk.Label;
-import org.apache.pivot.wtk.PushButton;
-import org.apache.pivot.wtk.Window;
+import org.apache.pivot.wtk.*;
 
 public class ViewMain extends Window implements Application, Bindable {
 
@@ -69,9 +62,6 @@ public class ViewMain extends Window implements Application, Bindable {
 		bpReservation2.setVisible(true);
 		
 		// lbReservationDetails.setText("Jetzt durch Java gesetzt!");
-		
-		
-
 	}
 
 }
