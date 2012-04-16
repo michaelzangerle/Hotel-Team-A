@@ -18,24 +18,26 @@
 		<property name="beschreibung" type="java.lang.String">
 			<column name="BESCHREIBUNG" />
 		</property>
-		<list name="zusatzleistungen" inverse="false" table="ZUSATZLEISTUNG"
-			lazy="true">
+
+		<list name="zusatzleistungen" table="ZUSATZLEISTUNG" lazy="false" fetch="join">
 			<key>
 				<column name="zusatzleistungID" />
 			</key>
 			<list-index>
-				<column name="warengruppeID"></column>
+				<column name="warengruppeID"/>
 			</list-index>
 			<one-to-many class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" />
 		</list>
-		<list name="artikel" inverse="false" table="ARTIKEL" lazy="true">
+
+		<list name="artikel" table="ARTIKEL" lazy="false" fetch="join">
 			<key>
 				<column name="artikelID" />
 			</key>
 			<list-index>
-				<column name="warengruppeID"></column>
+				<column name="warengruppeID"/>
 			</list-index>
 			<one-to-many class="projekt.fhv.teama.classes.leistungen.Artikel" />
 		</list>
+
 	</class>
 </hibernate-mapping>

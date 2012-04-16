@@ -60,9 +60,7 @@ public class Warengruppe {
 	public void setZusatzleistungen(List<Zusatzleistung> zusatzleistungen) {
 		this.zusatzleistungen = zusatzleistungen;
 	}
-	public List<Artikel> getArtikels() {
-		return artikel;
-	}
+
 	public List<Artikel> getArtikel() {
 		return artikel;
 	}
@@ -71,9 +69,7 @@ public class Warengruppe {
 		this.artikel = artikel;
 	}
 
-	public void setArtikels(List<Artikel> artikels) {
-		this.artikel = artikels;
-	}
+
 	@Override
 	public String toString() {
 		return "Warengruppe [ID=" + ID + ", bezeichung=" + bezeichung
