@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 15.04.2012 05:47:54 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 16.04.2012 16:54:24 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <joined-subclass name="projekt.fhv.teama.classes.personen.Gast" extends="projekt.fhv.teama.classes.personen.Person" table="GAST" lazy="false">
         <key>

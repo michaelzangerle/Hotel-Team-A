@@ -117,10 +117,11 @@ public class Mitarbeiter extends Person {
 		this.berechtigungen = new HashSet<Berechtigung>();
 	}
 
-
 	@Override
 	public String toString() {
 		return "Mitarbeiter [ID=" + ID + ", passwort=" + passwort
-				+ ", einstellung=" + einstellung + "]";
+				+ ", einstellung=" + einstellung + ", berechtigungen="
+				+ berechtigungen + ", rechnungen=" + rechnungen + "]";
 	}
+
 }
