@@ -1,14 +1,17 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.controller.interfaces;
 
 import java.sql.Date;
 
+import projekt.fhv.teama.controller.interfaces.interfacesmodel.ILand;
+
 public interface IControllerPerson {
-	public void setVorname(String vorname);
+	
+	public void setVorname(String vn);
 	public String getVorname();
-	public void setNachname(String nachname);
+	public void setNachname(String nn);
 	public String getNachname();
-	public void setGeschlecht(char geschlelcht);
-	public String getGeschlecht();
+	public void setGeschlecht(Character geschlecht);
+	public Character getGeschlecht();
 	public void setStrasse(String strasse);
 	public String getStrasse();
 	public void setOrt(String ort);
@@ -31,4 +34,5 @@ public interface IControllerPerson {
 	public String getBlz();
 	public void setLand(ILand land);
 	public ILand getLand();
+	
 }
