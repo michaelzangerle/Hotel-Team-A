@@ -1,4 +1,4 @@
-package view;
+package projekt.fhv.teama.view;
 
 import java.net.URL;
 

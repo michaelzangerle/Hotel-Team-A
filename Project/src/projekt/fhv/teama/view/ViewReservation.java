@@ -1,4 +1,4 @@
-package view;
+package projekt.fhv.teama.view;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -10,9 +10,11 @@ import org.apache.pivot.json.JSONSerializer;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.*;
 
-import view.support.Address;
-import view.support.Contact;
-import view.support.IMAccount;
+import projekt.fhv.teama.view.support.Address;
+import projekt.fhv.teama.view.support.Contact;
+import projekt.fhv.teama.view.support.IMAccount;
+
+
 
 
 public class ViewReservation extends Border implements Bindable {

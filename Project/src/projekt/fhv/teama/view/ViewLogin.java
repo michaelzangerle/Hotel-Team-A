@@ -1,4 +1,4 @@
-package view;
+package projekt.fhv.teama.view;
 
 import java.net.URL;
 
@@ -7,7 +7,11 @@ import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.*;
 
-import view.support.SHSDateTime;
+import projekt.fhv.teama.view.support.SHSDateTime;
+
+
+
+
 
 public class ViewLogin extends Window implements Application, Bindable {
 	
@@ -73,7 +77,7 @@ public class ViewLogin extends Window implements Application, Bindable {
 	public static void main(String[] args) {
 
 		DesktopApplicationContext
-				.applyStylesheet("/view/style/styles.json");
+				.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
 		DesktopApplicationContext.main(
 				(Class<? extends Application>) ViewLogin.class, args);
 

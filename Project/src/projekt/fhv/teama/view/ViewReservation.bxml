@@ -1,7 +1,7 @@
 <view:ViewReservation title="Forms" maximized="true"
     xmlns:bxml="http://pivot.apache.org/bxml"
     xmlns:layout="org.apache.pivot.tutorials.layout"
-	xmlns:view="view"
+	xmlns:view="projekt.fhv.teama.view"
     xmlns="org.apache.pivot.wtk">
  <Border styles="{padding:6}">
         <BoxPane orientation="vertical" styles="{spacing:10, fill:true}">

@@ -1,5 +1,7 @@
 package projekt.fhv.teama.controller.interfaces.interfacesmodel;
 
+import java.sql.Date;
+
 public interface IReservierung {
 	public void addKategorie(IKategorie kat);
 	public void removeKategorie(IKategorie kat);

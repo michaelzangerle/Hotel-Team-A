@@ -1,5 +1,5 @@
 <view:Occupation xmlns:bxml="http://pivot.apache.org/bxml" xmlns:content="org.apache.pivot.wtk.content"
-	xmlns:view="view" xmlns="org.apache.pivot.wtk" >
+	xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" >
 	<BoxPane orientation="vertical" styles="{spacing:10, fill:true}">
 	<Label bxml:id="lbMonth" text="Occupation Preview | April" styles="$styles.lbHeading1"/>
 	</BoxPane>

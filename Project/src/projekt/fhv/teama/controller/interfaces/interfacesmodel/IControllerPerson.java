@@ -2,14 +2,13 @@ package projekt.fhv.teama.controller.interfaces.interfacesmodel;
 
 import java.sql.Date;
 
-public interface IPerson {
-	public int getId();
-	public void setVorname(String vn);
+public interface IControllerPerson {
+	public void setVorname(String vorname);
 	public String getVorname();
-	public void setNachname(String nn);
+	public void setNachname(String nachname);
 	public String getNachname();
-	public void setGeschlecht(Character geschlecht);
-	public Character getGeschlecht();
+	public void setGeschlecht(char geschlelcht);
+	public String getGeschlecht();
 	public void setStrasse(String strasse);
 	public String getStrasse();
 	public void setOrt(String ort);

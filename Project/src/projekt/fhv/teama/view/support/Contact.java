@@ -1,4 +1,4 @@
-package view.support;
+package projekt.fhv.teama.view.support;
 
 public class Contact {
 	

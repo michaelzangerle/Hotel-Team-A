@@ -1,4 +1,4 @@
-package view;
+package projekt.fhv.teama.view;
 
 import java.awt.Dimension;
 import java.net.URL;
@@ -27,7 +27,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	public static void main(String[] args) {
 
 		DesktopApplicationContext
-				.applyStylesheet("/view/style/styles.json");
+				.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
 		DesktopApplicationContext.main(
 				(Class<? extends Application>) ViewMain.class, args);		
 	}
