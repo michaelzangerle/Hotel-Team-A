@@ -1,0 +1,14 @@
+<Border xmlns:bxml="http://pivot.apache.org/bxml"  xmlns="org.apache.pivot.wtk"  styles="{ backgroundColor:'#f2f2f2', thickness:'0'}">
+        <ScrollPane horizontalScrollBarPolicy="fill" >
+            <BoxPane orientation="vertical" styles="{backgroundColor:'#f2f2f2', fill:true}">
+                <BoxPane orientation="horizontal">               
+                </BoxPane>                
+                <Expander bxml:id="calendarExpander" title="Calendar" expanded="false">
+                    <Calendar/>
+                </Expander>
+            </BoxPane>
+            <BoxPane orientation="vertical" styles="{backgroundColor:'#f2f2f2', spacing:25, padding:{top:5, left:15, bottom:10, right:15}, verticalAlignment:'bottom', fill:true}">
+            <ImageView image="@../images/logo_shs_claim.svg" styles="{verticalAlignment:'bottom',horizontalAlignment:'center',fill:true}"/>                        
+            </BoxPane>
+        </ScrollPane>
+</Border>

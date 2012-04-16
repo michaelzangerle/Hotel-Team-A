@@ -1,0 +1,37 @@
+<view:ViewLogin title="Smart Hotel System v1.0 | Login" maximized="true" WindowStateListener.windowOpened="init();" icon="@images/team_alpha_logo_icon_32.png"
+	xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="view" xmlns="org.apache.pivot.wtk" >
+	<bxml:script>
+		function init() {  }
+	</bxml:script>
+	<bxml:define>
+		<bxml:include  bxml:id="styles" src="style/styles.json"/>
+	</bxml:define>
+	<SplitPane bxml:id="splitPane" orientation="horizontal" splitRatio="0.6">
+		<left>
+			<Border>
+				<StackPane>
+				 <ImageView image="@images/back_shs.svg" styles="{fill:true, preserveAspectRatio:false}"/>
+				<BoxPane orientation="vertical" preferredHeight="200" styles="{padding:{top:20, left:10, bottom:25, right:30}, fill:true}" >
+					<ImageView image="@images/logo_shs_claim.svg" styles="{verticalAlignment:'top', fill:true}"/>
+					<BoxPane bxml:id="bpDateTime" orientation="vertical" styles="{ padding:{top:50, left:0, bottom:25, right:0}, verticalAlignment:'center', spacing:0, fill:true}">
+					<Label bxml:id="lbcurrentTime" textKey="currentTime" styles="$styles.lbcurrentTime"/>
+					<Label bxml:id="lbcurrentDay" textKey="currentDay" styles="$styles.lbcurrentDay"/>
+					<Label bxml:id="lbcurrentDate" textKey="currentDate" styles="$styles.lbcurrentDate"/>
+					</BoxPane>						
+				</BoxPane>
+				</StackPane>
+			</Border>
+		</left>
+		<right>
+			<BoxPane orientation="vertical" styles="{padding:{top:80, left:15, bottom:25, right:25}, verticalAlignment:'top', fill:true}" >	
+			<Border bxml:id="bLogin" title="Login" styles="{padding:30}">
+					<BoxPane bxml:id="bpLogin" orientation="vertical" styles="{ padding:{top:25, left:0, bottom:25, right:0}, verticalAlignment:'top', spacing:20, fill:true}">			
+					<TextInput bxml:id="tfUsername" prompt="username" preferredHeight="30"  />
+					<TextInput bxml:id="tfPassword" prompt="password" preferredHeight="30" />
+					<PushButton bxml:id="pushBLogin" buttonData="Login to SHS" preferredHeight="45"/>			
+					</BoxPane>
+			</Border>			
+			</BoxPane>	
+		</right>
+	</SplitPane>
+</view:ViewLogin>

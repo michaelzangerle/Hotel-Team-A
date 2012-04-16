@@ -1,0 +1,39 @@
+ <view:ViewReservation xmlns:bxml="http://pivot.apache.org/bxml"
+    xmlns="org.apache.pivot.wtk" styles="{padding:6}" xmlns:view="view" >
+        <BoxPane bxml:id="bpReservation2" orientation="vertical" styles="{spacing:10, fill:true}">
+            <Label bxml:id="lbReservationDetails" text="Reservation details" styles="$styles.lbHeading1"/>
+            <Form bxml:id="form" styles="{showFlagIcons:false}">
+                <Form.Section>
+                    <Label bxml:id="sourceLabel" Form.label="Source" styles="{font:{italic:true}}"/> 
+                    <Label Form.label="ID" textKey="id"/>
+                    <TextInput Form.label="Name" textKey="name"/>
+ 
+                    <BoxPane Form.label="Address" orientation="vertical">
+                        <TextInput textKey="address.street" prompt="Street"/>
+                        <BoxPane>
+                            <TextInput textKey="address.city" prompt="City"/>
+                            <TextInput textKey="address.state" textSize="6" prompt="State"/>
+                            <TextInput textKey="address.zip" textSize="6" prompt="Zip"/>
+                        </BoxPane>
+                    </BoxPane>
+ 
+                    <TextInput Form.label="Phone" textKey="phoneNumber"/>
+                    <TextInput Form.label="Email" textKey="emailAddress"/>
+ 
+                    <BoxPane Form.label="IM">
+                        <TextInput textKey="imAccount.id"/>
+                        <ListButton selectedItemKey="imAccount.type"
+                            listData="['AIM', 'Jabber', 'Yahoo']"/>
+                    </BoxPane>
+                </Form.Section>
+            </Form>
+ 
+            <Separator/>
+ 
+            <BoxPane styles="{horizontalAlignment:'right'}">
+                <!-- <PushButton bxml:id="loadJSONButton" buttonData="Load JSON"/> -->
+                <PushButton bxml:id="loadJavaButton" buttonData="Load"/>
+                <PushButton bxml:id="clearButton" buttonData="Clear"/>
+            </BoxPane>
+        </BoxPane>
+    </view:ViewReservation>

@@ -1,0 +1,135 @@
+ {  button: {
+        color: "#aa0000"
+    },
+
+    radioButton: {
+        color: "#ffffff"
+    },
+
+    "org.apache.pivot.wtk.PushButton": {
+        color: "#111111",
+        font: {bold:true}
+    },
+
+	
+    "org.apache.pivot.wtk.TabPane": {
+       activeTabColor:'#f2f2f2',
+    },
+    
+    "org.apache.pivot.wtk.TextInput": {
+       	backgroundColor: '#fcfcfc',
+       	font: {size:"120%"},
+        padding:{top:5, left:10, bottom:5, right:0}
+    },
+    
+   "org.apache.pivot.wtk.TableView": {
+        font: { size: "140%", bold: false }, 
+       	backgroundColor: '#fcfcfc',
+       	alternateRowBackgroundColor: '#f2f2f2',
+       	highlightBackgroundColor: '#fee379',
+       	showHorizontalGridLines: 'true',
+       	showVerticalGridLines: 'true',       	
+       	font: {size:"100%"},
+        },        
+  
+    
+    heading: {
+        font: {
+            size: "150%",
+            bold: true
+        },  
+		
+        color: "#000000"   },
+
+    subHeading: {
+        font: {
+            size: "110%",
+            italic: true
+        },
+
+        color: "#666666"
+    },
+    
+    lbcurrentTime: {
+    
+    	font: {
+    		size: "350%"    		
+    	},
+    	
+    	color: "#333333",
+    	
+    	padding: {
+    		bottom:50,
+    		left: 200
+    	},
+    	horizontalAlignment:'center',
+    	verticalAlignment:'center',
+    },
+    
+    lbcurrentDate: {
+    
+    	font: {
+    		size: "180%"    		
+    	},
+    	
+    	color: "#555555",
+    	
+    	padding: {    		
+    		left: 200
+    	},
+    	horizontalAlignment:'center',
+    	verticalAlignment:'center',
+    
+    },
+    
+    lbcurrentDay: {
+    
+    	font: {
+    		size: "180%",
+    		bold:true		
+    	},
+    	
+    	color: "#555555",
+    	
+    	padding: {
+    		bottom: 10,
+    		left: 200
+    	},
+    	horizontalAlignment:'center',
+    	verticalAlignment:'center',    
+    },
+    
+    lbSearch: {
+    
+    	font: {size: "140%", bold:true },
+    	horizontalAlignment:'left',
+    	verticalAlignment:'top',
+    	padding:{top:20, left:0, bottom:0, right:0},
+    	color: "#2a5580" 
+    },
+    
+    tabPLeftMain: {    
+    	
+    	buttonPadding:{top:5, left:5, bottom:5, right:5},
+    },
+    
+    tiSearch: {
+    
+    	padding:{top:5, left:8, bottom:5, right:0},
+    	backgroundColor: '#fcfcfc'
+    	
+    },
+    
+    listViews: {
+    
+    	variableItemHeight:true,
+    	alternateItemBackgroundColor: '#f9f6e1'    	
+    },
+    
+    lbHeading1: {
+    
+            font: { size: "170%", bold: true },
+            padding:{top:3, left:8, bottom:5, right:0},
+            color: "#2a5580"   	
+    },
+}
