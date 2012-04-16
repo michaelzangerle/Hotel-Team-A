@@ -6,7 +6,15 @@ package projekt.fhv.teama.classes.leistungen;
  */
 public class Artikel extends Leistung {
 	
-//	private int artikelID;
+	private int ID;
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
 	private float preis;
 	private String beschreibung;
 	private Warengruppe warengruppe;

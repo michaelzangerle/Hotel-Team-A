@@ -4,12 +4,8 @@
 
 <hibernate-mapping>
     <joined-subclass name="projekt.fhv.teama.classes.leistungen.Artikel" extends="projekt.fhv.teama.classes.leistungen.Leistung" table="ARTIKEL" lazy="false">
-        <key>
-            <column name="artikelID" />
-        </key>
-<!--         <property name="artikelID" type="int"> -->
-<!--             <column name="ARTIKELID" /> -->
-<!--         </property> -->
+        <key column="artikelID"/>
+
         <property name="preis" type="float">
             <column name="PREIS" />
         </property>
