@@ -1,4 +1,4 @@
-package view;
+package projekt.fhv.teama.view;
 
 import java.net.URL;
 
@@ -7,7 +7,11 @@ import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.*;
 
-import view.support.SHSDateTime;
+import projekt.fhv.teama.view.support.SHSDateTime;
+
+
+
+
 
 public class ViewLogin extends Window implements Application, Bindable {
 	
