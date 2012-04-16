@@ -11,5 +11,11 @@
 	<classpathentry kind="lib" path="C:/Users/GIGI/git/Hotel-Team-A/Project/lib/hibernate/jboss-logging-3.1.0.GA.jar"/>
 	<classpathentry kind="lib" path="C:/Users/GIGI/git/Hotel-Team-A/Project/lib/hibernate/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
 	<classpathentry kind="lib" path="C:/Users/GIGI/git/Hotel-Team-A/Project/lib/mysql/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIGI/git/Hotel-Team-A/Project/lib/view/pivot/pivot-charts-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIGI/git/Hotel-Team-A/Project/lib/view/pivot/pivot-core-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIGI/git/Hotel-Team-A/Project/lib/view/pivot/pivot-web-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIGI/git/Hotel-Team-A/Project/lib/view/pivot/pivot-web-server-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIGI/git/Hotel-Team-A/Project/lib/view/pivot/pivot-wtk-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/GIGI/git/Hotel-Team-A/Project/lib/view/pivot/pivot-wtk-terra-2.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
