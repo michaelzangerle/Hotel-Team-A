@@ -1,5 +1,7 @@
 package projekt.fhv.teama.classes;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: mike
@@ -8,17 +10,18 @@ package projekt.fhv.teama.classes;
  * To change this template use File | Settings | File Templates.
  */
 public class Pfandtyp {
-    private int pfandTypId;
-
+    private int ID;
+    private String bezeichnung;
+    private String beschreibung;
+    private List<Aufenthalt> aufenthalte;
+    
     public int getPfandTypId() {
-        return pfandTypId;
+        return ID;
     }
 
     public void setPfandTypId(int pfandTypId) {
-        this.pfandTypId = pfandTypId;
+        this.ID = pfandTypId;
     }
-
-    private String bezeichnung;
 
     public String getBezeichnung() {
         return bezeichnung;
@@ -27,8 +30,6 @@ public class Pfandtyp {
     public void setBezeichnung(String bezeichnung) {
         this.bezeichnung = bezeichnung;
     }
-
-    private String beschreibung;
 
     public String getBeschreibung() {
         return beschreibung;
@@ -45,7 +46,7 @@ public class Pfandtyp {
 
         Pfandtyp pfandtyp = (Pfandtyp) o;
 
-        if (pfandTypId != pfandtyp.pfandTypId) return false;
+        if (ID != pfandtyp.ID) return false;
         if (beschreibung != null ? !beschreibung.equals(pfandtyp.beschreibung) : pfandtyp.beschreibung != null)
             return false;
         if (bezeichnung != null ? !bezeichnung.equals(pfandtyp.bezeichnung) : pfandtyp.bezeichnung != null)
@@ -56,9 +57,27 @@ public class Pfandtyp {
 
     @Override
     public int hashCode() {
-        int result = pfandTypId;
+        int result = ID;
         result = 31 * result + (bezeichnung != null ? bezeichnung.hashCode() : 0);
         result = 31 * result + (beschreibung != null ? beschreibung.hashCode() : 0);
         return result;
     }
+
+	public Pfandtyp(String bezeichnung, String beschreibung,
+			List<Aufenthalt> aufenthalte) {
+		this.bezeichnung = bezeichnung;
+		this.beschreibung = beschreibung;
+		this.setAufenthalte(aufenthalte);
+	}
+
+	public Pfandtyp() {
+	}
+
+	public List<Aufenthalt> getAufenthalte() {
+		return aufenthalte;
+	}
+
+	public void setAufenthalte(List<Aufenthalt> aufenthalte) {
+		this.aufenthalte = aufenthalte;
+	}
 }

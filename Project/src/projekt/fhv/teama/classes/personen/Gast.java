@@ -103,4 +103,12 @@ public class Gast extends Person {
 		this.nummer = nummer;
 		this.zimmer = zimmer;
 	}
+
+	@Override
+	public String toString() {
+		return "Gast [gastId=" + gastId + ", nummer=" + nummer + ", zimmer="
+				+ zimmer + ", reservierungen=" + reservierungen
+				+ ", rechnungspositionen=" + rechnungspositionen
+				+ ", aufenthalte=" + aufenthalte + "]";
+	}
 }
