@@ -18,7 +18,7 @@ public class Artikel extends Leistung {
 	}
 
 	public Artikel() {
-
+		super();
 	}
 
 
@@ -57,14 +57,14 @@ public class Artikel extends Leistung {
 
 	@Override
 	public String toString() {
-		return "Artikel [ID=" + artikelID + ", preis=" + preis + ", beschreibung=" + beschreibung + ", warengruppe="
-				+ warengruppe + "]";
+		return "Artikel [artikelID=" + artikelID + ", preis=" + preis + ", beschreibung=" + beschreibung
+				+ ", warengruppe=" + warengruppe + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + artikelID;
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + Float.floatToIntBits(preis);
@@ -76,7 +76,7 @@ public class Artikel extends Leistung {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -97,6 +97,7 @@ public class Artikel extends Leistung {
 			return false;
 		return true;
 	}
+
 
 	
 

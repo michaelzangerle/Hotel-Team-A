@@ -3,20 +3,8 @@
  */
 package projekt.fhv.teama.hibernate.dao.leistungen;
 
-import java.util.List;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-
-import projekt.fhv.teama.classes.leistungen.Artikel;
 import projekt.fhv.teama.classes.leistungen.Warengruppe;
-import projekt.fhv.teama.classes.leistungen.Zusatzleistung;
-import projekt.fhv.teama.classes.zimmer.Kategorie;
-
-import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
 
 /**
  * @author mike

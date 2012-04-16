@@ -22,7 +22,7 @@ public class Zusatzleistung extends Leistung{
 	}
 
 	public Zusatzleistung() {
-
+		super();
 	}
 
 
@@ -67,10 +67,51 @@ public class Zusatzleistung extends Leistung{
 		this.warengruppe = warengruppe;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Zusatzleistung [zusatzleistungID=" + zusatzleistungID + ", preis=" + preis + ", beschreibung="
 				+ beschreibung + ", extern=" + extern + ", warengruppe=" + warengruppe + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
+		result = prime * result + (extern ? 1231 : 1237);
+		result = prime * result + Float.floatToIntBits(preis);
+		result = prime * result + ((warengruppe == null) ? 0 : warengruppe.hashCode());
+		result = prime * result + zusatzleistungID;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Zusatzleistung other = (Zusatzleistung) obj;
+		if (beschreibung == null) {
+			if (other.beschreibung != null)
+				return false;
+		} else if (!beschreibung.equals(other.beschreibung))
+			return false;
+		if (extern != other.extern)
+			return false;
+		if (Float.floatToIntBits(preis) != Float.floatToIntBits(other.preis))
+			return false;
+		if (warengruppe == null) {
+			if (other.warengruppe != null)
+				return false;
+		} else if (!warengruppe.equals(other.warengruppe))
+			return false;
+		if (zusatzleistungID != other.zusatzleistungID)
+			return false;
+		return true;
 	}
 
 

@@ -20,8 +20,8 @@
         <property name="extern" type="boolean">
             <column name="EXTERN" />
         </property>
-        <many-to-one name="warengruppe" class="projekt.fhv.teama.classes.leistungen.Warengruppe" fetch="join">
-            <column name="WARENGRUPPEID" />
-        </many-to-one>
+<!--         <many-to-one name="warengruppe" class="projekt.fhv.teama.classes.leistungen.Warengruppe" fetch="join"> -->
+<!--             <column name="WARENGRUPPEID" /> -->
+<!--         </many-to-one> -->
     </joined-subclass>
 </hibernate-mapping>

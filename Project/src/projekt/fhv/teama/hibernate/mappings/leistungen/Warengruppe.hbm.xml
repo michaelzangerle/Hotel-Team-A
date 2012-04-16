@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 14.04.2012 15:49:06 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
+<hibernate-mapping auto-import="true" default-access="property">
 	<class name="projekt.fhv.teama.classes.leistungen.Warengruppe"
 		table="WARENGRUPPE">
 		<id name="ID" type="int">
@@ -19,24 +19,24 @@
 			<column name="BESCHREIBUNG" />
 		</property>
 
-		<list name="zusatzleistungen" table="ZUSATZLEISTUNG" lazy="false" fetch="join">
+		<list name="artikel" table="ARTIKEL" lazy="false">
 			<key>
-				<column name="zusatzleistungID" />
+				<column name="warengruppeID" />
 			</key>
 			<list-index>
-				<column name="warengruppeID"/>
-			</list-index>
-			<one-to-many class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" />
-		</list>
-
-		<list name="artikel" table="ARTIKEL" lazy="false" fetch="join">
-			<key>
 				<column name="artikelID" />
-			</key>
-			<list-index>
-				<column name="warengruppeID"/>
 			</list-index>
 			<one-to-many class="projekt.fhv.teama.classes.leistungen.Artikel" />
+		</list>
+		
+		<list name="zusatzleistungen" table="ZUSATZLEISTUNG" lazy="false">
+			<key>
+				<column name="warengruppeID" />
+			</key>
+			<list-index>
+				<column name="zusatzleistungID" />
+			</list-index>
+			<one-to-many class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" />
 		</list>
 
 	</class>
