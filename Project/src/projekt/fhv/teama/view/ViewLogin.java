@@ -77,7 +77,7 @@ public class ViewLogin extends Window implements Application, Bindable {
 	public static void main(String[] args) {
 
 		DesktopApplicationContext
-				.applyStylesheet("/view/style/styles.json");
+				.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
 		DesktopApplicationContext.main(
 				(Class<? extends Application>) ViewLogin.class, args);
 
