@@ -8,31 +8,27 @@ import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.classes.personen.Vertragspartner;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 09.04.12
- * Time: 22:23
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
+ * this template use File | Settings | File Templates.
  */
 public class Reservierung {
-    private int ID;
-    private Timestamp von;
-    private Timestamp bis;
-    private Person person;
-    private Vertragspartner vertragspartner;
-    
-    private List<Option> optionen;
-//    private List<Zimmer> zimmer;
-    private List<Kategorie> kategorie;
-//    private List<Gast> gast;
-	public Reservierung(int iD, Timestamp von, Timestamp bis, Person person, Vertragspartner vertragspartner,
-			List<Option> optionen, List<Kategorie> kategorie) {
-		super();
-		ID = iD;
+	private int ID;
+	private Timestamp von;
+	private Timestamp bis;
+	private Person person;
+//	private Vertragspartner vertragspartner;
+
+	private List<Option> optionen;
+	// private List<Zimmer> zimmer;
+	private List<Kategorie> kategorie;
+// private List<Gast> gast;
+	
+	public Reservierung(Timestamp von, Timestamp bis, Person person, List<Option> optionen,
+			List<Kategorie> kategorie) {
+
 		this.von = von;
 		this.bis = bis;
 		this.person = person;
-		this.vertragspartner = vertragspartner;
 		this.optionen = optionen;
 		this.kategorie = kategorie;
 	}
@@ -64,12 +60,6 @@ public class Reservierung {
 	public void setPerson(Person person) {
 		this.person = person;
 	}
-	public Vertragspartner getVertragspartner() {
-		return vertragspartner;
-	}
-	public void setVertragspartner(Vertragspartner vertragspartner) {
-		this.vertragspartner = vertragspartner;
-	}
 	public List<Option> getOptionen() {
 		return optionen;
 	}
@@ -84,8 +74,8 @@ public class Reservierung {
 	}
 	@Override
 	public String toString() {
-		return "Reservierung [ID=" + ID + ", von=" + von + ", bis=" + bis + ", person=" + person + ", vertragspartner="
-				+ vertragspartner + ", optionen=" + optionen + ", kategorie=" + kategorie + "]";
+		return "Reservierung [ID=" + ID + ", von=" + von + ", bis=" + bis + ", person=" + person + ", optionen="
+				+ optionen + ", kategorie=" + kategorie + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -96,7 +86,6 @@ public class Reservierung {
 		result = prime * result + ((kategorie == null) ? 0 : kategorie.hashCode());
 		result = prime * result + ((optionen == null) ? 0 : optionen.hashCode());
 		result = prime * result + ((person == null) ? 0 : person.hashCode());
-		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.hashCode());
 		result = prime * result + ((von == null) ? 0 : von.hashCode());
 		return result;
 	}
@@ -131,11 +120,6 @@ public class Reservierung {
 				return false;
 		} else if (!person.equals(other.person))
 			return false;
-		if (vertragspartner == null) {
-			if (other.vertragspartner != null)
-				return false;
-		} else if (!vertragspartner.equals(other.vertragspartner))
-			return false;
 		if (von == null) {
 			if (other.von != null)
 				return false;
@@ -143,5 +127,6 @@ public class Reservierung {
 			return false;
 		return true;
 	}
-    
+	
+	
 }

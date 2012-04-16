@@ -14,15 +14,15 @@
 <!-- 		<property name="hibernate.hbm2ddl.auto">validate</property> -->
 
 		<!-- Mapping-Files -->
-		<!-- <mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Reservierung.hbm.xml"/> 
-			<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Statusentwicklung.hbm.xml"/> -->
 		
+<!-- 			<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Statusentwicklung.hbm.xml"/> -->
+		
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Reservierung.hbm.xml"/> 
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Zusatzleistung.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Artikel.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Leistung.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/rechnung/Zahlungsmethode.hbm.xml" />
-		<!-- <mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Option.hbm.xml" 
-			/> -->
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Option.hbm.xml"/>
 			
 			<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Warengruppe.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Zimmerpreis.hbm.xml" />
