@@ -25,7 +25,7 @@ public class MitarbeiterTest {
 	public static void main(String[] args) throws DatabaseException {
 		Adresse adr = new Adresse("Dorf 46", "6491", "Schönwies");
 		Bankverbindung bank = new Bankverbindung("123456789", "123456", "32165498", "12345");
-		LandDao<Land> ld = new LandDao<Land>();
+		LandDao ld = new LandDao();
 		Land aut1 = ld.getLand("Österreich");
 		MitarbeiterDao md = new MitarbeiterDao();
 		Mitarbeiter ma2 = md.getById(6);
@@ -47,11 +47,12 @@ public class MitarbeiterTest {
 		
 		Set<Berechtigung> berechtigungen = ma2.getBerechtigungen();
 		for (Berechtigung b : berechtigungen) {
-			System.out.println(b.toString());
+			//System.out.println(b.toString());
 		}
 		if (berechtigungen.contains(berechtigung)) {
-			System.out.println("berechtigt!");
+			//System.out.println("berechtigt!");
 		}
+		System.out.println(ma2.toString());
 	}
 
 }

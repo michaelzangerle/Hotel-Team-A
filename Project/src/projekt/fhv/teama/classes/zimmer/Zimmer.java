@@ -119,13 +119,12 @@ public class Zimmer {
 				+ ", rechnungspositionen=" + rechnungspositionen + "]";
 	}
 
-	public Zimmer(int iD, String nummer, String beschreibung,
+	public Zimmer(String nummer, String beschreibung,
 			Zimmerstatus zimmerStatus, Kategorie kategorie,
 			List<Reservierung> reservierungen,
 			List<Statusentwicklung> statusenticklung, List<Gast> gaeste,
 			List<Aufenthalt> aufenthalte,
 			List<Rechnungsposition> rechnungspositionen) {
-		ID = iD;
 		this.nummer = nummer;
 		this.beschreibung = beschreibung;
 		this.zimmerStatus = zimmerStatus;
@@ -159,4 +158,8 @@ public class Zimmer {
         result = 31 * result + (beschreibung != null ? beschreibung.hashCode() : 0);
         return result;
     }
+
+	public Zimmer() {
+		super();
+	}
 }

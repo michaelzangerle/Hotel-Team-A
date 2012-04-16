@@ -12,7 +12,7 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
 
-public class LandDao<T> extends GenericDao<T> {
+public class LandDao extends GenericDao<Land> {
 
 	public LandDao() {
 		super("Land");

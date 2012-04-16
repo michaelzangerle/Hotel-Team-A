@@ -1,31 +1,39 @@
-<?xml version='1.0' encoding='utf-8'?>
-<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
-        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-    <class name="Entities.Aufenthalt" table="aufenthalt" schema="" catalog="hibernate">
-        <composite-id mapped="true" class="Entities.AufenthaltPK">
-            <key-property name="gastId">
-                <column name="gastID" sql-type="int" length="10" not-null="true"/>
-            </key-property>
-            <key-property name="zimmerId">
-                <column name="zimmerID" sql-type="int" length="10" not-null="true"/>
-            </key-property>
-        </composite-id>
-        <property name="preis">
-            <column name="preis" sql-type="decimal" length="10" precision="2" not-null="true"/>
-        </property>
-        <property name="pfandNr">
-            <column name="pfandNr" sql-type="varchar"/>
-        </property>
-        <property name="von">
-            <column name="von" sql-type="date" length="10" not-null="true"/>
-        </property>
-        <property name="bis">
-            <column name="bis" sql-type="date" length="10" not-null="true"/>
-        </property>
-        <property name="schluessel">
-            <column name="schluessel" sql-type="bit" not-null="true"/>
-        </property>
-    </class>
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16.04.2012 15:54:17 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="projekt.fhv.teama.classes.Aufenthalt" table="AUFENTHALT">
+		<composite-id mapped="true" class="Aufenthalt">
+			<key-property name="gast" type=int>
+				<many-to-one name="gast"
+					class="projekt.fhv.teama.classes.personen.Gast" fetch="join">
+					<column name="gastID" />
+				</many-to-one>
+				<!-- <column name="gastID" sql-type="int" length="10" not-null="true"/> -->
+			</key-property>
+			<key-property name="zimmer">
+				<many-to-one name="zimmer"
+					class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
+					<column name="zimmerID" />
+				</many-to-one>
+			</key-property>
+		</composite-id>
+		<property name="preis" type="float">
+			<column name="preis" sql-type="decimal" length="10" precision="2"
+				not-null="true" />
+		</property>
+		<property name="pfandNr" type="java.lang.String">
+			<column name="pfandNr" sql-type="varchar" />
+		</property>
+		<property name="von" type="java.util.Date">
+			<column name="von" sql-type="date" length="10" not-null="true" />
+		</property>
+		<property name="bis" type="java.util.Date">
+			<column name="bis" sql-type="date" length="10" not-null="true" />
+		</property>
+		<property name="schluessel" type="boolean">
+			<column name="schluessel" sql-type="bit" not-null="true" />
+		</property>
+	</class>
 </hibernate-mapping>
