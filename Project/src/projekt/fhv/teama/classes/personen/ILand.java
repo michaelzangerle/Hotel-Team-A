@@ -1,6 +1,6 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.personen;
 
-public interface IZimmerStatus {
+public interface ILand {
 	public void setBezeichnung(String bezeichnung);
 	public String getBezeichnung();
 	public void setKuerzel(String kuerzel);

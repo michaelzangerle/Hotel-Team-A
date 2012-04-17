@@ -1,4 +1,7 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.zimmer;
+
+import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 
 public interface IZimmer {
 	public void setNummer(String Nummer);

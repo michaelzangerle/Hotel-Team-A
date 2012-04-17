@@ -1,4 +1,5 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.leistungen;
+
 
 public interface IWarengruppe {
 	public void setBezeichnung(String bezeichnung);

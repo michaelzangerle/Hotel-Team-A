@@ -1,4 +1,4 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.zimmer;
 
 public interface IZimmerpreis {
 	public void setKategorie(IKategorie kategorie);

@@ -1,6 +1,8 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes;
 
 import java.sql.Date;
+
+import projekt.fhv.teama.classes.personen.IVertragspartner;
 
 public interface IKontingent {
 	public void setVon(Date von);

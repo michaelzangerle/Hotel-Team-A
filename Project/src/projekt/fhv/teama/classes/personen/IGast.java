@@ -1,4 +1,9 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.personen;
+
+import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
+import projekt.fhv.teama.classes.zimmer.IReservierung;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
 
 public interface IGast {
 	public void setNummer(int nummer);

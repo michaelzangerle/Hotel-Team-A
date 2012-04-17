@@ -1,4 +1,4 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.personen;
 
 public interface IVertragspartner {
 	public void setName(String name);

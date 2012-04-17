@@ -1,4 +1,4 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.rechnung;
 
 public interface ITeilzahlung {
 	public void setZahlungsmethode(IZahlungsmethode zahlungsmethode);

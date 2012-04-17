@@ -1,6 +1,8 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes;
 
 import java.sql.Date;
+
+import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
 
 public interface IAufenthalt {
 	public void setPreis(IZimmerpreis ziPreis);

@@ -1,5 +1,7 @@
 
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.rechnung;
+
+import projekt.fhv.teama.classes.personen.IMitarbeiter;
 
 public interface IRechnung {
 	public String getNummer();

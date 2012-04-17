@@ -1,10 +1,8 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes;
 
-public interface IZahlungsmethode {
+public interface IPfandTyp {
 	public void setBezeichnung(String bezeichnung);
 	public String getBezeichnung();
 	public void setBeschreibung(String beschreibung);
 	public String getBeschreibung();
-	public void setKuerzel(String kuerzel);
-	public String getKuerzel();
 }
