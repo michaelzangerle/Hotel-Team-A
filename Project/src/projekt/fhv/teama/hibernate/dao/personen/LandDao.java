@@ -10,7 +10,7 @@ import projekt.fhv.teama.classes.personen.Land;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 public class LandDao extends GenericDao<Land> {
 
@@ -34,7 +34,7 @@ public class LandDao extends GenericDao<Land> {
 			}
 
 			if (result.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 
 		} catch (HibernateException e) {

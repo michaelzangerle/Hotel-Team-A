@@ -7,7 +7,7 @@ import java.util.List;
 
 import projekt.fhv.teama.classes.zimmer.Zimmerstatus;
 import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerstatusDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -15,7 +15,7 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
  */
 public class ZimmerstatusTest {
 	
-	public static void main(String[] args) throws DatabaseNotFoundException {
+	public static void main(String[] args) throws NoDatabaseEntryFoundException {
 		
 //		Zimmerstatus status = new Zimmerstatus("Guten Morgen", "GM");
 		ZimmerstatusDao zd = new ZimmerstatusDao();

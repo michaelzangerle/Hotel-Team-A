@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import projekt.fhv.teama.classes.rechnung.Zahlungsmethode;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 public class ZahlungsmethodeDao extends GenericDao<Zahlungsmethode> {
 
@@ -17,7 +17,7 @@ public class ZahlungsmethodeDao extends GenericDao<Zahlungsmethode> {
 		super("Zahlungsmethode");
 	}
 	
-	public Zahlungsmethode getZahlungsmethodeByKuerzel(String kuerzel) throws DatabaseNotFoundException {
+	public Zahlungsmethode getZahlungsmethodeByKuerzel(String kuerzel) throws NoDatabaseEntryFoundException {
 		
 		Zahlungsmethode zahlungsmethode = null;
 
@@ -30,7 +30,7 @@ public class ZahlungsmethodeDao extends GenericDao<Zahlungsmethode> {
 			List results = query.list();
 			
 			if (results.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 			
 			zahlungsmethode = (Zahlungsmethode) results.get(0);

@@ -5,16 +5,20 @@
 <hibernate-mapping auto-import="true" default-access="property">
 	<class name="projekt.fhv.teama.classes.leistungen.Warengruppe"
 		table="WARENGRUPPE">
+		
 		<id name="ID" type="int">
 			<column name="warengruppeID" />
 			<generator class="native" />
 		</id>
-		<property name="bezeichung" type="java.lang.String">
-			<column name="BEZEICHUNG" />
+		
+		<property name="bezeichnung" type="java.lang.String">
+			<column name="BEZEICHNUNG" />
 		</property>
+		
 		<property name="steuersatz" type="short">
 			<column name="STEUERSATZ" />
 		</property>
+		
 		<property name="beschreibung" type="java.lang.String">
 			<column name="BESCHREIBUNG" />
 		</property>

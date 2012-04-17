@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 17.04.2012 10:23:12 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.zimmer.Option" table="OPTION">
+    <class name="projekt.fhv.teama.classes.zimmer.ReservierungsOption" table="reservierungsoption">
         
         <id name="ID" type="int">
             <column name="optionID" />
@@ -23,7 +23,7 @@
         </property>
         
         <many-to-one name="reservierung" class="projekt.fhv.teama.classes.zimmer.Reservierung" fetch="join">
-            <column name="RESERVIERUNG" />
+            <column name="RESERVIERUNGID" />
         </many-to-one>
         
     </class>

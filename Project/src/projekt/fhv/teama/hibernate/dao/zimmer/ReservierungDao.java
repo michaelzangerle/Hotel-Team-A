@@ -13,7 +13,7 @@ import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.classes.zimmer.Reservierung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -28,7 +28,7 @@ public class ReservierungDao extends GenericDao<Reservierung> {
 
 	@SuppressWarnings("unchecked")
 	public List<Reservierung> getReservierungByPerson(String vorname, String nachname)
-			throws DatabaseNotFoundException {
+			throws NoDatabaseEntryFoundException {
 
 		List<Reservierung> reservierungen = null;
 
@@ -41,7 +41,7 @@ public class ReservierungDao extends GenericDao<Reservierung> {
 			List<Person> persons = queryID.list();
 			
 			if (persons.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 			
 			int id = persons.get(0).getID();
@@ -55,7 +55,7 @@ public class ReservierungDao extends GenericDao<Reservierung> {
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 			
 			reservierungen = results;

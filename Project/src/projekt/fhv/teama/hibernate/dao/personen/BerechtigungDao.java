@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 import projekt.fhv.teama.classes.personen.Berechtigung;
 
 public class BerechtigungDao extends GenericDao<Berechtigung>{
@@ -30,7 +30,7 @@ public class BerechtigungDao extends GenericDao<Berechtigung>{
 			berechtigungenList = query.list();
 			
 			if (berechtigungenList.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 		} catch (HibernateException e) {
 			throw new DatabaseException();

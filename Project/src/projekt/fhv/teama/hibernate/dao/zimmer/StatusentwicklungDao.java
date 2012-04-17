@@ -13,7 +13,7 @@ import projekt.fhv.teama.classes.zimmer.Statusentwicklung;
 import projekt.fhv.teama.classes.zimmer.Zimmer;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -26,7 +26,7 @@ public class StatusentwicklungDao extends GenericDao<Statusentwicklung>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Statusentwicklung> getStatusentwicklungByZimmernummer(String zimmerNummer) throws DatabaseNotFoundException {
+	public List<Statusentwicklung> getStatusentwicklungByZimmernummer(String zimmerNummer) throws NoDatabaseEntryFoundException {
 
 		List<Statusentwicklung> status = null;
 		
@@ -41,7 +41,7 @@ public class StatusentwicklungDao extends GenericDao<Statusentwicklung>{
 			List<Zimmer> zimmer = queryZimmerID.list();
 			
 			if (zimmer.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 			
 			int zimmerID = zimmer.get(0).getID();
@@ -55,7 +55,7 @@ public class StatusentwicklungDao extends GenericDao<Statusentwicklung>{
 			List results = query.list();
 			
 			if (results.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 			
 			status = results;

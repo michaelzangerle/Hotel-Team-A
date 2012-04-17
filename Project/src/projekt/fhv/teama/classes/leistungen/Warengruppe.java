@@ -1,6 +1,5 @@
 package projekt.fhv.teama.classes.leistungen;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -10,7 +9,7 @@ import java.util.Set;
 public class Warengruppe {
 
 	private int ID;
-	private String bezeichung;
+	private String bezeichnung;
 	private short steuersatz;
 	private String beschreibung;
 
@@ -20,7 +19,7 @@ public class Warengruppe {
 	public Warengruppe(String bezeichung, short steuersatz, String beschreibung, Set<Zusatzleistung> zusatzleistungen,
 			Set<Artikel> artikel) {
 
-		this.bezeichung = bezeichung;
+		this.bezeichnung = bezeichung;
 		this.steuersatz = steuersatz;
 		this.beschreibung = beschreibung;
 		this.zusatzleistungen = zusatzleistungen;
@@ -39,12 +38,12 @@ public class Warengruppe {
 		ID = iD;
 	}
 
-	public String getBezeichung() {
-		return bezeichung;
+	public String getBezeichnung() {
+		return bezeichnung;
 	}
 
-	public void setBezeichung(String bezeichung) {
-		this.bezeichung = bezeichung;
+	public void setBezeichnung(String bezeichnung) {
+		this.bezeichnung = bezeichnung;
 	}
 
 	public short getSteuersatz() {
@@ -81,7 +80,7 @@ public class Warengruppe {
 
 	@Override
 	public String toString() {
-		return "Warengruppe [ID=" + ID + ", bezeichung=" + bezeichung + ", steuersatz=" + steuersatz
+		return "Warengruppe [ID=" + ID + ", bezeichung=" + bezeichnung + ", steuersatz=" + steuersatz
 				+ ", beschreibung=" + beschreibung + ", zusatzleistungen=" + zusatzleistungen + ", artikel=" + artikel
 				+ "]";
 	}
@@ -93,7 +92,7 @@ public class Warengruppe {
 		result = prime * result + ID;
 		result = prime * result + ((artikel == null) ? 0 : artikel.hashCode());
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
-		result = prime * result + ((bezeichung == null) ? 0 : bezeichung.hashCode());
+		result = prime * result + ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
 		result = prime * result + steuersatz;
 		result = prime * result + ((zusatzleistungen == null) ? 0 : zusatzleistungen.hashCode());
 		return result;
@@ -120,10 +119,10 @@ public class Warengruppe {
 				return false;
 		} else if (!beschreibung.equals(other.beschreibung))
 			return false;
-		if (bezeichung == null) {
-			if (other.bezeichung != null)
+		if (bezeichnung == null) {
+			if (other.bezeichnung != null)
 				return false;
-		} else if (!bezeichung.equals(other.bezeichung))
+		} else if (!bezeichnung.equals(other.bezeichnung))
 			return false;
 		if (steuersatz != other.steuersatz)
 			return false;

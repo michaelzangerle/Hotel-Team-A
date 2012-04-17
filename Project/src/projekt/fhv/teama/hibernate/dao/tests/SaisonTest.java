@@ -9,7 +9,7 @@ import java.util.List;
 
 import projekt.fhv.teama.classes.zimmer.Saison;
 import projekt.fhv.teama.hibernate.dao.zimmer.SaisonDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -19,9 +19,9 @@ public class SaisonTest {
 
 	/**
 	 * @param args
-	 * @throws DatabaseNotFoundException 
+	 * @throws NoDatabaseEntryFoundException 
 	 */
-	public static void main(String[] args) throws DatabaseNotFoundException {
+	public static void main(String[] args) throws NoDatabaseEntryFoundException {
 		
 		Date date = new java.util.Date();
 		Saison s1 = new Saison("Sommer",new Timestamp(date.getTime()+10), new Timestamp(date.getTime()+299),null);
