@@ -1,6 +1,8 @@
 package projekt.fhv.teama.classes.zimmer;
 
-public interface IZimmerpreis {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IZimmerpreis extends IDao {
 	public void setKategorie(IKategorie kategorie);
 	public IKategorie getKategorie();
 	public void setSaison(ISaison saison);

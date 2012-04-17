@@ -1,6 +1,8 @@
 package projekt.fhv.teama.classes.zimmer;
 
-public interface ITeilreservierung {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface ITeilreservierung extends IDao {
 	public void setReservierung(IReservierung res);
 	public IReservierung getReservierung();
 	public void setKategorie(IKategorie kat);

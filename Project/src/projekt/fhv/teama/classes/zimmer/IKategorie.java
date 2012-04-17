@@ -1,6 +1,8 @@
 package projekt.fhv.teama.classes.zimmer;
 
-public interface IKategorie {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IKategorie extends IDao {
 	public void setBezeichnung(String Bezeichnung);
 	public String getBezeichnung();
 	public void addZimmer(IZimmer zimmer);

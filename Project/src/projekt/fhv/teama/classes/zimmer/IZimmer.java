@@ -2,8 +2,9 @@ package projekt.fhv.teama.classes.zimmer;
 
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
+import projekt.fhv.teama.hibernate.dao.IDao;
 
-public interface IZimmer {
+public interface IZimmer extends IDao {
 	public void setNummer(String Nummer);
 	public String getNummer();
 	public void setKategorie(IKategorie kat);

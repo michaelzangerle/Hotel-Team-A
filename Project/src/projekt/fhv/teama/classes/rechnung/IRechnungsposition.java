@@ -5,8 +5,9 @@ import java.sql.Date;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.hibernate.dao.IDao;
 
-public interface IRechnungsposition {
+public interface IRechnungsposition extends IDao {
 	public void setLeistung(ILeistung leistung);
 	public ILeistung getLeistung();
 	public void setEinzelpreis(double einzPreis);

@@ -5,8 +5,9 @@ import java.sql.Date;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
+import projekt.fhv.teama.hibernate.dao.IDao;
 
-public interface IReservierung {
+public interface IReservierung extends IDao {
 	public void addKategorie(IKategorie kat);
 	public void removeKategorie(IKategorie kat);
 	public IKategorie getKategorie();

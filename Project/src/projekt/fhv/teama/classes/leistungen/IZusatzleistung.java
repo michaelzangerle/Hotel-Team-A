@@ -1,6 +1,8 @@
 package projekt.fhv.teama.classes.leistungen;
 
-public interface IZusatzleistung {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IZusatzleistung extends IDao {
 	public void setBeschreibung(String beschreibung);
 	public String getBeschreibung();
 	public void setWarengruppe(IWarengruppe warengruppe);

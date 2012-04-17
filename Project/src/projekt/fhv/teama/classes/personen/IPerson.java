@@ -2,7 +2,9 @@ package projekt.fhv.teama.classes.personen;
 
 import java.sql.Date;
 
-public interface IPerson {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IPerson extends IDao {
 	public int getId();
 	public void setVorname(String vn);
 	public String getVorname();

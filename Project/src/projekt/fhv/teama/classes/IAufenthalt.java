@@ -3,8 +3,9 @@ package projekt.fhv.teama.classes;
 import java.sql.Date;
 
 import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
+import projekt.fhv.teama.hibernate.dao.IDao;
 
-public interface IAufenthalt {
+public interface IAufenthalt extends IDao {
 	public void setPreis(IZimmerpreis ziPreis);
 	public IZimmerpreis getZimmerpreis();
 	public void setPfandtyp(IPfandTyp pfandtyp);

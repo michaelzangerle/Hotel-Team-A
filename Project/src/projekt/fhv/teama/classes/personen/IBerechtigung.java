@@ -1,6 +1,8 @@
 package projekt.fhv.teama.classes.personen;
 
-public interface IBerechtigung {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IBerechtigung extends IDao {
 	public int getId();
 	public void setBezeichnung(String bezeichnung);
 	public String getBezeichnung();

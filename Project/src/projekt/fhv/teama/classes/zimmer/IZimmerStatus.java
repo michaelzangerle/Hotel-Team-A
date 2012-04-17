@@ -1,6 +1,8 @@
 package projekt.fhv.teama.classes.zimmer;
 
-public interface IZimmerStatus {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IZimmerStatus extends IDao {
 	public void setBezeichnung(String bezeichnung);
 	public String getBezeichnung();
 	public void setKuerzel(String kuerzel);

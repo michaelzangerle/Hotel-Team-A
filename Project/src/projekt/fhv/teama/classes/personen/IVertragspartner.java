@@ -1,6 +1,8 @@
 package projekt.fhv.teama.classes.personen;
 
-public interface IVertragspartner {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IVertragspartner extends IDao {
 	public void setName(String name);
 	public String getNamer();
 	public void setStrasse(String strasse);

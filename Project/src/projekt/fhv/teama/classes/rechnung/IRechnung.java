@@ -2,8 +2,9 @@
 package projekt.fhv.teama.classes.rechnung;
 
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
+import projekt.fhv.teama.hibernate.dao.IDao;
 
-public interface IRechnung {
+public interface IRechnung extends IDao {
 	public String getNummer();
 	public void addRechnungsposition(IRechnungsposition rePos);
 	public void removeRechnungsposition(IRechnungsposition rePos);

@@ -2,7 +2,9 @@ package projekt.fhv.teama.classes.zimmer;
 
 import java.sql.Date;
 
-public interface ISaison {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface ISaison extends IDao {
 	public void setBezeichnung(String Bezeichnung);
 	public String getBezeichnung();
 	public void setVon(Date von);

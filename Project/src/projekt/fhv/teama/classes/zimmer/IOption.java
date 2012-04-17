@@ -2,7 +2,9 @@ package projekt.fhv.teama.classes.zimmer;
 
 import java.sql.Date;
 
-public interface IOption {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IOption extends IDao {
 	public void setProzentsatz(short prozentsatz);
 	public short getProzentsatz();
 	public void setErfuellung(boolean optionErf);

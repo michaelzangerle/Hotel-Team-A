@@ -2,7 +2,9 @@ package projekt.fhv.teama.classes.zimmer;
 
 import java.sql.Timestamp;
 
-public interface IStatusEntwicklung {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IStatusEntwicklung extends IDao {
 	public void setVon(Timestamp von);
 	public Timestamp getVon();
 	public void setBis(Timestamp bis);
