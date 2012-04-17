@@ -105,18 +105,7 @@ public class Person {
 		adressen = new HashSet<Adresse>();
 	}
 	
-	public Person(String vorname, String nachname, char geschlecht,
-			Date geburtsdatum, String telefonnummer, String email,
-			Kontodaten kontodaten, Land land) {
-		this.vorname = vorname;
-		this.nachname = nachname;
-		this.geschlecht = geschlecht;
-		this.geburtsdatum = geburtsdatum;
-		this.telefonnummer = telefonnummer;
-		this.email = email;
-		this.kontodaten = kontodaten;
-		this.land = land;
-	}
+
 	
 	public Person(String vorname, String nachname, char geschlecht,
 			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
@@ -124,6 +113,8 @@ public class Person {
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.geschlecht = geschlecht;
+		// TODO
+		// wieso hashset? --> liste?
 		this.adressen = new HashSet<Adresse>();		
 		this.geburtsdatum = geburtsdatum;
 		this.telefonnummer = telefonnummer;

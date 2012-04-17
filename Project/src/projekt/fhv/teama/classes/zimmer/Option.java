@@ -10,10 +10,10 @@ public class Option {
 	private int ID;
 	private Timestamp erfuellung;
 	private short prozentsatz;
-	private boolean erfuellt;
+	private byte erfuellt;
 	private Reservierung reservierung;
 
-	public Option(Timestamp erfuellung, short prozentsatz, boolean erfuellt, Reservierung reservierung) {
+	public Option(Timestamp erfuellung, short prozentsatz, byte erfuellt, Reservierung reservierung) {
 		this.erfuellung = erfuellung;
 		this.prozentsatz = prozentsatz;
 		this.erfuellt = erfuellt;
@@ -21,6 +21,7 @@ public class Option {
 	}
 
 	public Option() {
+
 	}
 
 	public int getID() {
@@ -47,11 +48,11 @@ public class Option {
 		this.prozentsatz = prozentsatz;
 	}
 
-	public boolean isErfuellt() {
+	public byte getErfuellt() {
 		return erfuellt;
 	}
 
-	public void setErfuellt(boolean erfuellt) {
+	public void setErfuellt(byte erfuellt) {
 		this.erfuellt = erfuellt;
 	}
 
@@ -74,7 +75,7 @@ public class Option {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result + (erfuellt ? 1231 : 1237);
+		result = prime * result + erfuellt;
 		result = prime * result + ((erfuellung == null) ? 0 : erfuellung.hashCode());
 		result = prime * result + prozentsatz;
 		result = prime * result + ((reservierung == null) ? 0 : reservierung.hashCode());

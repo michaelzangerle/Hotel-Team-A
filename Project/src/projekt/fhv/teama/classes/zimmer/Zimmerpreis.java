@@ -7,7 +7,7 @@ import java.io.Serializable;
  * this template use File | Settings | File Templates.
  */
 public class Zimmerpreis implements Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private int ID;
 	private Saison saison;
 	private Kategorie kategorie;

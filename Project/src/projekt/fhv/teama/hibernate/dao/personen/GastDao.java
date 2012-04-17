@@ -8,5 +8,13 @@ public class GastDao extends GenericDao<Gast> {
 	public GastDao() {
 		super("GAST");
 	}
+	
+	public Gast getGastByNummer(String nr){
+		
+		
+		// TODO
+		
+		return null;
+	}
 
 }

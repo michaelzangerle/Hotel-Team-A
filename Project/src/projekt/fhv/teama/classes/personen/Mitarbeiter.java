@@ -98,8 +98,8 @@ public class Mitarbeiter extends Person {
 	}
 	
 	public Mitarbeiter(String vorname, String nachname, char geschlecht,
-			Adresse adresse, Date geburtsdatum, String telefonnummer,
-			String email, Bankverbindung bankverbindung, Land land,
+			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
+			String email, Kontodaten bankverbindung, Land land,
 			String passwort, Date einstellung) {
 		
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum,
@@ -110,8 +110,8 @@ public class Mitarbeiter extends Person {
 	}
 
 	public Mitarbeiter(String vorname, String nachname, char geschlecht,
-			Adresse adresse, Date geburtsdatum, String telefonnummer,
-			String email, Bankverbindung bankverbindung, Land land) {
+			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
+			String email, Kontodaten bankverbindung, Land land) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum,
 				telefonnummer, email, bankverbindung, land);
 		this.berechtigungen = new HashSet<Berechtigung>();

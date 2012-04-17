@@ -18,7 +18,7 @@ public class LandDao extends GenericDao<Land> {
 		super("Land");
 	}
 
-	public Land getLand(String bezeichnung) throws DatabaseException {
+	public Land getLandByBez(String bezeichnung) throws DatabaseException {
 		Land p = null;
 
 		try {
@@ -41,5 +41,11 @@ public class LandDao extends GenericDao<Land> {
 			throw new DatabaseException();
 		}
 		return p;
+	}
+	
+	public Land getLandByKuerzel(String kuerzel){
+		
+		//TODO
+		return null;
 	}
 }

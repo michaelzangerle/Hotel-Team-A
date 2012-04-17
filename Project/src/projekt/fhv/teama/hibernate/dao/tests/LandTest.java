@@ -21,7 +21,7 @@ public class LandTest {
 		
 		List<Land> laender = ld.getAll();
 		//Land aut1 = ld.getById(3);
-		Land aut2 = ld.getLandByBezeichnung("Österreich");
+		Land aut2 = ld.getLandByBez("Österreich");
 		
 		System.out.println(laender.toString());
 		System.out.println(aut2.toString());

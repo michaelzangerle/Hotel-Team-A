@@ -10,16 +10,16 @@
             <generator class="native" />
         </id>
         
-        <property name="erfuellung" type="java.sql.Timestamp">
-            <column name="ERFUELLUNG" />
+        <property name="erfuellung" type="date">
+            <column name="ERFUELLUNG" sql-type="date"/>
         </property>
         
         <property name="prozentsatz" type="short">
-            <column name="PROZENTSATZ" />
+            <column name="PROZENTSATZ" sql-type="smallint"/>
         </property>
         
-        <property name="erfuellt" type="boolean">
-            <column name="ERFUELLT" />
+        <property name="erfuellt" type="byte">
+            <column name="ERFUELLT" sql-type="tinyint"/>
         </property>
         
         <many-to-one name="reservierung" class="projekt.fhv.teama.classes.zimmer.Reservierung" fetch="join">
