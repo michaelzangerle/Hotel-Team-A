@@ -4,9 +4,8 @@ import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
-import projekt.fhv.teama.hibernate.dao.IDao;
 
-public interface IGast extends IDao {
+public interface IGast extends IPerson {
 	public void setNummer(int nummer);
 	public int getNummer();
 	public void addRechnungposition(IRechnungsposition rePos);
