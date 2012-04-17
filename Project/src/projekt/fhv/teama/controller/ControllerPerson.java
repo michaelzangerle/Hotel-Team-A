@@ -2,8 +2,8 @@ package projekt.fhv.teama.controller;
 
 import java.sql.Date;
 
+import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.controller.interfaces.IControllerPerson;
-import projekt.fhv.teama.controller.interfaces.interfacesmodel.ILand;
 
 public class ControllerPerson implements IControllerPerson {
 

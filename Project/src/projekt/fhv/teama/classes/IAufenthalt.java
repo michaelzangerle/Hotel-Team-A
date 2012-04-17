@@ -1,8 +1,11 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes;
 
 import java.sql.Date;
 
-public interface IAufenthalt {
+import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IAufenthalt extends IDao {
 	public void setPreis(IZimmerpreis ziPreis);
 	public IZimmerpreis getZimmerpreis();
 	public void setPfandtyp(IPfandTyp pfandtyp);

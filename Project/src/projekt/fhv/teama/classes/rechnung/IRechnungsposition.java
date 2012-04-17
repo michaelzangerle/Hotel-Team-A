@@ -1,8 +1,13 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.rechnung;
 
 import java.sql.Date;
 
-public interface IRechnungsposition {
+import projekt.fhv.teama.classes.leistungen.ILeistung;
+import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IRechnungsposition extends IDao {
 	public void setLeistung(ILeistung leistung);
 	public ILeistung getLeistung();
 	public void setEinzelpreis(double einzPreis);

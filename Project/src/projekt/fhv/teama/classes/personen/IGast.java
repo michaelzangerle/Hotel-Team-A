@@ -1,6 +1,11 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.personen;
 
-public interface IGast {
+import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
+import projekt.fhv.teama.classes.zimmer.IReservierung;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
+
+public interface IGast extends IPerson {
 	public void setNummer(int nummer);
 	public int getNummer();
 	public void addRechnungposition(IRechnungsposition rePos);

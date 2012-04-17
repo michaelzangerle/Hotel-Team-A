@@ -1,6 +1,10 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.zimmer;
 
-public interface IZimmer {
+import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IZimmer extends IDao {
 	public void setNummer(String Nummer);
 	public String getNummer();
 	public void setKategorie(IKategorie kat);

@@ -1,8 +1,13 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.zimmer;
 
 import java.sql.Date;
 
-public interface IReservierung {
+import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.personen.IPerson;
+import projekt.fhv.teama.classes.personen.IVertragspartner;
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface IReservierung extends IDao {
 	public void addKategorie(IKategorie kat);
 	public void removeKategorie(IKategorie kat);
 	public IKategorie getKategorie();

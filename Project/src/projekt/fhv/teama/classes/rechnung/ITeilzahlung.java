@@ -1,6 +1,8 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.rechnung;
 
-public interface ITeilzahlung {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+public interface ITeilzahlung extends IDao {
 	public void setZahlungsmethode(IZahlungsmethode zahlungsmethode);
 	public IZahlungsmethode getZahlungsmethode();
 	public void setRechnung(IRechnung rechnung);

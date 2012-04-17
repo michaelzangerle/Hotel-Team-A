@@ -1,6 +1,9 @@
-package projekt.fhv.teama.controller.interfaces.interfacesmodel;
+package projekt.fhv.teama.classes.leistungen;
 
-public interface IWarengruppe {
+import projekt.fhv.teama.hibernate.dao.IDao;
+
+
+public interface IWarengruppe extends IDao {
 	public void setBezeichnung(String bezeichnung);
 	public String getBezeichnung();
 	public void setBeschreibung(String beschreibung);
