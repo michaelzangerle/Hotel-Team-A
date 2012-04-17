@@ -1,9 +1,9 @@
 package projekt.fhv.teama.classes.rechnung;
 
 
-import java.util.List;
+import java.util.Set;
 
-import projekt.fhv.teama.classes.personen.Adresse;
+import projekt.fhv.teama.classes.personen.Land;
 import projekt.fhv.teama.classes.personen.Mitarbeiter;
 
 /**
@@ -17,25 +17,30 @@ public class Rechnung {
     private int ID;
     private String bezahlerVorname;
     private String bezahlerNachname;
-    private Adresse adresse;
+    private String bezahlerStrasse;
+    private String bezahlerOrt;
+    private String bezahlerPLZ;
     private float summe;
     private String nummer;
     private Mitarbeiter mitarbeiter;
+    private Land bezahlerLand;
     
-    private List<Rechnungsposition> rechnungspostitionen;
-    private List<Teilzahlung> teilzahlungen;
+    private Set<Rechnungsposition> rechnungspostitionen;
+    private Set<Teilzahlung> teilzahlungen;
     
-	public Rechnung(String bezahlerVorname, String bezahlerNachname,
-			Adresse adresse, float summe, String nummer,
-			Mitarbeiter mitarbeiter,
-			List<Rechnungsposition> rechnungspostitionen,
-			List<Teilzahlung> teilzahlungen) {
+	public Rechnung(String bezahlerVorname, String bezahlerNachname, String bezahlerStrasse,
+			String bezahlerOrt, String bezahlerPLZ, float summe, String nummer, Mitarbeiter mitarbeiter,
+			Land bezahlerLand, Set<Rechnungsposition> rechnungspostitionen, Set<Teilzahlung> teilzahlungen) {
+
 		this.bezahlerVorname = bezahlerVorname;
 		this.bezahlerNachname = bezahlerNachname;
-		this.adresse = adresse;
+		this.bezahlerStrasse = bezahlerStrasse;
+		this.bezahlerOrt = bezahlerOrt;
+		this.bezahlerPLZ = bezahlerPLZ;
 		this.summe = summe;
 		this.nummer = nummer;
 		this.mitarbeiter = mitarbeiter;
+		this.bezahlerLand = bezahlerLand;
 		this.rechnungspostitionen = rechnungspostitionen;
 		this.teilzahlungen = teilzahlungen;
 	}
@@ -60,11 +65,23 @@ public class Rechnung {
 	public void setBezahlerNachname(String bezahlerNachname) {
 		this.bezahlerNachname = bezahlerNachname;
 	}
-	public Adresse getAdresse() {
-		return adresse;
+	public String getBezahlerStrasse() {
+		return bezahlerStrasse;
 	}
-	public void setAdresse(Adresse adresse) {
-		this.adresse = adresse;
+	public void setBezahlerStrasse(String bezahlerStrasse) {
+		this.bezahlerStrasse = bezahlerStrasse;
+	}
+	public String getBezahlerOrt() {
+		return bezahlerOrt;
+	}
+	public void setBezahlerOrt(String bezahlerOrt) {
+		this.bezahlerOrt = bezahlerOrt;
+	}
+	public String getBezahlerPLZ() {
+		return bezahlerPLZ;
+	}
+	public void setBezahlerPLZ(String bezahlerPLZ) {
+		this.bezahlerPLZ = bezahlerPLZ;
 	}
 	public float getSumme() {
 		return summe;
@@ -84,48 +101,48 @@ public class Rechnung {
 	public void setMitarbeiter(Mitarbeiter mitarbeiter) {
 		this.mitarbeiter = mitarbeiter;
 	}
-	public List<Rechnungsposition> getRechnungspostitionen() {
+	public Land getBezahlerLand() {
+		return bezahlerLand;
+	}
+	public void setBezahlerLand(Land bezahlerLand) {
+		this.bezahlerLand = bezahlerLand;
+	}
+	public Set<Rechnungsposition> getRechnungspostitionen() {
 		return rechnungspostitionen;
 	}
-	public void setRechnungspostitionen(List<Rechnungsposition> rechnungspostitionen) {
+	public void setRechnungspostitionen(Set<Rechnungsposition> rechnungspostitionen) {
 		this.rechnungspostitionen = rechnungspostitionen;
 	}
-	public List<Teilzahlung> getTeilzahlungen() {
+	public Set<Teilzahlung> getTeilzahlungen() {
 		return teilzahlungen;
 	}
-	public void setTeilzahlungen(List<Teilzahlung> teilzahlungen) {
+	public void setTeilzahlungen(Set<Teilzahlung> teilzahlungen) {
 		this.teilzahlungen = teilzahlungen;
 	}
 	@Override
 	public String toString() {
-		return "Rechnung [ID=" + ID + ", bezahlerVorname=" + bezahlerVorname
-				+ ", bezahlerNachname=" + bezahlerNachname + ", adresse="
-				+ adresse + ", summe=" + summe + ", nummer=" + nummer
-				+ ", mitarbeiter=" + mitarbeiter + ", rechnungspostitionen="
-				+ rechnungspostitionen + ", teilzahlungen=" + teilzahlungen
-				+ "]";
+		return "Rechnung [ID=" + ID + ", bezahlerVorname=" + bezahlerVorname + ", bezahlerNachname=" + bezahlerNachname
+				+ ", bezahlerStrasse=" + bezahlerStrasse + ", bezahlerOrt=" + bezahlerOrt + ", bezahlerPLZ="
+				+ bezahlerPLZ + ", summe=" + summe + ", nummer=" + nummer + ", mitarbeiter=" + mitarbeiter
+				+ ", bezahlerLand=" + bezahlerLand + ", rechnungspostitionen=" + rechnungspostitionen
+				+ ", teilzahlungen=" + teilzahlungen + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
-		result = prime
-				* result
-				+ ((bezahlerNachname == null) ? 0 : bezahlerNachname.hashCode());
-		result = prime * result
-				+ ((bezahlerVorname == null) ? 0 : bezahlerVorname.hashCode());
-		result = prime * result
-				+ ((mitarbeiter == null) ? 0 : mitarbeiter.hashCode());
+		result = prime * result + ((bezahlerLand == null) ? 0 : bezahlerLand.hashCode());
+		result = prime * result + ((bezahlerNachname == null) ? 0 : bezahlerNachname.hashCode());
+		result = prime * result + ((bezahlerOrt == null) ? 0 : bezahlerOrt.hashCode());
+		result = prime * result + ((bezahlerPLZ == null) ? 0 : bezahlerPLZ.hashCode());
+		result = prime * result + ((bezahlerStrasse == null) ? 0 : bezahlerStrasse.hashCode());
+		result = prime * result + ((bezahlerVorname == null) ? 0 : bezahlerVorname.hashCode());
+		result = prime * result + ((mitarbeiter == null) ? 0 : mitarbeiter.hashCode());
 		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
-		result = prime
-				* result
-				+ ((rechnungspostitionen == null) ? 0 : rechnungspostitionen
-						.hashCode());
+//		result = prime * result + ((rechnungspostitionen == null) ? 0 : rechnungspostitionen.hashCode());
 		result = prime * result + Float.floatToIntBits(summe);
-		result = prime * result
-				+ ((teilzahlungen == null) ? 0 : teilzahlungen.hashCode());
+//		result = prime * result + ((teilzahlungen == null) ? 0 : teilzahlungen.hashCode());
 		return result;
 	}
 	@Override
@@ -139,15 +156,30 @@ public class Rechnung {
 		Rechnung other = (Rechnung) obj;
 		if (ID != other.ID)
 			return false;
-		if (adresse == null) {
-			if (other.adresse != null)
+		if (bezahlerLand == null) {
+			if (other.bezahlerLand != null)
 				return false;
-		} else if (!adresse.equals(other.adresse))
+		} else if (!bezahlerLand.equals(other.bezahlerLand))
 			return false;
 		if (bezahlerNachname == null) {
 			if (other.bezahlerNachname != null)
 				return false;
 		} else if (!bezahlerNachname.equals(other.bezahlerNachname))
+			return false;
+		if (bezahlerOrt == null) {
+			if (other.bezahlerOrt != null)
+				return false;
+		} else if (!bezahlerOrt.equals(other.bezahlerOrt))
+			return false;
+		if (bezahlerPLZ == null) {
+			if (other.bezahlerPLZ != null)
+				return false;
+		} else if (!bezahlerPLZ.equals(other.bezahlerPLZ))
+			return false;
+		if (bezahlerStrasse == null) {
+			if (other.bezahlerStrasse != null)
+				return false;
+		} else if (!bezahlerStrasse.equals(other.bezahlerStrasse))
 			return false;
 		if (bezahlerVorname == null) {
 			if (other.bezahlerVorname != null)
@@ -179,7 +211,5 @@ public class Rechnung {
 		return true;
 	}
     
-    
-    
-  
+	
 }

@@ -30,12 +30,10 @@ public class Rechnungsposition {
     public Rechnungsposition() {
     }
 
-    public Rechnungsposition(int iD, Date erstellung, int anzahl,
+    public Rechnungsposition(Date erstellung, int anzahl,
 			float einzelpreis, float summe, short steuersatz,
 			boolean beglichen, Zimmer zimmer, Rechnung rechnung,
 			Leistung leistung, Gast gast) {
-		super();
-		ID = iD;
 		this.erstellung = erstellung;
 		this.anzahl = anzahl;
 		this.einzelpreis = einzelpreis;

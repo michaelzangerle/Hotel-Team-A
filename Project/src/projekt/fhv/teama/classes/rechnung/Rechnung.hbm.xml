@@ -5,8 +5,8 @@
 <hibernate-mapping>
     <class name="projekt.fhv.teama.classes.rechnung.Rechnung" table="RECHNUNG">
         <id name="ID" type="int">
-            <column name="RECHNUNGID" />
-            <generator class="native" />
+            <column name="ID" />
+            <generator class="assigned" />
         </id>
         <property name="bezahlerVorname" type="java.lang.String">
             <column name="BEZAHLERVORNAME" />

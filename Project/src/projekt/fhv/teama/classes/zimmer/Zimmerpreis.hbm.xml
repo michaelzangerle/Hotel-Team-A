@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17.04.2012 18:54:57 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.zimmer.Zimmerpreis" table="ZIMMERPREIS">
+        <id name="ID" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="saison" class="projekt.fhv.teama.classes.zimmer.Saison" fetch="join">
+            <column name="SAISON" />
+        </many-to-one>
+        <many-to-one name="kategorie" class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
+            <column name="KATEGORIE" />
+        </many-to-one>
+        <property name="preis" type="float">
+            <column name="PREIS" />
+        </property>
+    </class>
+</hibernate-mapping>
