@@ -1,5 +1,6 @@
 package projekt.fhv.teama.hibernate.dao.tests;
 
+import projekt.fhv.teama.classes.leistungen.Artikel;
 import projekt.fhv.teama.classes.leistungen.Warengruppe;
 import projekt.fhv.teama.classes.leistungen.Zusatzleistung;
 import projekt.fhv.teama.hibernate.dao.leistungen.ZusatzleistungDao;
@@ -19,7 +20,7 @@ public class LeistungTest {
 		
 //		Warengruppe w1 = new Warengruppe("Zweite Warengruppe", (short) 20, "Beschreibung der ersten Warengruppe", null, null);
 //		Leistung l1 = new Leistung("2 Leistung");
-//		Artikel a1 = new Artikel(75F, "Special Artikel 1", "Beschreibung des Artikels 1", wd.getById(3));
+		Artikel a1 = new Artikel(50F, "Special Artikel 60", "Beschreibung des Artikels 50", wd.getById(3));
 //		Artikel a2 = new Artikel(74F, "Special Artikel 2", "Beschreibung des Artikels 2", wd.getById(3));
 //		Artikel a3 = new Artikel(75F, "Special Artikel 3", "Beschreibung des Artikels 3", wd.getById(3));
 //		Artikel a4 = new Artikel(72F, "Special Artikel 4", "Beschreibung des Artikels 4", wd.getById(3));
@@ -42,9 +43,9 @@ public class LeistungTest {
 //		Zusatzleistung z1 = new Zusatzleistung(100, "Zusatzleistung 1", "Beschreibung der 1. Zusatzleistung", true , wd.getById(1));
 //		zd.create(z1);
 		
-		
-		Warengruppe w1 = wd.getById(1);
-		System.out.println(w1.toString());
+		ad.create(a1);
+//		Warengruppe w1 = wd.getById(1);
+//		System.out.println(w1.toString());
 
 		
 		//System.out.println(ld.getLeistung("Erste Leistung").toString());

@@ -1,52 +1,36 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 16.04.2012 16:54:24 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 16.04.2012 21:53:16 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.zimmer.Reservierung" table="RESERVIERUNG">
-        <id name="ID" type="int">
-            <column name="ID" />
-            <generator class="assigned" />
-        </id>
-        <property name="von" type="java.sql.Timestamp">
-            <column name="VON" />
-        </property>
-        <property name="bis" type="java.sql.Timestamp">
-            <column name="BIS" />
-        </property>
-        <many-to-one name="person" class="projekt.fhv.teama.classes.personen.Person" fetch="join">
-            <column name="PERSON" />
-        </many-to-one>
-        <many-to-one name="vertragspartner" class="projekt.fhv.teama.classes.personen.Vertragspartner" fetch="join">
-            <column name="VERTRAGSPARTNER" />
-        </many-to-one>
-        <list name="optionen" inverse="false" table="OPTION" lazy="true">
-            <key>
-                <column name="ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="projekt.fhv.teama.classes.zimmer.Option" />
-        </list>
-        <list name="zimmer" inverse="false" table="ZIMMER" lazy="true">
-            <key>
-                <column name="ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="projekt.fhv.teama.classes.zimmer.Zimmer" />
-        </list>
-        <list name="kategorie" inverse="false" table="KATEGORIE" lazy="true">
-            <key>
-                <column name="ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="projekt.fhv.teama.classes.zimmer.Kategorie" />
-        </list>
-        <list name="gast" inverse="false" table="GAST" lazy="true">
-            <key>
-                <column name="ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="projekt.fhv.teama.classes.personen.Gast" />
-        </list>
-    </class>
+	<class name="projekt.fhv.teama.classes.zimmer.Reservierung"
+		table="RESERVIERUNG">
+		<id name="ID" type="int">
+			<column name="reservierungID" />
+			<generator class="native" />
+		</id>
+		<property name="von" type="java.sql.Timestamp">
+			<column name="VON" />
+		</property>
+		<property name="bis" type="java.sql.Timestamp">
+			<column name="BIS" />
+		</property>
+		<many-to-one name="person"
+			class="projekt.fhv.teama.classes.personen.Person" fetch="join">
+			<column name="PERSON" />
+		</many-to-one>
+
+<!-- 		<set name="optionen" table="OPTION"> -->
+<!-- 			<key column="ID" /> -->
+<!-- 			<one-to-many class="projekt.fhv.teama.classes.zimmer.Option" /> -->
+<!-- 		</set> -->
+
+		<set name="kategorie" table="KATEGORIE">
+			<key column="ID" />
+			<one-to-many class="projekt.fhv.teama.classes.zimmer.Kategorie" />
+		</set>
+
+
+
+	</class>
 </hibernate-mapping>

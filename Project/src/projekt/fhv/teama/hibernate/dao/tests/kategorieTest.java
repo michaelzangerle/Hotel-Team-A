@@ -3,8 +3,11 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
+import java.util.List;
+
 import projekt.fhv.teama.classes.zimmer.Kategorie;
 import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
 
 /**
  * @author mike
@@ -14,21 +17,44 @@ public class kategorieTest {
 
 	/**
 	 * @param args
+	 * @throws DatabaseNotFoundException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DatabaseNotFoundException {
 		
-		Kategorie kat = new Kategorie("Testkategorie2", "Beschreibung der Testkategorie");
+		Kategorie kat1 = new Kategorie("Einzelzimmer", "Zimmer für eine Person", null , null);
+		Kategorie kat2 = new Kategorie("Doppelzimmer", "Zimmer für 2 Personen", null , null);
+		Kategorie kat3 = new Kategorie("Juniorsuit", "Größere Suit für den wohlhabenden Gast", null , null);
+		Kategorie kat4 = new Kategorie("Tirolerzimmer", "Luxus auf höchster Stufe", null , null);
+		
 		KategorieDao kd = new KategorieDao();
-		kd.create(kat);
-//		Kategorie kat = kd.getById(4);
-		 
 		
-//		kat = kd.getKategorie("Juniorsuit");
-//		
-//		List<Kategorie> allCat = kd.getAll();
-//		System.out.println(allCat.toString()+"\n\n");
+		/*
+		 * Erstellen der Datensätze
+		 */
+		kd.create(kat1);
+		kd.create(kat2);
+		kd.create(kat3);
+		kd.create(kat4);
 		
-		System.out.println(kat.toString()+"\n\n");
+		/*
+		 * Auslesen der Datensätze
+		 */
+		
+//		List<Kategorie> saison = kd.getAll();
+//		for (Kategorie s : saison) {
+//			System.out.println(s);
+//		}
+		
+		/*
+		 * Auslesen eines Datensatzes per ID
+		 */
+//		System.out.println(kd.getById(1));
+		
+		/*
+		 * Auslesen eines Datensatzes per Bezeichnung
+		 */
+		
+//		System.out.println(kd.getKategorie("Einzelzimmer"));
 		
 	}
 

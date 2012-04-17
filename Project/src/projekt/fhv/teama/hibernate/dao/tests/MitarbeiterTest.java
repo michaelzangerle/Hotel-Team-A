@@ -1,14 +1,10 @@
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.personen.Adresse;
-import projekt.fhv.teama.classes.personen.Bankverbindung;
 import projekt.fhv.teama.classes.personen.Berechtigung;
+import projekt.fhv.teama.classes.personen.Kontodaten;
 import projekt.fhv.teama.classes.personen.Land;
 import projekt.fhv.teama.classes.personen.Mitarbeiter;
 import projekt.fhv.teama.hibernate.dao.personen.BerechtigungDao;
@@ -24,9 +20,9 @@ public class MitarbeiterTest {
 	 */
 	public static void main(String[] args) throws DatabaseException {
 		Adresse adr = new Adresse("Dorf 46", "6491", "Schönwies");
-		Bankverbindung bank = new Bankverbindung("123456789", "123456", "32165498", "12345");
+		Kontodaten bank = new Kontodaten("123456789", "123456", "32165498", "12345");
 		LandDao ld = new LandDao();
-		Land aut1 = ld.getLand("Österreich");
+		Land aut1 = ld.getLandByBez("Österreich");
 		MitarbeiterDao md = new MitarbeiterDao();
 		Mitarbeiter ma2 = md.getById(6);
 		

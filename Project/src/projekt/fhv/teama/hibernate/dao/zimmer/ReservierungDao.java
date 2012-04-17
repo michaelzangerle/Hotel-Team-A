@@ -27,7 +27,7 @@ public class ReservierungDao extends GenericDao<Reservierung> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Reservierung> getReservierung(String vorname, String nachname)
+	public List<Reservierung> getReservierungByPerson(String vorname, String nachname)
 			throws DatabaseNotFoundException {
 
 		List<Reservierung> reservierungen = null;
@@ -65,6 +65,12 @@ public class ReservierungDao extends GenericDao<Reservierung> {
 		}
 
 		return reservierungen;
+	}
+	
+	public List<Reservierung> getReservierungByVP(String name){
+		
+		// TODO Reservierung: getReservierungByVP(String name)
+		return null;
 	}
 
 }

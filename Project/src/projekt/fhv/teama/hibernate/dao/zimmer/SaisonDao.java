@@ -1,4 +1,4 @@
-package projekt.fhv.teama.hibernate.dao;
+package projekt.fhv.teama.hibernate.dao.zimmer;
 
 import java.util.List;
 
@@ -6,8 +6,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import projekt.fhv.teama.classes.Saison;
+import projekt.fhv.teama.classes.zimmer.Saison;
 import projekt.fhv.teama.hibernate.HibernateHelper;
+import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
 
 public class SaisonDao extends GenericDao<Saison> {

@@ -2,6 +2,7 @@ package projekt.fhv.teama.classes.personen;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import projekt.fhv.teama.classes.Aufenthalt;
 import projekt.fhv.teama.classes.rechnung.Rechnungsposition;
@@ -40,24 +41,56 @@ public class Gast extends Person {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Gast gast = (Gast) o;
-
-        if (gastId != gast.gastId) return false;
-        if (nummer != null ? !nummer.equals(gast.nummer) : gast.nummer != null) return false;
-
-        return true;
-    }
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Gast other = (Gast) obj;
+		if (aufenthalte == null) {
+			if (other.aufenthalte != null)
+				return false;
+		} else if (!aufenthalte.equals(other.aufenthalte))
+			return false;
+		if (gastId != other.gastId)
+			return false;
+		if (nummer == null) {
+			if (other.nummer != null)
+				return false;
+		} else if (!nummer.equals(other.nummer))
+			return false;
+		if (rechnungspositionen == null) {
+			if (other.rechnungspositionen != null)
+				return false;
+		} else if (!rechnungspositionen.equals(other.rechnungspositionen))
+			return false;
+		if (reservierungen == null) {
+			if (other.reservierungen != null)
+				return false;
+		} else if (!reservierungen.equals(other.reservierungen))
+			return false;
+		if (zimmer == null) {
+			if (other.zimmer != null)
+				return false;
+		} else if (!zimmer.equals(other.zimmer))
+			return false;
+		return true;
+	}
 
     @Override
-    public int hashCode() {
-        int result = gastId;
-        result = 31 * result + (nummer != null ? nummer.hashCode() : 0);
-        return result;
-    }
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
+		result = prime * result + gastId;
+		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
+		result = prime * result + ((rechnungspositionen == null) ? 0 : rechnungspositionen.hashCode());
+		result = prime * result + ((reservierungen == null) ? 0 : reservierungen.hashCode());
+		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
+		return result;
+	}
 
 	public Zimmer getZimmer() {
 		return zimmer;
@@ -96,8 +129,8 @@ public class Gast extends Person {
 	}
 
 	public Gast(String vorname, String nachname, char geschlecht,
-			Adresse adresse, Date geburtsdatum, String telefonnummer,
-			String email, Bankverbindung bankverbindung, Land land, String nummer, Zimmer zimmer) {
+			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
+			String email, Kontodaten bankverbindung, Land land, String nummer, Zimmer zimmer) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum, telefonnummer,
 				email, bankverbindung, land);
 		this.nummer = nummer;
@@ -106,9 +139,10 @@ public class Gast extends Person {
 
 	@Override
 	public String toString() {
-		return "Gast [gastId=" + gastId + ", nummer=" + nummer + ", zimmer="
-				+ zimmer + ", reservierungen=" + reservierungen
-				+ ", rechnungspositionen=" + rechnungspositionen
-				+ ", aufenthalte=" + aufenthalte + "]";
+		return "Gast [gastId=" + gastId + ", nummer=" + nummer + ", zimmer=" + zimmer + ", reservierungen="
+				+ reservierungen + ", rechnungspositionen=" + rechnungspositionen + ", aufenthalte=" + aufenthalte
+				+ "]";
 	}
+
+
 }

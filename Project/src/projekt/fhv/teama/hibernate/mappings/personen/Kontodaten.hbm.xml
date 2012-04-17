@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 16.04.2012 16:54:24 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 17.04.2012 00:14:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.personen.Bankverbindung" table="BANKVERBINDUNG">
-        <id name="iban" type="java.lang.String">
-            <column name="IBAN" />
-            <generator class="assigned" />
+    <class name="projekt.fhv.teama.classes.personen.Kontodaten" table="KONTODATEN">
+        <id name="ID" type="int">
+            <column name="kontodatenID" />
+            <generator class="native" />
         </id>
+         <property name="iban" type="java.lang.String">
+            <column name="IBAN" />
+        </property>
         <property name="bic" type="java.lang.String">
             <column name="BIC" />
         </property>

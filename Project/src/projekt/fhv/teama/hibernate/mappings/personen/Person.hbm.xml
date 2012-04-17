@@ -20,7 +20,7 @@
 			<column name="geschlecht" sql-type="char" length="1" not-null="true" />
 		</property>
 
-		<component name="adresse" class="projekt.fhv.teama.classes.personen.Adresse">
+		<component name="adressen" class="projekt.fhv.teama.classes.personen.Adresse">
 			<property name="strasse" type="java.lang.String">
 				<column name="strasse" sql-type="varchar" not-null="true" />
 			</property>
@@ -43,8 +43,8 @@
 			<column name="email" sql-type="varchar" not-null="true" />
 		</property>
 
-		<component name="bankverbindung"
-			class="projekt.fhv.teama.classes.personen.Bankverbindung">
+		<component name="kontodaten"
+			class="projekt.fhv.teama.classes.personen.Kontodaten">
 			<property name="iban" type="java.lang.String">
 				<column name="iban" sql-type="varchar" />
 			</property>
@@ -59,7 +59,7 @@
 			</property>
 		</component>
 
-		<many-to-one name="landID"
+		<many-to-one name="land"
 			class="projekt.fhv.teama.classes.personen.Land" column="landID"
 			not-null="true" foreign-key="ID" />
 	</class>

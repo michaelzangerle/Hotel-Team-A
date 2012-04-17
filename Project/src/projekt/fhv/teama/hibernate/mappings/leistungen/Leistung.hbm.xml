@@ -7,10 +7,10 @@
 		table="LEISTUNG">
 
 		<id name="ID" type="int">
-			<column name="leistungID" sql-type="int" length="11" />
+			<column name="leistungID" sql-type="int" length="11" not-null="true" />
 			<generator class="native" />
 		</id>
-
+		
 		<property name="bezeichnung" type="java.lang.String">
 			<column name="BEZEICHNUNG" sql-type="varchar" length="255"
 				not-null="true" />

@@ -1,24 +1,30 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 13.04.2012 14:26:12 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 17.04.2012 10:23:12 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="projekt.fhv.teama.classes.zimmer.Option" table="OPTION">
+        
         <id name="ID" type="int">
-            <column name="optionID" sql-type="int" />
+            <column name="optionID" />
             <generator class="native" />
         </id>
-        <property name="erfuellung" type="java.sql.Timestamp">
-            <column name="ERFUELLUNG" sql-type="DATE"/>
+        
+        <property name="erfuellung" >
+            <column name="ERFUELLUNG"/>
         </property>
-        <property name="prozentsatz" type="short">
-            <column name="PROZENTSATZ" sql-type="SMALLINT"/>
+        
+        <property name="prozentsatz">
+            <column name="PROZENTSATZ" sql-type="varchar"/>
         </property>
+        
         <property name="erfuellt" type="boolean">
-            <column name="ERFUELLT" sql-type="boolean"/>
+            <column name="ERFUELLT" sql-type="tinyint"/>
         </property>
-        <many-to-one name="reservierung" class="projekt.fhv.teama.classes.zimmer.Reservierung" fetch="join" foreign-key="ID">
-            <column name="RESERVIERUNG"  not-null="true"/>
+        
+        <many-to-one name="reservierung" class="projekt.fhv.teama.classes.zimmer.Reservierung" fetch="join">
+            <column name="RESERVIERUNG" />
         </many-to-one>
+        
     </class>
 </hibernate-mapping>

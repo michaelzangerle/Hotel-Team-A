@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16.04.2012 20:45:44 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.zimmer.Saison" table="SAISON">
+        
+        <id name="ID" type="int">
+            <column name="saisonID" sql-type="int" length="11"/>
+            <generator class="native" />
+        </id>
+        
+        <property name="bezeichnung" type="java.lang.String">
+            <column name="BEZEICHNUNG" sql-type="varchar" length="255"/>
+        </property>
+        
+        <property name="von" type="java.sql.Timestamp">
+            <column name="VON" sql-type="date"/>
+        </property>
+        
+        <property name="bis" type="java.sql.Timestamp">
+            <column name="BIS" sql-type="date"/>
+        </property>
+                
+        <set name="zimmerpreise" table="ZIMMERPREIS">
+            <key column="zimmerpreisID"/>
+            <one-to-many class="projekt.fhv.teama.classes.zimmer.Zimmerpreis" />
+        </set>
+        
+    </class>
+</hibernate-mapping>

@@ -5,27 +5,30 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.password">hibernate</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost/hibernate</property>
-		<property name="hibernate.connection.username">hibernate</property>
+		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost/roomanizer</property>
+		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.show_sql">true</property>
 		
 <!-- 		<property name="hibernate.hbm2ddl.auto">validate</property> -->
 
 		<!-- Mapping-Files -->
-		<!-- <mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Reservierung.hbm.xml"/> 
-			<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Statusentwicklung.hbm.xml"/> -->
 		
+<!-- 			<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Statusentwicklung.hbm.xml"/> -->
+		
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Reservierung.hbm.xml"/> 
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Zusatzleistung.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Artikel.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Leistung.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/rechnung/Zahlungsmethode.hbm.xml" />
-		<!-- <mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Option.hbm.xml" 
-			/> -->
-			<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Warengruppe.hbm.xml" />
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Option.hbm.xml"/>
+			
+		
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Warengruppe.hbm.xml" />
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/personen/Kontodaten.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Zimmerpreis.hbm.xml" />
-		<mapping resource="projekt/fhv/teama/hibernate/mappings/Saison.hbm.xml" />
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Saison.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Zimmerstatus.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/personen/Person.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/personen/Land.hbm.xml" />

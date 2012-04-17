@@ -24,7 +24,7 @@ public class TeilzahlungTest {
 		TeilzahlungDao tzd = new TeilzahlungDao();
 //		Rechnung r1 = new Rechnung(bezahlerVorname, bezahlerNachname, adresse, summe, nummer, mitarbeiter, rechnungspostitionen, teilzahlungen)
 		
-		// TODO
+		// TODO Teilzahlung: Testen
 //		Teilzahlung tz1 = new Teilzahlung(rechnung, betrag, zahlungsmethoden)
 		
 	}

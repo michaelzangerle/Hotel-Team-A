@@ -1,5 +1,6 @@
 package projekt.fhv.teama.hibernate.dao.zimmer;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -18,18 +19,19 @@ public class OptionDao extends GenericDao<Option> {
 		super("Option");
 
 	}
-
+	
+	// TODO Option: getOptionen(Date date)
 	@SuppressWarnings("unchecked")
-	public List<Option> getOptionen(Timestamp time)
+	public List<Option> getOptionen(Date datum)
 			throws DatabaseNotFoundException {
 
 		List<Option> options = null;
-
+		
 		try {
 			Session session = HibernateHelper.getSession();
 			Query query = session.createQuery("from " + getTable()
-					+ " o where o.erfuellung = :time");
-			query.setString("time", time.toString());
+					+ " o where o.erfuellung = :datum");
+			query.setString("datum", datum.toString());
 
 			@SuppressWarnings("rawtypes")
 			List results = query.list();
