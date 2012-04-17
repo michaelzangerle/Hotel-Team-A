@@ -1,15 +1,11 @@
 package projekt.fhv.teama.classes.personen;
-
-import java.util.Collection;
-import java.util.Date;
+import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.rechnung.Rechnung;
+
 
 /**
  * Created with IntelliJ IDEA.
