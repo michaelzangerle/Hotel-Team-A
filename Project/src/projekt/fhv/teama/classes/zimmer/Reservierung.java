@@ -16,67 +16,70 @@ public class Reservierung {
 	private Timestamp von;
 	private Timestamp bis;
 	private Person person;
-//	private Vertragspartner vertragspartner;
+	// private Vertragspartner vertragspartner;
 
-	private List<Option> optionen;
+	// private List<Option> optionen;
 	// private List<Zimmer> zimmer;
 	private List<Kategorie> kategorie;
-// private List<Gast> gast;
-	
-	public Reservierung(Timestamp von, Timestamp bis, Person person, List<Option> optionen,
-			List<Kategorie> kategorie) {
+	// private List<Gast> gast;
+
+	public Reservierung(Timestamp von, Timestamp bis, Person person, List<Kategorie> kategorie) {
 
 		this.von = von;
 		this.bis = bis;
 		this.person = person;
-		this.optionen = optionen;
 		this.kategorie = kategorie;
 	}
+
 	public Reservierung() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
+
 	public int getID() {
 		return ID;
 	}
+
 	public void setID(int iD) {
 		ID = iD;
 	}
+
 	public Timestamp getVon() {
 		return von;
 	}
+
 	public void setVon(Timestamp von) {
 		this.von = von;
 	}
+
 	public Timestamp getBis() {
 		return bis;
 	}
+
 	public void setBis(Timestamp bis) {
 		this.bis = bis;
 	}
+
 	public Person getPerson() {
 		return person;
 	}
+
 	public void setPerson(Person person) {
 		this.person = person;
 	}
-	public List<Option> getOptionen() {
-		return optionen;
-	}
-	public void setOptionen(List<Option> optionen) {
-		this.optionen = optionen;
-	}
+
 	public List<Kategorie> getKategorie() {
 		return kategorie;
 	}
+
 	public void setKategorie(List<Kategorie> kategorie) {
 		this.kategorie = kategorie;
 	}
+
 	@Override
 	public String toString() {
-		return "Reservierung [ID=" + ID + ", von=" + von + ", bis=" + bis + ", person=" + person + ", optionen="
-				+ optionen + ", kategorie=" + kategorie + "]";
+		return "Reservierung [ID=" + ID + ", von=" + von + ", bis=" + bis + ", person=" + person + ", kategorie="
+				+ kategorie + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,11 +87,11 @@ public class Reservierung {
 		result = prime * result + ID;
 		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
 		result = prime * result + ((kategorie == null) ? 0 : kategorie.hashCode());
-		result = prime * result + ((optionen == null) ? 0 : optionen.hashCode());
 		result = prime * result + ((person == null) ? 0 : person.hashCode());
 		result = prime * result + ((von == null) ? 0 : von.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -110,11 +113,6 @@ public class Reservierung {
 				return false;
 		} else if (!kategorie.equals(other.kategorie))
 			return false;
-		if (optionen == null) {
-			if (other.optionen != null)
-				return false;
-		} else if (!optionen.equals(other.optionen))
-			return false;
 		if (person == null) {
 			if (other.person != null)
 				return false;
@@ -127,6 +125,5 @@ public class Reservierung {
 			return false;
 		return true;
 	}
-	
-	
+
 }

@@ -59,8 +59,7 @@ public class ZimmerDao extends GenericDao<Zimmer> {
 		List<Zimmer> zimmer = null;
 
 		try {
-			
-			// TODO
+			// TODO Zimmer: getZimmerByKategorie(String kategorie)
 			// Join auf kategorietabelle
 			Session session = HibernateHelper.getSession();
 			Query query = session.createQuery("from " + getTable()

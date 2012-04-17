@@ -37,10 +37,10 @@ public class ZimmerpreisTests {
 		/*
 		 * Erstellen der Datensätze
 		 */
-//		zd.create(z1);
-//		zd.create(z2);
-//		zd.create(z3);
-//		zd.create(z4);
+		zd.create(z1);
+		zd.create(z2);
+		zd.create(z3);
+		zd.create(z4);
 		
 		/*
 		 * Auslesen der Datensätze

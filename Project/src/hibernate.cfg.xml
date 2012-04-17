@@ -24,7 +24,9 @@
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/rechnung/Zahlungsmethode.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Option.hbm.xml"/>
 			
-			<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Warengruppe.hbm.xml" />
+		
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/leistungen/Warengruppe.hbm.xml" />
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/personen/Kontodaten.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Zimmerpreis.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Saison.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/zimmer/Zimmerstatus.hbm.xml" />

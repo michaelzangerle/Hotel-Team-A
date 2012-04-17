@@ -3,10 +3,8 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
+import java.util.GregorianCalendar;
 
 import projekt.fhv.teama.classes.zimmer.Option;
 import projekt.fhv.teama.hibernate.dao.zimmer.OptionDao;
@@ -16,6 +14,12 @@ import projekt.fhv.teama.hibernate.dao.zimmer.OptionDao;
  * 
  */
 public class OptionTest {
+	
+    private static Date getDate(int year, int month, int day) {
+
+        return new Date(new GregorianCalendar(year, month, day).getTime().getTime());
+
+    }
 
 	/**
 	 * @param args
@@ -27,10 +31,10 @@ public class OptionTest {
 		short s3 = 15;
 		short s4 = 20;
 		
-		byte b = 0;
-		Date date = new java.util.Date();
-		OptionDao od = new OptionDao();
-		Option o1 = new Option(new Timestamp(date.getTime()+10), s1, b, null);
+		System.out.println(getDate(2012, 11, 7));
+		
+		OptionDao od = new OptionDao();	
+		Option o1 = new Option(true, getDate(2012, 11, 7), "123",  null);
 //		Option o2 = new Option(new Timestamp(date.getTime()), 10, false, null);
 //		Option o3 = new Option(new Timestamp(date.getTime()), 15, false, null);
 //		Option o4 = new Option(new Timestamp(date.getTime()), 20, false, null);

@@ -27,6 +27,7 @@ public class RechnungDao extends GenericDao<Rechnung> {
 
 		try {
 			Session session = HibernateHelper.getSession();
+			// TODO Rechnung: getRechnungByMitarbeiter(String vorname, String nachname)
 			// Person -ID herausfinden
 			Query queryID = session.createQuery("from mitarbeiter m where (m.vorname = :vorname AND m.nachname= := nachname) OR (m.vorname = :nachname AND m.nachname= := vorname)");
 			queryID.setString("vorname", vorname);

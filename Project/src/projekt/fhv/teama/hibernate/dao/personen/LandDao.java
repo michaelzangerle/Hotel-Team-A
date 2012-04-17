@@ -45,7 +45,7 @@ public class LandDao extends GenericDao<Land> {
 	
 	public Land getLandByKuerzel(String kuerzel){
 		
-		//TODO
+		//TODO Land: getLandByKuerzel(String kuerzel)
 		return null;
 	}
 }

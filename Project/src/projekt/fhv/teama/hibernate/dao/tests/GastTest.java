@@ -19,7 +19,7 @@ public class GastTest {
 		Land aut1 = ld.getLandByBez("Österreich");
 		GastDao gd = new GastDao();
 		Zimmer zimmer = new Zimmer();
-		//TODO
+		//TODO GastTest: Nochmal durchtesten weil anderer Konstruktor
 //		Gast ga = new Gast("gastvorname", "gastnachname", 'm', adr, new Date(1989, 12, 7), "06769470089", "michael.zangerle@gmail.com", bank, aut1, "007", zimmer);
 //		gd.create(ga);
 		

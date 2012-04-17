@@ -1,6 +1,6 @@
 package projekt.fhv.teama.classes.zimmer;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
@@ -8,13 +8,13 @@ import java.sql.Timestamp;
  */
 public class Option {
 	private int ID;
-	private Timestamp erfuellung;
-	private short prozentsatz;
-	private byte erfuellt;
+	private Date erfuellung;
+	private String prozentsatz;
+	private boolean erfuellt;
 	private Reservierung reservierung;
 
-	public Option(Timestamp erfuellung, short prozentsatz, byte erfuellt, Reservierung reservierung) {
-		this.erfuellung = erfuellung;
+	public Option(boolean erfuellt, Date date, String prozentsatz, Reservierung reservierung) {
+		this.erfuellung = date;
 		this.prozentsatz = prozentsatz;
 		this.erfuellt = erfuellt;
 		this.reservierung = reservierung;
@@ -32,27 +32,27 @@ public class Option {
 		ID = iD;
 	}
 
-	public Timestamp getErfuellung() {
+	public Date getErfuellung() {
 		return erfuellung;
 	}
 
-	public void setErfuellung(Timestamp erfuellung) {
+	public void setErfuellung(Date erfuellung) {
 		this.erfuellung = erfuellung;
 	}
 
-	public short getProzentsatz() {
+	public String getProzentsatz() {
 		return prozentsatz;
 	}
 
-	public void setProzentsatz(short prozentsatz) {
+	public void setProzentsatz(String prozentsatz) {
 		this.prozentsatz = prozentsatz;
 	}
 
-	public byte getErfuellt() {
+	public boolean getErfuellt() {
 		return erfuellt;
 	}
 
-	public void setErfuellt(byte erfuellt) {
+	public void setErfuellt(boolean erfuellt) {
 		this.erfuellt = erfuellt;
 	}
 
@@ -66,8 +66,8 @@ public class Option {
 
 	@Override
 	public String toString() {
-		return "Option [ID=" + ID + ", erfuellung=" + erfuellung + ", prozentsatz=" + prozentsatz + ", erfuellt="
-				+ erfuellt + ", reservierung=" + reservierung + "]";
+		return "Option [ID=" + ID + ", prozentsatz=" + prozentsatz + ", erfuellt=" + erfuellt + ", reservierung="
+				+ reservierung + "]";
 	}
 
 	@Override
@@ -75,9 +75,9 @@ public class Option {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result + erfuellt;
+		result = prime * result + (erfuellt ? 1231 : 1237);
 		result = prime * result + ((erfuellung == null) ? 0 : erfuellung.hashCode());
-		result = prime * result + prozentsatz;
+		result = prime * result + ((prozentsatz == null) ? 0 : prozentsatz.hashCode());
 		result = prime * result + ((reservierung == null) ? 0 : reservierung.hashCode());
 		return result;
 	}
@@ -100,7 +100,10 @@ public class Option {
 				return false;
 		} else if (!erfuellung.equals(other.erfuellung))
 			return false;
-		if (prozentsatz != other.prozentsatz)
+		if (prozentsatz == null) {
+			if (other.prozentsatz != null)
+				return false;
+		} else if (!prozentsatz.equals(other.prozentsatz))
 			return false;
 		if (reservierung == null) {
 			if (other.reservierung != null)
@@ -110,4 +113,5 @@ public class Option {
 		return true;
 	}
 
+	
 }

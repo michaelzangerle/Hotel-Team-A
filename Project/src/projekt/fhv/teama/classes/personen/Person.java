@@ -113,8 +113,7 @@ public class Person {
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.geschlecht = geschlecht;
-		// TODO
-		// wieso hashset? --> liste?
+		// TODO Person:  wieso hashset? --> liste?
 		this.adressen = new HashSet<Adresse>();		
 		this.geburtsdatum = geburtsdatum;
 		this.telefonnummer = telefonnummer;

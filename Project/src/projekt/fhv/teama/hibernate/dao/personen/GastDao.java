@@ -12,7 +12,7 @@ public class GastDao extends GenericDao<Gast> {
 	public Gast getGastByNummer(String nr){
 		
 		
-		// TODO
+		// TODO Gast: getGastByNummer(String nr)
 		
 		return null;
 	}

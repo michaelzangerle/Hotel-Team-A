@@ -33,10 +33,10 @@ public class SaisonTest {
 		/*
 		 * Erstellen der Datensätze
 		 */
-//		sd.create(s1);
-//		sd.create(s2);
-//		sd.create(s3);
-//		sd.create(s4);
+		sd.create(s1);
+		sd.create(s2);
+		sd.create(s3);
+		sd.create(s4);
 		
 		/*
 		 * Auslesen der Datensätze
