@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16.04.2012 23:10:17 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.personen.Adresse" table="ADRESSE">
+        <id name="ID" type="int">
+            <column name="adresseID" />
+            <generator class="native" />
+        </id>
+        <property name="strasse" type="java.lang.String">
+        	<column name="STRASSE"/>
+       	</property>
+        <property name="plz" type="java.lang.String">
+            <column name="PLZ" />
+        </property>
+        <property name="ort" type="java.lang.String">
+            <column name="ORT" />
+        </property>
+         <set name="personen" table="personadresse" cascade="all">
+            <key column="adresse_adresseID"/>
+            <many-to-many column="person_personID" class="projekt.fhv.teama.classes.personen.Person"/>
+        </set> 
+    </class>
+</hibernate-mapping>
