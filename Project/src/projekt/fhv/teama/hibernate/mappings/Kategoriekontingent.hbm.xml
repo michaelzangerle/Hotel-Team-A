@@ -1,22 +1,30 @@
-<?xml version='1.0' encoding='utf-8'?>
-<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
-        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
-    <class name="Entities.Kategoriekontingent" table="kategoriekontingent" schema="" catalog="hibernate">
-        <composite-id mapped="true" class="Entities.KategoriekontingentPK">
-            <key-property name="kategorieId">
-                <column name="kategorieID" sql-type="int" length="10" not-null="true"/>
-            </key-property>
-            <key-property name="kontingentId">
-                <column name="kontingentID" sql-type="int" length="10" not-null="true"/>
-            </key-property>
-        </composite-id>
-        <property name="anzahl">
-            <column name="anzahl" sql-type="int" length="10" not-null="true"/>
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 17.04.2012 19:12:41 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.Kategoriekontingent" table="KATEGORIEKONTINGENT">
+        
+        <id name="ID" type="int">
+            <column name="kategorieKontingentID" />
+            <generator class="native" />
+        </id>
+        
+        <many-to-one name="kategorie" class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
+            <column name="KATEGORIE" />
+        </many-to-one>
+        
+        <many-to-one name="kontingent" class="projekt.fhv.teama.classes.Kontingent" fetch="join">
+            <column name="KONTINGENT" />
+        </many-to-one>
+        
+        <property name="anzahl" type="int">
+            <column name="ANZAHL" />
         </property>
-        <property name="verfuegbar">
-            <column name="verfuegbar" sql-type="int" length="10" not-null="true"/>
+        
+        <property name="verfuegbar" type="int">
+            <column name="VERFUEGBAR" />
         </property>
+        
     </class>
 </hibernate-mapping>

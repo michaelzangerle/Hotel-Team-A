@@ -1,88 +1,150 @@
 package projekt.fhv.teama.classes;
 
 import java.sql.Date;
+import java.util.Set;
+
+import projekt.fhv.teama.classes.personen.Vertragspartner;
+import projekt.fhv.teama.classes.zimmer.Kategorie;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 09.04.12
- * Time: 22:23
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
+ * this template use File | Settings | File Templates.
  */
 public class Kontingent {
-    private int kontingentId;
+	private int ID;
+	private Date von;
+	private Date bis;
+	private short kondition;
+	private short ueberbuchungsgrenze;
+	private Vertragspartner vertragspartner;
+	private Set<Kategorie> kategorien;
 
-    public int getKontingentId() {
-        return kontingentId;
-    }
+	public Kontingent(Date von, Date bis, short kondition, short ueberbuchungsgrenze, Vertragspartner vertragspartner,
+			Set<Kategorie> kategorien) {
+		this.von = von;
+		this.bis = bis;
+		this.kondition = kondition;
+		this.ueberbuchungsgrenze = ueberbuchungsgrenze;
+		this.vertragspartner = vertragspartner;
+		this.kategorien = kategorien;
+	}
 
-    public void setKontingentId(int kontingentId) {
-        this.kontingentId = kontingentId;
-    }
+	public Kontingent() {
+	}
 
-    private Date von;
+	public int getID() {
+		return ID;
+	}
 
-    public Date getVon() {
-        return von;
-    }
+	public void setID(int iD) {
+		ID = iD;
+	}
 
-    public void setVon(Date von) {
-        this.von = von;
-    }
+	public Date getVon() {
+		return von;
+	}
 
-    private Date bis;
+	public void setVon(Date von) {
+		this.von = von;
+	}
 
-    public Date getBis() {
-        return bis;
-    }
+	public Date getBis() {
+		return bis;
+	}
 
-    public void setBis(Date bis) {
-        this.bis = bis;
-    }
+	public void setBis(Date bis) {
+		this.bis = bis;
+	}
 
-    private short kondition;
+	public short getKondition() {
+		return kondition;
+	}
 
-    public short getKondition() {
-        return kondition;
-    }
+	public void setKondition(short kondition) {
+		this.kondition = kondition;
+	}
 
-    public void setKondition(short kondition) {
-        this.kondition = kondition;
-    }
+	public short getUeberbuchungsgrenze() {
+		return ueberbuchungsgrenze;
+	}
 
-    private short ueberbuchungsgrenze;
+	public void setUeberbuchungsgrenze(short ueberbuchungsgrenze) {
+		this.ueberbuchungsgrenze = ueberbuchungsgrenze;
+	}
 
-    public short getUeberbuchungsgrenze() {
-        return ueberbuchungsgrenze;
-    }
+	public Vertragspartner getVertragspartner() {
+		return vertragspartner;
+	}
 
-    public void setUeberbuchungsgrenze(short ueberbuchungsgrenze) {
-        this.ueberbuchungsgrenze = ueberbuchungsgrenze;
-    }
+	public void setVertragspartner(Vertragspartner vertragspartner) {
+		this.vertragspartner = vertragspartner;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	public Set<Kategorie> getKategorien() {
+		return kategorien;
+	}
 
-        Kontingent that = (Kontingent) o;
+	public void setKategorien(Set<Kategorie> kategorien) {
+		this.kategorien = kategorien;
+	}
 
-        if (kondition != that.kondition) return false;
-        if (kontingentId != that.kontingentId) return false;
-        if (ueberbuchungsgrenze != that.ueberbuchungsgrenze) return false;
-        if (bis != null ? !bis.equals(that.bis) : that.bis != null) return false;
-        if (von != null ? !von.equals(that.von) : that.von != null) return false;
+	@Override
+	public String toString() {
+		return "Kontingent [ID=" + ID + ", von=" + von + ", bis=" + bis + ", kondition=" + kondition
+				+ ", ueberbuchungsgrenze=" + ueberbuchungsgrenze + ", vertragspartner=" + vertragspartner.getName()
+				+ ", kategorien=" + kategorien + "]";
+	}
 
-        return true;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
+		result = prime * result + ((kategorien == null) ? 0 : kategorien.hashCode());
+		result = prime * result + kondition;
+		result = prime * result + ueberbuchungsgrenze;
+		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.getName().hashCode());
+		result = prime * result + ((von == null) ? 0 : von.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = kontingentId;
-        result = 31 * result + (von != null ? von.hashCode() : 0);
-        result = 31 * result + (bis != null ? bis.hashCode() : 0);
-        result = 31 * result + (int) kondition;
-        result = 31 * result + (int) ueberbuchungsgrenze;
-        return result;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Kontingent other = (Kontingent) obj;
+		if (ID != other.ID)
+			return false;
+		if (bis == null) {
+			if (other.bis != null)
+				return false;
+		} else if (!bis.equals(other.bis))
+			return false;
+		if (kategorien == null) {
+			if (other.kategorien != null)
+				return false;
+		} else if (!kategorien.equals(other.kategorien))
+			return false;
+		if (kondition != other.kondition)
+			return false;
+		if (ueberbuchungsgrenze != other.ueberbuchungsgrenze)
+			return false;
+		if (vertragspartner == null) {
+			if (other.vertragspartner != null)
+				return false;
+		} else if (!vertragspartner.equals(other.vertragspartner))
+			return false;
+		if (von == null) {
+			if (other.von != null)
+				return false;
+		} else if (!von.equals(other.von))
+			return false;
+		return true;
+	}
+
 }

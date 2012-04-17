@@ -2,6 +2,8 @@ package projekt.fhv.teama.classes.zimmer;
 
 import java.util.Set;
 
+import projekt.fhv.teama.classes.Kategoriekontingent;
+
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
@@ -12,14 +14,25 @@ public class Kategorie {
 	private String bezeichnung;
 	private String beschreibung;
 	private Set<Zimmerpreis> zimmerpreise;
-	private Set<Reservierung> reservierungen;
+	private Set<Teilreservierung> teilreservierungsreservierungen;
+	private Set<Kategoriekontingent> kategoriekontingent;
+	
+
+	public Set<Kategoriekontingent> getKategoriekontingent() {
+		return kategoriekontingent;
+	}
+
+	public void setKategoriekontingent(Set<Kategoriekontingent> kategoriekontingent) {
+		this.kategoriekontingent = kategoriekontingent;
+	}
 
 	public Kategorie(String bezeichnung, String beschreibung, Set<Zimmerpreis> zimmerpreise,
-			Set<Reservierung> reservierungen) {
+			Set<Teilreservierung> teilreservierungsreservierungen, Set<Kategoriekontingent> kategoriekontingent) {
 		this.bezeichnung = bezeichnung;
 		this.beschreibung = beschreibung;
 		this.zimmerpreise = zimmerpreise;
-		this.reservierungen = reservierungen;
+		this.teilreservierungsreservierungen = teilreservierungsreservierungen;
+		this.kategoriekontingent = kategoriekontingent;
 	}
 
 	public Kategorie() {
@@ -57,18 +70,20 @@ public class Kategorie {
 		this.zimmerpreise = zimmerpreise;
 	}
 
-	public Set<Reservierung> getReservierungen() {
-		return reservierungen;
+	
+	public Set<Teilreservierung> getTeilreservierungsreservierungen() {
+		return teilreservierungsreservierungen;
 	}
 
-	public void setReservierungen(Set<Reservierung> reservierungen) {
-		this.reservierungen = reservierungen;
+	public void setTeilreservierungsreservierungen(Set<Teilreservierung> teilreservierungsreservierungen) {
+		this.teilreservierungsreservierungen = teilreservierungsreservierungen;
 	}
 
 	@Override
 	public String toString() {
 		return "Kategorie [ID=" + ID + ", bezeichnung=" + bezeichnung + ", beschreibung=" + beschreibung
-				+ ", zimmerpreise=" + zimmerpreise + ", reservierungen=" + reservierungen + "]";
+				+ ", zimmerpreise=" + zimmerpreise + ", teilreservierungsreservierungen="
+				+ teilreservierungsreservierungen + ", kategoriekontingent=" + kategoriekontingent + "]";
 	}
 
 	@Override
@@ -78,7 +93,9 @@ public class Kategorie {
 		result = prime * result + ID;
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
-		result = prime * result + ((reservierungen == null) ? 0 : reservierungen.hashCode());
+		result = prime * result + ((kategoriekontingent == null) ? 0 : kategoriekontingent.hashCode());
+		result = prime * result
+				+ ((teilreservierungsreservierungen == null) ? 0 : teilreservierungsreservierungen.hashCode());
 		result = prime * result + ((zimmerpreise == null) ? 0 : zimmerpreise.hashCode());
 		return result;
 	}
@@ -104,10 +121,15 @@ public class Kategorie {
 				return false;
 		} else if (!bezeichnung.equals(other.bezeichnung))
 			return false;
-		if (reservierungen == null) {
-			if (other.reservierungen != null)
+		if (kategoriekontingent == null) {
+			if (other.kategoriekontingent != null)
 				return false;
-		} else if (!reservierungen.equals(other.reservierungen))
+		} else if (!kategoriekontingent.equals(other.kategoriekontingent))
+			return false;
+		if (teilreservierungsreservierungen == null) {
+			if (other.teilreservierungsreservierungen != null)
+				return false;
+		} else if (!teilreservierungsreservierungen.equals(other.teilreservierungsreservierungen))
 			return false;
 		if (zimmerpreise == null) {
 			if (other.zimmerpreise != null)

@@ -28,5 +28,10 @@
 			<one-to-many class="projekt.fhv.teama.classes.zimmer.Reservierung" />
 		</set>
 
+		<set name="kategoriekontingent" table="KATEGORIEKONTINGENT">
+			<key column="kategoriekontingentID" />
+			<one-to-many class="projekt.fhv.teama.classes.Kategoriekontingent" />
+		</set>
+
 	</class>
 </hibernate-mapping>
