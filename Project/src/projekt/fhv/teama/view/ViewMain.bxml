@@ -1,4 +1,4 @@
-<view:ViewMain title="Smart Hotel System v1.0 | your own personal roomanizer
+<view:ViewMain bxml:id="viewMain" title="Smart Hotel System v1.0 | your own personal roomanizer
 	by
 	Team
 	Alpha
@@ -104,7 +104,7 @@
 						<left>
 						<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top', spacing:25, fill:true}">					
 						<FillPane orientation="vertical" styles="{ backgroundColor:'#f2f2f2', spacing:25, padding:{top:5, left:15, bottom:10, right:15} }">							
-						<bxml:include src="inc.reservationForm01.bxml" inline="true" />													
+						<bxml:include bxml:id="weg" src="inc.reservationForm01.bxml" inline="true" />													
 						</FillPane>
 						<FillPane orientation="vertical" styles="{spacing:25, padding:{top:5, left:15, bottom:10, right:15} }">	
 						<bxml:include src="inc.occupationPreview.bxml" inline="true" />	

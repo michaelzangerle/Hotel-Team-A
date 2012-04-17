@@ -1,4 +1,4 @@
- <view:ViewReservation xmlns:bxml="http://pivot.apache.org/bxml"
+ <view:ViewReservation bxml:id="holyCrap" xmlns:bxml="http://pivot.apache.org/bxml"
     xmlns="org.apache.pivot.wtk" styles="{padding:6}" xmlns:view="projekt.fhv.teama.view" >
         <BoxPane bxml:id="bpReservation2" orientation="vertical" styles="{spacing:10, fill:true}">
             <Label bxml:id="lbReservationDetails" text="Reservation details" styles="$styles.lbHeading1"/>
