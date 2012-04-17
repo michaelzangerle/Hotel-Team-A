@@ -10,7 +10,7 @@ import projekt.fhv.teama.classes.personen.Mitarbeiter;
 import projekt.fhv.teama.classes.rechnung.Rechnung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 public class RechnungDao extends GenericDao<Rechnung> {
 
@@ -21,7 +21,7 @@ public class RechnungDao extends GenericDao<Rechnung> {
 	
 	@SuppressWarnings("unchecked")
 	public List<Rechnung> getRechnungByMitarbeiter(String vorname, String nachname)
-			throws DatabaseNotFoundException {
+			throws NoDatabaseEntryFoundException {
 
 		List<Rechnung> rechnungen = null;
 
@@ -35,7 +35,7 @@ public class RechnungDao extends GenericDao<Rechnung> {
 			List<Mitarbeiter> mitarbeiterList = queryID.list();
 			
 			if (mitarbeiterList.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 			
 			int id = mitarbeiterList.get(0).getID();
@@ -48,7 +48,7 @@ public class RechnungDao extends GenericDao<Rechnung> {
 			List<Rechnung> results = query.list();
 
 			if (results.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 			
 			rechnungen = results;
@@ -62,7 +62,7 @@ public class RechnungDao extends GenericDao<Rechnung> {
 	
 	@SuppressWarnings("unchecked")
 	public List<Rechnung> getRechnungByBezahler(String vorname, String nachname)
-			throws DatabaseNotFoundException {
+			throws NoDatabaseEntryFoundException {
 
 		List<Rechnung> rechnungen = null;
 
@@ -75,7 +75,7 @@ public class RechnungDao extends GenericDao<Rechnung> {
 			rechnungen = queryID.list();
 			
 			if (rechnungen.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 			
 		} catch (HibernateException e) {

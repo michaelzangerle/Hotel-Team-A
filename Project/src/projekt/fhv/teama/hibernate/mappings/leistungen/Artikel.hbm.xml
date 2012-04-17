@@ -4,14 +4,18 @@
 
 <hibernate-mapping>
     <joined-subclass name="projekt.fhv.teama.classes.leistungen.Artikel" extends="projekt.fhv.teama.classes.leistungen.Leistung" table="ARTIKEL" lazy="false">
-        <key column="artikelID"/>
+        
+        <key column="leistungID" />
 
         <property name="preis" type="float">
             <column name="PREIS" />
         </property>
+        
         <property name="beschreibung" type="java.lang.String">
             <column name="BESCHREIBUNG" />
         </property>
+        
         <many-to-one name="warengruppe" class="projekt.fhv.teama.classes.leistungen.Warengruppe" column="WARENGRUPPEID" />
+    
     </joined-subclass>
 </hibernate-mapping>

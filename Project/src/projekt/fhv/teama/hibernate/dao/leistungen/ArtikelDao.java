@@ -12,7 +12,7 @@ import org.hibernate.Session;
 import projekt.fhv.teama.classes.leistungen.Artikel;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -26,7 +26,7 @@ public class ArtikelDao extends GenericDao<Artikel>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Artikel> getArtikel(String bezeichnung) throws DatabaseNotFoundException {
+	public List<Artikel> getArtikel(String bezeichnung) throws NoDatabaseEntryFoundException {
 		
 		List<Artikel> artikel = null;
 
@@ -39,7 +39,7 @@ public class ArtikelDao extends GenericDao<Artikel>{
 			List results = query.list();
 						
 			if (results.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 			
 			artikel = results;

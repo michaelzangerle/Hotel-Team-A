@@ -7,7 +7,7 @@ import java.util.List;
 
 import projekt.fhv.teama.classes.zimmer.Kategorie;
 import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -17,9 +17,9 @@ public class kategorieTest {
 
 	/**
 	 * @param args
-	 * @throws DatabaseNotFoundException 
+	 * @throws NoDatabaseEntryFoundException 
 	 */
-	public static void main(String[] args) throws DatabaseNotFoundException {
+	public static void main(String[] args) throws NoDatabaseEntryFoundException {
 		
 		Kategorie kat1 = new Kategorie("Einzelzimmer", "Zimmer für eine Person", null , null);
 		Kategorie kat2 = new Kategorie("Doppelzimmer", "Zimmer für 2 Personen", null , null);

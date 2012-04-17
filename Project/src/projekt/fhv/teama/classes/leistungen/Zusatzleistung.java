@@ -1,27 +1,21 @@
 package projekt.fhv.teama.classes.leistungen;
 
+import java.util.Set;
+
+import projekt.fhv.teama.classes.rechnung.Rechnungsposition;
+
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
 public class Zusatzleistung extends Leistung{
 	
-	
-	private int ID;
-	public int getID() {
-		return ID;
-	}
-
-	public void setID(int iD) {
-		ID = iD;
-	}
-
 	private float preis;
 	private String beschreibung;
 	private boolean extern;
 	private Warengruppe warengruppe;
 
-	public Zusatzleistung(float preis, String bezeichnung, String beschreibung, boolean extern, Warengruppe warengruppe) {
+	public Zusatzleistung(float preis, String bezeichnung, String beschreibung, boolean extern, Warengruppe warengruppe,Set<Rechnungsposition> rechnungspositionen) {
 		this.preis = preis;
 		this.beschreibung = beschreibung;
 		this.extern = extern;
@@ -32,16 +26,6 @@ public class Zusatzleistung extends Leistung{
 	public Zusatzleistung() {
 		super();
 	}
-
-
-
-//	public int getZusatzleistungID() {
-//		return zusatzleistungID;
-//	}
-//
-//	public void setZusatzleistungID(int zusatzleistungID) {
-//		this.zusatzleistungID = zusatzleistungID;
-//	}
 
 	public float getPreis() {
 		return preis;
@@ -78,8 +62,8 @@ public class Zusatzleistung extends Leistung{
 
 	@Override
 	public String toString() {
-		return "Zusatzleistung [zusatzleistungID=" + getID() + ", preis=" + preis + ", beschreibung="
-				+ beschreibung + ", extern=" + extern + ", warengruppe=" + warengruppe.getID() + "]";
+		return "Zusatzleistung [preis=" + preis + ", beschreibung=" + beschreibung + ", extern=" + extern
+				+ ", warengruppe=" + warengruppe.getBezeichnung() + "]";
 	}
 
 	@Override
@@ -89,8 +73,7 @@ public class Zusatzleistung extends Leistung{
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + (extern ? 1231 : 1237);
 		result = prime * result + Float.floatToIntBits(preis);
-		//result = prime * result + ((warengruppe == null) ? 0 : warengruppe.hashCode());
-		result = prime * result + getID();
+		result = prime * result + ((warengruppe == null) ? 0 : warengruppe.getBezeichnung().hashCode());
 		return result;
 	}
 
@@ -115,13 +98,10 @@ public class Zusatzleistung extends Leistung{
 		if (warengruppe == null) {
 			if (other.warengruppe != null)
 				return false;
-		} else if (!warengruppe.equals(other.warengruppe))
-			return false;
-		if (getID() != other.getID())
+		} else if (!warengruppe.getBezeichnung().equals(other.warengruppe.getBezeichnung()))
 			return false;
 		return true;
 	}
 
-
-
+	
 }

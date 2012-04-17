@@ -5,17 +5,21 @@
 <hibernate-mapping>
     <joined-subclass name="projekt.fhv.teama.classes.leistungen.Zusatzleistung" extends="projekt.fhv.teama.classes.leistungen.Leistung" table="ZUSATZLEISTUNG" lazy="false">
         
-        <key column="zusatzleistungID" />
+        <key column="leistungID" />
         
         <property name="preis" type="float">
             <column name="PREIS" />
         </property>
+        
         <property name="beschreibung" type="java.lang.String">
             <column name="BESCHREIBUNG" />
         </property>
+        
         <property name="extern" type="boolean">
             <column name="EXTERN" />
         </property>
+        
         <many-to-one name="warengruppe" class="projekt.fhv.teama.classes.leistungen.Warengruppe" column="WARENGRUPPEID"/>
     </joined-subclass>
+    
 </hibernate-mapping>

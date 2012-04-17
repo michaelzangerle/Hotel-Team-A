@@ -15,6 +15,6 @@
 			<column name="BEZEICHNUNG" sql-type="varchar" length="255"
 				not-null="true" />
 		</property>
-
+		
 	</class>
 </hibernate-mapping>

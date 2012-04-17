@@ -10,7 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import projekt.fhv.teama.hibernate.HibernateHelper;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -45,7 +45,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> getAll() throws DatabaseNotFoundException {
+	public List<T> getAll() throws NoDatabaseEntryFoundException {
 
 		List<T> results = null;
 
@@ -56,7 +56,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			results = query.list();
 			
 			if (results.size() == 0) {
-				throw new DatabaseNotFoundException();
+				throw new NoDatabaseEntryFoundException();
 			}
 
 		} catch (HibernateException e) {

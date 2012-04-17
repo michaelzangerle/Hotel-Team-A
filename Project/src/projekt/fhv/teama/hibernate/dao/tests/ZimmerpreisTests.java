@@ -11,7 +11,7 @@ import projekt.fhv.teama.classes.zimmer.Zimmerpreis;
 import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.SaisonDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerpreisDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -21,9 +21,9 @@ public class ZimmerpreisTests {
 
 	/**
 	 * @param args
-	 * @throws DatabaseNotFoundException 
+	 * @throws NoDatabaseEntryFoundException 
 	 */
-	public static void main(String[] args) throws DatabaseNotFoundException {
+	public static void main(String[] args) throws NoDatabaseEntryFoundException {
 		
 		KategorieDao kd = new KategorieDao();
 		SaisonDao sd = new SaisonDao();
