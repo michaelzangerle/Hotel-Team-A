@@ -8,14 +8,14 @@ import projekt.fhv.teama.classes.rechnung.Rechnungsposition;
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Zusatzleistung extends Leistung{
+public class Zusatzleistung extends Leistung implements IZusatzleistung{
 	
 	private float preis;
 	private String beschreibung;
 	private boolean extern;
-	private Warengruppe warengruppe;
+	private IWarengruppe warengruppe;
 
-	public Zusatzleistung(float preis, String bezeichnung, String beschreibung, boolean extern, Warengruppe warengruppe,Set<Rechnungsposition> rechnungspositionen) {
+	public Zusatzleistung(float preis, String bezeichnung, String beschreibung, boolean extern, IWarengruppe warengruppe,Set<Rechnungsposition> rechnungspositionen) {
 		this.preis = preis;
 		this.beschreibung = beschreibung;
 		this.extern = extern;
@@ -51,11 +51,11 @@ public class Zusatzleistung extends Leistung{
 		this.extern = extern;
 	}
 
-	public Warengruppe getWarengruppe() {
+	public IWarengruppe getWarengruppe() {
 		return warengruppe;
 	}
 
-	public void setWarengruppe(Warengruppe warengruppe) {
+	public void setWarengruppe(IWarengruppe warengruppe) {
 		this.warengruppe = warengruppe;
 	}
 

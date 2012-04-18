@@ -6,7 +6,7 @@ package projekt.fhv.teama.classes.leistungen;
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public abstract class Leistung {
+public abstract class Leistung implements ILeistung {
 
 	private int ID;
 	private String bezeichnung;

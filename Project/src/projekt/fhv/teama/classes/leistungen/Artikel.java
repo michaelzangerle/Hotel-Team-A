@@ -5,13 +5,13 @@ package projekt.fhv.teama.classes.leistungen;
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Artikel extends Leistung {
+public class Artikel extends Leistung implements IArtikel{
 	
 	private float preis;
 	private String beschreibung;
-	private Warengruppe warengruppe;
+	private IWarengruppe warengruppe;
 
-	public Artikel(float preis, String bezeichnung, String beschreibung, Warengruppe warengruppe) {
+	public Artikel(float preis, String bezeichnung, String beschreibung, IWarengruppe warengruppe) {
 		this.preis = preis;
 		this.beschreibung = beschreibung;
 		this.warengruppe = warengruppe;
@@ -38,11 +38,11 @@ public class Artikel extends Leistung {
 		this.beschreibung = beschreibung;
 	}
 
-	public Warengruppe getWarengruppe() {
+	public IWarengruppe getWarengruppe() {
 		return warengruppe;
 	}
 
-	public void setWarengruppe(Warengruppe warengruppe) {
+	public void setWarengruppe(IWarengruppe warengruppe) {
 		this.warengruppe = warengruppe;
 	}
 

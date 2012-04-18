@@ -4,7 +4,6 @@ import java.sql.Date;
 
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
-import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
 import projekt.fhv.teama.hibernate.dao.IDao;
 
 public interface IAufenthalt extends IDao {

@@ -1,23 +1,24 @@
 package projekt.fhv.teama.classes.leistungen;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Warengruppe {
+public class Warengruppe implements IWarengruppe {
 
 	private int ID;
 	private String bezeichnung;
 	private short steuersatz;
 	private String beschreibung;
 
-	public Set<Zusatzleistung> zusatzleistungen;
-	public Set<Artikel> artikel; 
+	public Set<IZusatzleistung> zusatzleistungen = new HashSet<IZusatzleistung>();
+	public Set<IArtikel> artikel = new HashSet<IArtikel>();
 
-	public Warengruppe(String bezeichung, short steuersatz, String beschreibung, Set<Zusatzleistung> zusatzleistungen,
-			Set<Artikel> artikel) {
+	public Warengruppe(String bezeichung, short steuersatz, String beschreibung, Set<IZusatzleistung> zusatzleistungen,
+			Set<IArtikel> artikel) {
 
 		this.bezeichnung = bezeichung;
 		this.steuersatz = steuersatz;
@@ -62,19 +63,19 @@ public class Warengruppe {
 		this.beschreibung = beschreibung;
 	}
 
-	public Set<Zusatzleistung> getZusatzleistungen() {
+	public Set<IZusatzleistung> getZusatzleistungen() {
 		return zusatzleistungen;
 	}
 
-	public void setZusatzleistungen(Set<Zusatzleistung> zusatzleistungen) {
+	public void setZusatzleistungen(Set<IZusatzleistung> zusatzleistungen) {
 		this.zusatzleistungen = zusatzleistungen;
 	}
 
-	public Set<Artikel> getArtikel() {
+	public Set<IArtikel> getArtikel() {
 		return artikel;
 	}
 
-	public void setArtikel(Set<Artikel> artikel) {
+	public void setArtikel(Set<IArtikel> artikel) {
 		this.artikel = artikel;
 	}
 
@@ -133,7 +134,32 @@ public class Warengruppe {
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public void addArtikel(IArtikel artikel) {
+		this.artikel.add(artikel);
+
+	}
+
+	@Override
+	public void removeArtikel(IArtikel artikel) {
+		if (zusatzleistungen.contains(artikel)) {
+			this.artikel.remove(artikel);
+		}
+	}
+
+	@Override
+	public void addZusatzleistung(IZusatzleistung zusatzleistung) {
+		this.zusatzleistungen.add(zusatzleistung);
+
+	}
+
+	@Override
+	public void removeZusatzleistung(IZusatzleistung zusatzleistung) {
+		if (zusatzleistungen.contains(zusatzleistung)) {
+			zusatzleistungen.remove(zusatzleistung);
+		}
+
+	}
 
 }
