@@ -6,6 +6,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.personen.Land;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
@@ -43,9 +44,28 @@ public class LandDao extends GenericDao<Land> {
 		return p;
 	}
 	
-	public Land getLandByKuerzel(String kuerzel){
+	public ILand getLandByKuerzel(String kuerzel) throws NoDatabaseEntryFoundException{
 		
-		//TODO Land: getLandByKuerzel(String kuerzel)
+		try {
+			Session session = HibernateHelper.getSession();
+			Query query = session.createQuery("from " + getTable() + " p where p.kuerzel = :kuerzel");
+			query.setString("kuerzel", kuerzel);
+
+			@SuppressWarnings("rawtypes")
+			List results = query.list();
+
+			if (results.size() == 1) {
+				return (ILand) results.get(0);
+			}
+
+			if (results.size() == 0) {
+				throw new NoDatabaseEntryFoundException();
+			}
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 }

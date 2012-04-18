@@ -3,7 +3,16 @@
  */
 package projekt.fhv.teama.hibernate.dao;
 
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.classes.Pfandtyp;
+import projekt.fhv.teama.hibernate.HibernateHelper;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -15,10 +24,28 @@ public class PfandtypDao extends GenericDao<Pfandtyp> {
 		super("Pfandtyp");
 	}
 	
-	public Pfandtyp getPfandtypByBez(String bez){
+	public IPfandtyp getPfandtypByBez(String bez) throws NoDatabaseEntryFoundException{
 		
-		// TODO Pfandtyp: getPfandtypByBez(String bez)
-		 
+		try {
+			Session session = HibernateHelper.getSession();
+			Query query = session.createQuery("from " + getTable() + " p where p.bezeichnung = :bez");
+			query.setString("bez", bez);
+
+			@SuppressWarnings("rawtypes")
+			List results = query.list();
+
+			if (results.size() == 1) {
+				return (IPfandtyp) results.get(0);
+			}
+
+			if (results.size() == 0) {
+				throw new NoDatabaseEntryFoundException();
+			}
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 

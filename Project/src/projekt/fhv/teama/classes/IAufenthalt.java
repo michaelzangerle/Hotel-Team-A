@@ -11,9 +11,9 @@ public interface IAufenthalt extends IDao {
 
 	public Float getPreis();
 
-	public void setPfandtyp(IPfandTyp pfandtyp);
+	public void setPfandtyp(IPfandtyp pfandtyp);
 
-	public IPfandTyp getPfandtyp();
+	public IPfandtyp getPfandtyp();
 
 	public void setVon(Date von);
 

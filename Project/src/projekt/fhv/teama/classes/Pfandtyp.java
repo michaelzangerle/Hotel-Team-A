@@ -4,7 +4,7 @@ package projekt.fhv.teama.classes;
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Pfandtyp implements IPfandTyp {
+public class Pfandtyp implements IPfandtyp {
 
 	private int ID;
 	private String bezeichnung;

@@ -11,6 +11,7 @@ public class KontodatenDao extends GenericDao<Kontodaten>{
 		super("KONTODATEN");
 	}
 	
+	//beide kicken
 	public List<Kontodaten> getKontodatenByPersonName(String vorname, String nachname){
 		
 		//TODO Person: getKontodatenByPersonName(String vorname, String nachname)

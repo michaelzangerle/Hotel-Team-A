@@ -9,6 +9,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import projekt.fhv.teama.classes.zimmer.IKategorie;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.classes.zimmer.Zimmer;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
@@ -31,8 +33,7 @@ public class ZimmerDao extends GenericDao<Zimmer> {
 
 		try {
 			Session session = HibernateHelper.getSession();
-			Query query = session.createQuery("from " + getTable()
-					+ " z where z.nummer = :nr");
+			Query query = session.createQuery("from " + getTable() + " z where z.nummer = :nr");
 			query.setString("nr", nr);
 
 			@SuppressWarnings("rawtypes")
@@ -41,7 +42,7 @@ public class ZimmerDao extends GenericDao<Zimmer> {
 			if (results.size() == 0) {
 				throw new NoDatabaseEntryFoundException("No results found!");
 			}
-			
+
 			zimmer = (Zimmer) results.get(0);
 
 		} catch (HibernateException e) {
@@ -51,29 +52,37 @@ public class ZimmerDao extends GenericDao<Zimmer> {
 
 		return zimmer;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Zimmer> getZimmerByKategorie(String kategorie) throws DatabaseException {
 
-		List<Zimmer> zimmer = null;
+	@SuppressWarnings("unchecked")
+	public List<IZimmer> getZimmerByKategorie(String kategorie) throws DatabaseException {
+
+		List<IZimmer> zimmer = null;
 
 		try {
-			// TODO Zimmer: getZimmerByKategorie(String kategorie)
-			// Join auf kategorietabelle
-			Session session = HibernateHelper.getSession();
-			Query query = session.createQuery("from " + getTable()
-					+ " z where z.kategorie = :kategorie");
-			query.setString("kategorie", kategorie);
 
+			Session session = HibernateHelper.getSession();
+			Query query = session.createQuery("from kategorie k where k.bezeichnung = :kategorie");
+			query.setString("kategorie", kategorie);
 			
-			@SuppressWarnings("rawtypes")
-			List results = query.list();
+			int id = -1;
+			List<IKategorie> results = query.list();
+			if (results.size() == 1) {
+				id = results.get(0).getID();
+			}else {
+				throw new NoDatabaseEntryFoundException();
+			}
+			
+						
+			query = session.createQuery("from " + getTable() + " z where z.kategorieID = :id");
+			query.setString("id", String.valueOf(id));
+
+			List<IZimmer> results2 = query.list();
 
 			if (results.size() == 0) {
 				throw new NoDatabaseEntryFoundException("No results found!");
 			}
-			
-			zimmer = results;
+
+			zimmer = results2;
 
 		} catch (HibernateException e) {
 			throw new DatabaseException();
@@ -82,27 +91,25 @@ public class ZimmerDao extends GenericDao<Zimmer> {
 
 		return zimmer;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Zimmer> getZimmerByKategorie(int ID) throws DatabaseException {
 
 		List<Zimmer> zimmer = null;
 
 		try {
-			
+
 			Session session = HibernateHelper.getSession();
-			Query query = session.createQuery("from " + getTable()
-					+ " z where z.kategorieID = :ID");
+			Query query = session.createQuery("from " + getTable() + " z where z.kategorieID = :ID");
 			query.setString("ID", String.valueOf(ID));
 
-			
 			@SuppressWarnings("rawtypes")
 			List results = query.list();
 
 			if (results.size() == 0) {
 				throw new NoDatabaseEntryFoundException("No results found!");
 			}
-			
+
 			zimmer = results;
 
 		} catch (HibernateException e) {

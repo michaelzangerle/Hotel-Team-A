@@ -10,7 +10,7 @@ public class Vertragspartner {
     private Land land;
     private Kontodaten kontodaten;
     private Set<Adresse> adressen;
-    private VertragspartnerTyp typ;
+//    private VertragspartnerTyp typ;
     
     public int getID() {
         return ID;
@@ -73,13 +73,13 @@ public class Vertragspartner {
 	}
 
 	public Vertragspartner(String name, String telefonnummer, String email,
-			Land land, VertragspartnerTyp typ, Kontodaten kontodaten,
+			Land land,  Kontodaten kontodaten,
 			Set<Adresse> adressen) {
 		this.name = name;
 		this.telefonnummer = telefonnummer;
 		this.email = email;
 		this.land = land;
-		this.typ = typ;
+//		this.typ = typ;
 		this.kontodaten = kontodaten;
 		this.adressen = adressen;
 	}
@@ -98,7 +98,7 @@ public class Vertragspartner {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result
 				+ ((telefonnummer == null) ? 0 : telefonnummer.hashCode());
-		result = prime * result + ((typ == null) ? 0 : typ.hashCode());
+//		result = prime * result + ((typ == null) ? 0 : typ.hashCode());
 		return result;
 	}
 
@@ -143,11 +143,11 @@ public class Vertragspartner {
 				return false;
 		} else if (!telefonnummer.equals(other.telefonnummer))
 			return false;
-		if (typ == null) {
-			if (other.typ != null)
-				return false;
-		} else if (!typ.equals(other.typ))
-			return false;
+//		if (typ == null) {
+//			if (other.typ != null)
+//				return false;
+//		} else if (!typ.equals(other.typ))
+//			return false;
 		return true;
 	}
 
@@ -155,7 +155,7 @@ public class Vertragspartner {
 	public String toString() {
 		return "Vertragspartner [ID=" + ID + ", name=" + name
 				+ ", telefonnummer=" + telefonnummer + ", email=" + email
-				+ ", land=" + land + ", typ=" + typ + ", kontodaten="
+				+ ", land=" + land + ", kontodaten="
 				+ kontodaten + ", adressen=" + adressen + "]";
 	}
 }

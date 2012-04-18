@@ -1,7 +1,6 @@
 package projekt.fhv.teama.classes.personen;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.Aufenthalt;

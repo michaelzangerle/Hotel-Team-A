@@ -17,7 +17,7 @@ public class AufenthaltDao extends GenericDao<Aufenthalt>{
 		super("Aufenthalt");
 		
 	}
-	
+	// beide kicken
 	public List<Aufenthalt> getAufenthaltByGastName(String vorname, String nachname) {
 		// TODO Aufenthalt: getAufenthaltByGastName(String vorname, String nachname)
 		return null;

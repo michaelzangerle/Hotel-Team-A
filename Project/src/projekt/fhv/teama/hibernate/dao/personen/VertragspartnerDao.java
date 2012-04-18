@@ -3,8 +3,17 @@
  */
 package projekt.fhv.teama.hibernate.dao.personen;
 
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import projekt.fhv.teama.classes.personen.IVertragspartner;
 import projekt.fhv.teama.classes.personen.Vertragspartner;
+import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -16,10 +25,28 @@ public class VertragspartnerDao extends GenericDao<Vertragspartner> {
 		super("Vertragspartner");
 	}
 	
-	public Vertragspartner getVertragspartnerByName(String name) {
+	public IVertragspartner getVertragspartnerByName(String name) throws NoDatabaseEntryFoundException {
 		
-		// TODO Vertragspartner: getVertragspartnerByName(String name)
-		
+		try {
+			Session session = HibernateHelper.getSession();
+			Query query = session.createQuery("from " + getTable() + " p where p.name = :name");
+			query.setString("name", name);
+
+			@SuppressWarnings("rawtypes")
+			List results = query.list();
+
+			if (results.size() == 1) {
+				return (IVertragspartner) results.get(0);
+			}
+
+			if (results.size() == 0) {
+				throw new NoDatabaseEntryFoundException();
+			}
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+
 		return null;
 	}
 

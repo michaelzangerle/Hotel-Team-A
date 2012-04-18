@@ -5,8 +5,17 @@ package projekt.fhv.teama.hibernate.dao.rechnung;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 import projekt.fhv.teama.classes.rechnung.Rechnungsposition;
+import projekt.fhv.teama.classes.zimmer.IKategorie;
+import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
@@ -19,18 +28,50 @@ public class RechnungspositionDao extends GenericDao<Rechnungsposition> {
 	}
 
 	public List<Rechnungsposition> getRechnungspostionenByGuestName(String vorname, String nachname) {
-
+		// kicken?
 		// TODO Rechnungsposition: getRechnungspostionenByGuestName(String
 		// vorname, String nachname)
 		// Abfrage auf gast - alle rechnungspositionen eines gastes
 		return null;
 	}
 
-	public List<Rechnungsposition> getRechnungspostionenByZimmerNummer(String nummer) {
+	@SuppressWarnings("unchecked")
+	public List<IRechnungsposition> getRechnungspostionenByZimmerNummer(String nummer) throws DatabaseException {
 
-		// TODO Rechnungsposition: getRechnungspostionenByZimmerNummer(String nummer)
-		// Abfrage auf gast - alle rechnungspositionen eines gastes
-		return null;
+		List<IRechnungsposition> pos = null;
+
+		try {
+
+			Session session = HibernateHelper.getSession();
+			Query query = session.createQuery("from zimmer z where z.nummer = :nummer");
+			query.setString("nummer", nummer);
+			
+			int id = -1;
+			List<IKategorie> results = query.list();
+			if (results.size() == 1) {
+				id = results.get(0).getID();
+			}else {
+				throw new NoDatabaseEntryFoundException();
+			}
+			
+						
+			query = session.createQuery("from " + getTable() + " z where z.zimmerID = :id");
+			query.setString("id", String.valueOf(id));
+
+			List<IRechnungsposition> results2 = query.list();
+
+			if (results.size() == 0) {
+				throw new NoDatabaseEntryFoundException("No results found!");
+			}
+
+			pos = results2;
+
+		} catch (HibernateException e) {
+			throw new DatabaseException();
+
+		}
+
+		return pos;
 	}
 
 }
