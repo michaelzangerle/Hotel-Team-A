@@ -3,81 +3,86 @@ package projekt.fhv.teama.classes;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 09.04.12
- * Time: 22:23
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
+ * this template use File | Settings | File Templates.
  */
 public class Pfandtyp {
-    private int ID;
-    private String bezeichnung;
-    private String beschreibung;
-    private List<Aufenthalt> aufenthalte;
-    
-    public int getPfandTypId() {
-        return ID;
-    }
 
-    public void setPfandTypId(int pfandTypId) {
-        this.ID = pfandTypId;
-    }
+	private int ID;
+	private String bezeichnung;
+	private String beschreibung;
 
-    public String getBezeichnung() {
-        return bezeichnung;
-    }
+	public Pfandtyp(String bezeichnung, String beschreibung) {
 
-    public void setBezeichnung(String bezeichnung) {
-        this.bezeichnung = bezeichnung;
-    }
-
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    public void setBeschreibung(String beschreibung) {
-        this.beschreibung = beschreibung;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Pfandtyp pfandtyp = (Pfandtyp) o;
-
-        if (ID != pfandtyp.ID) return false;
-        if (beschreibung != null ? !beschreibung.equals(pfandtyp.beschreibung) : pfandtyp.beschreibung != null)
-            return false;
-        if (bezeichnung != null ? !bezeichnung.equals(pfandtyp.bezeichnung) : pfandtyp.bezeichnung != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = ID;
-        result = 31 * result + (bezeichnung != null ? bezeichnung.hashCode() : 0);
-        result = 31 * result + (beschreibung != null ? beschreibung.hashCode() : 0);
-        return result;
-    }
-
-	public Pfandtyp(String bezeichnung, String beschreibung,
-			List<Aufenthalt> aufenthalte) {
 		this.bezeichnung = bezeichnung;
 		this.beschreibung = beschreibung;
-		this.setAufenthalte(aufenthalte);
 	}
 
 	public Pfandtyp() {
+
 	}
 
-	public List<Aufenthalt> getAufenthalte() {
-		return aufenthalte;
+	public int getID() {
+		return ID;
 	}
 
-	public void setAufenthalte(List<Aufenthalt> aufenthalte) {
-		this.aufenthalte = aufenthalte;
+	public void setID(int iD) {
+		ID = iD;
 	}
+
+	public String getBezeichnung() {
+		return bezeichnung;
+	}
+
+	public void setBezeichnung(String bezeichnung) {
+		this.bezeichnung = bezeichnung;
+	}
+
+	public String getBeschreibung() {
+		return beschreibung;
+	}
+
+	public void setBeschreibung(String beschreibung) {
+		this.beschreibung = beschreibung;
+	}
+
+	@Override
+	public String toString() {
+		return "Pfandtyp [ID=" + ID + ", bezeichnung=" + bezeichnung + ", beschreibung=" + beschreibung + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
+		result = prime * result + ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pfandtyp other = (Pfandtyp) obj;
+		if (ID != other.ID)
+			return false;
+		if (beschreibung == null) {
+			if (other.beschreibung != null)
+				return false;
+		} else if (!beschreibung.equals(other.beschreibung))
+			return false;
+		if (bezeichnung == null) {
+			if (other.bezeichnung != null)
+				return false;
+		} else if (!bezeichnung.equals(other.bezeichnung))
+			return false;
+		return true;
+	}
+
 }

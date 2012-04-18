@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 16.04.2012 15:54:17 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 18.04.2012 15:27:51 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.Pfandtyp" table="PFANDTYP">
-        <id name="pfandTypId" type="int">
-            <column name="PFANDTYPID" />
-            <generator class="native" />
-        </id>
-        <property name="bezeichnung" type="java.lang.String">
-            <column name="BEZEICHNUNG" />
-        </property>
-        <property name="beschreibung" type="java.lang.String">
-            <column name="BESCHREIBUNG" />
-        </property>
-    </class>
+	<class name="projekt.fhv.teama.classes.Pfandtyp" table="PFANDTYP">
+		<id name="ID" type="int">
+			<column name="pfandTypID" />
+			<generator class="native" />
+		</id>
+		<property name="bezeichnung" type="java.lang.String">
+			<column name="BEZEICHNUNG" />
+		</property>
+		<property name="beschreibung" type="java.lang.String">
+			<column name="BESCHREIBUNG" />
+		</property>
+	</class>
 </hibernate-mapping>

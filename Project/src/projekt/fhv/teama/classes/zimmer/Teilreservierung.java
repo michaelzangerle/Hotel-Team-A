@@ -5,10 +5,99 @@ package projekt.fhv.teama.classes.zimmer;
 
 /**
  * @author mike
- *
+ * 
  */
 public class Teilreservierung {
-	
-	// TODO Teilreservierung implementieren
+
+	private int ID;
+	private Kategorie kategorie;
+	private Reservierung reservierung;
+	private int anzahl;
+
+	public Teilreservierung(Kategorie kategorie, Reservierung reservierung, int anzahl) {
+
+		this.kategorie = kategorie;
+		this.reservierung = reservierung;
+		this.anzahl = anzahl;
+	}
+
+	public Teilreservierung() {
+
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public Kategorie getKategorie() {
+		return kategorie;
+	}
+
+	public void setKategorie(Kategorie kategorie) {
+		this.kategorie = kategorie;
+	}
+
+	public Reservierung getReservierung() {
+		return reservierung;
+	}
+
+	public void setReservierung(Reservierung reservierung) {
+		this.reservierung = reservierung;
+	}
+
+	public int getAnzahl() {
+		return anzahl;
+	}
+
+	public void setAnzahl(int anzahl) {
+		this.anzahl = anzahl;
+	}
+
+	@Override
+	public String toString() {
+		return "Teilreservierung [ID=" + ID + ", kategorie=" + kategorie.getBezeichnung() + ", reservierung=" + reservierung.getID()
+				+ ", anzahl=" + anzahl + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + anzahl;
+		result = prime * result + ((kategorie == null) ? 0 : kategorie.getBezeichnung().hashCode());
+		result = prime * result + ((reservierung == null) ? 0 : reservierung.getID());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Teilreservierung other = (Teilreservierung) obj;
+		if (ID != other.ID)
+			return false;
+		if (anzahl != other.anzahl)
+			return false;
+		if (kategorie == null) {
+			if (other.kategorie != null)
+				return false;
+		} else if (!kategorie.equals(other.kategorie))
+			return false;
+		if (reservierung == null) {
+			if (other.reservierung != null)
+				return false;
+		} else if (!reservierung.equals(other.reservierung))
+			return false;
+		return true;
+	}
 
 }
