@@ -2,8 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="projekt.fhv.teama.classes.personen.Person" table="person"
-		catalog="hibernate">
+	<class name="projekt.fhv.teama.classes.personen.Person" table="person">
 
 		<id name="ID" type="int">
 			<column name="personID" sql-type="int" length="10" not-null="true" />
@@ -13,28 +12,24 @@
 		<property name="vorname" type="java.lang.String">
 			<column name="vorname" sql-type="varchar" not-null="true" />
 		</property>
+		
 		<property name="nachname" type="java.lang.String">
 			<column name="nachname" sql-type="varchar" not-null="true" />
 		</property>
+		
 		<property name="geschlecht" type="char">
 			<column name="geschlecht" sql-type="char" length="1" not-null="true" />
 		</property>
-
-		<component name="adressen" class="projekt.fhv.teama.classes.personen.Adresse">
-			<property name="strasse" type="java.lang.String">
-				<column name="strasse" sql-type="varchar" not-null="true" />
-			</property>
-			<property name="plz" type="java.lang.String">
-				<column name="plz" sql-type="varchar" not-null="true" />
-			</property>
-			<property name="ort" type="java.lang.String">
-				<column name="ort" sql-type="varchar" not-null="true" />
-			</property>
-		</component>
-
+		
+		<set name="adressen" table="personadresse" cascade="all">
+        	<key column="person_personID"/>
+        	<many-to-many column="adresse_adresseID" class="projekt.fhv.teama.classes.personen.Adresse"/>
+    	</set>
+    
 		<property name="geburtsdatum" type="java.util.Date">
 			<column name="geburtsdatum" sql-type="date" length="10" />
 		</property>
+		
 		<property name="telefonnummer" type="java.lang.String">
 			<column name="telefonnummer" sql-type="varchar" not-null="true" />
 		</property>
@@ -42,23 +37,11 @@
 		<property name="email" type="java.lang.String">
 			<column name="email" sql-type="varchar" not-null="true" />
 		</property>
-
-		<component name="kontodaten"
-			class="projekt.fhv.teama.classes.personen.Kontodaten">
-			<property name="iban" type="java.lang.String">
-				<column name="iban" sql-type="varchar" />
-			</property>
-			<property name="bic" type="java.lang.String">
-				<column name="bic" sql-type="varchar" />
-			</property>
-			<property name="kontonummer" type="java.lang.String">
-				<column name="kontonummer" sql-type="varchar" />
-			</property>
-			<property name="blz" type="java.lang.String">
-				<column name="blz" sql-type="varchar" />
-			</property>
-		</component>
-
+		
+		<many-to-one name="kontodaten"
+			class="projekt.fhv.teama.classes.personen.Kontodaten" column="kontodatenID"
+			not-null="true" unique="true" foreign-key="ID" />
+			
 		<many-to-one name="land"
 			class="projekt.fhv.teama.classes.personen.Land" column="landID"
 			not-null="true" foreign-key="ID" />

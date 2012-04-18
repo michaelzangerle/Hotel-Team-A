@@ -1,17 +1,14 @@
 package projekt.fhv.teama.classes.personen;
 
-public class Adresse {
-	@Override
-	public String toString() {
-		return "Adresse [strasse=" + strasse + ", plz=" + plz + ", ort=" + ort
-				+ "]";
-	}
+import java.util.HashSet;
+import java.util.Set;
 
+public class Adresse {
+	private int ID;
 	private String strasse;
     private String plz;
     private String ort;
-    
-    
+    private Set<Person> person;
     
     public String getStrasse() {
         return strasse;
@@ -37,21 +34,38 @@ public class Adresse {
         this.ort = ort;
     }
 
-    
-    
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public Set<Person> getPerson() {
+		return person;
+	}
+
+	public void setPerson(Set<Person> person) {
+		this.person = person;
+	}
+	
 	public Adresse() {
+		person = new HashSet<Person>();
 	}
 
 	public Adresse(String strasse, String plz, String ort) {
 		this.strasse = strasse;
 		this.plz = plz;
 		this.ort = ort;
+		person = new HashSet<Person>();
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ID;
 		result = prime * result + ((ort == null) ? 0 : ort.hashCode());
 		result = prime * result + ((plz == null) ? 0 : plz.hashCode());
 		result = prime * result + ((strasse == null) ? 0 : strasse.hashCode());
@@ -67,6 +81,8 @@ public class Adresse {
 		if (getClass() != obj.getClass())
 			return false;
 		Adresse other = (Adresse) obj;
+		if (ID != other.ID)
+			return false;
 		if (ort == null) {
 			if (other.ort != null)
 				return false;
@@ -84,6 +100,10 @@ public class Adresse {
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Adresse [ID=" + ID + ", strasse=" + strasse + ", plz=" + plz
+				+ ", ort=" + ort + "]";
+	}
 }

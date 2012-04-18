@@ -102,4 +102,5 @@ public class Kontodaten {
 		return "Kontodaten [ID=" + ID + ", iban=" + iban + ", bic=" + bic
 				+ ", kontonummer=" + kontonummer + ", blz=" + blz + "]";
 	}
+
 }

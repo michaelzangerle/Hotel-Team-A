@@ -5,20 +5,21 @@
 <hibernate-mapping>
     <class name="projekt.fhv.teama.classes.personen.Kontodaten" table="KONTODATEN">
         <id name="ID" type="int">
-            <column name="kontodatenID" />
-            <generator class="native" />
+        	<column name="kontodatenID" sql-type="int" />
+			<generator class="native" />
         </id>
+
          <property name="iban" type="java.lang.String">
-            <column name="IBAN" />
+            <column name="IBAN" sql-type="varchar" />
         </property>
         <property name="bic" type="java.lang.String">
-            <column name="BIC" />
+            <column name="BIC" sql-type="varchar" />
         </property>
         <property name="kontonummer" type="java.lang.String">
-            <column name="KONTONUMMER" />
+            <column name="KONTONUMMER" sql-type="varchar" />
         </property>
         <property name="blz" type="java.lang.String">
-            <column name="BLZ" />
+            <column name="BLZ" sql-type="varchar" />
         </property>
     </class>
 </hibernate-mapping>

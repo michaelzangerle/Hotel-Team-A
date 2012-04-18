@@ -57,8 +57,8 @@ public class Person {
 		return adressen;
 	}
 
-	public void setAdressen(Set<Adresse> adresse) {
-		this.adressen = adresse;
+	public void setAdressen(Set<Adresse> adressen) {
+		this.adressen = adressen;
 	}
 
 	public Date getGeburtsdatum() {
@@ -102,34 +102,27 @@ public class Person {
 	}
 	
 	public Person() {
-		adressen = new HashSet<Adresse>();
 	}
-	
-
 	
 	public Person(String vorname, String nachname, char geschlecht,
 			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, Kontodaten bankverbindung, Land land) {
+			String email, Kontodaten kontodaten, Land land) {
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.geschlecht = geschlecht;
-		// TODO Person:  wieso hashset? --> liste?
-		this.adressen = new HashSet<Adresse>();		
+		this.adressen = adresse;		
 		this.geburtsdatum = geburtsdatum;
 		this.telefonnummer = telefonnummer;
 		this.email = email;
-		this.kontodaten = bankverbindung;
+		this.kontodaten = kontodaten;
 		this.land = land;
 	}
-
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result
-				+ ((adressen == null) ? 0 : adressen.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result
 				+ ((geburtsdatum == null) ? 0 : geburtsdatum.hashCode());
@@ -155,11 +148,6 @@ public class Person {
 			return false;
 		Person other = (Person) obj;
 		if (ID != other.ID)
-			return false;
-		if (adressen == null) {
-			if (other.adressen != null)
-				return false;
-		} else if (!adressen.equals(other.adressen))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -204,11 +192,8 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [ID=" + ID + ", vorname=" + vorname + ", nachname="
-				+ nachname + ", geschlecht=" + geschlecht + ", adressen="
-				+ adressen + ", geburtsdatum=" + geburtsdatum
+				+ nachname + ", geschlecht=" + geschlecht + ", geburtsdatum=" + geburtsdatum
 				+ ", telefonnummer=" + telefonnummer + ", email=" + email
 				+ ", kontodaten=" + kontodaten + ", landID=" + land + "]";
 	}
-
-
 }

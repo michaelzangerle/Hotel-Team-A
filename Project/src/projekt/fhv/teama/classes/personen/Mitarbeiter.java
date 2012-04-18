@@ -1,5 +1,6 @@
 package projekt.fhv.teama.classes.personen;
-import java.util.Date;
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,10 +17,11 @@ import projekt.fhv.teama.classes.rechnung.Rechnung;
  */
 public class Mitarbeiter extends Person {
     private int ID;
+    private String nummer;
     private String passwort;
     private Date einstellung;
     private Set<Berechtigung> berechtigungen;
-    private List<Rechnung> rechnungen;
+    private Set<Rechnung> rechnungen;
     
     public int getID() {
         return ID;
@@ -28,7 +30,15 @@ public class Mitarbeiter extends Person {
     public void setID(int ID) {
         this.ID = ID;
     }
+	
+	public String getNummer() {
+		return nummer;
+	}
 
+	public void setNummer(String nummer) {
+		this.nummer = nummer;
+	}
+	
     public String getPasswort() {
         return passwort;
     }
@@ -57,67 +67,92 @@ public class Mitarbeiter extends Person {
 		berechtigungen.add(berechtigung);
 	}
 
-	public List<Rechnung> getRechnungen() {
+	public Set<Rechnung> getRechnungen() {
 		return rechnungen;
 	}
 
-	public void setRechnungen(List<Rechnung> rechnungen) {
+	public void setRechnungen(Set<Rechnung> rechnungen) {
 		this.rechnungen = rechnungen;
 	}
 	
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Mitarbeiter that = (Mitarbeiter) o;
-
-        if (ID != that.ID) return false;
-        if (einstellung != null ? !einstellung.equals(that.einstellung) : that.einstellung != null) return false;
-        if (passwort != null ? !passwort.equals(that.passwort) : that.passwort != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = ID;
-        result = 31 * result + (passwort != null ? passwort.hashCode() : 0);
-        result = 31 * result + (einstellung != null ? einstellung.hashCode() : 0);
-        return result;
-    }
-
 	public Mitarbeiter() {
 		super();
-		this.berechtigungen = new HashSet<Berechtigung>();
 	}
 	
 	public Mitarbeiter(String vorname, String nachname, char geschlecht,
 			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
 			String email, Kontodaten bankverbindung, Land land,
-			String passwort, Date einstellung) {
-		
+			String nummer, String passwort, Date einstellung) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum,
 				telefonnummer, email, bankverbindung, land);
+		this.nummer = nummer;
 		this.passwort = passwort;
 		this.einstellung = einstellung;
 		this.berechtigungen = new HashSet<Berechtigung>();
+		this.rechnungen = new HashSet<Rechnung>();
 	}
 
-	public Mitarbeiter(String vorname, String nachname, char geschlecht,
-			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, Kontodaten bankverbindung, Land land) {
-		super(vorname, nachname, geschlecht, adresse, geburtsdatum,
-				telefonnummer, email, bankverbindung, land);
-		this.berechtigungen = new HashSet<Berechtigung>();
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ID;
+		result = prime * result
+				+ ((berechtigungen == null) ? 0 : berechtigungen.hashCode());
+		result = prime * result
+				+ ((einstellung == null) ? 0 : einstellung.hashCode());
+		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
+		result = prime * result
+				+ ((passwort == null) ? 0 : passwort.hashCode());
+		result = prime * result
+				+ ((rechnungen == null) ? 0 : rechnungen.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mitarbeiter other = (Mitarbeiter) obj;
+		if (ID != other.ID)
+			return false;
+		if (berechtigungen == null) {
+			if (other.berechtigungen != null)
+				return false;
+		} else if (!berechtigungen.equals(other.berechtigungen))
+			return false;
+		if (einstellung == null) {
+			if (other.einstellung != null)
+				return false;
+		} else if (!einstellung.equals(other.einstellung))
+			return false;
+		if (nummer == null) {
+			if (other.nummer != null)
+				return false;
+		} else if (!nummer.equals(other.nummer))
+			return false;
+		if (passwort == null) {
+			if (other.passwort != null)
+				return false;
+		} else if (!passwort.equals(other.passwort))
+			return false;
+		if (rechnungen == null) {
+			if (other.rechnungen != null)
+				return false;
+		} else if (!rechnungen.equals(other.rechnungen))
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Mitarbeiter [ID=" + ID + ", passwort=" + passwort
-				+ ", einstellung=" + einstellung + ", berechtigungen="
-				+ berechtigungen + ", rechnungen=" + rechnungen + "]";
+		return "Mitarbeiter [ID=" + ID + ", nummer=" + nummer + ", passwort="
+				+ passwort + ", einstellung=" + einstellung
+				+ ", berechtigungen=" + berechtigungen + ", rechnungen="
+				+ rechnungen + "]";
 	}
-
 }

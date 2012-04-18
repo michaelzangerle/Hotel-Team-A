@@ -6,17 +6,20 @@
     <joined-subclass name="projekt.fhv.teama.classes.personen.Mitarbeiter"
     				 extends="projekt.fhv.teama.classes.personen.Person">
         
-        <key column="mitarbeiterID"/>
+        <key column="personID"/>
+        
+        <property name="nummer" type="java.lang.String">
+            <column name="nummer" sql-type="varchar" not-null="true" />
+        </property>
         
         <property name="passwort" type="java.lang.String">
             <column name="passwort" sql-type="varchar" not-null="true" />
         </property>
+        
         <property name="einstellung" type="java.util.Date">
             <column name="einstellung" sql-type="date" length="10" not-null="true" />
         </property>
-        <!-- 
-        nach 3 stunden und 1000 versuchen di liste durch ein set ersetzt 
-         -->
+       
        <set name="berechtigungen" table="mitarbeiterBerechtigung" cascade="all">
             <key column="mitarbeiterID"/>
             <many-to-many column="berechtigungID" class="projekt.fhv.teama.classes.personen.Berechtigung"/>

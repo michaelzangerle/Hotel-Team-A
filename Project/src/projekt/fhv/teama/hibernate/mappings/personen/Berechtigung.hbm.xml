@@ -2,24 +2,24 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.personen.Berechtigung" table="berechtigung" catalog="hibernate">
+    <class name="projekt.fhv.teama.classes.personen.Berechtigung" table="berechtigung">
         <id name="ID" type="int">
             <column name="berechtigungID" sql-type="int" length="10" not-null="true"/>
        		<generator class="native"/>
         </id>
+
         <property name="bezeichnung" type="java.lang.String">
             <column name="bezeichnung" sql-type="varchar" not-null="true"/>
         </property>
+
         <property name="kuerzel" type="java.lang.String">
             <column name="kuerzel" sql-type="char" length="5" not-null="true"/>
         </property>
+
         <property name="beschreibung" type="java.lang.String">
             <column name="beschreibung" sql-type="longtext" length="2147483647"/>
         </property>
         
-        <!-- 
-        nach 3 stunden und 1000 versuchen di liste durch ein set ersetzt
-         -->
         <set name="berechtigte" table="mitarbeiterBerechtigung" cascade="all">
             <key column="berechtigungID"/>
             <many-to-many column="mitarbeiterID" class="projekt.fhv.teama.classes.personen.Mitarbeiter"/>

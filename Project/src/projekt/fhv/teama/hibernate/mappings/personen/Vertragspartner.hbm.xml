@@ -3,21 +3,13 @@
         xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <class name="Entities.Vertragspartner" table="vertragspartner" schema="" catalog="hibernate">
-        <id name="vertragsPartnerId">
+    <class name="projekt.fhv.teama.classes.personen.Vertragspartner" table="vertragspartner">
+        <id name="ID">
             <column name="vertragsPartnerID" sql-type="int" length="10" not-null="true"/>
+            <generator class="native"/>
         </id>
         <property name="name">
             <column name="name" sql-type="varchar" not-null="true"/>
-        </property>
-        <property name="strasse">
-            <column name="strasse" sql-type="varchar" not-null="true"/>
-        </property>
-        <property name="plz">
-            <column name="plz" sql-type="varchar" not-null="true"/>
-        </property>
-        <property name="ort">
-            <column name="ort" sql-type="varchar" not-null="true"/>
         </property>
         <property name="telefonnummer">
             <column name="telefonnummer" sql-type="varchar" not-null="true"/>
@@ -25,17 +17,18 @@
         <property name="email">
             <column name="email" sql-type="varchar" not-null="true"/>
         </property>
-        <property name="iban">
-            <column name="iban" sql-type="varchar"/>
-        </property>
-        <property name="bic">
-            <column name="bic" sql-type="varchar"/>
-        </property>
-        <property name="kontonummer">
-            <column name="kontonummer" sql-type="varchar"/>
-        </property>
-        <property name="blz">
-            <column name="blz" sql-type="varchar"/>
-        </property>
+        <many-to-one name="land"
+			class="projekt.fhv.teama.classes.personen.Land" column="landID"
+			not-null="true" foreign-key="ID" />
+			
+		<many-to-one name="kontodaten"
+			class="projekt.fhv.teama.classes.personen.Kontodaten" column="kontodatenID"
+			not-null="true" unique="true" foreign-key="ID" />
+			
+        <set name="adressen" table="personadresse" cascade="all">
+        	<key column="person_personID"/>
+        	<many-to-many column="adresse_adresseID" class="projekt.fhv.teama.classes.personen.Adresse"/>
+    	</set>
+    	
     </class>
 </hibernate-mapping>
