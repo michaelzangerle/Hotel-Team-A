@@ -7,7 +7,7 @@ public interface IArtikel extends IDao{
 	public String getBezeichnung();
 	public void setBeschreibung(String beschreibung);
 	public String getBeschreibung();
-	public void setPreis(double preis);
+	public void setPreis(float preis);
 	public double getPreis();
 	public void setWarengruppe(IWarengruppe warengruppe);
 	public IWarengruppe getWarengruppe();

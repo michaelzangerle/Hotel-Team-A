@@ -1,20 +1,21 @@
 package projekt.fhv.teama.classes.personen;
 
 import java.sql.Date;
+import java.util.Set;
 
 import projekt.fhv.teama.classes.rechnung.IKontodaten;
 import projekt.fhv.teama.hibernate.dao.IDao;
 
 public interface IPerson extends IDao {
-	public void setVorname(String vn);
+	public void setVorname(String vorname);
 	public String getVorname();
-	public void setNachname(String nn);
+	public void setNachname(String nachname);
 	public String getNachname();
-	public void setGeschlecht(Character geschlecht);
+	public void setGeschlecht(char geschlecht);
 	public Character getGeschlecht();
-	public void setGeburtsdatum(Date gebDat);
+	public void setGeburtsdatum(Date geburtsdatum);
 	public Date getGeburtsdatum();
-	public void setTelefonnummer(String telNr);
+	public void setTelefonnummer(String telefonnummer);
 	public String getTelefonnummer();
 	public void setEmail(String email);
 	public String getEmail();
@@ -22,6 +23,8 @@ public interface IPerson extends IDao {
 	public ILand getLand();
 	public void setKontodaten(IKontodaten kontodaten);
 	public IKontodaten getKontodaten();
-	public void setAdresse(IAdresse kontodaten);
-	public IAdresse setAdresse();
+	public void addAdresse(IAdresse adresse);
+	public Set<IAdresse> getAdressen();
+	public void removeAdresse(IAdresse adresse);
+	public void setAdressen(Set<Adresse> adresse);
 }
