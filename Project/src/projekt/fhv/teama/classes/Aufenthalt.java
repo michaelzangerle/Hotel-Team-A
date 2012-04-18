@@ -1,6 +1,5 @@
 package projekt.fhv.teama.classes;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 
 import projekt.fhv.teama.classes.personen.Gast;

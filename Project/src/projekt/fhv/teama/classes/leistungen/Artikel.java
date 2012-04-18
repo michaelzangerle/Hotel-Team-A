@@ -1,8 +1,5 @@
 package projekt.fhv.teama.classes.leistungen;
 
-import java.util.Set;
-
-import projekt.fhv.teama.classes.rechnung.Rechnungsposition;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
@@ -13,7 +10,6 @@ public class Artikel extends Leistung {
 	private float preis;
 	private String beschreibung;
 	private Warengruppe warengruppe;
-	private Set<Rechnungsposition> rechnungspositionen;
 
 	public Artikel(float preis, String bezeichnung, String beschreibung, Warengruppe warengruppe) {
 		this.preis = preis;

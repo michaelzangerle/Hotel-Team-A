@@ -9,7 +9,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import projekt.fhv.teama.classes.leistungen.Leistung;
 import projekt.fhv.teama.classes.leistungen.Zusatzleistung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
