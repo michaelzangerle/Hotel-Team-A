@@ -3,6 +3,8 @@ package projekt.fhv.teama.classes;
 import java.sql.Date;
 
 import projekt.fhv.teama.classes.personen.Gast;
+import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.classes.zimmer.Zimmer;
 
 /**
@@ -12,7 +14,7 @@ import projekt.fhv.teama.classes.zimmer.Zimmer;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Aufenthalt {
+public class Aufenthalt implements IAufenthalt {
     private Float preis;
     private String pfandNr;
     private Date von;
@@ -153,5 +155,41 @@ public class Aufenthalt {
 		return "Aufenthalt [preis=" + preis + ", pfandNr=" + pfandNr + ", von="
 				+ von + ", bis=" + bis + ", schluessel=" + schluessel
 				+ ", gast=" + gast + ", zimmer=" + zimmer + "]";
+	}
+
+	@Override
+	public void setID(int ID) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getID() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setPfandtyp(IPfandTyp pfandtyp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public IPfandTyp getPfandtyp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setGast(IGast gast) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setZimmer(IZimmer zimmer) {
+		// TODO Auto-generated method stub
+		
 	}
 }
