@@ -3,24 +3,24 @@ package projekt.fhv.teama.classes;
 import java.sql.Date;
 import java.util.Set;
 
-import projekt.fhv.teama.classes.personen.Vertragspartner;
-import projekt.fhv.teama.classes.zimmer.Kategorie;
+import projekt.fhv.teama.classes.personen.IVertragspartner;
+import projekt.fhv.teama.classes.zimmer.IKategorie;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Kontingent {
+public class Kontingent implements IKontingent {
 	private int ID;
 	private Date von;
 	private Date bis;
 	private short kondition;
 	private short ueberbuchungsgrenze;
-	private Vertragspartner vertragspartner;
-	private Set<Kategorie> kategorien;
+	private IVertragspartner vertragspartner;
+	private Set<IKategorie> kategorien;
 
-	public Kontingent(Date von, Date bis, short kondition, short ueberbuchungsgrenze, Vertragspartner vertragspartner,
-			Set<Kategorie> kategorien) {
+	public Kontingent(Date von, Date bis, short kondition, short ueberbuchungsgrenze, IVertragspartner vertragspartner,
+			Set<IKategorie> kategorien) {
 		this.von = von;
 		this.bis = bis;
 		this.kondition = kondition;
@@ -72,19 +72,19 @@ public class Kontingent {
 		this.ueberbuchungsgrenze = ueberbuchungsgrenze;
 	}
 
-	public Vertragspartner getVertragspartner() {
+	public IVertragspartner getVertragspartner() {
 		return vertragspartner;
 	}
 
-	public void setVertragspartner(Vertragspartner vertragspartner) {
+	public void setVertragspartner(IVertragspartner vertragspartner) {
 		this.vertragspartner = vertragspartner;
 	}
 
-	public Set<Kategorie> getKategorien() {
+	public Set<IKategorie> getKategorien() {
 		return kategorien;
 	}
 
-	public void setKategorien(Set<Kategorie> kategorien) {
+	public void setKategorien(Set<IKategorie> kategorien) {
 		this.kategorien = kategorien;
 	}
 

@@ -1,19 +1,19 @@
 package projekt.fhv.teama.classes;
 
-import projekt.fhv.teama.classes.zimmer.Kategorie;
+import projekt.fhv.teama.classes.zimmer.IKategorie;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Kategoriekontingent {
+public class Kategoriekontingent implements IKategoriekontigent {
 	private int ID;
-	private Kategorie kategorie;
-	private Kontingent kontingent;
+	private IKategorie kategorie;
+	private IKontingent kontingent;
 	private int anzahl;
 	private int verfuegbar;
 
-	public Kategoriekontingent(Kategorie kategorie, Kontingent kontingent, int anzahl, int verfuegbar) {
+	public Kategoriekontingent(IKategorie kategorie, IKontingent kontingent, int anzahl, int verfuegbar) {
 
 		this.kategorie = kategorie;
 		this.kontingent = kontingent;
@@ -25,27 +25,29 @@ public class Kategoriekontingent {
 
 	}
 
+	@Override
 	public int getID() {
 		return ID;
 	}
 
+	@Override
 	public void setID(int iD) {
 		ID = iD;
 	}
 
-	public Kategorie getKategorie() {
+	public IKategorie getKategorie() {
 		return kategorie;
 	}
 
-	public void setKategorie(Kategorie kategorie) {
+	public void setKategorie(IKategorie kategorie) {
 		this.kategorie = kategorie;
 	}
 
-	public Kontingent getKontingent() {
+	public IKontingent getKontingent() {
 		return kontingent;
 	}
 
-	public void setKontingent(Kontingent kontingent) {
+	public void setKontingent(IKontingent kontingent) {
 		this.kontingent = kontingent;
 	}
 
@@ -67,8 +69,8 @@ public class Kategoriekontingent {
 
 	@Override
 	public String toString() {
-		return "Kategoriekontingent [ID=" + ID + ", kategorie=" + kategorie + ", kontingent=" + kontingent.getID()
-				+ ", anzahl=" + anzahl + ", verfuegbar=" + verfuegbar + "]";
+		return "Kategoriekontingent [ID=" + ID + ", kategorie=" + kategorie.getBezeichnung() + ", kontingent="
+				+ kontingent.getID() + ", anzahl=" + anzahl + ", verfuegbar=" + verfuegbar + "]";
 	}
 
 	@Override
@@ -77,10 +79,8 @@ public class Kategoriekontingent {
 		int result = 1;
 		result = prime * result + ID;
 		result = prime * result + anzahl;
-		// result = prime * result + ((kategorie == null) ? 0 :
-		// kategorie.hashCode());
-		// result = prime * result + ((kontingent == null) ? 0 :
-		// kontingent.hashCode());
+		result = prime * result + ((kategorie == null) ? 0 : kategorie.getBeschreibung().hashCode());
+		result = prime * result + ((kontingent == null) ? 0 : kontingent.getID());
 		result = prime * result + verfuegbar;
 		return result;
 	}
