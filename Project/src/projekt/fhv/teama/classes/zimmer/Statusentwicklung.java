@@ -1,48 +1,57 @@
 package projekt.fhv.teama.classes.zimmer;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Statusentwicklung {
+public class Statusentwicklung implements IStatusentwicklung {
 
-	private Zimmer zimmer;
-	private Zimmerstatus zimmerStatus;
-	private Timestamp von;
-	private Timestamp bis;
+	private int ID;
+	private IZimmer zimmer;
+	private IZimmerstatus zimmerStatus;
+	private Date von;
+	private Date bis;
 	private String beschreibung;
+	
+	public int getID() {
+		return ID;
+	}
 
-	public Zimmer getZimmer() {
+	public void setID(int iD) {
+		ID = iD;
+	}
+	
+	public IZimmer getZimmer() {
 		return zimmer;
 	}
 
-	public void setZimmer(Zimmer zimmer) {
+	public void setZimmer(IZimmer zimmer) {
 		this.zimmer = zimmer;
 	}
 
-	public Zimmerstatus getZimmerStatus() {
+	public IZimmerstatus getZimmerStatus() {
 		return zimmerStatus;
 	}
 
-	public void setZimmerStatus(Zimmerstatus zimmerStatus) {
+	public void setZimmerStatus(IZimmerstatus zimmerStatus) {
 		this.zimmerStatus = zimmerStatus;
 	}
 
-	public Timestamp getVon() {
+	public Date getVon() {
 		return von;
 	}
 
-	public void setVon(Timestamp von) {
+	public void setVon(Date von) {
 		this.von = von;
 	}
 
-	public Timestamp getBis() {
+	public Date getBis() {
 		return bis;
 	}
 
-	public void setBis(Timestamp bis) {
+	public void setBis(Date bis) {
 		this.bis = bis;
 	}
 
@@ -58,8 +67,7 @@ public class Statusentwicklung {
 
 	}
 
-	public Statusentwicklung(Zimmer zimmer, Zimmerstatus zimmerStatus,
-			Timestamp von, Timestamp bis, String beschreibung) {
+	public Statusentwicklung(IZimmer zimmer, IZimmerstatus zimmerStatus, Date von, Date bis, String beschreibung) {
 		super();
 		this.zimmer = zimmer;
 		this.zimmerStatus = zimmerStatus;
@@ -70,22 +78,19 @@ public class Statusentwicklung {
 
 	@Override
 	public String toString() {
-		return "Statusentwicklung [zimmer=" + zimmer + ", zimmerStatus="
-				+ zimmerStatus + ", von=" + von + ", bis=" + bis
-				+ ", beschreibung=" + beschreibung + "]";
+		return "Statusentwicklung [zimmer=" + zimmer + ", zimmerStatus=" + zimmerStatus + ", von=" + von + ", bis="
+				+ bis + ", beschreibung=" + beschreibung + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((beschreibung == null) ? 0 : beschreibung.hashCode());
+		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
 		result = prime * result + ((von == null) ? 0 : von.hashCode());
 		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
-		result = prime * result
-				+ ((zimmerStatus == null) ? 0 : zimmerStatus.hashCode());
+		result = prime * result + ((zimmerStatus == null) ? 0 : zimmerStatus.hashCode());
 		return result;
 	}
 
@@ -125,5 +130,4 @@ public class Statusentwicklung {
 			return false;
 		return true;
 	}
-
 }

@@ -3,7 +3,7 @@ package projekt.fhv.teama.classes;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.hibernate.dao.IDao;
 
-public interface IKategoriekontigent extends IDao {
+public interface IKategoriekontingent extends IDao {
 	
 	public IKategorie getKategorie();
 

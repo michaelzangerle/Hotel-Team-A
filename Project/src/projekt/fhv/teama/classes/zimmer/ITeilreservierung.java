@@ -7,6 +7,6 @@ public interface ITeilreservierung extends IDao {
 	public IReservierung getReservierung();
 	public void setKategorie(IKategorie kat);
 	public IKategorie getKategorie();
-	public void setAnzhal(int anzhal);
+	public void setAnzahl(int anzhal);
 	public int getAnzahl();
 }

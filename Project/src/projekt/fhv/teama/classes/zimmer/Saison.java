@@ -1,21 +1,22 @@
 package projekt.fhv.teama.classes.zimmer;
 
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Saison {
+public class Saison implements ISaison {
 
 	private int ID;
 	private String bezeichnung;
-	private Timestamp von;
-	private Timestamp bis;
-	private Set<Zimmerpreis> zimmerpreise;
+	private Date von;
+	private Date bis;
+	private Set<IZimmerpreis> zimmerpreise = new HashSet<IZimmerpreis>();
 
-	public Saison(String bezeichnung, Timestamp von, Timestamp bis, Set<Zimmerpreis> zimmerpreise) {
+	public Saison(String bezeichnung, Date von, Date bis, Set<IZimmerpreis> zimmerpreise) {
 
 		this.bezeichnung = bezeichnung;
 		this.von = von;
@@ -43,29 +44,29 @@ public class Saison {
 		this.bezeichnung = bezeichnung;
 	}
 
-	public Timestamp getVon() {
+	public Date getVon() {
 		return von;
 	}
 
-	public void setVon(Timestamp von) {
+	public void setVon(Date von) {
 		this.von = von;
 	}
 
-	public Timestamp getBis() {
+	public Date getBis() {
 		return bis;
 	}
 
-	public void setBis(Timestamp bis) {
+	public void setBis(Date bis) {
 		this.bis = bis;
 	}
 
 
 
-	public Set<Zimmerpreis> getZimmerpreise() {
+	public Set<IZimmerpreis> getZimmerpreise() {
 		return zimmerpreise;
 	}
 
-	public void setZimmerpreise(Set<Zimmerpreis> zimmerpreise) {
+	public void setZimmerpreise(Set<IZimmerpreis> zimmerpreise) {
 		this.zimmerpreise = zimmerpreise;
 	}
 
@@ -119,6 +120,20 @@ public class Saison {
 		} else if (!zimmerpreise.equals(other.zimmerpreise))
 			return false;
 		return true;
+	}
+
+	@Override
+	public void addZimmerpreis(IZimmerpreis zimmerpreis) {
+		this.zimmerpreise.add(zimmerpreis);
+		
+	}
+
+	@Override
+	public void removeZimmerpreis(IZimmerpreis zimmerpreis) {
+		if(this.zimmerpreise.contains(zimmerpreis)){
+			this.zimmerpreise.remove(zimmerpreis);
+		}
+		
 	}
 
 }

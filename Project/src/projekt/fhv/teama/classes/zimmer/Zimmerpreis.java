@@ -6,14 +6,14 @@ import java.io.Serializable;
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Zimmerpreis implements Serializable {
+public class Zimmerpreis implements Serializable,IZimmerpreis {
 	private static final long serialVersionUID = 1L;
 	private int ID;
-	private Saison saison;
-	private Kategorie kategorie;
+	private ISaison saison;
+	private IKategorie kategorie;
 	private float preis;
 
-	public Zimmerpreis(Saison saison, Kategorie kategorie, float preis) {
+	public Zimmerpreis(ISaison saison, IKategorie kategorie, float preis) {
 		this.saison = saison;
 		this.kategorie = kategorie;
 		this.preis = preis;
@@ -31,19 +31,19 @@ public class Zimmerpreis implements Serializable {
 		ID = iD;
 	}
 
-	public Saison getSaison() {
+	public ISaison getSaison() {
 		return saison;
 	}
 
-	public void setSaison(Saison saison) {
+	public void setSaison(ISaison saison) {
 		this.saison = saison;
 	}
 
-	public Kategorie getKategorie() {
+	public IKategorie getKategorie() {
 		return kategorie;
 	}
 
-	public void setKategorie(Kategorie kategorie) {
+	public void setKategorie(IKategorie kategorie) {
 		this.kategorie = kategorie;
 	}
 
@@ -65,9 +65,9 @@ public class Zimmerpreis implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-//		result = prime * result + ((kategorie == null) ? 0 : kategorie.hashCode());
+		result = prime * result + ((kategorie == null) ? 0 : kategorie.getBezeichnung().hashCode());
 		result = prime * result + Float.floatToIntBits(preis);
-//		result = prime * result + ((saison == null) ? 0 : saison.hashCode());
+		result = prime * result + ((saison == null) ? 0 : saison.getBezeichnung().hashCode());
 		return result;
 	}
 

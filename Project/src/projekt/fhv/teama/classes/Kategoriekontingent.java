@@ -6,7 +6,7 @@ import projekt.fhv.teama.classes.zimmer.IKategorie;
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Kategoriekontingent implements IKategoriekontigent {
+public class Kategoriekontingent implements IKategoriekontingent {
 	private int ID;
 	private IKategorie kategorie;
 	private IKontingent kontingent;
@@ -25,12 +25,10 @@ public class Kategoriekontingent implements IKategoriekontigent {
 
 	}
 
-	@Override
 	public int getID() {
 		return ID;
 	}
 
-	@Override
 	public void setID(int iD) {
 		ID = iD;
 	}

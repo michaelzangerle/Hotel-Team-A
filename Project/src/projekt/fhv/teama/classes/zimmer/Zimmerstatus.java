@@ -4,8 +4,8 @@ package projekt.fhv.teama.classes.zimmer;
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Zimmerstatus {
-	
+public class Zimmerstatus implements IZimmerstatus {
+
 	private int ID;
 	private String bezeichnung;
 	private String kuerzel;
@@ -33,7 +33,7 @@ public class Zimmerstatus {
 	public void setKuerzel(String kuerzel) {
 		this.kuerzel = kuerzel;
 	}
-	
+
 	public Zimmerstatus() {
 	}
 
@@ -44,8 +44,7 @@ public class Zimmerstatus {
 
 	@Override
 	public String toString() {
-		return "Zimmerstatus [ID=" + ID + ", bezeichnung=" + bezeichnung
-				+ ", kuerzel=" + kuerzel + "]";
+		return "Zimmerstatus [ID=" + ID + ", bezeichnung=" + bezeichnung + ", kuerzel=" + kuerzel + "]";
 	}
 
 	@Override
@@ -53,8 +52,7 @@ public class Zimmerstatus {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ID;
-		result = prime * result
-				+ ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
+		result = prime * result + ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
 		result = prime * result + ((kuerzel == null) ? 0 : kuerzel.hashCode());
 		return result;
 	}
@@ -83,7 +81,4 @@ public class Zimmerstatus {
 		return true;
 	}
 
-	
-	
-	
 }

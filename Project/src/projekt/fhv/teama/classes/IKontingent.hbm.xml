@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18.04.2012 17:27:05 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.IKontingent" table="IKONTINGENT" abstract="true">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="von" type="java.sql.Date">
+            <column name="VON" />
+        </property>
+        <property name="bis" type="java.sql.Date">
+            <column name="BIS" />
+        </property>
+        <property name="kondition" type="short">
+            <column name="KONDITION" />
+        </property>
+        <property name="ueberbuchungsgrenze" type="short">
+            <column name="UEBERBUCHUNGSGRENZE" />
+        </property>
+        <many-to-one name="vertragspartner" class="projekt.fhv.teama.classes.personen.IVertragspartner" fetch="join">
+            <column name="VERTRAGSPARTNER" />
+        </many-to-one>
+        <set name="kategorien" table="IKATEGORIE" inverse="false" lazy="true">
+            <key></key>
+            <one-to-many class="projekt.fhv.teama.classes.zimmer.IKategorie" />
+        </set>
+    </class>
+</hibernate-mapping>

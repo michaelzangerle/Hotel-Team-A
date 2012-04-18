@@ -7,14 +7,14 @@ package projekt.fhv.teama.classes.zimmer;
  * @author mike
  * 
  */
-public class Teilreservierung {
+public class Teilreservierung implements ITeilreservierung {
 
 	private int ID;
-	private Kategorie kategorie;
-	private Reservierung reservierung;
+	private IKategorie kategorie;
+	private IReservierung reservierung;
 	private int anzahl;
 
-	public Teilreservierung(Kategorie kategorie, Reservierung reservierung, int anzahl) {
+	public Teilreservierung(IKategorie kategorie, IReservierung reservierung, int anzahl) {
 
 		this.kategorie = kategorie;
 		this.reservierung = reservierung;
@@ -33,19 +33,19 @@ public class Teilreservierung {
 		ID = iD;
 	}
 
-	public Kategorie getKategorie() {
+	public IKategorie getKategorie() {
 		return kategorie;
 	}
 
-	public void setKategorie(Kategorie kategorie) {
+	public void setKategorie(IKategorie kategorie) {
 		this.kategorie = kategorie;
 	}
 
-	public Reservierung getReservierung() {
+	public IReservierung getReservierung() {
 		return reservierung;
 	}
 
-	public void setReservierung(Reservierung reservierung) {
+	public void setReservierung(IReservierung reservierung) {
 		this.reservierung = reservierung;
 	}
 
@@ -99,5 +99,4 @@ public class Teilreservierung {
 			return false;
 		return true;
 	}
-
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 18.04.2012 16:39:42 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 18.04.2012 17:27:05 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.zimmer.IZimmerStatus" table="IZIMMERSTATUS" abstract="true">
+    <class name="projekt.fhv.teama.classes.IPfandTyp" table="IPFANDTYP" abstract="true">
         <id name="id" type="java.lang.Long">
             <column name="ID" />
             <generator class="assigned" />
@@ -11,8 +11,8 @@
         <property name="bezeichnung" type="java.lang.String">
             <column name="BEZEICHNUNG" />
         </property>
-        <property name="kuerzel" type="java.lang.String">
-            <column name="KUERZEL" />
+        <property name="beschreibung" type="java.lang.String">
+            <column name="BESCHREIBUNG" />
         </property>
     </class>
 </hibernate-mapping>

@@ -1,41 +1,38 @@
 package projekt.fhv.teama.classes.zimmer;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import projekt.fhv.teama.classes.Kategoriekontingent;
+import projekt.fhv.teama.classes.IKategoriekontingent;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Kategorie {
+public class Kategorie implements IKategorie {
 
 	private int ID;
 	private String bezeichnung;
 	private String beschreibung;
-	private Set<Zimmerpreis> zimmerpreise;
-	private Set<Teilreservierung> teilreservierungsreservierungen;
-	private Set<Kategoriekontingent> kategoriekontingent;
-	
+	private Set<IZimmerpreis> zimmerpreise = new HashSet<IZimmerpreis>();
+	private Set<ITeilreservierung> teilreservierungsreservierungen = new HashSet<ITeilreservierung>();
+	private Set<IKategoriekontingent> kategoriekontingent = new HashSet<IKategoriekontingent>();
+	private Set<IZimmer> zimmer = new HashSet<IZimmer>();
 
-	public Set<Kategoriekontingent> getKategoriekontingent() {
-		return kategoriekontingent;
-	}
+	public Kategorie(String bezeichnung, String beschreibung, Set<IZimmerpreis> zimmerpreise,
+			Set<ITeilreservierung> teilreservierungsreservierungen, Set<IKategoriekontingent> kategoriekontingent,
+			Set<IZimmer> zimmer) {
 
-	public void setKategoriekontingent(Set<Kategoriekontingent> kategoriekontingent) {
-		this.kategoriekontingent = kategoriekontingent;
-	}
-
-	public Kategorie(String bezeichnung, String beschreibung, Set<Zimmerpreis> zimmerpreise,
-			Set<Teilreservierung> teilreservierungsreservierungen, Set<Kategoriekontingent> kategoriekontingent) {
 		this.bezeichnung = bezeichnung;
 		this.beschreibung = beschreibung;
 		this.zimmerpreise = zimmerpreise;
 		this.teilreservierungsreservierungen = teilreservierungsreservierungen;
 		this.kategoriekontingent = kategoriekontingent;
+		this.zimmer = zimmer;
 	}
 
 	public Kategorie() {
+
 	}
 
 	public int getID() {
@@ -62,28 +59,44 @@ public class Kategorie {
 		this.beschreibung = beschreibung;
 	}
 
-	public Set<Zimmerpreis> getZimmerpreise() {
+	public Set<IZimmerpreis> getZimmerpreise() {
 		return zimmerpreise;
 	}
 
-	public void setZimmerpreise(Set<Zimmerpreis> zimmerpreise) {
+	public void setZimmerpreise(Set<IZimmerpreis> zimmerpreise) {
 		this.zimmerpreise = zimmerpreise;
 	}
 
-	
-	public Set<Teilreservierung> getTeilreservierungsreservierungen() {
+	public Set<ITeilreservierung> getTeilreservierungsreservierungen() {
 		return teilreservierungsreservierungen;
 	}
 
-	public void setTeilreservierungsreservierungen(Set<Teilreservierung> teilreservierungsreservierungen) {
+	public void setTeilreservierungsreservierungen(Set<ITeilreservierung> teilreservierungsreservierungen) {
 		this.teilreservierungsreservierungen = teilreservierungsreservierungen;
+	}
+
+	public Set<IKategoriekontingent> getKategoriekontingent() {
+		return kategoriekontingent;
+	}
+
+	public void setKategoriekontingent(Set<IKategoriekontingent> kategoriekontingent) {
+		this.kategoriekontingent = kategoriekontingent;
+	}
+
+	public Set<IZimmer> getZimmer() {
+		return zimmer;
+	}
+
+	public void setZimmer(Set<IZimmer> zimmer) {
+		this.zimmer = zimmer;
 	}
 
 	@Override
 	public String toString() {
 		return "Kategorie [ID=" + ID + ", bezeichnung=" + bezeichnung + ", beschreibung=" + beschreibung
 				+ ", zimmerpreise=" + zimmerpreise + ", teilreservierungsreservierungen="
-				+ teilreservierungsreservierungen + ", kategoriekontingent=" + kategoriekontingent + "]";
+				+ teilreservierungsreservierungen + ", kategoriekontingent=" + kategoriekontingent + ", zimmer="
+				+ zimmer + "]";
 	}
 
 	@Override
@@ -96,6 +109,7 @@ public class Kategorie {
 		result = prime * result + ((kategoriekontingent == null) ? 0 : kategoriekontingent.hashCode());
 		result = prime * result
 				+ ((teilreservierungsreservierungen == null) ? 0 : teilreservierungsreservierungen.hashCode());
+		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
 		result = prime * result + ((zimmerpreise == null) ? 0 : zimmerpreise.hashCode());
 		return result;
 	}
@@ -131,12 +145,58 @@ public class Kategorie {
 				return false;
 		} else if (!teilreservierungsreservierungen.equals(other.teilreservierungsreservierungen))
 			return false;
+		if (zimmer == null) {
+			if (other.zimmer != null)
+				return false;
+		} else if (!zimmer.equals(other.zimmer))
+			return false;
 		if (zimmerpreise == null) {
 			if (other.zimmerpreise != null)
 				return false;
 		} else if (!zimmerpreise.equals(other.zimmerpreise))
 			return false;
 		return true;
+	}
+
+	@Override
+	public void addZimmer(IZimmer zimmer) {
+		this.zimmer.add(zimmer);
+
+	}
+
+	@Override
+	public void removeZimmer(IZimmer zimmer) {
+		if (this.zimmerpreise.contains(zimmer)) {
+			this.zimmerpreise.remove(zimmer);
+		}
+
+	}
+
+	@Override
+	public void addZimmerpreis(IZimmerpreis zimmerpreis) {
+		this.zimmerpreise.add(zimmerpreis);
+
+	}
+
+	@Override
+	public void removeZimmerpreis(IZimmerpreis zimmerpreis) {
+		if (this.zimmerpreise.contains(zimmerpreis)) {
+			this.zimmerpreise.remove(zimmerpreis);
+		}
+	}
+
+	@Override
+	public void addTeilreservierung(ITeilreservierung teilreservierung) {
+		this.teilreservierungsreservierungen.add(teilreservierung);
+
+	}
+
+	@Override
+	public void removeTeilreservierung(ITeilreservierung teilreservierung) {
+		if (this.teilreservierungsreservierungen.contains(teilreservierung)) {
+			this.teilreservierungsreservierungen.remove(teilreservierung);
+		}
+
 	}
 
 }

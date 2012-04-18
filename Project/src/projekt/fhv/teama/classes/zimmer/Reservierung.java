@@ -1,32 +1,33 @@
 package projekt.fhv.teama.classes.zimmer;
 
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
-import projekt.fhv.teama.classes.personen.Gast;
-import projekt.fhv.teama.classes.personen.Person;
-import projekt.fhv.teama.classes.personen.Vertragspartner;
+import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.personen.IPerson;
+import projekt.fhv.teama.classes.personen.IVertragspartner;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Reservierung {
-	
+public class Reservierung implements IReservierung {
+
 	private int ID;
-	private Timestamp von;
-	private Timestamp bis;
-	private Person person;
-	private Vertragspartner vertragspartner;
+	private Date von;
+	private Date bis;
+	private IPerson person;
+	private IVertragspartner vertragspartner;
 
-	private Set<ReservierungsOption> optionen;
-	private Set<Zimmer> zimmer;
-	private Set<Gast> gaeste;
-	private Set<Teilreservierung> teilreservierungen;
+	private Set<IReservierungsOption> optionen = new HashSet<IReservierungsOption>();
+	private Set<IZimmer> zimmer = new HashSet<IZimmer>();
+	private Set<IGast> gaeste = new HashSet<IGast>();
+	private Set<ITeilreservierung> teilreservierungen = new HashSet<ITeilreservierung>();
 
-	public Reservierung(Timestamp von, Timestamp bis, Person person, Vertragspartner vertragspartner,
-			Set<ReservierungsOption> optionen, Set<Zimmer> zimmer, Set<Gast> gaeste,
-			Set<Teilreservierung> teilreservierungen) {
+	public Reservierung(Date von, Date bis, IPerson person, IVertragspartner vertragspartner,
+			Set<IReservierungsOption> optionen, Set<IZimmer> zimmer, Set<IGast> gaeste,
+			Set<ITeilreservierung> teilreservierungen) {
 		this.von = von;
 		this.bis = bis;
 		this.person = person;
@@ -48,67 +49,67 @@ public class Reservierung {
 		ID = iD;
 	}
 
-	public Timestamp getVon() {
+	public Date getVon() {
 		return von;
 	}
 
-	public void setVon(Timestamp von) {
+	public void setVon(Date von) {
 		this.von = von;
 	}
 
-	public Timestamp getBis() {
+	public Date getBis() {
 		return bis;
 	}
 
-	public void setBis(Timestamp bis) {
+	public void setBis(Date bis) {
 		this.bis = bis;
 	}
 
-	public Person getPerson() {
+	public IPerson getPerson() {
 		return person;
 	}
 
-	public void setPerson(Person person) {
+	public void setPerson(IPerson person) {
 		this.person = person;
 	}
 
-	public Vertragspartner getVertragspartner() {
+	public IVertragspartner getVertragspartner() {
 		return vertragspartner;
 	}
 
-	public void setVertragspartner(Vertragspartner vertragspartner) {
+	public void setVertragspartner(IVertragspartner vertragspartner) {
 		this.vertragspartner = vertragspartner;
 	}
 
-	public Set<ReservierungsOption> getOptionen() {
+	public Set<IReservierungsOption> getOptionen() {
 		return optionen;
 	}
 
-	public void setOptionen(Set<ReservierungsOption> optionen) {
+	public void setOptionen(Set<IReservierungsOption> optionen) {
 		this.optionen = optionen;
 	}
 
-	public Set<Zimmer> getZimmer() {
+	public Set<IZimmer> getZimmer() {
 		return zimmer;
 	}
 
-	public void setZimmer(Set<Zimmer> zimmer) {
+	public void setZimmer(Set<IZimmer> zimmer) {
 		this.zimmer = zimmer;
 	}
 
-	public Set<Gast> getGaeste() {
+	public Set<IGast> getGaeste() {
 		return gaeste;
 	}
 
-	public void setGaeste(Set<Gast> gaeste) {
+	public void setGaeste(Set<IGast> gaeste) {
 		this.gaeste = gaeste;
 	}
 
-	public Set<Teilreservierung> getTeilreservierungen() {
+	public Set<ITeilreservierung> getTeilreservierungen() {
 		return teilreservierungen;
 	}
 
-	public void setTeilreservierungen(Set<Teilreservierung> teilreservierungen) {
+	public void setTeilreservierungen(Set<ITeilreservierung> teilreservierungen) {
 		this.teilreservierungen = teilreservierungen;
 	}
 
@@ -189,4 +190,43 @@ public class Reservierung {
 		return true;
 	}
 
+	@Override
+	public void addZimmer(IZimmer zimmer) {
+		this.zimmer.add(zimmer);
+
+	}
+
+	@Override
+	public void removeZimmer(IZimmer zimmer) {
+		if (this.zimmer.contains(zimmer)) {
+			this.zimmer.remove(zimmer);
+		}
+
+	}
+
+	@Override
+	public void addGast(IGast gast) {
+		this.gaeste.add(gast);
+
+	}
+
+	@Override
+	public void removeGast(IGast gast) {
+		if (this.gaeste.contains(gast)) {
+			this.gaeste.remove(gast);
+		}
+	}
+
+		@Override
+	public void addOption(IReservierungsOption option) {
+		this.optionen.add(option);
+
+	}
+
+	@Override
+	public void removeOption(IReservierungsOption option) {
+		if(this.optionen.contains(option)){
+			this.optionen.remove(option);
+		}
+	}
 }

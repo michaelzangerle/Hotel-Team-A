@@ -1,38 +1,39 @@
 package projekt.fhv.teama.classes.zimmer;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import projekt.fhv.teama.classes.Aufenthalt;
-import projekt.fhv.teama.classes.personen.Gast;
-import projekt.fhv.teama.classes.rechnung.Rechnungsposition;
+import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Zimmer {
+public class Zimmer implements IZimmer {
 
 	private int ID;
 	private String nummer;
 	private String beschreibung;
-	private Kategorie kategorie;
-	private Zimmerstatus zimmerStatus;
+	private IKategorie kategorie;
+	private IZimmerstatus zimmerstatus;
 
 	/* Beziehungen */
 
-	private Set<Reservierung> reservierungen;
-	private Set<Statusentwicklung> statusenticklungen;
-	private Set<Gast> gaeste;
-	private Set<Aufenthalt> aufenthalte;
-	private Set<Rechnungsposition> rechnungspositionen;
+	private Set<IReservierung> reservierungen = new HashSet<IReservierung>();
+	private Set<IStatusentwicklung> statusenticklungen = new HashSet<IStatusentwicklung>();
+	private Set<IGast> gaeste = new HashSet<IGast>();
+	private Set<IAufenthalt> aufenthalte = new HashSet<IAufenthalt>();
+	private Set<IRechnungsposition> rechnungspositionen = new HashSet<IRechnungsposition>();
 
-	public Zimmer(String nummer, String beschreibung, Kategorie kategorie, Zimmerstatus zimmerStatus,
-			Set<Reservierung> reservierungen, Set<Statusentwicklung> statusenticklungen, Set<Gast> gaeste,
-			Set<Aufenthalt> aufenthalte, Set<Rechnungsposition> rechnungspositionen) {
+	public Zimmer(String nummer, String beschreibung, IKategorie kategorie, IZimmerstatus zimmerStatus,
+			Set<IReservierung> reservierungen, Set<IStatusentwicklung> statusenticklungen, Set<IGast> gaeste,
+			Set<IAufenthalt> aufenthalte, Set<IRechnungsposition> rechnungspositionen) {
 		this.nummer = nummer;
 		this.beschreibung = beschreibung;
 		this.kategorie = kategorie;
-		this.zimmerStatus = zimmerStatus;
+		this.zimmerstatus = zimmerStatus;
 		this.reservierungen = reservierungen;
 		this.statusenticklungen = statusenticklungen;
 		this.gaeste = gaeste;
@@ -41,7 +42,7 @@ public class Zimmer {
 	}
 
 	public Zimmer() {
-		
+
 	}
 
 	public int getID() {
@@ -68,66 +69,66 @@ public class Zimmer {
 		this.beschreibung = beschreibung;
 	}
 
-	public Kategorie getKategorie() {
+	public IKategorie getKategorie() {
 		return kategorie;
 	}
 
-	public void setKategorie(Kategorie kategorie) {
+	public void setKategorie(IKategorie kategorie) {
 		this.kategorie = kategorie;
 	}
 
-	public Zimmerstatus getZimmerStatus() {
-		return zimmerStatus;
+	public IZimmerstatus getZimmerstatus() {
+		return zimmerstatus;
 	}
 
-	public void setZimmerStatus(Zimmerstatus zimmerStatus) {
-		this.zimmerStatus = zimmerStatus;
+	public void setZimmerstatus(IZimmerstatus zimmerStatus) {
+		this.zimmerstatus = zimmerStatus;
 	}
 
-	public Set<Reservierung> getReservierungen() {
+	public Set<IReservierung> getReservierungen() {
 		return reservierungen;
 	}
 
-	public void setReservierungen(Set<Reservierung> reservierungen) {
+	public void setReservierungen(Set<IReservierung> reservierungen) {
 		this.reservierungen = reservierungen;
 	}
 
-	public Set<Statusentwicklung> getStatusenticklungen() {
+	public Set<IStatusentwicklung> getStatusentwicklungen() {
 		return statusenticklungen;
 	}
 
-	public void setStatusenticklungen(Set<Statusentwicklung> statusenticklungen) {
+	public void setStatusenticklungen(Set<IStatusentwicklung> statusenticklungen) {
 		this.statusenticklungen = statusenticklungen;
 	}
 
-	public Set<Gast> getGaeste() {
+	public Set<IGast> getGaeste() {
 		return gaeste;
 	}
 
-	public void setGaeste(Set<Gast> gaeste) {
+	public void setGaeste(Set<IGast> gaeste) {
 		this.gaeste = gaeste;
 	}
 
-	public Set<Aufenthalt> getAufenthalte() {
+	public Set<IAufenthalt> getAufenthalte() {
 		return aufenthalte;
 	}
 
-	public void setAufenthalte(Set<Aufenthalt> aufenthalte) {
+	public void setAufenthalte(Set<IAufenthalt> aufenthalte) {
 		this.aufenthalte = aufenthalte;
 	}
 
-	public Set<Rechnungsposition> getRechnungspositionen() {
+	public Set<IRechnungsposition> getRechnungspositionen() {
 		return rechnungspositionen;
 	}
 
-	public void setRechnungspositionen(Set<Rechnungsposition> rechnungspositionen) {
+	public void setRechnungspositionen(Set<IRechnungsposition> rechnungspositionen) {
 		this.rechnungspositionen = rechnungspositionen;
 	}
 
 	@Override
 	public String toString() {
 		return "Zimmer [ID=" + ID + ", nummer=" + nummer + ", beschreibung=" + beschreibung + ", kategorie="
-				+ kategorie + ", zimmerStatus=" + zimmerStatus + ", reservierungen=" + reservierungen
+				+ kategorie + ", zimmerStatus=" + zimmerstatus + ", reservierungen=" + reservierungen
 				+ ", statusenticklungen=" + statusenticklungen + ", gaeste=" + gaeste + ", aufenthalte=" + aufenthalte
 				+ ", rechnungspositionen=" + rechnungspositionen + "]";
 	}
@@ -145,7 +146,7 @@ public class Zimmer {
 		result = prime * result + ((rechnungspositionen == null) ? 0 : rechnungspositionen.hashCode());
 		result = prime * result + ((reservierungen == null) ? 0 : reservierungen.hashCode());
 		result = prime * result + ((statusenticklungen == null) ? 0 : statusenticklungen.hashCode());
-		result = prime * result + ((zimmerStatus == null) ? 0 : zimmerStatus.hashCode());
+		result = prime * result + ((zimmerstatus == null) ? 0 : zimmerstatus.hashCode());
 		return result;
 	}
 
@@ -200,12 +201,66 @@ public class Zimmer {
 				return false;
 		} else if (!statusenticklungen.equals(other.statusenticklungen))
 			return false;
-		if (zimmerStatus == null) {
-			if (other.zimmerStatus != null)
+		if (zimmerstatus == null) {
+			if (other.zimmerstatus != null)
 				return false;
-		} else if (!zimmerStatus.equals(other.zimmerStatus))
+		} else if (!zimmerstatus.equals(other.zimmerstatus))
 			return false;
 		return true;
 	}
 
+	@Override
+	public void addReservierung(IReservierung res) {
+		this.reservierungen.add(res);
+
+	}
+
+	@Override
+	public void removeReservierung(IReservierung res) {
+		if (this.reservierungen.contains(res)) {
+			this.reservierungen.remove(res);
+		}
+
+	}
+
+	@Override
+	public void addAufenthalt(IAufenthalt aufenthalt) {
+		this.aufenthalte.add(aufenthalt);
+	}
+
+	@Override
+	public void removeAufenthalt(IAufenthalt aufenthalt) {
+		if (this.aufenthalte.contains(aufenthalt)) {
+			this.aufenthalte.remove(aufenthalt);
+		}
+
+	}
+
+	@Override
+	public void addRechungsposition(IRechnungsposition rechnungsposition) {
+		this.rechnungspositionen.add(rechnungsposition);
+
+	}
+
+	@Override
+	public void removeRechnungsposition(IRechnungsposition rechnungsposition) {
+		if (this.rechnungspositionen.contains(rechnungsposition)) {
+			this.rechnungspositionen.remove(rechnungsposition);
+		}
+
+	}
+
+	@Override
+	public void addGast(IGast gast) {
+		this.gaeste.add(gast);
+
+	}
+
+	@Override
+	public void removeGast(IGast gast) {
+		if (this.gaeste.contains(gast)) {
+			this.gaeste.remove(gast);
+		}
+
+	}
 }

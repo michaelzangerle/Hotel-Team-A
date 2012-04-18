@@ -6,14 +6,14 @@ import java.sql.Date;
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class ReservierungsOption {
+public class ReservierungsOption implements IReservierungsOption {
 	private int ID;
 	private Date erfuellung;
 	private short prozentsatz;
 	private boolean erfuellt;
-	private Reservierung reservierung;
+	private IReservierung reservierung;
 
-	public ReservierungsOption(Date date, short prozentsatz, boolean erfuellt, Reservierung reservierung) {
+	public ReservierungsOption(Date date, short prozentsatz, boolean erfuellt, IReservierung reservierung) {
 		this.erfuellung = date;
 		this.prozentsatz = prozentsatz;
 		this.erfuellt = erfuellt;
@@ -56,11 +56,11 @@ public class ReservierungsOption {
 		this.erfuellt = erfuellt;
 	}
 
-	public Reservierung getReservierung() {
+	public IReservierung getReservierung() {
 		return reservierung;
 	}
 
-	public void setReservierung(Reservierung reservierung) {
+	public void setReservierung(IReservierung reservierung) {
 		this.reservierung = reservierung;
 	}
 
