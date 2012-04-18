@@ -1,4 +1,4 @@
-package projekt.fhv.teama.classes.rechnung;
+package projekt.fhv.teama.classes.personen;
 
 import projekt.fhv.teama.hibernate.dao.IDao;
 

@@ -3,40 +3,57 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 13.04.2012 16:39:38 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.rechnung.Rechnungsposition" table="RECHNUNGSPOSITION">
-        <id name="ID" type="int">
-            <column name="rechnungspostionID" />
-            <generator class="native" />
-        </id>
-        <property name="erstellung" type="java.util.Date">
-            <column name="ERSTELLUNG" />
-        </property>
-        <property name="anzahl" type="int">
-            <column name="ANZAHL" />
-        </property>
-        <property name="einzelpreis" type="float">
-            <column name="EINZELPREIS" />
-        </property>
-        <property name="summe" type="float">
-            <column name="SUMME" />
-        </property>
-        <property name="steuersatz" type="short">
-            <column name="STEUERSATZ" />
-        </property>
-        <property name="beglichen" type="boolean">
-            <column name="BEGLICHEN" />
-        </property>
-        <many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
-            <column name="ZIMMER" />
-        </many-to-one>
-        <many-to-one name="rechnung" class="projekt.fhv.teama.classes.rechnung.Rechnung" fetch="join">
-            <column name="RECHNUNG" />
-        </many-to-one>
-        <many-to-one name="leistung" class="projekt.fhv.teama.classes.leistungen.Leistung" fetch="join">
-            <column name="LEISTUNG" />
-        </many-to-one>
-        <many-to-one name="gast" class="projekt.fhv.teama.classes.personen.Gast" fetch="join">
-            <column name="GAST" />
-        </many-to-one>
-    </class>
+	<class name="projekt.fhv.teama.classes.rechnung.Rechnungsposition"
+		table="RECHNUNGSPOSITION">
+
+		<id name="ID" type="int">
+			<column name="rechnungspostionID" />
+			<generator class="native" />
+		</id>
+
+		<property name="erstellung" type="java.sql.Date">
+			<column name="ERSTELLUNG" />
+		</property>
+
+		<property name="anzahl" type="int">
+			<column name="ANZAHL" />
+		</property>
+
+		<property name="einzelpreis" type="float">
+			<column name="EINZELPREIS" />
+		</property>
+
+		<property name="summe" type="float">
+			<column name="SUMME" />
+		</property>
+
+		<property name="steuersatz" type="short">
+			<column name="STEUERSATZ" />
+		</property>
+
+		<property name="beglichen" type="boolean">
+			<column name="BEGLICHEN" />
+		</property>
+
+		<many-to-one name="zimmer"
+			class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
+			<column name="ZIMMER" />
+		</many-to-one>
+		
+		<many-to-one name="rechnung"
+			class="projekt.fhv.teama.classes.rechnung.Rechnung" fetch="join">
+			<column name="RECHNUNG" />
+		</many-to-one>
+		
+		<many-to-one name="leistung"
+			class="projekt.fhv.teama.classes.leistungen.Leistung" fetch="join">
+			<column name="LEISTUNG" />
+		</many-to-one>
+		
+		<many-to-one name="gast"
+			class="projekt.fhv.teama.classes.personen.Gast" fetch="join">
+			<column name="GAST" />
+		</many-to-one>
+		
+	</class>
 </hibernate-mapping>

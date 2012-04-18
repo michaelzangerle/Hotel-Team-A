@@ -1,6 +1,5 @@
 package projekt.fhv.teama.classes.rechnung;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,30 +7,27 @@ import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 09.04.12
- * Time: 22:23
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
+ * this template use File | Settings | File Templates.
  */
-public class Rechnung implements IRechnung{
-    private int ID;
-    private String bezahlerVorname;
-    private String bezahlerNachname;
-    private String bezahlerStrasse;
-    private String bezahlerOrt;
-    private String bezahlerPLZ;
-    private float summe;
-    private String nummer;
-    private IMitarbeiter mitarbeiter;
-    private ILand bezahlerLand;
-    
-    private Set<IRechnungsposition> rechnungspositionen = new HashSet<IRechnungsposition>();
-    private Set<ITeilzahlung> teilzahlungen = new HashSet<ITeilzahlung>();
-    
-	public Rechnung(String bezahlerVorname, String bezahlerNachname, String bezahlerStrasse,
-			String bezahlerOrt, String bezahlerPLZ, float summe, String nummer, IMitarbeiter mitarbeiter,
-			ILand bezahlerLand, Set<IRechnungsposition> rechnungspostitionen, Set<ITeilzahlung> teilzahlungen) {
+public class Rechnung implements IRechnung {
+	private int ID;
+	private String bezahlerVorname;
+	private String bezahlerNachname;
+	private String bezahlerStrasse;
+	private String bezahlerOrt;
+	private String bezahlerPLZ;
+	private float summe;
+	private String nummer;
+	private IMitarbeiter mitarbeiter;
+	private ILand bezahlerLand;
+
+	private Set<IRechnungsposition> rechnungspositionen = new HashSet<IRechnungsposition>();
+	private Set<ITeilzahlung> teilzahlungen = new HashSet<ITeilzahlung>();
+
+	public Rechnung(String bezahlerVorname, String bezahlerNachname, String bezahlerStrasse, String bezahlerOrt,
+			String bezahlerPLZ, float summe, String nummer, IMitarbeiter mitarbeiter, ILand bezahlerLand,
+			Set<IRechnungsposition> rechnungspostitionen, Set<ITeilzahlung> teilzahlungen) {
 
 		this.bezahlerVorname = bezahlerVorname;
 		this.bezahlerNachname = bezahlerNachname;
@@ -45,81 +41,107 @@ public class Rechnung implements IRechnung{
 		this.rechnungspositionen = rechnungspostitionen;
 		this.teilzahlungen = teilzahlungen;
 	}
+
 	public Rechnung() {
 
 	}
+
 	public int getID() {
 		return ID;
 	}
+
 	public void setID(int iD) {
 		ID = iD;
 	}
+
 	public String getBezahlerVorname() {
 		return bezahlerVorname;
 	}
+
 	public void setBezahlerVorname(String bezahlerVorname) {
 		this.bezahlerVorname = bezahlerVorname;
 	}
+
 	public String getBezahlerNachname() {
 		return bezahlerNachname;
 	}
+
 	public void setBezahlerNachname(String bezahlerNachname) {
 		this.bezahlerNachname = bezahlerNachname;
 	}
+
 	public String getBezahlerStrasse() {
 		return bezahlerStrasse;
 	}
+
 	public void setBezahlerStrasse(String bezahlerStrasse) {
 		this.bezahlerStrasse = bezahlerStrasse;
 	}
+
 	public String getBezahlerOrt() {
 		return bezahlerOrt;
 	}
+
 	public void setBezahlerOrt(String bezahlerOrt) {
 		this.bezahlerOrt = bezahlerOrt;
 	}
+
 	public String getBezahlerPLZ() {
 		return bezahlerPLZ;
 	}
+
 	public void setBezahlerPLZ(String bezahlerPLZ) {
 		this.bezahlerPLZ = bezahlerPLZ;
 	}
+
 	public float getSumme() {
 		return summe;
 	}
+
 	public void setSumme(float summe) {
 		this.summe = summe;
 	}
+
 	public String getNummer() {
 		return nummer;
 	}
+
 	public void setNummer(String nummer) {
 		this.nummer = nummer;
 	}
+
 	public IMitarbeiter getMitarbeiter() {
 		return mitarbeiter;
 	}
+
 	public void setMitarbeiter(IMitarbeiter mitarbeiter) {
 		this.mitarbeiter = mitarbeiter;
 	}
+
 	public ILand getBezahlerLand() {
 		return bezahlerLand;
 	}
+
 	public void setBezahlerLand(ILand bezahlerLand) {
 		this.bezahlerLand = bezahlerLand;
 	}
+
 	public Set<IRechnungsposition> getRechnungspositionen() {
 		return rechnungspositionen;
 	}
+
 	public void setRechnungspostitionen(Set<IRechnungsposition> rechnungspositionen) {
 		this.rechnungspositionen = rechnungspositionen;
 	}
+
 	public Set<ITeilzahlung> getTeilzahlungen() {
 		return teilzahlungen;
 	}
+
 	public void setTeilzahlungen(Set<ITeilzahlung> teilzahlungen) {
 		this.teilzahlungen = teilzahlungen;
 	}
+
 	@Override
 	public String toString() {
 		return "Rechnung [ID=" + ID + ", bezahlerVorname=" + bezahlerVorname + ", bezahlerNachname=" + bezahlerNachname
@@ -128,6 +150,7 @@ public class Rechnung implements IRechnung{
 				+ ", bezahlerLand=" + bezahlerLand + ", rechnungspostitionen=" + rechnungspositionen
 				+ ", teilzahlungen=" + teilzahlungen + "]";
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -146,6 +169,7 @@ public class Rechnung implements IRechnung{
 		result = prime * result + ((teilzahlungen == null) ? 0 : teilzahlungen.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -211,30 +235,33 @@ public class Rechnung implements IRechnung{
 			return false;
 		return true;
 	}
+
 	@Override
 	public void addRechnungsposition(IRechnungsposition rePos) {
 		this.rechnungspositionen.add(rePos);
-		
+
 	}
+
 	@Override
 	public void removeRechnungsposition(IRechnungsposition rePos) {
-		if(this.rechnungspositionen.contains(rePos)){
+		if (this.rechnungspositionen.contains(rePos)) {
 			this.rechnungspositionen.remove(rePos);
 		}
-		
+
 	}
+
 	@Override
 	public void addTeilzahlung(ITeilzahlung teilzahl) {
 		this.teilzahlungen.add(teilzahl);
-		
+
 	}
+
 	@Override
 	public void removeTeilzahlung(ITeilzahlung teilzahl) {
-		if(this.teilzahlungen.contains(teilzahl)){
+		if (this.teilzahlungen.contains(teilzahl)) {
 			this.teilzahlungen.remove(teilzahl);
 		}
-		
+
 	}
-    
-	
+
 }

@@ -67,7 +67,7 @@ public class ReservierungsOption implements IReservierungsOption {
 	@Override
 	public String toString() {
 		return "Option [ID=" + ID + ", erfuellung=" + erfuellung + ", prozentsatz=" + prozentsatz + ", erfuellt="
-				+ erfuellt + ", reservierung=" + reservierung + "]";
+				+ erfuellt + ", reservierung=" + reservierung.getID() + "]";
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class ReservierungsOption implements IReservierungsOption {
 		result = prime * result + (erfuellt ? 1231 : 1237);
 		result = prime * result + ((erfuellung == null) ? 0 : erfuellung.hashCode());
 		result = prime * result + prozentsatz;
-		result = prime * result + ((reservierung == null) ? 0 : reservierung.hashCode());
+		result = prime * result + ((reservierung == null) ? 0 : reservierung.getID());
 		return result;
 	}
 
@@ -105,7 +105,7 @@ public class ReservierungsOption implements IReservierungsOption {
 		if (reservierung == null) {
 			if (other.reservierung != null)
 				return false;
-		} else if (!reservierung.equals(other.reservierung))
+		} else if (reservierung.getID() != other.reservierung.getID())
 			return false;
 		return true;
 	}

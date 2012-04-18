@@ -1,10 +1,8 @@
 package projekt.fhv.teama.classes;
 
-import java.util.Set;
 import java.sql.Date;
 
 import projekt.fhv.teama.classes.personen.IVertragspartner;
-import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.hibernate.dao.IDao;
 
 public interface IKontingent extends IDao {
@@ -29,7 +27,4 @@ public interface IKontingent extends IDao {
 
 	public IVertragspartner getVertragspartner();
 
-	public Set<IKategorie> getKategorien();
-
-	public void setKategorien(Set<IKategorie> kategorien);
 }

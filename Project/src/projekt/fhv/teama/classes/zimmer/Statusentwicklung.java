@@ -78,7 +78,7 @@ public class Statusentwicklung implements IStatusentwicklung {
 
 	@Override
 	public String toString() {
-		return "Statusentwicklung [zimmer=" + zimmer + ", zimmerStatus=" + zimmerStatus + ", von=" + von + ", bis="
+		return "Statusentwicklung [zimmer=" + zimmer.getID() + ", zimmerStatus=" + zimmerStatus.getBezeichnung() + ", von=" + von + ", bis="
 				+ bis + ", beschreibung=" + beschreibung + "]";
 	}
 
@@ -89,8 +89,8 @@ public class Statusentwicklung implements IStatusentwicklung {
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
 		result = prime * result + ((von == null) ? 0 : von.hashCode());
-		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
-		result = prime * result + ((zimmerStatus == null) ? 0 : zimmerStatus.hashCode());
+		result = prime * result + ((zimmer == null) ? 0 : zimmer.getID());
+		result = prime * result + ((zimmerStatus == null) ? 0 : zimmerStatus.getBezeichnung().hashCode());
 		return result;
 	}
 
@@ -121,12 +121,12 @@ public class Statusentwicklung implements IStatusentwicklung {
 		if (zimmer == null) {
 			if (other.zimmer != null)
 				return false;
-		} else if (!zimmer.equals(other.zimmer))
+		} else if (zimmer.getID() != other.zimmer.getID())
 			return false;
 		if (zimmerStatus == null) {
 			if (other.zimmerStatus != null)
 				return false;
-		} else if (!zimmerStatus.equals(other.zimmerStatus))
+		} else if (!zimmerStatus.getBezeichnung().equals(other.zimmerStatus.getBezeichnung()))
 			return false;
 		return true;
 	}

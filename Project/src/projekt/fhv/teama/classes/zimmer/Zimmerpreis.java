@@ -7,7 +7,9 @@ import java.io.Serializable;
  * this template use File | Settings | File Templates.
  */
 public class Zimmerpreis implements Serializable,IZimmerpreis {
+	
 	private static final long serialVersionUID = 1L;
+	
 	private int ID;
 	private ISaison saison;
 	private IKategorie kategorie;
@@ -85,14 +87,14 @@ public class Zimmerpreis implements Serializable,IZimmerpreis {
 		if (kategorie == null) {
 			if (other.kategorie != null)
 				return false;
-		} else if (!kategorie.equals(other.kategorie))
+		} else if (kategorie.getID() != other.kategorie.getID())
 			return false;
 		if (Float.floatToIntBits(preis) != Float.floatToIntBits(other.preis))
 			return false;
 		if (saison == null) {
 			if (other.saison != null)
 				return false;
-		} else if (!saison.equals(other.saison))
+		} else if (saison.getID() != other.saison.getID())
 			return false;
 		return true;
 	}

@@ -99,12 +99,12 @@ public class Kategoriekontingent implements IKategoriekontingent {
 		if (kategorie == null) {
 			if (other.kategorie != null)
 				return false;
-		} else if (!kategorie.equals(other.kategorie))
+		} else if (!kategorie.getBezeichnung().equals(other.kategorie.getBezeichnung()))
 			return false;
 		if (kontingent == null) {
 			if (other.kontingent != null)
 				return false;
-		} else if (!kontingent.equals(other.kontingent))
+		} else if (kontingent.getID() != other.kontingent.getID())
 			return false;
 		if (verfuegbar != other.verfuegbar)
 			return false;

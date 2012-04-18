@@ -18,6 +18,14 @@
 			<column name="BESCHREIBUNG" />
 		</property>
 
+		<set name="teilreservierung" table="TEILRESERVIERUNG"
+			inverse="false" lazy="true">
+			<key>
+				<column name="teilreservierungID" />
+			</key>
+			<one-to-many class="projekt.fhv.teama.classes.zimmer.Teilreservierung" />
+		</set>
+
 		<set name="zimmerpreise" table="ZIMMERPREIS">
 			<key column="zimmerpreisID" />
 			<one-to-many class="projekt.fhv.teama.classes.zimmer.Zimmerpreis" />

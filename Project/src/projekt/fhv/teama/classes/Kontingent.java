@@ -1,35 +1,33 @@
 package projekt.fhv.teama.classes;
 
 import java.sql.Date;
-import java.util.Set;
 
 import projekt.fhv.teama.classes.personen.IVertragspartner;
-import projekt.fhv.teama.classes.zimmer.IKategorie;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
 public class Kontingent implements IKontingent {
+	
 	private int ID;
 	private Date von;
 	private Date bis;
 	private short kondition;
 	private short ueberbuchungsgrenze;
 	private IVertragspartner vertragspartner;
-	private Set<IKategorie> kategorien;
 
-	public Kontingent(Date von, Date bis, short kondition, short ueberbuchungsgrenze, IVertragspartner vertragspartner,
-			Set<IKategorie> kategorien) {
+	public Kontingent(Date von, Date bis, short kondition, short ueberbuchungsgrenze,
+			IVertragspartner vertragspartner) {
 		this.von = von;
 		this.bis = bis;
 		this.kondition = kondition;
 		this.ueberbuchungsgrenze = ueberbuchungsgrenze;
 		this.vertragspartner = vertragspartner;
-		this.kategorien = kategorien;
 	}
 
 	public Kontingent() {
+
 	}
 
 	public int getID() {
@@ -80,19 +78,10 @@ public class Kontingent implements IKontingent {
 		this.vertragspartner = vertragspartner;
 	}
 
-	public Set<IKategorie> getKategorien() {
-		return kategorien;
-	}
-
-	public void setKategorien(Set<IKategorie> kategorien) {
-		this.kategorien = kategorien;
-	}
-
 	@Override
 	public String toString() {
 		return "Kontingent [ID=" + ID + ", von=" + von + ", bis=" + bis + ", kondition=" + kondition
-				+ ", ueberbuchungsgrenze=" + ueberbuchungsgrenze + ", vertragspartner=" + vertragspartner.getName()
-				+ ", kategorien=" + kategorien + "]";
+				+ ", ueberbuchungsgrenze=" + ueberbuchungsgrenze + ", vertragspartner=" + vertragspartner.getName() + "]";
 	}
 
 	@Override
@@ -101,7 +90,6 @@ public class Kontingent implements IKontingent {
 		int result = 1;
 		result = prime * result + ID;
 		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
-		result = prime * result + ((kategorien == null) ? 0 : kategorien.hashCode());
 		result = prime * result + kondition;
 		result = prime * result + ueberbuchungsgrenze;
 		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.getName().hashCode());
@@ -125,11 +113,6 @@ public class Kontingent implements IKontingent {
 				return false;
 		} else if (!bis.equals(other.bis))
 			return false;
-		if (kategorien == null) {
-			if (other.kategorien != null)
-				return false;
-		} else if (!kategorien.equals(other.kategorien))
-			return false;
 		if (kondition != other.kondition)
 			return false;
 		if (ueberbuchungsgrenze != other.ueberbuchungsgrenze)
@@ -137,7 +120,7 @@ public class Kontingent implements IKontingent {
 		if (vertragspartner == null) {
 			if (other.vertragspartner != null)
 				return false;
-		} else if (!vertragspartner.equals(other.vertragspartner))
+		} else if (vertragspartner.getID() != other.vertragspartner.getID())
 			return false;
 		if (von == null) {
 			if (other.von != null)
@@ -146,5 +129,4 @@ public class Kontingent implements IKontingent {
 			return false;
 		return true;
 	}
-
 }

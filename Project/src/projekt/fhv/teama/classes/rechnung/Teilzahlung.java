@@ -56,7 +56,7 @@ public class Teilzahlung implements ITeilzahlung {
 
 	@Override
 	public String toString() {
-		return "Teilzahlung [ID=" + ID + ", rechnung=" + rechnung + ", betrag=" + betrag + ", zahlungsmethoden="
+		return "Teilzahlung [ID=" + ID + ", rechnung=" + rechnung.getID() + ", betrag=" + betrag + ", zahlungsmethoden="
 				+ zahlungsmethoden + "]";
 	}
 
@@ -80,7 +80,7 @@ public class Teilzahlung implements ITeilzahlung {
 		int result = 1;
 		result = prime * result + ID;
 		result = prime * result + Float.floatToIntBits(betrag);
-		result = prime * result + ((rechnung == null) ? 0 : rechnung.hashCode());
+		result = prime * result + ((rechnung == null) ? 0 : rechnung.getID());
 		result = prime * result + ((zahlungsmethoden == null) ? 0 : zahlungsmethoden.hashCode());
 		return result;
 	}
@@ -101,7 +101,7 @@ public class Teilzahlung implements ITeilzahlung {
 		if (rechnung == null) {
 			if (other.rechnung != null)
 				return false;
-		} else if (!rechnung.equals(other.rechnung))
+		} else if (rechnung.getID() != other.rechnung.getID())
 			return false;
 		if (zahlungsmethoden == null) {
 			if (other.zahlungsmethoden != null)

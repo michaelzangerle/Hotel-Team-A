@@ -6,8 +6,8 @@
 	<class name="projekt.fhv.teama.classes.rechnung.Teilzahlung"
 		table="TEILZAHLUNG">
 
-		<id name="zahlungsmethodeID" type="int">
-			<column name="ID" />
+		<id name="ID" type="int">
+			<column name="zahlungsmethodeID" />
 			<generator class="native" />
 		</id>
 
@@ -17,7 +17,7 @@
 		</many-to-one>
 
 		<property name="betrag" type="float">
-			<column name="BETRAG" sql-type="NUMERIC" />
+			<column name="BETRAG" sql-type="DECIMAL" />
 		</property>
 
 		<set name="zahlungsmethoden" table="IZAHLUNGSMETHODE" inverse="false"

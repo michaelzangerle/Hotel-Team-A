@@ -6,14 +6,14 @@ import java.util.Set;
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
+import projekt.fhv.teama.classes.leistungen.Leistung;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Zimmer implements IZimmer {
+public class Zimmer extends Leistung implements IZimmer {
 
-	private int ID;
 	private String nummer;
 	private String beschreibung;
 	private IKategorie kategorie;
@@ -27,9 +27,10 @@ public class Zimmer implements IZimmer {
 	private Set<IAufenthalt> aufenthalte = new HashSet<IAufenthalt>();
 	private Set<IRechnungsposition> rechnungspositionen = new HashSet<IRechnungsposition>();
 
-	public Zimmer(String nummer, String beschreibung, IKategorie kategorie, IZimmerstatus zimmerStatus,
+	public Zimmer(String nummer,String bezeichnung, String beschreibung, IKategorie kategorie, IZimmerstatus zimmerStatus,
 			Set<IReservierung> reservierungen, Set<IStatusentwicklung> statusenticklungen, Set<IGast> gaeste,
 			Set<IAufenthalt> aufenthalte, Set<IRechnungsposition> rechnungspositionen) {
+		super(bezeichnung);
 		this.nummer = nummer;
 		this.beschreibung = beschreibung;
 		this.kategorie = kategorie;
@@ -46,11 +47,11 @@ public class Zimmer implements IZimmer {
 	}
 
 	public int getID() {
-		return ID;
+		return getID();
 	}
 
 	public void setID(int iD) {
-		ID = iD;
+		setID(iD);
 	}
 
 	public String getNummer() {
@@ -127,8 +128,8 @@ public class Zimmer implements IZimmer {
 
 	@Override
 	public String toString() {
-		return "Zimmer [ID=" + ID + ", nummer=" + nummer + ", beschreibung=" + beschreibung + ", kategorie="
-				+ kategorie + ", zimmerStatus=" + zimmerstatus + ", reservierungen=" + reservierungen
+		return "Zimmer [ID=" + getID() + ", nummer=" + nummer + ", beschreibung=" + beschreibung + ", kategorie="
+				+ kategorie.getBezeichnung() + ", zimmerStatus=" + zimmerstatus.getBezeichnung() + ", reservierungen=" + reservierungen
 				+ ", statusenticklungen=" + statusenticklungen + ", gaeste=" + gaeste + ", aufenthalte=" + aufenthalte
 				+ ", rechnungspositionen=" + rechnungspositionen + "]";
 	}
@@ -137,7 +138,7 @@ public class Zimmer implements IZimmer {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID;
+		result = prime * result + getID();
 		result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
@@ -159,7 +160,7 @@ public class Zimmer implements IZimmer {
 		if (getClass() != obj.getClass())
 			return false;
 		Zimmer other = (Zimmer) obj;
-		if (ID != other.ID)
+		if (getID() != other.getID())
 			return false;
 		if (aufenthalte == null) {
 			if (other.aufenthalte != null)
@@ -179,7 +180,7 @@ public class Zimmer implements IZimmer {
 		if (kategorie == null) {
 			if (other.kategorie != null)
 				return false;
-		} else if (!kategorie.equals(other.kategorie))
+		} else if (!kategorie.getBezeichnung().equals(other.kategorie.getBezeichnung()))
 			return false;
 		if (nummer == null) {
 			if (other.nummer != null)
@@ -204,7 +205,7 @@ public class Zimmer implements IZimmer {
 		if (zimmerstatus == null) {
 			if (other.zimmerstatus != null)
 				return false;
-		} else if (!zimmerstatus.equals(other.zimmerstatus))
+		} else if (!zimmerstatus.getBezeichnung().equals(other.zimmerstatus.getBezeichnung()))
 			return false;
 		return true;
 	}

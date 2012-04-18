@@ -158,7 +158,7 @@ public class Rechnungsposition implements IRechnungsposition {
 		result = prime * result
 				+ ((leistung == null) ? 0 : leistung.hashCode());
 		result = prime * result
-				+ ((rechnung == null) ? 0 : rechnung.hashCode());
+				+ ((rechnung == null) ? 0 : rechnung.getID());
 		result = prime * result + steuersatz;
 		result = prime * result + Float.floatToIntBits(summe);
 		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
@@ -201,7 +201,7 @@ public class Rechnungsposition implements IRechnungsposition {
 		if (rechnung == null) {
 			if (other.rechnung != null)
 				return false;
-		} else if (!rechnung.equals(other.rechnung))
+		} else if (rechnung.getID() != other.rechnung.getID())
 			return false;
 		if (steuersatz != other.steuersatz)
 			return false;
@@ -216,8 +216,10 @@ public class Rechnungsposition implements IRechnungsposition {
 	}
 
 	@Override
-    public String toString() {
-        return "javaapplication10.Rechnungsposition[ rechnungspositionID=" + ID + " ]";
-    }
+	public String toString() {
+		return "Rechnungsposition [ID=" + ID + ", erstellung=" + erstellung + ", anzahl=" + anzahl + ", einzelpreis="
+				+ einzelpreis + ", summe=" + summe + ", steuersatz=" + steuersatz + ", beglichen=" + beglichen
+				+ ", zimmer=" + zimmer + ", rechnung=" + rechnung.getID() + ", leistung=" + leistung + ", gast=" + gast + "]";
+	}
 
 }

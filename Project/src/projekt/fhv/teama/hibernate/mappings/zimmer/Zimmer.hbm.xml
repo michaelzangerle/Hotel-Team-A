@@ -3,12 +3,9 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 18.04.2012 14:32:57 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="projekt.fhv.teama.classes.zimmer.Zimmer" table="ZIMMER">
-		
-		<id name="ID" type="int">
-			<column name="ID" />
-			<generator class="assigned" />
-		</id>
+	<joined-subclass name="projekt.fhv.teama.classes.zimmer.Zimmer" extends="projekt.fhv.teama.classes.leistungen.Leistung" table="Zimmer" lazy="false">
+        
+        <key column="leistungID" />
 		
 		<property name="nummer" type="java.lang.String">
 			<column name="NUMMER" />
@@ -67,5 +64,5 @@
 			<one-to-many class="projekt.fhv.teama.classes.rechnung.Rechnungsposition" />
 		</set>
 		
-	</class>
+	</joined-subclass>
 </hibernate-mapping>

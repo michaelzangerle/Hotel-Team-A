@@ -2,7 +2,7 @@ package projekt.fhv.teama.classes.personen;
 
 import java.util.Set;
 
-import projekt.fhv.teama.classes.rechnung.IKontodaten;
+import projekt.fhv.teama.classes.personen.IKontodaten;
 import projekt.fhv.teama.hibernate.dao.IDao;
 
 public interface IVertragspartner extends IDao {

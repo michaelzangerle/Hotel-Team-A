@@ -6,10 +6,9 @@
 	<class name="projekt.fhv.teama.classes.zimmer.Statusentwicklung"
 		table="STATUSENTWICKLUNG">
 
-		<id name="zimmer" type="projekt.fhv.teama.classes.zimmer.Zimmer">
-			<column name="ZIMMERID" />
-			<column name="ZIMMERSTATUSID" />
-			<column name="VON" sql-type="DATE" />
+		<id name="ID" type="projekt.fhv.teama.classes.zimmer.Statusentwicklung">
+			<column name="statusentwicklungID" />
+			<generator class="native"/>
 		</id>
 
 		<many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">

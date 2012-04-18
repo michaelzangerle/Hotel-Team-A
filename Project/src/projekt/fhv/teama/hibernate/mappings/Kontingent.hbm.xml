@@ -30,12 +30,5 @@
             <column name="VERTRAGSPARTNER" />
         </many-to-one>
         
-        <set name="kategorien" table="KATEGORIE" inverse="false" lazy="true">
-            <key>
-                <column name="ID" />
-            </key>
-            <one-to-many class="projekt.fhv.teama.classes.zimmer.Kategorie" />
-        </set>
-        
     </class>
 </hibernate-mapping>

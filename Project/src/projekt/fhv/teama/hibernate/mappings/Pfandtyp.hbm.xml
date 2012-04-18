@@ -4,15 +4,19 @@
 <!-- Generated 18.04.2012 15:27:51 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
 	<class name="projekt.fhv.teama.classes.Pfandtyp" table="PFANDTYP">
+		
 		<id name="ID" type="int">
 			<column name="pfandTypID" />
 			<generator class="native" />
 		</id>
+		
 		<property name="bezeichnung" type="java.lang.String">
 			<column name="BEZEICHNUNG" />
 		</property>
+		
 		<property name="beschreibung" type="java.lang.String">
 			<column name="BESCHREIBUNG" />
 		</property>
+		
 	</class>
 </hibernate-mapping>

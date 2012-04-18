@@ -19,7 +19,7 @@ public class Artikel extends Leistung implements IArtikel{
 	}
 	
 	public Artikel() {
-		super();
+
 	}
 
 	public float getPreis() {
