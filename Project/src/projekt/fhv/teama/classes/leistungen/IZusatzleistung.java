@@ -7,8 +7,8 @@ public interface IZusatzleistung extends IDao {
 	public String getBeschreibung();
 	public void setWarengruppe(IWarengruppe warengruppe);
 	public IWarengruppe getWarengruppe();
-	public void setPreis(double preis);
+	public void setPreis(float preis);
 	public double getPreis();
 	public void setExtern(boolean extern);
-	public boolean getExtern();
+	public boolean isExtern();
 }

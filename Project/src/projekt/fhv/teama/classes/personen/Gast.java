@@ -1,6 +1,7 @@
 package projekt.fhv.teama.classes.personen;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -94,6 +95,7 @@ public class Gast extends Person {
 
 	public Zimmer getZimmer() {
 		return zimmer;
+		
 	}
 
 	public void setZimmer(Zimmer zimmer) {
