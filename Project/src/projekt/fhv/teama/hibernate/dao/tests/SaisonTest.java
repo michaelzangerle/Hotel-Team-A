@@ -5,8 +5,6 @@ package projekt.fhv.teama.hibernate.dao.tests;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
-
 import projekt.fhv.teama.classes.zimmer.Saison;
 import projekt.fhv.teama.hibernate.dao.zimmer.SaisonDao;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;

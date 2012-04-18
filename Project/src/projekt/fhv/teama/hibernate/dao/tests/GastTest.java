@@ -1,7 +1,5 @@
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import java.util.Date;
-
 import projekt.fhv.teama.classes.personen.Adresse;
 import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.Kontodaten;

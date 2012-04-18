@@ -3,8 +3,6 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import java.util.List;
-
 import projekt.fhv.teama.classes.rechnung.Zahlungsmethode;
 import projekt.fhv.teama.hibernate.dao.rechnung.ZahlungsmethodeDao;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;

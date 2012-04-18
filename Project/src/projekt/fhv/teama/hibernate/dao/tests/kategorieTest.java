@@ -3,8 +3,6 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import java.util.List;
-
 import projekt.fhv.teama.classes.zimmer.Kategorie;
 import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
