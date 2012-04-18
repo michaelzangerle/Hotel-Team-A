@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18.04.2012 16:39:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.zimmer.Teilreservierung" table="TEILRESERVIERUNG">
+        <id name="ID" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="kategorie" class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
+            <column name="KATEGORIE" />
+        </many-to-one>
+        <many-to-one name="reservierung" class="projekt.fhv.teama.classes.zimmer.Reservierung" fetch="join">
+            <column name="RESERVIERUNG" />
+        </many-to-one>
+        <property name="anzahl" type="int">
+            <column name="ANZAHL" />
+        </property>
+    </class>
+</hibernate-mapping>

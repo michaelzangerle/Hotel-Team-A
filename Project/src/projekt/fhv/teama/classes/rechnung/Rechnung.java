@@ -1,10 +1,11 @@
 package projekt.fhv.teama.classes.rechnung;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
-import projekt.fhv.teama.classes.personen.Land;
-import projekt.fhv.teama.classes.personen.Mitarbeiter;
+import projekt.fhv.teama.classes.personen.ILand;
+import projekt.fhv.teama.classes.personen.IMitarbeiter;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,7 +14,7 @@ import projekt.fhv.teama.classes.personen.Mitarbeiter;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Rechnung {
+public class Rechnung implements IRechnung{
     private int ID;
     private String bezahlerVorname;
     private String bezahlerNachname;
@@ -22,15 +23,15 @@ public class Rechnung {
     private String bezahlerPLZ;
     private float summe;
     private String nummer;
-    private Mitarbeiter mitarbeiter;
-    private Land bezahlerLand;
+    private IMitarbeiter mitarbeiter;
+    private ILand bezahlerLand;
     
-    private Set<Rechnungsposition> rechnungspostitionen;
-    private Set<Teilzahlung> teilzahlungen;
+    private Set<IRechnungsposition> rechnungspositionen = new HashSet<IRechnungsposition>();
+    private Set<ITeilzahlung> teilzahlungen = new HashSet<ITeilzahlung>();
     
 	public Rechnung(String bezahlerVorname, String bezahlerNachname, String bezahlerStrasse,
-			String bezahlerOrt, String bezahlerPLZ, float summe, String nummer, Mitarbeiter mitarbeiter,
-			Land bezahlerLand, Set<Rechnungsposition> rechnungspostitionen, Set<Teilzahlung> teilzahlungen) {
+			String bezahlerOrt, String bezahlerPLZ, float summe, String nummer, IMitarbeiter mitarbeiter,
+			ILand bezahlerLand, Set<IRechnungsposition> rechnungspostitionen, Set<ITeilzahlung> teilzahlungen) {
 
 		this.bezahlerVorname = bezahlerVorname;
 		this.bezahlerNachname = bezahlerNachname;
@@ -41,7 +42,7 @@ public class Rechnung {
 		this.nummer = nummer;
 		this.mitarbeiter = mitarbeiter;
 		this.bezahlerLand = bezahlerLand;
-		this.rechnungspostitionen = rechnungspostitionen;
+		this.rechnungspositionen = rechnungspostitionen;
 		this.teilzahlungen = teilzahlungen;
 	}
 	public Rechnung() {
@@ -95,28 +96,28 @@ public class Rechnung {
 	public void setNummer(String nummer) {
 		this.nummer = nummer;
 	}
-	public Mitarbeiter getMitarbeiter() {
+	public IMitarbeiter getMitarbeiter() {
 		return mitarbeiter;
 	}
-	public void setMitarbeiter(Mitarbeiter mitarbeiter) {
+	public void setMitarbeiter(IMitarbeiter mitarbeiter) {
 		this.mitarbeiter = mitarbeiter;
 	}
-	public Land getBezahlerLand() {
+	public ILand getBezahlerLand() {
 		return bezahlerLand;
 	}
-	public void setBezahlerLand(Land bezahlerLand) {
+	public void setBezahlerLand(ILand bezahlerLand) {
 		this.bezahlerLand = bezahlerLand;
 	}
-	public Set<Rechnungsposition> getRechnungspostitionen() {
-		return rechnungspostitionen;
+	public Set<IRechnungsposition> getRechnungspositionen() {
+		return rechnungspositionen;
 	}
-	public void setRechnungspostitionen(Set<Rechnungsposition> rechnungspostitionen) {
-		this.rechnungspostitionen = rechnungspostitionen;
+	public void setRechnungspostitionen(Set<IRechnungsposition> rechnungspositionen) {
+		this.rechnungspositionen = rechnungspositionen;
 	}
-	public Set<Teilzahlung> getTeilzahlungen() {
+	public Set<ITeilzahlung> getTeilzahlungen() {
 		return teilzahlungen;
 	}
-	public void setTeilzahlungen(Set<Teilzahlung> teilzahlungen) {
+	public void setTeilzahlungen(Set<ITeilzahlung> teilzahlungen) {
 		this.teilzahlungen = teilzahlungen;
 	}
 	@Override
@@ -124,7 +125,7 @@ public class Rechnung {
 		return "Rechnung [ID=" + ID + ", bezahlerVorname=" + bezahlerVorname + ", bezahlerNachname=" + bezahlerNachname
 				+ ", bezahlerStrasse=" + bezahlerStrasse + ", bezahlerOrt=" + bezahlerOrt + ", bezahlerPLZ="
 				+ bezahlerPLZ + ", summe=" + summe + ", nummer=" + nummer + ", mitarbeiter=" + mitarbeiter
-				+ ", bezahlerLand=" + bezahlerLand + ", rechnungspostitionen=" + rechnungspostitionen
+				+ ", bezahlerLand=" + bezahlerLand + ", rechnungspostitionen=" + rechnungspositionen
 				+ ", teilzahlungen=" + teilzahlungen + "]";
 	}
 	@Override
@@ -140,9 +141,9 @@ public class Rechnung {
 		result = prime * result + ((bezahlerVorname == null) ? 0 : bezahlerVorname.hashCode());
 		result = prime * result + ((mitarbeiter == null) ? 0 : mitarbeiter.hashCode());
 		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
-//		result = prime * result + ((rechnungspostitionen == null) ? 0 : rechnungspostitionen.hashCode());
+		result = prime * result + ((rechnungspositionen == null) ? 0 : rechnungspositionen.hashCode());
 		result = prime * result + Float.floatToIntBits(summe);
-//		result = prime * result + ((teilzahlungen == null) ? 0 : teilzahlungen.hashCode());
+		result = prime * result + ((teilzahlungen == null) ? 0 : teilzahlungen.hashCode());
 		return result;
 	}
 	@Override
@@ -196,10 +197,10 @@ public class Rechnung {
 				return false;
 		} else if (!nummer.equals(other.nummer))
 			return false;
-		if (rechnungspostitionen == null) {
-			if (other.rechnungspostitionen != null)
+		if (rechnungspositionen == null) {
+			if (other.rechnungspositionen != null)
 				return false;
-		} else if (!rechnungspostitionen.equals(other.rechnungspostitionen))
+		} else if (!rechnungspositionen.equals(other.rechnungspositionen))
 			return false;
 		if (Float.floatToIntBits(summe) != Float.floatToIntBits(other.summe))
 			return false;
@@ -209,6 +210,30 @@ public class Rechnung {
 		} else if (!teilzahlungen.equals(other.teilzahlungen))
 			return false;
 		return true;
+	}
+	@Override
+	public void addRechnungsposition(IRechnungsposition rePos) {
+		this.rechnungspositionen.add(rePos);
+		
+	}
+	@Override
+	public void removeRechnungsposition(IRechnungsposition rePos) {
+		if(this.rechnungspositionen.contains(rePos)){
+			this.rechnungspositionen.remove(rePos);
+		}
+		
+	}
+	@Override
+	public void addTeilzahlung(ITeilzahlung teilzahl) {
+		this.teilzahlungen.add(teilzahl);
+		
+	}
+	@Override
+	public void removeTeilzahlung(ITeilzahlung teilzahl) {
+		if(this.teilzahlungen.contains(teilzahl)){
+			this.teilzahlungen.remove(teilzahl);
+		}
+		
 	}
     
 	

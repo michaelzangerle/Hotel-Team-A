@@ -1,23 +1,19 @@
 package projekt.fhv.teama.classes.rechnung;
 
-import java.util.List;
+import java.util.Set;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 09.04.12
- * Time: 22:23
- * To change this template use File | Settings | File Templates.
+ * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
+ * this template use File | Settings | File Templates.
  */
-public class Teilzahlung {
-    private int ID;
-    private Rechnung rechnung;
-    private float betrag;
-    
-    private List<Zahlungsmethode> zahlungsmethoden;
+public class Teilzahlung implements ITeilzahlung {
+	private int ID;
+	private IRechnung rechnung;
+	private float betrag;
 
-	public Teilzahlung(Rechnung rechnung, float betrag,
-			List<Zahlungsmethode> zahlungsmethoden) {
+	private Set<IZahlungsmethode> zahlungsmethoden;
+
+	public Teilzahlung(IRechnung rechnung, float betrag, Set<IZahlungsmethode> zahlungsmethoden) {
 		this.rechnung = rechnung;
 		this.betrag = betrag;
 		this.zahlungsmethoden = zahlungsmethoden;
@@ -34,11 +30,11 @@ public class Teilzahlung {
 		ID = iD;
 	}
 
-	public Rechnung getRechnung() {
+	public IRechnung getRechnung() {
 		return rechnung;
 	}
 
-	public void setRechnung(Rechnung rechnung) {
+	public void setRechnung(IRechnung rechnung) {
 		this.rechnung = rechnung;
 	}
 
@@ -50,18 +46,32 @@ public class Teilzahlung {
 		this.betrag = betrag;
 	}
 
-	public List<Zahlungsmethode> getZahlungsmethoden() {
+	public Set<IZahlungsmethode> getZahlungsmethoden() {
 		return zahlungsmethoden;
 	}
 
-	public void setZahlungsmethoden(List<Zahlungsmethode> zahlungsmethoden) {
+	public void setZahlungsmethoden(Set<IZahlungsmethode> zahlungsmethoden) {
 		this.zahlungsmethoden = zahlungsmethoden;
 	}
 
 	@Override
 	public String toString() {
-		return "Teilzahlung [ID=" + ID + ", rechnung=" + rechnung + ", betrag="
-				+ betrag + ", zahlungsmethoden=" + zahlungsmethoden + "]";
+		return "Teilzahlung [ID=" + ID + ", rechnung=" + rechnung + ", betrag=" + betrag + ", zahlungsmethoden="
+				+ zahlungsmethoden + "]";
+	}
+
+	@Override
+	public void addZahlungsmethode(IZahlungsmethode zahlungsmethode) {
+		this.zahlungsmethoden.add(zahlungsmethode);
+
+	}
+
+	@Override
+	public void removeZahlungsmethode(IZahlungsmethode zahlungsmethode) {
+		if (this.zahlungsmethoden.contains(zahlungsmethode)) {
+			this.zahlungsmethoden.remove(zahlungsmethode);
+		}
+
 	}
 
 	@Override
@@ -70,11 +80,8 @@ public class Teilzahlung {
 		int result = 1;
 		result = prime * result + ID;
 		result = prime * result + Float.floatToIntBits(betrag);
-		result = prime * result
-				+ ((rechnung == null) ? 0 : rechnung.hashCode());
-		result = prime
-				* result
-				+ ((zahlungsmethoden == null) ? 0 : zahlungsmethoden.hashCode());
+		result = prime * result + ((rechnung == null) ? 0 : rechnung.hashCode());
+		result = prime * result + ((zahlungsmethoden == null) ? 0 : zahlungsmethoden.hashCode());
 		return result;
 	}
 
@@ -104,5 +111,4 @@ public class Teilzahlung {
 		return true;
 	}
 
-	
 }

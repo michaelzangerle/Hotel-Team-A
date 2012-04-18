@@ -17,7 +17,7 @@ public interface IRechnungsposition extends IDao {
 	public void setSteuersatz(short steuersatz);
 	public short getSteuersatz();
 	public float getSumme();
-	public float setSumme(float summe);
+	public void setSumme(float summe);
 	public void setErstellung(Date erstellung);
 	public Date getErstellung();
 	public void setZimmer(IZimmer zimmer);

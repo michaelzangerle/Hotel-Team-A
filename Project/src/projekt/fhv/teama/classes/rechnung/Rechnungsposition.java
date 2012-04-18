@@ -3,17 +3,17 @@
  */
 package projekt.fhv.teama.classes.rechnung;
 
-import java.util.Date;
+import java.sql.Date;
 
-import projekt.fhv.teama.classes.leistungen.Leistung;
-import projekt.fhv.teama.classes.personen.Gast;
-import projekt.fhv.teama.classes.zimmer.Zimmer;
+import projekt.fhv.teama.classes.leistungen.ILeistung;
+import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
 
 /**
  * @author mike
  *
  */
-public class Rechnungsposition {
+public class Rechnungsposition implements IRechnungsposition {
 
     private int ID;
     private Date erstellung;
@@ -22,18 +22,18 @@ public class Rechnungsposition {
     private float summe;
     private short steuersatz;
     private boolean beglichen;
-    private Zimmer zimmer;
-    private Rechnung rechnung;
-    private Leistung leistung;
-    private Gast gast;
+    private IZimmer zimmer;
+    private IRechnung rechnung;
+    private ILeistung leistung;
+    private IGast gast;
 
     public Rechnungsposition() {
     }
 
     public Rechnungsposition(Date erstellung, int anzahl,
 			float einzelpreis, float summe, short steuersatz,
-			boolean beglichen, Zimmer zimmer, Rechnung rechnung,
-			Leistung leistung, Gast gast) {
+			boolean beglichen, IZimmer zimmer, IRechnung rechnung,
+			ILeistung leistung, IGast gast) {
 		this.erstellung = erstellung;
 		this.anzahl = anzahl;
 		this.einzelpreis = einzelpreis;
@@ -48,11 +48,11 @@ public class Rechnungsposition {
 
 
 
-	public Leistung getLeistung() {
+	public ILeistung getLeistung() {
 		return leistung;
 	}
 
-	public void setLeistung(Leistung leistung) {
+	public void setLeistung(ILeistung leistung) {
 		this.leistung = leistung;
 	}
 
@@ -112,35 +112,35 @@ public class Rechnungsposition {
         this.beglichen = beglichen;
     }
 
-    public Zimmer getZimmer() {
+    public IZimmer getZimmer() {
         return zimmer;
     }
 
-    public void setZimmer(Zimmer zimmer) {
+    public void setZimmer(IZimmer zimmer) {
         this.zimmer = zimmer;
     }
 
-    public Rechnung getRechnung() {
+    public IRechnung getRechnung() {
         return rechnung;
     }
 
-    public void setRechnung(Rechnung rechnung) {
+    public void setRechnung(IRechnung rechnung) {
         this.rechnung = rechnung;
     }
 
-    public Leistung getLeistungID() {
+    public ILeistung getLeistungID() {
         return leistung;
     }
 
-    public void setLeistungID(Leistung leistung) {
+    public void setLeistungID(ILeistung leistung) {
         this.leistung = leistung;
     }
 
-    public Gast getGast() {
+    public IGast getGast() {
         return gast;
     }
 
-    public void setGast(Gast gast) {
+    public void setGast(IGast gast) {
         this.gast = gast;
     }
 

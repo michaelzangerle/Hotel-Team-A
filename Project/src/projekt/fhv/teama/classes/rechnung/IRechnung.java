@@ -5,7 +5,6 @@ import java.util.Set;
 
 import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
-import projekt.fhv.teama.classes.personen.Land;
 import projekt.fhv.teama.hibernate.dao.IDao;
 
 public interface IRechnung extends IDao {
@@ -15,7 +14,7 @@ public interface IRechnung extends IDao {
 	public void removeRechnungsposition(IRechnungsposition rePos);
 	public Set<IRechnungsposition> getRechnungspositionen();
 	public void setSumme(float summe);
-	public double getSumme();
+	public float getSumme();
 	public void addTeilzahlung(ITeilzahlung teilzahl);
 	public void removeTeilzahlung(ITeilzahlung teilzahl);
 	public Set<ITeilzahlung> getTeilzahlungen();
@@ -26,11 +25,11 @@ public interface IRechnung extends IDao {
 	public void setBezahlerNachname(String bezahlerNachname);
 	public String getBezahlerNachname();
 	public void setBezahlerStrasse(String bezahlerStrasse);
-	public String getBezahlerStrasser();
+	public String getBezahlerStrasse();
 	public void setBezahlerOrt(String bezahlerOrt);
 	public String getBezahlerOrt();
-	public void setBezahlerPlz(String bezahlerPLZ);
-	public String getBezahlerPlz();
-	public Land getBezahlerLand();
+	public void setBezahlerPLZ(String bezahlerPLZ);
+	public String getBezahlerPLZ();
+	public ILand getBezahlerLand();
 	public void setBezahlerLand(ILand bezahlerLand);
 }
