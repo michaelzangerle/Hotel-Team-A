@@ -1,5 +1,6 @@
 package projekt.fhv.teama.controller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -77,6 +78,42 @@ public class ControllerReservierung implements IControllerReservierung {
 			
 			return null;
 		return null;
+	}
+
+
+
+	@Override
+	public void setVon(Date date) {
+		if(reservierungModel!=null)
+		{
+			reservierungModel.setVon(date);
+		}
+		
+	}
+
+
+
+	@Override
+	public void setBis(Date date) {
+		if(reservierungModel!=null)
+		{
+			reservierungModel.setBis(date);
+		}
+	}
+
+
+
+	@Override
+	public List<IGast> getGaeste() {
+		if(reservierungModel!=null)
+		{
+			List<IGast> list=new Vector<IGast>(reservierungModel.getGaeste());
+			return list;
+		}
+		else {
+			//TODO Exeption
+			return null;
+		}
 	}
 	
 	

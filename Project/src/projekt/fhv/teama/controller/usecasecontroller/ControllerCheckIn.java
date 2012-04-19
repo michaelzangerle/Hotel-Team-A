@@ -11,6 +11,7 @@ import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
+import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IReservierungsOption;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
@@ -19,6 +20,7 @@ import projekt.fhv.teama.classes.zimmer.Zimmer;
 import projekt.fhv.teama.controller.ControllerReservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerAufenthalt;
 import projekt.fhv.teama.controller.interfaces.IControllerGast;
+import projekt.fhv.teama.controller.interfaces.IControllerKategorie;
 import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerTeilreservierung;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
@@ -31,12 +33,15 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	IControllerAufenthalt controllerAufenthalt;
 	IControllerGast controllerGast;
 	IControllerTeilreservierung controllerTeilreservierung;
+	IControllerKategorie controllerKategorie;
+	
 	
 	IAufenthalt aufenthalt=new Aufenthalt();
 	
 	//Variablen
-	
-	
+	private boolean schluessel=false;
+	private float preis=0.0f;
+	private List<IZimmer> zimmer=new Vector<IZimmer>();
 
 	/**
 	 * 
@@ -68,9 +73,8 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	
 	public List<ITeilreservierung> getTeilreservierungen()
 	{
-		List<ITeilreservierung> tres=controllerReservierung.getTeilreservierungen();
-		return tres;
-		
+		return controllerReservierung.getTeilreservierungen();
+
 	}
 	
 	public void setTeilreservierung(ITeilreservierung teilreservierung)
@@ -83,6 +87,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		controllerTeilreservierung.setAktulleTeilreservierung(teilreservierung);
 	}
 	
+	public List<IGast> getGaeste()
+	{
+		return controllerReservierung.getGaeste();
+	}
 	
 	public void setGast(IGast gast)
 	{
@@ -105,37 +113,51 @@ public class ControllerCheckIn implements IControllerCheckIn {
 
 	public void setVon(Date date)
 	{
-		
+		controllerReservierung.setVon( date);
 	}
 	
-	public void setBis(Date bis)
+	public void setBis(Date date)
 	{
-		
+		controllerReservierung.setBis(date);
 		
 	}
 	
 	public void setPreis(float preis)
 	{
-		
+		this.preis=preis;
 	}
 	
 	public void setSchluessel(boolean schluesel)
 	{
+		this.schluessel=schluesel;
+	}
+	
+	public void SetAktuelleKategorie(IKategorie kategorie)
+	{
+		controllerKategorie.setKategorie(kategorie);
 		
 	}
+	
+	public IKategorie getAktuelleKategorie()
+	{
+		return controllerKategorie.getKategorie();
+	}
+	
+	
 	
 	public void saveAufenthalt()
 	{
 		// TODO Muss dynamisch sein
-		float preis=0.0f;
-		Date von=new Date(1);
-		Date bis=new Date(1);
-		boolean schluessel=true;
+		float preis=this.preis;
+		Date von=controllerReservierung.getAktuelleReservierung().getVon();
+		Date bis=controllerReservierung.getAktuelleReservierung().getBis();
+		boolean schluessel=this.schluessel;
 
 		IGast g=controllerGast.getAktuellGast();
 		IGast gast =new Gast(g.getVorname(), g.getNachname(), g.getGeschlecht(), g.getAdressen(), g.getGeburtsdatum(), g.getTelefonnummer(), g.getEmail(), g.getKontodaten(), g.getNummer());		
 		
-		List<IZimmer> zimmer1=new Vector<IZimmer>();
+		List<IZimmer> zimmer1=this.zimmer;
+
 		for (IZimmer zi : zimmer1) {
 			controllerAufenthalt.create(preis, von, bis, schluessel, gast, zi);
 		}
