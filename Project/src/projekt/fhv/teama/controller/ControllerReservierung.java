@@ -1,9 +1,12 @@
 package projekt.fhv.teama.controller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
+import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
+import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
 import projekt.fhv.teama.hibernate.dao.zimmer.IReservierungDao;
 
@@ -13,16 +16,16 @@ import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 public class ControllerReservierung implements IControllerReservierung {
 	
 	
-	IReservierung reservierungModel;
+	private IReservierung reservierungModel;
+	private IReservierungDao reservierungsDao;
 	
-	IReservierungDao reservierungsDao;
+	private List<IReservierung> reservierungen;
 
 	
 	
 	public ControllerReservierung() {
 
 		reservierungsDao=ReservierungDao.getInstance();
-	
 	}
 
 
@@ -41,6 +44,78 @@ public class ControllerReservierung implements IControllerReservierung {
 		return null;
 		
 	}
+	
+	
+	
+	public void setAktuelleReservierung(IReservierung reservierung)
+	{
+		if(reservierungen.contains(reservierung))
+		{
+			reservierungModel=reservierung;
+		}
+		
+	}
+	public IReservierung getAktuelleReservierung()
+	{
+		return reservierungModel;
+	}
+
+
+	@Override
+	public boolean containsGast(IGast gast) {
+		if(reservierungen.contains(gast))
+			return true;
+		else
+		return false;
+	}
+
+
+	@Override
+	public List<ITeilreservierung> getTeilreservierungen() {
+		List<ITeilreservierung>list;
+		if(reservierungModel!=null)
+			//return list= new Vector<ITeilreservierung>(reservierungModel.getTeilreservierungen());
+			
+			return null;
+		return null;
+	}
+
+
+
+	@Override
+	public void setVon(Date date) {
+		if(reservierungModel!=null)
+		{
+			reservierungModel.setVon(date);
+		}
+		
+	}
+
+
+
+	@Override
+	public void setBis(Date date) {
+		if(reservierungModel!=null)
+		{
+			reservierungModel.setBis(date);
+		}
+	}
+
+
+
+	@Override
+	public List<IGast> getGaeste() {
+		if(reservierungModel!=null)
+		{
+			List<IGast> list=new Vector<IGast>(reservierungModel.getGaeste());
+			return list;
+		}
+		else {
+			//TODO Exeption
+			return null;
+		}
+	}
+	
 	
 	
 	
