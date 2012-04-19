@@ -57,13 +57,20 @@ public class ViewMain extends Window implements Application, Bindable {
 	public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 		
 		Label lbReservationDetails = (Label)arg0.get("lbReservationDetails");
-		Border holyCrap = (Border)arg0.get("holyCrap");
-		
+		Border reservationForm01 = (Border)arg0.get("reservationForm01");
+		Border checkInForm01 = (Border)arg0.get("checkInForm01");
+		Border checkInForm02 = (Border)arg0.get("checkInForm02");
+		Border checkInForm03 = (Border)arg0.get("checkInForm03");
+		Border checkInForm04 = (Border)arg0.get("checkInForm04");		
 		BoxPane bpReservation2 = (BoxPane)arg0.get("bpReservation2");
 		Window viewMain = (Window)arg0.get("viewMain");
 		
-		holyCrap.setVisible(false);
-		
+		//reservationForm01.setVisible(true);
+		checkInForm01.setVisible(true);
+		//checkInForm02.setVisible(true);
+		//checkInForm03.setVisible(true);
+		//checkInForm04.setVisible(true);
+				
 		// lbReservationDetails.setText("Jetzt durch Java gesetzt!");
 	}
 

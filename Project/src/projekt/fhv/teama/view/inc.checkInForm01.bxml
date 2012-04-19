@@ -1,13 +1,13 @@
- <view:ViewReservation bxml:id="reservationForm01" xmlns:bxml="http://pivot.apache.org/bxml"
-    xmlns="org.apache.pivot.wtk" styles="{padding:6}" xmlns:view="projekt.fhv.teama.view" visible="false"  >
+ <view:ViewReservation bxml:id="checkInForm01" xmlns:bxml="http://pivot.apache.org/bxml"
+    xmlns="org.apache.pivot.wtk" styles="{padding:6}" xmlns:view="projekt.fhv.teama.view" visible="false">
         <BoxPane bxml:id="bpReservation2" orientation="vertical" styles="{spacing:10, fill:true}">
-            <Label bxml:id="lbReservationDetails" text="Reservation details" styles="$styles.lbHeading1"/>
+            <Label bxml:id="lbVerifyPersonalInformation" text="Check-In: Verify Personal Information" styles="$styles.lbHeading1"/>
+			<Label bxml:id="lbPersonalDetail" text="Personal Detail" />
             <Form bxml:id="form" styles="{showFlagIcons:false}">
                 <Form.Section>
                     <Label bxml:id="sourceLabel" Form.label="Source" styles="{font:{italic:true}}"/> 
                     <Label Form.label="ID" textKey="id"/>
-                    <TextInput Form.label="Name" textKey="name"/>
- 
+                    <TextInput Form.label="Name" textKey="name"/> 
                     <BoxPane Form.label="Address" orientation="vertical">
                         <TextInput textKey="address.street" prompt="Street"/>
                         <BoxPane>
@@ -30,7 +30,7 @@
  
             <Separator/>
  
-            <BoxPane styles="{horizontalAlignment:'left'}">
+            <BoxPane styles="{horizontalAlignment:'right'}">
                 <!-- <PushButton bxml:id="loadJSONButton" buttonData="Load JSON"/> -->
                 <PushButton bxml:id="loadJavaButton" buttonData="Load"/>
                 <PushButton bxml:id="clearButton" buttonData="Clear"/>

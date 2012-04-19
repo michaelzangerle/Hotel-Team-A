@@ -104,7 +104,11 @@
 						<left>
 						<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top', spacing:25, fill:true}">					
 						<FillPane orientation="vertical" styles="{ backgroundColor:'#f2f2f2', spacing:25, padding:{top:5, left:15, bottom:10, right:15} }">							
-						<bxml:include bxml:id="weg" src="inc.reservationForm01.bxml" inline="true" />													
+						<bxml:include bxml:id="mainReservationForm01" src="inc.reservationForm01.bxml" inline="true" />
+					    <bxml:include bxml:id="mainCheckInForm01" src="inc.checkInForm01.bxml" inline="true" />	
+						<bxml:include bxml:id="mainCheckInForm02" src="inc.checkInForm02.bxml" inline="true" />	
+						<bxml:include bxml:id="mainCheckInForm03" src="inc.checkInForm03.bxml" inline="true" />
+						<bxml:include bxml:id="mainCheckInForm05" src="inc.checkInForm04.bxml" inline="true" />														
 						</FillPane>
 						<FillPane orientation="vertical" styles="{spacing:25, padding:{top:5, left:15, bottom:10, right:15} }">	
 						<bxml:include src="inc.occupationPreview.bxml" inline="true" />	
