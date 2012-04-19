@@ -1,6 +1,6 @@
 package projekt.fhv.teama.classes.personen;
 
-public class Kontodaten {
+public class Kontodaten implements IKontodaten {
 	private int ID;
 	private String iban;
     private String bic;

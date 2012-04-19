@@ -19,7 +19,7 @@ public class LandTest {
 		//ld.create(new Land("Schweiz", "CH"));
 		
 		
-		List<Land> laender = ld.getAll();
+		//List<Land> laender = ld.getAll();
 		//Land aut1 = ld.getById(3);
 		Land aut2 = ld.getLandByBez("Österreich");
 		

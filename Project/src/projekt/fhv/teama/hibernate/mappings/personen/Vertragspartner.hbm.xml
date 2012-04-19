@@ -11,7 +11,7 @@
         <property name="name">
             <column name="name" sql-type="varchar" not-null="true"/>
         </property>
-        <property name="telefonnummer">
+        <property name="telefonNummer">
             <column name="telefonnummer" sql-type="varchar" not-null="true"/>
         </property>
         <property name="email">
@@ -24,11 +24,28 @@
 		<many-to-one name="kontodaten"
 			class="projekt.fhv.teama.classes.personen.Kontodaten" column="kontodatenID"
 			not-null="true" unique="true" foreign-key="ID" />
+		
+		<many-to-one name="typ"
+			class="projekt.fhv.teama.classes.personen.VertragspartnerTyp" column="vertragspartnerTypID"
+			not-null="true" foreign-key="ID" />
 			
         <set name="adressen" table="personadresse" cascade="all">
         	<key column="person_personID"/>
         	<many-to-many column="adresse_adresseID" class="projekt.fhv.teama.classes.personen.Adresse"/>
     	</set>
     	
+    	<set name="reservierungen" table="Reservierung" inverse="false" lazy="true">
+            <key>
+                <column name="reservierungID" />
+            </key>
+            <one-to-many class="projekt.fhv.teama.classes.zimmer.Reservierung" />
+        </set>
+        
+        <set name="kontingente" table="kontingent" inverse="false" lazy="true">
+            <key>
+                <column name="kontingentID" />
+            </key>
+            <one-to-many class="projekt.fhv.teama.classes.Kontingent" />
+        </set>
     </class>
 </hibernate-mapping>

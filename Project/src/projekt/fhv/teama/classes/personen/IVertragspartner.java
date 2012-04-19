@@ -19,5 +19,5 @@ public interface IVertragspartner extends IDao {
 	public void addAdresse(IAdresse adresse);
 	public Set<IAdresse> getAdressen();
 	public void removeAdresse(IAdresse adresse);
-	public void setAdressen(Set<Adresse> adresse);
+	public void setAdressen(Set<IAdresse> adresse);
 }
