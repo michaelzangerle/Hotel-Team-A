@@ -9,6 +9,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
 import projekt.fhv.teama.classes.zimmer.Zimmerstatus;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
@@ -18,20 +19,28 @@ import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
  * @author mike
  * 
  */
-public class ZimmerstatusDao extends GenericDao<Zimmerstatus> {
+public class ZimmerstatusDao extends GenericDao<IZimmerstatus> implements IZimmerStatusDao {
 
-	public ZimmerstatusDao() {
+	private static ZimmerstatusDao instance;
+
+	public static IZimmerStatusDao getInstance() {
+		if (instance != null) {
+			instance = new ZimmerstatusDao();
+		}
+		return instance;
+	}
+
+	private ZimmerstatusDao() {
 		super("Zimmerstatus");
 	}
 
-	public Zimmerstatus getZimmerstatus(String statusName) throws NoDatabaseEntryFoundException {
+	public IZimmerstatus getZimmerstatus(String statusName) throws NoDatabaseEntryFoundException {
 
-		Zimmerstatus status = null;
+		IZimmerstatus status = null;
 
 		try {
 			Session session = HibernateHelper.getSession();
-			Query query = session.createQuery("from " + getTable()
-					+ " z where z.bezeichnung = :statusName");
+			Query query = session.createQuery("from " + getTable() + " z where z.bezeichnung = :statusName");
 			query.setString("statusName", statusName);
 
 			@SuppressWarnings("rawtypes")
@@ -40,7 +49,7 @@ public class ZimmerstatusDao extends GenericDao<Zimmerstatus> {
 			if (results.size() == 1) {
 				status = (Zimmerstatus) results.get(0);
 			}
-			
+
 			if (results.size() == 0) {
 				throw new NoDatabaseEntryFoundException();
 			}

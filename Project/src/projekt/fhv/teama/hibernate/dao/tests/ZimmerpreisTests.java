@@ -25,9 +25,9 @@ public class ZimmerpreisTests {
 	 */
 	public static void main(String[] args) throws NoDatabaseEntryFoundException {
 		
-		KategorieDao kd = new KategorieDao();
-		SaisonDao sd = new SaisonDao();
-		ZimmerpreisDao zd = new ZimmerpreisDao();
+//		KategorieDao kd = new KategorieDao();
+//		SaisonDao sd = new SaisonDao();
+//		ZimmerpreisDao zd = new ZimmerpreisDao();
 //		Zimmerpreis z1 = new Zimmerpreis(sd.getById(1), kd.getById(1), 30.50F);
 //		Zimmerpreis z2 = new Zimmerpreis(sd.getById(2), kd.getById(3), 40.50F);
 //		Zimmerpreis z3 = new Zimmerpreis(sd.getById(4), kd.getById(2), 50.50F);
@@ -45,11 +45,11 @@ public class ZimmerpreisTests {
 		/*
 		 * Auslesen der Datensätze
 		 */
-		
-		List<Zimmerpreis> zimmerpreise = zd.getAll();
-		for (Zimmerpreis z : zimmerpreise) {
-			System.out.println(z);
-		}
+//		
+//		List<Zimmerpreis> zimmerpreise = zd.getAll();
+//		for (Zimmerpreis z : zimmerpreise) {
+//			System.out.println(z);
+//		}
 		
 		/*
 		 * Auslesen eines Datensatzes per ID

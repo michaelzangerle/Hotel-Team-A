@@ -18,11 +18,11 @@ public class ZimmerstatusTest {
 	public static void main(String[] args) throws NoDatabaseEntryFoundException {
 		
 //		Zimmerstatus status = new Zimmerstatus("Guten Morgen", "GM");
-		ZimmerstatusDao zd = new ZimmerstatusDao();
+//		ZimmerstatusDao zd = new ZimmerstatusDao();
 		//zd.create(status);
 		
-		List<Zimmerstatus> stati = zd.getAll();
-		System.out.println(stati.toString());
+//		List<Zimmerstatus> stati = zd.getAll();
+//		System.out.println(stati.toString());
 		//System.out.println(zd.getById(1));
 		
 		

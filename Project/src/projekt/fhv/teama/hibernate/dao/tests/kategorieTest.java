@@ -3,7 +3,6 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
@@ -23,7 +22,7 @@ public class kategorieTest {
 //		Kategorie kat3 = new Kategorie("Juniorsuit", "Größere Suit für den wohlhabenden Gast", null , null);
 //		Kategorie kat4 = new Kategorie("Tirolerzimmer", "Luxus auf höchster Stufe", null , null);
 		
-		KategorieDao kd = new KategorieDao();
+//		KategorieDao kd = new KategorieDao();
 		
 		/*
 		 * Erstellen der Datensätze
