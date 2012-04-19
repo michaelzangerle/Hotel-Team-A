@@ -8,7 +8,9 @@ import java.util.Vector;
 import projekt.fhv.teama.classes.Aufenthalt;
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.personen.Gast;
+import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.personen.IKontodaten;
 import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
@@ -102,6 +104,9 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		return controllerGast.getAktuellGast();
 	}
 	
+	
+	//Änderungen am Gast
+	
 	public void setVorname(String vorname)
 	{
 		controllerGast.setVorname(vorname);
@@ -109,7 +114,49 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	public void setNachname(String nachname)
 	{
 		controllerGast.setNachname(nachname);
+		
 	}
+	public void setGeschlecht(char geschlecht)
+	{
+		
+	}
+	public void setGeburtsdatum(Date geburtsdatum)
+	{
+		
+	}
+	public void setEmail(String email)
+	{
+		
+	}
+	public void setEmail(IKontodaten kontodaten)
+	{
+		
+	}
+	public void setTelefonnummer(String telefonnummer)
+	{
+		
+	}
+	public void setNummer(String nummer)
+	{
+		
+	}
+	public void setZimmer(IZimmer zimmer)
+	{
+		
+	}
+	public void addAdresse(IAdresse adresse)
+	{
+		
+	}
+	public void removeAdresse(IAdresse adresse)
+	{
+		
+	}
+	
+	
+	
+	
+	
 
 	public void setVon(Date date)
 	{

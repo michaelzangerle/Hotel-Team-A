@@ -26,6 +26,8 @@ public class ControllerKategorie implements IControllerKategorie {
 		{
 			return kategorieModel;
 		}
+		//TODO Error
+		return null;
 	}
 
 
