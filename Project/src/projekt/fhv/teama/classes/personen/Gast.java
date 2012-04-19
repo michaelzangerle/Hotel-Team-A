@@ -1,12 +1,13 @@
 package projekt.fhv.teama.classes.personen;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 
-import projekt.fhv.teama.classes.Aufenthalt;
-import projekt.fhv.teama.classes.rechnung.Rechnungsposition;
-import projekt.fhv.teama.classes.zimmer.Reservierung;
-import projekt.fhv.teama.classes.zimmer.Zimmer;
+import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
+import projekt.fhv.teama.classes.zimmer.IReservierung;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,19 +16,19 @@ import projekt.fhv.teama.classes.zimmer.Zimmer;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Gast extends Person {
+public class Gast extends Person implements IGast{
     private int ID;
     private String nummer;
-    private Zimmer zimmer;
-    private Set<Reservierung> reservierungen;
-    private Set<Rechnungsposition> rechnungspositionen;
-    private Set<Aufenthalt> aufenthalte;
+    private IZimmer zimmer;
+    private Set<IReservierung> reservierungen;
+    private Set<IRechnungsposition> rechnungspositionen;
+    private Set<IAufenthalt> aufenthalte;
     
-    public int getGastId() {
+    public int getID() {
         return ID;
     }
 
-    public void setGastId(int gastId) {
+    public void setID(int gastId) {
         this.ID = gastId;
     }
 
@@ -39,45 +40,77 @@ public class Gast extends Person {
         this.nummer = nummer;
     }
 
-	public Zimmer getZimmer() {
+	public IZimmer getZimmer() {
 		return zimmer;
 	}
 
-	public void setZimmer(Zimmer zimmer) {
+	public void setZimmer(IZimmer zimmer) {
 		this.zimmer = zimmer;
 	}
 
-	public Set<Reservierung> getReservierungen() {
+	public Set<IReservierung> getReservierungen() {
 		return reservierungen;
 	}
 
-	public void setReservierungen(Set<Reservierung> reservierungen) {
+	public void setReservierungen(Set<IReservierung> reservierungen) {
 		this.reservierungen = reservierungen;
 	}
+	
+	@Override
+	public void addReservierung(IReservierung res) {
+		this.reservierungen.add(res);
+	}
 
-	public Set<Rechnungsposition> getRechnungspositionen() {
+	@Override
+	public IReservierung getReservierung() {
+		// TODO parameter ?
+		return null;
+	}
+
+	public Set<IRechnungsposition> getRechnungspositionen() {
 		return rechnungspositionen;
 	}
 
-	public void setRechnungspositionen(Set<Rechnungsposition> rechnungspositionen) {
+	public void setRechnungspositionen(Set<IRechnungsposition> rechnungspositionen) {
 		this.rechnungspositionen = rechnungspositionen;
 	}
+	
+	@Override
+	public void addRechnungposition(IRechnungsposition rePos) {
+		this.rechnungspositionen.add(rePos);
+	}
 
-	public Set<Aufenthalt> getAufenthalte() {
+	@Override
+	public void removeRechnungsposition(IRechnungsposition rePos) {
+		this.rechnungspositionen.add(rePos);
+	}
+
+	public Set<IAufenthalt> getAufenthalte() {
 		return aufenthalte;
 	}
 
-	public void setAufenthalte(Set<Aufenthalt> aufenthalte) {
+	public void setAufenthalte(Set<IAufenthalt> aufenthalte) {
 		this.aufenthalte = aufenthalte;
 	}
 	
+	@Override
+	public void addAufenthalt(IAufenthalt aufenthalt) {
+		this.aufenthalte.add(aufenthalt);
+	}
 
+	@Override
+	public void removeAufenthalt(IAufenthalt aufenthalt) {
+		if (aufenthalte.contains(aufenthalt)) {
+			aufenthalte.remove(aufenthalt);
+		}
+	}
+	
 	public Gast() {
 		super();
 	}
 	
 	public Gast(String vorname, String nachname, char geschlecht,
-			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
+			Set<IAdresse> adresse, Date geburtsdatum, String telefonnummer,
 			String email, Kontodaten bankverbindung, Land land, String nummer) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum, telefonnummer,
 				email, bankverbindung, land);
@@ -85,8 +118,8 @@ public class Gast extends Person {
 	}
 
 	public Gast(String vorname, String nachname, char geschlecht,
-			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, Kontodaten bankverbindung, Land land, String nummer, Zimmer zimmer) {
+			Set<IAdresse> adresse, Date geburtsdatum, String telefonnummer,
+			String email, Kontodaten bankverbindung, Land land, String nummer, IZimmer zimmer) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum, telefonnummer,
 				email, bankverbindung, land);
 		this.nummer = nummer;

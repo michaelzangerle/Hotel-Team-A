@@ -10,12 +10,12 @@ import java.util.Set;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Berechtigung {
+public class Berechtigung implements IBerechtigung {
     private int ID;
     private String bezeichnung;
     private String kuerzel;
     private String beschreibung;
-    private Set<Mitarbeiter> berechtigte;
+    private Set<IMitarbeiter> berechtigte;
     
     public int getID() {
         return ID;
@@ -73,29 +73,40 @@ public class Berechtigung {
         return result;
     }
 
-	public Set<Mitarbeiter> getBerechtigte() {
+	public Set<IMitarbeiter> getBerechtigte() {
 		return berechtigte;
 	}
 
-	public void setBerechtigte(Set<Mitarbeiter> berechtigte) {
+	public void setBerechtigte(Set<IMitarbeiter> berechtigte) {
 		this.berechtigte = berechtigte;
 	}
 	
+	@Override
+	public void addBerechtigter(IMitarbeiter berechtigter) {
+		this.berechtigte.add(berechtigter);
+	}
+
+	@Override
+	public void removeBerechtigter(IMitarbeiter berechtigter) {
+		if (berechtigte.contains(berechtigter)) {
+			this.berechtigte.remove(berechtigter);
+		}
+	}
+	
 	public Berechtigung() {
-		berechtigte = new HashSet<Mitarbeiter>();
 	}
 
 	public Berechtigung(String bezeichnung, String kuerzel) {
 		this.bezeichnung = bezeichnung;
 		this.kuerzel = kuerzel;
-		berechtigte = new HashSet<Mitarbeiter>();
+		berechtigte = new HashSet<IMitarbeiter>();
 	}
 
 	public Berechtigung(String bezeichnung, String kuerzel, String beschreibung) {
 		this.bezeichnung = bezeichnung;
 		this.kuerzel = kuerzel;
 		this.beschreibung = beschreibung;
-		berechtigte = new HashSet<Mitarbeiter>();
+		berechtigte = new HashSet<IMitarbeiter>();
 	}
 
 	@Override
@@ -104,6 +115,4 @@ public class Berechtigung {
 				+ ", kuerzel=" + kuerzel + ", beschreibung=" + beschreibung
 				+ "]";
 	}
-
-
 }

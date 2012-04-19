@@ -82,5 +82,4 @@ public class Pfandtyp implements IPfandtyp {
 			return false;
 		return true;
 	}
-
 }

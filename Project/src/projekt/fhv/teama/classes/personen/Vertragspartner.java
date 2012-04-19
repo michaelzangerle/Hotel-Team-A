@@ -2,15 +2,21 @@ package projekt.fhv.teama.classes.personen;
 
 import java.util.Set;
 
-public class Vertragspartner {
+import projekt.fhv.teama.classes.IKontingent;
+import projekt.fhv.teama.classes.zimmer.IReservierung;
+
+
+public class Vertragspartner implements IVertragspartner {
     private int ID;
     private String name;
-    private String telefonnummer;
+    private String telefonNummer;
     private String email;
-    private Land land;
-    private Kontodaten kontodaten;
-    private Set<Adresse> adressen;
-//    private VertragspartnerTyp typ;
+    private ILand land;
+    private IKontodaten kontodaten;
+    private Set<IAdresse> adressen;
+    private IVertragspartnertyp typ;
+    private Set<IKontingent> kontingente;
+    private Set<IReservierung> reservierung;
     
     public int getID() {
         return ID;
@@ -28,12 +34,12 @@ public class Vertragspartner {
         this.name = name;
     }
 
-    public String getTelefonnummer() {
-        return telefonnummer;
+    public String getTelefonNummer() {
+        return telefonNummer;
     }
 
-    public void setTelefonnummer(String telefonnummer) {
-        this.telefonnummer = telefonnummer;
+    public void setTelefonNummer(String telefonnummer) {
+        this.telefonNummer = telefonnummer;
     }
 
     public String getEmail() {
@@ -44,44 +50,91 @@ public class Vertragspartner {
         this.email = email;
     }
 
-	public Land getLand() {
+	public ILand getLand() {
 		return land;
 	}
 
-	public void setLand(Land land) {
+	public void setLand(ILand land) {
 		this.land = land;
 	}
 
 
-	public Kontodaten getKontodaten() {
+	public IKontodaten getKontodaten() {
 		return kontodaten;
 	}
 
-	public void setKontodaten(Kontodaten kontodaten) {
+	public void setKontodaten(IKontodaten kontodaten) {
 		this.kontodaten = kontodaten;
 	}
 
-	public Set<Adresse> getAdressen() {
+	public Set<IAdresse> getAdressen() {
 		return adressen;
 	}
 
-	public void setAdressen(Set<Adresse> adressen) {
+	public void setAdressen(Set<IAdresse> adressen) {
 		this.adressen = adressen;
 	}
+	
+	@Override
+	public void addAdresse(IAdresse adresse) {
+		this.adressen.add(adresse);
+	}
 
+	@Override
+	public void removeAdresse(IAdresse adresse) {
+		if (adressen.contains(adresse)) {
+			this.adressen.remove(adresse);
+		}
+	}
+	
+	public IVertragspartnertyp getTyp() {
+		return typ;
+	}
+
+	public void setTyp(IVertragspartnertyp typ) {
+		this.typ = typ;
+	}
+	
+	public Set<IKontingent> getKontingent() {
+		return kontingente;
+	}
+
+	public void setKontingent(Set<IKontingent> kontingent) {
+		this.kontingente = kontingent;
+	}
+	
+	public Set<IReservierung> getReservierung() {
+		return reservierung;
+	}
+
+	public void setReservierung(Set<IReservierung> reservierung) {
+		this.reservierung = reservierung;
+	}
+	
 	public Vertragspartner() {
 	}
 
 	public Vertragspartner(String name, String telefonnummer, String email,
-			Land land,  Kontodaten kontodaten,
-			Set<Adresse> adressen) {
+			ILand land,  Kontodaten kontodaten,
+			Set<IAdresse> adressen) {
 		this.name = name;
-		this.telefonnummer = telefonnummer;
+		this.telefonNummer = telefonnummer;
 		this.email = email;
 		this.land = land;
-//		this.typ = typ;
 		this.kontodaten = kontodaten;
 		this.adressen = adressen;
+	}
+	
+	public Vertragspartner(String name, String telefonnummer, String email,
+			ILand land,  Kontodaten kontodaten,
+			Set<IAdresse> adressen, IVertragspartnertyp typ) {
+		this.name = name;
+		this.telefonNummer = telefonnummer;
+		this.email = email;
+		this.land = land;
+		this.kontodaten = kontodaten;
+		this.adressen = adressen;
+		this.typ = typ;
 	}
 
 	@Override
@@ -97,7 +150,7 @@ public class Vertragspartner {
 		result = prime * result + ((land == null) ? 0 : land.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result
-				+ ((telefonnummer == null) ? 0 : telefonnummer.hashCode());
+				+ ((telefonNummer == null) ? 0 : telefonNummer.hashCode());
 //		result = prime * result + ((typ == null) ? 0 : typ.hashCode());
 		return result;
 	}
@@ -138,10 +191,10 @@ public class Vertragspartner {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (telefonnummer == null) {
-			if (other.telefonnummer != null)
+		if (telefonNummer == null) {
+			if (other.telefonNummer != null)
 				return false;
-		} else if (!telefonnummer.equals(other.telefonnummer))
+		} else if (!telefonNummer.equals(other.telefonNummer))
 			return false;
 //		if (typ == null) {
 //			if (other.typ != null)
@@ -154,7 +207,7 @@ public class Vertragspartner {
 	@Override
 	public String toString() {
 		return "Vertragspartner [ID=" + ID + ", name=" + name
-				+ ", telefonnummer=" + telefonnummer + ", email=" + email
+				+ ", telefonnummer=" + telefonNummer + ", email=" + email
 				+ ", land=" + land + ", kontodaten="
 				+ kontodaten + ", adressen=" + adressen + "]";
 	}

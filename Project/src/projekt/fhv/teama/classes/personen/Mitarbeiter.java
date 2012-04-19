@@ -1,10 +1,10 @@
 package projekt.fhv.teama.classes.personen;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import projekt.fhv.teama.classes.rechnung.Rechnung;
+import projekt.fhv.teama.classes.rechnung.IRechnung;
 
 
 /**
@@ -14,13 +14,13 @@ import projekt.fhv.teama.classes.rechnung.Rechnung;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Mitarbeiter extends Person {
+public class Mitarbeiter extends Person implements IMitarbeiter {
     private int ID;
     private String nummer;
     private String passwort;
     private Date einstellung;
-    private Set<Berechtigung> berechtigungen;
-    private Set<Rechnung> rechnungen;
+    private Set<IBerechtigung> berechtigungen;
+    private Set<IRechnung> rechnungen;
     
     public int getID() {
         return ID;
@@ -54,24 +54,41 @@ public class Mitarbeiter extends Person {
         this.einstellung = einstellung;
     }
     
-	public Set<Berechtigung> getBerechtigungen() {
+	public Set<IBerechtigung> getBerechtigungen() {
 		return berechtigungen;
 	}
 
-	public void setBerechtigungen(Set<Berechtigung> berechtigungen2) {
-		this.berechtigungen = berechtigungen2;
+	public void setBerechtigungen(Set<IBerechtigung> berechtigungen) {
+		this.berechtigungen = berechtigungen;
 	}
 
-	public void addBerechtigung (Berechtigung berechtigung) {
-		berechtigungen.add(berechtigung);
+	public void addBerechtigung (IBerechtigung berechtigung) {
+		this.berechtigungen.add(berechtigung);
+	}
+	
+	@Override
+	public void removeBerechtigung(IBerechtigung berechtigung) {
+		this.berechtigungen.remove(berechtigung);
 	}
 
-	public Set<Rechnung> getRechnungen() {
+	public Set<IRechnung> getRechnungen() {
 		return rechnungen;
 	}
 
-	public void setRechnungen(Set<Rechnung> rechnungen) {
+	public void setRechnungen(Set<IRechnung> rechnungen) {
 		this.rechnungen = rechnungen;
+	}
+	
+	@Override
+	public void addRechnung(IRechnung rechnung) {
+		this.rechnungen.add(rechnung);
+	}
+
+	@Override
+	public void removeRechnung(IRechnung rechnung) {
+		if (rechnungen.contains(rechnung)) {
+			this.rechnungen.remove(rechnung);
+		}
 	}
 	
 	public Mitarbeiter() {
@@ -79,16 +96,16 @@ public class Mitarbeiter extends Person {
 	}
 	
 	public Mitarbeiter(String vorname, String nachname, char geschlecht,
-			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, Kontodaten bankverbindung, Land land,
+			Set<IAdresse> adresse, Date geburtsdatum, String telefonnummer,
+			String email, IKontodaten bankverbindung, ILand land,
 			String nummer, String passwort, Date einstellung) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum,
 				telefonnummer, email, bankverbindung, land);
 		this.nummer = nummer;
 		this.passwort = passwort;
 		this.einstellung = einstellung;
-		this.berechtigungen = new HashSet<Berechtigung>();
-		this.rechnungen = new HashSet<Rechnung>();
+		this.berechtigungen = new HashSet<IBerechtigung>();
+		this.rechnungen = new HashSet<IRechnung>();
 	}
 
 	@Override

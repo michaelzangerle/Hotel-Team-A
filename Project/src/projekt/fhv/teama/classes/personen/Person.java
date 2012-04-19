@@ -1,24 +1,26 @@
 package projekt.fhv.teama.classes.personen;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
+import projekt.fhv.teama.classes.zimmer.IReservierung;
 
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
  * this template use File | Settings | File Templates.
  */
-public class Person {
+public class Person implements IPerson {
 	private int ID;
 	private String vorname;
 	private String nachname;
 	private char geschlecht;
-	private Set<Adresse> adressen;
+	private Set<IAdresse> adressen;
 	private Date geburtsdatum;
 	private String telefonnummer;
 	private String email;
-	private Kontodaten kontodaten;
-	private Land land;
+	private IKontodaten kontodaten;
+	private ILand land;
+	private Set<IReservierung> reservierungen;
 
 	public int getID() {
 		return ID;
@@ -44,7 +46,7 @@ public class Person {
 		this.nachname = nachname;
 	}
 
-	public char getGeschlecht() {
+	public Character getGeschlecht() {
 		return geschlecht;
 	}
 
@@ -52,20 +54,26 @@ public class Person {
 		this.geschlecht = geschlecht;
 	}
 
-	public Set<Adresse> getAdressen() {
+	public Set<IAdresse> getAdressen() {
 		return adressen;
 	}
 
-	public void setAdressen(Set<Adresse> adressen) {
+	@Override
+	public void setAdressen(Set<IAdresse> adressen) {
 		this.adressen = adressen;
 	}
-
-	public Date getGeburtsdatum() {
-		return geburtsdatum;
+	
+	@Override
+	public void addAdresse(IAdresse adresse) {
+		this.adressen.add(adresse);
+		
 	}
 
-	public void setGeburtsdatum(Date geburtsdatum) {
-		this.geburtsdatum = geburtsdatum;
+	@Override
+	public void removeAdresse(IAdresse adresse) {
+		if(adressen.contains(adresse)) {
+			adressen.remove(adresse);
+		}
 	}
 
 	public String getTelefonnummer() {
@@ -83,33 +91,68 @@ public class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public Kontodaten getKontodaten() {
-		return kontodaten;
+	
+	@Override
+	public java.sql.Date getGeburtsdatum() {
+		return geburtsdatum; 
 	}
 
-	public void setKontodaten(Kontodaten kontodaten) {
-		this.kontodaten = kontodaten;
-	}
-
-	public Land getLand() {
-		return land;
-	}
-
-	public void setLand(Land land) {
-		this.land = land;
+	@Override
+	public void setGeburtsdatum(java.sql.Date geburtsdatum) {
+		this.geburtsdatum = geburtsdatum;
+		
 	}
 	
+	@Override
+	public ILand getLand() {
+		return land;
+	}
+	
+	@Override
+	public void setLand(ILand land) {
+		this.land = land;
+		
+	}
+
+	public IKontodaten getKontodaten() {
+		return kontodaten;
+	}
+	
+	@Override
+	public void setKontodaten(IKontodaten kontodaten) {
+		this.kontodaten = kontodaten;
+		
+	}
+
+
+	@Override
+	public Set<IReservierung> getReservierungen() {
+		return reservierungen;
+	}
+	
+	@Override
+	public void setReservierungen(Set<IReservierung> reservierungen) {
+		this.reservierungen = reservierungen;
+	}
+	
+
+	@Override
+	public void removeReservierung(IReservierung reservierung) {
+		if (reservierungen.contains(reservierung)){
+			reservierungen.remove(reservierung);
+		}
+	}
+
 	public Person() {
 	}
 	
 	public Person(String vorname, String nachname, char geschlecht,
-			Set<Adresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, Kontodaten kontodaten, Land land) {
+			Set<IAdresse> adressen, Date geburtsdatum, String telefonnummer,
+			String email, IKontodaten kontodaten, ILand land) {
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.geschlecht = geschlecht;
-		this.adressen = adresse;		
+		this.adressen = adressen;		
 		this.geburtsdatum = geburtsdatum;
 		this.telefonnummer = telefonnummer;
 		this.email = email;
