@@ -13,7 +13,15 @@ public class AdresseTest {
 	public static void main(String[] args) {
 		IAdresseDao adao = AdresseDao.getInstance();
 		
-		adao.create(new Adresse("Bahnhofstraße 3", "6900", "Bregenz"));
+		
+		adao.create(new Adresse("Bahnhofstraße 3", "6900", "Bregenz", null));
+		
+		
+		// Einfügen
+		// Alle holen
+		// 1 holen
+		// update
+		// spezial
 		
 	}
 }
