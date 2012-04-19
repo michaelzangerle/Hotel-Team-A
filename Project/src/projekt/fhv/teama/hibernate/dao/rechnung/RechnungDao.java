@@ -1,6 +1,8 @@
 package projekt.fhv.teama.hibernate.dao.rechnung;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -8,19 +10,27 @@ import org.hibernate.Session;
 
 import projekt.fhv.teama.classes.personen.Mitarbeiter;
 import projekt.fhv.teama.classes.rechnung.IRechnung;
-import projekt.fhv.teama.classes.rechnung.Rechnung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
-public class RechnungDao extends GenericDao<Rechnung> {
+public class RechnungDao extends GenericDao<IRechnung> implements IRechnungDao {
 
-	public RechnungDao() {
+	private static RechnungDao instance;
+
+	public static IRechnungDao getInstance() {
+		if (instance != null) {
+			instance = new RechnungDao();
+		}
+		return instance;
+	}
+
+	private RechnungDao() {
 		super("Rechnung");
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<IRechnung> getRechnungByMitarbeiter(String vorname, String nachname)
+	public Set<IRechnung> getRechnungByMitarbeiter(String vorname, String nachname)
 			throws NoDatabaseEntryFoundException {
 
 		List<IRechnung> rechnungen = null;
@@ -58,11 +68,12 @@ public class RechnungDao extends GenericDao<Rechnung> {
 			e.printStackTrace();
 		}
 
-		return rechnungen;
+		Set<IRechnung> set = new HashSet<IRechnung>(rechnungen);
+		return set;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<IRechnung> getRechnungByBezahler(String vorname, String nachname) throws NoDatabaseEntryFoundException {
+	public Set<IRechnung> getRechnungByBezahler(String vorname, String nachname) throws NoDatabaseEntryFoundException {
 
 		List<IRechnung> rechnungen = null;
 
@@ -85,7 +96,8 @@ public class RechnungDao extends GenericDao<Rechnung> {
 			e.printStackTrace();
 		}
 
-		return rechnungen;
+		Set<IRechnung> set = new HashSet<IRechnung>(rechnungen);
+		return set;
 	}
 
 }

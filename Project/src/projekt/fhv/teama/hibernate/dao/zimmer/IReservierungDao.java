@@ -10,6 +10,5 @@ public interface IReservierungDao extends IGenericDao<IReservierung> {
 	
 	public Set<IReservierung>getReservierungByPerson(String vorname,String nachname) throws NoDatabaseEntryFoundException ;
 	public Set<IReservierung>getReservierungByVP(String name) throws NoDatabaseEntryFoundException;
-	public IReservierungDao getInstance();
 
 }
