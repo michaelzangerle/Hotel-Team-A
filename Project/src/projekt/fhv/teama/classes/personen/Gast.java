@@ -104,12 +104,11 @@ public class Gast extends Person implements IGast{
 	}
 
 	public Gast() {
-		super();
 	}
 	
 	public Gast(String vorname, String nachname, char geschlecht,
 			Set<IAdresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, Kontodaten bankverbindung, Land land, String nummer) {
+			String email, IKontodaten bankverbindung, ILand land, String nummer) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum, telefonnummer,
 				email, bankverbindung, land);
 		this.nummer = nummer;
@@ -117,7 +116,7 @@ public class Gast extends Person implements IGast{
 
 	public Gast(String vorname, String nachname, char geschlecht,
 			Set<IAdresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, Kontodaten bankverbindung, Land land, String nummer, IZimmer zimmer) {
+			String email, IKontodaten bankverbindung, ILand land, String nummer, IZimmer zimmer) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum, telefonnummer,
 				email, bankverbindung, land);
 		this.nummer = nummer;

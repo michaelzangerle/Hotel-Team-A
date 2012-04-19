@@ -19,7 +19,7 @@ public class LeistungTest {
 		 */
 
 		
-		WarengruppeDao wd = new WarengruppeDao();
+//		WarengruppeDao wd = new WarengruppeDao();
 //		Warengruppe w1 = new Warengruppe("Hoteleigenen Produkte", s1, "Hoteleigene Produkte produziert im laufenden Wirtschaftsjahr", null, null);
 //		Warengruppe w2 = new Warengruppe("Alkohol", s2, "Zugekaufte Produkte von regionalen Händlern", null, null);
 //		Warengruppe w3 = new Warengruppe("Bücher", s3, "Hoteleigene Produkte produziert im laufenden Wirtschaftsjarh", null, null);
@@ -30,7 +30,7 @@ public class LeistungTest {
 //		wd.create(w3);
 //		wd.create(w4);
 				
-		ZusatzleistungDao zd = new ZusatzleistungDao();
+//		ZusatzleistungDao zd = new ZusatzleistungDao();
 //		Zusatzleistung z1 = new Zusatzleistung(45, "Wandertour Fortgeschritten", "Geführte Wandertour für Fortgeschrittene", true, wd.getById(4));
 //		Zusatzleistung z2 = new Zusatzleistung(15, "Kajak", "Organisierte Kajakfahrt", true, wd.getById(4));
 //		Zusatzleistung z3 = new Zusatzleistung(15, "Bogenschießen", "Bogenschießkurs von extern", true, wd.getById(4));
@@ -38,7 +38,7 @@ public class LeistungTest {
 //		zd.create(z2);
 //		zd.create(z3);
 //		
-		ArtikelDao ad = new ArtikelDao();
+//		ArtikelDao ad = new ArtikelDao();
 //		Artikel a1 = new Artikel(35, "Starkbier", "Starkbier Fohrenburger", wd.getById(1));
 //		Artikel a2 = new Artikel(20, "Kellerbier Bier", "Mohrenbräu", wd.getById(2));
 //		Artikel a3 = new Artikel(40, "Playboy 09/12", "Hoteleigenes Shooting", wd.getById(3));
@@ -78,9 +78,9 @@ public class LeistungTest {
 		 * Auslesen eines Datensatzes per Bezeichnung
 		 */
 		
-		System.out.println(wd.getLeistung("Bücher"));
-		System.out.println(ad.getArtikel("Hotelbier"));
-		System.out.println(zd.getZusatzleistung("Wandertour"));
+//		System.out.println(wd.getLeistung("Bücher"));
+//		System.out.println(ad.getArtikel("Hotelbier"));
+//		System.out.println(zd.getZusatzleistung("Wandertour"));
 		
 		/*
 		 * Updaten eines Datensatzes

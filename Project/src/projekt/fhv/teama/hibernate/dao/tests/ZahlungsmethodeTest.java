@@ -19,10 +19,10 @@ public class ZahlungsmethodeTest {
 	 */
 	public static void main(String[] args) throws NoDatabaseEntryFoundException {
 		
-		ZahlungsmethodeDao zmd = new ZahlungsmethodeDao();
-		Zahlungsmethode z1 = new Zahlungsmethode("Bar", "bar", "Bezahlung erfolgt bar!");
-		Zahlungsmethode z2 = new Zahlungsmethode("Kreditkarte", "cc", "Bezahlung erfolgt mittels Kreditkarte!");
-		Zahlungsmethode z3 = new Zahlungsmethode("Scheck", "sc", "Bezahlung erfolgt mittels Scheck!");
+//		ZahlungsmethodeDao zmd = new ZahlungsmethodeDao();
+//		Zahlungsmethode z1 = new Zahlungsmethode("Bar", "bar", "Bezahlung erfolgt bar!");
+//		Zahlungsmethode z2 = new Zahlungsmethode("Kreditkarte", "cc", "Bezahlung erfolgt mittels Kreditkarte!");
+//		Zahlungsmethode z3 = new Zahlungsmethode("Scheck", "sc", "Bezahlung erfolgt mittels Scheck!");
 
 		/*
 		 * Erstellen der Datensätze

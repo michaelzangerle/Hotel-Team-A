@@ -18,11 +18,11 @@ public class TeilzahlungTest {
 	 */
 	public static void main(String[] args) {
 		
-		ZahlungsmethodeDao zmd = new ZahlungsmethodeDao();
+//		ZahlungsmethodeDao zmd = new ZahlungsmethodeDao();
 //		ZahlungsmethodeDao zmdDao=ZahlungsmethodeDao.getInstance()
-		Zahlungsmethode z1 = zmd.getById(1);
-		
-		TeilzahlungDao tzd = new TeilzahlungDao();
+//		Zahlungsmethode z1 = zmd.getById(1);
+//		
+//		TeilzahlungDao tzd = new TeilzahlungDao();
 //		Rechnung r1 = new Rechnung(bezahlerVorname, bezahlerNachname, adresse, summe, nummer, mitarbeiter, rechnungspostitionen, teilzahlungen)
 		
 		// TODO Teilzahlung: Testen
