@@ -136,7 +136,7 @@ public class Person implements IPerson {
 	
 	public Person(String vorname, String nachname, char geschlecht,
 			Set<IAdresse> adressen, Date geburtsdatum, String telefonnummer,
-			String email, IKontodaten kontodaten, ILand land) {
+			String email, IKontodaten kontodaten) {
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.geschlecht = geschlecht;

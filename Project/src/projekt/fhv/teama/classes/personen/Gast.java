@@ -108,17 +108,17 @@ public class Gast extends Person implements IGast{
 	
 	public Gast(String vorname, String nachname, char geschlecht,
 			Set<IAdresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, IKontodaten bankverbindung, ILand land, String nummer) {
+			String email, IKontodaten bankverbindung, String nummer) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum, telefonnummer,
-				email, bankverbindung, land);
+				email, bankverbindung);
 		this.nummer = nummer;
 	}
 
 	public Gast(String vorname, String nachname, char geschlecht,
 			Set<IAdresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, IKontodaten bankverbindung, ILand land, String nummer, IZimmer zimmer) {
+			String email, IKontodaten bankverbindung, String nummer, IZimmer zimmer) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum, telefonnummer,
-				email, bankverbindung, land);
+				email, bankverbindung);
 		this.nummer = nummer;
 		this.zimmer = zimmer;
 	}
