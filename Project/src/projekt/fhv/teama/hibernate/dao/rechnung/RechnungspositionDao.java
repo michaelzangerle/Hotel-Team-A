@@ -27,14 +27,6 @@ public class RechnungspositionDao extends GenericDao<Rechnungsposition> {
 		super("Rechnungsposition");
 	}
 
-	public List<Rechnungsposition> getRechnungspostionenByGuestName(String vorname, String nachname) {
-		// kicken?
-		// TODO Rechnungsposition: getRechnungspostionenByGuestName(String
-		// vorname, String nachname)
-		// Abfrage auf gast - alle rechnungspositionen eines gastes
-		return null;
-	}
-
 	@SuppressWarnings("unchecked")
 	public List<IRechnungsposition> getRechnungspostionenByZimmerNummer(String nummer) throws DatabaseException {
 

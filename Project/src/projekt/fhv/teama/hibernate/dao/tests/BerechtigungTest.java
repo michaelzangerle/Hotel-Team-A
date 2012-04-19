@@ -20,9 +20,9 @@ public class BerechtigungTest {
 		b=bd.getBerechtigungByBezeichnung("checkin");
 		System.out.print(b.toString());
 		
-		Set<Mitarbeiter> berechtigteMitarbeiter = b.getBerechtigte();
-		for (Mitarbeiter ma : berechtigteMitarbeiter) {
-			System.out.println(ma.toString());
-		}
+//		Set<Mitarbeiter> berechtigteMitarbeiter = b.getBerechtigte();
+//		for (Mitarbeiter ma : berechtigteMitarbeiter) {
+//			System.out.println(ma.toString());
+//		}
 	}
 }

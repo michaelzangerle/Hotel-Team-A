@@ -41,13 +41,13 @@ public class MitarbeiterTest {
 //		md.setBerechtigungen(ma2, berechtigungen);
 //		System.out.print(ma2.toString());
 		
-		Set<Berechtigung> berechtigungen = ma2.getBerechtigungen();
-		for (Berechtigung b : berechtigungen) {
-			//System.out.println(b.toString());
-		}
-		if (berechtigungen.contains(berechtigung)) {
-			//System.out.println("berechtigt!");
-		}
+//		Set<Berechtigung> berechtigungen = ma2.getBerechtigungen();
+//		for (Berechtigung b : berechtigungen) {
+//			//System.out.println(b.toString());
+//		}
+//		if (berechtigungen.contains(berechtigung)) {
+//			//System.out.println("berechtigt!");
+//		}
 		System.out.println(ma2.toString());
 	}
 
