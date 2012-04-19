@@ -27,7 +27,7 @@ public interface IZimmer extends IDao {
 
 	public Set<IStatusentwicklung> getStatusentwicklungen();
 
-	public void setStatusenticklungen(Set<IStatusentwicklung> statusenticklung);
+	public void setStatusentwicklungen(Set<IStatusentwicklung> statusenticklung);
 
 	public void addReservierung(IReservierung res);
 
