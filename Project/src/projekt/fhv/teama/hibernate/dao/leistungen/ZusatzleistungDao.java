@@ -26,7 +26,7 @@ public class ZusatzleistungDao extends GenericDao<IZusatzleistung> implements IZ
 	private static ZusatzleistungDao instance;
 
 	public static IZusatzleistungDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new ZusatzleistungDao();
 		}
 		return instance;

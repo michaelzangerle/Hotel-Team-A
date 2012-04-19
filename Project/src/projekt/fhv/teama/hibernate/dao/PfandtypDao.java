@@ -22,7 +22,7 @@ public class PfandtypDao extends GenericDao<IPfandtyp> implements IPfandtypDao {
 	private static PfandtypDao instance;
 
 	public static IPfandtypDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new PfandtypDao();
 		}
 		return instance;

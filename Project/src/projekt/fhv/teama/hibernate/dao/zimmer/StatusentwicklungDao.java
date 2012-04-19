@@ -27,7 +27,7 @@ public class StatusentwicklungDao extends GenericDao<IStatusentwicklung> impleme
 	private static StatusentwicklungDao instance;
 
 	public static IStatusentwicklungDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new StatusentwicklungDao();
 		}
 		return instance;

@@ -19,7 +19,7 @@ public class ReservierungsOptionDao extends GenericDao<IReservierungsOption> imp
 	private static ReservierungsOptionDao instance;
 
 	public IReservierungsOptionDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new ReservierungsOptionDao();
 		}
 		return instance;

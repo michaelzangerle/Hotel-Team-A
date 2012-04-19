@@ -24,7 +24,7 @@ public class ZimmerstatusDao extends GenericDao<IZimmerstatus> implements IZimme
 	private static ZimmerstatusDao instance;
 
 	public static IZimmerStatusDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new ZimmerstatusDao();
 		}
 		return instance;

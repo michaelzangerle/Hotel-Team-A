@@ -17,7 +17,7 @@ public class SaisonDao extends GenericDao<ISaison> implements ISaisonDao{
 	private static SaisonDao instance;
 	
 	public static ISaisonDao getInstance(){
-		if(instance != null) {
+		if(instance == null) {
 			instance = new SaisonDao();
 		}
 		return instance;

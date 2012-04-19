@@ -17,7 +17,7 @@ public class ZahlungsmethodeDao extends GenericDao<IZahlungsmethode> implements 
 	private static ZahlungsmethodeDao instance;
 
 	public static IZahlungsmethodeDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new ZahlungsmethodeDao();
 		}
 		return instance;

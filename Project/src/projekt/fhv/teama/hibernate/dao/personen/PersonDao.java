@@ -28,7 +28,7 @@ public class PersonDao extends GenericDao<IPerson> implements IPersonDao {
 	private static IPersonDao instance;
 
 	public static IPersonDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new PersonDao();
 		}
 		return instance;

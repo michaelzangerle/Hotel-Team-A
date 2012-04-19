@@ -17,7 +17,7 @@ public class LandDao extends GenericDao<ILand> implements ILandDao {
 	private static ILandDao instance;
 
 	public static ILandDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new LandDao();
 		}
 		return instance;

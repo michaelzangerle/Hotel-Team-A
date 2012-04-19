@@ -15,7 +15,7 @@ public class TeilreservierungDao extends GenericDao<ITeilreservierung> implement
 	private static TeilreservierungDao instance;
 
 	public static ITeilreservierungDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new TeilreservierungDao();
 		}
 		return instance;

@@ -16,7 +16,7 @@ public class BerechtigungDao extends GenericDao<IBerechtigung> implements IBerec
 	private static IBerechtigungDao instance;
 
 	public static IBerechtigungDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new BerechtigungDao();
 		}
 		return instance;

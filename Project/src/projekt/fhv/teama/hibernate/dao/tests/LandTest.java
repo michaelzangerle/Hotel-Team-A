@@ -3,6 +3,7 @@ package projekt.fhv.teama.hibernate.dao.tests;
 import java.util.List;
 
 import projekt.fhv.teama.classes.personen.Land;
+import projekt.fhv.teama.hibernate.dao.personen.ILandDao;
 import projekt.fhv.teama.hibernate.dao.personen.LandDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
@@ -12,7 +13,9 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
  */
 public class LandTest {
 	public static void main(String[] args) throws DatabaseException {
-		LandDao ld = new LandDao();
+		ILandDao ldao = LandDao.getInstance();
+		
+		
 
 		//ld.create(new Land("Österreich", "AT"));
 		//ld.create(new Land("Deutschland", "DE"));

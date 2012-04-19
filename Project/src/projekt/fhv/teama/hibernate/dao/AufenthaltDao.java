@@ -16,7 +16,7 @@ public class AufenthaltDao extends GenericDao<IAufenthalt> implements IAufenthal
 	private static AufenthaltDao instance;
 
 	public static IAufenthaltDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new AufenthaltDao();
 		}
 		return instance;

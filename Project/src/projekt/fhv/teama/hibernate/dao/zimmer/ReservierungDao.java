@@ -27,7 +27,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 	private static IReservierungDao instance;
 	
 	public static IReservierungDao getInstance(){
-		if(instance != null) {
+		if(instance == null) {
 			instance = new ReservierungDao();
 		}
 		return instance;

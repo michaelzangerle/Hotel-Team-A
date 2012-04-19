@@ -19,7 +19,7 @@ public class RechnungDao extends GenericDao<IRechnung> implements IRechnungDao {
 	private static RechnungDao instance;
 
 	public static IRechnungDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new RechnungDao();
 		}
 		return instance;

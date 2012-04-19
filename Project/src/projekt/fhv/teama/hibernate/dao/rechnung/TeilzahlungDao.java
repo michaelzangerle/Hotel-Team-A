@@ -15,7 +15,7 @@ public class TeilzahlungDao extends GenericDao<ITeilzahlung> implements ITeilzah
 	private static TeilzahlungDao instance;
 
 	public static ITeilzahlungDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new TeilzahlungDao();
 		}
 		return instance;

@@ -11,7 +11,7 @@ public class KontodatenDao extends GenericDao<IKontodaten> implements IKontodate
 	private static IKontodatenDao instance;
 
 	public static IKontodatenDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new KontodatenDao();
 		}
 		return instance;

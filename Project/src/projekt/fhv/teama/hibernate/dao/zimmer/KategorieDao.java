@@ -24,7 +24,7 @@ public class KategorieDao extends GenericDao<IKategorie> implements IKategorieDa
 	private static KategorieDao instance;
 
 	public static IKategorieDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new KategorieDao();
 		}
 		return instance;

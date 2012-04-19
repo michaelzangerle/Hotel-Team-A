@@ -25,7 +25,7 @@ public class RechnungspositionDao extends GenericDao<IRechnungsposition> impleme
 	private static RechnungspositionDao instance;
 
 	public static IRechnungspositionDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new RechnungspositionDao();
 		}
 		return instance;

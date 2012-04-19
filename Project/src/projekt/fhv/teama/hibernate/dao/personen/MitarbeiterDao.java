@@ -8,7 +8,7 @@ public class MitarbeiterDao extends GenericDao<IMitarbeiter> implements IMitarbe
 	private static IMitarbeiterDao instance;
 
 	public static IMitarbeiterDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new MitarbeiterDao();
 		}
 		return instance;

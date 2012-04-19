@@ -24,7 +24,7 @@ public class WarengruppeDao extends GenericDao<IWarengruppe> implements IWarengr
 	private static WarengruppeDao instance;
 
 	public static IWarengruppeDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new WarengruppeDao();
 		}
 		return instance;

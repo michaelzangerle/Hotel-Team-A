@@ -8,7 +8,7 @@ public class ZimmerpreisDao extends GenericDao<IZimmerpreis> implements IZimmerp
 	private static ZimmerpreisDao instance;
 
 	public static IZimmerpreisDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new ZimmerpreisDao();
 		}
 		return instance;

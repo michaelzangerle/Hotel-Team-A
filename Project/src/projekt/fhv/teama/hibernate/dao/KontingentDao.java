@@ -26,7 +26,7 @@ public class KontingentDao extends GenericDao<IKontingent> implements IKontingen
 	private static KontingentDao instance;
 
 	public static IKontingentDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new KontingentDao();
 		}
 		return instance;

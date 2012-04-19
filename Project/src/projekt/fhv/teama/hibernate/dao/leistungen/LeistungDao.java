@@ -19,7 +19,7 @@ public class LeistungDao extends GenericDao<ILeistung> implements ILeistungDao{
 	private static LeistungDao instance;
 
 	public static ILeistungDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new LeistungDao();
 		}
 		return instance;

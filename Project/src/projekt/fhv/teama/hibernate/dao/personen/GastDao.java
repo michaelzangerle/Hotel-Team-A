@@ -18,7 +18,7 @@ public class GastDao extends GenericDao<IPerson> implements IGastDao {
 	private static IGastDao instance;
 
 	public static IGastDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new GastDao();
 		}
 		return instance;

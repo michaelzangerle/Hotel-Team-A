@@ -28,7 +28,7 @@ public class ZimmerDao extends GenericDao<IZimmer> implements IZimmerDao {
 	private static IZimmerDao instance;
 
 	public static IZimmerDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new ZimmerDao();
 		}
 		return instance;

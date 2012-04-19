@@ -24,7 +24,7 @@ public class ArtikelDao extends GenericDao<IArtikel> implements IArtikelDao {
 	private static ArtikelDao instance;
 
 	public static IArtikelDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new ArtikelDao();
 		}
 		return instance;

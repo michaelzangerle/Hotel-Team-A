@@ -27,7 +27,7 @@ public class VertragspartnerDao extends GenericDao<IVertragspartner> implements 
 	private static IVertragspartnerDao instance;
 
 	public static IVertragspartnerDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new VertragspartnerDao();
 		}
 		return instance;
