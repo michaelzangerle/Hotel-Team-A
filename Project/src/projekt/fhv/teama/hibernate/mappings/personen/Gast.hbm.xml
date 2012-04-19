@@ -5,37 +5,30 @@
 <hibernate-mapping>
     <joined-subclass name="projekt.fhv.teama.classes.personen.Gast" extends="projekt.fhv.teama.classes.personen.Person" table="GAST" lazy="false">
         <key>
-            <column name="ID" />
+            <column name="gastID" />
         </key>
-        <property name="gastId" type="int">
-            <column name="GASTID" />
-        </property>
         <property name="nummer" type="java.lang.String">
             <column name="NUMMER" />
         </property>
         <many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
             <column name="ZIMMER" />
         </many-to-one>
-        <list name="reservierungen" inverse="false" table="RESERVIERUNG" lazy="true">
+		
+		<set name="reservierungen" table="gastReservierung" cascade="all">
+        	<key column="gastID"/>
+        	<many-to-many column="reservierungID" class="projekt.fhv.teama.classes.zimmer.Reservierung"/>
+    	</set>
+        <set name="rechnungspositionen" table="rechnungsposition" inverse="false" lazy="true">
             <key>
-                <column name="GASTID" />
+                <column name="rechnungspositionID" />
             </key>
-            <list-index></list-index>
-            <one-to-many class="projekt.fhv.teama.classes.zimmer.Reservierung" />
-        </list>
-        <list name="rechnungspositionen" inverse="false" table="RECHNUNGSPOSITION" lazy="true">
-            <key>
-                <column name="GASTID" />
-            </key>
-            <list-index></list-index>
             <one-to-many class="projekt.fhv.teama.classes.rechnung.Rechnungsposition" />
-        </list>
-        <list name="aufenthalte" inverse="false" table="AUFENTHALT" lazy="true">
+        </set>
+        <set name="aufenthalte" table="aufenthalt" inverse="false" lazy="true">
             <key>
-                <column name="GASTID" />
+                <column name="aufenthaltID" />
             </key>
-            <list-index></list-index>
             <one-to-many class="projekt.fhv.teama.classes.Aufenthalt" />
-        </list>
+        </set>
     </joined-subclass>
 </hibernate-mapping>

@@ -21,5 +21,9 @@
 	    	<key column="adresse_adresseID"/>
             <many-to-many column="person_personID" class="projekt.fhv.teama.classes.personen.Person"/>
         </set>
+        <set name="vertragspartner" table="personadresse" cascade="all">
+	    	<key column="adresse_adresseID"/>
+            <many-to-many column="person_personID" class="projekt.fhv.teama.classes.personen.Person"/>
+        </set>
     </class>
 </hibernate-mapping>

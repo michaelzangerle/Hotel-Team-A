@@ -1,18 +1,22 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 09.04.2012 23:53:36 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 18.04.2012 14:32:57 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.personen.Land" table="LAND">
-        <id name="ID" type="int">
-            <column name="LANDID"  sql-type="int"/>
-            <generator class="native" />
-        </id>
-        <property name="bezeichnung" type="java.lang.String">
-            <column name="BEZEICHNUNG"  sql-type="varchar"/>
-        </property>
-        <property name="kuerzel" type="java.lang.String">
-            <column name="KUERZEL" sql-type="varchar" length="2"/>
-        </property>
-    </class>
+	<class name="projekt.fhv.teama.classes.personen.Land" table="LAND">
+
+		<id name="ID" type="int">
+			<column name="landID" sql-type="int" length="10" not-null="true" />
+			<generator class="native" />
+		</id>
+
+		<property name="bezeichnung" type="java.lang.String">
+			<column name="BEZEICHNUNG" sql-type="varchar" />
+		</property>
+
+		<property name="kuerzel" type="java.lang.String">
+			<column name="KUERZEL" sql-type="varchar" length="2" />
+		</property>
+
+	</class>
 </hibernate-mapping>

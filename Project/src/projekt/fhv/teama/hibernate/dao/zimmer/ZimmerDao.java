@@ -3,7 +3,9 @@
  */
 package projekt.fhv.teama.hibernate.dao.zimmer;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -21,15 +23,24 @@ import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
  * @author mike
  * 
  */
-public class ZimmerDao extends GenericDao<Zimmer> {
+public class ZimmerDao extends GenericDao<IZimmer> implements IZimmerDao {
 
-	public ZimmerDao() {
+	private static IZimmerDao instance;
+
+	public static IZimmerDao getInstance() {
+		if (instance == null) {
+			instance = new ZimmerDao();
+		}
+		return instance;
+	}
+
+	private ZimmerDao() {
 		super("Zimmer");
 	}
 
-	public Zimmer getZimmerByNummer(String nr) throws DatabaseException {
+	public IZimmer getZimmerByNummer(String nr) throws DatabaseException {
 
-		Zimmer zimmer = null;
+		IZimmer zimmer = null;
 
 		try {
 			Session session = HibernateHelper.getSession();
@@ -54,7 +65,7 @@ public class ZimmerDao extends GenericDao<Zimmer> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<IZimmer> getZimmerByKategorie(String kategorie) throws DatabaseException {
+	public Set<IZimmer> getZimmerByKategorie(String kategorie) throws DatabaseException {
 
 		List<IZimmer> zimmer = null;
 
@@ -63,16 +74,15 @@ public class ZimmerDao extends GenericDao<Zimmer> {
 			Session session = HibernateHelper.getSession();
 			Query query = session.createQuery("from kategorie k where k.bezeichnung = :kategorie");
 			query.setString("kategorie", kategorie);
-			
+
 			int id = -1;
 			List<IKategorie> results = query.list();
 			if (results.size() == 1) {
 				id = results.get(0).getID();
-			}else {
+			} else {
 				throw new NoDatabaseEntryFoundException();
 			}
-			
-						
+
 			query = session.createQuery("from " + getTable() + " z where z.kategorieID = :id");
 			query.setString("id", String.valueOf(id));
 
@@ -88,14 +98,14 @@ public class ZimmerDao extends GenericDao<Zimmer> {
 			throw new DatabaseException();
 
 		}
-
-		return zimmer;
+		Set<IZimmer> set = new HashSet<IZimmer>(zimmer);
+		return set;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Zimmer> getZimmerByKategorie(int ID) throws DatabaseException {
+	public Set<IZimmer> getZimmerByKategorieID(int ID) throws DatabaseException {
 
-		List<Zimmer> zimmer = null;
+		List<IZimmer> zimmer = null;
 
 		try {
 
@@ -117,7 +127,8 @@ public class ZimmerDao extends GenericDao<Zimmer> {
 
 		}
 
-		return zimmer;
+		Set<IZimmer> set = new HashSet<IZimmer>(zimmer);
+		return set;
 	}
 
 }

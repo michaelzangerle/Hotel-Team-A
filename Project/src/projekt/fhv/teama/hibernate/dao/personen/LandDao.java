@@ -13,14 +13,22 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
-public class LandDao extends GenericDao<Land> {
+public class LandDao extends GenericDao<ILand> implements ILandDao {
+	private static ILandDao instance;
 
-	public LandDao() {
+	public static ILandDao getInstance() {
+		if (instance == null) {
+			instance = new LandDao();
+		}
+		return instance;
+	}
+	
+	private LandDao() {
 		super("Land");
 	}
 
-	public Land getLandByBez(String bezeichnung) throws DatabaseException {
-		Land p = null;
+	public ILand getLandByBez(String bezeichnung) throws DatabaseException {
+		ILand p = null;
 
 		try {
 			Session session = HibernateHelper.getSession();

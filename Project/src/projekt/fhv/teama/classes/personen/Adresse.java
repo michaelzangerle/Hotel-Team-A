@@ -3,12 +3,13 @@ package projekt.fhv.teama.classes.personen;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Adresse {
+public class Adresse implements IAdresse {
 	private int ID;
 	private String strasse;
     private String plz;
     private String ort;
-    private Set<Person> person;
+    private Set<IPerson> person;
+    private Set<IVertragspartner> vertragspartner;
     
     public String getStrasse() {
         return strasse;
@@ -42,23 +43,31 @@ public class Adresse {
 		ID = iD;
 	}
 
-	public Set<Person> getPerson() {
+	public Set<IPerson> getPerson() {
 		return person;
 	}
 
-	public void setPerson(Set<Person> person) {
+	public void setPerson(Set<IPerson> person) {
 		this.person = person;
 	}
 	
+	public Set<IVertragspartner> getVertragspartner() {
+		return vertragspartner;
+	}
+
+	public void setVertragspartner(Set<IVertragspartner> vertragspartner) {
+		this.vertragspartner = vertragspartner;
+	}
+	
 	public Adresse() {
-		person = new HashSet<Person>();
 	}
 
 	public Adresse(String strasse, String plz, String ort) {
 		this.strasse = strasse;
 		this.plz = plz;
 		this.ort = ort;
-		person = new HashSet<Person>();
+		person = new HashSet<IPerson>();
+		vertragspartner = new HashSet<IVertragspartner>();
 	}
 
 	@Override

@@ -28,9 +28,9 @@ public interface IKategorie extends IDao {
 
 	public void removeZimmerpreis(IZimmerpreis zimmerpreis);
 
-	public Set<ITeilreservierung> getTeilreservierungsreservierungen();
+	public Set<ITeilreservierung> getTeilreservierungen();
 
-	public void setTeilreservierungsreservierungen(Set<ITeilreservierung> teilreservierungsreservierungen);
+	public void setTeilreservierungen(Set<ITeilreservierung> teilreservierungsreservierungen);
 
 	public void addTeilreservierung(ITeilreservierung teilreservierung);
 

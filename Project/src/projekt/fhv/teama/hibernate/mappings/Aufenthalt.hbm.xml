@@ -4,21 +4,11 @@
 <!-- Generated 16.04.2012 15:54:17 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
 	<class name="projekt.fhv.teama.classes.Aufenthalt" table="AUFENTHALT">
-		<composite-id mapped="true" class="Aufenthalt">
-			<key-property name="gast" type=int>
-				<many-to-one name="gast"
-					class="projekt.fhv.teama.classes.personen.Gast" fetch="join">
-					<column name="gastID" />
-				</many-to-one>
-				<!-- <column name="gastID" sql-type="int" length="10" not-null="true"/> -->
-			</key-property>
-			<key-property name="zimmer">
-				<many-to-one name="zimmer"
-					class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
-					<column name="zimmerID" />
-				</many-to-one>
-			</key-property>
-		</composite-id>
+		<id name="ID" type="int">
+			<column name="aufenthaltID" />
+			<generator class="native" />
+		</id>
+		
 		<property name="preis" type="float">
 			<column name="preis" sql-type="decimal" length="10" precision="2"
 				not-null="true" />
@@ -35,5 +25,17 @@
 		<property name="schluessel" type="boolean">
 			<column name="schluessel" sql-type="bit" not-null="true" />
 		</property>
+		<many-to-one name="gast"
+					class="projekt.fhv.teama.classes.personen.Gast" fetch="join">
+					<column name="gastID"/>
+		</many-to-one>
+		<many-to-one name="zimmer"
+					class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
+					<column name="zimmerID" />
+		</many-to-one>
+		<many-to-one name="pfandtyp"
+					class="projekt.fhv.teama.classes.Pfandtyp" fetch="join">
+					<column name="pfandTypID" />
+		</many-to-one>
 	</class>
 </hibernate-mapping>

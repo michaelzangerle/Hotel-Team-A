@@ -13,14 +13,27 @@ import projekt.fhv.teama.classes.personen.IVertragspartner;
 import projekt.fhv.teama.classes.personen.Vertragspartner;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
+import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerDao;
+import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerDao;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
  *
  */
-public class VertragspartnerDao extends GenericDao<Vertragspartner> {
+public class VertragspartnerDao extends GenericDao<IVertragspartner> implements IVertragspartnerDao {
 
+
+	private static IVertragspartnerDao instance;
+
+	public static IVertragspartnerDao getInstance() {
+		if (instance == null) {
+			instance = new VertragspartnerDao();
+		}
+		return instance;
+	}
+	
+	
 	public VertragspartnerDao() {
 		super("Vertragspartner");
 	}

@@ -1,6 +1,6 @@
 package projekt.fhv.teama.hibernate.dao;
 
-import java.util.List;
+import java.util.Set;
 
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
@@ -10,6 +10,6 @@ public interface IGenericDao<T> {
 	public void removeById(int id);
 	public void create(T obj);
 	public void update(T obj);
-	public List<T> getAll() throws NoDatabaseEntryFoundException;
+	public Set<T> getAll() throws NoDatabaseEntryFoundException;
 	
 }

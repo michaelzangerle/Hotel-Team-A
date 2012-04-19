@@ -90,7 +90,4 @@ public class Zahlungsmethode implements IZahlungsmethode {
 			return false;
 		return true;
 	}
-	
-	
-
 }

@@ -46,7 +46,7 @@
             <column name="BEZAHLERLAND" />
         </many-to-one>
         
-        <set name="rechnungspostitionen" table="RECHNUNGSPOSITION" inverse="false" lazy="true">
+        <set name="rechnungspositionen" table="RECHNUNGSPOSITION" inverse="false" lazy="true">
             <key>
                 <column name="ID" />
             </key>

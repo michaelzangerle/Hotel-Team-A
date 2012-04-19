@@ -24,11 +24,9 @@ public interface IGast extends IPerson {
 
 	public Set<IReservierung> getReservierungen();
 
-	public IReservierung getReservierung();
-
 	public void addAufenthalt(IAufenthalt aufenthalt);
 
-	public IAufenthalt getAufenthalt();
+	public Set<IAufenthalt> getAufenthalte();
 
 	public void removeAufenthalt(IAufenthalt aufenthalt);
 

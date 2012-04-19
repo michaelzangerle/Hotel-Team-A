@@ -4,9 +4,10 @@ import java.util.Set;
 
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.dao.IGenericDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 public interface IZimmerDao extends IGenericDao<IZimmer> {
-	public IZimmer getByNummer(String nr);
-	public Set<IZimmer> getZimmerByKategorie(String kategorie);
-	public Set<IZimmer> getZimmerByKategorieid(Integer id);
+	public IZimmer getZimmerByNummer(String nr) throws DatabaseException;
+	public Set<IZimmer> getZimmerByKategorie(String kategorie) throws DatabaseException;
+	public Set<IZimmer> getZimmerByKategorieID(int id) throws DatabaseException;
 }

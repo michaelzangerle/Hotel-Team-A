@@ -6,7 +6,7 @@
 	<class name="projekt.fhv.teama.classes.zimmer.Statusentwicklung"
 		table="STATUSENTWICKLUNG">
 
-		<id name="ID" type="projekt.fhv.teama.classes.zimmer.Statusentwicklung">
+		<id name="ID" type="int">
 			<column name="statusentwicklungID" />
 			<generator class="native"/>
 		</id>

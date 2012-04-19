@@ -17,20 +17,20 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
  * To change this template use File | Settings | File Templates.
  */
 public class Gast extends Person implements IGast{
-    private int ID;
+//    private int ID;
     private String nummer;
     private IZimmer zimmer;
     private Set<IReservierung> reservierungen;
     private Set<IRechnungsposition> rechnungspositionen;
     private Set<IAufenthalt> aufenthalte;
     
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int gastId) {
-        this.ID = gastId;
-    }
+//    public int getID() {
+//        return ID;
+//    }
+//
+//    public void setID(int gastId) {
+//        this.ID = gastId;
+//    }
 
     public String getNummer() {
         return nummer;
@@ -61,12 +61,6 @@ public class Gast extends Person implements IGast{
 		this.reservierungen.add(res);
 	}
 
-	@Override
-	public IReservierung getReservierung() {
-		// TODO parameter ?
-		return null;
-	}
-
 	public Set<IRechnungsposition> getRechnungspositionen() {
 		return rechnungspositionen;
 	}
@@ -84,11 +78,15 @@ public class Gast extends Person implements IGast{
 	public void removeRechnungsposition(IRechnungsposition rePos) {
 		this.rechnungspositionen.add(rePos);
 	}
-
+	@Override
+	public Set<IRechnungsposition> getRechnungsposition() {
+		return rechnungspositionen;
+	}
+	
 	public Set<IAufenthalt> getAufenthalte() {
 		return aufenthalte;
 	}
-
+	
 	public void setAufenthalte(Set<IAufenthalt> aufenthalte) {
 		this.aufenthalte = aufenthalte;
 	}
@@ -104,14 +102,13 @@ public class Gast extends Person implements IGast{
 			aufenthalte.remove(aufenthalt);
 		}
 	}
-	
+
 	public Gast() {
-		super();
 	}
 	
 	public Gast(String vorname, String nachname, char geschlecht,
 			Set<IAdresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, Kontodaten bankverbindung, Land land, String nummer) {
+			String email, IKontodaten bankverbindung, ILand land, String nummer) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum, telefonnummer,
 				email, bankverbindung, land);
 		this.nummer = nummer;
@@ -119,7 +116,7 @@ public class Gast extends Person implements IGast{
 
 	public Gast(String vorname, String nachname, char geschlecht,
 			Set<IAdresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, Kontodaten bankverbindung, Land land, String nummer, IZimmer zimmer) {
+			String email, IKontodaten bankverbindung, ILand land, String nummer, IZimmer zimmer) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum, telefonnummer,
 				email, bankverbindung, land);
 		this.nummer = nummer;
@@ -130,7 +127,7 @@ public class Gast extends Person implements IGast{
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ID;
+		result = prime * result + getID();
 		result = prime * result
 				+ ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
 		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
@@ -153,7 +150,7 @@ public class Gast extends Person implements IGast{
 		if (getClass() != obj.getClass())
 			return false;
 		Gast other = (Gast) obj;
-		if (ID != other.ID)
+		if (getID() != other.getID())
 			return false;
 		if (aufenthalte == null) {
 			if (other.aufenthalte != null)
@@ -185,9 +182,15 @@ public class Gast extends Person implements IGast{
 
 	@Override
 	public String toString() {
-		return "Gast [ID=" + ID + ", nummer=" + nummer + ", zimmer=" + zimmer
+		return "Gast [ID=" + getID() + ", nummer=" + nummer + ", zimmer=" + zimmer
 				+ ", reservierungen=" + reservierungen
 				+ ", rechnungspositionen=" + rechnungspositionen
 				+ ", aufenthalte=" + aufenthalte + "]";
 	}
+
+
+
+
+
+
 }

@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.personen.IKontodaten;
+import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.hibernate.dao.IDao;
 
 public interface IPerson extends IDao {
@@ -45,5 +46,11 @@ public interface IPerson extends IDao {
 
 	public void removeAdresse(IAdresse adresse);
 
-	public void setAdressen(Set<Adresse> adresse);
+	public void setAdressen(Set<IAdresse> adresse);
+	
+	public Set<IReservierung> getReservierungen();
+
+	public void removeReservierung(IReservierung reservierung);
+
+	public void setReservierungen(Set<IReservierung> reservierungen);
 }

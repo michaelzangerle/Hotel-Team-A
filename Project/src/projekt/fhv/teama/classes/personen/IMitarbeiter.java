@@ -20,7 +20,7 @@ public interface IMitarbeiter extends IPerson {
 
 	public void removeBerechtigung(IBerechtigung berechtigung);
 
-	public void setBerechtigungen(Set<Berechtigung> berechtigungen2);
+	public void setBerechtigungen(Set<IBerechtigung> berechtigungen);
 
 	public Set<IRechnung> getRechnungen();
 

@@ -6,14 +6,24 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import projekt.fhv.teama.classes.zimmer.ISaison;
 import projekt.fhv.teama.classes.zimmer.Saison;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
-public class SaisonDao extends GenericDao<Saison> {
+public class SaisonDao extends GenericDao<ISaison> implements ISaisonDao{
 
-	public SaisonDao() {
+	private static SaisonDao instance;
+	
+	public static ISaisonDao getInstance(){
+		if(instance == null) {
+			instance = new SaisonDao();
+		}
+		return instance;
+	}
+		
+	private SaisonDao() {
 		super("Saison");
 	}
 

@@ -15,20 +15,20 @@ import projekt.fhv.teama.classes.rechnung.IRechnung;
  * To change this template use File | Settings | File Templates.
  */
 public class Mitarbeiter extends Person implements IMitarbeiter {
-    private int ID;
+//    private int ID;
     private String nummer;
     private String passwort;
     private Date einstellung;
     private Set<IBerechtigung> berechtigungen;
     private Set<IRechnung> rechnungen;
     
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+//    public int getID() {
+//        return ID;
+//    }
+//
+//    public void setID(int ID) {
+//        this.ID = ID;
+//    }
 	
 	public String getNummer() {
 		return nummer;
@@ -112,7 +112,7 @@ public class Mitarbeiter extends Person implements IMitarbeiter {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ID;
+		result = prime * result + getID();
 		result = prime * result
 				+ ((berechtigungen == null) ? 0 : berechtigungen.hashCode());
 		result = prime * result
@@ -134,7 +134,7 @@ public class Mitarbeiter extends Person implements IMitarbeiter {
 		if (getClass() != obj.getClass())
 			return false;
 		Mitarbeiter other = (Mitarbeiter) obj;
-		if (ID != other.ID)
+		if (getID() != other.getID())
 			return false;
 		if (berechtigungen == null) {
 			if (other.berechtigungen != null)
@@ -166,7 +166,7 @@ public class Mitarbeiter extends Person implements IMitarbeiter {
 
 	@Override
 	public String toString() {
-		return "Mitarbeiter [ID=" + ID + ", nummer=" + nummer + ", passwort="
+		return "Mitarbeiter [ID=" + getID() + ", nummer=" + nummer + ", passwort="
 				+ passwort + ", einstellung=" + einstellung
 				+ ", berechtigungen=" + berechtigungen + ", rechnungen="
 				+ rechnungen + "]";

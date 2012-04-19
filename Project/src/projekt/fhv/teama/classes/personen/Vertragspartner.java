@@ -16,7 +16,7 @@ public class Vertragspartner implements IVertragspartner {
     private Set<IAdresse> adressen;
     private IVertragspartnertyp typ;
     private Set<IKontingent> kontingente;
-    private Set<IReservierung> reservierung;
+    private Set<IReservierung> reservierungen;
     
     public int getID() {
         return ID;
@@ -95,20 +95,20 @@ public class Vertragspartner implements IVertragspartner {
 		this.typ = typ;
 	}
 	
-	public Set<IKontingent> getKontingent() {
+	public Set<IKontingent> getKontingente() {
 		return kontingente;
 	}
 
-	public void setKontingent(Set<IKontingent> kontingent) {
+	public void setKontingente(Set<IKontingent> kontingent) {
 		this.kontingente = kontingent;
 	}
 	
-	public Set<IReservierung> getReservierung() {
-		return reservierung;
+	public Set<IReservierung> getReservierungen() {
+		return reservierungen;
 	}
 
-	public void setReservierung(Set<IReservierung> reservierung) {
-		this.reservierung = reservierung;
+	public void setReservierungen(Set<IReservierung> reservierungen) {
+		this.reservierungen = reservierungen;
 	}
 	
 	public Vertragspartner() {

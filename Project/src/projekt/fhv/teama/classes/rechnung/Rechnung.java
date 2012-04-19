@@ -130,7 +130,7 @@ public class Rechnung implements IRechnung {
 		return rechnungspositionen;
 	}
 
-	public void setRechnungspostitionen(Set<IRechnungsposition> rechnungspositionen) {
+	public void setRechnungspositionen(Set<IRechnungsposition> rechnungspositionen) {
 		this.rechnungspositionen = rechnungspositionen;
 	}
 
@@ -239,7 +239,6 @@ public class Rechnung implements IRechnung {
 	@Override
 	public void addRechnungsposition(IRechnungsposition rePos) {
 		this.rechnungspositionen.add(rePos);
-
 	}
 
 	@Override
@@ -247,7 +246,6 @@ public class Rechnung implements IRechnung {
 		if (this.rechnungspositionen.contains(rePos)) {
 			this.rechnungspositionen.remove(rePos);
 		}
-
 	}
 
 	@Override
@@ -261,7 +259,5 @@ public class Rechnung implements IRechnung {
 		if (this.teilzahlungen.contains(teilzahl)) {
 			this.teilzahlungen.remove(teilzahl);
 		}
-
 	}
-
 }

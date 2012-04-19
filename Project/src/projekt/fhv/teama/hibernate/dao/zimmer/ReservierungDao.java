@@ -3,15 +3,16 @@
  */
 package projekt.fhv.teama.hibernate.dao.zimmer;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
-import projekt.fhv.teama.classes.zimmer.Reservierung;
+import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
@@ -21,15 +22,24 @@ import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
  * @author mike
  * 
  */
-public class ReservierungDao extends GenericDao<Reservierung> {
-
-	public ReservierungDao(String table) {
+public class ReservierungDao extends GenericDao<IReservierung> implements IReservierungDao {
+	
+	private static IReservierungDao instance;
+	
+	public static IReservierungDao getInstance(){
+		if(instance == null) {
+			instance = new ReservierungDao();
+		}
+		return instance;
+	}
+		
+	private ReservierungDao() {
 		super("Reservierung");
 
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<IReservierung> getReservierungByPerson(String vorname, String nachname)
+	public Set<IReservierung> getReservierungByPerson(String vorname, String nachname)
 			throws NoDatabaseEntryFoundException {
 
 		List<IReservierung> reservierungen = null;
@@ -66,11 +76,12 @@ public class ReservierungDao extends GenericDao<Reservierung> {
 			e.printStackTrace();
 		}
 
-		return reservierungen;
+		Set<IReservierung> set = new HashSet<IReservierung>(reservierungen);
+		return set;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<IReservierung> getReservierungByVP(String name) throws NoDatabaseEntryFoundException {
+	public Set<IReservierung> getReservierungByVP(String name) throws NoDatabaseEntryFoundException {
 
 		List<IReservierung> reservierungen = null;
 
@@ -104,7 +115,8 @@ public class ReservierungDao extends GenericDao<Reservierung> {
 			e.printStackTrace();
 		}
 
-		return reservierungen;
+		Set<IReservierung> set = new HashSet<IReservierung>(reservierungen);
+		return set;
 	}
 
 }
