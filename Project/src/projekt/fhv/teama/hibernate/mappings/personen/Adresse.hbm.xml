@@ -25,5 +25,8 @@
 	    	<key column="adresse_adresseID"/>
             <many-to-many column="person_personID" class="projekt.fhv.teama.classes.personen.Person"/>
         </set>
+		<many-to-one name="land"
+			class="projekt.fhv.teama.classes.personen.Land" column="landID"
+			not-null="true" unique="true" foreign-key="ID" />
     </class>
 </hibernate-mapping>

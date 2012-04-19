@@ -97,10 +97,10 @@ public class Mitarbeiter extends Person implements IMitarbeiter {
 	
 	public Mitarbeiter(String vorname, String nachname, char geschlecht,
 			Set<IAdresse> adresse, Date geburtsdatum, String telefonnummer,
-			String email, IKontodaten bankverbindung, ILand land,
+			String email, IKontodaten bankverbindung,
 			String nummer, String passwort, Date einstellung) {
 		super(vorname, nachname, geschlecht, adresse, geburtsdatum,
-				telefonnummer, email, bankverbindung, land);
+				telefonnummer, email, bankverbindung);
 		this.nummer = nummer;
 		this.passwort = passwort;
 		this.einstellung = einstellung;
