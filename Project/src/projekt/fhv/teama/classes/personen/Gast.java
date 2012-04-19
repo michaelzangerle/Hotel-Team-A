@@ -1,7 +1,6 @@
 package projekt.fhv.teama.classes.personen;
 
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.IAufenthalt;
@@ -62,12 +61,6 @@ public class Gast extends Person implements IGast{
 		this.reservierungen.add(res);
 	}
 
-	@Override
-	public IReservierung getReservierung() {
-		// TODO parameter ?
-		return null;
-	}
-
 	public Set<IRechnungsposition> getRechnungspositionen() {
 		return rechnungspositionen;
 	}
@@ -85,11 +78,15 @@ public class Gast extends Person implements IGast{
 	public void removeRechnungsposition(IRechnungsposition rePos) {
 		this.rechnungspositionen.add(rePos);
 	}
-
+	@Override
+	public Set<IRechnungsposition> getRechnungsposition() {
+		return rechnungspositionen;
+	}
+	
 	public Set<IAufenthalt> getAufenthalte() {
 		return aufenthalte;
 	}
-
+	
 	public void setAufenthalte(Set<IAufenthalt> aufenthalte) {
 		this.aufenthalte = aufenthalte;
 	}
@@ -105,7 +102,7 @@ public class Gast extends Person implements IGast{
 			aufenthalte.remove(aufenthalt);
 		}
 	}
-	
+
 	public Gast() {
 		super();
 	}
@@ -192,15 +189,9 @@ public class Gast extends Person implements IGast{
 				+ ", aufenthalte=" + aufenthalte + "]";
 	}
 
-	@Override
-	public Set<IRechnungsposition> getRechnungsposition() {
-		//Hallodu TODO Auto-generated method stub
-		return new HashSet<IRechnungsposition>();
-	}
 
-	@Override
-	public IAufenthalt getAufenthalt() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
+
+
 }

@@ -6,19 +6,29 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
-public class GastDao extends GenericDao<Gast> {
+public class GastDao extends GenericDao<IPerson> implements IGastDao {
 
-	public GastDao() {
-		super("GAST");
+	private static IGastDao instance;
+
+	public static IGastDao getInstance() {
+		if (instance != null) {
+			instance = new GastDao();
+		}
+		return instance;
+	}
+	
+	private GastDao() {
+		super("Gast");
 	}
 
-	public IGast getGastByNummer(String nr) throws NoDatabaseEntryFoundException {
+	public IGast getGastByNummer(String nr) throws DatabaseException {
 
 		try {
 			Session session = HibernateHelper.getSession();
@@ -37,9 +47,11 @@ public class GastDao extends GenericDao<Gast> {
 			}
 
 		} catch (HibernateException e) {
-			e.printStackTrace();
+			throw new DatabaseException();
 		}
 
 		return null;
 	}
+
+
 }

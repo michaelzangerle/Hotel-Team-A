@@ -3,12 +3,15 @@
  */
 package projekt.fhv.teama.hibernate.dao.personen;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
@@ -19,16 +22,26 @@ import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
  * @author mike
  *
  */
-public class PersonDao extends GenericDao<Person>{
+public class PersonDao extends GenericDao<IPerson> implements IPersonDao {
+	
+	
+	private static IPersonDao instance;
 
-	public PersonDao() {
+	public static IPersonDao getInstance() {
+		if (instance != null) {
+			instance = new PersonDao();
+		}
+		return instance;
+	}
+	
+	private PersonDao() {
 		super("Person");
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Person> getPerson(String name) throws DatabaseException {
+	public Set<IPerson> getPerson(String name) throws DatabaseException {
 		
-		List<Person> p = null;
+		List<IPerson> p = null;
 
 		try {
 			Session session = HibernateHelper.getSession();
@@ -48,14 +61,14 @@ public class PersonDao extends GenericDao<Person>{
 			throw new DatabaseException();
 		
 		}
-		
-		return p;
+		Set<IPerson> set = new HashSet<IPerson>(p);
+		return set;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Person> getPerson(String firstname, String lastname) throws DatabaseException {
+	public Set<IPerson> getPerson(String firstname, String lastname) throws DatabaseException {
 		
-		List<Person> p = null;
+		List<IPerson> p = null;
 
 		try {
 			Session session = HibernateHelper.getSession();
@@ -74,8 +87,8 @@ public class PersonDao extends GenericDao<Person>{
 		} catch (HibernateException e) {
 			throw new DatabaseException();
 		}
-		
-		return p;
+		Set<IPerson> set = new HashSet<IPerson>(p);
+		return set;
 	}
 
 }

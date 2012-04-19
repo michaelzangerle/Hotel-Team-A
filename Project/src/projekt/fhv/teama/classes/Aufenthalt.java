@@ -2,8 +2,8 @@ package projekt.fhv.teama.classes;
 
 import java.sql.Date;
 
-import projekt.fhv.teama.classes.personen.Gast;
-import projekt.fhv.teama.classes.zimmer.Zimmer;
+import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,16 +12,25 @@ import projekt.fhv.teama.classes.zimmer.Zimmer;
  * Time: 22:23
  * To change this template use File | Settings | File Templates.
  */
-public class Aufenthalt {
-    
+public class Aufenthalt implements IAufenthalt {
+    private int ID;
 	private Float preis;
     private String pfandNr;
     private Date von;
     private Date bis;
     private boolean schluessel;
-    private Gast gast;
-    private Zimmer zimmer;
+    private IGast gast;
+    private IZimmer zimmer;
+    private IPfandtyp pfandtyp;
 
+	public void setID(int ID) {
+		this.ID = ID;
+	}
+
+	public int getID() {
+		return ID;
+	}
+	
     public Float getPreis() {
         return preis;
     }
@@ -62,34 +71,56 @@ public class Aufenthalt {
         this.schluessel = schluessel;
     }
 
-	public Gast getGast() {
+	public IGast getGast() {
 		return gast;
 	}
 
-	public void setGast(Gast gast) {
+	public void setGast(IGast gast) {
 		this.gast = gast;
 	}
 
-	public Zimmer getZimmer() {
+	public IZimmer getZimmer() {
 		return zimmer;
 	}
 
-	public void setZimmer(Zimmer zimmer) {
+	public void setZimmer(IZimmer zimmer) {
 		this.zimmer = zimmer;
+	}
+	
+	@Override
+	public void setPfandtyp(IPfandtyp pfandtyp) {
+		this.pfandtyp = pfandtyp;
+		
+	}
+
+	@Override
+	public IPfandtyp getPfandtyp() {
+		return pfandtyp;
 	}
 
 	public Aufenthalt() {
 	}
 
-	public Aufenthalt(Float preis, String pfandNr, Date von, Date bis,
-			boolean schluessel, Gast gast, Zimmer zimmer) {
-		this.pfandNr = pfandNr;
+	public Aufenthalt(Float preis, Date von, Date bis,
+			boolean schluessel, IGast gast, IZimmer zimmer) {
 		this.von = von;
 		this.bis = bis;
 		this.schluessel = schluessel;
 		this.gast = gast;
 		this.zimmer = zimmer;
 	}
+	
+	public Aufenthalt(Float preis, String pfandNr, Date von, Date bis,
+			boolean schluessel, IGast gast, IZimmer zimmer, IPfandtyp pfand) {
+		this.pfandNr = pfandNr;
+		this.von = von;
+		this.bis = bis;
+		this.schluessel = schluessel;
+		this.gast = gast;
+		this.zimmer = zimmer;
+		this.pfandtyp = pfand;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -155,6 +186,4 @@ public class Aufenthalt {
 				+ von + ", bis=" + bis + ", schluessel=" + schluessel
 				+ ", gast=" + gast + ", zimmer=" + zimmer + "]";
 	}
-
-
 }

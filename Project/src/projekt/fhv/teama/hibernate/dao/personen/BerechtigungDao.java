@@ -10,17 +10,25 @@ import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
-import projekt.fhv.teama.classes.personen.Berechtigung;
+import projekt.fhv.teama.classes.personen.IBerechtigung;
 
-public class BerechtigungDao extends GenericDao<Berechtigung>{
+public class BerechtigungDao extends GenericDao<IBerechtigung> implements IBerechtigungDao {
+	private static IBerechtigungDao instance;
 
-	public BerechtigungDao() {
+	public static IBerechtigungDao getInstance() {
+		if (instance != null) {
+			instance = new BerechtigungDao();
+		}
+		return instance;
+	}
+	
+	private BerechtigungDao() {
 		super("Berechtigung");
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Berechtigung getBerechtigungByBezeichnung(String bezeichnung) throws DatabaseException {
-		List<Berechtigung> berechtigungenList = null;
+	public IBerechtigung getBerechtigungByBezeichnung(String bezeichnung) throws DatabaseException {
+		List<IBerechtigung> berechtigungenList = null;
 		
 		try {
 			Session session = HibernateHelper.getSession();
@@ -35,6 +43,6 @@ public class BerechtigungDao extends GenericDao<Berechtigung>{
 		} catch (HibernateException e) {
 			throw new DatabaseException();
 		}
-		return (Berechtigung) berechtigungenList.get(0);
+		return (IBerechtigung) berechtigungenList.get(0);
 	}
 }
