@@ -24,18 +24,15 @@ import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
  */
 public class ReservierungDao extends GenericDao<IReservierung> implements IReservierungDao {
 	
-	private ReservierungDao instance;
+	private static ReservierungDao instance;
 	
-	public IReservierungDao reservierungDao(){
-		if(this.instance != null) {
-			ReservierungDao r = new ReservierungDao();
-			instance = r;
-			return r;
+	public static IReservierungDao getInstance(){
+		if(instance != null) {
+			instance = new ReservierungDao();
 		}
 		return instance;
 	}
-	
-	
+		
 	private ReservierungDao() {
 		super("Reservierung");
 

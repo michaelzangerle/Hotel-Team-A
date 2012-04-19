@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.util.GregorianCalendar;
 
 import projekt.fhv.teama.classes.zimmer.ReservierungsOption;
-import projekt.fhv.teama.hibernate.dao.zimmer.OptionDao;
+import projekt.fhv.teama.hibernate.dao.zimmer.ReservierungsOptionDao;
 
 /**
  * @author mike

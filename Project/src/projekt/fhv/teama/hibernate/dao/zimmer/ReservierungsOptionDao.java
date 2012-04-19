@@ -2,19 +2,30 @@ package projekt.fhv.teama.hibernate.dao.zimmer;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import projekt.fhv.teama.classes.zimmer.IReservierungsOption;
 import projekt.fhv.teama.classes.zimmer.ReservierungsOption;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
-public class OptionDao extends GenericDao<ReservierungsOption> {
+public class ReservierungsOptionDao extends GenericDao<IReservierungsOption> implements IReservierungsOptionDao{
 
-	public OptionDao() {
+	private static ReservierungsOptionDao instance;
+	
+	public IReservierungsOptionDao getInstance(){
+		if(instance != null) {
+			instance = new ReservierungsOptionDao();
+		}
+		return instance;
+	}
+		
+	private ReservierungsOptionDao() {
 		super("Option");
 
 	}
@@ -45,6 +56,12 @@ public class OptionDao extends GenericDao<ReservierungsOption> {
 		}
 
 		return options;
+	}
+
+	@Override
+	public Set<IReservierungsOption> getOption(java.util.Date zeitpunkt) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
