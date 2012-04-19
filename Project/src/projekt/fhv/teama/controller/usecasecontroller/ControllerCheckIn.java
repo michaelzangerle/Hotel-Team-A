@@ -55,7 +55,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	
 	public void setVorname(String vorname)
 	{
-		aktuelleReservierung.getGaeste()
+	
 	}
 	public void setNachname(String nachname)
 	{
