@@ -22,7 +22,7 @@ public class Zimmer extends Leistung implements IZimmer {
 	/* Beziehungen */
 
 	private Set<IReservierung> reservierungen = new HashSet<IReservierung>();
-	private Set<IStatusentwicklung> statusenticklungen = new HashSet<IStatusentwicklung>();
+	private Set<IStatusentwicklung> statusentwicklungen = new HashSet<IStatusentwicklung>();
 	private Set<IGast> gaeste = new HashSet<IGast>();
 	private Set<IAufenthalt> aufenthalte = new HashSet<IAufenthalt>();
 	private Set<IRechnungsposition> rechnungspositionen = new HashSet<IRechnungsposition>();
@@ -36,7 +36,7 @@ public class Zimmer extends Leistung implements IZimmer {
 		this.kategorie = kategorie;
 		this.zimmerstatus = zimmerStatus;
 		this.reservierungen = reservierungen;
-		this.statusenticklungen = statusenticklungen;
+		this.statusentwicklungen = statusenticklungen;
 		this.gaeste = gaeste;
 		this.aufenthalte = aufenthalte;
 		this.rechnungspositionen = rechnungspositionen;
@@ -87,11 +87,11 @@ public class Zimmer extends Leistung implements IZimmer {
 	}
 
 	public Set<IStatusentwicklung> getStatusentwicklungen() {
-		return statusenticklungen;
+		return statusentwicklungen;
 	}
 
-	public void setStatusenticklungen(Set<IStatusentwicklung> statusenticklungen) {
-		this.statusenticklungen = statusenticklungen;
+	public void setStatusentwicklungen(Set<IStatusentwicklung> statusenticklungen) {
+		this.statusentwicklungen = statusenticklungen;
 	}
 
 	public Set<IGast> getGaeste() {
@@ -122,7 +122,7 @@ public class Zimmer extends Leistung implements IZimmer {
 	public String toString() {
 		return "Zimmer [ID=" + getID() + ", nummer=" + nummer + ", beschreibung=" + beschreibung + ", kategorie="
 				+ kategorie.getBezeichnung() + ", zimmerStatus=" + zimmerstatus.getBezeichnung() + ", reservierungen=" + reservierungen
-				+ ", statusenticklungen=" + statusenticklungen + ", gaeste=" + gaeste + ", aufenthalte=" + aufenthalte
+				+ ", statusenticklungen=" + statusentwicklungen + ", gaeste=" + gaeste + ", aufenthalte=" + aufenthalte
 				+ ", rechnungspositionen=" + rechnungspositionen + "]";
 	}
 
@@ -138,7 +138,7 @@ public class Zimmer extends Leistung implements IZimmer {
 		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
 		result = prime * result + ((rechnungspositionen == null) ? 0 : rechnungspositionen.hashCode());
 		result = prime * result + ((reservierungen == null) ? 0 : reservierungen.hashCode());
-		result = prime * result + ((statusenticklungen == null) ? 0 : statusenticklungen.hashCode());
+		result = prime * result + ((statusentwicklungen == null) ? 0 : statusentwicklungen.hashCode());
 		result = prime * result + ((zimmerstatus == null) ? 0 : zimmerstatus.hashCode());
 		return result;
 	}
@@ -189,10 +189,10 @@ public class Zimmer extends Leistung implements IZimmer {
 				return false;
 		} else if (!reservierungen.equals(other.reservierungen))
 			return false;
-		if (statusenticklungen == null) {
-			if (other.statusenticklungen != null)
+		if (statusentwicklungen == null) {
+			if (other.statusentwicklungen != null)
 				return false;
-		} else if (!statusenticklungen.equals(other.statusenticklungen))
+		} else if (!statusentwicklungen.equals(other.statusentwicklungen))
 			return false;
 		if (zimmerstatus == null) {
 			if (other.zimmerstatus != null)

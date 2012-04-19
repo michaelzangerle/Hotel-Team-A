@@ -20,7 +20,7 @@
 			<column name="KATEGORIE" />
 		</many-to-one>
 		
-		<many-to-one name="zimmerStatus"
+		<many-to-one name="zimmerstatus"
 			class="projekt.fhv.teama.classes.zimmer.Zimmerstatus" fetch="join">
 			<column name="ZIMMERSTATUS" />
 		</many-to-one>
@@ -34,7 +34,7 @@
 				class="projekt.fhv.teama.classes.zimmer.Reservierung" />
 		</set>
 		
-		<set name="statusenticklungen" table="STATUSENTWICKLUNG" inverse="false"
+		<set name="statusentwicklungen" table="STATUSENTWICKLUNG" inverse="false"
 			lazy="true">
 			<key>
 				<column name="ID" />
