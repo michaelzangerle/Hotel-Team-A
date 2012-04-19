@@ -23,7 +23,7 @@ import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
  */
 public class ReservierungDao extends GenericDao<Reservierung> {
 
-	public ReservierungDao(String table) {
+	public ReservierungDao() {
 		super("Reservierung");
 
 	}

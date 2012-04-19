@@ -19,6 +19,7 @@ public class TeilzahlungTest {
 	public static void main(String[] args) {
 		
 		ZahlungsmethodeDao zmd = new ZahlungsmethodeDao();
+//		ZahlungsmethodeDao zmdDao=ZahlungsmethodeDao.getInstance()
 		Zahlungsmethode z1 = zmd.getById(1);
 		
 		TeilzahlungDao tzd = new TeilzahlungDao();
