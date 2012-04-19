@@ -46,14 +46,6 @@ public class Zimmer extends Leistung implements IZimmer {
 
 	}
 
-	public int getID() {
-		return getID();
-	}
-
-	public void setID(int iD) {
-		setID(iD);
-	}
-
 	public String getNummer() {
 		return nummer;
 	}

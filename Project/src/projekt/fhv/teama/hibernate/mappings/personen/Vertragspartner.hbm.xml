@@ -1,51 +1,59 @@
-<?xml version='1.0' encoding='utf-8'?>
-<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping"
-        xsi:schemaLocation="http://www.hibernate.org/xsd/hibernate-mapping http://www.hibernate.org/xsd/hibernate-mapping/hibernate-mapping-4.0.xsd" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="projekt.fhv.teama.classes.personen.Vertragspartner"
+		table="vertragspartner">
 
-    <class name="projekt.fhv.teama.classes.personen.Vertragspartner" table="vertragspartner">
-        <id name="ID">
-            <column name="vertragsPartnerID" sql-type="int" length="10" not-null="true"/>
-            <generator class="native"/>
-        </id>
-        <property name="name">
-            <column name="name" sql-type="varchar" not-null="true"/>
-        </property>
-        <property name="telefonNummer">
-            <column name="telefonnummer" sql-type="varchar" not-null="true"/>
-        </property>
-        <property name="email">
-            <column name="email" sql-type="varchar" not-null="true"/>
-        </property>
-        <many-to-one name="land"
+		<id name="ID">
+			<column name="vertragsPartnerID" sql-type="int" length="10"
+				not-null="true" />
+			<generator class="native" />
+		</id>
+
+		<property name="name">
+			<column name="name" sql-type="varchar" not-null="true" />
+		</property>
+
+		<property name="telefonNummer">
+			<column name="telefonnummer" sql-type="varchar" not-null="true" />
+		</property>
+
+		<property name="email">
+			<column name="email" sql-type="varchar" not-null="true" />
+		</property>
+
+		<many-to-one name="land"
 			class="projekt.fhv.teama.classes.personen.Land" column="landID"
 			not-null="true" foreign-key="ID" />
-			
+
 		<many-to-one name="kontodaten"
 			class="projekt.fhv.teama.classes.personen.Kontodaten" column="kontodatenID"
 			not-null="true" unique="true" foreign-key="ID" />
-		
+
 		<many-to-one name="typ"
-			class="projekt.fhv.teama.classes.personen.VertragspartnerTyp" column="vertragspartnerTypID"
+			class="projekt.fhv.teama.classes.personen.Vertragspartnertyp" column="vertragspartnerTypID"
 			not-null="true" foreign-key="ID" />
-			
-        <set name="adressen" table="personadresse" cascade="all">
-        	<key column="person_personID"/>
-        	<many-to-many column="adresse_adresseID" class="projekt.fhv.teama.classes.personen.Adresse"/>
-    	</set>
-    	
-    	<set name="reservierungen" table="Reservierung" inverse="false" lazy="true">
-            <key>
-                <column name="reservierungID" />
-            </key>
-            <one-to-many class="projekt.fhv.teama.classes.zimmer.Reservierung" />
-        </set>
-        
-        <set name="kontingente" table="kontingent" inverse="false" lazy="true">
-            <key>
-                <column name="kontingentID" />
-            </key>
-            <one-to-many class="projekt.fhv.teama.classes.Kontingent" />
-        </set>
-    </class>
+
+		<set name="adressen" table="personadresse" cascade="all">
+			<key column="person_personID" />
+			<many-to-many column="adresse_adresseID"
+				class="projekt.fhv.teama.classes.personen.Adresse" />
+		</set>
+
+		<set name="reservierungen" table="Reservierung" inverse="false"
+			lazy="true">
+			<key>
+				<column name="reservierungID" />
+			</key>
+			<one-to-many class="projekt.fhv.teama.classes.zimmer.Reservierung" />
+		</set>
+
+		<set name="kontingente" table="kontingent" inverse="false" lazy="true">
+			<key>
+				<column name="kontingentID" />
+			</key>
+			<one-to-many class="projekt.fhv.teama.classes.Kontingent" />
+		</set>
+	</class>
 </hibernate-mapping>

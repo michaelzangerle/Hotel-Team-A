@@ -15,7 +15,7 @@ public class Kategorie implements IKategorie {
 	private String bezeichnung;
 	private String beschreibung;
 	private Set<IZimmerpreis> zimmerpreise = new HashSet<IZimmerpreis>();
-	private Set<ITeilreservierung> teilreservierung = new HashSet<ITeilreservierung>();
+	private Set<ITeilreservierung> teilreservierungen = new HashSet<ITeilreservierung>();
 	private Set<IKategoriekontingent> kategoriekontingent = new HashSet<IKategoriekontingent>();
 	private Set<IZimmer> zimmer = new HashSet<IZimmer>();
 
@@ -26,7 +26,7 @@ public class Kategorie implements IKategorie {
 		this.bezeichnung = bezeichnung;
 		this.beschreibung = beschreibung;
 		this.zimmerpreise = zimmerpreise;
-		this.teilreservierung = teilreservierungsreservierungen;
+		this.teilreservierungen = teilreservierungsreservierungen;
 		this.kategoriekontingent = kategoriekontingent;
 		this.zimmer = zimmer;
 	}
@@ -67,12 +67,12 @@ public class Kategorie implements IKategorie {
 		this.zimmerpreise = zimmerpreise;
 	}
 
-	public Set<ITeilreservierung> getTeilreservierungsreservierungen() {
-		return teilreservierung;
+	public Set<ITeilreservierung> getTeilreservierungen() {
+		return teilreservierungen;
 	}
 
-	public void setTeilreservierungsreservierungen(Set<ITeilreservierung> teilreservierungsreservierungen) {
-		this.teilreservierung = teilreservierungsreservierungen;
+	public void setTeilreservierungen(Set<ITeilreservierung> teilreservierungsreservierungen) {
+		this.teilreservierungen = teilreservierungsreservierungen;
 	}
 
 	public Set<IKategoriekontingent> getKategoriekontingent() {
@@ -95,7 +95,7 @@ public class Kategorie implements IKategorie {
 	public String toString() {
 		return "Kategorie [ID=" + ID + ", bezeichnung=" + bezeichnung + ", beschreibung=" + beschreibung
 				+ ", zimmerpreise=" + zimmerpreise + ", teilreservierungsreservierungen="
-				+ teilreservierung + ", kategoriekontingent=" + kategoriekontingent + ", zimmer="
+				+ teilreservierungen + ", kategoriekontingent=" + kategoriekontingent + ", zimmer="
 				+ zimmer + "]";
 	}
 
@@ -108,7 +108,7 @@ public class Kategorie implements IKategorie {
 		result = prime * result + ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
 		result = prime * result + ((kategoriekontingent == null) ? 0 : kategoriekontingent.hashCode());
 		result = prime * result
-				+ ((teilreservierung == null) ? 0 : teilreservierung.hashCode());
+				+ ((teilreservierungen == null) ? 0 : teilreservierungen.hashCode());
 		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
 		result = prime * result + ((zimmerpreise == null) ? 0 : zimmerpreise.hashCode());
 		return result;
@@ -140,10 +140,10 @@ public class Kategorie implements IKategorie {
 				return false;
 		} else if (!kategoriekontingent.equals(other.kategoriekontingent))
 			return false;
-		if (teilreservierung == null) {
-			if (other.teilreservierung != null)
+		if (teilreservierungen == null) {
+			if (other.teilreservierungen != null)
 				return false;
-		} else if (!teilreservierung.equals(other.teilreservierung))
+		} else if (!teilreservierungen.equals(other.teilreservierungen))
 			return false;
 		if (zimmer == null) {
 			if (other.zimmer != null)
@@ -187,14 +187,14 @@ public class Kategorie implements IKategorie {
 
 	@Override
 	public void addTeilreservierung(ITeilreservierung teilreservierung) {
-		this.teilreservierung.add(teilreservierung);
+		this.teilreservierungen.add(teilreservierung);
 
 	}
 
 	@Override
 	public void removeTeilreservierung(ITeilreservierung teilreservierung) {
-		if (this.teilreservierung.contains(teilreservierung)) {
-			this.teilreservierung.remove(teilreservierung);
+		if (this.teilreservierungen.contains(teilreservierung)) {
+			this.teilreservierungen.remove(teilreservierung);
 		}
 
 	}

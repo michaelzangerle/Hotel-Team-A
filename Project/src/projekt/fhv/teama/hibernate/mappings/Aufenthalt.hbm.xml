@@ -34,7 +34,7 @@
 					<column name="zimmerID" />
 		</many-to-one>
 		<many-to-one name="pfandtyp"
-					class="projekt.fhv.teama.classes.PfandTyp" fetch="join">
+					class="projekt.fhv.teama.classes.Pfandtyp" fetch="join">
 					<column name="pfandTypID" />
 		</many-to-one>
 	</class>

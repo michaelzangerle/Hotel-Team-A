@@ -130,7 +130,7 @@ public class Rechnung implements IRechnung {
 		return rechnungspositionen;
 	}
 
-	public void setRechnungspostitionen(Set<IRechnungsposition> rechnungspositionen) {
+	public void setRechnungspositionen(Set<IRechnungsposition> rechnungspositionen) {
 		this.rechnungspositionen = rechnungspositionen;
 	}
 

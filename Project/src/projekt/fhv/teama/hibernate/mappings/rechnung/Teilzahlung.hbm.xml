@@ -20,12 +20,12 @@
 			<column name="BETRAG" sql-type="DECIMAL" />
 		</property>
 
-		<set name="zahlungsmethoden" table="IZAHLUNGSMETHODE" inverse="false"
+		<set name="zahlungsmethoden" table="ZAHLUNGSMETHODE" inverse="false"
 			lazy="true">
 			<key>
 				<column name="zahlungsmethodeID" />
 			</key>
-			<one-to-many class="projekt.fhv.teama.classes.rechnung.IZahlungsmethode" />
+			<one-to-many class="projekt.fhv.teama.classes.rechnung.Zahlungsmethode" />
 		</set>
 
 	</class>

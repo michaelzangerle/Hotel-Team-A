@@ -59,4 +59,10 @@ public class Vertragspartnertyp implements IVertragspartnertyp {
 		return "VertragspartnerTyp [ID=" + ID + ", bezeichnung=" + bezeichnung
 				+ "]";
 	}
+
+	public Vertragspartnertyp() {
+
+	}
+	
+	
 }

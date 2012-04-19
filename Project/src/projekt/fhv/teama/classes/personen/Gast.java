@@ -17,20 +17,20 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
  * To change this template use File | Settings | File Templates.
  */
 public class Gast extends Person implements IGast{
-    private int ID;
+//    private int ID;
     private String nummer;
     private IZimmer zimmer;
     private Set<IReservierung> reservierungen;
     private Set<IRechnungsposition> rechnungspositionen;
     private Set<IAufenthalt> aufenthalte;
     
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int gastId) {
-        this.ID = gastId;
-    }
+//    public int getID() {
+//        return ID;
+//    }
+//
+//    public void setID(int gastId) {
+//        this.ID = gastId;
+//    }
 
     public String getNummer() {
         return nummer;
@@ -127,7 +127,7 @@ public class Gast extends Person implements IGast{
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ID;
+		result = prime * result + getID();
 		result = prime * result
 				+ ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
 		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
@@ -150,7 +150,7 @@ public class Gast extends Person implements IGast{
 		if (getClass() != obj.getClass())
 			return false;
 		Gast other = (Gast) obj;
-		if (ID != other.ID)
+		if (getID() != other.getID())
 			return false;
 		if (aufenthalte == null) {
 			if (other.aufenthalte != null)
@@ -182,7 +182,7 @@ public class Gast extends Person implements IGast{
 
 	@Override
 	public String toString() {
-		return "Gast [ID=" + ID + ", nummer=" + nummer + ", zimmer=" + zimmer
+		return "Gast [ID=" + getID() + ", nummer=" + nummer + ", zimmer=" + zimmer
 				+ ", reservierungen=" + reservierungen
 				+ ", rechnungspositionen=" + rechnungspositionen
 				+ ", aufenthalte=" + aufenthalte + "]";
