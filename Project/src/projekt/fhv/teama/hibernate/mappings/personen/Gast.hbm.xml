@@ -5,13 +5,13 @@
 <hibernate-mapping>
     <joined-subclass name="projekt.fhv.teama.classes.personen.Gast" extends="projekt.fhv.teama.classes.personen.Person" table="GAST" lazy="false">
         <key>
-            <column name="gastID" />
+            <column name="personID" />
         </key>
         <property name="nummer" type="java.lang.String">
-            <column name="NUMMER" />
+            <column name="nummer" />
         </property>
         <many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
-            <column name="ZIMMER" />
+            <column name="zimmerID" />
         </many-to-one>
 		
 		<set name="reservierungen" table="gastReservierung" cascade="all">

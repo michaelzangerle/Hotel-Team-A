@@ -8,7 +8,7 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 public class KontodatenDao extends GenericDao<IKontodaten> implements IKontodatenDao {
 
 	
-	private static IKontodatenDao instance;
+	private static KontodatenDao instance;
 
 	public static IKontodatenDao getInstance() {
 		if (instance == null) {
@@ -18,7 +18,7 @@ public class KontodatenDao extends GenericDao<IKontodaten> implements IKontodate
 	}
 	
 	private KontodatenDao() {
-		super("KONTODATEN");
+		super("Kontodaten");
 	}
 
 }

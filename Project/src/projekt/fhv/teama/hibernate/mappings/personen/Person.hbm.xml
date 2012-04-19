@@ -22,11 +22,11 @@
 		</property>
 		
 		<set name="adressen" table="personadresse" cascade="all">
-        	<key column="person_personID"/>
-        	<many-to-many column="adresse_adresseID" class="projekt.fhv.teama.classes.personen.Adresse"/>
+        	<key column="personID"/>
+        	<many-to-many column="adresseID" class="projekt.fhv.teama.classes.personen.Adresse"/>
     	</set>
     
-		<property name="geburtsdatum" type="java.util.Date">
+		<property name="geburtsdatum" type="java.sql.Date">
 			<column name="geburtsdatum" sql-type="date" length="10" />
 		</property>
 		

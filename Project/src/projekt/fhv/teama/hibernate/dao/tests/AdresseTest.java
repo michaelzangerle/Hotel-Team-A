@@ -1,6 +1,9 @@
 package projekt.fhv.teama.hibernate.dao.tests;
 
+import java.util.Set;
+
 import projekt.fhv.teama.classes.personen.Adresse;
+import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.hibernate.dao.personen.AdresseDao;
 import projekt.fhv.teama.hibernate.dao.personen.IAdresseDao;
 import projekt.fhv.teama.hibernate.dao.personen.ILandDao;
@@ -17,16 +20,28 @@ public class AdresseTest {
 		IAdresseDao adao = AdresseDao.getInstance();
 		ILandDao lnd = LandDao.getInstance();
 		
-		adao.create(new Adresse("Bahnhofstraße 3", "6900", "Bregenz", lnd.getLandByKuerzel("AT")));
-		adao.create(new Adresse("Dorf 46", "6491", "Schönwies", lnd.getLandByKuerzel("AT")));
-		adao.create(new Adresse("Marktstraße 18", "6850", "Dornbirn", lnd.getLandByKuerzel("AT")));
-		
-		
 		// Einfügen
+		
+//		adao.create(new Adresse("Bahnhofstraße 3", "6900", "Bregenz", lnd.getLandByKuerzel("AT")));
+//		adao.create(new Adresse("Dorf 46", "6491", "Schönwies", lnd.getLandByKuerzel("AT")));
+//		adao.create(new Adresse("Marktstraße 18", "6850", "Dornbirn", lnd.getLandByKuerzel("AT")));
+		
 		// Alle holen
+//		Set<IAdresse> adr = adao.getAll();
+//		for (IAdresse iAdresse : adr) {
+//			System.out.println(iAdresse);
+//		}
+		
 		// 1 holen
+		System.out.println(adao.getById(1));
+		
 		// update
+		IAdresse a1 = adao.getById(3);
+		a1.setStrasse("Marktstraße 16");
+		adao.update(a1);
+		
 		// spezial
+		
 		
 	}
 }
