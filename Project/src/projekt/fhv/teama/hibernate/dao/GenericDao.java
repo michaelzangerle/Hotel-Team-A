@@ -3,7 +3,9 @@
  */
 package projekt.fhv.teama.hibernate.dao;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -45,7 +47,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> getAll() throws NoDatabaseEntryFoundException {
+	public Set<T> getAll() throws NoDatabaseEntryFoundException {
 
 		List<T> results = null;
 
@@ -64,8 +66,8 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
-		return results;
+		Set<T> set = new HashSet<T>(results);
+		return set;
 	}
 
 	@Override
