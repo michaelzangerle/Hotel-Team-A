@@ -42,10 +42,6 @@
 			class="projekt.fhv.teama.classes.personen.Kontodaten" column="kontodatenID"
 			not-null="true" unique="true" foreign-key="ID" />
 			
-		<many-to-one name="land"
-			class="projekt.fhv.teama.classes.personen.Land" column="landID"
-			not-null="true" foreign-key="ID" />
-			
 		<set name="reservierungen" table="Reservierung" inverse="false" lazy="true">
             <key>
                 <column name="reservierungID" />

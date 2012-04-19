@@ -11,7 +11,6 @@ public class Vertragspartner implements IVertragspartner {
     private String name;
     private String telefonNummer;
     private String email;
-    private ILand land;
     private IKontodaten kontodaten;
     private Set<IAdresse> adressen;
     private IVertragspartnertyp typ;
@@ -49,15 +48,6 @@ public class Vertragspartner implements IVertragspartner {
     public void setEmail(String email) {
         this.email = email;
     }
-
-	public ILand getLand() {
-		return land;
-	}
-
-	public void setLand(ILand land) {
-		this.land = land;
-	}
-
 
 	public IKontodaten getKontodaten() {
 		return kontodaten;
@@ -120,7 +110,6 @@ public class Vertragspartner implements IVertragspartner {
 		this.name = name;
 		this.telefonNummer = telefonnummer;
 		this.email = email;
-		this.land = land;
 		this.kontodaten = kontodaten;
 		this.adressen = adressen;
 	}
@@ -131,7 +120,6 @@ public class Vertragspartner implements IVertragspartner {
 		this.name = name;
 		this.telefonNummer = telefonnummer;
 		this.email = email;
-		this.land = land;
 		this.kontodaten = kontodaten;
 		this.adressen = adressen;
 		this.typ = typ;
@@ -147,7 +135,6 @@ public class Vertragspartner implements IVertragspartner {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result
 				+ ((kontodaten == null) ? 0 : kontodaten.hashCode());
-		result = prime * result + ((land == null) ? 0 : land.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result
 				+ ((telefonNummer == null) ? 0 : telefonNummer.hashCode());
@@ -181,11 +168,6 @@ public class Vertragspartner implements IVertragspartner {
 				return false;
 		} else if (!kontodaten.equals(other.kontodaten))
 			return false;
-		if (land == null) {
-			if (other.land != null)
-				return false;
-		} else if (!land.equals(other.land))
-			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -207,8 +189,7 @@ public class Vertragspartner implements IVertragspartner {
 	@Override
 	public String toString() {
 		return "Vertragspartner [ID=" + ID + ", name=" + name
-				+ ", telefonnummer=" + telefonNummer + ", email=" + email
-				+ ", land=" + land + ", kontodaten="
+				+ ", telefonnummer=" + telefonNummer + ", email=" + ", kontodaten="
 				+ kontodaten + ", adressen=" + adressen + "]";
 	}
 }

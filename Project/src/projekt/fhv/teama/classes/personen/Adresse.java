@@ -10,6 +10,7 @@ public class Adresse implements IAdresse {
     private String ort;
     private Set<IPerson> person;
     private Set<IVertragspartner> vertragspartner;
+    private ILand land;
     
     public String getStrasse() {
         return strasse;
@@ -59,15 +60,24 @@ public class Adresse implements IAdresse {
 		this.vertragspartner = vertragspartner;
 	}
 	
+	public ILand getLand() {
+		return land;
+	}
+
+	public void setLand(ILand land) {
+		this.land = land;
+	}
+	
 	public Adresse() {
 	}
 
-	public Adresse(String strasse, String plz, String ort) {
+	public Adresse(String strasse, String plz, String ort, ILand land) {
 		this.strasse = strasse;
 		this.plz = plz;
 		this.ort = ort;
 		person = new HashSet<IPerson>();
 		vertragspartner = new HashSet<IVertragspartner>();
+		this.setLand(land);
 	}
 
 	@Override

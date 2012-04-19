@@ -23,10 +23,6 @@
 			<column name="email" sql-type="varchar" not-null="true" />
 		</property>
 
-		<many-to-one name="land"
-			class="projekt.fhv.teama.classes.personen.Land" column="landID"
-			not-null="true" foreign-key="ID" />
-
 		<many-to-one name="kontodaten"
 			class="projekt.fhv.teama.classes.personen.Kontodaten" column="kontodatenID"
 			not-null="true" unique="true" foreign-key="ID" />

@@ -12,8 +12,6 @@ public interface IVertragspartner extends IDao {
 	public String getTelefonNummer();
 	public void setEmail(String email);
 	public String getEmail();
-	public void setLand(ILand land);
-	public ILand getLand();
 	public void setKontodaten(IKontodaten kontodaten);
 	public IKontodaten getKontodaten();
 	public void addAdresse(IAdresse adresse);

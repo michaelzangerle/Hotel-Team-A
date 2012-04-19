@@ -19,7 +19,6 @@ public class Person implements IPerson {
 	private String telefonnummer;
 	private String email;
 	private IKontodaten kontodaten;
-	private ILand land;
 	private Set<IReservierung> reservierungen;
 
 	public int getID() {
@@ -102,17 +101,6 @@ public class Person implements IPerson {
 		this.geburtsdatum = geburtsdatum;
 		
 	}
-	
-	@Override
-	public ILand getLand() {
-		return land;
-	}
-	
-	@Override
-	public void setLand(ILand land) {
-		this.land = land;
-		
-	}
 
 	public IKontodaten getKontodaten() {
 		return kontodaten;
@@ -157,7 +145,6 @@ public class Person implements IPerson {
 		this.telefonnummer = telefonnummer;
 		this.email = email;
 		this.kontodaten = kontodaten;
-		this.land = land;
 	}
 
 	@Override
@@ -171,9 +158,7 @@ public class Person implements IPerson {
 		result = prime * result + geschlecht;
 		result = prime * result
 				+ ((kontodaten == null) ? 0 : kontodaten.hashCode());
-		result = prime * result + ((land == null) ? 0 : land.hashCode());
-		result = prime * result
-				+ ((nachname == null) ? 0 : nachname.hashCode());
+		result = prime * result + ((nachname == null) ? 0 : nachname.hashCode());
 		result = prime * result
 				+ ((telefonnummer == null) ? 0 : telefonnummer.hashCode());
 		result = prime * result + ((vorname == null) ? 0 : vorname.hashCode());
@@ -208,11 +193,6 @@ public class Person implements IPerson {
 				return false;
 		} else if (!kontodaten.equals(other.kontodaten))
 			return false;
-		if (land == null) {
-			if (other.land != null)
-				return false;
-		} else if (!land.equals(other.land))
-			return false;
 		if (nachname == null) {
 			if (other.nachname != null)
 				return false;
@@ -236,6 +216,6 @@ public class Person implements IPerson {
 		return "Person [ID=" + ID + ", vorname=" + vorname + ", nachname="
 				+ nachname + ", geschlecht=" + geschlecht + ", geburtsdatum=" + geburtsdatum
 				+ ", telefonnummer=" + telefonnummer + ", email=" + email
-				+ ", kontodaten=" + kontodaten + ", landID=" + land + "]";
+				+ ", kontodaten=" + kontodaten + "]";
 	}
 }

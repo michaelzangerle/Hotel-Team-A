@@ -32,10 +32,6 @@ public interface IPerson extends IDao {
 
 	public String getEmail();
 
-	public void setLand(ILand land);
-
-	public ILand getLand();
-
 	public void setKontodaten(IKontodaten kontodaten);
 
 	public IKontodaten getKontodaten();
