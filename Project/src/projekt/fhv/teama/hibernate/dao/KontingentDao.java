@@ -3,7 +3,9 @@
  */
 package projekt.fhv.teama.hibernate.dao;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -19,17 +21,26 @@ import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
  * @author mike
  * 
  */
-public class KontingentDao extends GenericDao<Kontingent> {
+public class KontingentDao extends GenericDao<IKontingent> implements IKontingentDao {
 
-	public KontingentDao() {
+	private static KontingentDao instance;
+
+	public static IKontingentDao getInstance() {
+		if (instance != null) {
+			instance = new KontingentDao();
+		}
+		return instance;
+	}
+
+	private KontingentDao() {
 		super("Kontingent");
 
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<IKontingent> getKontingentByVPID(int id) throws NoDatabaseEntryFoundException {
+	public Set<IKontingent> getKontingentByVPID(int id) throws NoDatabaseEntryFoundException {
 
-		List<IKontingent> kontingente = null;
+		List<Kontingent> kontingente = null;
 
 		try {
 			Session session = HibernateHelper.getSession();
@@ -42,18 +53,19 @@ public class KontingentDao extends GenericDao<Kontingent> {
 			if (results.size() == 0) {
 				throw new NoDatabaseEntryFoundException();
 			}
-			
+
 			kontingente = results;
-			
+
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
 
-		return kontingente;
+		Set<IKontingent> set = new HashSet<IKontingent>(kontingente);
+		return set;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<IKontingent> getKontingentByVPName(String name) throws NoDatabaseEntryFoundException {
+	public Set<IKontingent> getKontingentByVPName(String name) throws NoDatabaseEntryFoundException {
 
 		List<IKontingent> kontingente = null;
 
@@ -63,23 +75,24 @@ public class KontingentDao extends GenericDao<Kontingent> {
 			query.setString("name", name);
 			List<IVertragspartner> results = query.list();
 			int id = results.get(0).getID();
-			
+
 			query = session.createQuery("from " + getTable() + " v where v.vertragsPartnerID = :id");
 			query.setString("id", String.valueOf(id));
 
-			List <IKontingent> results2 = query.list();
+			List<IKontingent> results2 = query.list();
 
 			if (results.size() == 0) {
 				throw new NoDatabaseEntryFoundException();
 			}
-			
+
 			kontingente = results2;
-			
+
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
 
-		return kontingente;
+		Set<IKontingent> set = new HashSet<IKontingent>(kontingente);
+		return set;
 	}
 
 }

@@ -10,22 +10,30 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import projekt.fhv.teama.classes.IPfandtyp;
-import projekt.fhv.teama.classes.Pfandtyp;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
  * @author mike
- *
+ * 
  */
-public class PfandtypDao extends GenericDao<Pfandtyp> {
+public class PfandtypDao extends GenericDao<IPfandtyp> implements IPfandtypDao {
 
-	public PfandtypDao() {
+	private static PfandtypDao instance;
+
+	public static IPfandtypDao getInstance() {
+		if (instance != null) {
+			instance = new PfandtypDao();
+		}
+		return instance;
+	}
+
+	private PfandtypDao() {
 		super("Pfandtyp");
 	}
-	
-	public IPfandtyp getPfandtypByBez(String bez) throws NoDatabaseEntryFoundException{
-		
+
+	public IPfandtyp getPfandtypByBez(String bez) throws NoDatabaseEntryFoundException {
+
 		try {
 			Session session = HibernateHelper.getSession();
 			Query query = session.createQuery("from " + getTable() + " p where p.bezeichnung = :bez");
