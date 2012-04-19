@@ -1,11 +1,9 @@
 package projekt.fhv.teama.controller;
 
 import java.util.List;
-
-import org.apache.pivot.collections.Set;
+import java.util.Vector;
 
 import projekt.fhv.teama.classes.zimmer.IReservierung;
-import projekt.fhv.teama.classes.zimmer.Reservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
 import projekt.fhv.teama.hibernate.dao.zimmer.IReservierungDao;
 
@@ -33,7 +31,7 @@ public class ControllerReservierung implements IControllerReservierung {
 	public List<IReservierung> getAllReservierungen() {
 		
 		  try {
-			Set<IReservierung> reservierungen=reservierungsDao.getAll();
+			List<IReservierung> reservierungen=new Vector<IReservierung>(reservierungsDao.getAll());
 			return reservierungen;
 			
 		} catch (NoDatabaseEntryFoundException e) {

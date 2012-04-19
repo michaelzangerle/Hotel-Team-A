@@ -1,8 +1,17 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.Vector;
 
+import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.personen.IPerson;
+import projekt.fhv.teama.classes.personen.IVertragspartner;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
+import projekt.fhv.teama.classes.zimmer.IReservierungsOption;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.ControllerReservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
@@ -13,7 +22,8 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	
 	IControllerReservierung controllerReservierung;
 	private List<IReservierung> reservierungen;
-	private int aktuelleReservierung;
+	private IReservierung aktuelleReservierung;
+	IAufenthalt aufenthalt;
 
 	
 	public ControllerCheckIn() {
@@ -27,26 +37,64 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		return reservierungen;
 	}
 	
-	public IReservierung getReservierungByListId(int id) throws Exception
+	public void setAktuelleReservierung(IReservierung reservierung) 
 	{
-		if(reservierungen.get(id)!=null)
+		if(reservierungen.contains(reservierung))
 		{
-			aktuelleReservierung=id;
-			return reservierungen.get(id);
-		}
-		else {
-			throw new Exception("Fehler");
+			aktuelleReservierung=reservierung;
 		}
 	}
-
+	
+	public IReservierung getAktuelleReservierung()
+	{
+		
+		return aktuelleReservierung;
+	
+	}
+	
+	
 	public void setVorname(String vorname)
 	{
-		reservierungen.get(aktuelleReservierung).getPerson().setVorname(vorname);
+		aktuelleReservierung.getGaeste()
 	}
 	public void setNachname(String nachname)
 	{
-		reservierungen.get(aktuelleReservierung).getPerson().setNachname(nachname);
+		aktuelleReservierung.getPerson().setNachname(nachname);
 	}
 	
+	public void setVon(Date date)
+	{
+		
+	}
+	
+	public void setBis(Date bis)
+	{
+		
+		
+	}
+	
+	/*
+	public void addZimmer(IZimmer zimmer);
+	public void removeZimmer(IZimmer zimmer);
+	public Set<IZimmer> getZimmer();
+	
+	public void setPerson(IPerson person);
+	public IPerson getPerson();
+	
+	public void addGast(IGast gast);
+	public void removeGast(IGast gast);
+	public Set<IGast> getGaeste();
+	public void setGaeste(Set<IGast> gaeste);
+	
+	public void addOption(IReservierungsOption option);
+	public void removeOption(IReservierungsOption option);
+	public Set<IReservierungsOption> getOptionen();
+	
+	public void setVertragspartner(IVertragspartner partner);
+	public IVertragspartner getVertragspartner();
+	
+	
+	
+	*/
 	
 }
