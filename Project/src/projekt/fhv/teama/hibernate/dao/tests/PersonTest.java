@@ -97,7 +97,7 @@ public class PersonTest {
 	
 	   private static Date getDate(int year, int month, int day) {
 
-	        return new Date(new GregorianCalendar(year, month, day).getTime().getTime());
+	        return new Date(new GregorianCalendar(year, month-1, day).getTime().getTime());
 
 	    }
 

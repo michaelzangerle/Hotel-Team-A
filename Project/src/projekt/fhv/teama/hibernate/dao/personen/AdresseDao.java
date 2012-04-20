@@ -8,13 +8,13 @@ public class AdresseDao extends GenericDao<IAdresse> implements IAdresseDao {
 	
 	
 	public static IAdresseDao getInstance() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = new AdresseDao();
 		}
 		return instance;
 	}
 	
 	private AdresseDao() {
-		super("ADRESSE");
+		super("Adresse");
 	}
 }
