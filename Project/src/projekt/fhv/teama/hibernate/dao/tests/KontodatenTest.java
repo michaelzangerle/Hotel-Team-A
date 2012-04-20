@@ -6,15 +6,16 @@ import projekt.fhv.teama.classes.personen.IKontodaten;
 import projekt.fhv.teama.classes.personen.Kontodaten;
 import projekt.fhv.teama.hibernate.dao.personen.IKontodatenDao;
 import projekt.fhv.teama.hibernate.dao.personen.KontodatenDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 public class KontodatenTest {
 
 	/**
 	 * @param args
-	 * @throws NoDatabaseEntryFoundException 
+	 * @throws DatabaseException 
 	 */
-	public static void main(String[] args) throws NoDatabaseEntryFoundException {
+	public static void main(String[] args) throws DatabaseException {
 		IKontodatenDao kdao = KontodatenDao.getInstance();
 		
 		

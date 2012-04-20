@@ -16,6 +16,7 @@ import projekt.fhv.teama.hibernate.dao.leistungen.IWarengruppeDao;
 import projekt.fhv.teama.hibernate.dao.leistungen.IZusatzleistungDao;
 import projekt.fhv.teama.hibernate.dao.leistungen.WarengruppeDao;
 import projekt.fhv.teama.hibernate.dao.leistungen.ZusatzleistungDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
@@ -26,9 +27,9 @@ public class LeistungTest {
 
 	/**
 	 * @param args
-	 * @throws NoDatabaseEntryFoundException 
+	 * @throws DatabaseException 
 	 */
-	public static void main(String[] args) throws NoDatabaseEntryFoundException {
+	public static void main(String[] args) throws DatabaseException {
 		
 		IArtikelDao adao = ArtikelDao.getInstance();
 		IZusatzleistungDao zDao = ZusatzleistungDao.getInstance();
@@ -69,7 +70,7 @@ public class LeistungTest {
 //		adao.create(a1);
 		
 //		adao.remove(adao.getById(24));
-//		wdao.remove(wdao.getById(2));
+		wdao.remove(wdao.getById(2));
 		
 //		System.out.println(adao.getArtikel("Kellerbier"));
 		
