@@ -10,6 +10,7 @@ import java.util.Set;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
@@ -32,15 +33,24 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 	@Override
 	public void create(T obj) {
+		Session session = null;
+		Transaction tx = null;
 		try {
-			Session session = HibernateHelper.getSession();
-			session.beginTransaction();
+			session = HibernateHelper.getSession();
+			tx = session.beginTransaction();
 			session.saveOrUpdate(obj);
-			session.getTransaction().commit();
+			tx.commit();
+			tx = null;
+			// session.getTransaction().commit();
 		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+		} finally {
+			session.close();
 		}
 
 	}
@@ -48,15 +58,15 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Set<T> getAll() throws NoDatabaseEntryFoundException {
-
+		Session session = null;
 		List<T> results = null;
 
 		try {
-			Session session = HibernateHelper.getSession();
+			session = HibernateHelper.getSession();
 			Query query = session.createQuery("from " + this.table);
 
 			results = query.list();
-			
+
 			if (results.size() == 0) {
 				throw new NoDatabaseEntryFoundException();
 			}
@@ -65,6 +75,8 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+		} finally {
+			session.close();
 		}
 		Set<T> set = new HashSet<T>(results);
 		return set;
@@ -74,9 +86,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 	public T getById(int id) {
 
 		T object = null;
+		Session session = null;
 
 		try {
-			Session session = HibernateHelper.getSession();
+			session = HibernateHelper.getSession();
 			Query query = session.createQuery("from " + this.table + " t where t.ID = :id");
 			query.setString("id", id + "");
 
@@ -88,10 +101,11 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			}
 
 		} catch (HibernateException e) {
-//			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+		} finally {
+			session.close();
 		}
 
 		return object;
@@ -99,30 +113,50 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 	@Override
 	public void removeById(int id) {
+		Session session = null;
+		Transaction tx = null;
 		try {
-			Session session = HibernateHelper.getSession();
-			session.beginTransaction();
+			session = HibernateHelper.getSession();
+			tx = session.beginTransaction();
 			session.delete(id);
-			session.getTransaction().commit();
+			tx.commit();
+			tx = null;
+			// session.getTransaction().commit();
 		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+		} finally {
+			session.close();
 		}
 
 	}
 
 	@Override
 	public void update(T obj) {
+		
+		Session session = null;
+		Transaction tx = null;
+		
 		try {
-			Session session = HibernateHelper.getSession();
-			session.beginTransaction();
+			session = HibernateHelper.getSession();
+			tx = session.beginTransaction();
 			session.update(obj);
-			session.getTransaction().commit();
+			tx.commit();
+			tx = null;
+			// session.getTransaction().commit();
 		} catch (HibernateException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+		} finally {
+			session.close();
 		}
 
 	}

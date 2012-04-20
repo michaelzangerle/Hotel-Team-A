@@ -16,7 +16,7 @@
             <column name="passwort" sql-type="varchar" not-null="true" />
         </property>
         
-        <property name="einstellung" type="java.util.Date">
+        <property name="einstellung" type="java.sql.Date">
             <column name="einstellung" sql-type="date" length="10" not-null="true" />
         </property>
        
