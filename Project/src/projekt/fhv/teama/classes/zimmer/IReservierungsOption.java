@@ -1,7 +1,6 @@
 package projekt.fhv.teama.classes.zimmer;
 
 import java.sql.Date;
-import java.util.Set;
 
 import projekt.fhv.teama.hibernate.dao.IDao;
 

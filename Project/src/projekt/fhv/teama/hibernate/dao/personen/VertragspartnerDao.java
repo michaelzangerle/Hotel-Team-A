@@ -13,13 +13,10 @@ import org.hibernate.Transaction;
 
 import projekt.fhv.teama.classes.IKontingent;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
-import projekt.fhv.teama.classes.personen.Vertragspartner;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.dao.IKontingentDao;
 import projekt.fhv.teama.hibernate.dao.KontingentDao;
-import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerDao;
-import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 

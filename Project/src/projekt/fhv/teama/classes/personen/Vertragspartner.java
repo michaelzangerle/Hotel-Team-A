@@ -3,8 +3,6 @@ package projekt.fhv.teama.classes.personen;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.pivot.collections.HashMap;
-
 import projekt.fhv.teama.classes.IKontingent;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 
@@ -16,9 +14,9 @@ public class Vertragspartner implements IVertragspartner {
     private String email;
     private IKontodaten kontodaten;
     private IVertragspartnertyp typ;
-    private Set<IKontingent> kontingente = new HashSet();
-    private Set<IReservierung> reservierungen = new HashSet();
-    private Set<IAdresse> adressen = new HashSet();
+    private Set<IKontingent> kontingente = new HashSet<IKontingent>();
+    private Set<IReservierung> reservierungen = new HashSet<IReservierung>();
+    private Set<IAdresse> adressen = new HashSet<IAdresse>();
     
     public int getID() {
         return ID;

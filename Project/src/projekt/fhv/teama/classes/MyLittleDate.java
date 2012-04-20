@@ -1,12 +1,7 @@
 package projekt.fhv.teama.classes;
 
-import java.io.ObjectInputStream.GetField;
 import java.sql.Date;
 import java.util.GregorianCalendar;
-
-import org.hibernate.dialect.function.VarArgsSQLFunction;
-
-import javassist.expr.NewArray;
 
 public class  MyLittleDate {
 
@@ -17,7 +12,8 @@ public class  MyLittleDate {
 
     }
 	 
-	 private static Date getCurrentDate()
+	 @SuppressWarnings({ "unused", "deprecation" })
+	private static Date getCurrentDate()
 	 {
 		 java.util.Date date =new java.util.Date();
 		return getDate(date.getYear(), date.getMonth(), date.getDay());
