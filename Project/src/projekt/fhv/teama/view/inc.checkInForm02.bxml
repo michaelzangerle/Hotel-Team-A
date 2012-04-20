@@ -47,10 +47,23 @@
 				
 		<!-- Action Buttons ########################################################################### -->				
 		<Separator/>
-		<BoxPane styles="{horizontalAlignment:'left', padding:12, spacing:15}" >
+	
+		<TablePane styles="{padding:12}">
+		<columns>
+			<TablePane.Column width="12*"/>
+			<TablePane.Column width="300"/>
+		</columns>
+
+		<TablePane.Row height="1*">
+			<BoxPane  styles="{horizontalAlignment:'left', spacing:15}">
 			<PushButton bxml:id="cf2PBtnCancel" buttonData="Cancel"/>
-			<PushButton bxml:id="cf2PBtnBack" buttonData="Previous Step"/>
-			<PushButton bxml:id="cf2PBtnNext" buttonData="Next Step"/>
-		</BoxPane>
+			</BoxPane>
+			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
+		    <PushButton bxml:id="cf2PBtnBack" buttonData="Previous Step"/>
+			<PushButton bxml:id="cf2PBtnNext" buttonData="Next Step"/>			
+			</BoxPane>
+		</TablePane.Row>
+	</TablePane>		
+		
 	</BoxPane>
 </view:ViewCheckIn>

@@ -70,9 +70,22 @@
 		
 		<!-- Action Buttons ########################################################################### -->				
 		<Separator/>
-		<BoxPane styles="{horizontalAlignment:'left', padding:12, spacing:15}" >
-			<PushButton bxml:id="cf1PBtnCancel" buttonData="Cancel"/>
-			<PushButton bxml:id="cf1PBtnNext" buttonData="Next Step"/>
-		</BoxPane>
+		
+		<TablePane styles="{padding:12}">
+		<columns>
+			<TablePane.Column width="12*"/>
+			<TablePane.Column width="120"/>
+		</columns>
+
+		<TablePane.Row height="1*">
+			<BoxPane  styles="{horizontalAlignment:'left', spacing:15}">
+			<PushButton bxml:id="cf1PBtnCancel" buttonData="Cancel"/>			
+			</BoxPane>
+			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
+		    <PushButton bxml:id="cf1PBtnNext" buttonData="Next Step"/>			
+			</BoxPane>
+		</TablePane.Row>
+	</TablePane>
+	
 	</BoxPane>
 </view:ViewCheckIn>

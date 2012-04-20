@@ -23,10 +23,23 @@
 					
 		<!-- Action Buttons ########################################################################### -->				
 		<Separator/>
-		<BoxPane styles="{horizontalAlignment:'left', padding:12, spacing:15}" >
+		
+		<TablePane styles="{padding:12}">
+		<columns>
+			<TablePane.Column width="12*"/>
+			<TablePane.Column width="300"/>
+		</columns>
+
+		<TablePane.Row height="1*">
+			<BoxPane  styles="{horizontalAlignment:'left', spacing:15}">
 			<PushButton bxml:id="cf3PBtnCancel" buttonData="Cancel"/>
+			</BoxPane>
+			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
 			<PushButton bxml:id="cf3PBtnBack" buttonData="Previous Step"/>
-			<PushButton bxml:id="cf3PBtnNext" buttonData="Next Step"/>
-		</BoxPane>
+			<PushButton bxml:id="cf3PBtnNext" buttonData="Next Step"/>		
+			</BoxPane>
+		</TablePane.Row>
+	</TablePane>
+				
 	</BoxPane>
 </view:ViewCheckIn>

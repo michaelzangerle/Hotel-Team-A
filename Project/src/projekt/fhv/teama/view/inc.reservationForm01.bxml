@@ -36,7 +36,7 @@
 			<PushButton bxml:id="rf1PBtnSaveReservation" buttonData="Save"/>
 			<PushButton bxml:id="rf1PBtnDeleteReservation" buttonData="Delete"/>
 			<PushButton bxml:id="clearButton" buttonData="Clear"/>
-			<PushButton bxml:id="rf1PBtnCheckIn" buttonData="Check-In"/>
+			<PushButton bxml:id="rf1PBtnCheckIn" buttonData="Start Check-In" styles="$styles.btCheckIn"/>
 		</BoxPane>
 	</BoxPane>
 
