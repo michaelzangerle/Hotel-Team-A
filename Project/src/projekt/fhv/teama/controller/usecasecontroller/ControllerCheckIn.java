@@ -53,9 +53,19 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Konstruktor ControllerCheckIn 
 	 * CeckIn Kontroller ist für den Usercase Check In zuständig
 	 */
-	public ControllerCheckIn() {
+	public ControllerCheckIn(IControllerReservierung cres,IControllerAufenthalt cauf,IControllerGast cgast,IControllerTeilreservierung ctres,IControllerKategorie ckat,
+			IControllerKontodaten ckonto,IControllerPfandTyp cpfandTyp,IControllerZimmer czimmer,IControllerZimmerstatus czimmerStatus,IControllerAdresse cadr) {
 		
-		controllerReservierung=new ControllerReservierung();
+		controllerReservierung=cres;
+		controllerAufenthalt=cauf;
+		controllerGast=cgast;
+		controllerTeilreservierung=ctres;
+		controllerKategorie=ckat;
+		controllerPfandtyp=cpfandTyp;
+		controllerZimmer=czimmer;
+		controllerZimmerstatus=czimmerStatus;
+		controllerKontodaten=ckonto;
+		controllerAdresse=cadr;
 	}
 	
 	
