@@ -11,16 +11,11 @@ import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
-import projekt.fhv.teama.classes.personen.IKontodaten;
-import projekt.fhv.teama.classes.personen.IPerson;
-import projekt.fhv.teama.classes.personen.IVertragspartner;
+
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
-import projekt.fhv.teama.classes.zimmer.IReservierungsOption;
-import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
-import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
-import projekt.fhv.teama.classes.zimmer.Zimmer;
+
 import projekt.fhv.teama.controller.ControllerReservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerAdresse;
 import projekt.fhv.teama.controller.interfaces.IControllerAufenthalt;
@@ -33,7 +28,7 @@ import projekt.fhv.teama.controller.interfaces.IControllerTeilreservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerZimmer;
 import projekt.fhv.teama.controller.interfaces.IControllerZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
-import projekt.fhv.teama.hibernate.dao.zimmer.IReservierungDao;
+
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 public class ControllerCheckIn implements IControllerCheckIn {
@@ -51,18 +46,12 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	IControllerAdresse controllerAdresse;
 	
 	
-	IAufenthalt aufenthalt=new Aufenthalt();
 	
-	//Variablen
-	private boolean schluessel=false;
-	private float preis=0.0f;
-	private List<IZimmer> zimmer=new Vector<IZimmer>();
-	private String pfandnummer;
-	private List<IZimmer> zimmerFuerAktuellenAufenthalt;
 
 	/**
 	 * 
-	 * Konstruktor
+	 * Konstruktor ControllerCheckIn 
+	 * CeckIn Kontroller ist für den Usercase Check In zuständig
 	 */
 	public ControllerCheckIn() {
 		
@@ -70,28 +59,45 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	}
 	
 	
-	
+	/**
+	 * Methode um alle Reservierungen zu holen
+	 * @return List<IReservierung>
+	 */
 	public List<IReservierung> getAllReservierungen()
 	{
 		return controllerReservierung.getAllReservierungen();
 	}
 	
+	/**
+	 * Methode um dem Controller mitzuteilen welche Reservierung behandelt wird
+	 * @param reservierung
+	 */
 	public void setAktuelleReservierung(IReservierung reservierung) 
 	{
 		controllerReservierung.setAktuelleReservierung(reservierung);
 	}
 	
+	/**
+	 * Die Referenz der aktuellen reservierung zu erhalten
+	 * @return IReservierung 
+	 */
 	public IReservierung getAktuelleReservierung()
 	{
 		return controllerReservierung.getAktuelleReservierung();
 	}
 	
-	
+	/**
+	 * Die Referenz auf den aktuellen Gast setzen
+	 * @param IGast
+	 */
 	public void setGast(IGast gast)
 	{
 		controllerGast.setAktuellGast(gast);
 	}
-	
+	/**
+	 * Die Referenz des aktuellen Gast zu erhalten
+	 * 
+	 */
 	public IGast getGast()
 	{
 		return controllerGast.getAktuellGast();
@@ -101,99 +107,138 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	
 	//Änderungen am Gast
 	
+	/**
+	 * Vorname des Gastes ändern 
+	 * @param vorname
+	 */
 	public void setVorname(String vorname)
 	{
 		controllerGast.setVorname(vorname);
 	}
+	/**
+	 * Nachname des Gastes ändern 
+	 * @param nachname
+	 */
 	public void setNachname(String nachname)
 	{
 		controllerGast.setNachname(nachname);
 		
 	}
+	/**
+	 * Geschlecht des Gastes ändern 
+	 * @param geschlecht
+	 */
 	public void setGeschlecht(char geschlecht)
 	{
 		controllerGast.setGeschlecht(geschlecht);
 	}
+	/**
+	 * Geburtsdatum des Gastes ändern 
+	 * @param geburtsdatum
+	 */
 	public void setGeburtsdatum(Date geburtsdatum)
 	{
 		controllerGast.setGeburtsdatum(geburtsdatum);
 	}
+	/**
+	 * Email des Gastes ändern 
+	 * @param email
+	 */
 	public void setEmail(String email)
 	{
 		controllerGast.setEmail(email);
 	}
+	/**
+	 * Kontodaten des Gastes ändern
+	 * @param kontonummer
+	 * @param blz
+	 * @param iban
+	 * @param bic
+	 */
 	public void setKontodaten(String kontonummer,String blz,String iban,String bic)
 	{
 		controllerGast.setKontodaten(kontonummer,blz,iban,bic);
 	}
+	/**
+	 * Telefonnummer des Gastes ändern 
+	 * @param telefonnummer
+	 */
 	public void setTelefonnummer(String telefonnummer)
 	{
 		controllerGast.setTelefonnummer(telefonnummer);
 	}
+	/**
+	 * Nummer des Gastes ändern 
+	 * @param nummer
+	 */
 	public void setNummer(String nummer)
 	{
 		controllerGast.setNummer(nummer);
 	}
+	/**
+	 * Zimmer des Gastes ändern 
+	 * @param zimmer
+	 */
 	public void setZimmer(IZimmer zimmer)
 	{
 		controllerGast.setZimmer(zimmer);
 	}
+	/**
+	 * Adresse zum Gast hinzufügen 
+	 * @param adresse
+	 */
 	public void addAdresse(IAdresse adresse)
 	{
 		controllerGast.addAdresse(adresse);
 	}
+	/**
+	 * Adresse vom Gast entfernen 
+	 * @param adresse
+	 */
 	public void removeAdresse(IAdresse adresse)
 	{
 		controllerGast.removeAdresse(adresse);
 	}
 	
 
+	/**
+	 *  Datum von für den Aufenthalt
+	 * @param date
+	 */
 
 	public void setVon(Date date)
 	{
 		controllerReservierung.setVon( date);
 	}
 	
+	/**
+	 *  Datum bis für den Aufenthalt 
+	 * @param date
+	 */
 	public void setBis(Date date)
 	{
 		controllerReservierung.setBis(date);
 		
 	}
 	
-	public void setPreis(float preis)
-	{
-		this.preis=preis;
-	}
-	
-	public void setSchluessel(boolean schluesel)
-	{
-		this.schluessel=schluesel;
-	}
-
-
-
-	//Pfand
-	
-	public void setPfandNr(String pfandnummer)
-	{
-		this.pfandnummer=pfandnummer;
-	}
-	
+	/**
+	 * Holt alle Pfandtypen die in der Datenbank vorhanden sind
+	 * @return List<IPfandtyp>
+	 * @throws NoDatabaseEntryFoundException
+	 */
 	public List<IPfandtyp> getPfandtyps() throws NoDatabaseEntryFoundException
 	{
 		return controllerPfandtyp.getPfandtyps();
 	}
 	
-	public void setAktuellerPfandTyp(IPfandtyp pfandtyp)
-	{
-		controllerPfandtyp.setAktuellerPfandTyp(pfandtyp);
-	}
-	public IPfandtyp getAktuellerPfandTyp()
-	{
-		return controllerPfandtyp.getAktuellerPFandtyp();
-	}
 	
 
+	/**
+	 * Gibt alle verfügbaren Zimmer einer Kategorie zurück
+	 * @param k
+	 * @return List<IZimmer>
+	 * @throws NoDatabaseEntryFoundException
+	 */
 	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)throws NoDatabaseEntryFoundException
 	{
 		return controllerZimmer.getZimmerFürGegebeneKategorie(k);
@@ -201,7 +246,17 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	
 	
 	
-	
+	/**
+	 * Methode um den Aufenthalt in der Datenbank zu speichern.
+	 * @param preis
+	 * @param von
+	 * @param bis
+	 * @param schluessel
+	 * @param gast
+	 * @param zimmer
+	 * @param pfand
+	 * @param pfandnummer
+	 */
 	public void saveAufenthalt(float preis,Date von,Date bis,boolean schluessel,IGast gast,IZimmer zimmer,IPfandtyp pfand,String pfandnummer)
 	{
 	
@@ -213,6 +268,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 			controllerAufenthalt.create(preis, von, bis, schluessel, gast, zimmer,pfand,pfandnummer);
 		
 	}
+	
 	
 
 	
