@@ -2,6 +2,7 @@ package projekt.fhv.teama.classes.zimmer;
 
 import java.util.Set;
 
+import projekt.fhv.teama.classes.IKategoriekontingent;
 import projekt.fhv.teama.hibernate.dao.IDao;
 
 public interface IKategorie extends IDao {
@@ -35,5 +36,12 @@ public interface IKategorie extends IDao {
 	public void addTeilreservierung(ITeilreservierung teilreservierung);
 
 	public void removeTeilreservierung(ITeilreservierung teilreservierung);
-
+	
+	public Set<IKategoriekontingent> getKategoriekontingent();
+	
+	public void setKategoriekontingent(Set<IKategoriekontingent> kategoriekontingent);
+	
+	public void addKategoriekontingent(IKategoriekontingent kategoriekontingent);
+	
+	public void removeKategoriekontingent(IKategoriekontingent kategoriekontingent);
 }

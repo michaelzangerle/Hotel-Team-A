@@ -3,7 +3,7 @@
 	<BoxPane orientation="vertical" styles="{spacing:10, fill:true}">
 	<Label bxml:id="lbMonth" text="Occupation Preview | April" styles="$styles.lbHeading1"/>
 	</BoxPane>
-	<ScrollPane maximumHeight="500" horizontalScrollBarPolicy="fill" verticalScrollBarPolicy="always">	
+	<ScrollPane maximumHeight="500" horizontalScrollBarPolicy="fill" verticalScrollBarPolicy="auto">	
 		<TableView bxml:id="tableView">
 			<columns>
 				<TableView.Column name="flag" width="20">
@@ -61,15 +61,15 @@
 			<view:Occupation nation="France" gold="7" silver="16" bronze="17" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="China" gold="51" silver="21" bronze="28" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="United States" gold="36" silver="38" bronze="36" flag="@icons/Accept16.png"/>
-			<view:Occupation nation="Russia" gold="23" silver="21" bronze="28" flag="@icons/Accept16.png"/>
+	        <view:Occupation nation="Russia" gold="23" silver="21" bronze="28" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="Great Britain" gold="19" silver="13" bronze="15" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="Germany" gold="16" silver="10" bronze="15" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="Australia" gold="14" silver="15" bronze="17" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="South Korea" gold="13" silver="10" bronze="8" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="Japan" gold="9" silver="6" bronze="11" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="Italy" gold="8" silver="10" bronze="10" flag="@icons/Accept16.png"/>
-			<view:Occupation nation="France" gold="7" silver="16" bronze="17" flag="@icons/Accept16.png"/>
-			<view:Occupation nation="China" gold="51" silver="21" bronze="28" flag="@icons/Accept16.png"/>
+   	<!--    <view:Occupation nation="France" gold="7" silver="16" bronze="17" flag="@icons/Accept16.png"/>
+		    <view:Occupation nation="China" gold="51" silver="21" bronze="28" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="United States" gold="36" silver="38" bronze="36" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="Russia" gold="23" silver="21" bronze="28" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="Great Britain" gold="19" silver="13" bronze="15" flag="@icons/Accept16.png"/>
@@ -111,7 +111,7 @@
 			<view:Occupation nation="South Korea" gold="13" silver="10" bronze="8" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="Japan" gold="9" silver="6" bronze="11" flag="@icons/Accept16.png"/>
 			<view:Occupation nation="Italy" gold="8" silver="10" bronze="10" flag="@icons/Accept16.png"/>
-			<view:Occupation nation="France" gold="7" silver="16" bronze="17" flag="@icons/Accept16.png"/>			
+			<view:Occupation nation="France" gold="7" silver="16" bronze="17" flag="@icons/Accept16.png"/>		-->	
 		</TableView>
 		<columnHeader>
 			<TableViewHeader tableView="$tableView" sortMode="single_column"/>

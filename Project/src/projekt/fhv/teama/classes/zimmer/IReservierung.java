@@ -29,6 +29,9 @@ public interface IReservierung extends IDao {
 	public void setVertragspartner(IVertragspartner partner);
 	public IVertragspartner getVertragspartner();
 	
+	public Set<ITeilreservierung> getTeilreservierungen();
+	public void setTeilreservierungen(Set<ITeilreservierung> teilreservierungen);
+	
 	public void setVon(Date von);
 	public Date getVon();
 	public void setBis(Date bis);

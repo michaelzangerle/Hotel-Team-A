@@ -10,13 +10,23 @@ public class Artikel extends Leistung implements IArtikel{
 	private float preis;
 	private String beschreibung;
 	private IWarengruppe warengruppe;
+	private String bezeichnung;
 
 	public Artikel(float preis, String bezeichnung, String beschreibung, IWarengruppe warengruppe) {
+		this.preis = preis;
+		this.bezeichnung = bezeichnung;
+		this.beschreibung = beschreibung;
+		this.warengruppe = warengruppe;
+		setBezeichnung(bezeichnung);
+	}
+	
+	public Artikel(float preis, String beschreibung, IWarengruppe warengruppe) {
 		this.preis = preis;
 		this.beschreibung = beschreibung;
 		this.warengruppe = warengruppe;
 		setBezeichnung(bezeichnung);
 	}
+	
 	
 	public Artikel() {
 
@@ -29,13 +39,21 @@ public class Artikel extends Leistung implements IArtikel{
 	public void setPreis(float preis) {
 		this.preis = preis;
 	}
-
+	
 	public String getBeschreibung() {
 		return beschreibung;
 	}
 
 	public void setBeschreibung(String beschreibung) {
 		this.beschreibung = beschreibung;
+	}
+
+	public String getBezeichnung() {
+		return bezeichnung;
+	}
+
+	public void setBezeichnung(String bezeichnung) {
+		this.bezeichnung = bezeichnung;
 	}
 
 	public IWarengruppe getWarengruppe() {

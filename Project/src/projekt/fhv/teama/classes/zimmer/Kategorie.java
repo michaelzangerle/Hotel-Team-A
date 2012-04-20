@@ -199,4 +199,17 @@ public class Kategorie implements IKategorie {
 
 	}
 
+	@Override
+	public void addKategoriekontingent(IKategoriekontingent kategoriekontingent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeKategoriekontingent(
+			IKategoriekontingent kategoriekontingent) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
