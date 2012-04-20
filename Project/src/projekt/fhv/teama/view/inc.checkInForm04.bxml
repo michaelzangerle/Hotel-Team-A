@@ -38,7 +38,7 @@
 		<BoxPane styles="{horizontalAlignment:'left', padding:12, spacing:15}" >
 			<PushButton bxml:id="cf4PBtnCancel" buttonData="Cancel"/>
 			<PushButton bxml:id="cf4PBtnBack" buttonData="Previous Step"/>
-			<PushButton bxml:id="cf4PBtnNext" buttonData="Finish and Save"/>
+			<PushButton bxml:id="cf4PBtnFinish" buttonData="Finish and Save"/>
 		</BoxPane>
 	</BoxPane>
 </view:ViewCheckIn>

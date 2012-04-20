@@ -12,12 +12,17 @@ import projekt.fhv.teama.view.support.Address;
 import projekt.fhv.teama.view.support.Contact;
 import projekt.fhv.teama.view.support.IMAccount;
 
-
 public class ViewReservation extends Border implements Bindable {
-	 private Form form = null;
-	    private PushButton loadJavaButton = null;
-	    private PushButton clearButton = null;
-	    private Label sourceLabel = null;
+	    Form form = null;
+	    PushButton rf1PBtnLoadJava = null;
+	    PushButton clearButton = null;
+	    PushButton rf1PBtnEditReservation = null;
+	    PushButton rf1PBtnDeleteReservation = null;
+	    PushButton rf1PBtnSaveReservation = null;
+	    TextInput rf1TIName = null;
+	    
+	    
+	    PushButton cf1PBtnNext = null;
 	 
 	    private static final Contact CONTACT = new Contact("101", "Michael Zangerle",
 	        new Address("123 Main St.", "Cambridge", "MA", "02142"),
@@ -27,25 +32,54 @@ public class ViewReservation extends Border implements Bindable {
 	    @Override
 	    public void initialize(Map<String, Object> namespace, URL location, Resources resources) {
 	        form = (Form)namespace.get("form");
-	        loadJavaButton = (PushButton)namespace.get("loadJavaButton");
+	        rf1PBtnLoadJava = (PushButton)namespace.get("rf1PBtnLoadJava");
 	        clearButton = (PushButton)namespace.get("clearButton");
-	        sourceLabel = (Label)namespace.get("sourceLabel");
+	        rf1PBtnEditReservation = (PushButton)namespace.get("rf1PBtnEditReservation");
+	        rf1PBtnDeleteReservation = (PushButton)namespace.get("rf1PbtnDeleteReservation");
+	        rf1PBtnSaveReservation = (PushButton)namespace.get("rf1PBtnSaveReservation");
+	        rf1TIName = (TextInput) namespace.get("rf1TIName");
+	        
+	        cf1PBtnNext = (PushButton)namespace.get("cf1PBtnNext");
+	        form.setEnabled(false);
+	        	        
+	        clearButton.setVisible(false);
+	        rf1PBtnLoadJava.setVisible(false);
 	 
-	        loadJavaButton.getButtonPressListeners().add(new ButtonPressListener() {
+	        rf1PBtnLoadJava.getButtonPressListeners().add(new ButtonPressListener() {
 	            @Override
 	            public void buttonPressed(Button button) {
 	                form.load(new BeanAdapter(CONTACT));
-	                sourceLabel.setText("Java");
+	               
+	                form.setFocusTraversalPolicy(getFocusTraversalPolicy());
 	            }
 	        });
-	 
-	        
+	 	        
 	        clearButton.getButtonPressListeners().add(new ButtonPressListener() {
 	            @Override
 	            public void buttonPressed(Button button) {
 	                form.clear();
-	                sourceLabel.setText(null);
+	                //sourceLabel.setText(null);
 	            }
 	        });
+	        
+	        rf1PBtnEditReservation.getButtonPressListeners().add(new ButtonPressListener() {
+	            @Override
+	            public void buttonPressed(Button button) {
+	            	form.setEnabled(true);
+	            	rf1TIName.requestFocus();
+	            	
+	            }
+	        });	        
+	        
+	        rf1PBtnSaveReservation.getButtonPressListeners().add(new ButtonPressListener() {
+	            @Override
+	            public void buttonPressed(Button button) {
+	            	form.setEnabled(false);	            	
+	            }
+	        });	
+	        
+	        
+	        
+	        rf1PBtnLoadJava.press();
 	    }
 }

@@ -18,11 +18,13 @@ public class ViewMain extends Window implements Application, Bindable {
 	Border checkInForm03;
 	Border checkInForm04;
 	Border occupationPreview;
+	
+    PushButton rf1PBtnCheckIn;;
 		
 	PushButton cf1PBtnNext;
 	PushButton cf2PBtnNext;
 	PushButton cf3PBtnNext;
-	PushButton cf4PBtnNext;
+	PushButton cf4PBtnFinish;
 	
 	PushButton cf1PBtnBack;
 	PushButton cf2PBtnBack;
@@ -88,14 +90,16 @@ public class ViewMain extends Window implements Application, Bindable {
 		progress = (Border)arg0.get("mainProgress");
 		meter = (Meter)arg0.get("meter");		
 		
+		rf1PBtnCheckIn  = (PushButton)arg0.get("rf1PBtnCheckIn");
 		cf1PBtnNext = (PushButton)arg0.get("cf1PBtnNext");
 		cf2PBtnNext = (PushButton)arg0.get("cf2PBtnNext");
 		cf3PBtnNext = (PushButton)arg0.get("cf3PBtnNext");
-		cf4PBtnNext = (PushButton)arg0.get("cf4PBtnNext");
+		cf4PBtnFinish = (PushButton)arg0.get("cf4PBtnFinish");
 		
 		cf2PBtnBack = (PushButton)arg0.get("cf2PBtnBack");
 		cf3PBtnBack = (PushButton)arg0.get("cf3PBtnBack");
-		cf4PBtnBack = (PushButton)arg0.get("cf4PBtnBack");		
+		cf4PBtnBack = (PushButton)arg0.get("cf4PBtnBack");	
+		
 		
 		reservationForm01.setVisible(true);
 		checkInForm01.setVisible(false);
@@ -144,14 +148,16 @@ public class ViewMain extends Window implements Application, Bindable {
 			
 		});
 		
-		cf4PBtnNext.getButtonPressListeners().add(new ButtonPressListener()  {
+		cf4PBtnFinish.getButtonPressListeners().add(new ButtonPressListener()  {
 
 			@Override
 			public void buttonPressed(Button arg0) {
 				
 				checkInForm04.setVisible(false);
-				checkInForm01.setVisible(true);
+				reservationForm01.setVisible(true);	
+				progress.setVisible(false);
 				meter.setPercentage(0.25);
+			
 			}
 			
 		});		
@@ -194,7 +200,17 @@ public class ViewMain extends Window implements Application, Bindable {
 		});
 		
 		
-		
+		rf1PBtnCheckIn.getButtonPressListeners().add(new ButtonPressListener()  {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+				
+				reservationForm01.setVisible(false);
+				progress.setVisible(true);
+				checkInForm01.setVisible(true);	
+			}
+			
+		});
 		
 		
 	}
