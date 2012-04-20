@@ -21,7 +21,7 @@
 			<column name="geschlecht" sql-type="char" length="1" not-null="true" />
 		</property>
 		
-		<set name="adressen" table="personadresse" cascade="all">
+		<set name="adressen" table="personadresse" cascade="all" lazy="false">
         	<key column="personID"/>
         	<many-to-many column="adresseID" class="projekt.fhv.teama.classes.personen.Adresse"/>
     	</set>
@@ -40,9 +40,9 @@
 		
 		<many-to-one name="kontodaten"
 			class="projekt.fhv.teama.classes.personen.Kontodaten" column="kontodatenID"
-			not-null="true" unique="true" foreign-key="ID"  cascade="all"/>
+			not-null="true" unique="true" foreign-key="ID"  cascade="all" lazy="false"/>
 			
-		<set name="reservierungen" table="Reservierung" inverse="false" lazy="true" cascade="all">
+		<set name="reservierungen" table="Reservierung" inverse="false" lazy="false" cascade="all">
             <key>
                 <column name="reservierungID" />
             </key>

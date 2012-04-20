@@ -213,9 +213,10 @@ public class Person implements IPerson {
 
 	@Override
 	public String toString() {
-		return "Person [ID=" + ID + ", vorname=" + vorname + ", nachname="
-				+ nachname + ", geschlecht=" + geschlecht + ", geburtsdatum=" + geburtsdatum
-				+ ", telefonnummer=" + telefonnummer + ", email=" + email
-				+ ", kontodaten=" + kontodaten.getID()+ "]";
+		return "Person [ID=" + ID + ", vorname=" + vorname + ", nachname=" + nachname + ", geschlecht=" + geschlecht
+				+ ", adressen=" + adressen + ", geburtsdatum=" + geburtsdatum + ", telefonnummer=" + telefonnummer
+				+ ", email=" + email + ", kontodaten=" + kontodaten + ", reservierungen=" + reservierungen + "]";
 	}
+
+
 }

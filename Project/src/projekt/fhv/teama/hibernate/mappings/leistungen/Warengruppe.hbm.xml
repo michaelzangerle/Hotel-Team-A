@@ -23,14 +23,14 @@
 			<column name="BESCHREIBUNG" />
 		</property>
 
-        <set name="zusatzleistungen" table="ZUSATZLEISTUNG" inverse="true" >
+        <set name="zusatzleistungen" table="ZUSATZLEISTUNG" inverse="true" lazy="false" cascade="all">
             <key>
                 <column name="warengruppeID"/>
             </key>
             <one-to-many class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" />
         </set>
 		
-        <set name="artikel" table="ARTIKEL" >
+        <set name="artikel" table="ARTIKEL" lazy="false" cascade="all">
             <key>
                 <column name="warengruppeID"/>
             </key>
