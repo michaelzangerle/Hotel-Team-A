@@ -21,6 +21,10 @@ public class Vertragspartnertyp implements IVertragspartnertyp {
 		this.bezeichnung = bezeichnung;
 	}
 	
+	public Vertragspartnertyp() {
+
+	}
+	
 	public Vertragspartnertyp(String bezeichnung) {
 		this.bezeichnung = bezeichnung;
 	}
@@ -59,10 +63,4 @@ public class Vertragspartnertyp implements IVertragspartnertyp {
 		return "VertragspartnerTyp [ID=" + ID + ", bezeichnung=" + bezeichnung
 				+ "]";
 	}
-
-	public Vertragspartnertyp() {
-
-	}
-	
-	
 }
