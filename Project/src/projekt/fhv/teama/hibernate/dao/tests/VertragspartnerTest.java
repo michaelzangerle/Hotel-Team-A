@@ -7,6 +7,8 @@ import projekt.fhv.teama.classes.personen.IVertragspartner;
 import projekt.fhv.teama.classes.personen.IVertragspartnertyp;
 import projekt.fhv.teama.classes.personen.Vertragspartner;
 import projekt.fhv.teama.classes.personen.Vertragspartnertyp;
+import projekt.fhv.teama.hibernate.dao.IKontingentDao;
+import projekt.fhv.teama.hibernate.dao.KontingentDao;
 import projekt.fhv.teama.hibernate.dao.personen.AdresseDao;
 import projekt.fhv.teama.hibernate.dao.personen.IAdresseDao;
 import projekt.fhv.teama.hibernate.dao.personen.IKontodatenDao;
@@ -26,16 +28,16 @@ public class VertragspartnerTest {
 		IKontodatenDao kdao = KontodatenDao.getInstance();
 		IAdresseDao adao = AdresseDao.getInstance();
 		IVertragspartnertypDao vtypdao = VertragspartnertypDao.getInstance();
-		
+		IKontingentDao kontingentdao = KontingentDao.getInstance();
 		//Set<IAdresse> adr = adao.getAll();
 		
 		
-		//IVertragspartner v1 = new Vertragspartner("Doppelmayr", "0664/85635668", "master@doppelmayr.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(2));
-		//IVertragspartner v2 = new Vertragspartner("Alpla", "0664/756464", "master@alpla.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(3));
+		IVertragspartner v1 = new Vertragspartner("Doppelmayr", "0664/85635668", "master@doppelmayr.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(2));
+		IVertragspartner v2 = new Vertragspartner("Alpla", "0664/756464", "master@alpla.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(3));
 
 		// Einfügen
-//		vdao.create(v1);
-//		vdao.create(v2);
+		//vdao.create(v1);
+		//vdao.create(v2);
 		
 		
 		// Alle holen
@@ -44,10 +46,10 @@ public class VertragspartnerTest {
 //		
 		// 1 holen
 //		
-		IVertragspartner partner = vdao.getById(25);
-		//System.out.println(partner.toString());
+		IVertragspartner partner = vdao.getById(26);
+		System.out.println(partner.toString());
 //		
-
+		partner.addKontingent(kontingentdao.getById(6));
 		
 		// update 
 //		partner.setEmail("doppelmayr@doppelmayr.com");

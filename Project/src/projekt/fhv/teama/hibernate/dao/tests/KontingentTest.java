@@ -29,16 +29,16 @@ public class KontingentTest {
 		
 		
 		//Einfügen
-		//kdao.create(kontingent);
-		//kdao.create(kontingent2);
+		kdao.create(kontingent);
+		kdao.create(kontingent2);
 		//getall
 		Set<IKontingent> kontingente = kdao.getAll();
 		System.out.println(kontingente.toString());
 		
 		//getbyid
 		
-		IKontingent kontingentid = kdao.getById(3);
-		System.out.println(kontingentid.toString());
+		//IKontingent kontingentid = kdao.getById(3);
+		//System.out.println(kontingentid.toString());
 		
 		//remove
 		//kdao.remove(kontingentid);
