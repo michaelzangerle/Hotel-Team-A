@@ -10,7 +10,9 @@ import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 import projekt.fhv.teama.classes.personen.Mitarbeiter;
 import projekt.fhv.teama.hibernate.dao.personen.AdresseDao;
+import projekt.fhv.teama.hibernate.dao.personen.BerechtigungDao;
 import projekt.fhv.teama.hibernate.dao.personen.IAdresseDao;
+import projekt.fhv.teama.hibernate.dao.personen.IBerechtigungDao;
 import projekt.fhv.teama.hibernate.dao.personen.IKontodatenDao;
 import projekt.fhv.teama.hibernate.dao.personen.IMitarbeiterDao;
 import projekt.fhv.teama.hibernate.dao.personen.IPersonDao;
@@ -69,10 +71,17 @@ public class MitarbeiterTest {
 		// update
 		
 		// spezial
+		IBerechtigungDao bDao = BerechtigungDao.getInstance();
 		IMitarbeiter m1 = new Vector<IMitarbeiter>(mdao.getMitarbeiterByNummer("13")).get(0);
 //		IMitarbeiter m1 = new Vector<IMitarbeiter>(mdao.getMitarbeiterByName("Nicki")).get(0);
 //		IMitarbeiter m1 = new Vector<IMitarbeiter>(mdao.getMitarbeiter("Nicki","Heat")).get(0);
-		System.out.println(m1.getEmail());
+//		m1.addBerechtigung(bDao.getById(1));
+//		m1.addBerechtigung(bDao.getById(2));
+//		mdao.create(m1);
+		
+		m1.removeBerechtigung(bDao.getById(2));
+		mdao.create(m1);
+		
 	}
 	
 	private static Date getDate(int year, int month, int day) {
