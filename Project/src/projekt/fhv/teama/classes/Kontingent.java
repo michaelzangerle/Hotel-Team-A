@@ -25,7 +25,13 @@ public class Kontingent implements IKontingent {
 		this.ueberbuchungsgrenze = ueberbuchungsgrenze;
 		this.vertragspartner = vertragspartner;
 	}
-
+	
+	public Kontingent(Date von, Date bis, IVertragspartner vertragspartner) {
+		this.von = von;
+		this.bis = bis;
+		this.vertragspartner = vertragspartner;
+	}
+	
 	public Kontingent() {
 
 	}
@@ -81,7 +87,7 @@ public class Kontingent implements IKontingent {
 	@Override
 	public String toString() {
 		return "Kontingent [ID=" + ID + ", von=" + von + ", bis=" + bis + ", kondition=" + kondition
-				+ ", ueberbuchungsgrenze=" + ueberbuchungsgrenze + ", vertragspartner=" + vertragspartner.getName() + "]";
+				+ ", ueberbuchungsgrenze=" + ueberbuchungsgrenze + "]";
 	}
 
 	@Override
@@ -92,7 +98,7 @@ public class Kontingent implements IKontingent {
 		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
 		result = prime * result + kondition;
 		result = prime * result + ueberbuchungsgrenze;
-		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.getName().hashCode());
+//		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.getName().hashCode());
 		result = prime * result + ((von == null) ? 0 : von.hashCode());
 		return result;
 	}
@@ -117,11 +123,11 @@ public class Kontingent implements IKontingent {
 			return false;
 		if (ueberbuchungsgrenze != other.ueberbuchungsgrenze)
 			return false;
-		if (vertragspartner == null) {
-			if (other.vertragspartner != null)
-				return false;
-		} else if (vertragspartner.getID() != other.vertragspartner.getID())
-			return false;
+//		if (vertragspartner == null) {
+//			if (other.vertragspartner != null)
+//				return false;
+//		} else if (vertragspartner.getID() != other.vertragspartner.getID())
+//			return false;
 		if (von == null) {
 			if (other.von != null)
 				return false;

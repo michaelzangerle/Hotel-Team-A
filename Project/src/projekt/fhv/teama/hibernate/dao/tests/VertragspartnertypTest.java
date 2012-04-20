@@ -17,13 +17,13 @@ public class VertragspartnertypTest {
 		IVertragspartnertyp typC = new Vertragspartnertyp("C Kunde");
 		
 		// Einfügen
-		vtypdao.create(typA);
-		vtypdao.create(typB);
-		vtypdao.create(typC);
+		//vtypdao.create(typA);
+		//vtypdao.create(typB);
+		//vtypdao.create(typC);
 		
 		// Alle holen
-		//Set<IVertragspartnertyp> typen = vtypdao.getAll();
-		//System.out.println(typen.toString());
+		Set<IVertragspartnertyp> typen = vtypdao.getAll();
+		System.out.println(typen.toString());
 		
 		// 1 holen
 		//IVertragspartnertyp typ = vtypdao.getById(1);

@@ -26,9 +26,8 @@
             <column name="UEBERBUCHUNGSGRENZE" />
         </property>
         
-        <many-to-one name="vertragspartner" class="projekt.fhv.teama.classes.personen.Vertragspartner" fetch="join">
-            <column name="VERTRAGSPARTNERID" />
-        </many-to-one>
-        
+        <many-to-one name="vertragspartner" 
+        class="projekt.fhv.teama.classes.personen.Vertragspartner" column="VertragspartnerID"
+        not-null="true" />
     </class>
 </hibernate-mapping>

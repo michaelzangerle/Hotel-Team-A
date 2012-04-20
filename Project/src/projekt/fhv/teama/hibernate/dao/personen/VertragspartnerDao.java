@@ -26,13 +26,13 @@ public class VertragspartnerDao extends GenericDao<IVertragspartner> implements 
 
 	private static IVertragspartnerDao instance;
 
+	
 	public static IVertragspartnerDao getInstance() {
 		if (instance == null) {
 			instance = new VertragspartnerDao();
 		}
 		return instance;
 	}
-	
 	
 	public VertragspartnerDao() {
 		super("Vertragspartner");

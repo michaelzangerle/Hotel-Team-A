@@ -30,8 +30,8 @@ public class VertragspartnerTest {
 		//Set<IAdresse> adr = adao.getAll();
 		
 		
-		IVertragspartner v1 = new Vertragspartner("Doppelmayr", "0664/85635668", "master@doppelmayr.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(2));
-		IVertragspartner v2 = new Vertragspartner("Alpla", "0664/756464", "master@alpla.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(3));
+		//IVertragspartner v1 = new Vertragspartner("Doppelmayr", "0664/85635668", "master@doppelmayr.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(2));
+		//IVertragspartner v2 = new Vertragspartner("Alpla", "0664/756464", "master@alpla.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(3));
 
 		// Einfügen
 //		vdao.create(v1);
@@ -44,21 +44,23 @@ public class VertragspartnerTest {
 //		
 		// 1 holen
 //		
-		IVertragspartner partner = vdao.getById(23);
+		IVertragspartner partner = vdao.getById(25);
 		//System.out.println(partner.toString());
 //		
-//		IVertragspartner vertragspartner2 = vdao.getVertragspartnerByName("Alpla");
-//		System.out.println(vertragspartner2.toString());
+
 		
 		// update 
 //		partner.setEmail("doppelmayr@doppelmayr.com");
 //		System.out.println(partner);
 		
-		//spezial
-		//vdao.remove(partner);
+		//remove
+		vdao.remove(partner);
+		
+		//special
+//		IVertragspartner vertragspartner2 = vdao.getVertragspartnerByName("Alpla");
+//		System.out.println(vertragspartner2.toString());
 		
 		
-		//partner.setKontodaten();
 		
 	}
 }
