@@ -28,5 +28,22 @@ public class ControllerPfandTyp implements IControllerPfandTyp {
 		return new Vector<IPfandtyp>(pfandDao.getAll());
 	}
 
+
+
+	@Override
+	public void setAktuellerPfandTyp(IPfandtyp pfandtyp) {
+		
+		pfandModel=pfandtyp;
+	}
+
+
+
+	@Override
+	public IPfandtyp getAktuellerPFandtyp() {
+		if(pfandModel!=null)
+			return pfandModel;
+		return null;
+	}
+
 	
 }
