@@ -157,7 +157,7 @@ public class Person implements IPerson {
 				+ ((geburtsdatum == null) ? 0 : geburtsdatum.hashCode());
 		result = prime * result + geschlecht;
 		result = prime * result
-				+ ((kontodaten == null) ? 0 : kontodaten.hashCode());
+				+ ((kontodaten == null) ? 0 : kontodaten.getID());
 		result = prime * result + ((nachname == null) ? 0 : nachname.hashCode());
 		result = prime * result
 				+ ((telefonnummer == null) ? 0 : telefonnummer.hashCode());
@@ -191,7 +191,7 @@ public class Person implements IPerson {
 		if (kontodaten == null) {
 			if (other.kontodaten != null)
 				return false;
-		} else if (!kontodaten.equals(other.kontodaten))
+		} else if (kontodaten.getID() != other.kontodaten.getID())
 			return false;
 		if (nachname == null) {
 			if (other.nachname != null)
@@ -216,6 +216,6 @@ public class Person implements IPerson {
 		return "Person [ID=" + ID + ", vorname=" + vorname + ", nachname="
 				+ nachname + ", geschlecht=" + geschlecht + ", geburtsdatum=" + geburtsdatum
 				+ ", telefonnummer=" + telefonnummer + ", email=" + email
-				+ ", kontodaten=" + kontodaten + "]";
+				+ ", kontodaten=" + kontodaten.getID()+ "]";
 	}
 }
