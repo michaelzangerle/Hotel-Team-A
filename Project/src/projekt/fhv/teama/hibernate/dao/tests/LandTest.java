@@ -30,7 +30,7 @@ public class LandTest {
 		
 //		lnd.create(new Land("Österreich", "AT"));
 //		lnd.create(new Land("Schweiz", "CH"));
-//		lnd.create(new Land("Australien", "AU"));
+//		lnd.create(new Land("Italien", "I"));
 		
 		// Alle holen
 		
@@ -48,6 +48,11 @@ public class LandTest {
 //		ILand l1 = lnd.getById(3);
 //		l1.setKuerzel("AU");
 //		lnd.update(l1);
+		
+		// remove
+		
+		lnd.removeById(lnd.getById(4));
+		
 		
 		// spezial
 		

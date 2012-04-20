@@ -24,7 +24,7 @@ public class AdresseTest {
 		
 //		adao.create(new Adresse("Bahnhofstraße 3", "6900", "Bregenz", lnd.getLandByKuerzel("AT")));
 //		adao.create(new Adresse("Dorf 46", "6491", "Schönwies", lnd.getLandByKuerzel("AT")));
-//		adao.create(new Adresse("27", "6500", "Landeck", lnd.getLandByKuerzel("AT")));
+//		adao.create(new Adresse("Straßl 36", "3654", "Hintertupfingen", lnd.getLandByKuerzel("AT")));
 		
 		// Alle holen
 //		Set<IAdresse> adr = adao.getAll();
@@ -36,10 +36,13 @@ public class AdresseTest {
 //		System.out.println(adao.getById(1));
 		
 		// update
-		IAdresse a1 = adao.getById(2);
-		a1.setStrasse("Oberhäuser 18");
-		a1.setOrt("Schönwies");
-		adao.update(a1);
+//		IAdresse a1 = adao.getById(2);
+//		a1.setStrasse("Oberhäuser 18");
+//		a1.setOrt("Schönwies");
+//		adao.update(a1);
+		
+		//
+//		adao.removeById(5);
 		
 		// spezial
 		

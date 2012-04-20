@@ -59,7 +59,7 @@ public class MitarbeiterTest {
 		// 1 holen
 //		System.out.println(mdao.getById(1));
 		
-		mdao.removeById(7);
+//		mdao.removeById(7);
 //		mdao.removeById(8);
 //		mdao.removeById(9);
 //		

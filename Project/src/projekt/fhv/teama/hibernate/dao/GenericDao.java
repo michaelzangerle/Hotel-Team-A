@@ -112,13 +112,13 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 	}
 
 	@Override
-	public void removeById(int id) {
+	public void remove(T obj) {
 		Session session = null;
 		Transaction tx = null;
 		try {
 			session = HibernateHelper.getSession();
 			tx = session.beginTransaction();
-			session.delete(id);
+			session.delete(obj);
 			tx.commit();
 			tx = null;
 			// session.getTransaction().commit();
