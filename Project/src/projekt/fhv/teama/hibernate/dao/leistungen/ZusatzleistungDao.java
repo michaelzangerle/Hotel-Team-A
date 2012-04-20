@@ -15,7 +15,7 @@ import projekt.fhv.teama.classes.leistungen.IZusatzleistung;
 import projekt.fhv.teama.classes.leistungen.Zusatzleistung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -37,7 +37,7 @@ public class ZusatzleistungDao extends GenericDao<IZusatzleistung> implements IZ
 	}
 
 	@SuppressWarnings("unchecked")
-	public Set<IZusatzleistung> getZusatzleistung(String bezeichnung) throws NoDatabaseEntryFoundException {
+	public Set<IZusatzleistung> getZusatzleistung(String bezeichnung) throws DatabaseEntryNotFoundException {
 
 		List<Zusatzleistung> leistungen = null;
 
@@ -50,7 +50,7 @@ public class ZusatzleistungDao extends GenericDao<IZusatzleistung> implements IZ
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			leistungen = results;

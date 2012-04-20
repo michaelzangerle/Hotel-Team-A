@@ -12,7 +12,7 @@ import projekt.fhv.teama.classes.personen.Mitarbeiter;
 import projekt.fhv.teama.classes.rechnung.IRechnung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public class RechnungDao extends GenericDao<IRechnung> implements IRechnungDao {
 
@@ -31,7 +31,7 @@ public class RechnungDao extends GenericDao<IRechnung> implements IRechnungDao {
 
 	@SuppressWarnings("unchecked")
 	public Set<IRechnung> getRechnungByMitarbeiter(String vorname, String nachname)
-			throws NoDatabaseEntryFoundException {
+			throws DatabaseEntryNotFoundException {
 
 		List<IRechnung> rechnungen = null;
 
@@ -50,7 +50,7 @@ public class RechnungDao extends GenericDao<IRechnung> implements IRechnungDao {
 				id = mitarbeiterList.get(0).getID();
 
 			} else {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			Query query = session.createQuery("from " + getTable() + " r where r.mitarbeiterID = :id");
@@ -59,7 +59,7 @@ public class RechnungDao extends GenericDao<IRechnung> implements IRechnungDao {
 			List<IRechnung> results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			rechnungen = results;
@@ -73,7 +73,7 @@ public class RechnungDao extends GenericDao<IRechnung> implements IRechnungDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Set<IRechnung> getRechnungByBezahler(String vorname, String nachname) throws NoDatabaseEntryFoundException {
+	public Set<IRechnung> getRechnungByBezahler(String vorname, String nachname) throws DatabaseEntryNotFoundException {
 
 		List<IRechnung> rechnungen = null;
 
@@ -89,7 +89,7 @@ public class RechnungDao extends GenericDao<IRechnung> implements IRechnungDao {
 			rechnungen = query.list();
 
 			if (rechnungen.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {

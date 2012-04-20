@@ -15,7 +15,7 @@
             <column name="BESCHREIBUNG" />
         </property>
         
-        <many-to-one name="warengruppe" class="projekt.fhv.teama.classes.leistungen.Warengruppe" column="WARENGRUPPEID" />
+        <many-to-one name="warengruppe" class="projekt.fhv.teama.classes.leistungen.Warengruppe" column="WARENGRUPPEID"  />
     
     </joined-subclass>
 </hibernate-mapping>

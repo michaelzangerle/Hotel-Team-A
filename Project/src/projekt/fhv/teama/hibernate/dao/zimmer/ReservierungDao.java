@@ -16,7 +16,7 @@ import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -40,7 +40,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 
 	@SuppressWarnings("unchecked")
 	public Set<IReservierung> getReservierungByPerson(String vorname, String nachname)
-			throws NoDatabaseEntryFoundException {
+			throws DatabaseEntryNotFoundException {
 
 		List<IReservierung> reservierungen = null;
 
@@ -54,7 +54,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 			List<Person> persons = queryID.list();
 
 			if (persons.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			int id = persons.get(0).getID();
@@ -67,7 +67,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			reservierungen = results;
@@ -81,7 +81,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 	}
 
 	@SuppressWarnings("unchecked")
-	public Set<IReservierung> getReservierungByVP(String name) throws NoDatabaseEntryFoundException {
+	public Set<IReservierung> getReservierungByVP(String name) throws DatabaseEntryNotFoundException {
 
 		List<IReservierung> reservierungen = null;
 
@@ -96,7 +96,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 			if (vertragspartner.size() == 1) {
 				id = vertragspartner.get(0).getID();
 			} else {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			// die reservierungen mit der entsprechenden id suchen
@@ -106,7 +106,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 			List<IReservierung> results2 = query.list();
 
 			if (results2.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			reservierungen = results2;

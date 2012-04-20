@@ -166,9 +166,12 @@ public class Mitarbeiter extends Person implements IMitarbeiter {
 
 	@Override
 	public String toString() {
-		return "Mitarbeiter [ID=" + getID() + ", nummer=" + nummer + ", passwort="
-				+ passwort + ", einstellung=" + einstellung
-				+ ", berechtigungen=" + berechtigungen + ", rechnungen="
-				+ rechnungen + "]";
+		return "Mitarbeiter [ID=" + getID() 
+				+ ", nummer=" + nummer 
+				+ ", passwort=" + passwort 
+				+ ", einstellung=" + einstellung
+				+ ", berechtigungen=" + berechtigungen 
+				+ ", rechnungen=" + rechnungen 
+				+ "]";
 	}
 }

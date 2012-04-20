@@ -4,8 +4,8 @@ import java.util.Set;
 
 import projekt.fhv.teama.classes.zimmer.IStatusentwicklung;
 import projekt.fhv.teama.hibernate.dao.IGenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public interface IStatusentwicklungDao extends IGenericDao<IStatusentwicklung> {
-	public Set<IStatusentwicklung> getStatusentwicklungByZimmernummer(String nummer)throws NoDatabaseEntryFoundException;
+	public Set<IStatusentwicklung> getStatusentwicklungByZimmernummer(String nummer)throws DatabaseEntryNotFoundException;
 }

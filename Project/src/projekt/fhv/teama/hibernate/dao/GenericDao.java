@@ -11,9 +11,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 
 import projekt.fhv.teama.hibernate.HibernateHelper;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseConstraintViolationException;
 
 /**
  * @author mike
@@ -32,23 +35,37 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 	}
 
 	@Override
-	public void create(T obj) {
+	public void create(T obj) throws DatabaseException {
+
 		Session session = null;
 		Transaction tx = null;
+
 		try {
+
 			session = HibernateHelper.getSession();
 			tx = session.beginTransaction();
 			session.saveOrUpdate(obj);
 			tx.commit();
 			tx = null;
-			// session.getTransaction().commit();
+
+		} catch (ConstraintViolationException e) {
+
+			throw new DatabaseConstraintViolationException("ERROR: Probaly trying to insert a unique value twice!");
+
 		} catch (HibernateException e) {
+
 			if (tx != null) {
 				tx.rollback();
 			}
+
 			e.printStackTrace();
+			throw new DatabaseException("ERROR: Error occured while trying to create some entry!");
+
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+
+			e.printStackTrace();
+			throw new DatabaseException("FATAL ERROR: Error occured while trying to create some entry!");
+
 		} finally {
 			session.close();
 		}
@@ -57,7 +74,8 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<T> getAll() throws NoDatabaseEntryFoundException {
+	public Set<T> getAll() throws DatabaseException {
+
 		Session session = null;
 		List<T> results = null;
 
@@ -68,22 +86,30 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {
+
 			e.printStackTrace();
+			throw new DatabaseException("ERROR: Error occured while trying to get all entries!");
+
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+
+			e.printStackTrace();
+			throw new DatabaseException("FATAL ERROR: Error occured while trying to get all entries!");
+
 		} finally {
+
 			session.close();
 		}
+
 		Set<T> set = new HashSet<T>(results);
 		return set;
 	}
 
 	@Override
-	public T getById(int id) {
+	public T getById(int id) throws DatabaseException {
 
 		T object = null;
 		Session session = null;
@@ -96,15 +122,26 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			@SuppressWarnings("unchecked")
 			List<T> results = query.list();
 
+			if (results.size() == 0) {
+				throw new DatabaseEntryNotFoundException();
+			}
+
 			if (results.size() == 1) {
 				object = (T) results.get(0);
 			}
 
 		} catch (HibernateException e) {
+
 			e.printStackTrace();
+			throw new DatabaseException("ERROR: Error occured while trying to get some entry by ID!");
+
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+
+			e.printStackTrace();
+			throw new DatabaseException("FATAL ERROR: Error occured while trying to get some entry by ID!");
+
 		} finally {
+
 			session.close();
 		}
 
@@ -112,50 +149,78 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 	}
 
 	@Override
-	public void remove(T obj) {
+	public void remove(T obj) throws DatabaseException {
+
 		Session session = null;
 		Transaction tx = null;
+
 		try {
+
 			session = HibernateHelper.getSession();
 			tx = session.beginTransaction();
 			session.delete(obj);
 			tx.commit();
 			tx = null;
-			// session.getTransaction().commit();
+
+		} catch (ConstraintViolationException e) {
+
+			throw new DatabaseConstraintViolationException();
+
 		} catch (HibernateException e) {
+
 			if (tx != null) {
 				tx.rollback();
 			}
+
 			e.printStackTrace();
+			throw new DatabaseException("ERROR: Error occured while trying to remove some entry!");
+
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+
+			e.printStackTrace();
+			throw new DatabaseException("FATAL ERROR: Error occured while trying to remove some entry!");
+
 		} finally {
+
 			session.close();
 		}
 
 	}
 
 	@Override
-	public void update(T obj) {
-		
+	public void update(T obj) throws DatabaseException {
+
 		Session session = null;
 		Transaction tx = null;
-		
+
 		try {
+
 			session = HibernateHelper.getSession();
 			tx = session.beginTransaction();
 			session.update(obj);
 			tx.commit();
 			tx = null;
-			// session.getTransaction().commit();
+			
+		} catch (ConstraintViolationException e) {
+
+			throw new DatabaseConstraintViolationException("ERROR: Probaly trying to insert a unique value twice!");
+
 		} catch (HibernateException e) {
+
 			if (tx != null) {
 				tx.rollback();
 			}
+
 			e.printStackTrace();
+			throw new DatabaseException("ERROR: Error occured while trying to update some entry!");
+
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+
+			e.printStackTrace();
+			throw new DatabaseException("FATAL ERROR: Error occured while trying to update some entry!");
+
 		} finally {
+
 			session.close();
 		}
 

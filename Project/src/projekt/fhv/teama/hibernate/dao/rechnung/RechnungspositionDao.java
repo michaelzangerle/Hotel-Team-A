@@ -14,7 +14,7 @@ import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -51,7 +51,7 @@ public class RechnungspositionDao extends GenericDao<IRechnungsposition> impleme
 			if (results.size() == 1) {
 				id = results.get(0).getID();
 			} else {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			query = session.createQuery("from " + getTable() + " z where z.zimmerID = :id");
@@ -60,7 +60,7 @@ public class RechnungspositionDao extends GenericDao<IRechnungsposition> impleme
 			List<IRechnungsposition> results2 = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException("No results found!");
+				throw new DatabaseEntryNotFoundException("No results found!");
 			}
 
 			pos = results2;

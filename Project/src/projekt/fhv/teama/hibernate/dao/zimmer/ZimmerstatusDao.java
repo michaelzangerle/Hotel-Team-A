@@ -13,7 +13,7 @@ import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
 import projekt.fhv.teama.classes.zimmer.Zimmerstatus;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -34,7 +34,7 @@ public class ZimmerstatusDao extends GenericDao<IZimmerstatus> implements IZimme
 		super("Zimmerstatus");
 	}
 
-	public IZimmerstatus getZimmerstatus(String statusName) throws NoDatabaseEntryFoundException {
+	public IZimmerstatus getZimmerstatus(String statusName) throws DatabaseEntryNotFoundException {
 
 		IZimmerstatus status = null;
 
@@ -51,7 +51,7 @@ public class ZimmerstatusDao extends GenericDao<IZimmerstatus> implements IZimme
 			}
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {

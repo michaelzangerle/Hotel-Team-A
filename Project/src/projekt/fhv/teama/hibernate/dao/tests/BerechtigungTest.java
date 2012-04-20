@@ -13,7 +13,7 @@ import projekt.fhv.teama.classes.personen.IBerechtigung;
 import projekt.fhv.teama.hibernate.dao.personen.BerechtigungDao;
 import projekt.fhv.teama.hibernate.dao.personen.IBerechtigungDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike

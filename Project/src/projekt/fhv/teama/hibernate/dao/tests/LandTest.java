@@ -11,7 +11,7 @@ import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.hibernate.dao.personen.ILandDao;
 import projekt.fhv.teama.hibernate.dao.personen.LandDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike

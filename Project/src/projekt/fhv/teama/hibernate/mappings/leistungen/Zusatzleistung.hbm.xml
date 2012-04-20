@@ -19,7 +19,7 @@
             <column name="EXTERN" />
         </property>
         
-        <many-to-one name="warengruppe" class="projekt.fhv.teama.classes.leistungen.Warengruppe" column="WARENGRUPPEID"/>
+        <many-to-one name="warengruppe" class="projekt.fhv.teama.classes.leistungen.Warengruppe" column="WARENGRUPPEID" lazy="false"/>
         
     </joined-subclass>
 </hibernate-mapping>

@@ -14,7 +14,7 @@ import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public class GastDao extends GenericDao<IGast> implements IGastDao {
 
@@ -46,7 +46,7 @@ public class GastDao extends GenericDao<IGast> implements IGastDao {
 			}
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {
@@ -84,7 +84,7 @@ public class GastDao extends GenericDao<IGast> implements IGastDao {
 			}
 
 			if (gaeste.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {
@@ -107,7 +107,7 @@ public class GastDao extends GenericDao<IGast> implements IGastDao {
 			gaeste = query.list();
 
 			if (gaeste.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {

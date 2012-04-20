@@ -30,7 +30,7 @@
 			class="projekt.fhv.teama.classes.personen.Vertragspartnertyp" column="vertragspartnerTypID"
 			not-null="true" foreign-key="ID" />
 
-		<set name="adressen" table="vertragsPartnerAdresse" cascade="all">
+		<set name="adressen" table="vertragsPartnerAdresse" lazy="false" cascade="all">
 			<key column="vertragsPartnerID" />
 			<many-to-many column="adresseID" class="projekt.fhv.teama.classes.personen.Adresse" />
 		</set>
@@ -42,10 +42,8 @@
 			<one-to-many class="projekt.fhv.teama.classes.zimmer.Reservierung" />
 		</set>
 
-		<set name="kontingente" table="kontingent" inverse="false">
-			<key>
-				<column name="kontingentID" />
-			</key>
+		<set name="kontingente" table="kontingent" inverse="true" lazy="false" cascade="none">
+			<key><column name="kontingentID" /></key>
 			<one-to-many class="projekt.fhv.teama.classes.Kontingent" />
 		</set>
 	</class>

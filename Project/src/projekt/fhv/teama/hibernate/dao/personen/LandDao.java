@@ -11,7 +11,7 @@ import projekt.fhv.teama.classes.personen.Land;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public class LandDao extends GenericDao<ILand> implements ILandDao {
 	private static ILandDao instance;
@@ -43,7 +43,7 @@ public class LandDao extends GenericDao<ILand> implements ILandDao {
 			}
 
 			if (result.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {
@@ -52,7 +52,7 @@ public class LandDao extends GenericDao<ILand> implements ILandDao {
 		return p;
 	}
 	
-	public ILand getLandByKuerzel(String kuerzel) throws NoDatabaseEntryFoundException{
+	public ILand getLandByKuerzel(String kuerzel) throws DatabaseEntryNotFoundException{
 		
 		try {
 			Session session = HibernateHelper.getSession();
@@ -67,7 +67,7 @@ public class LandDao extends GenericDao<ILand> implements ILandDao {
 			}
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {

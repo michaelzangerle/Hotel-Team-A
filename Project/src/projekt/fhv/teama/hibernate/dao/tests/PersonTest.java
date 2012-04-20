@@ -70,10 +70,10 @@ public class PersonTest {
 //		}
 		
 		// 1 holen
-//		System.out.println(pdao.getById(2));
+		System.out.println(pdao.getById(33));
 //		System.out.println(pdao.getPerson("Michael"));
 //		System.out.println(pdao.getPerson("Zangerle", "Michael"));
-		System.out.println(pdao.getPersonByMail("michael.zangerle@gmail.com"));
+//		System.out.println(pdao.getPersonByMail("michael.zangerle@gmail.com"));
 		
 		// update
 //		Set<IPerson> personen = pdao.getPerson("Michael", "Zangerle");

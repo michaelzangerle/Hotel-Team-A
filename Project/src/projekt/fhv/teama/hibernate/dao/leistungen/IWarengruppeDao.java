@@ -2,8 +2,8 @@ package projekt.fhv.teama.hibernate.dao.leistungen;
 
 import projekt.fhv.teama.classes.leistungen.IWarengruppe;
 import projekt.fhv.teama.hibernate.dao.IGenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public interface IWarengruppeDao extends IGenericDao<IWarengruppe> {
-	public IWarengruppe getWarengruppeByBezeichnung(String bez) throws NoDatabaseEntryFoundException ;
+	public IWarengruppe getWarengruppeByBezeichnung(String bez) throws DatabaseEntryNotFoundException ;
 }

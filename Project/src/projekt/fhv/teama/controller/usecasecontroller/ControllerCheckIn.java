@@ -29,7 +29,8 @@ import projekt.fhv.teama.controller.interfaces.IControllerZimmer;
 import projekt.fhv.teama.controller.interfaces.IControllerZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
 
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 public class ControllerCheckIn implements IControllerCheckIn {
 	
@@ -53,9 +54,19 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Konstruktor ControllerCheckIn 
 	 * CeckIn Kontroller ist für den Usercase Check In zuständig
 	 */
-	public ControllerCheckIn() {
+	public ControllerCheckIn(IControllerReservierung cres,IControllerAufenthalt cauf,IControllerGast cgast,IControllerTeilreservierung ctres,IControllerKategorie ckat,
+			IControllerKontodaten ckonto,IControllerPfandTyp cpfandTyp,IControllerZimmer czimmer,IControllerZimmerstatus czimmerStatus,IControllerAdresse cadr) {
 		
-		controllerReservierung=new ControllerReservierung();
+		controllerReservierung=cres;
+		controllerAufenthalt=cauf;
+		controllerGast=cgast;
+		controllerTeilreservierung=ctres;
+		controllerKategorie=ckat;
+		controllerPfandtyp=cpfandTyp;
+		controllerZimmer=czimmer;
+		controllerZimmerstatus=czimmerStatus;
+		controllerKontodaten=ckonto;
+		controllerAdresse=cadr;
 	}
 	
 	
@@ -224,9 +235,9 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	/**
 	 * Holt alle Pfandtypen die in der Datenbank vorhanden sind
 	 * @return List<IPfandtyp>
-	 * @throws NoDatabaseEntryFoundException
+	 * @throws DatabaseException 
 	 */
-	public List<IPfandtyp> getPfandtyps() throws NoDatabaseEntryFoundException
+	public List<IPfandtyp> getPfandtyps() throws DatabaseException
 	{
 		return controllerPfandtyp.getPfandtyps();
 	}
@@ -237,9 +248,9 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Gibt alle verfügbaren Zimmer einer Kategorie zurück
 	 * @param k
 	 * @return List<IZimmer>
-	 * @throws NoDatabaseEntryFoundException
+	 * @throws DatabaseEntryNotFoundException
 	 */
-	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)throws NoDatabaseEntryFoundException
+	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)throws DatabaseEntryNotFoundException
 	{
 		return controllerZimmer.getZimmerFürGegebeneKategorie(k);
 	}

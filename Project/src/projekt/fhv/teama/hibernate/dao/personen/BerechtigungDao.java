@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.classes.personen.IBerechtigung;
 
 public class BerechtigungDao extends GenericDao<IBerechtigung> implements IBerechtigungDao {
@@ -38,7 +38,7 @@ public class BerechtigungDao extends GenericDao<IBerechtigung> implements IBerec
 			berechtigungenList = query.list();
 			
 			if (berechtigungenList.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 		} catch (HibernateException e) {
 			throw new DatabaseException();

@@ -11,7 +11,8 @@ import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
 import projekt.fhv.teama.hibernate.dao.zimmer.IReservierungDao;
 
 import projekt.fhv.teama.hibernate.dao.zimmer.ReservierungDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 public class ControllerReservierung implements IControllerReservierung {
 	
@@ -38,7 +39,10 @@ public class ControllerReservierung implements IControllerReservierung {
 			List<IReservierung> reservierungen=new Vector<IReservierung>(reservierungsDao.getAll());
 			return reservierungen;
 			
-		} catch (NoDatabaseEntryFoundException e) {
+		} catch (DatabaseEntryNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DatabaseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -20,7 +20,7 @@
             <column name="einstellung" sql-type="date" length="10" not-null="true" />
         </property>
        
-       <set name="berechtigungen" table="mitarbeiterBerechtigung" cascade="all">
+       <set name="berechtigungen" table="mitarbeiterBerechtigung" cascade="all" lazy="false">
             <key column="mitarbeiterID"/>
             <many-to-many column="berechtigungID" class="projekt.fhv.teama.classes.personen.Berechtigung"/>
         </set> 

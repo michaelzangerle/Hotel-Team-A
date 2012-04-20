@@ -8,7 +8,8 @@ import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.controller.interfaces.IControllerPfandTyp;
 import projekt.fhv.teama.hibernate.dao.IPfandtypDao;
 import projekt.fhv.teama.hibernate.dao.PfandtypDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 
 public class ControllerPfandTyp implements IControllerPfandTyp {
@@ -23,7 +24,7 @@ public class ControllerPfandTyp implements IControllerPfandTyp {
 	
 
 	@Override
-	public List<IPfandtyp> getPfandtyps() throws NoDatabaseEntryFoundException {
+	public List<IPfandtyp> getPfandtyps() throws DatabaseException {
 		
 		return new Vector<IPfandtyp>(pfandDao.getAll());
 	}
