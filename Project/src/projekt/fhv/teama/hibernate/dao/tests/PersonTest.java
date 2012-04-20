@@ -14,6 +14,7 @@ import java.util.Vector;
 
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IPerson;
+import projekt.fhv.teama.classes.personen.Kontodaten;
 import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.hibernate.dao.personen.AdresseDao;
 import projekt.fhv.teama.hibernate.dao.personen.IAdresseDao;
@@ -38,8 +39,8 @@ public class PersonTest {
 	public static void main(String[] args) throws DatabaseException {
 		
 		IKontodatenDao kdao = KontodatenDao.getInstance();
-//		kdao.create(new Kontodaten("123456", "654321", "12345678", "98765"));
-//		kdao.create(new Kontodaten("142536", "635241", "87456321", "65478"));
+//		kdao.create(new Kontodaten("654789", "175867", "98745329", "98765"));
+//		kdao.create(new Kontodaten("159843", "365124", "15948732", "15742"));
 		
 		
 		
