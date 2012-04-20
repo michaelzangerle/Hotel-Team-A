@@ -265,6 +265,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 			for (IAdresse adr : gast.getAdressen()) {
 				controllerAdresse.save(adr);
 			}
+			controllerGast.save(gast);
 			controllerAufenthalt.create(preis, von, bis, schluessel, gast, zimmer,pfand,pfandnummer);
 		
 	}

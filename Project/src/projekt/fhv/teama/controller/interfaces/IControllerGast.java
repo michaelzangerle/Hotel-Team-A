@@ -34,6 +34,8 @@ public interface IControllerGast {
 
 	void setTelefonnummer(String telefonnummer);
 
+	void save(IGast gast);
+
 
 
 }

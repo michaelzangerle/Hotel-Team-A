@@ -25,7 +25,7 @@ public class ControllerTeilreservierung implements IControllerTeilreservierung {
 		teilreservierungModel=teilreservierung;
 	}
 	
-	public ITeilreservierung getAktulleTeilreservierung()
+	public ITeilreservierung getAktuelleTeilreservierung()
 	{
 		return teilreservierungModel;
 	}

@@ -15,8 +15,6 @@ public interface IControllerReservierung {
 
 	IReservierung getAktuelleReservierung();
 
-	boolean containsGast(IGast gast);
-
 	List<ITeilreservierung> getTeilreservierungen();
 
 	void setVon(Date date);
@@ -24,5 +22,7 @@ public interface IControllerReservierung {
 	void setBis(Date date);
 
 	List<IGast> getGaeste();
+	
+	boolean containsGast(IGast gast);
 
 }

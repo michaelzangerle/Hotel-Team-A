@@ -61,6 +61,7 @@ public class ControllerGast implements IControllerGast {
 	}
 	
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void setGeburtsdatum(Date geburtsdatum) {
 		if(gastModel!=null&&(geburtsdatum.after(new Date(1900,01,01))))
@@ -140,6 +141,13 @@ public class ControllerGast implements IControllerGast {
 		{
 			gastModel.setTelefonnummer(telefonnummer);
 		}
+		
+	}
+
+	@Override
+	public void save(IGast gast) {
+		if(gast!=null)
+			gastDao.create(gast);
 		
 	}
 	

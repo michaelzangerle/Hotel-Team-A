@@ -18,7 +18,8 @@ public class ControllerReservierung implements IControllerReservierung {
 	
 	private IReservierung reservierungModel;
 	private IReservierungDao reservierungsDao;
-	
+
+
 	private List<IReservierung> reservierungen;
 
 	
@@ -46,7 +47,6 @@ public class ControllerReservierung implements IControllerReservierung {
 	}
 	
 	
-	
 	public void setAktuelleReservierung(IReservierung reservierung)
 	{
 		if(reservierungen.contains(reservierung))
@@ -62,25 +62,11 @@ public class ControllerReservierung implements IControllerReservierung {
 
 
 	@Override
-	public boolean containsGast(IGast gast) {
-		if(reservierungen.contains(gast))
-			return true;
-		else
-		return false;
-	}
-
-
-	@Override
 	public List<ITeilreservierung> getTeilreservierungen() {
-		List<ITeilreservierung>list;
 		if(reservierungModel!=null)
-			//return list= new Vector<ITeilreservierung>(reservierungModel.getTeilreservierungen());
-			
+			return new Vector<ITeilreservierung>(reservierungModel.getTeilreservierungen());
 			return null;
-		return null;
 	}
-
-
 
 	@Override
 	public void setVon(Date date) {
@@ -91,8 +77,6 @@ public class ControllerReservierung implements IControllerReservierung {
 		
 	}
 
-
-
 	@Override
 	public void setBis(Date date) {
 		if(reservierungModel!=null)
@@ -100,7 +84,6 @@ public class ControllerReservierung implements IControllerReservierung {
 			reservierungModel.setBis(date);
 		}
 	}
-
 
 
 	@Override
@@ -115,6 +98,15 @@ public class ControllerReservierung implements IControllerReservierung {
 			return null;
 		}
 	}
+	
+	@Override
+	public boolean containsGast(IGast gast) {
+		if(reservierungen.contains(gast))
+			return true;
+		else
+		return false;
+	}
+
 	
 	
 	

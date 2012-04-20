@@ -6,6 +6,6 @@ public interface IControllerTeilreservierung {
 
 	public void setAktulleTeilreservierung(ITeilreservierung teilreservierung);
 	
-	public ITeilreservierung getAktulleTeilreservierung();
+	public ITeilreservierung getAktuelleTeilreservierung();
 	
 }
