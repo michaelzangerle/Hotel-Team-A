@@ -11,7 +11,7 @@ import org.hibernate.Session;
 
 import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.hibernate.HibernateHelper;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -32,7 +32,7 @@ public class PfandtypDao extends GenericDao<IPfandtyp> implements IPfandtypDao {
 		super("Pfandtyp");
 	}
 
-	public IPfandtyp getPfandtypByBez(String bez) throws NoDatabaseEntryFoundException {
+	public IPfandtyp getPfandtypByBez(String bez) throws DatabaseEntryNotFoundException {
 
 		try {
 			Session session = HibernateHelper.getSession();
@@ -47,7 +47,7 @@ public class PfandtypDao extends GenericDao<IPfandtyp> implements IPfandtypDao {
 			}
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {

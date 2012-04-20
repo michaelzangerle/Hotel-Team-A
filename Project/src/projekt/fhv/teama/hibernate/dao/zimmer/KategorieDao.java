@@ -12,7 +12,7 @@ import org.hibernate.Session;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -34,7 +34,7 @@ public class KategorieDao extends GenericDao<IKategorie> implements IKategorieDa
 		super("Kategorie");
 	}
 
-	public IKategorie getKategorie(String kategorieName) throws NoDatabaseEntryFoundException {
+	public IKategorie getKategorie(String kategorieName) throws DatabaseEntryNotFoundException {
 
 		IKategorie kategorie = null;
 
@@ -51,7 +51,7 @@ public class KategorieDao extends GenericDao<IKategorie> implements IKategorieDa
 			}
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {

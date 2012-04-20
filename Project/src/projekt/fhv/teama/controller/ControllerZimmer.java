@@ -8,7 +8,8 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.interfaces.IControllerZimmer;
 import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 
 
@@ -24,10 +25,16 @@ public class ControllerZimmer implements IControllerZimmer {
 
 	@Override
 	public List<IZimmer> getZimmerFürGegebeneKategorie(
-			IKategorie ausgewählteKategorie) throws NoDatabaseEntryFoundException {
+			IKategorie ausgewählteKategorie) throws DatabaseEntryNotFoundException {
 		
 		List<IZimmer> verfügbare=new Vector<IZimmer>();
-		List<IZimmer> alle=new Vector<IZimmer>(zimmerDao.getAll());
+		List<IZimmer> alle = null;
+		try {
+			alle = new Vector<IZimmer>(zimmerDao.getAll());
+		} catch (DatabaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		for (IZimmer zi : alle) {
 			if(zi.getKategorie().equals(ausgewählteKategorie)&&zi.getZimmerstatus().getKuerzel().equals("fuck"))
@@ -42,7 +49,12 @@ public class ControllerZimmer implements IControllerZimmer {
 	@Override
 	public void save(IZimmer zimmer) {
 		if(zimmer!=null)
-			zimmerDao.create(zimmer);
+			try {
+				zimmerDao.create(zimmer);
+			} catch (DatabaseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 	}
 	

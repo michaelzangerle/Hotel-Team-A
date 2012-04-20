@@ -20,7 +20,7 @@ import projekt.fhv.teama.hibernate.dao.personen.KontodatenDao;
 import projekt.fhv.teama.hibernate.dao.personen.MitarbeiterDao;
 import projekt.fhv.teama.hibernate.dao.personen.PersonDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public class MitarbeiterTest {
 	

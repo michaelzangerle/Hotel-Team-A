@@ -10,7 +10,7 @@ import projekt.fhv.teama.classes.zimmer.ISaison;
 import projekt.fhv.teama.classes.zimmer.Saison;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public class SaisonDao extends GenericDao<ISaison> implements ISaisonDao{
 
@@ -28,7 +28,7 @@ public class SaisonDao extends GenericDao<ISaison> implements ISaisonDao{
 	}
 
 	public Saison getSaison(String saisonsBezeichnung)
-			throws NoDatabaseEntryFoundException {
+			throws DatabaseEntryNotFoundException {
 
 		Saison saison = null;
 
@@ -46,7 +46,7 @@ public class SaisonDao extends GenericDao<ISaison> implements ISaisonDao{
 			}
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {

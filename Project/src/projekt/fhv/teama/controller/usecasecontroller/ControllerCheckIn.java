@@ -29,7 +29,8 @@ import projekt.fhv.teama.controller.interfaces.IControllerZimmer;
 import projekt.fhv.teama.controller.interfaces.IControllerZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
 
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 public class ControllerCheckIn implements IControllerCheckIn {
 	
@@ -234,9 +235,9 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	/**
 	 * Holt alle Pfandtypen die in der Datenbank vorhanden sind
 	 * @return List<IPfandtyp>
-	 * @throws NoDatabaseEntryFoundException
+	 * @throws DatabaseException 
 	 */
-	public List<IPfandtyp> getPfandtyps() throws NoDatabaseEntryFoundException
+	public List<IPfandtyp> getPfandtyps() throws DatabaseException
 	{
 		return controllerPfandtyp.getPfandtyps();
 	}
@@ -247,9 +248,9 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Gibt alle verfügbaren Zimmer einer Kategorie zurück
 	 * @param k
 	 * @return List<IZimmer>
-	 * @throws NoDatabaseEntryFoundException
+	 * @throws DatabaseEntryNotFoundException
 	 */
-	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)throws NoDatabaseEntryFoundException
+	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)throws DatabaseEntryNotFoundException
 	{
 		return controllerZimmer.getZimmerFürGegebeneKategorie(k);
 	}

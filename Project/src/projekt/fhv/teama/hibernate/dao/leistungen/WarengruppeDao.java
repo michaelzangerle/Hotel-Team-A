@@ -13,7 +13,7 @@ import projekt.fhv.teama.classes.leistungen.IWarengruppe;
 import projekt.fhv.teama.classes.leistungen.Warengruppe;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -35,7 +35,7 @@ public class WarengruppeDao extends GenericDao<IWarengruppe> implements IWarengr
 	}
 
 	@SuppressWarnings("unchecked")
-	public IWarengruppe getWarengruppeByBezeichnung(String bezeichnung) throws NoDatabaseEntryFoundException {
+	public IWarengruppe getWarengruppeByBezeichnung(String bezeichnung) throws DatabaseEntryNotFoundException {
 
 		List<Warengruppe> warengruppe = null;
 
@@ -48,7 +48,7 @@ public class WarengruppeDao extends GenericDao<IWarengruppe> implements IWarengr
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			warengruppe = results;

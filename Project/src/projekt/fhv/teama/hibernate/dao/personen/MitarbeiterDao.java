@@ -14,7 +14,7 @@ import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public class MitarbeiterDao extends GenericDao<IMitarbeiter> implements IMitarbeiterDao {
 
@@ -56,7 +56,7 @@ public class MitarbeiterDao extends GenericDao<IMitarbeiter> implements IMitarbe
 			}
 
 			if (mitarbeiter.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {
@@ -93,7 +93,7 @@ public class MitarbeiterDao extends GenericDao<IMitarbeiter> implements IMitarbe
 			}
 
 			if (mitarbeiter.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {
@@ -117,7 +117,7 @@ public class MitarbeiterDao extends GenericDao<IMitarbeiter> implements IMitarbe
 			mitarbeiter = query.list();
 
 			if (mitarbeiter.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {

@@ -10,15 +10,16 @@ import projekt.fhv.teama.hibernate.dao.IKontingentDao;
 import projekt.fhv.teama.hibernate.dao.KontingentDao;
 import projekt.fhv.teama.hibernate.dao.personen.IVertragspartnerDao;
 import projekt.fhv.teama.hibernate.dao.personen.VertragspartnerDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 public class KontingentTest {
 
 	/**
 	 * @param args
-	 * @throws NoDatabaseEntryFoundException 
+	 * @throws DatabaseException 
 	 */
-	public static void main(String[] args) throws NoDatabaseEntryFoundException {
+	public static void main(String[] args) throws DatabaseException {
 		IKontingentDao kdao = KontingentDao.getInstance();
 		IVertragspartnerDao vdao = VertragspartnerDao.getInstance();
 		short kondition = 13;

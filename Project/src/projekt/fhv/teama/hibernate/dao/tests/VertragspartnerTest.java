@@ -19,10 +19,11 @@ import projekt.fhv.teama.hibernate.dao.personen.KontodatenDao;
 import projekt.fhv.teama.hibernate.dao.personen.LandDao;
 import projekt.fhv.teama.hibernate.dao.personen.VertragspartnerDao;
 import projekt.fhv.teama.hibernate.dao.personen.VertragspartnertypDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 public class VertragspartnerTest {
-	public static void main (String[] args) throws NoDatabaseEntryFoundException {
+	public static void main (String[] args) throws DatabaseException {
 		IVertragspartnerDao vdao = VertragspartnerDao.getInstance();
 		ILandDao ldao = LandDao.getInstance();
 		IKontodatenDao kdao = KontodatenDao.getInstance();

@@ -15,7 +15,7 @@ import projekt.fhv.teama.classes.IKontingent;
 import projekt.fhv.teama.classes.Kontingent;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
 import projekt.fhv.teama.hibernate.HibernateHelper;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -38,7 +38,7 @@ public class KontingentDao extends GenericDao<IKontingent> implements IKontingen
 	}
 
 	@SuppressWarnings("unchecked")
-	public Set<IKontingent> getKontingentByVPID(int id) throws NoDatabaseEntryFoundException {
+	public Set<IKontingent> getKontingentByVPID(int id) throws DatabaseEntryNotFoundException {
 
 		List<Kontingent> kontingente = null;
 
@@ -51,7 +51,7 @@ public class KontingentDao extends GenericDao<IKontingent> implements IKontingen
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			kontingente = results;
@@ -65,7 +65,7 @@ public class KontingentDao extends GenericDao<IKontingent> implements IKontingen
 	}
 
 	@SuppressWarnings("unchecked")
-	public Set<IKontingent> getKontingentByVPName(String name) throws NoDatabaseEntryFoundException {
+	public Set<IKontingent> getKontingentByVPName(String name) throws DatabaseEntryNotFoundException {
 
 		List<IKontingent> kontingente = null;
 
@@ -82,7 +82,7 @@ public class KontingentDao extends GenericDao<IKontingent> implements IKontingen
 			List<IKontingent> results2 = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			kontingente = results2;

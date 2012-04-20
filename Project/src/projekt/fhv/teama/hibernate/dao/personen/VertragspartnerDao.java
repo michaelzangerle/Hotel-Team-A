@@ -20,6 +20,7 @@ import projekt.fhv.teama.hibernate.dao.IKontingentDao;
 import projekt.fhv.teama.hibernate.dao.KontingentDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 /**
@@ -40,7 +41,7 @@ public class VertragspartnerDao extends GenericDao<IVertragspartner> implements 
 	}
 	
 	@Override
-	public void remove(IVertragspartner vertragspartner) {
+	public void remove(IVertragspartner vertragspartner) throws DatabaseException {
 		Session session = null;
 		Transaction tx = null;
 		

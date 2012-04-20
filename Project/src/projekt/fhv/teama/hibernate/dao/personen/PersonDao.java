@@ -15,7 +15,7 @@ import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -51,7 +51,7 @@ public class PersonDao extends GenericDao<IPerson> implements IPersonDao {
 			List results = query.list();
 			
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException("No results found!");
+				throw new DatabaseEntryNotFoundException("No results found!");
 			}	
 			
 			p = results;
@@ -78,7 +78,7 @@ public class PersonDao extends GenericDao<IPerson> implements IPersonDao {
 			List results = query.list();
 			
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException("No results found!");
+				throw new DatabaseEntryNotFoundException("No results found!");
 			}	
 			
 			p = results;
@@ -105,7 +105,7 @@ public class PersonDao extends GenericDao<IPerson> implements IPersonDao {
 			List results = query.list();
 			
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}	
 			
 			p = results;

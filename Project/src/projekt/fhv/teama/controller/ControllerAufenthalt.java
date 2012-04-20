@@ -10,6 +10,7 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.interfaces.IControllerAufenthalt;
 import projekt.fhv.teama.hibernate.dao.AufenthaltDao;
 import projekt.fhv.teama.hibernate.dao.IAufenthaltDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 public class ControllerAufenthalt implements IControllerAufenthalt {
 
@@ -24,7 +25,12 @@ public class ControllerAufenthalt implements IControllerAufenthalt {
 	public void create(float preis, Date von, Date bis, boolean schluessel, IGast gast, IZimmer zimmer,IPfandtyp pfand,String pfandNr)
 	{
 		aufenthaltModel=new Aufenthalt(preis, pfandNr, von, bis, schluessel, gast, zimmer, pfand);
-		aufenthaltDao.create(aufenthaltModel);
+		try {
+			aufenthaltDao.create(aufenthaltModel);
+		} catch (DatabaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 

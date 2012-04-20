@@ -12,6 +12,7 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.interfaces.IControllerGast;
 import projekt.fhv.teama.hibernate.dao.personen.GastDao;
 import projekt.fhv.teama.hibernate.dao.personen.IGastDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 public class ControllerGast implements IControllerGast {
 
@@ -147,7 +148,12 @@ public class ControllerGast implements IControllerGast {
 	@Override
 	public void save(IGast gast) {
 		if(gast!=null)
-			gastDao.create(gast);
+			try {
+				gastDao.create(gast);
+			} catch (DatabaseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 	}
 	

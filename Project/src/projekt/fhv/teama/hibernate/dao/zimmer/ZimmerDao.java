@@ -17,7 +17,7 @@ import projekt.fhv.teama.classes.zimmer.Zimmer;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -51,7 +51,7 @@ public class ZimmerDao extends GenericDao<IZimmer> implements IZimmerDao {
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException("No results found!");
+				throw new DatabaseEntryNotFoundException("No results found!");
 			}
 
 			zimmer = (Zimmer) results.get(0);
@@ -80,7 +80,7 @@ public class ZimmerDao extends GenericDao<IZimmer> implements IZimmerDao {
 			if (results.size() == 1) {
 				id = results.get(0).getID();
 			} else {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			query = session.createQuery("from " + getTable() + " z where z.kategorieID = :id");
@@ -89,7 +89,7 @@ public class ZimmerDao extends GenericDao<IZimmer> implements IZimmerDao {
 			List<IZimmer> results2 = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException("No results found!");
+				throw new DatabaseEntryNotFoundException("No results found!");
 			}
 
 			zimmer = results2;
@@ -117,7 +117,7 @@ public class ZimmerDao extends GenericDao<IZimmer> implements IZimmerDao {
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException("No results found!");
+				throw new DatabaseEntryNotFoundException("No results found!");
 			}
 
 			zimmer = results;

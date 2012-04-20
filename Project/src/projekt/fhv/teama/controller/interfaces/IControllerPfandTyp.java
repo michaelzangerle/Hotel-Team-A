@@ -3,14 +3,15 @@ package projekt.fhv.teama.controller.interfaces;
 import java.util.List;
 
 import projekt.fhv.teama.classes.IPfandtyp;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 public interface IControllerPfandTyp {
 
-	List<IPfandtyp> getPfandtyps()throws NoDatabaseEntryFoundException ;
+	
+	public List<IPfandtyp> getPfandtyps() throws DatabaseException;
+	public void setAktuellerPfandTyp(IPfandtyp pfandtyp);
 
-	void setAktuellerPfandTyp(IPfandtyp pfandtyp);
-
-	IPfandtyp getAktuellerPFandtyp();
+	public IPfandtyp getAktuellerPFandtyp();
 
 }

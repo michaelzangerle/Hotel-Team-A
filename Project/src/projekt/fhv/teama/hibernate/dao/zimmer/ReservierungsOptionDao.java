@@ -12,7 +12,7 @@ import org.hibernate.Session;
 import projekt.fhv.teama.classes.zimmer.IReservierungsOption;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public class ReservierungsOptionDao extends GenericDao<IReservierungsOption> implements IReservierungsOptionDao {
 
@@ -30,7 +30,7 @@ public class ReservierungsOptionDao extends GenericDao<IReservierungsOption> imp
 	}
 
 	@SuppressWarnings("unchecked")
-	public Set<IReservierungsOption> getOptionen(Date datum) throws NoDatabaseEntryFoundException {
+	public Set<IReservierungsOption> getOptionen(Date datum) throws DatabaseEntryNotFoundException {
 
 		List<IReservierungsOption> options = null;
 
@@ -43,7 +43,7 @@ public class ReservierungsOptionDao extends GenericDao<IReservierungsOption> imp
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			options = results;

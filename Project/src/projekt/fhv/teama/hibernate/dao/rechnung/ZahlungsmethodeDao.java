@@ -10,7 +10,7 @@ import projekt.fhv.teama.classes.rechnung.IZahlungsmethode;
 import projekt.fhv.teama.classes.rechnung.Zahlungsmethode;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public class ZahlungsmethodeDao extends GenericDao<IZahlungsmethode> implements IZahlungsmethodeDao  {
 
@@ -27,7 +27,7 @@ public class ZahlungsmethodeDao extends GenericDao<IZahlungsmethode> implements 
 		super("Zahlungsmethode");
 	}
 
-	public IZahlungsmethode getZahlungsmethodeByKuerzel(String kuerzel) throws NoDatabaseEntryFoundException {
+	public IZahlungsmethode getZahlungsmethodeByKuerzel(String kuerzel) throws DatabaseEntryNotFoundException {
 
 		Zahlungsmethode zahlungsmethode = null;
 
@@ -40,7 +40,7 @@ public class ZahlungsmethodeDao extends GenericDao<IZahlungsmethode> implements 
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			zahlungsmethode = (Zahlungsmethode) results.get(0);
@@ -53,7 +53,7 @@ public class ZahlungsmethodeDao extends GenericDao<IZahlungsmethode> implements 
 	}
 
 	@Override
-	public IZahlungsmethode getZahlungsmethodeByBezeichnung(String bez) throws NoDatabaseEntryFoundException {
+	public IZahlungsmethode getZahlungsmethodeByBezeichnung(String bez) throws DatabaseEntryNotFoundException {
 		
 		Zahlungsmethode zahlungsmethode = null;
 
@@ -66,7 +66,7 @@ public class ZahlungsmethodeDao extends GenericDao<IZahlungsmethode> implements 
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			zahlungsmethode = (Zahlungsmethode) results.get(0);

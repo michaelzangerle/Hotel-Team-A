@@ -12,7 +12,7 @@ import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.leistungen.Leistung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public class LeistungDao extends GenericDao<ILeistung> implements ILeistungDao{
 
@@ -31,7 +31,7 @@ public class LeistungDao extends GenericDao<ILeistung> implements ILeistungDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	public Set<ILeistung> getLeistung(String bezeichnung) throws NoDatabaseEntryFoundException {
+	public Set<ILeistung> getLeistung(String bezeichnung) throws DatabaseEntryNotFoundException {
 
 		List<Leistung> leistungen = null;
 
@@ -44,7 +44,7 @@ public class LeistungDao extends GenericDao<ILeistung> implements ILeistungDao{
 			List results = query.list();
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 			leistungen = results;

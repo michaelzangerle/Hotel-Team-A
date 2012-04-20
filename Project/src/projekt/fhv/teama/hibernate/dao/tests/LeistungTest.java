@@ -3,6 +3,8 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
+import java.sql.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +19,7 @@ import projekt.fhv.teama.hibernate.dao.leistungen.IZusatzleistungDao;
 import projekt.fhv.teama.hibernate.dao.leistungen.WarengruppeDao;
 import projekt.fhv.teama.hibernate.dao.leistungen.ZusatzleistungDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -101,5 +103,7 @@ public class LeistungTest {
 //		System.out.println(zDao.getZusatzleistung("Schlammbad"));
 		
 	}
+	
+	
 
 }

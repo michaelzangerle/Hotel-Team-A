@@ -7,7 +7,7 @@ import projekt.fhv.teama.classes.personen.Kontodaten;
 import projekt.fhv.teama.hibernate.dao.personen.IKontodatenDao;
 import projekt.fhv.teama.hibernate.dao.personen.KontodatenDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public class KontodatenTest {
 
