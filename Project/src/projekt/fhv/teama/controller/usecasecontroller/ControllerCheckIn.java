@@ -87,28 +87,6 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	}
 	
 	
-	public List<ITeilreservierung> getTeilreservierungen()
-	{
-		return controllerReservierung.getTeilreservierungen();
-
-	}
-	
-	public void setTeilreservierung(ITeilreservierung teilreservierung)
-	{
-		controllerTeilreservierung.setAktulleTeilreservierung(teilreservierung);
-	}
-	
-	public void get(ITeilreservierung teilreservierung)
-	{
-		controllerTeilreservierung.setAktulleTeilreservierung(teilreservierung);
-	}
-	
-	
-	public List<IGast> getGaeste()
-	{
-		return controllerReservierung.getGaeste();
-	}
-	
 	public void setGast(IGast gast)
 	{
 		controllerGast.setAktuellGast(gast);
@@ -194,18 +172,6 @@ public class ControllerCheckIn implements IControllerCheckIn {
 
 
 
-	public void SetAktuelleKategorie(IKategorie kategorie)
-	{
-		controllerKategorie.setKategorie(kategorie);
-		
-	}
-	
-	public IKategorie getAktuelleKategorie()
-	{
-		return controllerKategorie.getKategorie();
-	}
-	
-	
 	//Pfand
 	
 	public void setPfandNr(String pfandnummer)
@@ -228,45 +194,26 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	}
 	
 
-	// TODO ZimmerAuswahl treffen für jede Teilreservierung
-	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie()throws NoDatabaseEntryFoundException
+	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)throws NoDatabaseEntryFoundException
 	{
-		return controllerZimmer.getZimmerFürGegebeneKategorie(getAktuelleKategorie());
+		return controllerZimmer.getZimmerFürGegebeneKategorie(k);
 	}
 	
-	public void addZimmerZumAufenthalt(IZimmer zimmer)
+	
+	
+	
+	public void saveAufenthalt(float preis,Date von,Date bis,boolean schluessel,IGast gast,IZimmer zimmer,IPfandtyp pfand,String pfandnummer)
 	{
-		if(!zimmerFuerAktuellenAufenthalt.contains(zimmer))
-		zimmerFuerAktuellenAufenthalt.add(zimmer);
+	
+			controllerKontodaten.save(gast.getKontodaten());
+			controllerZimmer.save(zimmer);
+			for (IAdresse adr : gast.getAdressen()) {
+				controllerAdresse.save(adr);
+			}
+			controllerAufenthalt.create(preis, von, bis, schluessel, gast, zimmer,pfand,pfandnummer);
 		
 	}
 	
-	
-	
-	
-	
-	
-	public void saveAufenthalt()
-	{
-		// TODO Muss dynamisch sein
-		float preis=this.preis;
-		Date von=controllerReservierung.getAktuelleReservierung().getVon();
-		Date bis=controllerReservierung.getAktuelleReservierung().getBis();
-		boolean schluessel=this.schluessel;
-		String pfandNr=this.pfandnummer;
-		IPfandtyp pfand=getAktuellerPfandTyp();
-		IGast g=controllerGast.getAktuellGast();
 
-		for (IZimmer zimmer : zimmerFuerAktuellenAufenthalt) {
-			
-			controllerKontodaten.save(g.getKontodaten());
-			controllerZimmer.save(zimmer);
-			for (IAdresse adr : g.getAdressen()) {
-				controllerAdresse.save(adr);
-			}
-			controllerAufenthalt.create(preis, von, bis, schluessel, g, zimmer,pfand,pfandnummer);
-		}
-
-	}
 	
 }
