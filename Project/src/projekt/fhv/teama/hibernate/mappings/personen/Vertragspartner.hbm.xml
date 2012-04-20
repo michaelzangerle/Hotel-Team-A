@@ -3,11 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="projekt.fhv.teama.classes.personen.Vertragspartner"
-		table="vertragspartner">
+		table="VERTRAGSPARTNER">
 
 		<id name="ID">
-			<column name="vertragsPartnerID" sql-type="int" length="10"
-				not-null="true" />
+			<column name="vertragsPartnerID" sql-type="int" length="10" not-null="true" />
 			<generator class="native" />
 		</id>
 
@@ -32,8 +31,8 @@
 			not-null="true" foreign-key="ID" />
 
 		<set name="adressen" table="personadresse" cascade="all">
-			<key column="person_personID" />
-			<many-to-many column="adresse_adresseID"
+			<key column="personID" />
+			<many-to-many column="adresseID"
 				class="projekt.fhv.teama.classes.personen.Adresse" />
 		</set>
 

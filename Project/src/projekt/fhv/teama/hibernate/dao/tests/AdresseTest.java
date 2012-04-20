@@ -42,7 +42,7 @@ public class AdresseTest {
 //		adao.update(a1);
 		
 		//
-//		adao.removeById(5);
+		adao.remove(adao.getById(5));
 		
 		// spezial
 		

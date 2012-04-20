@@ -11,11 +11,11 @@
         </id>
         
         <many-to-one name="kategorie" class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
-            <column name="KATEGORIE" />
+            <column name="KATEGORIEID" />
         </many-to-one>
         
         <many-to-one name="kontingent" class="projekt.fhv.teama.classes.Kontingent" fetch="join">
-            <column name="KONTINGENT" />
+            <column name="KONTINGENTID" />
         </many-to-one>
         
         <property name="anzahl" type="int">

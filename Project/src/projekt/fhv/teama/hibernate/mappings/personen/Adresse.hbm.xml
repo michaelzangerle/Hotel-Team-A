@@ -21,10 +21,12 @@
 	    	<key column="adresseID"/>
             <many-to-many column="personID" class="projekt.fhv.teama.classes.personen.Person"/>
         </set>
-        <set name="vertragspartner" table="personadresse" cascade="all">
+        
+        <set name="vertragspartner" table="vertragsPartnerAdresse" cascade="all">
 	    	<key column="adresseID"/>
-            <many-to-many column="vertragspartnerID" class="projekt.fhv.teama.classes.personen.Vertragspartner"/>
+            <many-to-many column="vertragsPartnerID" class="projekt.fhv.teama.classes.personen.Vertragspartner"/>
         </set>
+        
 		<many-to-one name="land"
 			class="projekt.fhv.teama.classes.personen.Land" column="landID"
 			not-null="true" foreign-key="ID" />

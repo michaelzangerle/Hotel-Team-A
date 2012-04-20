@@ -51,7 +51,7 @@ public class LandTest {
 		
 		// remove
 		
-		lnd.removeById(lnd.getById(4));
+//		lnd.remove(lnd.getById(4));
 		
 		
 		// spezial

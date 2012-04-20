@@ -27,7 +27,7 @@
         </property>
         
         <many-to-one name="vertragspartner" class="projekt.fhv.teama.classes.personen.Vertragspartner" fetch="join">
-            <column name="VERTRAGSPARTNER" />
+            <column name="VERTRAGSPARTNERID" />
         </many-to-one>
         
     </class>

@@ -17,12 +17,12 @@
 		
 		<many-to-one name="kategorie"
 			class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
-			<column name="KATEGORIE" />
+			<column name="KATEGORIEID" />
 		</many-to-one>
 		
 		<many-to-one name="zimmerstatus"
 			class="projekt.fhv.teama.classes.zimmer.Zimmerstatus" fetch="join">
-			<column name="ZIMMERSTATUS" />
+			<column name="ZIMMERSTATUSID" />
 		</many-to-one>
 		
 		<set name="reservierungen" table="ZIMMERRESERVIERUNG" inverse="false"
