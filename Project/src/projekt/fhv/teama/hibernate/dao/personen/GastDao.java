@@ -1,6 +1,9 @@
 package projekt.fhv.teama.hibernate.dao.personen;
 
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -23,7 +26,7 @@ public class GastDao extends GenericDao<IPerson> implements IGastDao {
 		}
 		return instance;
 	}
-	
+
 	private GastDao() {
 		super("Gast");
 	}
@@ -53,5 +56,65 @@ public class GastDao extends GenericDao<IPerson> implements IGastDao {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Set<IGast> getGastByName(String firstname, String lastname) throws DatabaseException {
+
+		List<IGast> gaeste = null;
+
+		try {
+			Session session = HibernateHelper.getSession();
+
+			Query query = session
+					.createQuery("from Person p where (p.vorname = :firstname AND p.nachname = :lastname) OR (p.vorname = :lastname AND p.nachname = :firstname)");
+			query.setString("firstname", firstname);
+			query.setString("lastname", lastname);
+			List<IPerson> resultsPersonen = query.list();
+
+			gaeste = new LinkedList<IGast>();
+
+			List<IGast> m;
+
+			for (IPerson pers : resultsPersonen) {
+				query = session.createQuery("from " + getTable() + " g where g.ID = " + pers.getID());
+				m = query.list();
+				if (m != null) {
+					gaeste.addAll(m);
+				}
+			}
+
+			if (gaeste.size() == 0) {
+				throw new NoDatabaseEntryFoundException();
+			}
+
+		} catch (HibernateException e) {
+			throw new DatabaseException();
+		}
+		Set<IGast> set = new HashSet<IGast>(gaeste);
+		return set;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Set<IGast> getGastByName(String name) throws DatabaseException {
+		List<IGast> gaeste = null;
+
+		try {
+			Session session = HibernateHelper.getSession();
+
+			Query query = session.createQuery("from " + getTable() + " m where m.nummer = :name");
+			query.setString("name", name);
+			gaeste = query.list();
+
+			if (gaeste.size() == 0) {
+				throw new NoDatabaseEntryFoundException();
+			}
+
+		} catch (HibernateException e) {
+			throw new DatabaseException();
+		}
+		Set<IGast> set = new HashSet<IGast>(gaeste);
+		return set;
+	}
 
 }

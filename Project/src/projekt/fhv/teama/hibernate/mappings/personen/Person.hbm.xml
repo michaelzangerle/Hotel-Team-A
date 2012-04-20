@@ -35,14 +35,14 @@
 		</property>
 
 		<property name="email" type="java.lang.String">
-			<column name="email" sql-type="varchar" not-null="true" />
+			<column name="email" sql-type="varchar" not-null="true"/>
 		</property>
 		
 		<many-to-one name="kontodaten"
 			class="projekt.fhv.teama.classes.personen.Kontodaten" column="kontodatenID"
-			not-null="true" unique="true" foreign-key="ID" />
+			not-null="true" unique="true" foreign-key="ID"  cascade="all"/>
 			
-		<set name="reservierungen" table="Reservierung" inverse="false" lazy="true">
+		<set name="reservierungen" table="Reservierung" inverse="false" lazy="true" cascade="all">
             <key>
                 <column name="reservierungID" />
             </key>

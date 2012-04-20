@@ -17,12 +17,13 @@
         <property name="ort" type="java.lang.String">
             <column name="ort" sql-type="varchar" not-null="true"/>
         </property>
-	    <set name="person" table="personadresse" cascade="all">
+        
+	    <set name="person" table="personadresse">
 	    	<key column="adresseID"/>
             <many-to-many column="personID" class="projekt.fhv.teama.classes.personen.Person"/>
         </set>
         
-        <set name="vertragspartner" table="vertragsPartnerAdresse" cascade="all">
+        <set name="vertragspartner" table="vertragsPartnerAdresse">
 	    	<key column="adresseID"/>
             <many-to-many column="vertragsPartnerID" class="projekt.fhv.teama.classes.personen.Vertragspartner"/>
         </set>

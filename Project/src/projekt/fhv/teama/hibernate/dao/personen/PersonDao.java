@@ -12,7 +12,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import projekt.fhv.teama.classes.personen.IPerson;
-import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
@@ -39,7 +38,34 @@ public class PersonDao extends GenericDao<IPerson> implements IPersonDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Set<IPerson> getPerson(String name) throws DatabaseException {
+	public Set<IPerson> getPersonByMail(String mail) throws DatabaseException {
+		
+		List<IPerson> p = null;
+
+		try {
+			Session session = HibernateHelper.getSession();
+			Query query = session.createQuery("from "+getTable()+" p where p.email = :mail");
+			query.setString("mail", mail);
+			
+			@SuppressWarnings("rawtypes")
+			List results = query.list();
+			
+			if (results.size() == 0) {
+				throw new NoDatabaseEntryFoundException("No results found!");
+			}	
+			
+			p = results;
+			
+		} catch (HibernateException e) {
+			throw new DatabaseException();
+		
+		}
+		Set<IPerson> set = new HashSet<IPerson>(p);
+		return set;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Set<IPerson> getPersonByName(String name) throws DatabaseException {
 		
 		List<IPerson> p = null;
 
@@ -66,7 +92,7 @@ public class PersonDao extends GenericDao<IPerson> implements IPersonDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Set<IPerson> getPerson(String firstname, String lastname) throws DatabaseException {
+	public Set<IPerson> getPersonByName(String firstname, String lastname) throws DatabaseException {
 		
 		List<IPerson> p = null;
 

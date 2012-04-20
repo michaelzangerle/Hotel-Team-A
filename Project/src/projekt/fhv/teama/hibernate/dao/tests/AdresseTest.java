@@ -22,9 +22,13 @@ public class AdresseTest {
 		
 		// Einfügen
 		
-//		adao.create(new Adresse("Bahnhofstraße 3", "6900", "Bregenz", lnd.getLandByKuerzel("AT")));
-//		adao.create(new Adresse("Dorf 46", "6491", "Schönwies", lnd.getLandByKuerzel("AT")));
-//		adao.create(new Adresse("Straßl 36", "3654", "Hintertupfingen", lnd.getLandByKuerzel("AT")));
+//		adao.create(new Adresse("Platz 114a", "789456", "Bregenz", lnd.getLandByKuerzel("AT")));
+//		adao.create(new Adresse("Bahnhofsträßli 98b", "95147", "Bern", lnd.getLandByKuerzel("CH")));
+//		adao.create(new Adresse("Bahnhofstraße 57", "47851", "Sao Paolo", lnd.getLandByKuerzel("BR")));
+//		adao.create(new Adresse("Via Claudia 94", "36547", "Roma", lnd.getLandByKuerzel("I")));
+//		adao.create(new Adresse("Marktplatz 256", "983214", "Berlin", lnd.getLandByKuerzel("DE")));
+//		adao.create(new Adresse("Dorf 136", "134679", "Luxemburg", lnd.getLandByKuerzel("LX")));
+//		adao.create(new Adresse("Plain 7a", "482619", "Amsterdam", lnd.getLandByKuerzel("NL")));
 		
 		// Alle holen
 //		Set<IAdresse> adr = adao.getAll();
@@ -42,7 +46,7 @@ public class AdresseTest {
 //		adao.update(a1);
 		
 		//
-		adao.remove(adao.getById(5));
+//		adao.remove(adao.getById(5));
 		
 		// spezial
 		

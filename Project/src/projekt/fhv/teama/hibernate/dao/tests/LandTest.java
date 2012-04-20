@@ -31,6 +31,16 @@ public class LandTest {
 //		lnd.create(new Land("Österreich", "AT"));
 //		lnd.create(new Land("Schweiz", "CH"));
 //		lnd.create(new Land("Italien", "I"));
+//		lnd.create(new Land("Deutschland", "DE"));
+//		lnd.create(new Land("Frankreich", "FR"));
+//		lnd.create(new Land("Spanien", "E"));
+//		lnd.create(new Land("Griechenland", "GR"));
+//		lnd.create(new Land("United States of Amerika", "US"));
+//		lnd.create(new Land("Brasilien", "BR"));
+//		lnd.create(new Land("Großbritanien", "GB"));
+//		lnd.create(new Land("Luxemburg", "LX"));
+//		lnd.create(new Land("Niederlande", "NL"));
+		
 		
 		// Alle holen
 		
