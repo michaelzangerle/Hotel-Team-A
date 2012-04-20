@@ -27,7 +27,7 @@ public class HibernateHelper {
 	@SuppressWarnings("unchecked")
 	public static Session getSession(){
 		Session session = (Session) HibernateHelper.session.get();
-		if(session == null){
+		if(session == null || !session.isOpen()){
 			session = sessionFactory.openSession();
 			HibernateHelper.session.set(session);
 			}
