@@ -4,7 +4,7 @@ import projekt.fhv.teama.hibernate.dao.IDao;
 
 public interface IKontodaten extends IDao {
 
-	public void setIban(String iaban);
+	public void setIban(String iban);
 	public String getIban();
 	public void setBic(String bic);
 	public String getBic();

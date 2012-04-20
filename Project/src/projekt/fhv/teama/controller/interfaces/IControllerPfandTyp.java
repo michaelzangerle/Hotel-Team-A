@@ -9,4 +9,8 @@ public interface IControllerPfandTyp {
 
 	List<IPfandtyp> getPfandtyps()throws NoDatabaseEntryFoundException ;
 
+	void setAktuellerPfandTyp(IPfandtyp pfandtyp);
+
+	IPfandtyp getAktuellerPFandtyp();
+
 }

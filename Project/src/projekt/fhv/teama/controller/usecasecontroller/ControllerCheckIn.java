@@ -19,14 +19,19 @@ import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IReservierungsOption;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
 import projekt.fhv.teama.classes.zimmer.Zimmer;
 import projekt.fhv.teama.controller.ControllerReservierung;
+import projekt.fhv.teama.controller.interfaces.IControllerAdresse;
 import projekt.fhv.teama.controller.interfaces.IControllerAufenthalt;
 import projekt.fhv.teama.controller.interfaces.IControllerGast;
 import projekt.fhv.teama.controller.interfaces.IControllerKategorie;
+import projekt.fhv.teama.controller.interfaces.IControllerKontodaten;
 import projekt.fhv.teama.controller.interfaces.IControllerPfandTyp;
 import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerTeilreservierung;
+import projekt.fhv.teama.controller.interfaces.IControllerZimmer;
+import projekt.fhv.teama.controller.interfaces.IControllerZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
 import projekt.fhv.teama.hibernate.dao.zimmer.IReservierungDao;
 import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
@@ -40,7 +45,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	IControllerTeilreservierung controllerTeilreservierung;
 	IControllerKategorie controllerKategorie;
 	IControllerPfandTyp controllerPfandtyp;
-	
+	IControllerZimmer controllerZimmer;
+	IControllerZimmerstatus controllerZimmerstatus;
+	IControllerKontodaten controllerKontodaten;
+	IControllerAdresse controllerAdresse;
 	
 	
 	IAufenthalt aufenthalt=new Aufenthalt();
@@ -50,6 +58,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	private float preis=0.0f;
 	private List<IZimmer> zimmer=new Vector<IZimmer>();
 	private String pfandnummer;
+	private List<IZimmer> zimmerFuerAktuellenAufenthalt;
 
 	/**
 	 * 
@@ -209,9 +218,33 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		return controllerPfandtyp.getPfandtyps();
 	}
 	
+	public void setAktuellerPfandTyp(IPfandtyp pfandtyp)
+	{
+		controllerPfandtyp.setAktuellerPfandTyp(pfandtyp);
+	}
+	public IPfandtyp getAktuellerPfandTyp()
+	{
+		return controllerPfandtyp.getAktuellerPFandtyp();
+	}
 	
-	
+
 	// TODO ZimmerAuswahl treffen für jede Teilreservierung
+	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie()throws NoDatabaseEntryFoundException
+	{
+		return controllerZimmer.getZimmerFürGegebeneKategorie(getAktuelleKategorie());
+	}
+	
+	public void addZimmerZumAufenthalt(IZimmer zimmer)
+	{
+		if(!zimmerFuerAktuellenAufenthalt.contains(zimmer))
+		zimmerFuerAktuellenAufenthalt.add(zimmer);
+		
+	}
+	
+	
+	
+	
+	
 	
 	public void saveAufenthalt()
 	{
@@ -221,44 +254,19 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		Date bis=controllerReservierung.getAktuelleReservierung().getBis();
 		boolean schluessel=this.schluessel;
 		String pfandNr=this.pfandnummer;
-		IPfandtyp pfand;
-		
-		
+		IPfandtyp pfand=getAktuellerPfandTyp();
 		IGast g=controllerGast.getAktuellGast();
-		
-		
-		
-		List<IZimmer> zimmer1=this.zimmer;
 
-		for (IZimmer zi : zimmer1) {
-			//controllerAufenthalt.create(preis, von, bis, schluessel, g, zi,pfand,pfandnummer);
+		for (IZimmer zimmer : zimmerFuerAktuellenAufenthalt) {
+			
+			controllerKontodaten.save(g.getKontodaten());
+			controllerZimmer.save(zimmer);
+			for (IAdresse adr : g.getAdressen()) {
+				controllerAdresse.save(adr);
+			}
+			controllerAufenthalt.create(preis, von, bis, schluessel, g, zimmer,pfand,pfandnummer);
 		}
 
 	}
-
-	
-	/*
-	public void addZimmer(IZimmer zimmer);
-	public void removeZimmer(IZimmer zimmer);
-	public Set<IZimmer> getZimmer();
-	
-	public void setPerson(IPerson person);
-	public IPerson getPerson();
-	
-	public void addGast(IGast gast);
-	public void removeGast(IGast gast);
-	public Set<IGast> getGaeste();
-	public void setGaeste(Set<IGast> gaeste);
-	
-	public void addOption(IReservierungsOption option);
-	public void removeOption(IReservierungsOption option);
-	public Set<IReservierungsOption> getOptionen();
-	
-	public void setVertragspartner(IVertragspartner partner);
-	public IVertragspartner getVertragspartner();
-	
-	
-	
-	*/
 	
 }

@@ -31,7 +31,9 @@ public class ControllerAufenthalt implements IControllerAufenthalt {
 		aufenthaltModel=new Aufenthalt(preis, pfandNr, von, bis, schluessel, gast, zimmer, pfand);
 		aufenthaltDao.create(aufenthaltModel);
 	}
+	
 
+	
 
 
 
