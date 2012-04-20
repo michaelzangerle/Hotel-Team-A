@@ -22,9 +22,11 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
 import projekt.fhv.teama.classes.zimmer.Zimmer;
 import projekt.fhv.teama.controller.ControllerReservierung;
+import projekt.fhv.teama.controller.interfaces.IControllerAdresse;
 import projekt.fhv.teama.controller.interfaces.IControllerAufenthalt;
 import projekt.fhv.teama.controller.interfaces.IControllerGast;
 import projekt.fhv.teama.controller.interfaces.IControllerKategorie;
+import projekt.fhv.teama.controller.interfaces.IControllerKontodaten;
 import projekt.fhv.teama.controller.interfaces.IControllerPfandTyp;
 import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerTeilreservierung;
@@ -45,7 +47,8 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	IControllerPfandTyp controllerPfandtyp;
 	IControllerZimmer controllerZimmer;
 	IControllerZimmerstatus controllerZimmerstatus;
-	
+	IControllerKontodaten controllerKontodaten;
+	IControllerAdresse controllerAdresse;
 	
 	
 	IAufenthalt aufenthalt=new Aufenthalt();
@@ -251,40 +254,19 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		Date bis=controllerReservierung.getAktuelleReservierung().getBis();
 		boolean schluessel=this.schluessel;
 		String pfandNr=this.pfandnummer;
-		IPfandtyp pfand;
+		IPfandtyp pfand=getAktuellerPfandTyp();
 		IGast g=controllerGast.getAktuellGast();
-		
-
 
 		for (IZimmer zimmer : zimmerFuerAktuellenAufenthalt) {
+			
+			controllerKontodaten.save(g.getKontodaten());
+			controllerZimmer.save(zimmer);
+			for (IAdresse adr : g.getAdressen()) {
+				controllerAdresse.save(adr);
+			}
 			controllerAufenthalt.create(preis, von, bis, schluessel, g, zimmer,pfand,pfandnummer);
 		}
 
 	}
-
-	
-	/*
-	public void addZimmer(IZimmer zimmer);
-	public void removeZimmer(IZimmer zimmer);
-	public Set<IZimmer> getZimmer();
-	
-	public void setPerson(IPerson person);
-	public IPerson getPerson();
-	
-	public void addGast(IGast gast);
-	public void removeGast(IGast gast);
-	public Set<IGast> getGaeste();
-	public void setGaeste(Set<IGast> gaeste);
-	
-	public void addOption(IReservierungsOption option);
-	public void removeOption(IReservierungsOption option);
-	public Set<IReservierungsOption> getOptionen();
-	
-	public void setVertragspartner(IVertragspartner partner);
-	public IVertragspartner getVertragspartner();
-	
-	
-	
-	*/
 	
 }

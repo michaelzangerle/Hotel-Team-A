@@ -11,4 +11,6 @@ public interface IControllerZimmer {
 
 	List<IZimmer> getZimmerFürGegebeneKategorie(IKategorie ausgewählteKategorie)throws NoDatabaseEntryFoundException ;
 
+	void save(IZimmer zimmer);
+
 }

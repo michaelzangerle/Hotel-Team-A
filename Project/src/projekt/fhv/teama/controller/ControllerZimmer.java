@@ -42,6 +42,13 @@ public class ControllerZimmer implements IControllerZimmer {
 		return verfügbare;
 		
 	}
+
+	@Override
+	public void save(IZimmer zimmer) {
+		if(zimmer!=null)
+			zimmerDao.create(zimmer);
+		
+	}
 	
 
 	
