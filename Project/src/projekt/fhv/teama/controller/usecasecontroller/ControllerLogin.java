@@ -8,11 +8,15 @@ public class ControllerLogin implements IControllerLogin {
 	
 	IControllerMitarbeiter controllermitarbeiter;
 	
-	public ControllerLogin() {
+	public ControllerLogin(IControllerMitarbeiter cmitarbeiter) {
 		
-		
+		controllermitarbeiter=cmitarbeiter;
 	}
 	
+	public boolean checkLogin(String uid,String pw)
+	{
+		return true;
+	}
 	
 	
 }
