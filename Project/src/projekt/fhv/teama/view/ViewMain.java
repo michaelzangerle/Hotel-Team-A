@@ -10,6 +10,13 @@ import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.*;
 
 public class ViewMain extends Window implements Application, Bindable {
+	
+	Label lbReservationDetails;
+	Border reservationForm01;
+	Border checkInForm01;
+	Border checkInForm02;	
+	Border checkInForm03;
+	Border checkInForm04;
 
 	BXMLSerializer bxmlSerializer = new BXMLSerializer();	
 	private Window window = null;
@@ -58,17 +65,70 @@ public class ViewMain extends Window implements Application, Bindable {
 		
 		Label lbReservationDetails = (Label)arg0.get("lbReservationDetails");
 		Border reservationForm01 = (Border)arg0.get("reservationForm01");
-		Border checkInForm01 = (Border)arg0.get("checkInForm01");
-		Border checkInForm02 = (Border)arg0.get("checkInForm02");
-		Border checkInForm03 = (Border)arg0.get("checkInForm03");
-		Border checkInForm04 = (Border)arg0.get("checkInForm04");
+		checkInForm01 = (Border)arg0.get("checkInForm01");
+		checkInForm02 = (Border)arg0.get("checkInForm02");
+		checkInForm03 = (Border)arg0.get("checkInForm03");
+		checkInForm04 = (Border)arg0.get("checkInForm04");
+		
+		PushButton cf1PBtnNext = (PushButton)arg0.get("cf1PBtnNext");
+		PushButton cf2PBtnNext = (PushButton)arg0.get("cf2PBtnNext");
+		PushButton cf3PBtnNext = (PushButton)arg0.get("cf3PBtnNext");
+		PushButton cf4PBtnNext = (PushButton)arg0.get("cf4PBtnNext");
+		
+		cf1PBtnNext.getButtonPressListeners().add(new ButtonPressListener()  {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+				
+				checkInForm01.setVisible(false);
+				checkInForm02.setVisible(true);				
+			}
+			
+		});
+		
+		cf2PBtnNext.getButtonPressListeners().add(new ButtonPressListener()  {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+				
+				checkInForm02.setVisible(false);
+				checkInForm03.setVisible(true);				
+			}
+			
+		});
+		
+		
+		cf3PBtnNext.getButtonPressListeners().add(new ButtonPressListener()  {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+				
+				checkInForm03.setVisible(false);
+				checkInForm04.setVisible(true);				
+			}
+			
+		});
+		
+		cf4PBtnNext.getButtonPressListeners().add(new ButtonPressListener()  {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+				
+				checkInForm04.setVisible(false);
+				checkInForm01.setVisible(true);				
+			}
+			
+		});
+		
+		
+		
 		//Window viewMain = (Window)arg0.get("viewMain");
 		
 		reservationForm01.setVisible(false);
 		checkInForm01.setVisible(true);
 		checkInForm02.setVisible(false);
 		checkInForm03.setVisible(false);
-		checkInForm04.setVisible(false);
+		checkInForm04.setVisible(false);		
 		
 		
 		

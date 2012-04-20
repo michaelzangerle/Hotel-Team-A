@@ -1,0 +1,32 @@
+ <view:ViewReservation bxml:id="checkInForm03" xmlns:bxml="http://pivot.apache.org/bxml"
+	xmlns="org.apache.pivot.wtk"
+	styles="{padding:6}" xmlns:view="projekt.fhv.teama.view"
+	visible="false">
+	<BoxPane bxml:id="bpCheckInForm03" orientation="vertical" styles="{spacing:10,
+		fill:true}">
+		<Label bxml:id="lbDeposit" text="Check-In: Deposit"
+			styles="$styles.lbHeading1"/>
+		
+		<!-- Deposit  ################################################################################## -->
+		<Separator bxml:id="sprDeposit" heading=" Deposit " styles="$styles.sprHeading"/>
+		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
+			<Form styles="{showFlagIcons:false}">
+				<Form.Section>
+					<BoxPane bxml:id="bpDeposit" Form.label="Type of Deposit" styles="{spacing:5}">
+						<ListButton bxml:id="libDepositType" listData="['ID Card', 'Passport', 'Driving license']"/>
+						<TextInput bxml:id="tiDepositNumber" prompt="Number of Deposit"/>
+						<TextArea />					
+					</BoxPane>					
+				</Form.Section>
+			</Form>
+		</BoxPane>		
+					
+		<!-- Action Buttons ########################################################################### -->				
+		<Separator/>
+		<BoxPane styles="{horizontalAlignment:'left', padding:12, spacing:15}" >
+			<PushButton bxml:id="cf3PBtnCancel" buttonData="Cancel"/>
+			<PushButton bxml:id="cf3PBtnBack" buttonData="Previous Step"/>
+			<PushButton bxml:id="cf3PBtnNext" buttonData="Next Step"/>
+		</BoxPane>
+	</BoxPane>
+</view:ViewReservation>

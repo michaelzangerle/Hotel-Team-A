@@ -1,0 +1,56 @@
+ <view:ViewReservation bxml:id="checkInForm02" xmlns:bxml="http://pivot.apache.org/bxml"
+	xmlns="org.apache.pivot.wtk"
+	styles="{padding:6}" xmlns:view="projekt.fhv.teama.view"
+	visible="false" >
+	<BoxPane bxml:id="bpCheckInForm02" orientation="vertical" styles="{spacing:10,
+		fill:true}">
+		<Label bxml:id="lbRoomAssignment" text="Check-In: Room Assignment and Details of Stay"
+			styles="$styles.lbHeading1"/>
+		
+		<!-- Room Assignment ################################################################################## -->
+		<Separator bxml:id="sprRoomAssignment" heading=" Room Assignment " styles="$styles.sprHeading"/>
+		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
+			<Form styles="{showFlagIcons:false}">
+				<Form.Section>
+					<BoxPane bxml:id="bpRoomDetails" Form.label="Category" styles="{spacing:5}">
+						<ListButton bxml:id="libRoomCategory" listData="['single', 'double', 'threesome']"/>
+						<TextInput bxml:id="tiRoomNumber" prompt="Room Nr."/>
+					</BoxPane>
+					<BoxPane bxml:id="bpRoomState" Form.label="Room State" styles="{spacing:5}">
+		    				<bxml:define>
+							<ButtonGroup bxml:id="bgRoomState"/>
+							</bxml:define>
+							<BoxPane  styles="{padding:{top:7, left:0, bottom:5, right:0}}">
+							<RadioButton bxml:id="rbFreeClean" buttonData="Free and Clean" buttonGroup="$bgRoomState" selected="true"/>
+							<RadioButton bxml:id="rbFreeNotClean" buttonData="Free not Clean" buttonGroup="$bgRoomState" />
+							<RadioButton bxml:id="rbOccupiedClean" buttonData="Occupied and Clean" buttonGroup="$bgRoomState" />
+							<RadioButton bxml:id="rbOccupiedNotClean" buttonData="Occupied not Clean" buttonGroup="$bgRoomState" />
+							</BoxPane>
+							<TextInput bxml:id="tiRoomPrice" Form.label="Room Price" prompt="€"/>		
+					</BoxPane>					
+				</Form.Section>
+			</Form>
+		</BoxPane>
+		
+		<!-- Residence Timespan ################################################################################ -->
+		<Separator bxml:id="sprStayDetails" heading=" Stay " styles="$styles.sprHeading"/>
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
+		<Form styles="{showFlagIcons:false}">	
+			     <Form.Section>
+					<BoxPane bxml:id="bpStay" Form.label="Stay" styles="{spacing:5}">
+						<CalendarButton bxml:id="cbArrival" />
+						<CalendarButton bxml:id="cdDeparture" />
+				    </BoxPane>	
+				</Form.Section>
+				</Form>
+		</BoxPane>			
+				
+		<!-- Action Buttons ########################################################################### -->				
+		<Separator/>
+		<BoxPane styles="{horizontalAlignment:'left', padding:12, spacing:15}" >
+			<PushButton bxml:id="cf2PBtnCancel" buttonData="Cancel"/>
+			<PushButton bxml:id="cf2PBtnBack" buttonData="Previous Step"/>
+			<PushButton bxml:id="cf2PBtnNext" buttonData="Next Step"/>
+		</BoxPane>
+	</BoxPane>
+</view:ViewReservation>
