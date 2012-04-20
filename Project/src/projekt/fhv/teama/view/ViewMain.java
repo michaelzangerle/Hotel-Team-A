@@ -61,15 +61,17 @@ public class ViewMain extends Window implements Application, Bindable {
 		Border checkInForm01 = (Border)arg0.get("checkInForm01");
 		Border checkInForm02 = (Border)arg0.get("checkInForm02");
 		Border checkInForm03 = (Border)arg0.get("checkInForm03");
-		Border checkInForm04 = (Border)arg0.get("checkInForm04");		
-		BoxPane bpReservation2 = (BoxPane)arg0.get("bpReservation2");
-		Window viewMain = (Window)arg0.get("viewMain");
+		Border checkInForm04 = (Border)arg0.get("checkInForm04");
+		//Window viewMain = (Window)arg0.get("viewMain");
 		
-		//reservationForm01.setVisible(true);
+		reservationForm01.setVisible(false);
 		checkInForm01.setVisible(true);
-		//checkInForm02.setVisible(true);
-		//checkInForm03.setVisible(true);
-		//checkInForm04.setVisible(true);
+		checkInForm02.setVisible(false);
+		checkInForm03.setVisible(false);
+		checkInForm04.setVisible(false);
+		
+		
+		
 				
 		// lbReservationDetails.setText("Jetzt durch Java gesetzt!");
 	}

@@ -4,7 +4,7 @@
             <Label bxml:id="lbReservationDetails" text="Reservation details" styles="$styles.lbHeading1"/>
             <Form bxml:id="form" styles="{showFlagIcons:false}">
                 <Form.Section>
-                    <Label bxml:id="sourceLabel" Form.label="Source" styles="{font:{italic:true}}"/> 
+                    <Label bxml:id="lbSourceLabel" Form.label="Source" styles="{font:{italic:true}}"/> 
                     <Label Form.label="ID" textKey="id"/>
                     <TextInput Form.label="Name" textKey="name"/>
  

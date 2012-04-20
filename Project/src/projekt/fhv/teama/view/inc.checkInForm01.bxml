@@ -1,39 +1,78 @@
  <view:ViewReservation bxml:id="checkInForm01" xmlns:bxml="http://pivot.apache.org/bxml"
-    xmlns="org.apache.pivot.wtk" styles="{padding:6}" xmlns:view="projekt.fhv.teama.view" visible="false">
-        <BoxPane bxml:id="bpReservation2" orientation="vertical" styles="{spacing:10, fill:true}">
-            <Label bxml:id="lbVerifyPersonalInformation" text="Check-In: Verify Personal Information" styles="$styles.lbHeading1"/>
-			<Label bxml:id="lbPersonalDetail" text="Personal Detail" />
-            <Form bxml:id="form" styles="{showFlagIcons:false}">
-                <Form.Section>
-                    <Label bxml:id="sourceLabel" Form.label="Source" styles="{font:{italic:true}}"/> 
-                    <Label Form.label="ID" textKey="id"/>
-                    <TextInput Form.label="Name" textKey="name"/> 
-                    <BoxPane Form.label="Address" orientation="vertical">
-                        <TextInput textKey="address.street" prompt="Street"/>
-                        <BoxPane>
-                            <TextInput textKey="address.city" prompt="City"/>
-                            <TextInput textKey="address.state" textSize="6" prompt="State"/>
-                            <TextInput textKey="address.zip" textSize="6" prompt="Zip"/>
-                        </BoxPane>
-                    </BoxPane>
- 
-                    <TextInput Form.label="Phone" textKey="phoneNumber"/>
-                    <TextInput Form.label="Email" textKey="emailAddress"/>
- 
-                    <BoxPane Form.label="IM">
-                        <TextInput textKey="imAccount.id"/>
-                        <ListButton selectedItemKey="imAccount.type"
-                            listData="['AIM', 'Jabber', 'Yahoo']"/>
-                    </BoxPane>
-                </Form.Section>
-            </Form>
- 
-            <Separator/>
- 
-            <BoxPane styles="{horizontalAlignment:'right'}">
-                <!-- <PushButton bxml:id="loadJSONButton" buttonData="Load JSON"/> -->
-                <PushButton bxml:id="loadJavaButton" buttonData="Load"/>
-                <PushButton bxml:id="clearButton" buttonData="Clear"/>
-            </BoxPane>
-        </BoxPane>
-    </view:ViewReservation>
+	xmlns="org.apache.pivot.wtk"
+	styles="{padding:6}"
+	xmlns:view="projekt.fhv.teama.view"
+	visible="false">
+	<BoxPane bxml:id="bpCheckInForm01" orientation="vertical" styles="{spacing:10,
+		fill:true}">
+		<Label bxml:id="lbVerifyPersonalInfo" text="Check-In: Verify Personal Information"
+			styles="$styles.lbHeading1"/>
+
+		<!-- Personal Data ################################################################################## -->
+		<Separator bxml:id="sprPersonalDetail" heading=" Personal Detail " styles="$styles.sprHeading"/>
+		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
+			<Form styles="{showFlagIcons:false}">
+				<Form.Section>
+					<BoxPane bxml:id="bpName" Form.label="Name" styles="{spacing:5}">
+						<TextInput bxml:id="tiLastName" prompt="Last"/>
+						<TextInput bxml:id="tiFirstName" prompt="First"/>
+					</BoxPane>
+					<BoxPane bxml:id="bpGender" Form.label="Gender" styles="{spacing:5}">
+						<bxml:define>
+							<ButtonGroup bxml:id="bgGender"/>
+						</bxml:define>
+						<BoxPane  styles="{padding:{top:7, left:0, bottom:5, right:0}}">
+							<RadioButton bxml:id="rbMale" buttonData="male" buttonGroup="$bgGender" selected="true"/>
+							<RadioButton bxml:id="rbFemale" buttonData="female" buttonGroup="$bgGender"
+								/>
+						</BoxPane>
+						<Label bxml:id="lbBirthdate" text="Birthdate: " styles="{padding:{top:7, left:109,
+							bottom:5, right:0}}" />
+						<CalendarButton bxml:id="cbBirthdate" preferredWidth="155" styles="{padding:{top:5,
+							left:30, bottom:5, right:4}}" />
+					</BoxPane>
+				</Form.Section>
+			</Form>
+		</BoxPane>
+
+		<!-- Adresses ################################################################################	-->
+		<Separator bxml:id="sprAdressDetail" heading=" Address " styles="$styles.sprHeading"/>
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
+			<Form styles="{showFlagIcons:false}">
+				<Form.Section>
+					<BoxPane bxml:id="bpAddress" Form.label="Address" styles="{spacing:5}">
+						<TextInput bxml:id="tiStreet" prompt="Street"/>
+						<TextInput bxml:id="tiCity" prompt="City"/>
+					</BoxPane>
+					<BoxPane>
+						<TextInput bxml:id="tiCountry" prompt="Country"/>
+						<TextInput bxml:id="tiZip" prompt="Zip" preferredWidth="80"/>
+					</BoxPane>
+				</Form.Section>
+			</Form>
+		</BoxPane>
+
+		<!-- Contact Information #####################################################################	-->
+		<Separator bxml:id="sprContactDetail" heading=" Contact Information " styles="$styles.sprHeading"/>
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
+			<Form styles="{showFlagIcons:false}">
+				<Form.Section>
+					<BoxPane bxml:id="bpContact" Form.label="Contact" styles="{spacing:5}">
+						<TextInput bxml:id="tiPhone" prompt="Phone"/>
+						<TextInput bxml:id="tiMobile" prompt="Mobile"/>
+					</BoxPane>
+					<BoxPane>
+						<TextInput bxml:id="tiMail" prompt="Mail"/>
+					</BoxPane>
+				</Form.Section>
+			</Form>
+		</BoxPane>
+		
+		<!-- Action Buttons ########################################################################### -->				
+		<Separator/>
+		<BoxPane styles="{horizontalAlignment:'left', padding:12, spacing:15}" >
+			<PushButton bxml:id="cf1PBtnCancel" buttonData="Cancel"/>
+			<PushButton bxml:id="cf1PBtnNext" buttonData="Next Step"/>
+		</BoxPane>
+	</BoxPane>
+</view:ViewReservation>

@@ -8,9 +8,12 @@
 
     "org.apache.pivot.wtk.PushButton": {
         color: "#111111",
-        font: {bold:true}
+        font: {bold:true},
     },
 
+    "org.apache.pivot.wtk.Form": {
+		leftAlignLabels: 'false'
+    },
 	
     "org.apache.pivot.wtk.TabPane": {
        activeTabColor:'#f2f2f2',
@@ -19,9 +22,34 @@
     "org.apache.pivot.wtk.TextInput": {
        	backgroundColor: '#fcfcfc',
        	font: {size:"120%"},
+       	color:'#335085',
         padding:{top:5, left:10, bottom:5, right:0}
     },
     
+        "org.apache.pivot.wtk.ListButton": {
+       	backgroundColor: '#fcfcfc',
+       	font: {size:"120%"},
+        padding:{top:5, left:10, bottom:5, right:0}
+    },
+    
+        
+       "org.apache.pivot.wtk.PushButton": {
+       	backgroundColor: '#2d4776',
+       	color:'#fff4cd',
+       	font: {size:"120%", bold:true},
+       	minimumAspectRatio:4,
+       	
+        padding:{top:5, left:15, bottom:5, right:15}
+    }, 
+        
+                
+       "org.apache.pivot.wtk.CalendarButton": {
+       	backgroundColor: '#fcfcfc',
+       	font: {size:"120%"},
+        padding:{top:5, left:0, bottom:5, right:4}
+    },
+        
+        
    "org.apache.pivot.wtk.TableView": {
         font: { size: "140%", bold: false }, 
        	backgroundColor: '#fcfcfc',
@@ -131,5 +159,29 @@
             font: { size: "170%", bold: true },
             padding:{top:3, left:8, bottom:5, right:0},
             color: "#2a5580"   	
+    },
+    
+    lbHeading2: {
+    
+            font: { size: "130%", bold: true },
+            padding:{top:3, left:8, bottom:5, right:0},
+            color: "#2a5580"   	
+    },
+    
+    sprHeading: {
+    
+            font: { size: "130%", bold: true },
+            padding:{top:0, left:5, bottom:5, right:0},
+            headingColor: "#2a5580",
+            color:"#fff4cd",
+            thickness:"12",  	
+    },
+    
+    
+    
+    bpContentHorizontal: {
+    
+    	padding:{top:3, left:7, bottom:20, right:0},
+    	spacing:15
     },
 }
