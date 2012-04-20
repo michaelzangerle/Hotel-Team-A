@@ -20,9 +20,29 @@ public class ControllerGast implements IControllerGast {
 		
 	}
 	
+	
+	@Override
+	public IGast getAktuellGast() {
+		if(gastModel!=null)
+			return gastModel;
+		else
+			return null;
+		//TODO Fehlermeldung
+	}
+	
 	public void setVorname(String vorname)
 	{
+		if(gastModel!=null)
 		gastModel.setVorname(vorname);
+	}
+
+	
+
+	@Override
+	public void setNachname(String nachname) {
+		if(gastModel!=null)
+			gastModel.setNachname(nachname);
+		
 	}
 	
 	

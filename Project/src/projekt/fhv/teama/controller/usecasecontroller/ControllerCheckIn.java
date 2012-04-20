@@ -153,10 +153,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		
 	}
 	
-	
-	
-	
-	
+
 
 	public void setVon(Date date)
 	{
@@ -191,6 +188,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	}
 	
 	
+	// TODO ZimmerAuswahl treffen für jede Teilreservierung
 	
 	public void saveAufenthalt()
 	{
@@ -199,14 +197,13 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		Date von=controllerReservierung.getAktuelleReservierung().getVon();
 		Date bis=controllerReservierung.getAktuelleReservierung().getBis();
 		boolean schluessel=this.schluessel;
-
 		IGast g=controllerGast.getAktuellGast();
-		IGast gast =new Gast(g.getVorname(), g.getNachname(), g.getGeschlecht(), g.getAdressen(), g.getGeburtsdatum(), g.getTelefonnummer(), g.getEmail(), g.getKontodaten(), g.getNummer());		
+				
 		
 		List<IZimmer> zimmer1=this.zimmer;
 
 		for (IZimmer zi : zimmer1) {
-			controllerAufenthalt.create(preis, von, bis, schluessel, gast, zi);
+			controllerAufenthalt.create(preis, von, bis, schluessel, g, zi);
 		}
 
 	}
