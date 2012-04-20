@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import projekt.fhv.teama.classes.Aufenthalt;
 import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
@@ -25,10 +26,13 @@ public class ControllerAufenthalt implements IControllerAufenthalt {
 	
 	
 	
-	public void create(float preis, Date von, Date bis, boolean schluessel, IGast gast, IZimmer zimmer)
+	public void create(float preis, Date von, Date bis, boolean schluessel, IGast gast, IZimmer zimmer,IPfandtyp pfand,String pfandNr)
 	{
-		aufenthaltModel=new Aufenthalt(preis, von, bis, schluessel, gast, zimmer);
-	
+		aufenthaltModel=new Aufenthalt(preis, pfandNr, von, bis, schluessel, gast, zimmer, pfand);
 		aufenthaltDao.create(aufenthaltModel);
 	}
+
+
+
+
 }

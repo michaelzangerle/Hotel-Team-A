@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import projekt.fhv.teama.classes.Aufenthalt;
 import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
@@ -23,10 +24,12 @@ import projekt.fhv.teama.controller.ControllerReservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerAufenthalt;
 import projekt.fhv.teama.controller.interfaces.IControllerGast;
 import projekt.fhv.teama.controller.interfaces.IControllerKategorie;
+import projekt.fhv.teama.controller.interfaces.IControllerPfandTyp;
 import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerTeilreservierung;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
 import projekt.fhv.teama.hibernate.dao.zimmer.IReservierungDao;
+import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 public class ControllerCheckIn implements IControllerCheckIn {
 	
@@ -36,6 +39,8 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	IControllerGast controllerGast;
 	IControllerTeilreservierung controllerTeilreservierung;
 	IControllerKategorie controllerKategorie;
+	IControllerPfandTyp controllerPfandtyp;
+	
 	
 	
 	IAufenthalt aufenthalt=new Aufenthalt();
@@ -44,6 +49,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	private boolean schluessel=false;
 	private float preis=0.0f;
 	private List<IZimmer> zimmer=new Vector<IZimmer>();
+	private String pfandnummer;
 
 	/**
 	 * 
@@ -61,8 +67,6 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		return controllerReservierung.getAllReservierungen();
 	}
 	
-	
-	
 	public void setAktuelleReservierung(IReservierung reservierung) 
 	{
 		controllerReservierung.setAktuelleReservierung(reservierung);
@@ -72,6 +76,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	{
 		return controllerReservierung.getAktuelleReservierung();
 	}
+	
 	
 	public List<ITeilreservierung> getTeilreservierungen()
 	{
@@ -89,6 +94,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		controllerTeilreservierung.setAktulleTeilreservierung(teilreservierung);
 	}
 	
+	
 	public List<IGast> getGaeste()
 	{
 		return controllerReservierung.getGaeste();
@@ -105,6 +111,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	}
 	
 	
+	
 	//Änderungen am Gast
 	
 	public void setVorname(String vorname)
@@ -118,39 +125,39 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	}
 	public void setGeschlecht(char geschlecht)
 	{
-		
+		controllerGast.setGeschlecht(geschlecht);
 	}
 	public void setGeburtsdatum(Date geburtsdatum)
 	{
-		
+		controllerGast.setGeburtsdatum(geburtsdatum);
 	}
 	public void setEmail(String email)
 	{
-		
+		controllerGast.setEmail(email);
 	}
-	public void setEmail(IKontodaten kontodaten)
+	public void setKontodaten(String kontonummer,String blz,String iban,String bic)
 	{
-		
+		controllerGast.setKontodaten(kontonummer,blz,iban,bic);
 	}
 	public void setTelefonnummer(String telefonnummer)
 	{
-		
+		controllerGast.setTelefonnummer(telefonnummer);
 	}
 	public void setNummer(String nummer)
 	{
-		
+		controllerGast.setNummer(nummer);
 	}
 	public void setZimmer(IZimmer zimmer)
 	{
-		
+		controllerGast.setZimmer(zimmer);
 	}
 	public void addAdresse(IAdresse adresse)
 	{
-		
+		controllerGast.addAdresse(adresse);
 	}
 	public void removeAdresse(IAdresse adresse)
 	{
-		
+		controllerGast.removeAdresse(adresse);
 	}
 	
 
@@ -175,7 +182,9 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	{
 		this.schluessel=schluesel;
 	}
-	
+
+
+
 	public void SetAktuelleKategorie(IKategorie kategorie)
 	{
 		controllerKategorie.setKategorie(kategorie);
@@ -188,6 +197,20 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	}
 	
 	
+	//Pfand
+	
+	public void setPfandNr(String pfandnummer)
+	{
+		this.pfandnummer=pfandnummer;
+	}
+	
+	public List<IPfandtyp> getPfandtyps() throws NoDatabaseEntryFoundException
+	{
+		return controllerPfandtyp.getPfandtyps();
+	}
+	
+	
+	
 	// TODO ZimmerAuswahl treffen für jede Teilreservierung
 	
 	public void saveAufenthalt()
@@ -197,13 +220,18 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		Date von=controllerReservierung.getAktuelleReservierung().getVon();
 		Date bis=controllerReservierung.getAktuelleReservierung().getBis();
 		boolean schluessel=this.schluessel;
+		String pfandNr=this.pfandnummer;
+		IPfandtyp pfand;
+		
+		
 		IGast g=controllerGast.getAktuellGast();
-				
+		
+		
 		
 		List<IZimmer> zimmer1=this.zimmer;
 
 		for (IZimmer zi : zimmer1) {
-			controllerAufenthalt.create(preis, von, bis, schluessel, g, zi);
+			//controllerAufenthalt.create(preis, von, bis, schluessel, g, zi,pfand,pfandnummer);
 		}
 
 	}
