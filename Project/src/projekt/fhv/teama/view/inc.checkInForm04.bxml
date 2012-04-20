@@ -1,4 +1,4 @@
- <view:ViewReservation bxml:id="checkInForm04" xmlns:bxml="http://pivot.apache.org/bxml"
+ <view:ViewCheckIn bxml:id="checkInForm04" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk"
 	styles="{padding:6}" xmlns:view="projekt.fhv.teama.view"
 	visible="false">
@@ -41,4 +41,4 @@
 			<PushButton bxml:id="cf4PBtnNext" buttonData="Finish and Save"/>
 		</BoxPane>
 	</BoxPane>
-</view:ViewReservation>
+</view:ViewCheckIn>

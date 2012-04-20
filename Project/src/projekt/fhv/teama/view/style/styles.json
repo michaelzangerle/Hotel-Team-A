@@ -175,13 +175,34 @@
             headingColor: "#2a5580",
             color:"#fff4cd",
             thickness:"12",  	
-    },
-    
-    
+    },    
     
     bpContentHorizontal: {
     
     	padding:{top:3, left:7, bottom:20, right:0},
     	spacing:15
     },
+    
+    brdProgress: {
+    
+    	padding:{top:0, left:0, bottom:0, right:0},
+    	backgroundColor: '#ffffff',
+    	color: '#f2f2f2',
+    	thickness:'0'
+    },
+    
+     meter: {
+    
+       /* gridColor: '#777777',*/       
+    	color: '#f7df8c',
+    },
+    
+    lbMeter: {
+    	    font: { size: "150%", bold: true },
+            padding:{top:4, left:8, bottom:5, right:0},
+            horizontalAlignment:'center',
+            color: "#2a5580"   	
+    }
+    
+    
 }
