@@ -23,7 +23,7 @@ public class Reservierung implements IReservierung {
 	private Set<IReservierungsOption> optionen = new HashSet<IReservierungsOption>();
 	private Set<IZimmer> zimmer = new HashSet<IZimmer>();
 	private Set<IGast> gaeste = new HashSet<IGast>();
-	private Set<ITeilreservierung> teilreservierungen;
+	private Set<ITeilreservierung> teilreservierungen = new HashSet<ITeilreservierung>();
 
 	public Reservierung(Date von, Date bis, IPerson person, IVertragspartner vertragspartner,
 			Set<IReservierungsOption> optionen, Set<IZimmer> zimmer, Set<IGast> gaeste,
@@ -156,10 +156,10 @@ public class Reservierung implements IReservierung {
 //		result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
 //		result = prime * result + ((optionen == null) ? 0 : optionen.hashCode());
 //		result = prime * result + ((person == null) ? 0 : person.hashCode());
-//		result = prime * result + ((teilreservierungen == null) ? 0 : teilreservierungen.hashCode());
+		result = prime * result + ((teilreservierungen == null) ? 0 : teilreservierungen.hashCode());
 //		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.hashCode());
 		result = prime * result + ((von == null) ? 0 : von.hashCode());
-//		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
+		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
 		return result;
 	}
 
@@ -194,16 +194,16 @@ public class Reservierung implements IReservierung {
 //				return false;
 //		} else if (!person.equals(other.person))
 //			return false;
-//		if (teilreservierungen == null) {
-//			if (other.teilreservierungen != null)
-//				return false;
-//		} else if (!teilreservierungen.equals(other.teilreservierungen))
-//			return false;
-//		if (vertragspartner == null) {
-//			if (other.vertragspartner != null)
-//				return false;
-//		} else if (!vertragspartner.equals(other.vertragspartner))
-//			return false;
+		if (teilreservierungen == null) {
+			if (other.teilreservierungen != null)
+				return false;
+		} else if (!teilreservierungen.equals(other.teilreservierungen))
+			return false;
+		if (vertragspartner == null) {
+			if (other.vertragspartner != null)
+				return false;
+		} else if (!vertragspartner.equals(other.vertragspartner))
+			return false;
 		if (von == null) {
 			if (other.von != null)
 				return false;

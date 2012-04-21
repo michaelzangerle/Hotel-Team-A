@@ -37,19 +37,19 @@
             <key>
                 <column name="reservierungID" />
             </key>
-            <many-to-many column="leistungID" class="projekt.fhv.teama.classes.zimmer.Zimmer" />
+            <many-to-many column="zimmerID" class="projekt.fhv.teama.classes.zimmer.Zimmer" />
         </set>
         
         <set name="gaeste" table="GASTRESERVIERUNG" inverse="false" >
             <key>
                 <column name="reservierungID" />
             </key>
-            <many-to-many column="personID"  class="projekt.fhv.teama.classes.personen.Gast" />
+            <many-to-many column="personID" class="projekt.fhv.teama.classes.personen.Gast" />
         </set>
         
-        <set name="teilreservierungen" table="TEILRESERVIERUNG" cascade="all" lazy="false" inverse="false">
+        <set name="teilreservierungen" table="TEILRESERVIERUNG" cascade="all" lazy="false" >
             <key>
-                <column name="teilreservierungID" />
+                <column name="reservierungID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.zimmer.Teilreservierung" />
         </set>
