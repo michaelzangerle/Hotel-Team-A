@@ -16,6 +16,8 @@ import org.apache.pivot.wtk.*;
 public class ViewMain extends Window implements Application, Bindable {
 	
 	Label lbReservationDetails;
+	
+	
 	Border reservationForm01;
 	Border checkInForm01;
 	Border checkInForm02;	
