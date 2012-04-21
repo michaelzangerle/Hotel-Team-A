@@ -12,8 +12,9 @@ import java.util.List;
 import java.util.Random;
 
 public class TestDaten {
-	
+		
 	IControllerCheckIn checkIn = new ControllerCheckIn(null, null, null, null, null, null, null, null, null, null);
+	
 	
 	List<String> ankommendeGaeste;
 	List<String> gaesteInReservierung;
@@ -24,14 +25,14 @@ public class TestDaten {
 	List<String> pfandkategorien;	
 	List<String> zugeteilteZimmer;	
 	
-	ListAdapter<String> alAnkommendeGaeste;
-	ListAdapter<String> alGaesteInReservierung;
-	ListAdapter<String> alGastAdressen;
-	ListAdapter<String> alGebuchteZimmerkategorien;
-	ListAdapter<String> alVerfügbareDoppelzimmer;
-	ListAdapter<String> alVerfügbareEinzelzimmer;
-	ListAdapter<String> alPfandkategorien;
-	ListAdapter<String> alZugeteilteZimmer;
+	public ListAdapter<String> alAnkommendeGaeste;
+	public ListAdapter<String> alGaesteInReservierung;
+	public ListAdapter<String> alGastAdressen;
+	public ListAdapter<String> alGebuchteZimmerkategorien;
+	public ListAdapter<String> alVerfügbareDoppelzimmer;
+	public ListAdapter<String> alVerfügbareEinzelzimmer;
+	public ListAdapter<String> alPfandkategorien;
+	public ListAdapter<String> alZugeteilteZimmer;
 	
 
 	
@@ -55,7 +56,7 @@ public class TestDaten {
 			
 	    	 verfuegbareDopplezimmer.add("Nr. "+ numberFormat.format(i)+" Double Room");
 	    	 verfuegbareEinzelzimmer.add("Nr. "+ numberFormat.format(i)+" Single Room");
-	    	 ankommendeGaeste.add("Nr. " +numberFormat.format(i)+ "Lastname "+"Firstname, "+ "Street Nr., "+"PLZ "+"City");
+	    	 ankommendeGaeste.add("Nr. " +numberFormat.format(i)+ " Lastname "+"Firstname, "+ "Street Nr., "+"ZIP "+"City");
 	    	 
 	    	 if(i<=25 || i>=75){
 	    	 gastAdressen.add("Lastname"+i+" Firstname");

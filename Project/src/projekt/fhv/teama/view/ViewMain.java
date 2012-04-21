@@ -16,8 +16,11 @@ import org.apache.pivot.collections.adapter.ListAdapter;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.*;
 
+import projekt.fhv.teama.view.controller.ViewController;
+
 public class ViewMain extends Window implements Application, Bindable {
 	
+	ViewController viewController = new ViewController();
 	BXMLSerializer bxmlSerializer = new BXMLSerializer();	
 	private Window window = null;
 	
@@ -53,8 +56,12 @@ public class ViewMain extends Window implements Application, Bindable {
 	/* ListViews */
 	ListView lvAssignedRooms;
 	ListView lvBookedRoomCategories;
+	ListView lvReservationSearch;
+	
 	ListButton lbtnGuests;
 	ListButton lbtnAddresses;
+	ListButton lbtnDepositType;
+
 	
 	/* Processbar */
 	Border progress;
@@ -62,7 +69,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	
 	BoxPane bpAssignedRooms;
 	BoxPane bpRoomsSummary;
-	private ListButton lbtnDepositType;
+
 
 		
 	/**
@@ -133,6 +140,7 @@ public class ViewMain extends Window implements Application, Bindable {
 		cf4PBtnCancel = (PushButton)arg0.get("cf4PBtnCancel");
 				
 		/* ListViews u. ListButtons initialisieren */
+		lvReservationSearch = (ListView)arg0.get("lvReservationSearch");
 		lvAssignedRooms = (ListView)arg0.get("lvAssignedRooms");
 		lvBookedRoomCategories = (ListView)arg0.get("lvBookedRoomCategories");
 		
@@ -160,8 +168,13 @@ public class ViewMain extends Window implements Application, Bindable {
 		checkInForm03.setVisible(false);
 		checkInForm04.setVisible(false);
 		occupationPreview.setVisible(false);
+		viewController.testDaten.generateTestData();
+		
+		lvReservationSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
 
 		meter.setPercentage(0.25);
+		
+	
 		
 		/** Ende - Zustände zum Programmstart initialisieren **************************/
 
