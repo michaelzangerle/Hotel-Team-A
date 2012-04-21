@@ -14,6 +14,7 @@ import org.hibernate.Session;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
 import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
+import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
@@ -37,6 +38,29 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 		super("Reservierung");
 
 	}
+	
+//    public Set<ITeilreservierung> getTeilreservierungen(IReservierung reservierung) {
+//    	List<ITeilreservierung> teilreservierungen = null;
+//    	
+//    	try {
+//        	Session s = HibernateHelper.getSession();
+//            s.beginTransaction();
+//            Query query = s.createQuery("FROM roomanizer.teamb.data.model.Teilreservierung WHERE reservierungID=:reservierung");
+//            query.setEntity("reservierung", reservierung);
+//            	
+//            teilreservierungen = query.list();
+//            if (teilreservierungen.size() == 0) {
+//            	throw new DatabaseEntryNotFoundException();
+//            }
+//            
+//
+//        } finally {
+//            s.getTransaction().commit();
+//        }
+//        
+//        
+//        
+//    }
 	
 	//kiken??
 	@SuppressWarnings("unchecked")

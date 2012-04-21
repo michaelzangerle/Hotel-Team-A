@@ -5,12 +5,17 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.Kategorie;
 import projekt.fhv.teama.classes.zimmer.Reservierung;
 import projekt.fhv.teama.classes.zimmer.Teilreservierung;
+import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.personen.IPersonDao;
 import projekt.fhv.teama.hibernate.dao.personen.IVertragspartnerDao;
 import projekt.fhv.teama.hibernate.dao.personen.PersonDao;
@@ -28,8 +33,6 @@ public class ReservierungTest {
 		IReservierungDao rnd = ReservierungDao.getInstance();
 		IPersonDao pnd = PersonDao.getInstance();
 		IVertragspartnerDao vnd = VertragspartnerDao.getInstance();
-		
-		
 
 //		IReservierung res1 = new Reservierung(getDate(2012, 2, 24), getDate(2012, 2, 28), pnd.getById(1));
 //		IReservierung res2 = new Reservierung(getDate(2012, 2, 24), getDate(2012, 2, 28), pnd.getById(2));
@@ -48,8 +51,10 @@ public class ReservierungTest {
 //		
 		
 		// 1 holen
-//		IReservierung reservierung = rnd.getById(1);
+		IReservierung reservierung = rnd.getById(2);
 //		System.out.println(reservierung);
+		
+		
 		
 		// update 
 //		reservierung.setBis(getDate(2012, 2, 30));
@@ -64,24 +69,35 @@ public class ReservierungTest {
 		//Set<IReservierung> reservierungbyVP = rnd.getReservierungByVP(vnd.getById(27).getName());
 		//System.out.println("reservierungen von Vertragspartner -> " + reservierungbyVP.toString());
 		
+		
+		
 		//remove
 		//IReservierung deleteReservierung = rnd.getById(1);
 		//rnd.remove(deleteReservierung);
 		
-		// teilreservierungen hinzufügen
-		IKategorieDao kategoriedao = KategorieDao.getInstance();
-		ITeilreservierungDao teilreservierungdao = TeilreservierungDao.getInstance();
 		
-		IKategorie kategorie = kategoriedao.getById(2);
+		//set teilreservierung FEHLERMELDUNG: nested transactions not supported
+//		IKategorieDao kategoriedao = KategorieDao.getInstance();
+//		ITeilreservierungDao teilreservierungdao = TeilreservierungDao.getInstance();
+//		
+//		IKategorie kategorie = kategoriedao.getById(2);
+//		ITeilreservierung teilreservierung = new Teilreservierung(kategorie, reservierung, 5);
+//		
+//		reservierung.addTeilreservierung(teilreservierung);
+//		
+//		Session session = HibernateHelper.getSession();
+//		session.beginTransaction();
+//		teilreservierungdao.update(teilreservierung);		
+//		session.getTransaction().commit();
+//		session.close();
 		
-		ITeilreservierung teilreservierung = new Teilreservierung(kategorie, rnd.getById(2), 5);
-		teilreservierungdao.create(teilreservierung);
+
 		
 		
-		IReservierung reservierung = rnd.getById(2);
-		Set<ITeilreservierung> setreservierung = new HashSet<ITeilreservierung>();
-		reservierung.setTeilreservierungen(setreservierung);
-		
+		//get teilreservierungen 
+//		
+//		Set<ITeilreservierung> setreservierung = reservierung.getTeilreservierungen();
+//		System.out.println(setreservierung.toString());
 	}
 	
     private static Date getDate(int year, int month, int day) {

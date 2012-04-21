@@ -15,7 +15,6 @@ public class Teilreservierung implements ITeilreservierung {
 	private int anzahl;
 
 	public Teilreservierung(IKategorie kategorie, IReservierung reservierung, int anzahl) {
-
 		this.kategorie = kategorie;
 		this.reservierung = reservierung;
 		this.anzahl = anzahl;
