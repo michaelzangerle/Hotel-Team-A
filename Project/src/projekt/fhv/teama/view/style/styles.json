@@ -27,9 +27,10 @@
     },
     
         "org.apache.pivot.wtk.ListButton": {
-       	backgroundColor: '#fcfcfc',
+       	backgroundColor: '#e6eff8',
+       	alternateItemBackgroundColor: '#ffffff',
        	font: {size:"120%"},
-        padding:{top:5, left:10, bottom:5, right:0}
+        padding:{top:5, left:5, bottom:5, right:5}
     },
     
         
@@ -44,9 +45,9 @@
         
                 
        "org.apache.pivot.wtk.CalendarButton": {
-       	backgroundColor: '#fcfcfc',
+       	backgroundColor: '#e6eff8',
        	font: {size:"120%"},
-        padding:{top:5, left:0, bottom:5, right:4}
+        padding:{top:5, left:5, bottom:5, right:5}
     },
         
         
@@ -60,6 +61,17 @@
        	font: {size:"100%"},
         },        
   
+    "org.apache.pivot.wtk.ListView": {
+    
+    	variableItemHeight:true,    	
+    	/* alternateItemBackgroundColor: '#e6eff8', */
+    	highlightBackgroundColor: '#fee379',
+        inactiveSelectionBackgroundColor: '#fee379',
+        selectionBackgroundColor: '#2d4776',
+    	padding:{top:3, left:0, bottom:3, right:0}
+    	  	
+    },  
+    
     
     heading: {
         font: {
@@ -148,11 +160,6 @@
     	
     },
     
-    listViews: {
-    
-    	variableItemHeight:true,
-    	alternateItemBackgroundColor: '#f9f6e1'    	
-    },
     
     lbHeading1: {
     
@@ -168,6 +175,15 @@
             color: "#2a5580"   	
     },
     
+    
+   libHeading: {
+    
+            font: { size: "105%", bold: true },
+            padding:{top:2, left:0, bottom:0, right:0},
+            color: "#2a5580"   	
+    },
+    
+    
     sprHeading: {
     
             font: { size: "130%", bold: true },
@@ -179,7 +195,7 @@
     
     bpContentHorizontal: {
     
-    	padding:{top:3, left:7, bottom:20, right:0},
+    	padding:{top:3, left:7, bottom:15, right:0},
     	spacing:15
     },
     
@@ -204,7 +220,7 @@
             color: "#2a5580"   	
     },
     
-    btCheckIn: {
+    btSpecial: {
        	backgroundColor: '#f7df8c',
        	color:'#2a5580',
     },
@@ -215,5 +231,29 @@
        	
     },
     
+    bordSHS: {
+           backgroundColor: '#e6eff8' 
+    },
+       
+    livRoomAssign: {
+    	backgroundColor: '#e6eff8',
+    	font: { size: "102%", bold: false },
+       	alternateRowBackgroundColor: '#e6eff8',
+       	highlightBackgroundColor: '#fee379',
+        inactiveSelectionBackgroundColor: '#fee379',
+        selectionBackgroundColor: '#2d4776',
+        padding:{top:10, left:10, bottom:10, right:10},
+    },
+    
+    livSHSListview: {
+    	backgroundColor: '#ffffff',
+    	font: { size: "102%", bold: false },
+       	alternateItemBackgroundColor: '#e2edf8',
+       	highlightBackgroundColor: '#fee379',
+        inactiveSelectionBackgroundColor: '#fee379',
+        selectionBackgroundColor: '#2d4776',
+        padding:{top:10, left:10, bottom:10, right:10},
+    }
+   
     
 }

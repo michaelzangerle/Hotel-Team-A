@@ -7,31 +7,16 @@
 		<Label bxml:id="lbFinishCheckIn" text="Check-In: Hand out key and finish check-in process"
 			styles="$styles.lbHeading1"/>
 		
-		<!-- Key Handout  ############################################################################# -->
-		<Separator bxml:id="sprHandOutKey" heading=" Hand out key " styles="$styles.sprHeading"/>
-		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
-			<Form styles="{showFlagIcons:false}">
-				<Form.Section>
-					<BoxPane bxml:id="bpKeyState" Form.label="Key handed out" styles="{padding:4}" >
-		    				<bxml:define>
-								<ButtonGroup bxml:id="bgKeyState"/>
-							</bxml:define>
-							<RadioButton bxml:id="rbKeyStateIn" buttonData="no" buttonGroup="$bgKeyState" selected="true"/>
-							<RadioButton bxml:id="rbKeyStateOut" buttonData="yes" buttonGroup="$bgKeyState"/>
-					</BoxPane>			
-				</Form.Section>
-			</Form>
-		</BoxPane>	
-		
-		<!-- Stay Summary  ############################################################################# -->
-		<Separator bxml:id="sprStaySummary" heading=" Review stay before saving " styles="$styles.sprHeading"/>
-		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
-			<Form styles="{showFlagIcons:false}">
-				<Form.Section>
-					
-				</Form.Section>
-			</Form>
+		<!-- Key Handout & Stay Summary  ############################################################################# -->
+		<Separator bxml:id="sprStaySummary" heading=" Hand out keys and review stay summary before saving " styles="$styles.sprHeading"/>
+		<BoxPane bxml:id="bpStaySummary" orientation="horizontal" styles="$styles.bpContentHorizontal" >
+			
 		</BoxPane>		
+		
+		
+		<BoxPane bxml:id="bpRoomsSummary" orientation="horizontal" styles="$styles.bpContentHorizontal" >
+		
+		</BoxPane>
 					
 		<!-- Action Buttons ########################################################################### -->				
 		<Separator/>		
@@ -48,7 +33,7 @@
 			</BoxPane>
 			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
 			<PushButton bxml:id="cf4PBtnBack" buttonData="Previous Step"/>
-			<PushButton bxml:id="cf4PBtnFinish" buttonData="Finish and Save"/>	
+			<PushButton bxml:id="cf4PBtnFinish" buttonData="Finish and Save"  styles="$styles.btSpecial"/>	
 			</BoxPane>
 		</TablePane.Row>
 	</TablePane>

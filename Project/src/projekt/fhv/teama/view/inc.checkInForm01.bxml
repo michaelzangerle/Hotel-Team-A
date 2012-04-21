@@ -13,6 +13,10 @@
 		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
 			<Form styles="{showFlagIcons:false}">
 				<Form.Section>
+					<Label bxml:id="lbPrimaryGuestSelection" text="Select primary guest for this stay or enter a new one if list is empty" />
+					<BoxPane  styles="{padding:{top:0, left:0, bottom:15, right:0}}">
+						<ListButton bxml:id="lbtnGuests" listData="['Hans Hinterseer', 'Prof. Dr. Maria Hinterseer']"  preferredWidth="446" />			
+					</BoxPane>
 					<BoxPane bxml:id="bpName" Form.label="Name" styles="{spacing:5}">
 						<TextInput bxml:id="tiLastName" prompt="Last"/>
 						<TextInput bxml:id="tiFirstName" prompt="First"/>
@@ -36,10 +40,14 @@
 		</BoxPane>
 
 		<!-- Adresses ################################################################################	-->
-		<Separator bxml:id="sprAdressDetail" heading=" Address " styles="$styles.sprHeading"/>
+		<Separator bxml:id="sprAdressDetail" heading=" Addresses " styles="$styles.sprHeading"/>
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
 			<Form styles="{showFlagIcons:false}">
 				<Form.Section>
+					<Label bxml:id="lbPrimaryAddress" text="Change primary address or enter and add a new one" />
+					<BoxPane  styles="{padding:{top:0, left:0, bottom:15, right:0}}">
+					<ListButton bxml:id="lbtnAddresses" listData="['Bofelstraße 26, 6845 Arktis', 'Spinnergasse 27, 6840 Antarktis']"  preferredWidth="446" />			
+					</BoxPane>
 					<BoxPane bxml:id="bpAddress" Form.label="Address" styles="{spacing:5}">
 						<TextInput bxml:id="tiStreet" prompt="Street"/>
 						<TextInput bxml:id="tiCity" prompt="City"/>
@@ -59,10 +67,24 @@
 				<Form.Section>
 					<BoxPane bxml:id="bpContact" Form.label="Contact" styles="{spacing:5}">
 						<TextInput bxml:id="tiPhone" prompt="Phone"/>
-						<TextInput bxml:id="tiMobile" prompt="Mobile"/>
+						<TextInput bxml:id="tiMail" prompt="Mail"/>
+					</BoxPane>
+				</Form.Section>
+			</Form>
+		</BoxPane>
+		
+		<!-- Financial Information #####################################################################	-->
+		<Separator bxml:id="sprFinancialDetail" heading=" Financial Information " styles="$styles.sprHeading"/>
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
+			<Form styles="{showFlagIcons:false}">
+				<Form.Section>
+					<BoxPane bxml:id="bpBankAccount" Form.label="    Bank" styles="{spacing:5}">
+						<TextInput bxml:id="tiAccountNr" prompt="Account Nr."/>
+						<TextInput bxml:id="tiBankCodeNr" prompt="Bank Code Nr."/>
 					</BoxPane>
 					<BoxPane>
-						<TextInput bxml:id="tiMail" prompt="Mail"/>
+						<TextInput bxml:id="tiIban" prompt="IBAN"/>
+						<TextInput bxml:id="tiBic" prompt="BIC"/>
 					</BoxPane>
 				</Form.Section>
 			</Form>

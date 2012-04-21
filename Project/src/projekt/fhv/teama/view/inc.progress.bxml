@@ -1,0 +1,18 @@
+<view:Progress bxml:id="brdProgress" xmlns:bxml="http://pivot.apache.org/bxml"
+	xmlns="org.apache.pivot.wtk" xmlns:view="projekt.fhv.teama.view"
+	visible="false"
+	styles="$styles.brdProgress">
+	
+	<BoxPane orientation="vertical" styles="{horizontalAlignment:'center', verticalAlignment:'top', fill:true}">
+	<StackPane>
+	<Meter bxml:id="meter" preferredHeight="30" styles="$styles.meter"/>
+	<FillPane orientation="horizontal">
+	<Label text="Step 1" cursor="hand" tooltipText="Verify the personal data of the guest or enter a new one" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label text="Step 2" cursor="hand" tooltipText="Choose the room category and assign an available room" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label text="Step 3" cursor="hand" tooltipText="Select a deposit category and enter the corresponding number" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label text="Step 4" cursor="hand" tooltipText="Review the assigend rooms, hand out the keys and finish the check-in process" tooltipDelay="250" styles="$styles.lbMeter"/>
+	</FillPane>
+	</StackPane>	
+	</BoxPane>
+	
+</view:Progress>

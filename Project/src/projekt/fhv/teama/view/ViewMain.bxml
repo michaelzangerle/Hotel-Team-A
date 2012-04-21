@@ -17,7 +17,7 @@
 	<SplitPane bxml:id="spHeaderMain" orientation="vertical" splitRatio="0.075"
 		locked="true"
 		styles="{splitterThickness:1}"
-		>
+		>	
 		<left>
 			<Border>
 				<StackPane>
@@ -29,9 +29,9 @@
 			</Border>
 		</left>
 		<right>
-			<SplitPane bxml:id="spLeftMiddle" width="1236" orientation="horizontal" splitRatio="0.3f" resizeMode="primary_region" primaryRegion="top_left"
+			<SplitPane bxml:id="spLeftMiddle" preferredHeight="600" width="1236" orientation="horizontal" splitRatio="0.3f" resizeMode="primary_region" primaryRegion="top_left"
 				locked="true" styles="{splitterThickness:5}">
-				<left>
+				<left>	
 					<BoxPane bxml:id="bpLeftMain" orientation="horizontal" styles="{backgroundColor:'#f2f2f2',
 						fill:true}">
 						<TabPane bxml:id="tabPLeftMain" styles="$styles.tabPLeftMain">
@@ -45,8 +45,8 @@
 								<TextInput bxml:id="tiReservationSearch" styles="$styles.tiSearch"/>
 								<PushButton bxml:id="pushBReservationSearch" buttonData="Find" preferredHeight="35"/>
 								<Separator heading="Found Reservations" tooltipText="Current Reservations"/>
-								<ListView bxml:id="lvReservationSearch" selectMode="single" styles="$styles.listViews"
-									listData="['Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
+								<Border styles="$styles.bordSHS">
+								<ListView bxml:id="lvReservationSearch" selectMode="single" cursor="hand" styles="$styles.livSHSListview" listData="['Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
 									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
 									Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße
 									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
@@ -54,6 +54,7 @@
 									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
 									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
 									Heiligenbergstraße 26, 6845 Hohenems']" />
+								</Border>
 							</BoxPane>
 							<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top',
 								spacing:25,
@@ -66,7 +67,8 @@
 								<PushButton bxml:id="pushBArrivingSearch" buttonData="Find" preferredHeight="35"/>
 								<Separator heading="Found todays arriving People" tooltipText="People who
 									will check-in today"/>
-								<ListView bxml:id="lvArrivingSearch" selectMode="single" styles="$styles.listViews"
+								<Border styles="$styles.bordSHS">
+								<ListView bxml:id="lvArrivingSearch" selectMode="single" cursor="hand" styles="$styles.livSHSListview"
 									listData="['Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
 									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
 									Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße
@@ -75,6 +77,7 @@
 									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
 									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
 									Heiligenbergstraße 26, 6845 Hohenems']" />
+								</Border>
 							</BoxPane>
 							<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top',
 								spacing:25,
@@ -86,7 +89,8 @@
 								<TextInput bxml:id="tiGuestSearch" styles="$styles.tiSearch"/>
 								<PushButton bxml:id="pushBGuestSearch" buttonData="Find" preferredHeight="35"/>
 								<Separator heading="Found Guests" tooltipText="Current Guests"/>
-								<ListView bxml:id="lvGuestSearch" selectMode="single" styles="$styles.listViews"
+								<Border styles="$styles.bordSHS">
+								<ListView bxml:id="lvGuestSearch" selectMode="single"  cursor="hand" styles="$styles.livSHSListview"
 									listData="['Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
 									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße
 									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
@@ -94,15 +98,17 @@
 									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
 									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
 									Heiligenbergstraße 26, 6845 Hohenems']" />
+								</Border>
 							</BoxPane>
 						</TabPane>
 					</BoxPane>
-				</left>
-				<right>
+				</left>				
+				<right>	    
 					<SplitPane bxml:id="spMiddleRight" orientation="horizontal" splitRatio="0.77" 
 						styles="{splitterThickness:5}">
-						<left>
-						<BoxPane orientation="vertical" preferredHeight="600" styles="{horizontalAlignment:'left', verticalAlignment:'top', spacing:25, fill:true}">					
+						<left>	
+						<ScrollPane horizontalScrollBarPolicy="FILL_TO_CAPACITY" verticalScrollBarPolicy="auto">						
+						<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top', spacing:25, fill:true}">					
 						<BoxPane orientation="vertical" styles="{ backgroundColor:'#f2f2f2', spacing:20, padding:{top:5, left:15, bottom:10, right:15}, fill:true }">						
 						<bxml:include bxml:id="mainProgress" src="inc.progress.bxml" inline="true" />
 						<bxml:include bxml:id="mainReservationForm01" src="inc.reservationForm01.bxml" inline="true" />
@@ -113,17 +119,18 @@
 						</BoxPane>
 						<BoxPane orientation="vertical" styles="{spacing:25, padding:{top:5, left:15, bottom:10, right:15} }">	
 						<bxml:include bxml:id="occupationPreview" src="inc.occupationPreview.bxml" inline="true" />	
-						</BoxPane>	
-						</BoxPane>												
+						</BoxPane>
+						</BoxPane>
+						</ScrollPane>
 						</left>
 						<right>
 							<BoxPane orientation="vertical" styles="{ backgroundColor:'#f2f2f2', spacing:25, padding:{top:5, left:15, bottom:10, right:15}, fill:true }">
 							<bxml:include src="inc.rightMenu.bxml" inline="true" />						
 							</BoxPane>							
 						</right>
-					</SplitPane>
+					</SplitPane>											
 				</right>
 			</SplitPane>
-		</right>
+		</right>				
 	</SplitPane>
 </view:ViewMain>
