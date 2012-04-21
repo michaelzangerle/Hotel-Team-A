@@ -8,7 +8,7 @@
 			styles="$styles.lbHeading1"/>
 		
 		<!-- Key Handout & Stay Summary  ############################################################################# -->
-		<Separator bxml:id="sprStaySummary" heading=" Hand out keys and review stay summary before saving " styles="$styles.sprHeading"/>
+		<Separator bxml:id="sprStaySummary" heading=" Rview stay summary and hand out keys before saving " styles="$styles.sprHeading"/>
 		<BoxPane bxml:id="bpStaySummary" orientation="horizontal" styles="$styles.bpContentHorizontal" >
 			
 		</BoxPane>		

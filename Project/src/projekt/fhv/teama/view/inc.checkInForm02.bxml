@@ -13,7 +13,7 @@
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
 		 <Label bxml:id="lbBookedRoomCategories" text="Booked room quantity and category" styles="$styles.libHeading" tooltipText='List shows category and quantity of rooms which were reserved by the guest.' tooltipDelay="250" cursor="hand"/>
 		 <Border styles="$styles.bordSHS">
-         <BoxPane orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#e6eff8', fill:true}">
+         <BoxPane orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#e6eff8'}">
 				 <ScrollPane preferredWidth="260" preferredHeight="110"  horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#e6eff8'}" >
                     <ListView bxml:id="lvBookedRoomCategories" selectMode="single" cursor="hand" styles="$styles.livRoomAssign"
                         listData="['3 Double Rooms', '2 Single Rooms' ]"/>
@@ -25,7 +25,7 @@
 		 <Label bxml:id="lbAssignedRooms" text="Verify Assigned Rooms" styles="$styles.libHeading" tooltipText='List shows only available "free and cleaned" rooms!' tooltipDelay="250" cursor="hand"/>
 		 <Border  styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4}">
-				 <ScrollPane preferredWidth="260" preferredHeight="110"  horizontalScrollBarPolicy="fill"  verticalScrollBarPolicy="fill_to_capacity">
+				 <ScrollPane preferredWidth="260" preferredHeight="110"  horizontalScrollBarPolicy="fill"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
                     <ListView bxml:id="lvAssignedRooms" selectMode="multi" checkmarksEnabled="true" cursor="hand"  styles="$styles.livRoomAssign"
                         listData="['Single Room Nr. 001', 'Single Room Nr. 007', 'Single Room Nr. 199', 'Single Room Nr. 999'  ]"/>
                 	</ScrollPane>
