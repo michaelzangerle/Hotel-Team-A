@@ -19,6 +19,8 @@ public class Kategorie implements IKategorie {
 	private Set<IKategoriekontingent> kategoriekontingent = new HashSet<IKategoriekontingent>();
 	private Set<IZimmer> zimmer = new HashSet<IZimmer>();
 
+	
+	
 	public Kategorie(String bezeichnung, String beschreibung, Set<IZimmerpreis> zimmerpreise,
 			Set<ITeilreservierung> teilreservierungsreservierungen, Set<IKategoriekontingent> kategoriekontingent,
 			Set<IZimmer> zimmer) {
@@ -31,6 +33,11 @@ public class Kategorie implements IKategorie {
 		this.zimmer = zimmer;
 	}
 
+	public Kategorie(String bezeichnung, String beschreibung) {
+		this.bezeichnung = bezeichnung;
+		this.beschreibung = beschreibung;
+	}
+	
 	public Kategorie() {
 
 	}
@@ -94,9 +101,9 @@ public class Kategorie implements IKategorie {
 	@Override
 	public String toString() {
 		return "Kategorie [ID=" + ID + ", bezeichnung=" + bezeichnung + ", beschreibung=" + beschreibung
-				+ ", zimmerpreise=" + zimmerpreise + ", teilreservierungsreservierungen="
+				+/* ", zimmerpreise=" + zimmerpreise + ", teilreservierungsreservierungen="
 				+ teilreservierungen + ", kategoriekontingent=" + kategoriekontingent + ", zimmer="
-				+ zimmer + "]";
+				+ zimmer + */ "]";
 	}
 
 	@Override
@@ -106,11 +113,11 @@ public class Kategorie implements IKategorie {
 		result = prime * result + ID;
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		result = prime * result + ((bezeichnung == null) ? 0 : bezeichnung.hashCode());
-		result = prime * result + ((kategoriekontingent == null) ? 0 : kategoriekontingent.hashCode());
-		result = prime * result
-				+ ((teilreservierungen == null) ? 0 : teilreservierungen.hashCode());
-		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
-		result = prime * result + ((zimmerpreise == null) ? 0 : zimmerpreise.hashCode());
+//		result = prime * result + ((kategoriekontingent == null) ? 0 : kategoriekontingent.hashCode());
+//		result = prime * result
+//				+ ((teilreservierungen == null) ? 0 : teilreservierungen.hashCode());
+//		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
+//		result = prime * result + ((zimmerpreise == null) ? 0 : zimmerpreise.hashCode());
 		return result;
 	}
 
@@ -135,26 +142,26 @@ public class Kategorie implements IKategorie {
 				return false;
 		} else if (!bezeichnung.equals(other.bezeichnung))
 			return false;
-		if (kategoriekontingent == null) {
-			if (other.kategoriekontingent != null)
-				return false;
-		} else if (!kategoriekontingent.equals(other.kategoriekontingent))
-			return false;
-		if (teilreservierungen == null) {
-			if (other.teilreservierungen != null)
-				return false;
-		} else if (!teilreservierungen.equals(other.teilreservierungen))
-			return false;
-		if (zimmer == null) {
-			if (other.zimmer != null)
-				return false;
-		} else if (!zimmer.equals(other.zimmer))
-			return false;
-		if (zimmerpreise == null) {
-			if (other.zimmerpreise != null)
-				return false;
-		} else if (!zimmerpreise.equals(other.zimmerpreise))
-			return false;
+//		if (kategoriekontingent == null) {
+//			if (other.kategoriekontingent != null)
+//				return false;
+//		} else if (!kategoriekontingent.equals(other.kategoriekontingent))
+//			return false;
+//		if (teilreservierungen == null) {
+//			if (other.teilreservierungen != null)
+//				return false;
+//		} else if (!teilreservierungen.equals(other.teilreservierungen))
+//			return false;
+//		if (zimmer == null) {
+//			if (other.zimmer != null)
+//				return false;
+//		} else if (!zimmer.equals(other.zimmer))
+//			return false;
+//		if (zimmerpreise == null) {
+//			if (other.zimmerpreise != null)
+//				return false;
+//		} else if (!zimmerpreise.equals(other.zimmerpreise))
+//			return false;
 		return true;
 	}
 
@@ -201,15 +208,17 @@ public class Kategorie implements IKategorie {
 
 	@Override
 	public void addKategoriekontingent(IKategoriekontingent kategoriekontingent) {
-		// TODO Auto-generated method stub
-		
+		this.kategoriekontingent.add(kategoriekontingent);
 	}
 
 	@Override
 	public void removeKategoriekontingent(
 			IKategoriekontingent kategoriekontingent) {
-		// TODO Auto-generated method stub
-		
+		if(this.kategoriekontingent.contains(kategoriekontingent)){
+			this.kategoriekontingent.remove(kategoriekontingent);
+		}
 	}
+
+
 
 }

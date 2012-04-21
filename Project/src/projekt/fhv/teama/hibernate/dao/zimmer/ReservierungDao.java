@@ -37,7 +37,8 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 		super("Reservierung");
 
 	}
-
+	
+	//kiken??
 	@SuppressWarnings("unchecked")
 	public Set<IReservierung> getReservierungByPerson(String vorname, String nachname)
 			throws DatabaseEntryNotFoundException {
@@ -48,7 +49,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 			Session session = HibernateHelper.getSession();
 			// Person -ID herausfinden
 			Query queryID = session
-					.createQuery("from person p where (p.vorname = :vorname AND p.nachname= := nachname) OR (p.vorname = :nachname AND p.nachname= := vorname)");
+					.createQuery("from person p where (p.vorname = :vorname AND p.nachname= : nachname) OR (p.vorname = :nachname AND p.nachname= : vorname)");
 			queryID.setString("vorname", vorname);
 			queryID.setString("nachname", nachname);
 			List<Person> persons = queryID.list();
@@ -80,6 +81,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 		return set;
 	}
 
+	//kiken??
 	@SuppressWarnings("unchecked")
 	public Set<IReservierung> getReservierungByVP(String name) throws DatabaseEntryNotFoundException {
 

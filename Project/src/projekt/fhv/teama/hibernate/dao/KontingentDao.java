@@ -36,7 +36,7 @@ public class KontingentDao extends GenericDao<IKontingent> implements IKontingen
 		super("Kontingent");
 
 	}
-
+	//kiken?
 	@SuppressWarnings("unchecked")
 	public Set<IKontingent> getKontingentByVPID(int id) throws DatabaseEntryNotFoundException {
 
@@ -63,7 +63,7 @@ public class KontingentDao extends GenericDao<IKontingent> implements IKontingen
 		Set<IKontingent> set = new HashSet<IKontingent>(kontingente);
 		return set;
 	}
-
+	//kiken?
 	@SuppressWarnings("unchecked")
 	public Set<IKontingent> getKontingentByVPName(String name) throws DatabaseEntryNotFoundException {
 
