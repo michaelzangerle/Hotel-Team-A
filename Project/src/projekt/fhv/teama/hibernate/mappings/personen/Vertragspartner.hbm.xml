@@ -42,7 +42,7 @@
 			<one-to-many class="projekt.fhv.teama.classes.zimmer.Reservierung" />
 		</set>
 
-		<set name="kontingente" table="kontingent" inverse="true" lazy="false" cascade="none">
+		<set name="kontingente" table="kontingent" inverse="true" lazy="false" cascade="all-delete-orphan">
 			<key><column name="kontingentID" /></key>
 			<one-to-many class="projekt.fhv.teama.classes.Kontingent" />
 		</set>

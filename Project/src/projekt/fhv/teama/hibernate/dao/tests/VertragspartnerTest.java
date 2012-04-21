@@ -2,6 +2,7 @@ package projekt.fhv.teama.hibernate.dao.tests;
 
 import java.util.Set;
 
+import projekt.fhv.teama.classes.IKontingent;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
 import projekt.fhv.teama.classes.personen.IVertragspartnertyp;
@@ -33,8 +34,8 @@ public class VertragspartnerTest {
 		//Set<IAdresse> adr = adao.getAll();
 		
 		
-		IVertragspartner v1 = new Vertragspartner("Doppelmayr", "0664/85635668", "master@doppelmayr.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(2));
-		IVertragspartner v2 = new Vertragspartner("Alpla", "0664/756464", "master@alpla.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(3));
+		//IVertragspartner v1 = new Vertragspartner("Doppelmayr", "0664/85635668", "master@doppelmayr.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(2));
+		//IVertragspartner v2 = new Vertragspartner("Alpla", "0664/756464", "master@alpla.com", ldao.getById(1), kdao.getById(1), adao.getAll(), vtypdao.getById(3));
 
 		// Einfügen
 		//vdao.create(v1);
@@ -47,22 +48,21 @@ public class VertragspartnerTest {
 //		
 		// 1 holen
 //		
-		IVertragspartner partner = vdao.getById(26);
-		System.out.println(partner.toString());
+		//IVertragspartner partner = vdao.getById(27);
+		//System.out.println(partner.toString());
 //		
-		partner.addKontingent(kontingentdao.getById(6));
-		
+		//partner.addKontingent(kontingentdao.getById(8));
+		//partner.addKontingent(kontingentdao.getById(7));
 		// update 
 //		partner.setEmail("doppelmayr@doppelmayr.com");
 //		System.out.println(partner);
 		
 		//remove
-		vdao.remove(partner);
+		//vdao.remove(partner);
 		
 		//special
 //		IVertragspartner vertragspartner2 = vdao.getVertragspartnerByName("Alpla");
 //		System.out.println(vertragspartner2.toString());
-		
 		
 		
 	}

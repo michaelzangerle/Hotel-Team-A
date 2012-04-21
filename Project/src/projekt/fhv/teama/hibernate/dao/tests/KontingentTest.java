@@ -25,19 +25,19 @@ public class KontingentTest {
 		short kondition = 13;
 		short ueberbuchungsgrenze = 30;
 		
-		IKontingent kontingent = new Kontingent(getDate(2012, 12, 25), getDate(2012, 1, 2), kondition, ueberbuchungsgrenze, vdao.getById(25));
-		IKontingent kontingent2 = new Kontingent(getDate(2012, 12, 25), getDate(2012, 1, 2), kondition, ueberbuchungsgrenze, vdao.getById(26));
+		//IKontingent kontingent = new Kontingent(getDate(2012, 12, 25), getDate(2012, 1, 2), kondition, ueberbuchungsgrenze, vdao.getById(26));
+		//IKontingent kontingent2 = new Kontingent(getDate(2012, 12, 25), getDate(2012, 1, 2), kondition, ueberbuchungsgrenze, vdao.getById(27));
 		
 		
 		//Einfügen
-		kdao.create(kontingent);
-		kdao.create(kontingent2);
+		//kdao.create(kontingent);
+		//kdao.create(kontingent2);
+		
 		//getall
-		Set<IKontingent> kontingente = kdao.getAll();
-		System.out.println(kontingente.toString());
+		//Set<IKontingent> kontingente = kdao.getAll();
+		//System.out.println(kontingente.toString());
 		
 		//getbyid
-		
 		//IKontingent kontingentid = kdao.getById(3);
 		//System.out.println(kontingentid.toString());
 		
@@ -45,6 +45,7 @@ public class KontingentTest {
 		//kdao.remove(kontingentid);
 		
 		//special
+		
 		
 	
 	}

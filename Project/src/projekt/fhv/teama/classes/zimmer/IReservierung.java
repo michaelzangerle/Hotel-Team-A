@@ -31,6 +31,8 @@ public interface IReservierung extends IDao {
 	
 	public Set<ITeilreservierung> getTeilreservierungen();
 	public void setTeilreservierungen(Set<ITeilreservierung> teilreservierungen);
+	public void addTeilreservierung(ITeilreservierung teilreservierung);
+	public void removeTeilreservierung(ITeilreservierung teilreservierung);
 	
 	public void setVon(Date von);
 	public Date getVon();

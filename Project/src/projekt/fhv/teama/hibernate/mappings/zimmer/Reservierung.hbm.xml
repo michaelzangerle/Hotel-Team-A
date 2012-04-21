@@ -10,11 +10,11 @@
             <generator class="native" />
         </id>
         
-        <property name="von" type="java.sql.Timestamp">
+        <property name="von" type="java.sql.Date">
             <column name="VON" />
         </property>
         
-        <property name="bis" type="java.sql.Timestamp">
+        <property name="bis" type="java.sql.Date">
             <column name="BIS" />
         </property>
         
@@ -26,30 +26,30 @@
             <column name="VERTRAGSPARTNERID" />
         </many-to-one>
         
-        <set name="optionen" table="RESERVIERUNGSOPTION" inverse="false" lazy="true">
+        <set name="optionen" table="RESERVIERUNGSOPTION" inverse="false">
             <key>
-                <column name="ID" />
+                <column name="optionID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.zimmer.ReservierungsOption" />
         </set>
         
-        <set name="zimmer" table="ZIMMERRESERVIERUNG" inverse="false" lazy="true">
+        <set name="zimmer" table="ZIMMERRESERVIERUNG" inverse="false" >
             <key>
                 <column name="reservierungID" />
             </key>
             <many-to-many column="leistungID" class="projekt.fhv.teama.classes.zimmer.Zimmer" />
         </set>
         
-        <set name="gaeste" table="GASTRESERVIERUNG" inverse="false" lazy="true">
+        <set name="gaeste" table="GASTRESERVIERUNG" inverse="false" >
             <key>
                 <column name="reservierungID" />
             </key>
             <many-to-many column="personID"  class="projekt.fhv.teama.classes.personen.Gast" />
         </set>
         
-        <set name="teilreservierungen" table="TEILRESERVIERUNG" inverse="false" lazy="true">
+        <set name="teilreservierungen" table="TEILRESERVIERUNG" cascade="all" lazy="false" inverse="false">
             <key>
-                <column name="ID" />
+                <column name="teilreservierungID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.zimmer.Teilreservierung" />
         </set>
