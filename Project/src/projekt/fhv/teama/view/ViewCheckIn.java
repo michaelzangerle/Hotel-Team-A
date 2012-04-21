@@ -31,8 +31,7 @@ public class ViewCheckIn extends Border implements Bindable {
 	        form = (Form)namespace.get("form");
 	        loadJavaButton = (PushButton)namespace.get("loadJavaButton");
 	        clearButton = (PushButton)namespace.get("clearButton");
-	        sourceLabel = (Label)namespace.get("sourceLabel");
-	        
+	        sourceLabel = (Label)namespace.get("sourceLabel");	        
 	        cf1PBtnNext = (PushButton)namespace.get("cf1PBtnNext");	 
 	      
 	    }

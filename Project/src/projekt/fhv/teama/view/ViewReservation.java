@@ -58,7 +58,6 @@ public class ViewReservation extends Border implements Bindable {
 	            @Override
 	            public void buttonPressed(Button button) {
 	                form.clear();
-	                //sourceLabel.setText(null);
 	            }
 	        });
 	        
@@ -76,9 +75,7 @@ public class ViewReservation extends Border implements Bindable {
 	            public void buttonPressed(Button button) {
 	            	form.setEnabled(false);	            	
 	            }
-	        });	
-	        
-	        
+	        });	        
 	        
 	        rf1PBtnLoadJava.press();
 	    }

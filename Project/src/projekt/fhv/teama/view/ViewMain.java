@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,9 +18,13 @@ import org.apache.pivot.wtk.*;
 
 public class ViewMain extends Window implements Application, Bindable {
 	
-	Label lbReservationDetails;
+	BXMLSerializer bxmlSerializer = new BXMLSerializer();	
+	private Window window = null;
 	
+	/* Labels */
+	Label lbReservationDetails;	
 	
+	/* Border Container = Forms */
 	Border reservationForm01;
 	Border checkInForm01;
 	Border checkInForm02;	
@@ -27,6 +32,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	Border checkInForm04;
 	Border occupationPreview;
 	
+	/* Buttons */
     PushButton rf1PBtnCheckIn;;
 		
 	PushButton cf1PBtnNext;
@@ -39,16 +45,24 @@ public class ViewMain extends Window implements Application, Bindable {
 	PushButton cf3PBtnBack;
 	PushButton cf4PBtnBack;
 	
-	BoxPane bpAssignedRooms;
-	BoxPane bpRoomsSummary;
+	PushButton cf1PBtnCancel;
+	PushButton cf2PBtnCancel;
+	PushButton cf3PBtnCancel;
+	PushButton cf4PBtnCancel;
 	
-
+	/* ListViews */
+	ListView lvAssignedRooms;
+	ListView lvBookedRoomCategories;
+	ListButton lbtnGuests;
+	ListButton lbtnAddresses;
+	
+	/* Processbar */
 	Border progress;
 	Meter meter;
 	
-	BXMLSerializer bxmlSerializer = new BXMLSerializer();	
-	private Window window = null;
-	ListView lvAssignedRooms = null;
+	BoxPane bpAssignedRooms;
+	BoxPane bpRoomsSummary;
+	private ListButton lbtnDepositType;
 
 		
 	/**
@@ -74,107 +88,36 @@ public class ViewMain extends Window implements Application, Bindable {
 	
 	@Override
 	public void resume() throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public boolean shutdown(boolean arg0) throws Exception {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void suspend() throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 	
 	@Override
 	public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 		
-		Label lbReservationDetails = (Label)arg0.get("lbReservationDetails");
+		/** Controls initialisieren *********************************************/
+		
+		/* Forms initialisieren */
 		reservationForm01 = (Border)arg0.get("reservationForm01");
 		checkInForm01 = (Border)arg0.get("checkInForm01");
 		checkInForm02 = (Border)arg0.get("checkInForm02");
 		checkInForm03 = (Border)arg0.get("checkInForm03");
 		checkInForm04 = (Border)arg0.get("checkInForm04");
+			
 		occupationPreview = (Border)arg0.get("occupationPreview");
-		progress = (Border)arg0.get("mainProgress");
 		
-		bpRoomsSummary = (BoxPane)arg0.get("bpRoomsSummary");
-		bpAssignedRooms = (BoxPane)arg0.get("bpAssignedRooms");
-		lvAssignedRooms = (ListView)arg0.get("lvAssignedRooms");
-      
+		/* Buttons initialisieren | ViewRegistration */
+		rf1PBtnCheckIn  = (PushButton)arg0.get("rf1PBtnCheckIn");		
 		
-		/*** Test mit List Adapter ***/
 		
-	     List<String> states = new ArrayList<String>();
-
-	     states.add("Alaba");
-	     states.add("Alaska");
-	     states.add("Arizona");
-	     states.add("Arkansas");
-	     states.add("California");
-	     states.add("Colorado");
-	     states.add("Connecticut");
-	     states.add("Delaware");
-	     states.add("District of Columbia");
-	     states.add("Florida");
-	     states.add("Georgia");
-	     states.add("Hawaii");
-	     states.add("Idaho");
-	     states.add("Illinois");
-	     states.add("Indiana");
-	     states.add("Iowa");
-	     states.add("Kansas");
-	     states.add("Kentucky");
-	     states.add("Louisiana");
-	     states.add("Maine");
-	     states.add("Maryland");
-	     states.add("Massachusetts");
-	     states.add("Michigan");
-	     states.add("Minnesota");
-	     states.add("Mississippi");
-	     states.add("Missouri");
-	     states.add("Montana");
-	     states.add("Nebraska");
-	     states.add("Nevada");
-	     states.add("New Hampshire");
-	     states.add("New Jersey");
-	     states.add("New Mexico");
-	     states.add("New York");
-	     states.add("North Carolina");
-	     states.add("North Dakota");
-	     states.add("Ohio");
-	     states.add("Oklahoma");
-	     states.add("Oregon");
-	     states.add("Pennsylvania");
-	     states.add("Rhode Island");
-	     states.add("South Carolina");
-	     states.add("South Dakota");
-	     states.add("Tennessee");
-	     states.add("Texas");
-	     states.add("Utah");
-	     states.add("Vermont");
-	     states.add("Virginia");
-	     states.add("Washington");
-	     states.add("West Virginia");
-	     states.add("Wisconsin");
-	     states.add("Wyoming");
-	     
-	     
-	     ListAdapter<String> adaptedList = new ListAdapter<String>(states);
-	     		
-		
-		 lvAssignedRooms.setListData(adaptedList);
-	     
-	     /**** Ende Test mit List Adapter ****/      
-	     
-		
-		meter = (Meter)arg0.get("meter");		
-		
-		rf1PBtnCheckIn  = (PushButton)arg0.get("rf1PBtnCheckIn");
+		/* Buttons initialisieren | ViewCheckIn */
 		cf1PBtnNext = (PushButton)arg0.get("cf1PBtnNext");
 		cf2PBtnNext = (PushButton)arg0.get("cf2PBtnNext");
 		cf3PBtnNext = (PushButton)arg0.get("cf3PBtnNext");
@@ -182,8 +125,34 @@ public class ViewMain extends Window implements Application, Bindable {
 		
 		cf2PBtnBack = (PushButton)arg0.get("cf2PBtnBack");
 		cf3PBtnBack = (PushButton)arg0.get("cf3PBtnBack");
-		cf4PBtnBack = (PushButton)arg0.get("cf4PBtnBack");	
+		cf4PBtnBack = (PushButton)arg0.get("cf4PBtnBack");
 		
+		cf1PBtnCancel= (PushButton)arg0.get("cf1PBtnCancel");
+		cf2PBtnCancel = (PushButton)arg0.get("cf2PBtnCancel");
+		cf3PBtnCancel = (PushButton)arg0.get("cf3PBtnCancel");
+		cf4PBtnCancel = (PushButton)arg0.get("cf4PBtnCancel");
+				
+		/* ListViews u. ListButtons initialisieren */
+		lvAssignedRooms = (ListView)arg0.get("lvAssignedRooms");
+		lvBookedRoomCategories = (ListView)arg0.get("lvBookedRoomCategories");
+		
+		lbtnGuests = (ListButton)arg0.get("lbtnGuests");
+		lbtnAddresses = (ListButton)arg0.get("lbtnAddresses");
+		lbtnDepositType = (ListButton)arg0.get("lbtnDepositType");
+		
+		/* ProgressBar */
+		progress = (Border)arg0.get("mainProgress");
+		meter = (Meter)arg0.get("meter");
+					
+		
+		bpRoomsSummary = (BoxPane)arg0.get("bpRoomsSummary");
+		bpAssignedRooms = (BoxPane)arg0.get("bpAssignedRooms");			
+				
+		
+		/** Ende - Controls initialisieren *********************************************/
+
+		
+		/** Zustände zum Programmstart initialisieren *********************************/
 		
 		reservationForm01.setVisible(true);
 		checkInForm01.setVisible(false);
@@ -191,12 +160,24 @@ public class ViewMain extends Window implements Application, Bindable {
 		checkInForm03.setVisible(false);
 		checkInForm04.setVisible(false);
 		occupationPreview.setVisible(false);
-	    //final Label helloLabel = new Label("Hello World!");
-		
-		//progress.setVisible(true);
+
 		meter.setPercentage(0.25);
 		
+		/** Ende - Zustände zum Programmstart initialisieren **************************/
+
 		
+		
+		/*** Test mit List Adapter ******************************************************************/
+		
+
+		// lvAssignedRooms.setListData(adaptedDoubleRooms);
+	     
+	     /**** Ende Test mit List Adapter ****************************************************************/      
+		
+		
+		 /** Action Listeners ****************************************************************************/
+		/* ToDo - in ViewController umsetzen*/
+		 
 		cf1PBtnNext.getButtonPressListeners().add(new ButtonPressListener()  {
 
 			@Override
@@ -256,8 +237,7 @@ public class ViewMain extends Window implements Application, Bindable {
 			}
 			
 		});		
-		
-
+	
 		cf2PBtnBack.getButtonPressListeners().add(new ButtonPressListener()  {
 
 			@Override
@@ -295,7 +275,6 @@ public class ViewMain extends Window implements Application, Bindable {
 			
 		});
 		
-		
 		rf1PBtnCheckIn.getButtonPressListeners().add(new ButtonPressListener()  {
 
 			@Override
@@ -308,9 +287,7 @@ public class ViewMain extends Window implements Application, Bindable {
 			
 		});
 		
-		
 	}
 	
-
 
 }

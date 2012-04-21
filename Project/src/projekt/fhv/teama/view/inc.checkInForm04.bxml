@@ -4,15 +4,14 @@
 	visible="false">
 	<BoxPane bxml:id="bpCheckInForm04" orientation="vertical" styles="{spacing:10,
 		fill:true}">
-		<Label bxml:id="lbFinishCheckIn" text="Check-In: Hand out key and finish check-in process"
+		<Label bxml:id="lbFinishCheckIn" text="Check-In: Hand out keys and finish check-in process"
 			styles="$styles.lbHeading1"/>
 		
 		<!-- Key Handout & Stay Summary  ############################################################################# -->
-		<Separator bxml:id="sprStaySummary" heading=" Rview stay summary and hand out keys before saving " styles="$styles.sprHeading"/>
+		<Separator bxml:id="sprStaySummary" heading=" Review stay summary and hand out keys before saving " styles="$styles.sprHeading"/>
 		<BoxPane bxml:id="bpStaySummary" orientation="horizontal" styles="$styles.bpContentHorizontal" >
 			
-		</BoxPane>		
-		
+		</BoxPane>				
 		
 		<BoxPane bxml:id="bpRoomsSummary" orientation="horizontal" styles="$styles.bpContentHorizontal" >
 		
