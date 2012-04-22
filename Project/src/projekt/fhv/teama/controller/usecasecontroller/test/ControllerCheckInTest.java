@@ -1,7 +1,9 @@
 package projekt.fhv.teama.controller.usecasecontroller.test;
 
 import java.util.List;
+import java.util.Vector;
 
+import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.controller.ControllerAdresse;
 import projekt.fhv.teama.controller.ControllerAufenthalt;
@@ -51,13 +53,19 @@ public class ControllerCheckInTest {
 			
 			for (IReservierung r : reservierungs) {
 				
-				System.out.println(String.format("ReservierungsId: %s\nVon: %s\nBis: %s",r.getID(),r.getVon(),r.getBis()));
+				System.out.println(String.format("ReservierungsId: %s\nVon: %s\nBis: %s\nPerson: %s %s",r.getID(),r.getVon(),r.getBis(),r.getPerson().getVorname(),r.getPerson().getNachname()));
+//				List<IGast> gaesteGasts=new Vector<IGast>(r.getGaeste());
+//				for (IGast g : gaesteGasts) {
+//					System.out.println(String.format("Gast: %s %s %s\n",g.getVorname(),g.getNachname(),g.getEmail()));
+//				}
 				
 			}
 			
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		
 		
 		
 		
