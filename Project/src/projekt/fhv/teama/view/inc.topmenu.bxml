@@ -1,0 +1,14 @@
+ <Border bxml:id="topMenu" xmlns:bxml="http://pivot.apache.org/bxml"
+	xmlns="org.apache.pivot.wtk"
+    xmlns:content="org.apache.pivot.wtk.content"
+	visible="true">
+  	<BoxPane orientation="horizontal" styles="{horizontalAlignment:'left', verticalAlignment:'center'}">
+ 	   <LinkButton><content:ButtonData text="" icon="@icons/home.png"/> </LinkButton>
+ 	     <LinkButton><content:ButtonData text="" icon="@icons/inbox.png"/> </LinkButton>
+ 	       <LinkButton><content:ButtonData text="" icon="@icons/outbox.png"/> </LinkButton>
+ 	         <LinkButton><content:ButtonData text="" icon="@icons/receipt.png"/> </LinkButton>
+ 	           <LinkButton><content:ButtonData text="" icon="@icons/chart_pie.png"/> </LinkButton> 	          
+ 	            <LinkButton><content:ButtonData text="" icon="@icons/gear.png"/> </LinkButton>
+ 	             <LinkButton><content:ButtonData text="" icon="@icons/info_blue.png"/> </LinkButton> 	            
+ 	 </BoxPane>
+</Border>

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.net.URL;
+import java.util.Locale;
+
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.ArrayList;
@@ -42,7 +44,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	PushButton cf3PBtnCancel; PushButton cf4PBtnCancel;
 	
 	/* ListViews, ListButtons and CalendarButtons */
-	ListView lvAssignedRooms; ListView lvBookedRoomCategories; ListView lvReservationSearch;
+	ListView lvAssignedRooms; ListView lvBookedRoomCategories; ListView lvReservationSearch; ListView lvArrivingSearch; ListView lvGuestSearch;
 	ListButton lbtnGuests; ListButton lbtnAddresses; ListButton lbtnDepositType; CalendarButton cbBirthdate; CalendarButton cbArrival;
 	CalendarButton cbDeparture;
 
@@ -98,6 +100,8 @@ public class ViewMain extends Window implements Application, Bindable {
 	@Override
 	public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 		
+	    Locale.setDefault(Locale.ENGLISH);
+		
 		/** Controls initialisieren *********************************************/
 
 		/* Borders & Forms initialisieren */
@@ -135,6 +139,8 @@ public class ViewMain extends Window implements Application, Bindable {
 				
 		/* ListViews u. ListButtons initialisieren */
 		lvReservationSearch = (ListView)arg0.get("lvReservationSearch");
+		lvArrivingSearch = (ListView)arg0.get("lvArrivingSearch");
+		lvGuestSearch = (ListView)arg0.get("lvGuestSearch");
 		lvAssignedRooms = (ListView)arg0.get("lvAssignedRooms");
 		lvBookedRoomCategories = (ListView)arg0.get("lvBookedRoomCategories");
 		
@@ -190,6 +196,9 @@ public class ViewMain extends Window implements Application, Bindable {
 		viewController.testDaten.generateTestData();
 		
 		lvReservationSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
+		lvArrivingSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
+		lvGuestSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
+	
 		lbtnGuests.setListData(viewController.testDaten.alGaesteInReservierung);
 		lbtnGuests.setSelectedIndex(0);
 		lbtnAddresses.setListData(viewController.testDaten.alGastAdressen);
@@ -432,10 +441,10 @@ public class ViewMain extends Window implements Application, Bindable {
 		Action cancel = new Action(true) {
 		    @Override
 		    public void perform(Component source) {
-		      
+		     	
 		    BlockingDialog bd = new BlockingDialog();
 		    bd.setContent(new Alert(MessageType.WARNING, "Cancel the Check-In Process?" +
-		        		" Inputs will not be saved!", new ArrayList<String>("Ja","Nein")));
+		        		" Inputs will not be saved!", new ArrayList<String>("Yes","No")));
 		    Dialog erg = bd.open(source.getDisplay());
 		    int i = ((Alert)erg).getSelectedOptionIndex();
 		    
