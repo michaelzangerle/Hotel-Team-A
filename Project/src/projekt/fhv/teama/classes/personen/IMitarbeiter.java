@@ -29,4 +29,8 @@ public interface IMitarbeiter extends IPerson {
 	public void addRechnung(IRechnung rechnung);
 
 	public void removeRechnung(IRechnung rechnung);
+	
+	public String getNummer();
+	
+	public void setNummer(String nummer);
 }

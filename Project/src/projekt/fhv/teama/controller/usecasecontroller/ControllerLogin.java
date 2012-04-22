@@ -1,7 +1,10 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
+import projekt.fhv.teama.classes.personen.IMitarbeiter;
+import projekt.fhv.teama.controller.exeption.LoginInExeption;
 import projekt.fhv.teama.controller.interfaces.IControllerMitarbeiter;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerLogin;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 public class ControllerLogin implements IControllerLogin {
 
@@ -13,9 +16,9 @@ public class ControllerLogin implements IControllerLogin {
 		controllermitarbeiter=cmitarbeiter;
 	}
 	
-	public boolean checkLogin(String uid,String pw)
+	public IMitarbeiter checkLogin(String uid,String pw) throws DatabaseException, LoginInExeption
 	{
-		return true;
+		return controllermitarbeiter.getMitarbeiterByUid(uid,pw);
 	}
 	
 	
