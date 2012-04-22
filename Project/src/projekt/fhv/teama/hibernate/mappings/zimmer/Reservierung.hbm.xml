@@ -18,29 +18,29 @@
             <column name="BIS" />
         </property>
         
-        <many-to-one name="person" class="projekt.fhv.teama.classes.personen.Person" fetch="join">
+        <many-to-one name="person" class="projekt.fhv.teama.classes.personen.Person" fetch="join" lazy="false">
             <column name="PERSONID" />
         </many-to-one>
         
-        <many-to-one name="vertragspartner" class="projekt.fhv.teama.classes.personen.Vertragspartner" fetch="join">
+        <many-to-one name="vertragspartner" class="projekt.fhv.teama.classes.personen.Vertragspartner" fetch="join" lazy="false">
             <column name="VERTRAGSPARTNERID" />
         </many-to-one>
         
-        <set name="optionen" table="RESERVIERUNGSOPTION" inverse="false">
+        <set name="optionen" table="RESERVIERUNGSOPTION" lazy="false" cascade="all"> 
             <key>
                 <column name="optionID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.zimmer.ReservierungsOption" />
         </set>
         
-        <set name="zimmer" table="ZIMMERRESERVIERUNG" inverse="false" >
+        <set name="zimmer" table="ZIMMERRESERVIERUNG" lazy="false">
             <key>
                 <column name="reservierungID" />
             </key>
             <many-to-many column="zimmerID" class="projekt.fhv.teama.classes.zimmer.Zimmer" />
         </set>
         
-        <set name="gaeste" table="GASTRESERVIERUNG" inverse="false" >
+        <set name="gaeste" table="GASTRESERVIERUNG" >
             <key>
                 <column name="reservierungID" />
             </key>

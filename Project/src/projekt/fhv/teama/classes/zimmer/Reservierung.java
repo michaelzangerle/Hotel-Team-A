@@ -142,9 +142,13 @@ public class Reservierung implements IReservierung {
 
 	@Override
 	public String toString() {
-		return "Reservierung [ID=" + ID + ", von=" + von + ", bis=" + bis + /*", person=" + person + ", vertragspartner="
-				+ vertragspartner + ", optionen=" + optionen + ", zimmer=" + zimmer + ", gaeste=" + gaeste
-				+ ", teilreservierungen=" + teilreservierungen +*/ "]";
+		return "Reservierung [ID=" + ID + ", von=" + von + ", bis=" + bis 
+//				+ ", person=" + person
+//				+ ", vertragspartner="	+ vertragspartner
+				+ ", optionen=" + optionen 
+				+ ", zimmer=" + zimmer 
+//				+ ", gaeste=" + gaeste
+				+ ", teilreservierungen=" + teilreservierungen + "]";
 	}
 
 	@Override
@@ -154,10 +158,10 @@ public class Reservierung implements IReservierung {
 		result = prime * result + ID;
 		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
 //		result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
-//		result = prime * result + ((optionen == null) ? 0 : optionen.hashCode());
-//		result = prime * result + ((person == null) ? 0 : person.hashCode());
+		result = prime * result + ((optionen == null) ? 0 : optionen.hashCode());
+		result = prime * result + ((person == null) ? 0 : person.hashCode());
 		result = prime * result + ((teilreservierungen == null) ? 0 : teilreservierungen.hashCode());
-//		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.hashCode());
+		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.hashCode());
 		result = prime * result + ((von == null) ? 0 : von.hashCode());
 		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
 		return result;
@@ -184,16 +188,16 @@ public class Reservierung implements IReservierung {
 //				return false;
 //		} else if (!gaeste.equals(other.gaeste))
 //			return false;
-//		if (optionen == null) {
-//			if (other.optionen != null)
-//				return false;
-//		} else if (!optionen.equals(other.optionen))
-//			return false;
-//		if (person == null) {
-//			if (other.person != null)
-//				return false;
-//		} else if (!person.equals(other.person))
-//			return false;
+		if (optionen == null) {
+			if (other.optionen != null)
+				return false;
+		} else if (!optionen.equals(other.optionen))
+			return false;
+		if (person == null) {
+			if (other.person != null)
+				return false;
+		} else if (!person.equals(other.person))
+			return false;
 		if (teilreservierungen == null) {
 			if (other.teilreservierungen != null)
 				return false;
@@ -209,11 +213,11 @@ public class Reservierung implements IReservierung {
 				return false;
 		} else if (!von.equals(other.von))
 			return false;
-//		if (zimmer == null) {
-//			if (other.zimmer != null)
-//				return false;
-//		} else if (!zimmer.equals(other.zimmer))
-//			return false;
+		if (zimmer == null) {
+			if (other.zimmer != null)
+				return false;
+		} else if (!zimmer.equals(other.zimmer))
+			return false;
 		return true;
 	}
 
@@ -259,13 +263,15 @@ public class Reservierung implements IReservierung {
 
 	@Override
 	public void addTeilreservierung(ITeilreservierung teilreservierung) {
-		// TODO Auto-generated method stub
+		this.teilreservierungen.add(teilreservierung);
 		
 	}
 
 	@Override
 	public void removeTeilreservierung(ITeilreservierung teilreservierung) {
-		// TODO Auto-generated method stub
+		if(this.teilreservierungen.contains(teilreservierung)){
+			this.teilreservierungen.remove(teilreservierung);
+		}
 		
 	}
 

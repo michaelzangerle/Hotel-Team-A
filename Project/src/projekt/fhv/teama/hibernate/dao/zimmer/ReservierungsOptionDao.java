@@ -18,7 +18,7 @@ public class ReservierungsOptionDao extends GenericDao<IReservierungsOption> imp
 
 	private static ReservierungsOptionDao instance;
 
-	public IReservierungsOptionDao getInstance() {
+	public static IReservierungsOptionDao getInstance() {
 		if (instance == null) {
 			instance = new ReservierungsOptionDao();
 		}
@@ -26,7 +26,7 @@ public class ReservierungsOptionDao extends GenericDao<IReservierungsOption> imp
 	}
 
 	private ReservierungsOptionDao() {
-		super("Option");
+		super("ReservierungsOption");
 	}
 
 	@SuppressWarnings("unchecked")

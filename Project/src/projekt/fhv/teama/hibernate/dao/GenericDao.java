@@ -50,7 +50,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 		} catch (ConstraintViolationException e) {
 
-			throw new DatabaseConstraintViolationException("ERROR: Probaly trying to insert a unique value twice!");
+			throw new DatabaseConstraintViolationException("ERROR: Probaly trying to insert a not allowed null value or unique value twice!");
 
 		} catch (HibernateException e) {
 

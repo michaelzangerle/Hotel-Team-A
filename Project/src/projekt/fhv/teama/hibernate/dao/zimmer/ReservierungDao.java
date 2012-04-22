@@ -73,7 +73,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 			Session session = HibernateHelper.getSession();
 			// Person -ID herausfinden
 			Query queryID = session
-					.createQuery("from person p where (p.vorname = :vorname AND p.nachname= : nachname) OR (p.vorname = :nachname AND p.nachname= : vorname)");
+					.createQuery("from Person p where (p.vorname = :vorname AND p.nachname= :nachname) OR (p.vorname = :nachname AND p.nachname= :vorname)");
 			queryID.setString("vorname", vorname);
 			queryID.setString("nachname", nachname);
 			List<Person> persons = queryID.list();
@@ -85,7 +85,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 			int id = persons.get(0).getID();
 
 			// die reservierungen mit der entsprechenden id suchen
-			Query query = session.createQuery("from " + getTable() + " r where r.personID = :id");
+			Query query = session.createQuery("from " + getTable() + " r where r.person = :id");
 			query.setString("id", String.valueOf(id));
 
 			@SuppressWarnings("rawtypes")
@@ -114,7 +114,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 		try {
 			Session session = HibernateHelper.getSession();
 			// Person -ID herausfinden
-			Query queryID = session.createQuery("from vertragsPartner p where p.name = :name");
+			Query queryID = session.createQuery("from Vertragspartner p where p.name = :name");
 			queryID.setString("name", name);
 			List<IVertragspartner> vertragspartner = queryID.list();
 			int id = -1;
