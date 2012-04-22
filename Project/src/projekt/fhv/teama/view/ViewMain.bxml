@@ -45,15 +45,12 @@
 								<TextInput bxml:id="tiReservationSearch" styles="$styles.tiSearch"/>
 								<PushButton bxml:id="pushBReservationSearch" buttonData="Find" preferredHeight="35"/>
 								<Separator heading="Found Reservations" tooltipText="Current Reservations"/>
-								<Border styles="$styles.bordSHS">
-								<ListView bxml:id="lvReservationSearch" selectMode="single" cursor="hand" styles="$styles.livSHSListview" listData="['Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
-									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
-									Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße
-									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
-									'Alfred	Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße
-									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
+								<Border styles="$styles.bordSearchResults">
+								<ScrollPane preferredHeight="350" horizontalScrollBarPolicy="FILL_TO_CAPACITY" verticalScrollBarPolicy="auto"  styles="{backgroundColor:'#fcfcfc'}">															
+								<ListView bxml:id="lvReservationSearch"  selectMode="single" cursor="hand" styles="$styles.livSHSListview" listData="['Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
 									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
 									Heiligenbergstraße 26, 6845 Hohenems']" />
+								</ScrollPane>
 								</Border>
 							</BoxPane>
 							<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top',
@@ -67,16 +64,10 @@
 								<PushButton bxml:id="pushBArrivingSearch" buttonData="Find" preferredHeight="35"/>
 								<Separator heading="Found todays arriving People" tooltipText="People who
 									will check-in today"/>
-								<Border styles="$styles.bordSHS">
-								<ListView bxml:id="lvArrivingSearch" selectMode="single" cursor="hand" styles="$styles.livSHSListview"
-									listData="['Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
-									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
-									Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße
-									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
-									'Alfred	Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße
-									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
-									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
-									Heiligenbergstraße 26, 6845 Hohenems']" />
+								<Border styles="$styles.bordSearchResults">
+								<ScrollPane preferredHeight="350" horizontalScrollBarPolicy="FILL_TO_CAPACITY" verticalScrollBarPolicy="auto"  >								
+								<ListView  bxml:id="lvArrivingSearch" selectMode="single" cursor="hand" styles="$styles.livSHSListview"	 />
+								</ScrollPane>
 								</Border>
 							</BoxPane>
 							<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top',
@@ -89,15 +80,10 @@
 								<TextInput bxml:id="tiGuestSearch" styles="$styles.tiSearch"/>
 								<PushButton bxml:id="pushBGuestSearch" buttonData="Find" preferredHeight="35"/>
 								<Separator heading="Found Guests" tooltipText="Current Guests"/>
-								<Border styles="$styles.bordSHS">
-								<ListView bxml:id="lvGuestSearch" selectMode="single"  cursor="hand" styles="$styles.livSHSListview"
-									listData="['Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
-									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße
-									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
-									'Alfred	Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße
-									26, 6845 Hohenems', 'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
-									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
-									Heiligenbergstraße 26, 6845 Hohenems']" />
+								<Border styles="$styles.bordSearchResults">
+								 <ScrollPane preferredHeight="350" horizontalScrollBarPolicy="FILL_TO_CAPACITY" verticalScrollBarPolicy="auto" >
+								<ListView bxml:id="lvGuestSearch" selectMode="single"  cursor="hand" styles="$styles.livSHSListview" />
+								</ScrollPane>
 								</Border>
 							</BoxPane>
 						</TabPane>

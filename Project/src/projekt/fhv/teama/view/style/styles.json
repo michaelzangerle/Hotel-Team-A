@@ -230,7 +230,14 @@
     },
     
     bordSHS: {
-           backgroundColor: '#e6eff8' 
+           backgroundColor: '#e6eff8',
+           padding:{top:4, left:4, bottom:4, right:4}       
+    },
+    
+    bordSearchResults: {
+           backgroundColor: '#fcfcfc',
+           color:'#e3e3e3',          
+           padding:{top:0, left:0, bottom:0, right:0}       
     },
        
     livRoomAssign: {
@@ -243,7 +250,7 @@
     },
     
     livSHSListview: {
-    	backgroundColor: '#ffffff',
+    	backgroundColor: '#fcfcfc',
     	font: { size: "102%", bold: false },
        	alternateItemBackgroundColor: '#e2edf8',
        	highlightBackgroundColor: '#fee379',

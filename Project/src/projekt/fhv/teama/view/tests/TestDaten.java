@@ -51,14 +51,14 @@ public class TestDaten {
 	     NumberFormat numberFormat = NumberFormat.getInstance();
 	     numberFormat.setMinimumIntegerDigits(3);
 	    	     
-	     for (int i = 0; i <= 40; i++) {
+	     for (int i = 0; i <= 10; i++) {
 			
 	    	 verfuegbareDopplezimmer.add("Nr. "+ numberFormat.format(i)+" Double Room");
 	    	 verfuegbareEinzelzimmer.add("Nr. "+ numberFormat.format(i)+" Single Room");
 	    	 ankommendeGaeste.add("Nr. " +numberFormat.format(i)+ " Lastname "+"Firstname, "+ "Street Nr., "+"ZIP "+"City");
 	    	 
 
-	    	 	if(i==25 || i==35 || i ==50){
+	    	 	if(i==3 || i==6 || i ==8){
 	    	 		gaesteInReservierung.add("Lastname"+i+" Firstname");
 	   	    		gastAdressen.add("Street Nr. "+i+", ZIP "+"City");
 
