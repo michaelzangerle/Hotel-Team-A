@@ -45,7 +45,7 @@ public class ControllerCheckInTest {
 		IControllerZimmerstatus czimmerStatus=new ControllerZimmerstatus();
 		IControllerAdresse cadr=new ControllerAdresse();
 		
-		
+		//TODO Exeption von Datebank wenn kein eintrag
 		ControllerCheckIn controllerCheckIn=new ControllerCheckIn(cres, cauf, cgast, ctres, ckat, ckonto, cpfandTyp, czimmer, czimmerStatus, cadr);
 		
 		try {
@@ -64,6 +64,7 @@ public class ControllerCheckInTest {
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
+			
 		}
 		
 		
