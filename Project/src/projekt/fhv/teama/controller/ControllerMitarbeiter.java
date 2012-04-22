@@ -1,6 +1,5 @@
 package projekt.fhv.teama.controller;
 
-import java.util.List;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
