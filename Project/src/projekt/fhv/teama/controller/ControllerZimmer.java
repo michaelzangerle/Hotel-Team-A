@@ -24,7 +24,7 @@ public class ControllerZimmer implements IControllerZimmer {
 	}
 
 	@Override
-	public List<IZimmer> getZimmerFürGegebeneKategorie(
+	public List<IZimmer> getVerfuegbareZimmerFürGegebeneKategorie(
 			IKategorie ausgewählteKategorie) throws DatabaseEntryNotFoundException {
 		
 		List<IZimmer> verfügbare=new Vector<IZimmer>();
@@ -56,6 +56,27 @@ public class ControllerZimmer implements IControllerZimmer {
 				e.printStackTrace();
 			}
 		
+	}
+
+	@Override
+	public List<IZimmer> getVerfügbareZimmer() {
+		
+		List<IZimmer> verfügbare=new Vector<IZimmer>();
+		List<IZimmer> alle = null;
+		try {
+			alle = new Vector<IZimmer>(zimmerDao.getAll());
+		} catch (DatabaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for (IZimmer zi : alle) {
+			if(zi.getZimmerstatus().getKuerzel().equals("fuck"))
+			{
+				verfügbare.add(zi);
+			}
+		}
+		return verfügbare;
 	}
 	
 

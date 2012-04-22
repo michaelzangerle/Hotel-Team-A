@@ -252,9 +252,13 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 */
 	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)throws DatabaseEntryNotFoundException
 	{
-		return controllerZimmer.getZimmerFürGegebeneKategorie(k);
+		return controllerZimmer.getVerfuegbareZimmerFürGegebeneKategorie(k);
 	}
 	
+	public List<IZimmer> getVerfügbareZimmer()
+	{
+		return controllerZimmer.getVerfügbareZimmer();
+	}
 	
 	
 	/**

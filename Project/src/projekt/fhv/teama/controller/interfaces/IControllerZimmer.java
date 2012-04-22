@@ -8,8 +8,10 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 public interface IControllerZimmer {
 
-	List<IZimmer> getZimmerFürGegebeneKategorie(IKategorie ausgewählteKategorie)throws DatabaseEntryNotFoundException ;
+	List<IZimmer> getVerfuegbareZimmerFürGegebeneKategorie(IKategorie ausgewählteKategorie)throws DatabaseEntryNotFoundException ;
 
 	void save(IZimmer zimmer);
+
+	List<IZimmer> getVerfügbareZimmer();
 
 }
