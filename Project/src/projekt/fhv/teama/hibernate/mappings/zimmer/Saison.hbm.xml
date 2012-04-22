@@ -14,15 +14,15 @@
             <column name="BEZEICHNUNG" sql-type="varchar" length="255"/>
         </property>
         
-        <property name="von" type="java.sql.Timestamp">
+        <property name="von" type="java.sql.Date">
             <column name="VON" sql-type="date"/>
         </property>
         
-        <property name="bis" type="java.sql.Timestamp">
+        <property name="bis" type="java.sql.Date">
             <column name="BIS" sql-type="date"/>
         </property>
                 
-        <set name="zimmerpreise" table="ZIMMERPREIS">
+        <set name="zimmerpreise" table="ZIMMERPREIS" lazy="false" cascade="all">
             <key column="zimmerpreisID"/>
             <one-to-many class="projekt.fhv.teama.classes.zimmer.Zimmerpreis" />
         </set>
