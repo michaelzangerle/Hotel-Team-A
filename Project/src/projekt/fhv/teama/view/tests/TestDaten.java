@@ -35,7 +35,6 @@ public class TestDaten {
 	public ListAdapter<String> alZugeteilteZimmer;
 	
 
-	
 	public void generateTestData() {
 		
 	     verfuegbareDopplezimmer = new ArrayList<String>();
@@ -52,29 +51,29 @@ public class TestDaten {
 	     NumberFormat numberFormat = NumberFormat.getInstance();
 	     numberFormat.setMinimumIntegerDigits(3);
 	    	     
-	     for (int i = 0; i <= 100; i++) {
+	     for (int i = 0; i <= 40; i++) {
 			
 	    	 verfuegbareDopplezimmer.add("Nr. "+ numberFormat.format(i)+" Double Room");
 	    	 verfuegbareEinzelzimmer.add("Nr. "+ numberFormat.format(i)+" Single Room");
 	    	 ankommendeGaeste.add("Nr. " +numberFormat.format(i)+ " Lastname "+"Firstname, "+ "Street Nr., "+"ZIP "+"City");
 	    	 
-	    	 if(i<=25 || i>=75){
-	    	 gastAdressen.add("Lastname"+i+" Firstname");
-	    	 	if(i==25 || i==75 || i ==100){
-	    	 		gaesteInReservierung.add("Lastname"+i+" Firstname");
-	    	 			    	 	}
-	    	 }
-	    	 if (i==3) {
-		      gebuchteZimmerkategorien.add(i + "Double Room(s)");
-		      gebuchteZimmerkategorien.add(i + "Single Room(s)");		      
-		      }
-	    	 
-	    	 pfandkategorien.add("ID card");
-	    	 pfandkategorien.add("Passport");
-	    	 pfandkategorien.add("Driving license");
 
-  		 }
-	     
+	    	 	if(i==25 || i==35 || i ==50){
+	    	 		gaesteInReservierung.add("Lastname"+i+" Firstname");
+	   	    		gastAdressen.add("Street Nr. "+i+", ZIP "+"City");
+
+	    	 			    	 	}
+	    	 
+	    	 if (i==3) {
+		      gebuchteZimmerkategorien.add(i + " Double Room(s)");
+		      gebuchteZimmerkategorien.add(i + " Single Room(s)");		      
+		      } 
+
+  		 }	     
+    	 
+    	 pfandkategorien.add("ID card");
+    	 pfandkategorien.add("Passport");
+    	 pfandkategorien.add("Driving license");
 	     
 	     /* ListAdapter erstellen */
 	     alAnkommendeGaeste = new ListAdapter<String>(ankommendeGaeste);

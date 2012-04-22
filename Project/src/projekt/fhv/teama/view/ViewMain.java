@@ -3,6 +3,7 @@ package projekt.fhv.teama.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -28,50 +29,36 @@ public class ViewMain extends Window implements Application, Bindable {
 	Label lbReservationDetails;	
 	
 	/* Border Container = Forms */
-	Border reservationForm01;
-	Border checkInForm01;
-	Border checkInForm02;	
-	Border checkInForm03;
-	Border checkInForm04;
+	Border reservationForm01;Border checkInForm01;Border checkInForm02;Border checkInForm03;Border checkInForm04;
 	Border occupationPreview;
 	
 	/* Buttons */
     PushButton rf1PBtnCheckIn;;
 		
-	PushButton cf1PBtnNext;
-	PushButton cf2PBtnNext;
-	PushButton cf3PBtnNext;
-	PushButton cf4PBtnFinish;
+	PushButton cf1PBtnNext;	PushButton cf2PBtnNext;	PushButton cf3PBtnNext;	PushButton cf4PBtnFinish; PushButton cf1PBtnBack;
+	PushButton cf2PBtnBack; PushButton cf3PBtnBack; PushButton cf4PBtnBack;	PushButton cf1PBtnCancel; PushButton cf2PBtnCancel;
+	PushButton cf3PBtnCancel; PushButton cf4PBtnCancel;
 	
-	PushButton cf1PBtnBack;
-	PushButton cf2PBtnBack;
-	PushButton cf3PBtnBack;
-	PushButton cf4PBtnBack;
-	
-	PushButton cf1PBtnCancel;
-	PushButton cf2PBtnCancel;
-	PushButton cf3PBtnCancel;
-	PushButton cf4PBtnCancel;
-	
-	/* ListViews */
-	ListView lvAssignedRooms;
-	ListView lvBookedRoomCategories;
-	ListView lvReservationSearch;
-	
-	ListButton lbtnGuests;
-	ListButton lbtnAddresses;
-	ListButton lbtnDepositType;
+	/* ListViews, ListButtons and CalendarButtons */
+	ListView lvAssignedRooms; ListView lvBookedRoomCategories; ListView lvReservationSearch;
+	ListButton lbtnGuests; ListButton lbtnAddresses; ListButton lbtnDepositType; CalendarButton cbBirthdate; CalendarButton cbArrival;
+	CalendarButton cbDeparture;
 
+	/* TextInputs, RadioButtons and Checkboxes */
+	TextInput tiLastName; TextInput tiFirstName; ButtonGroup bgGender; RadioButton rbMale; RadioButton rbFemale;
+	TextInput tiStreet; TextInput tiCity; TextInput tiCountry; TextInput tiZip; TextInput tiPhone; TextInput tiMail;
+	TextInput tiAccountNr; TextInput tiBankCodeNr; TextInput tiIban; TextInput tiBic; TextInput tiDepositNumber;
+	
+	/* Labels */
+	Label lbProgress01;	Label lbProgress02;	Label lbProgress03;	Label lbProgress04;
 	
 	/* Processbar */
-	Border progress;
-	Meter meter;
+	Border progress; Meter meter;
 	
 	BoxPane bpAssignedRooms;
 	BoxPane bpRoomsSummary;
 
 
-		
 	/**
 	 * @param args
 	 */
@@ -110,7 +97,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 		
 		/** Controls initialisieren *********************************************/
-		
+
 		/* Forms initialisieren */
 		reservationForm01 = (Border)arg0.get("reservationForm01");
 		checkInForm01 = (Border)arg0.get("checkInForm01");
@@ -118,11 +105,10 @@ public class ViewMain extends Window implements Application, Bindable {
 		checkInForm03 = (Border)arg0.get("checkInForm03");
 		checkInForm04 = (Border)arg0.get("checkInForm04");
 			
-		occupationPreview = (Border)arg0.get("occupationPreview");
+		occupationPreview = (Border)arg0.get("occupationPreview");		
 		
 		/* Buttons initialisieren | ViewRegistration */
 		rf1PBtnCheckIn  = (PushButton)arg0.get("rf1PBtnCheckIn");		
-		
 		
 		/* Buttons initialisieren | ViewCheckIn */
 		cf1PBtnNext = (PushButton)arg0.get("cf1PBtnNext");
@@ -148,15 +134,38 @@ public class ViewMain extends Window implements Application, Bindable {
 		lbtnAddresses = (ListButton)arg0.get("lbtnAddresses");
 		lbtnDepositType = (ListButton)arg0.get("lbtnDepositType");
 		
+		/* TextInputs, RadioButtons and CheckBoxes */
+		tiLastName = (TextInput)arg0.get("tiLastName");
+		tiFirstName = (TextInput)arg0.get("tiFirstName");
+		bgGender = (ButtonGroup)arg0.get("bgGender");
+		rbMale = (RadioButton)arg0.get("rbMale");
+		rbFemale = (RadioButton)arg0.get("rbFemale");
+		tiStreet = (TextInput)arg0.get("tiStreet");
+		tiCity = (TextInput)arg0.get("tiCity");
+		tiCountry = (TextInput)arg0.get("tiCountry");
+		tiZip = (TextInput)arg0.get("tiZip");
+		tiPhone = (TextInput)arg0.get("tiPhone");
+		tiMail = (TextInput)arg0.get("tiMail");
+		tiAccountNr = (TextInput)arg0.get("tiAccountNr");		
+		tiBankCodeNr = (TextInput)arg0.get("tiBankCodeNr");
+		tiIban = (TextInput)arg0.get("tiIban");
+		tiBic = (TextInput)arg0.get("tiBic");
+		tiDepositNumber = (TextInput)arg0.get("tiDepositNumber");
+
+		/* Labels */
+		lbProgress01 = (Label)arg0.get("lbProgress01");
+		lbProgress02 = (Label)arg0.get("lbProgress02");
+		lbProgress03 = (Label)arg0.get("lbProgress03");
+		lbProgress04 = (Label)arg0.get("lbProgress04");
+				
 		/* ProgressBar */
 		progress = (Border)arg0.get("mainProgress");
-		meter = (Meter)arg0.get("meter");
-					
+		meter = (Meter)arg0.get("meter");		
 		
+
 		bpRoomsSummary = (BoxPane)arg0.get("bpRoomsSummary");
 		bpAssignedRooms = (BoxPane)arg0.get("bpAssignedRooms");			
-				
-		
+						
 		/** Ende - Controls initialisieren *********************************************/
 
 		
@@ -170,22 +179,23 @@ public class ViewMain extends Window implements Application, Bindable {
 		occupationPreview.setVisible(false);
 		viewController.testDaten.generateTestData();
 		
+		
+		/** Testdaten füllen ***********************************************************/
 		lvReservationSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
-
+		lbtnGuests.setListData(viewController.testDaten.alGaesteInReservierung);
+		lbtnGuests.setSelectedIndex(0);
+		lbtnAddresses.setListData(viewController.testDaten.alGastAdressen);
+		lbtnAddresses.setSelectedIndex(0);
+		lvBookedRoomCategories.setListData(viewController.testDaten.alGebuchteZimmerkategorien);
+		lvAssignedRooms.setListData(viewController.testDaten.alVerfügbareDoppelzimmer);
+		lbtnDepositType.setListData(viewController.testDaten.alPfandkategorien);
+		lbtnDepositType.setSelectedIndex(0);
+		
 		meter.setPercentage(0.25);
-		
-	
-		
+				
 		/** Ende - Zustände zum Programmstart initialisieren **************************/
 
-		
-		
-		/*** Test mit List Adapter ******************************************************************/
-		
 
-		// lvAssignedRooms.setListData(adaptedDoubleRooms);
-	     
-	     /**** Ende Test mit List Adapter ****************************************************************/      
 		
 		
 		 /** Action Listeners ****************************************************************************/
@@ -300,6 +310,21 @@ public class ViewMain extends Window implements Application, Bindable {
 			
 		});
 		
+		
+		Action cancel = new Action(true) {
+		    @Override
+		    @SuppressWarnings("unchecked")
+		    public void perform(Component source) {
+		        Alert.alert("Cancel the Check-In Process? No Inputs will be changed or saved!", ViewMain.this);
+		        
+		    }
+		};
+		
+
+		cf1PBtnCancel.setAction(cancel);
+		cf2PBtnCancel.setAction(cancel);
+		cf3PBtnCancel.setAction(cancel);
+		cf4PBtnCancel.setAction(cancel);		
 	}
 	
 

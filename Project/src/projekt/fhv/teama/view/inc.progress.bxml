@@ -7,10 +7,10 @@
 	<StackPane>
 	<Meter bxml:id="meter" preferredHeight="30" styles="$styles.meter"/>
 	<FillPane orientation="horizontal">
-	<Label text="Step 1" cursor="hand" tooltipText="Verify the personal data of the guest or enter a new one" tooltipDelay="250" styles="$styles.lbMeter"/>
-	<Label text="Step 2" cursor="hand" tooltipText="Choose the room category and assign an available room" tooltipDelay="250" styles="$styles.lbMeter"/>
-	<Label text="Step 3" cursor="hand" tooltipText="Select a deposit category and enter the corresponding number" tooltipDelay="250" styles="$styles.lbMeter"/>
-	<Label text="Step 4" cursor="hand" tooltipText="Review the assigend rooms, hand out the keys and finish the check-in process" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label bxml:id="lbProgress01" text="Step 1" cursor="hand" tooltipText="Verify the personal data of the guest or enter a new one" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label bxml:id="lbProgress02" text="Step 2" cursor="hand" tooltipText="Choose the room category and assign an available room" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label bxml:id="lbProgress03" text="Step 3" cursor="hand" tooltipText="Select a deposit category and enter the corresponding number" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label bxml:id="lbProgress04" text="Step 4" cursor="hand" tooltipText="Review the assigend rooms, hand out the keys and finish the check-in process" tooltipDelay="250" styles="$styles.lbMeter"/>
 	</FillPane>
 	</StackPane>	
 	</BoxPane>

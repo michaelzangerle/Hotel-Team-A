@@ -43,11 +43,11 @@
 					<BoxPane orientation="horizontal" bxml:id="bpStay" styles="{spacing:30}">
 					<BoxPane orientation="vertical">
 					<Label bxml:id="lbArrival" text="Arrival" styles="$styles.libHeading" />
-					<CalendarButton preferredWidth="130" bxml:id="cbArrival" />
+					<CalendarButton bxml:id="cbArrival" preferredWidth="130" />
 					</BoxPane>
 					<BoxPane orientation="vertical">
 					<Label bxml:id="lbDeparture" text="Departure" styles="$styles.libHeading" />
-					<CalendarButton preferredWidth="130" bxml:id="cdDeparture" />
+					<CalendarButton bxml:id="cbDeparture"  preferredWidth="130" />
 				    </BoxPane>	
 				   </BoxPane>
 				</Form.Section>
