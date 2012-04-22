@@ -42,7 +42,7 @@
 		<!-- Adresses ################################################################################	-->
 		<Separator bxml:id="sprAdressDetail" heading=" Addresses " styles="$styles.sprHeading"/>
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-			<Form styles="{showFlagIcons:false}">
+			<Form styles="{showFlagIcons:false}">		
 				<Form.Section>
 					<Label bxml:id="lbPrimaryAddress" text="Change primary address or enter and add a new one" />
 					<BoxPane  styles="{padding:{top:0, left:0, bottom:15, right:0}}">
@@ -57,20 +57,20 @@
 						<TextInput bxml:id="tiZip" prompt="Zip" preferredWidth="80"/>
 					</BoxPane>
 				</Form.Section>
-			</Form>
+				</Form>
 		</BoxPane>
 
 		<!-- Contact Information #####################################################################	-->
 		<Separator bxml:id="sprContactDetail" heading=" Contact Information " styles="$styles.sprHeading"/>
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-			<Form styles="{showFlagIcons:false}">
+			<Form styles="{showFlagIcons:false}">		
 				<Form.Section>
 					<BoxPane bxml:id="bpContact" Form.label="Contact" styles="{spacing:5}">
 						<TextInput bxml:id="tiPhone" prompt="Phone"/>
 						<TextInput bxml:id="tiMail" prompt="Mail"/>
 					</BoxPane>
 				</Form.Section>
-			</Form>
+				</Form>
 		</BoxPane>
 		
 		<!-- Financial Information #####################################################################	-->

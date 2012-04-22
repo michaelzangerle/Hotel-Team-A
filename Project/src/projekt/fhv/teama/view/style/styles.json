@@ -22,7 +22,7 @@
     "org.apache.pivot.wtk.TextInput": {
        	backgroundColor: '#fcfcfc',
        	font: {size:"120%"},
-       	color:'#335085',
+       	color:'#0f3272',
         padding:{top:5, left:10, bottom:5, right:0}
     },
     

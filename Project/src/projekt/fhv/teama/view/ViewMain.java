@@ -3,26 +3,28 @@ package projekt.fhv.teama.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
 import java.net.URL;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
+import org.apache.pivot.collections.ArrayList;
+import org.apache.pivot.collections.List;
 import org.apache.pivot.collections.Map;
-import org.apache.pivot.collections.adapter.ListAdapter;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.*;
 
 import projekt.fhv.teama.view.controller.ViewController;
+import projekt.fhv.teama.view.support.BlockingDialog;
 
 public class ViewMain extends Window implements Application, Bindable {
 	
+	List<Component> checkInForms = new ArrayList<Component>();
+	List<Component> textFields = new ArrayList<Component>();
+
 	ViewController viewController = new ViewController();
-	BXMLSerializer bxmlSerializer = new BXMLSerializer();	
+	BXMLSerializer bxmlSerializer = new BXMLSerializer();
+	
+	Action gotoStep;
+	
 	private Window window = null;
 	
 	/* Labels */
@@ -98,12 +100,18 @@ public class ViewMain extends Window implements Application, Bindable {
 		
 		/** Controls initialisieren *********************************************/
 
-		/* Forms initialisieren */
+		/* Borders & Forms initialisieren */
 		reservationForm01 = (Border)arg0.get("reservationForm01");
 		checkInForm01 = (Border)arg0.get("checkInForm01");
 		checkInForm02 = (Border)arg0.get("checkInForm02");
 		checkInForm03 = (Border)arg0.get("checkInForm03");
 		checkInForm04 = (Border)arg0.get("checkInForm04");
+		
+		checkInForms.add(checkInForm01);
+		checkInForms.add(checkInForm02);
+		checkInForms.add(checkInForm03);
+		checkInForms.add(checkInForm04);
+		checkInForms.add(reservationForm01);
 			
 		occupationPreview = (Border)arg0.get("occupationPreview");		
 		
@@ -177,10 +185,10 @@ public class ViewMain extends Window implements Application, Bindable {
 		checkInForm03.setVisible(false);
 		checkInForm04.setVisible(false);
 		occupationPreview.setVisible(false);
-		viewController.testDaten.generateTestData();
-		
 		
 		/** Testdaten füllen ***********************************************************/
+		viewController.testDaten.generateTestData();
+		
 		lvReservationSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
 		lbtnGuests.setListData(viewController.testDaten.alGaesteInReservierung);
 		lbtnGuests.setSelectedIndex(0);
@@ -196,7 +204,6 @@ public class ViewMain extends Window implements Application, Bindable {
 		/** Ende - Zustände zum Programmstart initialisieren **************************/
 
 
-		
 		
 		 /** Action Listeners ****************************************************************************/
 		/* ToDo - in ViewController umsetzen*/
@@ -309,22 +316,152 @@ public class ViewMain extends Window implements Application, Bindable {
 			}
 			
 		});
+				
 		
 		
-		Action cancel = new Action(true) {
+		    gotoStep = new Action(true) {
 		    @Override
-		    @SuppressWarnings("unchecked")
 		    public void perform(Component source) {
-		        Alert.alert("Cancel the Check-In Process? No Inputs will be changed or saved!", ViewMain.this);
+		      
+		    			    	
+		    	if (source.getName().equals("lbProgress01")) {
+					meter.setPercentage(0.25);
+					checkInForm01.setVisible(true);
+					checkInForm02.setVisible(false);
+					checkInForm03.setVisible(false);
+					checkInForm04.setVisible(false);
+		    	}
+			      
+		    	if (source.getName().equals("lbProgress02")) {
+					meter.setPercentage(0.50);
+					checkInForm01.setVisible(false);
+					checkInForm02.setVisible(true);
+					checkInForm03.setVisible(false);
+					checkInForm04.setVisible(false);
+		    	}
+			      
+		    	if (source.getName().equals("lbProgress03")) {
+					meter.setPercentage(0.75);
+					checkInForm01.setVisible(false);
+					checkInForm02.setVisible(false);
+					checkInForm03.setVisible(true);
+					checkInForm04.setVisible(false);
+		    	}
+			      
+		    	if (source.getName().equals("lbProgress04")) {
+					meter.setPercentage(1);
+					checkInForm01.setVisible(false);
+					checkInForm02.setVisible(false);
+					checkInForm03.setVisible(false);
+					checkInForm04.setVisible(true);
+		    	}
+		    	
 		        
 		    }
 		};
 		
 
+		
+		lbProgress01.getComponentMouseButtonListeners().add(new ComponentMouseButtonListener() {
+
+			@Override
+			public boolean mouseClick(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
+					int arg4) {
+					gotoStep.perform(arg0);
+				return false;
+			}
+
+			@Override
+			public boolean mouseDown(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
+				return false;
+			}
+
+			@Override
+			public boolean mouseUp(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
+				return false;
+			}
+			
+		});
+		
+		
+		lbProgress02.getComponentMouseButtonListeners().add(new ComponentMouseButtonListener.Adapter() {
+
+			@Override
+			public boolean mouseClick(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
+					int arg4) {
+					gotoStep.perform(arg0);
+				return false;
+			}
+
+			
+		});
+		
+		
+		lbProgress03.getComponentMouseButtonListeners().add(new ComponentMouseButtonListener.Adapter() {
+
+			@Override
+			public boolean mouseClick(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
+					int arg4) {
+					gotoStep.perform(arg0);
+				return false;
+			}
+		
+		});
+		
+		
+		
+		lbProgress04.getComponentMouseButtonListeners().add(new ComponentMouseButtonListener.Adapter() {
+
+			@Override
+			public boolean mouseClick(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
+					int arg4) {
+					gotoStep.perform(arg0);
+				return false;
+			}
+			
+		});
+		
+
+					
+		Action cancel = new Action(true) {
+		    @Override
+		    public void perform(Component source) {
+		      
+		    BlockingDialog bd = new BlockingDialog();
+		    bd.setContent(new Alert(MessageType.WARNING, "Cancel the Check-In Process?" +
+		        		" Inputs will not be saved!", new ArrayList<String>("Ja","Nein")));
+		    Dialog erg = bd.open(source.getDisplay());
+		    int i = ((Alert)erg).getSelectedOptionIndex();
+		    
+		    if( erg.getResult() && i ==0 ) {
+		    	
+			    checkInForm01.repaint();
+			    checkInForm02.repaint();
+			    checkInForm03.repaint();
+			    checkInForm04.repaint();		    
+			    checkInForm01.setVisible(false);
+			    checkInForm02.setVisible(false);
+			    checkInForm03.setVisible(false);
+			    checkInForm04.setVisible(false);
+			    progress.setVisible(false);
+				meter.setPercentage(0.25);
+				reservationForm01.setVisible(true);
+		    }		    
+		        
+		    }
+		};
+		
 		cf1PBtnCancel.setAction(cancel);
 		cf2PBtnCancel.setAction(cancel);
 		cf3PBtnCancel.setAction(cancel);
-		cf4PBtnCancel.setAction(cancel);		
+		cf4PBtnCancel.setAction(cancel);
+		
 	}
 	
 
