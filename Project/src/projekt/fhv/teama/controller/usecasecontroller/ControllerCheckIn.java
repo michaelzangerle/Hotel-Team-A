@@ -245,7 +245,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @throws DatabaseEntryNotFoundException
 	 */
 	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k) throws DatabaseEntryNotFoundException {
-		return controllerZimmer.getVerfuegbareZimmerFürGegebeneKategorie(k);
+		return controllerZimmer.getVerfuegbareZimmerFürGegebeneKategorie(k,getAktuelleReservierung());
 	}
 
 	public List<IZimmer> getVerfügbareZimmer() {
@@ -269,16 +269,12 @@ public class ControllerCheckIn implements IControllerCheckIn {
 			IPfandtyp pfand, String pfandnummer) throws DatabaseException {
 
 		controllerKontodaten.save(gast.getKontodaten());
-		controllerZimmer.save(zimmer);
-		
+		controllerZimmer.setAktullesZimmer(zimmer);
+		controllerZimmer.setStatus(controllerZimmerstatus.getStatusByKuerzel("BNG"));
+		controllerZimmer.save(controllerZimmer.getAktullesZimmer());
 		for (IAdresse adr : gast.getAdressen()) {
 			controllerAdresse.save(adr);
 		}
-		
-		for (IReservierung r : gast.getReservierungen()) {
-			controllerReservierung.save(r);	
-		}
-		
 		controllerGast.save(gast);
 		controllerAufenthalt.create(preis, von, bis, schluessel, gast, zimmer, pfand, pfandnummer);
 
