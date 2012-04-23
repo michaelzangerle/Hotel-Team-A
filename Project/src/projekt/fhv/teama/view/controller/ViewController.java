@@ -65,6 +65,7 @@ public class ViewController implements Application{
         //we assign the newly created Person object into our variable called
         //"person". Now we can reference the attributes set in the bxml document.
         
+        
         viewLogin = (ViewLogin) bS.readObject(getClass().getResource("../ViewLogin.bxml"));
         viewMain = (ViewMain) bS.readObject(getClass().getResource("../ViewMain.bxml"));
         startMain();

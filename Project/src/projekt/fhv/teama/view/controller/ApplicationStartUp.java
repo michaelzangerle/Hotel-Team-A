@@ -18,7 +18,8 @@ public class ApplicationStartUp {
         * Load the pivot application into our Java program.
         * Remember to enter correct class in the parameter list..  
         */
-        DesktopApplicationContext.main(ViewController.class, args);
+        DesktopApplicationContext.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
+    	DesktopApplicationContext.main(ViewController.class, args);
         
 
     }

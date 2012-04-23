@@ -83,16 +83,16 @@ public class ViewMain extends Window implements Application, Bindable {
 	BoxPane bpRoomsSummary;
 
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
-		DesktopApplicationContext
-				.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
-		DesktopApplicationContext.main(
-				(Class<? extends Application>) ViewMain.class, args);		
-	}
+//	/**
+//	 * @param args
+//	 */
+//	public static void main(String[] args) {
+//
+//		DesktopApplicationContext
+//				.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
+//		DesktopApplicationContext.main(
+//				(Class<? extends Application>) ViewMain.class, args);		
+//	}
 
 	@Override
 	public void startup(Display display, Map<String, String> properties)

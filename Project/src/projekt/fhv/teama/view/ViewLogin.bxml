@@ -4,7 +4,7 @@
 		function init() {  }
 	</bxml:script>
 	<bxml:define>
-		<bxml:include  bxml:id="styles" src="style/styles.json"/>
+		<bxml:include bxml:id="loginstyles" src="style/styles.json"/>
 	</bxml:define>
 	<SplitPane bxml:id="splitPane" orientation="horizontal" splitRatio="0.6">
 		<left>
@@ -14,9 +14,9 @@
 				<BoxPane orientation="vertical" preferredHeight="200" styles="{padding:{top:20, left:10, bottom:25, right:30}, fill:true}" >
 					<ImageView image="@images/logo_shs_claim.svg" styles="{verticalAlignment:'top', fill:true}"/>
 					<BoxPane bxml:id="bpDateTime" orientation="vertical" styles="{ padding:{top:50, left:0, bottom:25, right:0}, verticalAlignment:'center', spacing:0, fill:true}">
-					<Label bxml:id="lbcurrentTime" textKey="currentTime" styles="$styles.lbcurrentTime"/>
-					<Label bxml:id="lbcurrentDay" textKey="currentDay" styles="$styles.lbcurrentDay"/>
-					<Label bxml:id="lbcurrentDate" textKey="currentDate" styles="$styles.lbcurrentDate"/>
+					<Label bxml:id="lbcurrentTime" textKey="currentTime" styles="$loginstyles.lbcurrentTime"/>
+					<Label bxml:id="lbcurrentDay" textKey="currentDay" styles="$loginstyles.lbcurrentDay"/>
+					<Label bxml:id="lbcurrentDate" textKey="currentDate" styles="$loginstyles.lbcurrentDate"/>
 					</BoxPane>						
 				</BoxPane>
 				</StackPane>

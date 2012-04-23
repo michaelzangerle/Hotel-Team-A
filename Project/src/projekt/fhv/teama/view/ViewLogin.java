@@ -149,8 +149,8 @@ public class ViewLogin extends Window implements Application, Bindable {
 						if(loginok!=null)
 						{
 							
-							String x[]={"--name=value"};
-							ViewMain.main(x);
+//							String x[]={"--name=value"};
+//							ViewMain.main(x);
 							
 						}
 						else {
