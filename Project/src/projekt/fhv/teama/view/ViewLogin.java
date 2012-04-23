@@ -7,9 +7,18 @@ import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.*;
 
+import projekt.fhv.teama.classes.personen.IMitarbeiter;
+import projekt.fhv.teama.controller.ControllerMitarbeiter;
+import projekt.fhv.teama.controller.exeption.LoginInExeption;
+import projekt.fhv.teama.controller.usecasecontroller.ControllerLogin;
+import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerLogin;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.view.support.SHSDateTime;
 
 public class ViewLogin extends Window implements Application, Bindable {
+	
+	ControllerLogin controlLogin = new ControllerLogin(new ControllerMitarbeiter());
+	
 	
 	@BXML private TextInput tfUsername = null;
 	@BXML private TextInput tfPassword = null;
@@ -75,7 +84,7 @@ public class ViewLogin extends Window implements Application, Bindable {
 		DesktopApplicationContext
 				.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
 		DesktopApplicationContext.main(
-				(Class<? extends Application>) ViewLogin.class, args);
+				(Class<? extends Application>) ViewLogin.class, args);		
 
 	}
 
@@ -118,8 +127,31 @@ public class ViewLogin extends Window implements Application, Bindable {
 				if(tfUsername.getText().equals("") | tfPassword.getText().equals("")) {
 					Alert.alert("Please insert username and password.", ViewLogin.this);
 				}else {
+					
+					/*
 					String x[]={"--name=value"};
-					ViewMain.main(x);	
+					ViewMain.main(x);
+					*/
+					
+					try {
+						/* 66, 1234 */
+						IMitarbeiter loginok= controlLogin.checkLogin(tfUsername.getText(), tfPassword.getText());
+						if(loginok!=null)
+						{
+							Alert.alert("Username: "+loginok.getVorname()+" "+loginok.getNachname(), ViewLogin.this);
+							System.out.println("Login Ok\nVorname: "+loginok.getVorname()+"\nNachname: "+loginok.getNachname()+"\nEmail: "+loginok.getEmail());
+						}
+						else {
+							System.out.println("Login Not Ok");
+						}
+						
+					} catch (DatabaseException e) {
+						System.out.println(e.getMessage());
+					}
+					 catch (LoginInExeption e) {
+							System.out.println(e.getMessage());
+						}
+					
 				}
 			}
 			
