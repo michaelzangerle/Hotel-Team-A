@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 17.04.2012 19:08:51 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.Kontingent" table="KONTINGENT">
+    <class name="projekt.fhv.teama.classes.Kontingent" table="kontingent">
         
         <id name="ID" type="int">
             <column name="kontingentID" />

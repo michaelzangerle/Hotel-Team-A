@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 13.04.2012 15:30:46 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.rechnung.Zahlungsmethode" table="ZAHLUNGSMETHODE">
+    <class name="projekt.fhv.teama.classes.rechnung.Zahlungsmethode" table="zahlungsmethode">
         
         <id name="ID" type="int">
             <column name="zahlungsmethodeID" sql-type="int" />

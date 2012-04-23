@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 12.04.2012 23:46:53 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.zimmer.Zimmerstatus" table="ZIMMERSTATUS">
+    <class name="projekt.fhv.teama.classes.zimmer.Zimmerstatus" table="zimmerstatus">
     
         <id name="ID" type="int">
             <column name="zimmerStatusID" sql-type="int"/>
