@@ -3,6 +3,7 @@ package projekt.fhv.teama.controller.usecasecontroller.test;
 import java.util.List;
 import java.util.Vector;
 
+import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.controller.ControllerAdresse;
@@ -54,10 +55,19 @@ public class ControllerCheckInTest {
 			for (IReservierung r : reservierungs) {
 				
 				System.out.println(String.format("ReservierungsId: %s\nVon: %s\nBis: %s\nPerson: %s %s",r.getID(),r.getVon(),r.getBis(),r.getPerson().getVorname(),r.getPerson().getNachname()));
-//				List<IGast> gaesteGasts=new Vector<IGast>(r.getGaeste());
-//				for (IGast g : gaesteGasts) {
-//					System.out.println(String.format("Gast: %s %s %s\n",g.getVorname(),g.getNachname(),g.getEmail()));
-//				}
+				
+				List<IGast> gaesteGasts=new Vector<IGast>(r.getGaeste());
+				for (IGast g : gaesteGasts) {
+					System.out.println(String.format("Gast: %s %s %s\n",g.getVorname(),g.getNachname(),g.getEmail()));
+					
+					List<IAdresse> adressen =new Vector<IAdresse>(g.getAdressen());
+					
+					for (IAdresse adr : adressen) {
+						System.out.println(String.format("Adresse: %s %s %s %s\n",adr.getOrt(), adr.getPlz(),adr.getStrasse(),adr.getLand().getBezeichnung()));
+					}
+				}
+				
+				System.out.println(r.getTeilreservierungen());
 				
 			}
 			

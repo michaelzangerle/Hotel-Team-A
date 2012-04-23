@@ -30,6 +30,6 @@
         
 		<many-to-one name="land"
 			class="projekt.fhv.teama.classes.personen.Land" column="landID"
-			not-null="true" foreign-key="ID" />
+			not-null="true" foreign-key="ID" lazy="false"/>
     </class>
 </hibernate-mapping>

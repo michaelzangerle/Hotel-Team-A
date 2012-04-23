@@ -1,7 +1,5 @@
 package projekt.fhv.teama.controller.usecasecontroller.test;
 
-import javax.security.auth.login.LoginException;
-
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 import projekt.fhv.teama.controller.ControllerMitarbeiter;
 import projekt.fhv.teama.controller.exeption.LoginInExeption;

@@ -26,28 +26,28 @@
             <column name="VERTRAGSPARTNERID" />
         </many-to-one>
         
-        <set name="optionen" table="RESERVIERUNGSOPTION" lazy="false" cascade="all-delete-orphan"> 
+        <set name="optionen" table="reservierungsoption" lazy="false" cascade="all-delete-orphan"> 
             <key>
                 <column name="optionID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.zimmer.ReservierungsOption" />
         </set>
         
-        <set name="zimmer" table="ZIMMERRESERVIERUNG" lazy="false">
+        <set name="zimmer" table="zimmerreservierung" lazy="false">
             <key>
                 <column name="reservierungID" />
             </key>
             <many-to-many column="zimmerID" class="projekt.fhv.teama.classes.zimmer.Zimmer" />
         </set>
         
-        <set name="gaeste" table="GASTRESERVIERUNG" lazy="false">
+        <set name="gaeste" table="gastreservierung" lazy="false">
             <key>
                 <column name="reservierungID" />
             </key>
             <many-to-many column="gastID" class="projekt.fhv.teama.classes.personen.Gast" />
         </set>
         
-        <set name="teilreservierungen" table="TEILRESERVIERUNG" cascade="all" lazy="false" >
+        <set name="teilreservierungen" table="teilreservierung" cascade="all" lazy="false" >
             <key>
                 <column name="reservierungID" />
             </key>
