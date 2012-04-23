@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 16.04.2012 21:13:03 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.zimmer.Zimmerpreis" table="ZIMMERPREIS">
+    <class name="projekt.fhv.teama.classes.zimmer.Zimmerpreis" table="zimmerpreis">
         
         <id name="ID" type="int">
             <column name="ZIMMERPREISID" />

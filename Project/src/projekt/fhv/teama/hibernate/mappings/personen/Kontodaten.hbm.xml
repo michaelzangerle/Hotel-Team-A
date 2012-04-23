@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 17.04.2012 00:14:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.personen.Kontodaten" table="KONTODATEN">
+    <class name="projekt.fhv.teama.classes.personen.Kontodaten" table="kontodaten">
         <id name="ID" type="int">
         	<column name="kontodatenID" sql-type="int" />
 			<generator class="native" />

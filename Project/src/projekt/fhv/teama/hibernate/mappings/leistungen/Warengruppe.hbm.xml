@@ -4,7 +4,7 @@
 <!-- Generated 14.04.2012 15:49:06 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping auto-import="true" default-access="property">
 	<class name="projekt.fhv.teama.classes.leistungen.Warengruppe"
-		table="WARENGRUPPE">
+		table="warengruppe">
 		
 		<id name="ID" type="int">
 			<column name="warengruppeID" />

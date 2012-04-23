@@ -4,7 +4,7 @@
 <!-- Generated 14.04.2012 15:18:31 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
 	<class name="projekt.fhv.teama.classes.leistungen.Leistung"
-		table="LEISTUNG">
+		table="leistung">
 
 		<id name="ID" type="int">
 			<column name="leistungID" sql-type="int" length="11" not-null="true" />

@@ -4,7 +4,7 @@
 <!-- Generated 13.04.2012 15:41:30 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
 	<class name="projekt.fhv.teama.classes.rechnung.Teilzahlung"
-		table="TEILZAHLUNG">
+		table="teilzahlung">
 
 		<id name="ID" type="int">
 			<column name="zahlungsmethodeID" />

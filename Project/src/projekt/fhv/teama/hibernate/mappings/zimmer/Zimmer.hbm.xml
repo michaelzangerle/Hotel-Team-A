@@ -4,7 +4,7 @@
 <!-- Generated 18.04.2012 14:32:57 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
 	<joined-subclass name="projekt.fhv.teama.classes.zimmer.Zimmer"
-		extends="projekt.fhv.teama.classes.leistungen.Leistung" table="Zimmer"
+		extends="projekt.fhv.teama.classes.leistungen.Leistung" table="zimmer"
 		lazy="false">
 
 		<key column="leistungID" />
