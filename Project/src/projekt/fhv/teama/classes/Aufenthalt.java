@@ -112,6 +112,7 @@ public class Aufenthalt implements IAufenthalt {
 	
 	public Aufenthalt(Float preis, String pfandNr, Date von, Date bis,
 			boolean schluessel, IGast gast, IZimmer zimmer, IPfandtyp pfand) {
+		this.preis = preis;
 		this.pfandNr = pfandNr;
 		this.von = von;
 		this.bis = bis;

@@ -18,7 +18,7 @@ public class TeilreservierungTest {
 		IReservierungDao rnd = ReservierungDao.getInstance();
 		
 		IKategorie kategorie = kategoriedao.getById(6);
-		ITeilreservierung teilreservierung = new Teilreservierung(kategorie, rnd.getById(2), 5);
+		ITeilreservierung teilreservierung = new Teilreservierung(kategorie, rnd.getById(1), 1);
 		
 		teilreservierungdao.create(teilreservierung);
 	
