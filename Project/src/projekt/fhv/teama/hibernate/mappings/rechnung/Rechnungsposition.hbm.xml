@@ -7,7 +7,7 @@
 		table="RECHNUNGSPOSITION">
 
 		<id name="ID" type="int">
-			<column name="rechnungspostionID" />
+			<column name="rechnungspositionID" />
 			<generator class="native" />
 		</id>
 
@@ -37,22 +37,22 @@
 
 		<many-to-one name="zimmer"
 			class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
-			<column name="ZIMMER" />
+			<column name="ZIMMERID" />
 		</many-to-one>
 		
 		<many-to-one name="rechnung"
 			class="projekt.fhv.teama.classes.rechnung.Rechnung" fetch="join">
-			<column name="RECHNUNG" />
+			<column name="RECHNUNGID" />
 		</many-to-one>
 		
 		<many-to-one name="leistung"
 			class="projekt.fhv.teama.classes.leistungen.Leistung" fetch="join">
-			<column name="LEISTUNG" />
+			<column name="LEISTUNGID" />
 		</many-to-one>
 		
 		<many-to-one name="gast"
 			class="projekt.fhv.teama.classes.personen.Gast" fetch="join">
-			<column name="GAST" />
+			<column name="GASTID" />
 		</many-to-one>
 		
 	</class>

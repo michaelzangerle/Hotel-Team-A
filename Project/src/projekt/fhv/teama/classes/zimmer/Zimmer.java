@@ -120,10 +120,17 @@ public class Zimmer extends Leistung implements IZimmer {
 
 	@Override
 	public String toString() {
-		return "Zimmer [ID=" + getID() + ", nummer=" + nummer + ", beschreibung=" + beschreibung + ", kategorie="
-				+ kategorie.getBezeichnung() + ", zimmerStatus=" + zimmerstatus.getBezeichnung() + ", reservierungen=" + reservierungen
-				+ ", statusenticklungen=" + statusentwicklungen + ", gaeste=" + gaeste + ", aufenthalte=" + aufenthalte
-				+ ", rechnungspositionen=" + rechnungspositionen + "]";
+		return "Zimmer [ID=" + getID() 
+				+ ", nummer=" + nummer 
+				+ ", beschreibung=" + beschreibung 
+				+ ", kategorie="+ kategorie.getBezeichnung() 
+				+ ", zimmerStatus=" + zimmerstatus.getBezeichnung() 
+//				+ ", reservierungen=" + reservierungen
+//				+ ", statusenticklungen=" + statusentwicklungen 
+//				+ ", gaeste=" + gaeste 
+//				+ ", aufenthalte=" + aufenthalte
+//				+ ", rechnungspositionen=" + rechnungspositionen 
+				+ "]";
 	}
 
 	@Override
@@ -131,12 +138,12 @@ public class Zimmer extends Leistung implements IZimmer {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + getID();
-		result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
+		//result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
-		result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
+		//result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
 		result = prime * result + ((kategorie == null) ? 0 : kategorie.hashCode());
 		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
-		result = prime * result + ((rechnungspositionen == null) ? 0 : rechnungspositionen.hashCode());
+		//result = prime * result + ((rechnungspositionen == null) ? 0 : rechnungspositionen.hashCode());
 		result = prime * result + ((reservierungen == null) ? 0 : reservierungen.hashCode());
 		result = prime * result + ((statusentwicklungen == null) ? 0 : statusentwicklungen.hashCode());
 		result = prime * result + ((zimmerstatus == null) ? 0 : zimmerstatus.hashCode());
@@ -154,21 +161,21 @@ public class Zimmer extends Leistung implements IZimmer {
 		Zimmer other = (Zimmer) obj;
 		if (getID() != other.getID())
 			return false;
-		if (aufenthalte == null) {
-			if (other.aufenthalte != null)
-				return false;
-		} else if (!aufenthalte.equals(other.aufenthalte))
-			return false;
+//		if (aufenthalte == null) {
+//			if (other.aufenthalte != null)
+//				return false;
+//		} else if (!aufenthalte.equals(other.aufenthalte))
+//			return false;
 		if (beschreibung == null) {
 			if (other.beschreibung != null)
 				return false;
 		} else if (!beschreibung.equals(other.beschreibung))
 			return false;
-		if (gaeste == null) {
-			if (other.gaeste != null)
-				return false;
-		} else if (!gaeste.equals(other.gaeste))
-			return false;
+//		if (gaeste == null) {
+//			if (other.gaeste != null)
+//				return false;
+//		} else if (!gaeste.equals(other.gaeste))
+//			return false;
 		if (kategorie == null) {
 			if (other.kategorie != null)
 				return false;
@@ -179,11 +186,11 @@ public class Zimmer extends Leistung implements IZimmer {
 				return false;
 		} else if (!nummer.equals(other.nummer))
 			return false;
-		if (rechnungspositionen == null) {
-			if (other.rechnungspositionen != null)
-				return false;
-		} else if (!rechnungspositionen.equals(other.rechnungspositionen))
-			return false;
+//		if (rechnungspositionen == null) {
+//			if (other.rechnungspositionen != null)
+//				return false;
+//		} else if (!rechnungspositionen.equals(other.rechnungspositionen))
+//			return false;
 		if (reservierungen == null) {
 			if (other.reservierungen != null)
 				return false;

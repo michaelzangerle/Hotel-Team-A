@@ -39,23 +39,23 @@
         </property>
         
         <many-to-one name="mitarbeiter" class="projekt.fhv.teama.classes.personen.Mitarbeiter" fetch="join">
-            <column name="MITARBEITER" />
+            <column name="MITARBEITERID" />
         </many-to-one>
         
         <many-to-one name="bezahlerLand" class="projekt.fhv.teama.classes.personen.Land" fetch="join">
-            <column name="BEZAHLERLAND" />
+            <column name="BEZAHLERLANDID" />
         </many-to-one>
         
         <set name="rechnungspositionen" table="RECHNUNGSPOSITION" inverse="false" lazy="true">
             <key>
-                <column name="ID" />
+                <column name="rechnungID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.rechnung.Rechnungsposition" />
         </set>
         
         <set name="teilzahlungen" table="TEILZAHLUNG" inverse="false" lazy="true">
             <key>
-                <column name="ID" />
+                <column name="rechnungID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.rechnung.Teilzahlung" />
         </set>

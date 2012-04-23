@@ -158,12 +158,12 @@ public class Reservierung implements IReservierung {
 		result = prime * result + ID;
 		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
 //		result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
-		result = prime * result + ((optionen == null) ? 0 : optionen.hashCode());
-		result = prime * result + ((person == null) ? 0 : person.hashCode());
-		result = prime * result + ((teilreservierungen == null) ? 0 : teilreservierungen.hashCode());
-		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.hashCode());
+//		result = prime * result + ((optionen == null) ? 0 : optionen.hashCode());
+//		result = prime * result + ((person == null) ? 0 : person.hashCode());
+//		result = prime * result + ((teilreservierungen == null) ? 0 : teilreservierungen.hashCode());
+//		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.hashCode());
 		result = prime * result + ((von == null) ? 0 : von.hashCode());
-		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
+//		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
 		return result;
 	}
 

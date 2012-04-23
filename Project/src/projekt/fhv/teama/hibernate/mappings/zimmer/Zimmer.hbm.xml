@@ -3,66 +3,63 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 18.04.2012 14:32:57 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<joined-subclass name="projekt.fhv.teama.classes.zimmer.Zimmer" extends="projekt.fhv.teama.classes.leistungen.Leistung" table="Zimmer" lazy="false">
-        
-        <key column="leistungID" />
-		
+	<joined-subclass name="projekt.fhv.teama.classes.zimmer.Zimmer"
+		extends="projekt.fhv.teama.classes.leistungen.Leistung" table="Zimmer"
+		lazy="false">
+
+		<key column="leistungID" />
+
 		<property name="nummer" type="java.lang.String">
 			<column name="NUMMER" />
 		</property>
-		
+
 		<property name="beschreibung" type="java.lang.String">
 			<column name="BESCHREIBUNG" />
 		</property>
-		
+
 		<many-to-one name="kategorie"
-			class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
+			class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join" lazy="false">
 			<column name="KATEGORIEID" />
 		</many-to-one>
-		
-		<many-to-one name="zimmerstatus"
-			class="projekt.fhv.teama.classes.zimmer.Zimmerstatus" fetch="join">
+
+		<many-to-one name="zimmerstatus" class="projekt.fhv.teama.classes.zimmer.Zimmerstatus" fetch="join"	>
 			<column name="ZIMMERSTATUSID" />
 		</many-to-one>
-		
-		<set name="reservierungen" table="ZIMMERRESERVIERUNG" inverse="false"
-			lazy="true">
+
+		<set name="reservierungen" table="zimmerReservierung" lazy="false">
 			<key>
-				<column name="leistungID" />
+				<column name="zimmerID" />
 			</key>
-			<many-to-many column="reservierungID"
-				class="projekt.fhv.teama.classes.zimmer.Reservierung" />
+			<many-to-many column="reservierungID" class="projekt.fhv.teama.classes.zimmer.Reservierung" />
 		</set>
-		
-		<set name="statusentwicklungen" table="STATUSENTWICKLUNG" inverse="false"
-			lazy="true">
+
+		<set name="statusentwicklungen" table="STATUSENTWICKLUNG">
 			<key>
-				<column name="ID" />
+				<column name="zimmerID" />
 			</key>
 			<one-to-many class="projekt.fhv.teama.classes.zimmer.Statusentwicklung" />
 		</set>
-		
-		<set name="gaeste" table="GAST" inverse="false" lazy="true">
+
+		<set name="gaeste" table="gastReservierung">
 			<key>
-				<column name="ID" />
+				<column name="zimmerID" />
 			</key>
-			<one-to-many class="projekt.fhv.teama.classes.personen.Gast" />
+			<one-to-many  class="projekt.fhv.teama.classes.personen.Gast" />
 		</set>
-		
-		<set name="aufenthalte" table="AUFENTHALT" inverse="false" lazy="true">
+
+		<set name="aufenthalte" table="AUFENTHALT" >
 			<key>
-				<column name="ID" />
+				<column name="zimmerID" />
 			</key>
 			<one-to-many class="projekt.fhv.teama.classes.Aufenthalt" />
 		</set>
-		
-		<set name="rechnungspositionen" table="RECHNUNGSPOSITION" inverse="false"
-			lazy="true">
+
+		<set name="rechnungspositionen" table="RECHNUNGSPOSITION" >
 			<key>
-				<column name="ID" />
+				<column name="zimmerID" />
 			</key>
 			<one-to-many class="projekt.fhv.teama.classes.rechnung.Rechnungsposition" />
 		</set>
-		
+
 	</joined-subclass>
 </hibernate-mapping>

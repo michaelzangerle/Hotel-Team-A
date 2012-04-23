@@ -34,14 +34,14 @@ public class ZimmerstatusDao extends GenericDao<IZimmerstatus> implements IZimme
 		super("Zimmerstatus");
 	}
 
-	public IZimmerstatus getZimmerstatus(String statusName) throws DatabaseEntryNotFoundException {
+	public IZimmerstatus getZimmerstatus(String statusBezeichnung) throws DatabaseEntryNotFoundException {
 
 		IZimmerstatus status = null;
 
 		try {
 			Session session = HibernateHelper.getSession();
 			Query query = session.createQuery("from " + getTable() + " z where z.bezeichnung = :statusName");
-			query.setString("statusName", statusName);
+			query.setString("statusName", statusBezeichnung);
 
 			@SuppressWarnings("rawtypes")
 			List results = query.list();

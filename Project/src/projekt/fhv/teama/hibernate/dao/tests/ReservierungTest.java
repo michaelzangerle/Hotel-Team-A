@@ -18,6 +18,8 @@ import projekt.fhv.teama.classes.zimmer.Reservierung;
 import projekt.fhv.teama.classes.zimmer.ReservierungsOption;
 import projekt.fhv.teama.classes.zimmer.Teilreservierung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
+import projekt.fhv.teama.hibernate.dao.personen.GastDao;
+import projekt.fhv.teama.hibernate.dao.personen.IGastDao;
 import projekt.fhv.teama.hibernate.dao.personen.IPersonDao;
 import projekt.fhv.teama.hibernate.dao.personen.IVertragspartnerDao;
 import projekt.fhv.teama.hibernate.dao.personen.PersonDao;
@@ -68,9 +70,14 @@ public class ReservierungTest {
 		// rnd.create(res3);
 
 		// Alle holen
-		// Set<IReservierung> reservierungen = rnd.getAll();
-		// System.out.println(reservierungen.toString());
-		//
+//		 Set<IReservierung> reservierungen = rnd.getAll();
+//		 System.out.println(reservierungen.toString());
+		
+		IGastDao gDao = GastDao.getInstance();
+		IReservierung r1 = rnd.getById(1);
+		r1.addGast(gDao.getById(42));
+		rnd.create(r1);
+		
 
 		// 1 holen
 		// TODO optionen <-> reservierung bug?
@@ -106,9 +113,9 @@ public class ReservierungTest {
 //		 reservierungbyVP.toString());
 
 		// remove - database connections lassen löschen nicht zu
-		 IReservierung deleteReservierung = rnd.getById(2);
-		 System.out.println(deleteReservierung);
-		 rnd.remove(deleteReservierung);
+//		 IReservierung deleteReservierung = rnd.getById(3);
+//		 System.out.println(deleteReservierung);
+//		 rnd.remove(deleteReservierung);
 
 		// set teilreservierung FEHLERMELDUNG: nested transactions not supported
 		// IKategorieDao kategoriedao = KategorieDao.getInstance();
