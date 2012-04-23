@@ -6,10 +6,11 @@ import projekt.fhv.teama.classes.personen.IVertragspartnertyp;
 import projekt.fhv.teama.classes.personen.Vertragspartnertyp;
 import projekt.fhv.teama.hibernate.dao.personen.IVertragspartnertypDao;
 import projekt.fhv.teama.hibernate.dao.personen.VertragspartnertypDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 public class VertragspartnertypTest {
-	public static void main (String[] args) throws NoDatabaseEntryFoundException {
+	public static void main (String[] args) throws DatabaseException {
 		IVertragspartnertypDao vtypdao = VertragspartnertypDao.getInstance();
 		
 		IVertragspartnertyp typA = new Vertragspartnertyp("A Kunde");
