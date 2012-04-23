@@ -1,8 +1,6 @@
 package projekt.fhv.teama.view;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.net.URL;
 import java.util.Locale;
 
@@ -12,7 +10,29 @@ import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.collections.List;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.*;
+import org.apache.pivot.wtk.Action;
+import org.apache.pivot.wtk.Alert;
+import org.apache.pivot.wtk.Application;
+import org.apache.pivot.wtk.Border;
+import org.apache.pivot.wtk.BoxPane;
+import org.apache.pivot.wtk.Button;
+import org.apache.pivot.wtk.ButtonGroup;
+import org.apache.pivot.wtk.ButtonPressListener;
+import org.apache.pivot.wtk.CalendarButton;
+import org.apache.pivot.wtk.Component;
+import org.apache.pivot.wtk.ComponentMouseButtonListener;
+import org.apache.pivot.wtk.DesktopApplicationContext;
+import org.apache.pivot.wtk.Dialog;
+import org.apache.pivot.wtk.Display;
+import org.apache.pivot.wtk.Label;
+import org.apache.pivot.wtk.ListButton;
+import org.apache.pivot.wtk.ListView;
+import org.apache.pivot.wtk.MessageType;
+import org.apache.pivot.wtk.Meter;
+import org.apache.pivot.wtk.PushButton;
+import org.apache.pivot.wtk.RadioButton;
+import org.apache.pivot.wtk.TextInput;
+import org.apache.pivot.wtk.Window;
 
 import projekt.fhv.teama.view.controller.ViewController;
 import projekt.fhv.teama.view.support.BlockingDialog;
