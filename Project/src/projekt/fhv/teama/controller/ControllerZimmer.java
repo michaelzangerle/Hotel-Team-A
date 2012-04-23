@@ -37,7 +37,7 @@ public class ControllerZimmer implements IControllerZimmer {
 		}
 		
 		for (IZimmer zi : alle) {
-			if(zi.getKategorie().equals(ausgewählteKategorie)&&zi.getZimmerstatus().getKuerzel().equals("fuck"))
+			if(zi.getKategorie().equals(ausgewählteKategorie)&&zi.getZimmerstatus().getKuerzel().equals("FG"))
 			{
 				verfügbare.add(zi);
 			}

@@ -53,10 +53,7 @@ public class ControllerReservierung implements IControllerReservierung {
 	
 	public void setAktuelleReservierung(IReservierung reservierung)
 	{
-		if(reservierungen.contains(reservierung))
-		{
 			reservierungModel=reservierung;
-		}
 		
 	}
 	public IReservierung getAktuelleReservierung()

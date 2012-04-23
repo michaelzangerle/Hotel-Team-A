@@ -2,21 +2,13 @@ package projekt.fhv.teama.controller.usecasecontroller;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Set;
-import java.util.Vector;
 
-import projekt.fhv.teama.classes.Aufenthalt;
-import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.IPfandtyp;
-import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
-
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
-
-import projekt.fhv.teama.controller.ControllerReservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerAdresse;
 import projekt.fhv.teama.controller.interfaces.IControllerAufenthalt;
 import projekt.fhv.teama.controller.interfaces.IControllerGast;
@@ -28,7 +20,6 @@ import projekt.fhv.teama.controller.interfaces.IControllerTeilreservierung;
 import projekt.fhv.teama.controller.interfaces.IControllerZimmer;
 import projekt.fhv.teama.controller.interfaces.IControllerZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
-
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
