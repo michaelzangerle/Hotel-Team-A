@@ -6,6 +6,7 @@ import java.util.List;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
 public interface IModelReservierung {
 
@@ -24,5 +25,7 @@ public interface IModelReservierung {
 	List<IGast> getGaeste();
 	
 	boolean containsGast(IGast gast);
+
+	void save(IReservierung r) throws DatabaseException ;
 
 }

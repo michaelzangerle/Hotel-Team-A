@@ -4,31 +4,37 @@
 <!-- Generated 15.04.2012 05:47:54 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <joined-subclass name="projekt.fhv.teama.classes.personen.Gast" extends="projekt.fhv.teama.classes.personen.Person" table="gast" lazy="false">
+        
         <key>
             <column name="personID" />
         </key>
+        
         <property name="nummer" type="java.lang.String">
             <column name="nummer" />
         </property>
+        
         <many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
             <column name="zimmerID" />
         </many-to-one>
 		
-		<set name="reservierungen" table="gastreservierung" cascade="all" lazy="false">
+		<set name="reservierungen" table="gastreservierung" lazy="false" inverse="false">
         	<key column="gastID"/>
         	<many-to-many column="reservierungID" class="projekt.fhv.teama.classes.zimmer.Reservierung"/>
     	</set>
+    	
         <set name="rechnungspositionen" table="rechnungsposition" inverse="false" lazy="false">
             <key>
                 <column name="rechnungspositionID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.rechnung.Rechnungsposition" />
         </set>
-        <set name="aufenthalte" table="aufenthalt" inverse="false" lazy="false">
+        
+        <set name="aufenthalte" table="aufenthalt" inverse="true" lazy="false">
             <key>
                 <column name="aufenthaltID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.Aufenthalt" />
         </set>
+        
     </joined-subclass>
 </hibernate-mapping>

@@ -108,6 +108,12 @@ public class ModelReservierung implements IModelReservierung {
 		return false;
 	}
 
+
+
+	public void save(IReservierung r) throws DatabaseException {
+		reservierungsDao.create(r);
+	}
+
 	
 	
 	

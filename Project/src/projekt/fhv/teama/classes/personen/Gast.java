@@ -121,10 +121,13 @@ public class Gast extends Person implements IGast {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + getID();
-//		result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
+		// result = prime * result + ((aufenthalte == null) ? 0 :
+		// aufenthalte.hashCode());
 		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
-//		result = prime * result + ((rechnungspositionen == null) ? 0 : rechnungspositionen.hashCode());
-//		result = prime * result + ((reservierungen == null) ? 0 : reservierungen.hashCode());
+		// result = prime * result + ((rechnungspositionen == null) ? 0 :
+		// rechnungspositionen.hashCode());
+		// result = prime * result + ((reservierungen == null) ? 0 :
+		// reservierungen.hashCode());
 		result = prime * result + ((zimmer == null) ? 0 : zimmer.getID());
 		return result;
 	}
@@ -140,26 +143,26 @@ public class Gast extends Person implements IGast {
 		Gast other = (Gast) obj;
 		if (getID() != other.getID())
 			return false;
-//		if (aufenthalte == null) {
-//			if (other.aufenthalte != null)
-//				return false;
-//		} else if (!aufenthalte.equals(other.aufenthalte))
-//			return false;
+		// if (aufenthalte == null) {
+		// if (other.aufenthalte != null)
+		// return false;
+		// } else if (!aufenthalte.equals(other.aufenthalte))
+		// return false;
 		if (nummer == null) {
 			if (other.nummer != null)
 				return false;
 		} else if (!nummer.equals(other.nummer))
 			return false;
-//		if (rechnungspositionen == null) {
-//			if (other.rechnungspositionen != null)
-//				return false;
-//		} else if (!rechnungspositionen.equals(other.rechnungspositionen))
-//			return false;
-//		if (reservierungen == null) {
-//			if (other.reservierungen != null)
-//				return false;
-//		} else if (!reservierungen.equals(other.reservierungen))
-//			return false;
+		// if (rechnungspositionen == null) {
+		// if (other.rechnungspositionen != null)
+		// return false;
+		// } else if (!rechnungspositionen.equals(other.rechnungspositionen))
+		// return false;
+		// if (reservierungen == null) {
+		// if (other.reservierungen != null)
+		// return false;
+		// } else if (!reservierungen.equals(other.reservierungen))
+		// return false;
 		if (zimmer == null) {
 			if (other.zimmer != null)
 				return false;
@@ -170,10 +173,18 @@ public class Gast extends Person implements IGast {
 
 	@Override
 	public String toString() {
-		return "Gast [ID=" + getID() + ", nummer=" + nummer 
-//				+ ", zimmer=" + zimmer.getID() + ", "
-//				+	"reservierungen=" + reservierungen. + ", rechnungspositionen=" + rechnungspositionen + ", aufenthalte=" + aufenthalte
+		return "Gast [ID=" + getID() + ", nummer=" + nummer
+		// + ", zimmer=" + zimmer.getID() + ", "
+		// + "reservierungen=" + reservierungen. + ", rechnungspositionen=" +
+		// rechnungspositionen + ", aufenthalte=" + aufenthalte
 				+ "]";
+	}
+
+	@Override
+	public void removeReservierung(IReservierung res) {
+		if (reservierungen.contains(res)) {
+			this.reservierungen.remove(res);
+		}
 	}
 
 }

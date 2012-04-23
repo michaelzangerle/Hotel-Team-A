@@ -58,7 +58,9 @@ public class Teilreservierung implements ITeilreservierung {
 
 	@Override
 	public String toString() {
-		return "Teilreservierung [ID=" + ID + ", kategorie=" + kategorie.getBezeichnung() + ", reservierung=" + reservierung.getID()
+		return "Teilreservierung [ID=" + ID 
+				+ ", kategorie=" + kategorie.getBezeichnung() 
+//				+ ", reservierung=" + reservierung.getID()
 				+ ", anzahl=" + anzahl + "]";
 	}
 
@@ -89,12 +91,12 @@ public class Teilreservierung implements ITeilreservierung {
 		if (kategorie == null) {
 			if (other.kategorie != null)
 				return false;
-		} else if (!kategorie.equals(other.kategorie))
+		} else if (kategorie.getID() != other.kategorie.getID())
 			return false;
 		if (reservierung == null) {
 			if (other.reservierung != null)
 				return false;
-		} else if (!reservierung.equals(other.reservierung))
+		} else if (reservierung.getID() != other.reservierung.getID())
 			return false;
 		return true;
 	}

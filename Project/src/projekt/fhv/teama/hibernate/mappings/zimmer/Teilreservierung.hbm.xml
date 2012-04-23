@@ -10,11 +10,11 @@
             <generator class="native" />
         </id>
         
-        <many-to-one name="kategorie" class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join">
+        <many-to-one name="kategorie" class="projekt.fhv.teama.classes.zimmer.Kategorie" fetch="join" lazy="false">
             <column name="KATEGORIEID" />
         </many-to-one>
         
-        <many-to-one name="reservierung" class="projekt.fhv.teama.classes.zimmer.Reservierung" fetch="join">
+        <many-to-one name="reservierung" class="projekt.fhv.teama.classes.zimmer.Reservierung" fetch="join" lazy="false">
             <column name="RESERVIERUNGID" />
         </many-to-one>
         

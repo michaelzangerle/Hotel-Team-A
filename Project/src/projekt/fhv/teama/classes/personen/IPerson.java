@@ -44,9 +44,11 @@ public interface IPerson extends IDao {
 
 	public void setAdressen(Set<IAdresse> adresse);
 	
-	public Set<IReservierung> getReservierungen();
+	public void addReserviert(IReservierung reservierung);
+	
+	public Set<IReservierung> getReserviert();
 
-	public void removeReservierung(IReservierung reservierung);
+	public void removeReserviert(IReservierung reservierung);
 
-	public void setReservierungen(Set<IReservierung> reservierungen);
+	public void setReserviert(Set<IReservierung> reservierungen);
 }

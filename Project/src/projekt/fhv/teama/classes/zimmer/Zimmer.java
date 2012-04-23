@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.leistungen.Leistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
-import projekt.fhv.teama.classes.leistungen.Leistung;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
@@ -28,8 +28,8 @@ public class Zimmer extends Leistung implements IZimmer {
 	private Set<IRechnungsposition> rechnungspositionen = new HashSet<IRechnungsposition>();
 
 	public Zimmer(String nummer,String bezeichnung, String beschreibung, IKategorie kategorie, IZimmerstatus zimmerStatus,
-			Set<IReservierung> reservierungen, Set<IStatusentwicklung> statusenticklungen, Set<IGast> gaeste,
-			Set<IAufenthalt> aufenthalte, Set<IRechnungsposition> rechnungspositionen) {
+			Set<IReservierung> reservierungen, Set<IStatusentwicklung> statusenticklungen,
+			Set<IRechnungsposition> rechnungspositionen) {
 		super(bezeichnung);
 		this.nummer = nummer;
 		this.beschreibung = beschreibung;
@@ -37,8 +37,6 @@ public class Zimmer extends Leistung implements IZimmer {
 		this.zimmerstatus = zimmerStatus;
 		this.reservierungen = reservierungen;
 		this.statusentwicklungen = statusenticklungen;
-		this.gaeste = gaeste;
-		this.aufenthalte = aufenthalte;
 		this.rechnungspositionen = rechnungspositionen;
 	}
 
@@ -94,22 +92,6 @@ public class Zimmer extends Leistung implements IZimmer {
 		this.statusentwicklungen = statusenticklungen;
 	}
 
-	public Set<IGast> getGaeste() {
-		return gaeste;
-	}
-
-	public void setGaeste(Set<IGast> gaeste) {
-		this.gaeste = gaeste;
-	}
-
-	public Set<IAufenthalt> getAufenthalte() {
-		return aufenthalte;
-	}
-
-	public void setAufenthalte(Set<IAufenthalt> aufenthalte) {
-		this.aufenthalte = aufenthalte;
-	}
-
 	public Set<IRechnungsposition> getRechnungspositionen() {
 		return rechnungspositionen;
 	}
@@ -138,14 +120,14 @@ public class Zimmer extends Leistung implements IZimmer {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + getID();
-		//result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
+		result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		//result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
 		result = prime * result + ((kategorie == null) ? 0 : kategorie.hashCode());
 		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
 		//result = prime * result + ((rechnungspositionen == null) ? 0 : rechnungspositionen.hashCode());
 		result = prime * result + ((reservierungen == null) ? 0 : reservierungen.hashCode());
-		result = prime * result + ((statusentwicklungen == null) ? 0 : statusentwicklungen.hashCode());
+//		result = prime * result + ((statusentwicklungen == null) ? 0 : statusentwicklungen.hashCode());
 		result = prime * result + ((zimmerstatus == null) ? 0 : zimmerstatus.hashCode());
 		return result;
 	}
@@ -161,11 +143,11 @@ public class Zimmer extends Leistung implements IZimmer {
 		Zimmer other = (Zimmer) obj;
 		if (getID() != other.getID())
 			return false;
-//		if (aufenthalte == null) {
-//			if (other.aufenthalte != null)
-//				return false;
-//		} else if (!aufenthalte.equals(other.aufenthalte))
-//			return false;
+		if (aufenthalte == null) {
+			if (other.aufenthalte != null)
+				return false;
+		} else if (!aufenthalte.equals(other.aufenthalte))
+			return false;
 		if (beschreibung == null) {
 			if (other.beschreibung != null)
 				return false;
@@ -196,11 +178,11 @@ public class Zimmer extends Leistung implements IZimmer {
 				return false;
 		} else if (!reservierungen.equals(other.reservierungen))
 			return false;
-		if (statusentwicklungen == null) {
-			if (other.statusentwicklungen != null)
-				return false;
-		} else if (!statusentwicklungen.equals(other.statusentwicklungen))
-			return false;
+//		if (statusentwicklungen == null) {
+//			if (other.statusentwicklungen != null)
+//				return false;
+//		} else if (!statusentwicklungen.equals(other.statusentwicklungen))
+//			return false;
 		if (zimmerstatus == null) {
 			if (other.zimmerstatus != null)
 				return false;
@@ -224,19 +206,6 @@ public class Zimmer extends Leistung implements IZimmer {
 	}
 
 	@Override
-	public void addAufenthalt(IAufenthalt aufenthalt) {
-		this.aufenthalte.add(aufenthalt);
-	}
-
-	@Override
-	public void removeAufenthalt(IAufenthalt aufenthalt) {
-		if (this.aufenthalte.contains(aufenthalt)) {
-			this.aufenthalte.remove(aufenthalt);
-		}
-
-	}
-
-	@Override
 	public void addRechungsposition(IRechnungsposition rechnungsposition) {
 		this.rechnungspositionen.add(rechnungsposition);
 
@@ -251,16 +220,52 @@ public class Zimmer extends Leistung implements IZimmer {
 	}
 
 	@Override
-	public void addGast(IGast gast) {
-		this.gaeste.add(gast);
+	public void setGaeste(Set<IGast> gaeste) {
+		this.gaeste = gaeste;
+		
+	}
 
+	@Override
+	public Set<IGast> getGaeste() {
+		return gaeste;
+	}
+
+	@Override
+	public void addGast(IGast gast) {
+		gaeste.add(gast);
+		
 	}
 
 	@Override
 	public void removeGast(IGast gast) {
-		if (this.gaeste.contains(gast)) {
-			this.gaeste.remove(gast);
+		if(gaeste.contains(gast)){
+			gaeste.remove(gast);
 		}
+		
+	}
 
+	@Override
+	public void addAufenthalt(IAufenthalt aufenthalt) {
+		this.aufenthalte.add(aufenthalt);
+		
+	}
+
+	@Override
+	public Set<IAufenthalt> getAufenthalte() {
+		return aufenthalte;
+	}
+
+	@Override
+	public void setAufenthalte(Set<IAufenthalt> aufenthalte) {
+		this.aufenthalte = aufenthalte;
+		
+	}
+
+	@Override
+	public void removeAufenthalt(IAufenthalt aufenthalt) {
+		if(aufenthalte.contains(aufenthalt)){
+			aufenthalte.remove(aufenthalt);
+		}
+		
 	}
 }

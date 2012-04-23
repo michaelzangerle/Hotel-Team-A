@@ -37,14 +37,6 @@ public interface IZimmer extends IDao {
 
 	public void setReservierungen(Set<IReservierung> reservierungen);
 
-	public void addAufenthalt(IAufenthalt aufenthalt);
-
-	public void removeAufenthalt(IAufenthalt aufenthalt);
-
-	public void setAufenthalte(Set<IAufenthalt> aufenthalte);
-
-	public Set<IAufenthalt> getAufenthalte();
-
 	public Set<IRechnungsposition> getRechnungspositionen();
 
 	public void addRechungsposition(IRechnungsposition rechnungsposition);
@@ -60,5 +52,13 @@ public interface IZimmer extends IDao {
 	public void addGast(IGast gast);
 
 	public void removeGast(IGast gast);
+	
+	public void addAufenthalt(IAufenthalt aufenthalt);
+	
+	public Set<IAufenthalt> getAufenthalte();
+	
+	public void setAufenthalte(Set<IAufenthalt> aufenthalte);
+	
+	public void removeAufenthalt(IAufenthalt aufenthalt);
 
 }
