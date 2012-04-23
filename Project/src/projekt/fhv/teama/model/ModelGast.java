@@ -1,4 +1,4 @@
-package projekt.fhv.teama.controller;
+package projekt.fhv.teama.model;
 
 import java.sql.Date;
 import java.util.List;
@@ -9,17 +9,17 @@ import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IKontodaten;
 import projekt.fhv.teama.classes.personen.Kontodaten;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
-import projekt.fhv.teama.controller.interfaces.IControllerGast;
 import projekt.fhv.teama.hibernate.dao.personen.GastDao;
 import projekt.fhv.teama.hibernate.dao.personen.IGastDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.interfaces.IModelGast;
 
-public class ControllerGast implements IControllerGast {
+public class ModelGast implements IModelGast {
 
 	private IGast gastModel;
 	private IGastDao gastDao;
 	
-	public ControllerGast() {
+	public ModelGast() {
 		gastDao=GastDao.getInstance();
 	}
 

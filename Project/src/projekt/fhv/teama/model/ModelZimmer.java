@@ -1,25 +1,25 @@
-package projekt.fhv.teama.controller;
+package projekt.fhv.teama.model;
 
 import java.util.List;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
-import projekt.fhv.teama.controller.interfaces.IControllerZimmer;
 import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.interfaces.IModelZimmer;
 
 
 
-public class ControllerZimmer implements IControllerZimmer {
+public class ModelZimmer implements IModelZimmer {
 	
 
 	IZimmer zimmertModel;
 	IZimmerDao zimmerDao;
 	
-	public ControllerZimmer() {
+	public ModelZimmer() {
 		zimmerDao=ZimmerDao.getInstance();
 	}
 

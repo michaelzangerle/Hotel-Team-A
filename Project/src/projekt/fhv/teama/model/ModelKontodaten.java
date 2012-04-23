@@ -1,20 +1,20 @@
-package projekt.fhv.teama.controller;
+package projekt.fhv.teama.model;
 
 import projekt.fhv.teama.classes.personen.IKontodaten;
-import projekt.fhv.teama.controller.interfaces.IControllerKontodaten;
 import projekt.fhv.teama.hibernate.dao.personen.IKontodatenDao;
 import projekt.fhv.teama.hibernate.dao.personen.KontodatenDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.interfaces.IModelKontodaten;
 
 
 
-public class ControllerKontodaten implements IControllerKontodaten {
+public class ModelKontodaten implements IModelKontodaten {
 
 	
 	IKontodaten kontodatenModel;
 	IKontodatenDao kontodatenDao;
 	
-	public ControllerKontodaten() {
+	public ModelKontodaten() {
 		kontodatenDao=KontodatenDao.getInstance();
 	}
 	

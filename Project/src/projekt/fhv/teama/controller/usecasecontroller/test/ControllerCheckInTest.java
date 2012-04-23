@@ -9,28 +9,28 @@ import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
-import projekt.fhv.teama.controller.ControllerAdresse;
-import projekt.fhv.teama.controller.ControllerAufenthalt;
-import projekt.fhv.teama.controller.ControllerGast;
-import projekt.fhv.teama.controller.ControllerKategorie;
-import projekt.fhv.teama.controller.ControllerKontodaten;
-import projekt.fhv.teama.controller.ControllerPfandTyp;
-import projekt.fhv.teama.controller.ControllerReservierung;
-import projekt.fhv.teama.controller.ControllerTeilreservierung;
-import projekt.fhv.teama.controller.ControllerZimmer;
-import projekt.fhv.teama.controller.ControllerZimmerstatus;
-import projekt.fhv.teama.controller.interfaces.IControllerAdresse;
-import projekt.fhv.teama.controller.interfaces.IControllerAufenthalt;
-import projekt.fhv.teama.controller.interfaces.IControllerGast;
-import projekt.fhv.teama.controller.interfaces.IControllerKategorie;
-import projekt.fhv.teama.controller.interfaces.IControllerKontodaten;
-import projekt.fhv.teama.controller.interfaces.IControllerPfandTyp;
-import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
-import projekt.fhv.teama.controller.interfaces.IControllerTeilreservierung;
-import projekt.fhv.teama.controller.interfaces.IControllerZimmer;
-import projekt.fhv.teama.controller.interfaces.IControllerZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
 import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerDao;
+import projekt.fhv.teama.model.ModelAdresse;
+import projekt.fhv.teama.model.ModelAufenthalt;
+import projekt.fhv.teama.model.ModelGast;
+import projekt.fhv.teama.model.ModelKategorie;
+import projekt.fhv.teama.model.ModelKontodaten;
+import projekt.fhv.teama.model.ModelPfandTyp;
+import projekt.fhv.teama.model.ModelReservierung;
+import projekt.fhv.teama.model.ModelTeilreservierung;
+import projekt.fhv.teama.model.ModelZimmer;
+import projekt.fhv.teama.model.ModelZimmerstatus;
+import projekt.fhv.teama.model.interfaces.IModelAdresse;
+import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
+import projekt.fhv.teama.model.interfaces.IModelGast;
+import projekt.fhv.teama.model.interfaces.IModelKategorie;
+import projekt.fhv.teama.model.interfaces.IModelKontodaten;
+import projekt.fhv.teama.model.interfaces.IModelPfandTyp;
+import projekt.fhv.teama.model.interfaces.IModelReservierung;
+import projekt.fhv.teama.model.interfaces.IModelTeilreservierung;
+import projekt.fhv.teama.model.interfaces.IModelZimmer;
+import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
 
 public class ControllerCheckInTest {
 
@@ -41,16 +41,16 @@ public class ControllerCheckInTest {
 	 */
 	public static void main(String[] args) {
 
-		IControllerReservierung cres = new ControllerReservierung();
-		IControllerAufenthalt cauf = new ControllerAufenthalt();
-		IControllerGast cgast = new ControllerGast();
-		IControllerTeilreservierung ctres = new ControllerTeilreservierung();
-		IControllerKategorie ckat = new ControllerKategorie();
-		IControllerKontodaten ckonto = new ControllerKontodaten();
-		IControllerPfandTyp cpfandTyp = new ControllerPfandTyp();
-		IControllerZimmer czimmer = new ControllerZimmer();
-		IControllerZimmerstatus czimmerStatus = new ControllerZimmerstatus();
-		IControllerAdresse cadr = new ControllerAdresse();
+		IModelReservierung cres = new ModelReservierung();
+		IModelAufenthalt cauf = new ModelAufenthalt();
+		IModelGast cgast = new ModelGast();
+		IModelTeilreservierung ctres = new ModelTeilreservierung();
+		IModelKategorie ckat = new ModelKategorie();
+		IModelKontodaten ckonto = new ModelKontodaten();
+		IModelPfandTyp cpfandTyp = new ModelPfandTyp();
+		IModelZimmer czimmer = new ModelZimmer();
+		IModelZimmerstatus czimmerStatus = new ModelZimmerstatus();
+		IModelAdresse cadr = new ModelAdresse();
 
 		// TODO Exeption von Datebank wenn kein eintrag
 		ControllerCheckIn controllerCheckIn = new ControllerCheckIn(cres, cauf, cgast, ctres, ckat, ckonto, cpfandTyp,

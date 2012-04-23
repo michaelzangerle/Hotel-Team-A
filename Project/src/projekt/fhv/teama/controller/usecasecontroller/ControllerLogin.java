@@ -2,16 +2,16 @@ package projekt.fhv.teama.controller.usecasecontroller;
 
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 import projekt.fhv.teama.controller.exeption.LoginInExeption;
-import projekt.fhv.teama.controller.interfaces.IControllerMitarbeiter;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerLogin;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.interfaces.IModelMitarbeiter;
 
 public class ControllerLogin implements IControllerLogin {
 
 	
-	IControllerMitarbeiter controllermitarbeiter;
+	IModelMitarbeiter controllermitarbeiter;
 	
-	public ControllerLogin(IControllerMitarbeiter cmitarbeiter) {
+	public ControllerLogin(IModelMitarbeiter cmitarbeiter) {
 		
 		controllermitarbeiter=cmitarbeiter;
 	}

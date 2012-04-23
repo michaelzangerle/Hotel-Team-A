@@ -1,10 +1,10 @@
-package projekt.fhv.teama.controller.interfaces;
+package projekt.fhv.teama.model.interfaces;
 
 import java.sql.Date;
 
 import projekt.fhv.teama.classes.personen.ILand;
 
-public interface IControllerPerson {
+public interface IModelPerson {
 	
 	public void setVorname(String vn);
 	public String getVorname();

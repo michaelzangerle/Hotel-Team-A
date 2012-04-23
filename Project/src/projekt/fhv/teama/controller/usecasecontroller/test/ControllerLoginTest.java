@@ -1,10 +1,10 @@
 package projekt.fhv.teama.controller.usecasecontroller.test;
 
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
-import projekt.fhv.teama.controller.ControllerMitarbeiter;
 import projekt.fhv.teama.controller.exeption.LoginInExeption;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerLogin;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.ModelMitarbeiter;
 
 public class ControllerLoginTest {
 
@@ -14,7 +14,7 @@ public class ControllerLoginTest {
 	 */
 	public static void main(String[] args) {
 		
-		ControllerLogin controllerLogin=new ControllerLogin(new ControllerMitarbeiter());
+		ControllerLogin controllerLogin=new ControllerLogin(new ModelMitarbeiter());
 		
 		try {
 			IMitarbeiter loginok=controllerLogin.checkLogin("66", "1234");

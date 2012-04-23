@@ -1,12 +1,11 @@
-package projekt.fhv.teama.controller.interfaces;
+package projekt.fhv.teama.model.interfaces;
 
 import java.util.List;
 
 import projekt.fhv.teama.classes.IPfandtyp;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
-public interface IControllerPfandTyp {
+public interface IModelPfandTyp {
 
 	
 	public List<IPfandtyp> getPfandtyps() throws DatabaseException;

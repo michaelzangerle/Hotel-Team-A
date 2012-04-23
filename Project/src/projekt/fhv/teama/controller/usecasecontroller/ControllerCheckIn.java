@@ -9,42 +9,42 @@ import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
-import projekt.fhv.teama.controller.interfaces.IControllerAdresse;
-import projekt.fhv.teama.controller.interfaces.IControllerAufenthalt;
-import projekt.fhv.teama.controller.interfaces.IControllerGast;
-import projekt.fhv.teama.controller.interfaces.IControllerKategorie;
-import projekt.fhv.teama.controller.interfaces.IControllerKontodaten;
-import projekt.fhv.teama.controller.interfaces.IControllerPfandTyp;
-import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
-import projekt.fhv.teama.controller.interfaces.IControllerTeilreservierung;
-import projekt.fhv.teama.controller.interfaces.IControllerZimmer;
-import projekt.fhv.teama.controller.interfaces.IControllerZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.interfaces.IModelAdresse;
+import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
+import projekt.fhv.teama.model.interfaces.IModelGast;
+import projekt.fhv.teama.model.interfaces.IModelKategorie;
+import projekt.fhv.teama.model.interfaces.IModelKontodaten;
+import projekt.fhv.teama.model.interfaces.IModelPfandTyp;
+import projekt.fhv.teama.model.interfaces.IModelReservierung;
+import projekt.fhv.teama.model.interfaces.IModelTeilreservierung;
+import projekt.fhv.teama.model.interfaces.IModelZimmer;
+import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
 
 public class ControllerCheckIn implements IControllerCheckIn {
 
-	IControllerReservierung controllerReservierung;
-	IControllerAufenthalt controllerAufenthalt;
-	IControllerGast controllerGast;
-	IControllerTeilreservierung controllerTeilreservierung;
-	IControllerKategorie controllerKategorie;
-	IControllerPfandTyp controllerPfandtyp;
-	IControllerZimmer controllerZimmer;
-	IControllerZimmerstatus controllerZimmerstatus;
-	IControllerKontodaten controllerKontodaten;
-	IControllerAdresse controllerAdresse;
+	IModelReservierung controllerReservierung;
+	IModelAufenthalt controllerAufenthalt;
+	IModelGast controllerGast;
+	IModelTeilreservierung controllerTeilreservierung;
+	IModelKategorie controllerKategorie;
+	IModelPfandTyp controllerPfandtyp;
+	IModelZimmer controllerZimmer;
+	IModelZimmerstatus controllerZimmerstatus;
+	IModelKontodaten controllerKontodaten;
+	IModelAdresse controllerAdresse;
 
 	/**
 	 * 
 	 * Konstruktor ControllerCheckIn CeckIn Kontroller ist für den Usercase
 	 * Check In zuständig
 	 */
-	public ControllerCheckIn(IControllerReservierung cres, IControllerAufenthalt cauf, IControllerGast cgast,
-			IControllerTeilreservierung ctres, IControllerKategorie ckat, IControllerKontodaten ckonto,
-			IControllerPfandTyp cpfandTyp, IControllerZimmer czimmer, IControllerZimmerstatus czimmerStatus,
-			IControllerAdresse cadr) {
+	public ControllerCheckIn(IModelReservierung cres, IModelAufenthalt cauf, IModelGast cgast,
+			IModelTeilreservierung ctres, IModelKategorie ckat, IModelKontodaten ckonto,
+			IModelPfandTyp cpfandTyp, IModelZimmer czimmer, IModelZimmerstatus czimmerStatus,
+			IModelAdresse cadr) {
 
 		controllerReservierung = cres;
 		controllerAufenthalt = cauf;

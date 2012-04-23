@@ -1,20 +1,20 @@
-package projekt.fhv.teama.controller;
+package projekt.fhv.teama.model;
 
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 import projekt.fhv.teama.controller.exeption.LoginInExeption;
-import projekt.fhv.teama.controller.interfaces.IControllerMitarbeiter;
 import projekt.fhv.teama.hibernate.dao.personen.IMitarbeiterDao;
 import projekt.fhv.teama.hibernate.dao.personen.MitarbeiterDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.interfaces.IModelMitarbeiter;
 
-public class ControllerMitarbeiter implements IControllerMitarbeiter {
+public class ModelMitarbeiter implements IModelMitarbeiter {
 	
 	IMitarbeiter mitarbeiterModel;
 	IMitarbeiterDao mitarbeiterDao;
 	
-	public ControllerMitarbeiter() {
+	public ModelMitarbeiter() {
 		mitarbeiterDao=MitarbeiterDao.getInstance();
 	}
 

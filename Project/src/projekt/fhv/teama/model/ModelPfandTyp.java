@@ -1,23 +1,22 @@
-package projekt.fhv.teama.controller;
+package projekt.fhv.teama.model;
 
 
 import java.util.List;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.IPfandtyp;
-import projekt.fhv.teama.controller.interfaces.IControllerPfandTyp;
 import projekt.fhv.teama.hibernate.dao.IPfandtypDao;
 import projekt.fhv.teama.hibernate.dao.PfandtypDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.interfaces.IModelPfandTyp;
 
 
-public class ControllerPfandTyp implements IControllerPfandTyp {
+public class ModelPfandTyp implements IModelPfandTyp {
 	
 	private IPfandtyp pfandModel;
 	private IPfandtypDao pfandDao;
 	
-	public ControllerPfandTyp() {
+	public ModelPfandTyp() {
 		pfandDao=PfandtypDao.getInstance();
 	}
 	

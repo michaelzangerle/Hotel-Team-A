@@ -1,4 +1,4 @@
-package projekt.fhv.teama.controller.interfaces;
+package projekt.fhv.teama.model.interfaces;
 
 import java.sql.Date;
 import java.util.List;
@@ -7,7 +7,7 @@ import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 
-public interface IControllerReservierung {
+public interface IModelReservierung {
 
 	List<IReservierung> getAllReservierungen();
 

@@ -1,4 +1,4 @@
-package projekt.fhv.teama.controller;
+package projekt.fhv.teama.model;
 
 import java.sql.Date;
 import java.util.List;
@@ -7,14 +7,14 @@ import java.util.Vector;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
-import projekt.fhv.teama.controller.interfaces.IControllerReservierung;
 import projekt.fhv.teama.hibernate.dao.zimmer.IReservierungDao;
 
 import projekt.fhv.teama.hibernate.dao.zimmer.ReservierungDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.interfaces.IModelReservierung;
 
-public class ControllerReservierung implements IControllerReservierung {
+public class ModelReservierung implements IModelReservierung {
 	
 	
 	private IReservierung reservierungModel;
@@ -25,7 +25,7 @@ public class ControllerReservierung implements IControllerReservierung {
 
 	
 	
-	public ControllerReservierung() {
+	public ModelReservierung() {
 
 		reservierungsDao=ReservierungDao.getInstance();
 	}

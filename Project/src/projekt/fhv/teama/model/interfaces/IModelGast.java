@@ -1,4 +1,4 @@
-package projekt.fhv.teama.controller.interfaces;
+package projekt.fhv.teama.model.interfaces;
 
 import java.sql.Date;
 
@@ -6,7 +6,7 @@ import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 
-public interface IControllerGast {
+public interface IModelGast {
 
 	void setAktuellGast(IGast gast);
 

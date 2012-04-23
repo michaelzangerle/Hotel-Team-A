@@ -20,15 +20,15 @@ import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.Window;
 
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
-import projekt.fhv.teama.controller.ControllerMitarbeiter;
 import projekt.fhv.teama.controller.exeption.LoginInExeption;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerLogin;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.ModelMitarbeiter;
 import projekt.fhv.teama.view.support.SHSDateTime;
 
 public class ViewLogin extends Window implements Application, Bindable {
 	
-	ControllerLogin controlLogin = new ControllerLogin(new ControllerMitarbeiter());
+	ControllerLogin controlLogin = new ControllerLogin(new ModelMitarbeiter());
 	
 	
 	@BXML private TextInput tfUsername = null;

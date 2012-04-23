@@ -1,20 +1,20 @@
-package projekt.fhv.teama.controller;
+package projekt.fhv.teama.model;
 
 import projekt.fhv.teama.classes.personen.IAdresse;
-import projekt.fhv.teama.controller.interfaces.IControllerAdresse;
 import projekt.fhv.teama.hibernate.dao.personen.AdresseDao;
 import projekt.fhv.teama.hibernate.dao.personen.IAdresseDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.interfaces.IModelAdresse;
 
 
 
-public class ControllerAdresse implements IControllerAdresse {
+public class ModelAdresse implements IModelAdresse {
 
 
 	IAdresse adressModel;
 	IAdresseDao adressDao;
 	
-	public ControllerAdresse() {
+	public ModelAdresse() {
 		adressDao=AdresseDao.getInstance();
 	}
 	

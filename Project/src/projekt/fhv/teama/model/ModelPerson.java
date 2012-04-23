@@ -1,13 +1,13 @@
-package projekt.fhv.teama.controller;
+package projekt.fhv.teama.model;
 
 import java.sql.Date;
 
 import projekt.fhv.teama.classes.personen.ILand;
-import projekt.fhv.teama.controller.interfaces.IControllerPerson;
+import projekt.fhv.teama.model.interfaces.IModelPerson;
 
-public class ControllerPerson implements IControllerPerson {
+public class ModelPerson implements IModelPerson {
 
-	IControllerPerson controllerPerson=new ControllerPerson();
+	IModelPerson controllerPerson=new ModelPerson();
 	
 	private String vn;
 	private String nn;
@@ -21,7 +21,7 @@ public class ControllerPerson implements IControllerPerson {
 	
 	
 	
-	public ControllerPerson() {
+	public ModelPerson() {
 		// TODO Auto-generated constructor stub
 	
 	}

@@ -1,20 +1,18 @@
-package projekt.fhv.teama.controller;
-
-import java.util.List;
+package projekt.fhv.teama.model;
 
 import projekt.fhv.teama.classes.zimmer.IKategorie;
-import projekt.fhv.teama.controller.interfaces.IControllerKategorie;
 import projekt.fhv.teama.hibernate.dao.zimmer.IKategorieDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
+import projekt.fhv.teama.model.interfaces.IModelKategorie;
 
 
-public class ControllerKategorie implements IControllerKategorie {
+public class ModelKategorie implements IModelKategorie {
 
 	private IKategorie kategorieModel;
 	private IKategorieDao kategorieDao;
 	
 
-	public ControllerKategorie() {
+	public ModelKategorie() {
 
 		kategorieDao=KategorieDao.getInstance();
 	}
