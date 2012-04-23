@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.leistungen.Leistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
-import projekt.fhv.teama.classes.leistungen.Leistung;
 
 /**
  * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
@@ -24,7 +24,7 @@ public class Zimmer extends Leistung implements IZimmer {
 	private Set<IReservierung> reservierungen = new HashSet<IReservierung>();
 	private Set<IStatusentwicklung> statusentwicklungen = new HashSet<IStatusentwicklung>();
 	private Set<IGast> gaeste = new HashSet<IGast>();
-//	private Set<IAufenthalt> aufenthalte = new HashSet<IAufenthalt>();
+	private Set<IAufenthalt> aufenthalte = new HashSet<IAufenthalt>();
 	private Set<IRechnungsposition> rechnungspositionen = new HashSet<IRechnungsposition>();
 
 	public Zimmer(String nummer,String bezeichnung, String beschreibung, IKategorie kategorie, IZimmerstatus zimmerStatus,
@@ -120,7 +120,7 @@ public class Zimmer extends Leistung implements IZimmer {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + getID();
-		//result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
+		result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		//result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
 		result = prime * result + ((kategorie == null) ? 0 : kategorie.hashCode());
@@ -143,11 +143,11 @@ public class Zimmer extends Leistung implements IZimmer {
 		Zimmer other = (Zimmer) obj;
 		if (getID() != other.getID())
 			return false;
-//		if (aufenthalte == null) {
-//			if (other.aufenthalte != null)
-//				return false;
-//		} else if (!aufenthalte.equals(other.aufenthalte))
-//			return false;
+		if (aufenthalte == null) {
+			if (other.aufenthalte != null)
+				return false;
+		} else if (!aufenthalte.equals(other.aufenthalte))
+			return false;
 		if (beschreibung == null) {
 			if (other.beschreibung != null)
 				return false;
@@ -240,6 +240,31 @@ public class Zimmer extends Leistung implements IZimmer {
 	public void removeGast(IGast gast) {
 		if(gaeste.contains(gast)){
 			gaeste.remove(gast);
+		}
+		
+	}
+
+	@Override
+	public void addAufenthalt(IAufenthalt aufenthalt) {
+		this.aufenthalte.add(aufenthalt);
+		
+	}
+
+	@Override
+	public Set<IAufenthalt> getAufenthalte() {
+		return aufenthalte;
+	}
+
+	@Override
+	public void setAufenthalte(Set<IAufenthalt> aufenthalte) {
+		this.aufenthalte = aufenthalte;
+		
+	}
+
+	@Override
+	public void removeAufenthalt(IAufenthalt aufenthalt) {
+		if(aufenthalte.contains(aufenthalt)){
+			aufenthalte.remove(aufenthalt);
 		}
 		
 	}

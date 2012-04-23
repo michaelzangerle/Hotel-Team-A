@@ -52,5 +52,13 @@ public interface IZimmer extends IDao {
 	public void addGast(IGast gast);
 
 	public void removeGast(IGast gast);
+	
+	public void addAufenthalt(IAufenthalt aufenthalt);
+	
+	public Set<IAufenthalt> getAufenthalte();
+	
+	public void setAufenthalte(Set<IAufenthalt> aufenthalte);
+	
+	public void removeAufenthalt(IAufenthalt aufenthalt);
 
 }

@@ -47,12 +47,12 @@
 			<one-to-many  class="projekt.fhv.teama.classes.personen.Gast" />
 		</set>
 
-<!-- 		<set name="aufenthalte" table="aufenthalt" > -->
-<!-- 			<key> -->
-<!-- 				<column name="zimmerID" /> -->
-<!-- 			</key> -->
-<!-- 			<one-to-many class="projekt.fhv.teama.classes.Aufenthalt" /> -->
-<!-- 		</set> -->
+		<set name="aufenthalte" table="aufenthalt" >
+			<key>
+				<column name="zimmerID" />
+			</key>
+			<one-to-many class="projekt.fhv.teama.classes.Aufenthalt" />
+		</set>
 
 		<set name="rechnungspositionen" table="rechnungsposition" >
 			<key>
