@@ -23,7 +23,7 @@ public class ZimmerPreisTest {
 		IZimmerpreisDao zDao = ZimmerpreisDao.getInstance();
 		ISaisonDao sDao = SaisonDao.getInstance();
 		IKategorieDao kDao = KategorieDao.getInstance();
-		
+//		
 //		IZimmerpreis z1 = new Zimmerpreis(sDao.getSaison("Frühling"),kDao.getKategorie("Einzelzimmer"), 35.50F);
 //		IZimmerpreis z2 = new Zimmerpreis(sDao.getSaison("Winter"),kDao.getKategorie("Einzelzimmer"), 38.50F);
 //		IZimmerpreis z3 = new Zimmerpreis(sDao.getSaison("Herbst"),kDao.getKategorie("Einzelzimmer"), 30.50F);
@@ -55,10 +55,10 @@ public class ZimmerPreisTest {
 //		zDao.create(z12);
 				
 		// Alle holen
-//		Set<IZimmerpreis> preise = new HashSet<IZimmerpreis>(zDao.getAll());
-//		for (IZimmerpreis z : preise) {
-//			System.out.println(z);
-//		}
+		Set<IZimmerpreis> preise = new HashSet<IZimmerpreis>(zDao.getAll());
+		for (IZimmerpreis z : preise) {
+			System.out.println(z);
+		}
 		
 		// 1 holen
 //		System.out.println(zDao.getById(5));

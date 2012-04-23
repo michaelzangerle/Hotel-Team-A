@@ -19,7 +19,7 @@ public class Person implements IPerson {
 	private String telefonnummer;
 	private String email;
 	private IKontodaten kontodaten;
-	private Set<IReservierung> reservierungen;
+	private Set<IReservierung> reserviert;
 
 	public int getID() {
 		return ID;
@@ -113,21 +113,17 @@ public class Person implements IPerson {
 	}
 
 
-	@Override
-	public Set<IReservierung> getReservierungen() {
-		return reservierungen;
+	public Set<IReservierung> getReserviert() {
+		return reserviert;
 	}
 	
-	@Override
-	public void setReservierungen(Set<IReservierung> reservierungen) {
-		this.reservierungen = reservierungen;
+	public void setReserviert(Set<IReservierung> reservierungen) {
+		this.reserviert = reservierungen;
 	}
 	
-
-	@Override
-	public void removeReservierung(IReservierung reservierung) {
-		if (reservierungen.contains(reservierung)){
-			reservierungen.remove(reservierung);
+	public void removeReserviert(IReservierung reservierung) {
+		if (reserviert.contains(reservierung)){
+			reserviert.remove(reservierung);
 		}
 	}
 
@@ -215,7 +211,13 @@ public class Person implements IPerson {
 	public String toString() {
 		return "Person [ID=" + ID + ", vorname=" + vorname + ", nachname=" + nachname + ", geschlecht=" + geschlecht
 				+ ", adressen=" + adressen + ", geburtsdatum=" + geburtsdatum + ", telefonnummer=" + telefonnummer
-				+ ", email=" + email + ", kontodaten=" + kontodaten + ", reservierungen=" + reservierungen + "]";
+				+ ", email=" + email + ", kontodaten=" + kontodaten + ", reservierungen=" + reserviert + "]";
+	}
+
+	@Override
+	public void addReserviert(IReservierung reservierung) {
+		this.reserviert.add(reservierung);
+		
 	}
 
 

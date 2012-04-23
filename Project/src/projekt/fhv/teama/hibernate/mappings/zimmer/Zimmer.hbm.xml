@@ -22,7 +22,7 @@
 			<column name="KATEGORIEID" />
 		</many-to-one>
 
-		<many-to-one name="zimmerstatus" class="projekt.fhv.teama.classes.zimmer.Zimmerstatus" fetch="join"	>
+		<many-to-one name="zimmerstatus" class="projekt.fhv.teama.classes.zimmer.Zimmerstatus" fetch="join" lazy="false">
 			<column name="ZIMMERSTATUSID" />
 		</many-to-one>
 
@@ -33,26 +33,26 @@
 			<many-to-many column="reservierungID" class="projekt.fhv.teama.classes.zimmer.Reservierung" />
 		</set>
 
-		<set name="statusentwicklungen" table="statusentwicklung">
+		<set name="statusentwicklungen" table="statusentwicklung" lazy="false">
 			<key>
 				<column name="zimmerID" />
 			</key>
 			<one-to-many class="projekt.fhv.teama.classes.zimmer.Statusentwicklung" />
 		</set>
 
-		<set name="gaeste" table="gastreservierung">
+		<set name="gaeste" table="gastreservierung" >
 			<key>
 				<column name="zimmerID" />
 			</key>
 			<one-to-many  class="projekt.fhv.teama.classes.personen.Gast" />
 		</set>
 
-		<set name="aufenthalte" table="aufenthalt" >
-			<key>
-				<column name="zimmerID" />
-			</key>
-			<one-to-many class="projekt.fhv.teama.classes.Aufenthalt" />
-		</set>
+<!-- 		<set name="aufenthalte" table="aufenthalt" > -->
+<!-- 			<key> -->
+<!-- 				<column name="zimmerID" /> -->
+<!-- 			</key> -->
+<!-- 			<one-to-many class="projekt.fhv.teama.classes.Aufenthalt" /> -->
+<!-- 		</set> -->
 
 		<set name="rechnungspositionen" table="rechnungsposition" >
 			<key>

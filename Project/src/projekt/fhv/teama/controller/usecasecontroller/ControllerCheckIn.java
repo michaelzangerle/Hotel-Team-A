@@ -263,15 +263,22 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param zimmer
 	 * @param pfand
 	 * @param pfandnummer
+	 * @throws DatabaseException 
 	 */
 	public void saveAufenthalt(float preis, Date von, Date bis, boolean schluessel, IGast gast, IZimmer zimmer,
-			IPfandtyp pfand, String pfandnummer) {
+			IPfandtyp pfand, String pfandnummer) throws DatabaseException {
 
 		controllerKontodaten.save(gast.getKontodaten());
 		controllerZimmer.save(zimmer);
+		
 		for (IAdresse adr : gast.getAdressen()) {
 			controllerAdresse.save(adr);
 		}
+		
+		for (IReservierung r : gast.getReservierungen()) {
+			controllerReservierung.save(r);	
+		}
+		
 		controllerGast.save(gast);
 		controllerAufenthalt.create(preis, von, bis, schluessel, gast, zimmer, pfand, pfandnummer);
 
