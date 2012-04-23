@@ -47,7 +47,7 @@
 			<one-to-many  class="projekt.fhv.teama.classes.personen.Gast" />
 		</set>
 
-		<set name="aufenthalte" table="aufenthalt" >
+		<set name="aufenthalte" table="aufenthalt" lazy="false">
 			<key>
 				<column name="zimmerID" />
 			</key>
