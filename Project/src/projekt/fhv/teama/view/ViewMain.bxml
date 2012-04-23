@@ -11,9 +11,9 @@
 	xmlns:view="projekt.fhv.teama.view"
 	xmlns="org.apache.pivot.wtk">
 	<bxml:script>function init() {  }</bxml:script>
-	<bxml:define>
+	<!-- <bxml:define>
 		<bxml:include bxml:id="styles" src="style/styles.json"/>
-	</bxml:define>
+	</bxml:define> -->
 	<SplitPane bxml:id="spHeaderMain" orientation="vertical" splitRatio="0.075"
 		locked="true"
 		styles="{splitterThickness:1}"
