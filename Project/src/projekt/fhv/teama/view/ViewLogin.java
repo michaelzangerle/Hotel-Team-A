@@ -135,7 +135,9 @@ public class ViewLogin extends Window implements Application, Bindable {
 					
 					try {
 						/* 66, 1234 */
-						IMitarbeiter loginok= controlLogin.checkLogin(tfUsername.getText(), tfPassword.getText());
+						String usString=tfUsername.getText();
+						String pwString=tfPassword.getText();
+						IMitarbeiter loginok= controlLogin.checkLogin(usString,pwString);
 						if(loginok!=null)
 						{
 							Alert.alert("Username: "+loginok.getVorname()+" "+loginok.getNachname(), ViewLogin.this);
