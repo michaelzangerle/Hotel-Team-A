@@ -14,7 +14,6 @@ import org.hibernate.Session;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
 import projekt.fhv.teama.classes.personen.Person;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
-import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;

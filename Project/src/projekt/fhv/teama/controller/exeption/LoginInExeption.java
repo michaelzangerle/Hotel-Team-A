@@ -2,6 +2,8 @@ package projekt.fhv.teama.controller.exeption;
 
 public class LoginInExeption extends Exception {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private String message;
 	public LoginInExeption(String uid,String pw) {
 		
