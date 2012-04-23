@@ -23,7 +23,7 @@
 				<StackPane>
 					<ImageView image="@images/back_shs2.svg" styles="{fill:true, preserveAspectRatio:false}"/>
 					<BoxPane orientation="horizontal" preferredHeight="20" styles="{padding:{top:0, left:0, bottom:10, right:21}, horizontalAlignment:'right', verticalAlignment:'bottom'}">						
-						<Label bxml:id="lbLoginShow" text="Logged-in:"/><Label bxml:id="lbLoginName" text="Mr. Thomas Gaida" styles="{font:{bold:true}, color: '#2a5580'}"/>            
+						<Label bxml:id="lbLoginShow" text="Logged-in:"/><Label bxml:id="lbLoginName" text="Karl-Heinz Weidmann" styles="{font:{bold:true}, color: '#2a5580'}"/>            
 					</BoxPane>
 				<!-- <bxml:include bxml:id="topMenu" src="inc.topmenu.bxml" inline="true" styles="{backgroundColor:null}" />	-->							
 				</StackPane>

@@ -37,19 +37,19 @@ public class MitarbeiterTest {
 		
 //		adr3.add(adao.getById(22));
 
-//		adr1.add(adao.getById(16));
+		adr1.add(adao.getById(23));
 //		adr1.add(adao.getById(10));
 
 //		adr2.add(adao.getById(17));
 //		adr2.add(adao.getById(2));
 //		adr2.add(adao.getById(3));
 
-//		IMitarbeiter m1 = new Mitarbeiter("Patrick", "Jost", 'm',adr1, getDate(1966, 12, 31), "0650123456", "info@pajo.com", kdao.getById(4), "66", "1234", getDate(2001, 1, 3));
+		IMitarbeiter m1 = new Mitarbeiter("Karl-Heinz", "Weidmann", 'm',adr1, getDate(1966, 12, 31), "0650123456", "info@pajo.com", kdao.getById(4), "khw", "1234", getDate(2001, 1, 3));
 //		IMitarbeiter m2 = new Mitarbeiter("Pamela", "Anderson", 'w',adr2, getDate(1936, 9, 3), "0650123456", "bangpow@pamela.com", kdao.getById(5), "86", "1234", getDate(2001, 1, 3));
 //		IMitarbeiter m3 = new Mitarbeiter("Nicki", "Heat", 'w',adr3, getDate(1985, 6, 11), "0650123456", "dingdong@heat.com", kdao.getById(10), "13", "1234", getDate(2001, 1, 3));
 //		
 		// Einfügen
-//		mdao.create(m1);
+		mdao.create(m1);
 //		mdao.create(m2);
 //		mdao.create(m3);
 				
@@ -61,15 +61,15 @@ public class MitarbeiterTest {
 		
 		
 		// 1 holen
-		IMitarbeiter m1 = mdao.getById(37);
-		IBerechtigungDao bDao = BerechtigungDao.getInstance();
+		//IMitarbeiter m1 = mdao.getById(37);
+		//IBerechtigungDao bDao = BerechtigungDao.getInstance();
 //		m1.setReservierungen(null);
 //		m1.setBerechtigungen(null);
 //		m1.addBerechtigung(bDao.getById(1));
 //		m1.addBerechtigung(bDao.getById(2));
 //		mdao.create(m1);
 		
-		System.out.println(m1);
+		//System.out.println(m1);
 //		mdao.remove(mdao.getById(38));
 //		mdao.remove(mdao.getById(7));
 //		mdao.remove(mdao.getById(7));

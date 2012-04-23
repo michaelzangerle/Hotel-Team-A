@@ -128,10 +128,7 @@ public class ViewLogin extends Window implements Application, Bindable {
 					Alert.alert("Please insert username and password.", ViewLogin.this);
 				}else {
 					
-					/*
-					String x[]={"--name=value"};
-					ViewMain.main(x);
-					*/
+					
 					
 					try {
 						/* 66, 1234 */
@@ -140,8 +137,10 @@ public class ViewLogin extends Window implements Application, Bindable {
 						IMitarbeiter loginok= controlLogin.checkLogin(usString,pwString);
 						if(loginok!=null)
 						{
-							Alert.alert("Username: "+loginok.getVorname()+" "+loginok.getNachname(), ViewLogin.this);
-							System.out.println("Login Ok\nVorname: "+loginok.getVorname()+"\nNachname: "+loginok.getNachname()+"\nEmail: "+loginok.getEmail());
+							
+							String x[]={"--name=value"};
+							ViewMain.main(x);
+							
 						}
 						else {
 							System.out.println("Login Not Ok");
