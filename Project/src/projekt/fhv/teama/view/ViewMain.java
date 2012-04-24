@@ -74,7 +74,9 @@ public class ViewMain extends Window implements Application, Bindable {
 	TextInput tiLastName; TextInput tiFirstName; ButtonGroup bgGender; RadioButton rbMale; RadioButton rbFemale;
 	TextInput tiStreet; TextInput tiCity; TextInput tiCountry; TextInput tiZip; TextInput tiPhone; TextInput tiMail;
 	TextInput tiAccountNr; TextInput tiBankCodeNr; TextInput tiIban; TextInput tiBic; TextInput tiDepositNumber;
-	
+	Label rf1LBResNr; TextInput rf1TIName;TextInput rf1TIStreet;TextInput rfTICity;TextInput rf1TICountry;TextInput rfTIZip;
+	TextInput rf1TIPhone;TextInput rf1TIEMail;CalendarButton rf1CBArrival;CalendarButton rf1CBDeparture;
+	 
 	/* Labels */
 	Label lbProgress01;	Label lbProgress02;	Label lbProgress03;	Label lbProgress04;
 	
@@ -187,6 +189,18 @@ public class ViewMain extends Window implements Application, Bindable {
 		tiIban = (TextInput)arg0.get("tiIban");
 		tiBic = (TextInput)arg0.get("tiBic");
 		tiDepositNumber = (TextInput)arg0.get("tiDepositNumber");
+		rf1LBResNr = (Label)arg0.get("rf1LBResNr");
+		rf1TIName = (TextInput)arg0.get("rf1TIName");
+		rf1TIStreet = (TextInput)arg0.get("rf1TIStreet");
+		rfTICity = (TextInput)arg0.get("rfTICity");
+		rf1TICountry = (TextInput)arg0.get("rf1TICountry");
+		rfTIZip = (TextInput)arg0.get("rfTIZip");
+		rf1TIPhone = (TextInput)arg0.get("rf1TIPhone");
+		rf1TIEMail = (TextInput)arg0.get("rf1TIEMail");
+		
+		/* CalendarButtons */
+		rf1CBArrival = (CalendarButton)arg0.get("rf1CBArrival");
+		rf1CBDeparture = (CalendarButton)arg0.get("rf1CBDeparture");
 
 		/* Labels */
 		lbProgress01 = (Label)arg0.get("lbProgress01");
