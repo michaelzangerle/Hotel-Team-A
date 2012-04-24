@@ -18,8 +18,9 @@ import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
- * @author mike
- * 
+ * Regelt die Abfragen auf die Kontingenttabelle 
+ * @author Team A
+ * @version 1.9
  */
 public class KontingentDao extends GenericDao<IKontingent> implements IKontingentDao {
 
@@ -36,7 +37,7 @@ public class KontingentDao extends GenericDao<IKontingent> implements IKontingen
 		super("Kontingent");
 
 	}
-	//kiken?
+
 	@SuppressWarnings("unchecked")
 	public Set<IKontingent> getKontingentByVPID(int id) throws DatabaseEntryNotFoundException {
 
@@ -63,7 +64,7 @@ public class KontingentDao extends GenericDao<IKontingent> implements IKontingen
 		Set<IKontingent> set = new HashSet<IKontingent>(kontingente);
 		return set;
 	}
-	//kiken?
+
 	@SuppressWarnings("unchecked")
 	public Set<IKontingent> getKontingentByVPName(String name) throws DatabaseEntryNotFoundException {
 

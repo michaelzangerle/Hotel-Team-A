@@ -14,8 +14,9 @@ import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
- * @author mike
- * 
+ * Regelt die Abfragen auf die Pfandtyptabelle 
+ * @author Team A
+ * @version 1.2
  */
 public class PfandtypDao extends GenericDao<IPfandtyp> implements IPfandtypDao {
 

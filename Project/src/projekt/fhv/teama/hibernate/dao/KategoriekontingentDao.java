@@ -6,8 +6,9 @@ package projekt.fhv.teama.hibernate.dao;
 import projekt.fhv.teama.classes.IKategoriekontingent;
 
 /**
- * @author mike
- *
+ * Regelt den Zugriff auf die Kategoriekontingent-Tabelle 
+ * @author Team A
+ * @version 1.2
  */
 public class KategoriekontingentDao extends GenericDao<IKategoriekontingent> implements IKategoriekontingentDao {
 

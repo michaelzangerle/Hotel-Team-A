@@ -19,8 +19,10 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseConstraintViolationException;
 
 /**
- * @author mike
- * 
+ * Regelt die grundlegenden Abfragen auf die Datenbank welcher bei allen Tabellen die selben sind 
+ * @author Team A
+ * @version 1.9
+ * @param <T> Typ von IModel
  */
 public abstract class GenericDao<T> implements IGenericDao<T> {
 

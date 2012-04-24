@@ -3,13 +3,12 @@
  */
 package projekt.fhv.teama.hibernate.dao;
 
-import java.util.Set;
-
 import projekt.fhv.teama.classes.IAufenthalt;
 
 /**
- * @author mike
- * 
+ * Regelt den Zugriff auf die Aufenthalt-Tabelle 
+ * @author Team A
+ * @version 1.2
  */
 public class AufenthaltDao extends GenericDao<IAufenthalt> implements IAufenthaltDao {
 
@@ -27,15 +26,14 @@ public class AufenthaltDao extends GenericDao<IAufenthalt> implements IAufenthal
 
 	}
 
-	// beide kicken
-	public Set<IAufenthalt> getAufenthaltByGastName(String vorname, String nachname) {
-		// TODO Aufenthalt: getAufenthaltByGastName(String vorname, String
-		// nachname)
-		return null;
-	}
-
-	public Set<IAufenthalt> getAufenthaltByZimmerNummer(String nr) {
-		// TODO Aufenthalt: getAufenthaltByZimmerNummer(String nr)
-		return null;
-	}
+//	public Set<IAufenthalt> getAufenthaltByGastName(String vorname, String nachname) {
+//		// TODO Aufenthalt: getAufenthaltByGastName(String vorname, String
+//		// nachname)
+//		return null;
+//	}
+//
+//	public Set<IAufenthalt> getAufenthaltByZimmerNummer(String nr) {
+//		// TODO Aufenthalt: getAufenthaltByZimmerNummer(String nr)
+//		return null;
+//	}
 }
