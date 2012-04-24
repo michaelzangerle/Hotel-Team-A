@@ -149,7 +149,6 @@ public class ControllerCheckInTest {
 			//9. Schritt Änderungen Speichern 
 //				controllerCheckIn.setVorname("Abdul");
 //				controllerCheckIn.addAdresse(new Adresse("Bondstrasse 4", "007", "MI6", controllerCheckIn.getLandByKuerzel("CH")));
-			controllerCheckIn.setVorname("Test");
 			
 			
 			// 10. Schritt - speichere Aufenthalt
