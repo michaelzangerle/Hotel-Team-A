@@ -14,6 +14,7 @@ public interface IAufenthalt extends IModel {
 	public void setPreis(Float preis);
 
 	/**
+	 * Gibt den Wert des Attributs Preis zurück
 	 * @return
 	 */
 	public Float getPreis();
@@ -24,6 +25,7 @@ public interface IAufenthalt extends IModel {
 	public void setPfandtyp(IPfandtyp pfandtyp);
 
 	/**
+	 * Gibt den Wert des Attributs Pfand zurück
 	 * @return
 	 */
 	public IPfandtyp getPfandtyp();
@@ -34,6 +36,7 @@ public interface IAufenthalt extends IModel {
 	public void setVon(Date von);
 
 	/**
+	 * Gibt den Wert des Attributs zurück
 	 * @return
 	 */
 	public Date getVon();
@@ -44,6 +47,7 @@ public interface IAufenthalt extends IModel {
 	public void setBis(Date bis);
 
 	/**
+	 * Gibt den Wert des Attributs zurück
 	 * @return
 	 */
 	public Date getBis();
@@ -64,11 +68,13 @@ public interface IAufenthalt extends IModel {
 	public void setPfandNr(String pfandNr);
 
 	/**
+	 * Gibt den Wert des Attributs zurück
 	 * @return
 	 */
 	public String getPfandNr();
 
 	/**
+	 * Gibt den Wert des Attributs zurück
 	 * @return
 	 */
 	public IGast getGast();
@@ -79,6 +85,7 @@ public interface IAufenthalt extends IModel {
 	public void setGast(IGast gast);
 
 	/**
+	 * Gibt den Wert des Attributs zurück
 	 * @return
 	 */
 	public IZimmer getZimmer();
