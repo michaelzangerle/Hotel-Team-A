@@ -313,10 +313,11 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @throws FokusException 
 	 * @throws WrongParameterException 
 	 * @throws EmptyParameterException 
+	 * @throws NotContainExeption 
 	 */
 	public void saveAufenthalt(float preis, Date von, Date bis,
 			boolean schluessel, IGast gast, IZimmer zimmer, IPfandtyp pfand,
-			String pfandnummer) throws DatabaseException, FokusException, WrongParameterException, EmptyParameterException {
+			String pfandnummer) throws DatabaseException, FokusException, WrongParameterException, EmptyParameterException, NotContainExeption {
 
 		modelKontodaten.save(gast.getKontodaten());
 		modelZimmer.setAktullesZimmer(zimmer);

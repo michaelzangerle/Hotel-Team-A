@@ -17,12 +17,12 @@ public class LoginInExeption extends Exception {
 
 	@Override
 	public synchronized Throwable fillInStackTrace() {
-		// TODO Auto-generated method stub
+		
 		return super.fillInStackTrace();
 	}
 	@Override
 	public void printStackTrace() {
-		// TODO Auto-generated method stub
+		
 		super.printStackTrace();
 	}
 	@Override

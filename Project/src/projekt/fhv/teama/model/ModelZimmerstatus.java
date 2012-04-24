@@ -7,6 +7,7 @@ import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
 import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerStatusDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerstatusDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
 
 public class ModelZimmerstatus implements IModelZimmerstatus{
@@ -20,16 +21,14 @@ public class ModelZimmerstatus implements IModelZimmerstatus{
 	}
 	
 	@Override
-	public IZimmerstatus getStatusByKuerzel(String string) throws DatabaseException {
+	public IZimmerstatus getStatusByKuerzel(String string) throws DatabaseException, NotContainExeption {
 		
 		List<IZimmerstatus> statis=new Vector<IZimmerstatus>(zimmerDao.getAll());
 		for (IZimmerstatus status : statis) {
 			if(status.getKuerzel().equals(string))
 			return status;
 		}
-		
-		//TODO Exeption
-		return null;
+		throw new NotContainExeption();
 	}
 
 	

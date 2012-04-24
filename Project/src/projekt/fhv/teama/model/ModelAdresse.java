@@ -19,13 +19,12 @@ public class ModelAdresse implements IModelAdresse {
 	}
 	
 	@Override
-	public void save(IAdresse adr) {
+	public void save(IAdresse adr) throws DatabaseException {
 		if(adr!=null)
 			try {
 				adressDao.create(adr);
 			} catch (DatabaseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new DatabaseException();
 			}
 		
 	}

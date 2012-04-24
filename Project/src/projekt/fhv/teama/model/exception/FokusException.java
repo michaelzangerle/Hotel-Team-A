@@ -9,7 +9,7 @@ public class FokusException extends Exception {
 	
 	private String message;
 	public FokusException() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public FokusException(String message) {

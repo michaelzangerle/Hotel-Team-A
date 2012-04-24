@@ -3,6 +3,7 @@ package projekt.fhv.teama.model;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.hibernate.dao.zimmer.IKategorieDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
+import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelKategorie;
 
 
@@ -19,13 +20,13 @@ public class ModelKategorie implements IModelKategorie {
 
 
 	@Override
-	public IKategorie getKategorie() {
+	public IKategorie getKategorie() throws FokusException {
 		if(kategorieModel!=null)
 		{
 			return kategorieModel;
 		}
-		//TODO Error
-		return null;
+		else
+		throw new FokusException();
 	}
 
 
