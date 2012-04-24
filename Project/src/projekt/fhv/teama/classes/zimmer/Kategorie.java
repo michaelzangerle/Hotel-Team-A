@@ -6,8 +6,9 @@ import java.util.Set;
 import projekt.fhv.teama.classes.IKategoriekontingent;
 
 /**
- * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
- * this template use File | Settings | File Templates.
+ * Beschreibt eine Kategorie 
+ * @author Team A
+ * @version 1.2
  */
 public class Kategorie implements IKategorie {
 

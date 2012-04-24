@@ -9,8 +9,9 @@ import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 
 /**
- * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
- * this template use File | Settings | File Templates.
+ * Beschreibt ein Zimmer
+ * @author Team A
+ * @version 1.2
  */
 public class Zimmer extends Leistung implements IZimmer {
 

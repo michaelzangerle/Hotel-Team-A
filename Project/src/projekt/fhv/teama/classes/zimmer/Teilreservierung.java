@@ -4,8 +4,9 @@
 package projekt.fhv.teama.classes.zimmer;
 
 /**
- * @author mike
- * 
+ * Beschreibt eine Teilreservierung
+ * @author Team A
+ * @version 1.2
  */
 public class Teilreservierung implements ITeilreservierung {
 
