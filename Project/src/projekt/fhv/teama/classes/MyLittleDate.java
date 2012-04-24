@@ -18,7 +18,7 @@ public class  MyLittleDate {
 	 * @param day Tag
 	 * @return Gibt ein java.sql.Date zurück
 	 */
-	private static Date getDate(int year, int month, int day) {
+	public static Date getDate(int year, int month, int day) {
 
         return new Date(new GregorianCalendar(year, month-1, day).getTime().getTime());
 
@@ -29,7 +29,7 @@ public class  MyLittleDate {
 	 * @return Aktuelles java.sql.Date
 	 */
 	@SuppressWarnings({ "unused", "deprecation" })
-	private static Date getCurrentDate()
+	public static Date getCurrentDate()
 	 {
 		 java.util.Date date =new java.util.Date();
 		return getDate(date.getYear(), date.getMonth(), date.getDay());
