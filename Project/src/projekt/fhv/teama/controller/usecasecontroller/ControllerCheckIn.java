@@ -335,14 +335,13 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		
 		for (IAdresse adr : gast.getAdressen()) {
 			modelAdresse.save(adr);
-
+		}
 			modelGast.save(gast);
 			modelAufenthalt.create(preis, von, bis, schluessel, gast, zimmer,
 					pfand, pfandnummer);
 			modelReservierung.setBearbeitet(true);
 			modelReservierung.save(getAktuelleReservierung());
-		}
-
+		
 	}
 
 	public ILand getLandByKuerzel(String kuerzel) throws DatabaseException, EmptyParameterException, NotContainExeption {

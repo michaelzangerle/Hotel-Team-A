@@ -7,19 +7,55 @@ import projekt.fhv.teama.classes.IModel;
 import projekt.fhv.teama.classes.personen.IKontodaten;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 
+
+
+/**
+ * Diese Klasse wiederspiegelt eine Person
+ * @author Team-A
+ * @version 1.5
+ */
 public interface IPerson extends IModel {
+	
+	/**
+	 * Um den Vornamen einer Person zu ändern
+	 * @param vorname String
+	 */
 	public void setVorname(String vorname);
 
+	/**
+	 * Um den Vornamen einer Person zu erhalten
+	 * @return String vorname
+	 */
 	public String getVorname();
 
+	/**
+	 * Um den Nachnamen einer Person zu ändern
+	 * @param nachname String
+	 */
 	public void setNachname(String nachname);
 
+	/**
+	 * Um den Nachnamen einer Perosn zu erhalten
+	 * @return String nachname
+	 */
 	public String getNachname();
 
+	/**
+	 * Um das Geschlecht einer Person zu ändern
+	 * @param geschlecht Char
+	 */
 	public void setGeschlecht(char geschlecht);
 
+	/**
+	 * Um das Geschlecht einer Person zu erhalten
+	 * @return Character geschlecht
+	 */
 	public Character getGeschlecht();
 
+	/**
+	 * Um das Geburtsdatum einer Person 
+	 * @param geburtsdatum
+	 */
 	public void setGeburtsdatum(Date geburtsdatum);
 
 	public Date getGeburtsdatum();
