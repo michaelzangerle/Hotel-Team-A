@@ -1,5 +1,10 @@
 package projekt.fhv.teama.model.exception;
 
+/**
+ * Exeption für leere Rückgaben
+ * @author Team-A
+ * @version 1.5
+ */
 public class NotContainExeption extends Exception {
 
 	

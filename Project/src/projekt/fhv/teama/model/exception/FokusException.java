@@ -1,5 +1,11 @@
 package projekt.fhv.teama.model.exception;
 
+/**
+ * Exeption wenn kein Fokus gesetzt wurde
+ * @author Team-A
+ * @version 1.5
+ */
+
 public class FokusException extends Exception {
 
 	/**
