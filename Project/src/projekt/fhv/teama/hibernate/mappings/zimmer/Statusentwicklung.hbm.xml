@@ -19,11 +19,11 @@
 			<column name="ZIMMERSTATUSID" />
 		</many-to-one>
 
-		<property name="von" type="java.sql.Timestamp">
+		<property name="von" type="java.sql.Date">
 			<column name="VON" sql-type="DATE" />
 		</property>
 
-		<property name="bis" type="java.sql.Timestamp">
+		<property name="bis" type="java.sql.Date">
 			<column name="BIS" sql-type="DATE" />
 		</property>
 

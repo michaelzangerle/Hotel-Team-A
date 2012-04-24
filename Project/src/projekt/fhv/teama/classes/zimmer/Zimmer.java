@@ -120,7 +120,7 @@ public class Zimmer extends Leistung implements IZimmer {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + getID();
-		result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
+//		result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
 		//result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
 		result = prime * result + ((kategorie == null) ? 0 : kategorie.hashCode());

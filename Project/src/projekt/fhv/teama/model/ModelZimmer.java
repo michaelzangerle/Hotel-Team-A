@@ -16,6 +16,8 @@ import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerstatusDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
+import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
 import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
 
@@ -31,7 +33,7 @@ public class ModelZimmer implements IModelZimmer {
 	@Override
 	public List<IZimmer> getVerfuegbareZimmerFürGegebeneKategorie(
 			IKategorie ausgewählteKategorie, IReservierung aktulleReservierung)
-			throws DatabaseEntryNotFoundException {
+			throws DatabaseException {
 
 		List<IZimmer> verfügbare = new Vector<IZimmer>();
 		List<IZimmer> alle = null;
@@ -39,8 +41,7 @@ public class ModelZimmer implements IModelZimmer {
 			alle = new Vector<IZimmer>(zimmerDao.getAll());
 
 		} catch (DatabaseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DatabaseException();
 		}
 
 		for (IZimmer zi : alle) {
@@ -66,27 +67,27 @@ public class ModelZimmer implements IModelZimmer {
 	}
 
 	@Override
-	public void save(IZimmer zimmer) {
+	public void save(IZimmer zimmer) throws DatabaseException, EmptyParameterException {
 		if (zimmer != null)
 			try {
 				zimmerDao.create(zimmer);
 			} catch (DatabaseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new DatabaseException();
 			}
+		else
+			throw new EmptyParameterException();
 
 	}
 
 	@Override
-	public List<IZimmer> getVerfügbareZimmer() {
+	public List<IZimmer> getVerfügbareZimmer() throws DatabaseException {
 
 		List<IZimmer> verfügbare = new Vector<IZimmer>();
 		List<IZimmer> alle = null;
 		try {
 			alle = new Vector<IZimmer>(zimmerDao.getAll());
 		} catch (DatabaseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DatabaseException();
 		}
 
 		for (IZimmer zi : alle) {
@@ -98,23 +99,32 @@ public class ModelZimmer implements IModelZimmer {
 	}
 
 	@Override
-	public void setStatus(IZimmerstatus status) {
-
+	public void setStatus(IZimmerstatus status) throws EmptyParameterException {
 		if (status != null) {
 			zimmerModel.setZimmerstatus(status);
+		}
+		else
+			throw new EmptyParameterException();
+
+	}
+
+	@Override
+	public void setAktullesZimmer(IZimmer zimmer) throws EmptyParameterException {
+		if(zimmer!=null)
+		zimmerModel = zimmer;
+		else {
+			throw new EmptyParameterException();
 		}
 
 	}
 
 	@Override
-	public void setAktullesZimmer(IZimmer zimmer) {
-		zimmerModel = zimmer;
-
-	}
-
-	@Override
-	public IZimmer getAktullesZimmer() {
+	public IZimmer getAktullesZimmer() throws FokusException {
+		if(zimmerModel!=null)
 		return zimmerModel;
-	}
+		else {
+			throw new FokusException();
+		}
+		}
 
 }

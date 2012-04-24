@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
+import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.personen.IAdresse;
@@ -19,6 +20,7 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.model.interfaces.IModelAdresse;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
@@ -118,9 +120,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 
 	/**
 	 * Die Referenz des aktuellen Gast zu erhalten
+	 * @throws FokusException 
 	 * 
 	 */
-	public IGast getGast() {
+	public IGast getGast() throws FokusException {
 		return modelGast.getAktuellGast();
 	}
 
@@ -130,8 +133,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Vorname des Gastes ändern
 	 * 
 	 * @param vorname
+	 * @throws FokusException 
+	 * @throws EmptyParameterException 
 	 */
-	public void setVorname(String vorname) {
+	public void setVorname(String vorname) throws EmptyParameterException, FokusException {
 		modelGast.setVorname(vorname);
 	}
 
@@ -139,8 +144,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Nachname des Gastes ändern
 	 * 
 	 * @param nachname
+	 * @throws EmptyParameterException 
+	 * @throws FokusException 
 	 */
-	public void setNachname(String nachname) {
+	public void setNachname(String nachname) throws FokusException, EmptyParameterException {
 		modelGast.setNachname(nachname);
 
 	}
@@ -167,8 +174,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Email des Gastes ändern
 	 * 
 	 * @param email
+	 * @throws EmptyParameterException 
+	 * @throws FokusException 
 	 */
-	public void setEmail(String email) {
+	public void setEmail(String email) throws FokusException, EmptyParameterException {
 		modelGast.setEmail(email);
 	}
 
@@ -179,9 +188,11 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param blz
 	 * @param iban
 	 * @param bic
+	 * @throws FokusException 
+	 * @throws WrongParameterException 
 	 */
 	public void setKontodaten(String kontonummer, String blz, String iban,
-			String bic) {
+			String bic) throws WrongParameterException, FokusException {
 		modelGast.setKontodaten(kontonummer, blz, iban, bic);
 	}
 
@@ -189,8 +200,9 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Telefonnummer des Gastes ändern
 	 * 
 	 * @param telefonnummer
+	 * @throws FokusException 
 	 */
-	public void setTelefonnummer(String telefonnummer) {
+	public void setTelefonnummer(String telefonnummer) throws FokusException {
 		modelGast.setTelefonnummer(telefonnummer);
 	}
 
@@ -198,8 +210,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Nummer des Gastes ändern
 	 * 
 	 * @param nummer
+	 * @throws EmptyParameterException 
+	 * @throws FokusException 
 	 */
-	public void setNummer(String nummer) {
+	public void setNummer(String nummer) throws FokusException, EmptyParameterException {
 		modelGast.setNummer(nummer);
 	}
 
@@ -207,8 +221,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Zimmer des Gastes ändern
 	 * 
 	 * @param zimmer
+	 * @throws EmptyParameterException 
+	 * @throws FokusException 
 	 */
-	public void setZimmer(IZimmer zimmer) {
+	public void setZimmer(IZimmer zimmer) throws FokusException, EmptyParameterException {
 		modelGast.setZimmer(zimmer);
 	}
 
@@ -216,8 +232,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Adresse zum Gast hinzufügen
 	 * 
 	 * @param adresse
+	 * @throws EmptyParameterException 
+	 * @throws FokusException 
 	 */
-	public void addAdresse(IAdresse adresse) {
+	public void addAdresse(IAdresse adresse) throws FokusException, EmptyParameterException {
 		modelGast.addAdresse(adresse);
 	}
 
@@ -225,8 +243,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Adresse vom Gast entfernen
 	 * 
 	 * @param adresse
+	 * @throws FokusException 
+	 * @throws NotContainExeption 
 	 */
-	public void removeAdresse(IAdresse adresse) {
+	public void removeAdresse(IAdresse adresse) throws NotContainExeption, FokusException {
 		modelGast.removeAdresse(adresse);
 	}
 
@@ -256,7 +276,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @return List<IPfandtyp>
 	 * @throws DatabaseException
 	 */
-	public List<IPfandtyp> getPfandtyps() throws DatabaseException {
+	public List<IPfandtyp> getPfandtyps() throws DatabaseException, FokusException {
 		return modelPfandtyp.getPfandtyps();
 	}
 
@@ -265,16 +285,16 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * 
 	 * @param k
 	 * @return List<IZimmer>
-	 * @throws DatabaseEntryNotFoundException
 	 * @throws FokusException 
+	 * @throws DatabaseException 
 	 */
 	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)
-			throws DatabaseEntryNotFoundException, FokusException {
+			throws FokusException, DatabaseException {
 		return modelZimmer.getVerfuegbareZimmerFürGegebeneKategorie(k,
 				getAktuelleReservierung());
 	}
 
-	public List<IZimmer> getVerfügbareZimmer() {
+	public List<IZimmer> getVerfügbareZimmer() throws DatabaseException {
 		return modelZimmer.getVerfügbareZimmer();
 	}
 
@@ -324,8 +344,13 @@ public class ControllerCheckIn implements IControllerCheckIn {
 
 	}
 
-	public ILand getLandByKuerzel(String kuerzel) throws DatabaseException {
+	public ILand getLandByKuerzel(String kuerzel) throws DatabaseException, EmptyParameterException, NotContainExeption {
 		return modelLand.getLandByKuerzel(kuerzel);
+	}
+	
+	public List<IAufenthalt> getAufenthalte() throws DatabaseException, EmptyParameterException
+	{
+		return modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 5, 25));
 	}
 
 }
