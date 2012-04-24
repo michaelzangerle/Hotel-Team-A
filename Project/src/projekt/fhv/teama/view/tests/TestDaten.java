@@ -12,6 +12,7 @@ import projekt.fhv.teama.model.ModelKontodaten;
 import projekt.fhv.teama.model.ModelLand;
 import projekt.fhv.teama.model.ModelPfandTyp;
 import projekt.fhv.teama.model.ModelReservierung;
+import projekt.fhv.teama.model.ModelStatusentwicklung;
 import projekt.fhv.teama.model.ModelTeilreservierung;
 import projekt.fhv.teama.model.ModelZimmer;
 import projekt.fhv.teama.model.ModelZimmerstatus;
@@ -27,7 +28,7 @@ public class TestDaten {
 	IControllerCheckIn checkIn = new ControllerCheckIn(new ModelReservierung(), new ModelAufenthalt(), 
 			new ModelGast(), new ModelTeilreservierung(), new ModelKategorie(), 
 			new ModelKontodaten(), new ModelPfandTyp(), new ModelZimmer(), new ModelZimmerstatus(), 
-			new ModelAdresse(), new ModelLand());
+			new ModelAdresse(), new ModelLand(), new ModelStatusentwicklung());
 	
 	
 	List<String> ankommendeGaeste;

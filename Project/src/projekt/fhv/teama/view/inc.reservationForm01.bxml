@@ -1,30 +1,38 @@
  <view:ViewReservation bxml:id="reservationForm01" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk" styles="{padding:6}" xmlns:view="projekt.fhv.teama.view"
 	visible="false" >
-	<BoxPane bxml:id="bpReservation2" orientation="vertical" styles="{spacing:10,
-		fill:true}">
+	<BoxPane bxml:id="bpReservation" orientation="vertical" styles="{spacing:10,fill:true}">
 		<Label bxml:id="lbReservationDetails" text="Selected Reservation" styles="$styles.lbHeading1"/>
 		<Form bxml:id="form" styles="{showFlagIcons:true}">
 			<Form.Section>
-				<Label Form.label="rf1LBReservation" textKey="id"/>
+				<Label bxml:id="rf1LBResNr" Form.label="Reservation-Nr." textKey="id"/>
 				<TextInput bxml:id="rf1TIName" Form.label="Name" textKey="name"/>
-
-				<BoxPane bxml:id="rf1TIAddress" Form.label="Address" orientation="vertical">
-					<TextInput bxml:id="rf1TIStreet"  textKey="address.street" prompt="Street"/>
-					<BoxPane>
-						<TextInput bxml:id="rf1TICity" textKey="address.city" prompt="City"/>
-						<TextInput bxml:id="rf1TIZip" textKey="address.zip" textSize="6" prompt="Zip"/>
-						<TextInput bxml:id="rf1TIState" textKey="address.state" textSize="6" prompt="State"/>
-					</BoxPane>
+				
+				<BoxPane orientation="vertical">									
+							<BoxPane bxml:id="rf1BPAddress" Form.label="Address">
+								<TextInput bxml:id="rf1TIStreet" prompt="Street"/>
+								<TextInput bxml:id="rfTICity" prompt="City"/>
+							</BoxPane>
+							<BoxPane>
+								<TextInput bxml:id="rf1TICountry" prompt="Country"/>
+								<TextInput bxml:id="rfTIZip" prompt="Zip" preferredWidth="80"/>
+						</BoxPane>
 				</BoxPane>
-
-				<TextInput bxml:id="rf1TIState" Form.label="Phone" textKey="phoneNumber"/>
-				<TextInput bxml:id="rf1TIState" Form.label="Email" textKey="emailAddress"/>
-
-				<BoxPane bxml:id="rf1TIStay" Form.label="Stay">
-					<TextInput textKey="imAccount.id"/>
-					<CalendarButton bxml:id="rf1CBArrival"/>
-					<CalendarButton bxml:id="rf1CBDeparture"/>
+				
+				<TextInput bxml:id="rf1TIPhone" Form.label="Phone"	textKey="phoneNumber"/>
+				<TextInput bxml:id="rf1TIEMail" Form.label="Email"	textKey="emailAddress"/>
+				
+				<BoxPane orientation="horizontal" bxml:id="rf1BPStay" >
+					<BoxPane orientation="vertical">
+						<Label bxml:id="rf1LBArrival" text="Arrival"/>
+						<CalendarButton bxml:id="rf1CBArrival"
+							preferredWidth="130"/>
+					</BoxPane>
+					<BoxPane orientation="vertical">
+						<Label bxml:id="rf1LBDeparture" text="Departure"/>
+						<CalendarButton bxml:id="rf1CBDeparture"
+							preferredWidth="130"/>
+					</BoxPane>
 				</BoxPane>
 			</Form.Section>
 		</Form>

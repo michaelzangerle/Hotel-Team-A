@@ -32,9 +32,12 @@ import projekt.fhv.teama.model.ModelLand;
 import projekt.fhv.teama.model.ModelMitarbeiter;
 import projekt.fhv.teama.model.ModelPfandTyp;
 import projekt.fhv.teama.model.ModelReservierung;
+import projekt.fhv.teama.model.ModelStatusentwicklung;
 import projekt.fhv.teama.model.ModelTeilreservierung;
 import projekt.fhv.teama.model.ModelZimmer;
 import projekt.fhv.teama.model.ModelZimmerstatus;
+import projekt.fhv.teama.model.interfaces.IModelReservierung;
+import projekt.fhv.teama.model.interfaces.IModelStatusentwicklung;
 import projekt.fhv.teama.view.tests.TestDaten;
 
 public class ViewController implements Application{
@@ -71,7 +74,7 @@ public class ViewController implements Application{
         viewLogin = (ViewLogin) bS.readObject(getClass().getResource("ViewLogin.bxml"));
         viewMain = (ViewMain) bS.readObject(getClass().getResource("ViewMain.bxml"));
         viewMain.setMaximized(true);
-        viewMain.open(disp);
+        viewLogin.open(disp);
         
         addLoginEventListener();
     } 
@@ -135,7 +138,7 @@ public class ViewController implements Application{
 		controllerCheckIn = new ControllerCheckIn(new ModelReservierung(), new ModelAufenthalt(), 
 				new ModelGast(), new ModelTeilreservierung(), new ModelKategorie(), 
 				new ModelKontodaten(), new ModelPfandTyp(), new ModelZimmer(), new ModelZimmerstatus(), 
-				new ModelAdresse(), new ModelLand());
+				new ModelAdresse(), new ModelLand(), new ModelStatusentwicklung());
 		
 		List<IReservierung> reservations = controllerCheckIn.getAllReservierungen();
 
@@ -143,8 +146,7 @@ public class ViewController implements Application{
 			viewMain.getLvReservationSearch().setListData("Currently no reservations available");
 		} else {
 			viewMain.getLvReservationSearch().setListData(wrapper.getReservationListAdapter(reservations));
-		}
-		
+		}		
 	
 	}
 
