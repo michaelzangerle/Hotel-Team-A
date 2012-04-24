@@ -22,7 +22,5 @@ public class ApplicationStartUp {
         */
         DesktopApplicationContext.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
     	DesktopApplicationContext.main(ViewController.class, args);    	
-        
-
     }
 }

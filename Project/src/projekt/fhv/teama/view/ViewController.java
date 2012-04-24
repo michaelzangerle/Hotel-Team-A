@@ -1,22 +1,23 @@
 package projekt.fhv.teama.view;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Vector;
+
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.collections.Sequence;
-import org.apache.pivot.util.Filter;
+import org.apache.pivot.util.CalendarDate;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.ListView;
-import org.apache.pivot.wtk.ListView.ItemEditor;
-import org.apache.pivot.wtk.ListView.ItemRenderer;
-import org.apache.pivot.wtk.ListView.SelectMode;
-import org.apache.pivot.wtk.ListViewListener;
 import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.Span;
 
+import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.controller.exeption.LoginInExeption;
@@ -36,8 +37,7 @@ import projekt.fhv.teama.model.ModelStatusentwicklung;
 import projekt.fhv.teama.model.ModelTeilreservierung;
 import projekt.fhv.teama.model.ModelZimmer;
 import projekt.fhv.teama.model.ModelZimmerstatus;
-import projekt.fhv.teama.model.interfaces.IModelReservierung;
-import projekt.fhv.teama.model.interfaces.IModelStatusentwicklung;
+import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.view.tests.TestDaten;
 
 public class ViewController implements Application{
@@ -47,6 +47,7 @@ public class ViewController implements Application{
 	public TestDaten testDaten = new TestDaten();
 	private ControllerCheckIn controllerCheckIn;
 	private Wrapper wrapper;
+	private List<IReservierung> reservations;
 	
 	@Override
 	public void resume() throws Exception {
@@ -90,7 +91,7 @@ public class ViewController implements Application{
 	private void addMainEventListener() {
 		viewMain.setLvReservationSearchListener(new ReservationListListener());
 		viewMain.setlvArrivingSearchListener(new ReservationListListener());
-		viewMain.setrf1PBtnCheckInListener(new CheckInViewController());
+		viewMain.setrf1PBtnCheckInListener(new CheckInViewController(viewMain, controllerCheckIn));
 		viewMain.setlvGuestSearchListener(new GuestListListener());
 	}
 	
@@ -140,16 +141,66 @@ public class ViewController implements Application{
 				new ModelKontodaten(), new ModelPfandTyp(), new ModelZimmer(), new ModelZimmerstatus(), 
 				new ModelAdresse(), new ModelLand(), new ModelStatusentwicklung());
 		
-		List<IReservierung> reservations = controllerCheckIn.getAllReservierungen();
+		try {
+			reservations = controllerCheckIn.getAllReservierungen();
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+		}
 
 		if (reservations.equals(null)) {
 			viewMain.getLvReservationSearch().setListData("Currently no reservations available");
 		} else {
 			viewMain.getLvReservationSearch().setListData(wrapper.getReservationListAdapter(reservations));
-		}		
-	
+		}
+		setSelectedReservation(1);
 	}
 
+	public void setReservationFocus (int ID) {
+		for (IReservierung reservation : reservations) {
+			if (reservation.getID() == ID) {
+				controllerCheckIn.setAktuelleReservierung(reservation);
+			}
+		}
+	}
+	
+	public void setSelectedReservation(int reservierungsnummer) {
+		setReservationFocus(reservierungsnummer);
+		IReservierung curReservation = null;
+		try {
+			curReservation = controllerCheckIn.getAktuelleReservierung();
+		} catch (FokusException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		viewMain.rf1LBResNr.setText(String.valueOf(curReservation.getID()));
+		viewMain.rf1TIName.setText(curReservation.getPerson().getNachname().toUpperCase() + " " + curReservation.getPerson().getVorname());
+		viewMain.rf1TIEMail.setText(curReservation.getPerson().getEmail());
+		viewMain.rf1TIPhone.setText(curReservation.getPerson().getTelefonnummer());
+		
+		List<IAdresse> adressen = new Vector<IAdresse>(curReservation.getPerson().getAdressen());
+		
+		if (!adressen.equals(null)) {
+			IAdresse adresse = adressen.get(0);
+			viewMain.rf1TIStreet.setText(adresse.getStrasse());
+			viewMain.rf1TICountry.setText(adresse.getLand().getBezeichnung());
+			viewMain.rfTICity.setText(adresse.getOrt());
+			viewMain.rfTIZip.setText(adresse.getPlz());
+		}
+		
+		Date arrival = curReservation.getVon(); 
+		Date departure = curReservation.getBis();
+		
+		CalendarDate d1 = CalendarDate.decode(arrival.toString());
+		CalendarDate d2 = CalendarDate.decode(departure.toString());
+		
+//
+//		Calendar cal = Calendar.getInstance();
+//		cal.setTime(arrival);
+////		CalendarDate car = new CalendarDate(arrival);
+//		
+		viewMain.rf1CBArrival.setSelectedDate(d1);
+		viewMain.rf1CBDeparture.setSelectedDate(d2);
+	}
 	
 	class ReservationListListener implements ListViewSelectionListener{
 
@@ -159,12 +210,7 @@ public class ViewController implements Application{
 			String[] split = text.split(" ", 3);
 			int reservierungsnummer = Integer.valueOf(split[1]);
 			
-			System.out.println(reservierungsnummer);
-
-			IReservierung reservierung = null;
-			//TODO reservierung via id auslesen
-			//getReservierungbyreservierungsnummer/id..
-			//controllerCheckIn.setAktuelleReservierung(reservierung);
+			setSelectedReservation(reservierungsnummer);
 		}
 
 		@Override

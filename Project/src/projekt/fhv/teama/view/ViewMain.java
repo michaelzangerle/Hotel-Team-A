@@ -46,7 +46,6 @@ public class ViewMain extends Window implements Application, Bindable {
 	ViewController viewController = new ViewController();
 	BXMLSerializer bxmlSerializer = new BXMLSerializer();
 	
-	Action gotoStep;
 	
 	private Window window = null;
 	
@@ -299,19 +298,7 @@ public class ViewMain extends Window implements Application, Bindable {
 			
 		});
 		
-		cf4PBtnFinish.getButtonPressListeners().add(new ButtonPressListener()  {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-				
-				checkInForm04.setVisible(false);
-				reservationForm01.setVisible(true);	
-				progress.setVisible(false);
-				meter.setPercentage(0.25);
-			
-			}
-			
-		});		
+		
 	
 		cf2PBtnBack.getButtonPressListeners().add(new ButtonPressListener()  {
 
@@ -346,114 +333,6 @@ public class ViewMain extends Window implements Application, Bindable {
 				checkInForm03.setVisible(true);
 				checkInForm04.setVisible(false);
 				meter.setPercentage(meter.getPercentage() - 0.25);
-			}
-			
-		});
-		
-		    gotoStep = new Action(true) {
-		    @Override
-		    public void perform(Component source) {
-		      
-		    			    	
-		    	if (source.getName().equals("lbProgress01")) {
-					meter.setPercentage(0.25);
-					checkInForm01.setVisible(true);
-					checkInForm02.setVisible(false);
-					checkInForm03.setVisible(false);
-					checkInForm04.setVisible(false);
-		    	}
-			      
-		    	if (source.getName().equals("lbProgress02")) {
-					meter.setPercentage(0.50);
-					checkInForm01.setVisible(false);
-					checkInForm02.setVisible(true);
-					checkInForm03.setVisible(false);
-					checkInForm04.setVisible(false);
-		    	}
-			      
-		    	if (source.getName().equals("lbProgress03")) {
-					meter.setPercentage(0.75);
-					checkInForm01.setVisible(false);
-					checkInForm02.setVisible(false);
-					checkInForm03.setVisible(true);
-					checkInForm04.setVisible(false);
-		    	}
-			      
-		    	if (source.getName().equals("lbProgress04")) {
-					meter.setPercentage(1);
-					checkInForm01.setVisible(false);
-					checkInForm02.setVisible(false);
-					checkInForm03.setVisible(false);
-					checkInForm04.setVisible(true);
-		    	}
-		    	
-		        
-		    }
-		};
-		
-
-		
-		lbProgress01.getComponentMouseButtonListeners().add(new ComponentMouseButtonListener() {
-
-			@Override
-			public boolean mouseClick(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
-					int arg4) {
-					gotoStep.perform(arg0);
-				return false;
-			}
-
-			@Override
-			public boolean mouseDown(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
-				return false;
-			}
-
-			@Override
-			public boolean mouseUp(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
-				return false;
-			}
-			
-		});
-		
-		
-		lbProgress02.getComponentMouseButtonListeners().add(new ComponentMouseButtonListener.Adapter() {
-
-			@Override
-			public boolean mouseClick(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
-					int arg4) {
-					gotoStep.perform(arg0);
-				return false;
-			}
-
-			
-		});
-		
-		
-		lbProgress03.getComponentMouseButtonListeners().add(new ComponentMouseButtonListener.Adapter() {
-
-			@Override
-			public boolean mouseClick(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
-					int arg4) {
-					gotoStep.perform(arg0);
-				return false;
-			}
-		
-		});
-		
-		
-		
-		lbProgress04.getComponentMouseButtonListeners().add(new ComponentMouseButtonListener.Adapter() {
-
-			@Override
-			public boolean mouseClick(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
-					int arg4) {
-					gotoStep.perform(arg0);
-				return false;
 			}
 			
 		});
@@ -507,7 +386,36 @@ public class ViewMain extends Window implements Application, Bindable {
 	public void setrf1PBtnCheckInListener(ButtonPressListener e) {
 		rf1PBtnCheckIn.getButtonPressListeners().add(e);
 	}
-
 	
+	public void setlbProgress01Listener (ComponentMouseButtonListener e) {
+		lbProgress01.getComponentMouseButtonListeners().add(e);
+	}
 	
+	public void setlbProgress02Listener (ComponentMouseButtonListener e) {
+		lbProgress02.getComponentMouseButtonListeners().add(e);
+	}
+	
+	public void setlbProgress03Listener (ComponentMouseButtonListener e) {
+		lbProgress03.getComponentMouseButtonListeners().add(e);
+	}
+	
+	public void setlbProgress04Listener (ComponentMouseButtonListener e) {
+		lbProgress04.getComponentMouseButtonListeners().add(e);
+	}
+	
+	public void setcf1PBtnNextListener (ButtonPressListener e) {
+		cf1PBtnNext.getButtonPressListeners().add(e);
+	}
+	
+	public void setcf2PBtnNextListener (ButtonPressListener e) {
+		cf2PBtnNext.getButtonPressListeners().add(e);
+	}
+	
+	public void setcf3PBtnNextListener (ButtonPressListener e) {
+		cf3PBtnNext.getButtonPressListeners().add(e);
+	}
+	
+	public void setcf4PBtnFinishListener (ButtonPressListener e) {
+		cf4PBtnFinish.getButtonPressListeners().add(e);
+	}
 }

@@ -6,10 +6,14 @@ import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.Dialog;
 import org.apache.pivot.wtk.MessageType;
+import org.apache.pivot.wtk.Window;
 
+import projekt.fhv.teama.view.ViewMain;
 import projekt.fhv.teama.view.support.BlockingDialog;
 
 public class ActionHandler {
+	private ViewMain viewMain;
+	
 	
 	Action cancel = new Action(true) {
 	    @Override
@@ -38,4 +42,10 @@ public class ActionHandler {
 	        
 	    }
 	};
+	
+
+	
+	public ActionHandler (ViewMain viewMain) {
+		this.viewMain = viewMain;
+	}
 }
