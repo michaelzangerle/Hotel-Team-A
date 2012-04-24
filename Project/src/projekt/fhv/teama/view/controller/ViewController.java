@@ -1,38 +1,60 @@
 package projekt.fhv.teama.view.controller;
 
+import java.util.List;
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.collections.Map;
+import org.apache.pivot.collections.Sequence;
+import org.apache.pivot.util.Filter;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.Display;
-import org.apache.pivot.wtk.Window;
+import org.apache.pivot.wtk.ListView;
+import org.apache.pivot.wtk.ListView.ItemEditor;
+import org.apache.pivot.wtk.ListView.ItemRenderer;
+import org.apache.pivot.wtk.ListView.SelectMode;
+import org.apache.pivot.wtk.ListViewListener;
+import org.apache.pivot.wtk.ListViewSelectionListener;
+import org.apache.pivot.wtk.Span;
 
+import projekt.fhv.teama.classes.personen.IMitarbeiter;
+import projekt.fhv.teama.classes.zimmer.IReservierung;
+import projekt.fhv.teama.controller.exeption.LoginInExeption;
+import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
+import projekt.fhv.teama.controller.usecasecontroller.ControllerLogin;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.ModelAdresse;
+import projekt.fhv.teama.model.ModelAufenthalt;
+import projekt.fhv.teama.model.ModelGast;
+import projekt.fhv.teama.model.ModelKategorie;
+import projekt.fhv.teama.model.ModelKontodaten;
+import projekt.fhv.teama.model.ModelMitarbeiter;
+import projekt.fhv.teama.model.ModelPfandTyp;
+import projekt.fhv.teama.model.ModelReservierung;
+import projekt.fhv.teama.model.ModelTeilreservierung;
+import projekt.fhv.teama.model.ModelZimmer;
+import projekt.fhv.teama.model.ModelZimmerstatus;
 import projekt.fhv.teama.view.ViewLogin;
 import projekt.fhv.teama.view.ViewMain;
 import projekt.fhv.teama.view.tests.TestDaten;
 
 public class ViewController implements Application{
-	
-	public Display disp;
+    private ViewLogin viewLogin; 
+    private ViewMain viewMain;
+	private Display disp;
 	public TestDaten testDaten = new TestDaten();
+	private ControllerCheckIn controllerCheckIn;
+	private Wrapper wrapper;
 	
 	@Override
 	public void resume() throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public boolean shutdown(boolean arg0) throws Exception {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
-	 //Attributes
-    private ViewLogin viewLogin; //The person object for testing bxml serializer
-    private ViewMain viewMain;
-    private Window window; //Currently not being used
 
     /**
     * The Application startup method is where to put your code for rendering UI.
@@ -44,44 +66,134 @@ public class ViewController implements Application{
     public void startup(Display display, Map<String, String> properties)
         throws Exception {
 
-        //Create and instantiate a new BXML Serializer object.
-        //This is used to read and process the bxml documents.
         BXMLSerializer bS = new BXMLSerializer();
         disp = display;
-
-        //Next, we call the read object method to read the bxml document.
-        //Several things are happening here. 
-
-        //First we get the Person.bxml resource which is retrieved using
-        //getClass().getResource() method. The resource is the Person.bxml file 
-
-        //Second, we read the xml data from the retrieved file. In this case
-        //the BXML Serializer will cast our person object defined in the bxml
-        //document into an object of type Object. 
-
-        //Third we must cast the object that was returned from the BXML
-        //Serializer into a Person object. That is accomplished using
-        //casting. Casting is implemented with the (Person). And finally
-        //we assign the newly created Person object into our variable called
-        //"person". Now we can reference the attributes set in the bxml document.
-        
         
         viewLogin = (ViewLogin) bS.readObject(getClass().getResource("../ViewLogin.bxml"));
         viewMain = (ViewMain) bS.readObject(getClass().getResource("../ViewMain.bxml"));
-        startMain();
-
-   
+        viewLogin.open(disp);
+        
+        addLoginEventListener();
     } 
 
 	@Override
 	public void suspend() throws Exception {
-		// TODO Auto-generated method stub
-		
+	}
+    
+	private void addLoginEventListener() {
+		viewLogin.setPushBLoginListener(new LoginListener());
 	}
 
-	public void startMain() {
+	private void addMainEventListener() {
+		viewMain.setLvReservationSearchListener(new ReservationListListener());
+		viewMain.setlvArrivingSearchListener(new ReservationListListener());
+		viewMain.setrf1PBtnCheckInListener(new CheckInViewController());
+		viewMain.setlvGuestSearchListener(new GuestListListener());
+	}
+	
+	class LoginListener implements ButtonPressListener {
+		private ControllerLogin controllerLogin;
+		
+		@Override
+		public void buttonPressed(Button arg0) {
+			String username = viewLogin.getTfUsername().getText();
+			String password = viewLogin.getTfPassword().getText();
+			
+			if (username.equals("") || password.equals("")) {
+				System.out.println("Please enter your username and password");
+				return;
+			}
+			
+			try {
+				IMitarbeiter ma =  controllerLogin.checkLogin(username, password);
+				if (ma.equals(null)) {
+					System.out.println("Invalid username or password!");
+				} else {
+					startMainView(ma.getNummer());
+				}
+			} catch (DatabaseException e) {
+				e.printStackTrace();
+			} catch (LoginInExeption e) {
+				e.printStackTrace();
+			}
+		}
+		public LoginListener() {
+			controllerLogin = new ControllerLogin(new ModelMitarbeiter());
+		}
+	}
+
+	public void startMainView(String username) {
 		viewMain.open(disp);
+		//viewMain.getlbLoginShow().setText(username);
+		wrapper = new Wrapper();
+		initializeMainView();
+		addMainEventListener();
 	}
 	
 	
+	private void initializeMainView() {
+		controllerCheckIn = new ControllerCheckIn(new ModelReservierung(), new ModelAufenthalt(), 
+				new ModelGast(), new ModelTeilreservierung(), new ModelKategorie(), 
+				new ModelKontodaten(), new ModelPfandTyp(), new ModelZimmer(), new ModelZimmerstatus(), 
+				new ModelAdresse());
+		List<IReservierung> reservations = controllerCheckIn.getAllReservierungen();
+
+		if (reservations.equals(null)) {
+			viewMain.getLvReservationSearch().setListData("Currently no reservations available");
+		} else {
+			viewMain.getLvReservationSearch().setListData(wrapper.getReservationListAdapter(reservations));
+		}
+	}
+
+	
+	class ReservationListListener implements ListViewSelectionListener{
+
+		@Override
+		public void selectedItemChanged(ListView listView, Object arg1) {
+			String text = (String) listView.getSelectedItem();
+			String[] split = text.split(" ", 3);
+			int reservierungsnummer = Integer.valueOf(split[1]);
+			
+			System.out.println(reservierungsnummer);
+
+			IReservierung reservierung = null;
+			//TODO reservierung via id auslesen
+			//getReservierungbyreservierungsnummer/id..
+			//controllerCheckIn.setAktuelleReservierung(reservierung);
+		}
+
+		@Override
+		public void selectedRangeAdded(ListView listView, int arg1, int arg2) {
+		}
+
+		@Override
+		public void selectedRangeRemoved(ListView listView, int arg1, int arg2) {
+		}
+
+		@Override
+		public void selectedRangesChanged(ListView listView, Sequence<Span> arg1) {
+		}
+	}
+	
+	class GuestListListener implements ListViewSelectionListener {
+
+		@Override
+		public void selectedItemChanged(ListView listView, Object arg1) {
+			String text = (String) listView.getSelectedItem();
+			
+		}
+
+		@Override
+		public void selectedRangeAdded(ListView listView, int arg1, int arg2) {
+		}
+
+		@Override
+		public void selectedRangeRemoved(ListView listView, int arg1, int arg2) {
+		}
+
+		@Override
+		public void selectedRangesChanged(ListView listView, Sequence<Span> arg1) {
+		}
+		
+	}
 }

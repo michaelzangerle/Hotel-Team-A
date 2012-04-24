@@ -27,6 +27,7 @@ import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListButton;
 import org.apache.pivot.wtk.ListView;
+import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Meter;
 import org.apache.pivot.wtk.PushButton;
@@ -51,6 +52,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	
 	/* Labels */
 	Label lbReservationDetails;	
+	Label lbLoginShow;
 	
 	/* Border Container = Forms */
 	Border reservationForm01;Border checkInForm01;Border checkInForm02;Border checkInForm03;Border checkInForm04;
@@ -64,7 +66,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	PushButton cf3PBtnCancel; PushButton cf4PBtnCancel;
 	
 	/* ListViews, ListButtons and CalendarButtons */
-	ListView lvAssignedRooms; ListView lvBookedRoomCategories; ListView lvReservationSearch; ListView lvArrivingSearch; ListView lvGuestSearch;
+	ListView lvAssignedRooms; ListView lvBookedRoomCategories; private ListView lvReservationSearch; ListView lvArrivingSearch; ListView lvGuestSearch;
 	ListButton lbtnGuests; ListButton lbtnAddresses; ListButton lbtnDepositType; CalendarButton cbBirthdate; CalendarButton cbArrival;
 	CalendarButton cbDeparture;
 
@@ -83,16 +85,16 @@ public class ViewMain extends Window implements Application, Bindable {
 	BoxPane bpRoomsSummary;
 
 
-//	/**
-//	 * @param args
-//	 */
-//	public static void main(String[] args) {
-//
-//		DesktopApplicationContext
-//				.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
-//		DesktopApplicationContext.main(
-//				(Class<? extends Application>) ViewMain.class, args);		
-//	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		DesktopApplicationContext
+				.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
+		DesktopApplicationContext.main(
+				(Class<? extends Application>) ViewMain.class, args);		
+	}
 
 	@Override
 	public void startup(Display display, Map<String, String> properties)
@@ -158,7 +160,7 @@ public class ViewMain extends Window implements Application, Bindable {
 		cf4PBtnCancel = (PushButton)arg0.get("cf4PBtnCancel");
 				
 		/* ListViews u. ListButtons initialisieren */
-		lvReservationSearch = (ListView)arg0.get("lvReservationSearch");
+		setLvReservationSearch((ListView)arg0.get("lvReservationSearch"));
 		lvArrivingSearch = (ListView)arg0.get("lvArrivingSearch");
 		lvGuestSearch = (ListView)arg0.get("lvGuestSearch");
 		lvAssignedRooms = (ListView)arg0.get("lvAssignedRooms");
@@ -215,7 +217,7 @@ public class ViewMain extends Window implements Application, Bindable {
 		/** Testdaten füllen ***********************************************************/
 		viewController.testDaten.generateTestData();
 		
-		lvReservationSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
+//		lvReservationSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
 		lvArrivingSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
 		lvGuestSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
 	
@@ -334,20 +336,6 @@ public class ViewMain extends Window implements Application, Bindable {
 			
 		});
 		
-		rf1PBtnCheckIn.getButtonPressListeners().add(new ButtonPressListener()  {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-				
-				reservationForm01.setVisible(false);
-				progress.setVisible(true);
-				checkInForm01.setVisible(true);	
-			}
-			
-		});
-				
-		
-		
 		    gotoStep = new Action(true) {
 		    @Override
 		    public void perform(Component source) {
@@ -456,42 +444,56 @@ public class ViewMain extends Window implements Application, Bindable {
 			
 		});
 		
-
-					
-		Action cancel = new Action(true) {
-		    @Override
-		    public void perform(Component source) {
-		     	
-		    BlockingDialog bd = new BlockingDialog();
-		    bd.setContent(new Alert(MessageType.WARNING, "Cancel the Check-In Process?" +
-		        		" Inputs will not be saved!", new ArrayList<String>("Yes","No")));
-		    Dialog erg = bd.open(source.getDisplay());
-		    int i = ((Alert)erg).getSelectedOptionIndex();
-		    
-		    if( erg.getResult() && i ==0 ) {
-		    	
-			    checkInForm01.repaint();
-			    checkInForm02.repaint();
-			    checkInForm03.repaint();
-			    checkInForm04.repaint();		    
-			    checkInForm01.setVisible(false);
-			    checkInForm02.setVisible(false);
-			    checkInForm03.setVisible(false);
-			    checkInForm04.setVisible(false);
-			    progress.setVisible(false);
-				meter.setPercentage(0.25);
-				reservationForm01.setVisible(true);
-		    }		    
-		        
-		    }
-		};
-		
-		cf1PBtnCancel.setAction(cancel);
-		cf2PBtnCancel.setAction(cancel);
-		cf3PBtnCancel.setAction(cancel);
-		cf4PBtnCancel.setAction(cancel);
-		
+//		cf1PBtnCancel.setAction(cancel);
+//		cf2PBtnCancel.setAction(cancel);
+//		cf3PBtnCancel.setAction(cancel);
+//		cf4PBtnCancel.setAction(cancel);
 	}
 	
+	public void showCheckInForm1 () {
+		reservationForm01.setVisible(false);
+		progress.setVisible(true);
+		checkInForm01.setVisible(true);	
+	}
+	
+	
+	
+	public Label getlbLoginShow() {
+		return lbLoginShow;
+	}
+	
+	public void setlbLoginShow(String username) {
+		lbLoginShow.setText(username);
+	}
 
+	public ListView getLvReservationSearch() {
+		return lvReservationSearch;
+	}
+
+	public void setLvReservationSearch(ListView lvReservationSearch) {
+		this.lvReservationSearch = lvReservationSearch;
+	}
+	
+	public void setLvReservationSearchListener(ListViewSelectionListener e) {
+		lvReservationSearch.getListViewSelectionListeners().add(e);
+	}
+	
+	public void setLvlvArrivingSearch(ListView lvArrivingSearch) {
+		this.lvArrivingSearch = lvArrivingSearch;
+	}
+
+	public void setlvArrivingSearchListener(ListViewSelectionListener e) {
+		lvArrivingSearch.getListViewSelectionListeners().add(e);
+	}
+
+	public void setlvGuestSearchListener(ListViewSelectionListener e) {
+		lvGuestSearch.getListViewSelectionListeners().add(e);
+	}
+	
+	public void setrf1PBtnCheckInListener(ButtonPressListener e) {
+		rf1PBtnCheckIn.getButtonPressListeners().add(e);
+	}
+
+	
+	
 }
