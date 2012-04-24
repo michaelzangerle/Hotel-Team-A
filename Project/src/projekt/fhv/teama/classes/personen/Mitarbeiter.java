@@ -7,12 +7,11 @@ import java.util.Set;
 import projekt.fhv.teama.classes.rechnung.IRechnung;
 
 
+
 /**
- * Created with IntelliJ IDEA.
- * User: mike
- * Date: 09.04.12
- * Time: 22:23
- * To change this template use File | Settings | File Templates.
+ * Beschreibt einen Mitarbeiter unsers Hotels
+ * @author Team-A
+ * @version 1.5
  */
 public class Mitarbeiter extends Person implements IMitarbeiter {
 //    private int ID;

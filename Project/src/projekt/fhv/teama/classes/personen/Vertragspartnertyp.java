@@ -1,10 +1,16 @@
 package projekt.fhv.teama.classes.personen;
 
+/**
+ * Beschreibt den Typ eines Vertragpartners
+ * @author Team-A
+ * @version 1.5
+ */
 public class Vertragspartnertyp implements IVertragspartnertyp {
 	private int ID;
 	private String bezeichnung;
 	
 	
+
 	public int getID() {
 		return ID;
 	}

@@ -1,5 +1,11 @@
 package projekt.fhv.teama.classes.personen;
 
+
+/**
+ * Beschreibt die Kontodaten die wir im System halten
+ * @author Team-A
+ * @version 1.5
+ */
 public class Kontodaten implements IKontodaten {
 	private int ID;
 	private String iban;

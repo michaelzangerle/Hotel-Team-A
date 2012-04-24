@@ -7,6 +7,11 @@ import projekt.fhv.teama.classes.IKontingent;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 
 
+/**
+ * Wiederspiegelt einen Vertragspartner unseres Hoteles
+ * @author Team-A
+ * @version 1.5
+ */
 public class Vertragspartner implements IVertragspartner {
     private int ID;
     private String name;

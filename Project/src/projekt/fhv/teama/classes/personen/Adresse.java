@@ -3,6 +3,12 @@ package projekt.fhv.teama.classes.personen;
 import java.util.HashSet;
 import java.util.Set;
 
+
+/**
+ * Beschreibt die Adresse die eine Person oder ein Vertragspartner im System haben kann
+ * @author Team-A
+ * @version 1.5
+ */
 public class Adresse implements IAdresse {
 	private int ID;
 	private String strasse;

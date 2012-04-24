@@ -5,9 +5,11 @@ import java.util.Set;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 
 
+
 /**
- * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
- * this template use File | Settings | File Templates.
+ * Beschreibt eine Person mit den wichtigsten Daten zur Person
+ * @author Team-A
+ * @version 1.5
  */
 public class Person implements IPerson {
 	private int ID;

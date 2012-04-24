@@ -8,9 +8,12 @@ import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 
+
+
 /**
- * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
- * this template use File | Settings | File Templates.
+ * Beschreibt einen Gast der einen Aufenthalt in unserem Hotel absolviert
+ * @author Team-A
+ * @version 1.5
  */
 public class Gast extends Person implements IGast {
 	// private int ID;
