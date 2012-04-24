@@ -19,6 +19,7 @@ public class Reservierung implements IReservierung {
 	private Date bis;
 	private IPerson person;
 	private IVertragspartner vertragspartner;
+	private boolean bearbeitet;
 
 	private Set<IReservierungsOption> optionen = new HashSet<IReservierungsOption>();
 	private Set<IZimmer> zimmer = new HashSet<IZimmer>();
@@ -37,28 +38,35 @@ public class Reservierung implements IReservierung {
 		this.gaeste = gaeste;
 		this.teilreservierungen = teilreservierungen;
 	}
-	
+
+	public boolean getBearbeitet() {
+		return bearbeitet;
+	}
+
+	public void setBearbeitet(boolean bearbeitet) {
+		this.bearbeitet = bearbeitet;
+	}
+
 	public Reservierung(Date von, Date bis, IPerson person, Set<IGast> gaeste) {
 		this.von = von;
 		this.bis = bis;
 		this.person = person;
 		this.gaeste = gaeste;
 	}
-	
+
 	public Reservierung(Date von, Date bis, IPerson person) {
 		this.von = von;
 		this.bis = bis;
 		this.person = person;
 	}
-	
-	
+
 	public Reservierung(Date von, Date bis, IVertragspartner vertragspartner, Set<IGast> gaeste) {
 		this.von = von;
 		this.bis = bis;
 		this.vertragspartner = vertragspartner;
 		this.gaeste = gaeste;
 	}
-	
+
 	public Reservierung(Date von, Date bis, IVertragspartner vertragspartner) {
 		this.von = von;
 		this.bis = bis;
@@ -142,13 +150,14 @@ public class Reservierung implements IReservierung {
 
 	@Override
 	public String toString() {
-		return "Reservierung [ID=" + ID + ", von=" + von + ", bis=" + bis 
-//				+ ", person=" + person
-//				+ ", vertragspartner="	+ vertragspartner
-				+ ", optionen=" + optionen 
-				+ ", zimmer=" + zimmer 
-//				+ ", gaeste=" + gaeste
-				+ ", teilreservierungen=" + teilreservierungen + "]";
+		return "Reservierung [ID=" + ID + ", von=" + von + ", bis=" + bis
+		// + ", person=" + person
+		// + ", vertragspartner=" + vertragspartner
+				+ ", optionen=" + optionen + ", zimmer=" + zimmer
+				// + ", gaeste=" + gaeste
+				+ ", teilreservierungen=" + teilreservierungen 
+				+ ", bearbeitet="+ bearbeitet
+				+ "]";
 	}
 
 	@Override
@@ -157,13 +166,17 @@ public class Reservierung implements IReservierung {
 		int result = 1;
 		result = prime * result + ID;
 		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
-//		result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
-//		result = prime * result + ((optionen == null) ? 0 : optionen.hashCode());
-//		result = prime * result + ((person == null) ? 0 : person.hashCode());
-//		result = prime * result + ((teilreservierungen == null) ? 0 : teilreservierungen.hashCode());
-//		result = prime * result + ((vertragspartner == null) ? 0 : vertragspartner.hashCode());
+		// result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
+		// result = prime * result + ((optionen == null) ? 0 :
+		// optionen.hashCode());
+		// result = prime * result + ((person == null) ? 0 : person.hashCode());
+		// result = prime * result + ((teilreservierungen == null) ? 0 :
+		// teilreservierungen.hashCode());
+		// result = prime * result + ((vertragspartner == null) ? 0 :
+		// vertragspartner.hashCode());
 		result = prime * result + ((von == null) ? 0 : von.hashCode());
-//		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
+		// result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
+		result = prime * result + (bearbeitet ? 3124 : 3217);
 		return result;
 	}
 
@@ -183,11 +196,11 @@ public class Reservierung implements IReservierung {
 				return false;
 		} else if (!bis.equals(other.bis))
 			return false;
-//		if (gaeste == null) {
-//			if (other.gaeste != null)
-//				return false;
-//		} else if (!gaeste.equals(other.gaeste))
-//			return false;
+		// if (gaeste == null) {
+		// if (other.gaeste != null)
+		// return false;
+		// } else if (!gaeste.equals(other.gaeste))
+		// return false;
 		if (optionen == null) {
 			if (other.optionen != null)
 				return false;
@@ -212,6 +225,8 @@ public class Reservierung implements IReservierung {
 			if (other.von != null)
 				return false;
 		} else if (!von.equals(other.von))
+			return false;
+		if (bearbeitet != other.bearbeitet)
 			return false;
 		if (zimmer == null) {
 			if (other.zimmer != null)
@@ -248,7 +263,7 @@ public class Reservierung implements IReservierung {
 		}
 	}
 
-		@Override
+	@Override
 	public void addOption(IReservierungsOption option) {
 		this.optionen.add(option);
 
@@ -256,7 +271,7 @@ public class Reservierung implements IReservierung {
 
 	@Override
 	public void removeOption(IReservierungsOption option) {
-		if(this.optionen.contains(option)){
+		if (this.optionen.contains(option)) {
 			this.optionen.remove(option);
 		}
 	}
@@ -264,16 +279,15 @@ public class Reservierung implements IReservierung {
 	@Override
 	public void addTeilreservierung(ITeilreservierung teilreservierung) {
 		this.teilreservierungen.add(teilreservierung);
-		
+
 	}
 
 	@Override
 	public void removeTeilreservierung(ITeilreservierung teilreservierung) {
-		if(this.teilreservierungen.contains(teilreservierung)){
+		if (this.teilreservierungen.contains(teilreservierung)) {
 			this.teilreservierungen.remove(teilreservierung);
 		}
-		
-	}
 
+	}
 
 }
