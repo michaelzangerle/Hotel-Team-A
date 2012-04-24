@@ -12,6 +12,7 @@ import projekt.fhv.teama.classes.zimmer.Statusentwicklung;
 import projekt.fhv.teama.hibernate.dao.zimmer.IStatusentwicklungDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.StatusentwicklungDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.interfaces.IModelStatusentwicklung;
 
 public class ModelStatusentwicklung implements IModelStatusentwicklung {
@@ -26,7 +27,7 @@ public class ModelStatusentwicklung implements IModelStatusentwicklung {
 
 	@Override
 	public void add(IZimmer aktullesZimmer, IZimmerstatus b,
-			IReservierung aktulleReservierung) throws DatabaseException {
+			IReservierung aktulleReservierung) throws DatabaseException, EmptyParameterException {
 		if (aktullesZimmer != null && aktulleReservierung != null && b!=null) {
 			IStatusentwicklung s = new Statusentwicklung(aktullesZimmer, b,
 					aktulleReservierung.getVon(), aktulleReservierung.getBis(),
@@ -35,14 +36,18 @@ public class ModelStatusentwicklung implements IModelStatusentwicklung {
 			aktullesZimmer.addStatusentwicklung(s);
 			
 		}
+		else
+			throw new EmptyParameterException();
 
 	}
 
 	@Override
 	public void save(IStatusentwicklung statusentwicklung)
-			throws DatabaseException {
+			throws DatabaseException, EmptyParameterException {
 		if (statusentwicklung != null)
 			statusentwicklungDao.create(statusentwicklung);
+		else
+			throw new EmptyParameterException();
 
 	}
 

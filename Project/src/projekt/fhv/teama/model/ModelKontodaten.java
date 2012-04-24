@@ -4,6 +4,7 @@ import projekt.fhv.teama.classes.personen.IKontodaten;
 import projekt.fhv.teama.hibernate.dao.personen.IKontodatenDao;
 import projekt.fhv.teama.hibernate.dao.personen.KontodatenDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.interfaces.IModelKontodaten;
 
 
@@ -19,15 +20,17 @@ public class ModelKontodaten implements IModelKontodaten {
 	}
 	
 	
-	public void save(IKontodaten kontodaten)
+	public void save(IKontodaten kontodaten) throws DatabaseException, EmptyParameterException
 	{
 		if(kontodaten!=null)
+		{
 			try {
 				kontodatenDao.create(kontodaten);
 			} catch (DatabaseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			throw new DatabaseException();
 			}
 	}
-	
+		else
+			throw new EmptyParameterException();
+	}
 }

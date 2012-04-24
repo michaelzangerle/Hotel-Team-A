@@ -8,6 +8,8 @@ import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.hibernate.dao.IPfandtypDao;
 import projekt.fhv.teama.hibernate.dao.PfandtypDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
+import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelPfandTyp;
 
 
@@ -31,18 +33,22 @@ public class ModelPfandTyp implements IModelPfandTyp {
 
 
 	@Override
-	public void setAktuellerPfandTyp(IPfandtyp pfandtyp) {
-		
+	public void setAktuellerPfandTyp(IPfandtyp pfandtyp) throws EmptyParameterException {
+		if(pfandtyp!=null)
+		{
 		pfandModel=pfandtyp;
+		}
+		else
+			throw new EmptyParameterException();
 	}
 
 
 
 	@Override
-	public IPfandtyp getAktuellerPFandtyp() {
+	public IPfandtyp getAktuellerPFandtyp() throws FokusException {
 		if(pfandModel!=null)
 			return pfandModel;
-		return null;
+		throw new FokusException();
 	}
 
 	

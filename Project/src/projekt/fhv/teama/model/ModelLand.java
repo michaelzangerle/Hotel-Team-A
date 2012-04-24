@@ -4,6 +4,8 @@ import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.hibernate.dao.personen.ILandDao;
 import projekt.fhv.teama.hibernate.dao.personen.LandDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
+import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.interfaces.IModelLand;
 
 
@@ -18,19 +20,18 @@ public class ModelLand implements IModelLand {
 	}
 
 	@Override
-	public ILand getLandByKuerzel(String kuerzel) throws DatabaseException {
+	public ILand getLandByKuerzel(String kuerzel) throws DatabaseException, EmptyParameterException,NotContainExeption {
 		if(kuerzel!=null)
 		{
 			ILand land=landDao.getLandByKuerzel(kuerzel);
 			if(land!=null)
 				return land;
 			else
-				return null;
+				throw new NotContainExeption();
 		}
 		else
 		{
-			//TODO Fehlermeldung
-			return null;
+			throw new EmptyParameterException();
 		}
 	}
 	
