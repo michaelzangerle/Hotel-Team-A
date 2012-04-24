@@ -9,6 +9,12 @@ import projekt.fhv.teama.hibernate.dao.personen.MitarbeiterDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.interfaces.IModelMitarbeiter;
 
+
+/**
+ * Model für den Umgang mit einem Mitarbeiter
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelMitarbeiter implements IModelMitarbeiter {
 	
 	IMitarbeiter mitarbeiterModel;

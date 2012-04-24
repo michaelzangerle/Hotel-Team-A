@@ -9,7 +9,11 @@ import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.interfaces.IModelLand;
 
 
-
+/**
+ * Model für den Umgang mit einem Land
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelLand implements IModelLand {
 
 	private ILand landModel;

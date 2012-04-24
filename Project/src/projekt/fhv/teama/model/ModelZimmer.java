@@ -20,7 +20,11 @@ import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
 import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
-
+/**
+ * Model für den Umgang mit einem Zimmer
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelZimmer implements IModelZimmer {
 
 	IZimmer zimmerModel;

@@ -7,7 +7,11 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.interfaces.IModelAdresse;
 
 
-
+/**
+ * Model für den Umgang mit einer Adresse
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelAdresse implements IModelAdresse {
 
 

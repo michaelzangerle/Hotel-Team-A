@@ -16,7 +16,11 @@ import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.model.interfaces.IModelReservierung;
-
+/**
+ * Model für den Umgang mit einer Reservierung
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelReservierung implements IModelReservierung {
 	
 	

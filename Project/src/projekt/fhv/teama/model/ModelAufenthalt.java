@@ -15,6 +15,11 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 
+/**
+ * Model für den Umgang mit einem Aufenthalt
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelAufenthalt implements IModelAufenthalt {
 
 	IAufenthalt aufenthaltModel;

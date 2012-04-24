@@ -10,6 +10,11 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
 
+/**
+ * Model für den Umgang mit einem Zimmerstatus
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelZimmerstatus implements IModelZimmerstatus{
 
 	IZimmerstatus zimmerModel;

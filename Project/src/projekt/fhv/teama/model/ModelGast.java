@@ -18,6 +18,11 @@ import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.model.interfaces.IModelGast;
 
+/**
+ * Model für den Umgang mit einem Gast
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelGast implements IModelGast {
 
 	private IGast gastModel;

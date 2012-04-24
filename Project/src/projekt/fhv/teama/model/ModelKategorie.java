@@ -6,7 +6,11 @@ import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelKategorie;
 
-
+/**
+ * Model für den Umgang mit einer Kategorie
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelKategorie implements IModelKategorie {
 
 	private IKategorie kategorieModel;

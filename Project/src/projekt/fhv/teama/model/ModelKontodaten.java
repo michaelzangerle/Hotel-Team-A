@@ -8,7 +8,11 @@ import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.interfaces.IModelKontodaten;
 
 
-
+/**
+ * Model für den Umgang mit Kontodaten
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelKontodaten implements IModelKontodaten {
 
 	

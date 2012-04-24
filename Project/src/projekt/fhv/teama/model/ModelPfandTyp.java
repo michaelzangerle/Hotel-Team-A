@@ -12,7 +12,11 @@ import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelPfandTyp;
 
-
+/**
+ * Model für den Umgang mit eines Pfandtyps
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelPfandTyp implements IModelPfandTyp {
 	
 	private IPfandtyp pfandModel;

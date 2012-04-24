@@ -15,6 +15,11 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.interfaces.IModelStatusentwicklung;
 
+/**
+ * Model für den Umgang mit einer Statusentwicklung
+ * @author Team-A
+ * @version 1.5
+ */
 public class ModelStatusentwicklung implements IModelStatusentwicklung {
 
 	private IStatusentwicklung statusentwicklungModel;
