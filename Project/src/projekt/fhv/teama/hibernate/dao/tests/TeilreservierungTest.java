@@ -17,14 +17,14 @@ public class TeilreservierungTest {
 		IKategorieDao kategoriedao = KategorieDao.getInstance();
 		IReservierungDao rnd = ReservierungDao.getInstance();
 		
-//		IKategorie kategorie = kategoriedao.getById(6);
-//		ITeilreservierung teilreservierung = new Teilreservierung(kategorie, rnd.getById(1), 1);
-//		
-//		teilreservierungdao.create(teilreservierung);
+		IKategorie kategorie = kategoriedao.getById(7);
+		ITeilreservierung teilreservierung = new Teilreservierung(kategorie, rnd.getById(4), 2);
 		
-		for (ITeilreservierung t : teilreservierungdao.getAll()) {
-			System.out.println(t);
-		}
+		teilreservierungdao.create(teilreservierung);
+		
+//		for (ITeilreservierung t : teilreservierungdao.getAll()) {
+//			System.out.println(t);
+//		}
 		
 	
 	}

@@ -125,7 +125,12 @@ public class ControllerCheckInTest {
 			System.out.println("Pfandtypen: "+controllerCheckIn.getPfandtyps());
 			IPfandtyp pfand = controllerCheckIn.getPfandtyps().get(0);			
 			
-			// 9. Schritt - speichere Aufenthalt
+			//9. Schritt Änderungen Speichern 
+				controllerCheckIn.setVorname("Abdul");
+			
+			
+			
+			// 10. Schritt - speichere Aufenthalt
 			for (IZimmer z : ausgewaehlteZimmer) {
 				controllerCheckIn.saveAufenthalt(999.00F, res.getVon(), res.getBis(), true, controllerCheckIn.getGast(), z, pfand, "77");
 			}

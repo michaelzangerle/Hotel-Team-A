@@ -19,17 +19,17 @@ public class KontodatenTest {
 		IKontodatenDao kdao = KontodatenDao.getInstance();
 		
 		
-		//kdao.create(new Kontodaten("654789", "175867", "98745329", "98765"));
+		kdao.create(new Kontodaten("23445", "1213255", "345634653", "234523"));
 		//kdao.create(new Kontodaten("159843", "365124", "15948732", "15742"));
-		
-		IKontodaten konto = kdao.getById(1);
-		System.out.println(konto.toString());
-		Set<IKontodaten> kontos = kdao.getAll();
-		System.out.println(kontos.toString());
-		
-		konto.setIban("123456");
-		kdao.update(konto);
-		System.out.println(konto);
+//		
+//		IKontodaten konto = kdao.getById(1);
+//		System.out.println(konto.toString());
+//		Set<IKontodaten> kontos = kdao.getAll();
+//		System.out.println(kontos.toString());
+//		
+//		konto.setIban("123456");
+//		kdao.update(konto);
+//		System.out.println(konto);
 		
 	}
 }

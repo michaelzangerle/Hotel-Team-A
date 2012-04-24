@@ -57,15 +57,15 @@ public class ReservierungTest {
 		// odao.create(o2);
 		// odao.create(o3);
 
-		// IReservierung res1 = new Reservierung(getDate(2012, 2, 24),
-		// getDate(2012, 3, 28), pnd.getById(33));
+		 IReservierung res1 = new Reservierung(getDate(2012, 4, 24),
+		 getDate(2012, 4, 28), pnd.getById(46));
 		// IReservierung res2 = new Reservierung(getDate(2012, 3, 24),
 		// getDate(2012, 4, 28), pnd.getById(36));
 		// IReservierung res3 = new Reservierung(getDate(2012, 4, 24),
 		// getDate(2012, 4, 28), pnd.getById(37));
 
 		// Einfügen
-		// rnd.create(res1);
+		rnd.create(res1);
 		// rnd.create(res2);
 		// rnd.create(res3);
 
