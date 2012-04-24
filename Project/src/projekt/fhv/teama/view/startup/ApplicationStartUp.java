@@ -1,4 +1,4 @@
-package projekt.fhv.teama.view.controller;
+package projekt.fhv.teama.view.startup;
 
 /**
 * This class represents the entry point into an
@@ -8,6 +8,8 @@ package projekt.fhv.teama.view.controller;
 
 //Import the DesktopApplicationContext package.
 import org.apache.pivot.wtk.DesktopApplicationContext;
+
+import projekt.fhv.teama.view.ViewController;
 
 public class ApplicationStartUp {
 	
@@ -19,7 +21,7 @@ public class ApplicationStartUp {
         * Remember to enter correct class in the parameter list..  
         */
         DesktopApplicationContext.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
-    	DesktopApplicationContext.main(ViewController.class, args);
+    	DesktopApplicationContext.main(ViewController.class, args);    	
         
 
     }

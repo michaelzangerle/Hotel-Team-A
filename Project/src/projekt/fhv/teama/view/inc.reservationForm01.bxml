@@ -4,26 +4,27 @@
 	<BoxPane bxml:id="bpReservation2" orientation="vertical" styles="{spacing:10,
 		fill:true}">
 		<Label bxml:id="lbReservationDetails" text="Selected Reservation" styles="$styles.lbHeading1"/>
-		<Form bxml:id="form" styles="{showFlagIcons:false}">
+		<Form bxml:id="form" styles="{showFlagIcons:true}">
 			<Form.Section>
-				<Label Form.label="ID" textKey="id"/>
+				<Label Form.label="rf1LBReservation" textKey="id"/>
 				<TextInput bxml:id="rf1TIName" Form.label="Name" textKey="name"/>
 
-				<BoxPane Form.label="Address" orientation="vertical">
-					<TextInput textKey="address.street" prompt="Street"/>
+				<BoxPane bxml:id="rf1TIAddress" Form.label="Address" orientation="vertical">
+					<TextInput bxml:id="rf1TIStreet"  textKey="address.street" prompt="Street"/>
 					<BoxPane>
-						<TextInput textKey="address.city" prompt="City"/>
-						<TextInput textKey="address.state" textSize="6" prompt="State"/>
-						<TextInput textKey="address.zip" textSize="6" prompt="Zip"/>
+						<TextInput bxml:id="rf1TICity" textKey="address.city" prompt="City"/>
+						<TextInput bxml:id="rf1TIZip" textKey="address.zip" textSize="6" prompt="Zip"/>
+						<TextInput bxml:id="rf1TIState" textKey="address.state" textSize="6" prompt="State"/>
 					</BoxPane>
 				</BoxPane>
 
-				<TextInput Form.label="Phone" textKey="phoneNumber"/>
-				<TextInput Form.label="Email" textKey="emailAddress"/>
+				<TextInput bxml:id="rf1TIState" Form.label="Phone" textKey="phoneNumber"/>
+				<TextInput bxml:id="rf1TIState" Form.label="Email" textKey="emailAddress"/>
 
-				<BoxPane Form.label="IM">
+				<BoxPane bxml:id="rf1TIStay" Form.label="Stay">
 					<TextInput textKey="imAccount.id"/>
-					<ListButton selectedItemKey="imAccount.type" listData="['AIM', 'Jabber', 'Yahoo']"/>
+					<CalendarButton bxml:id="rf1CBArrival"/>
+					<CalendarButton bxml:id="rf1CBDeparture"/>
 				</BoxPane>
 			</Form.Section>
 		</Form>

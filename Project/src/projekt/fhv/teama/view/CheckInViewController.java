@@ -1,4 +1,4 @@
-package projekt.fhv.teama.view.controller;
+package projekt.fhv.teama.view;
 
 import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonPressListener;

@@ -15,9 +15,9 @@ import org.apache.pivot.wtk.Window;
 import projekt.fhv.teama.view.support.SHSDateTime;
 
 public class ViewLogin extends Window implements Bindable {
-	@BXML public TextInput tfUsername = null;
-	@BXML private TextInput tfPassword = null;
-	@BXML private PushButton pushBLogin = null;
+	@BXML TextInput tfUsername = null;
+	@BXML TextInput tfPassword = null;
+	@BXML PushButton pushBLogin = null;
 	
 	BXMLSerializer bxmlSerializer = new BXMLSerializer();
 	

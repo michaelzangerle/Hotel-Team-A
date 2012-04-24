@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.net.URL;
 import java.util.Locale;
 
+import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.ArrayList;
@@ -35,7 +36,6 @@ import org.apache.pivot.wtk.RadioButton;
 import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.Window;
 
-import projekt.fhv.teama.view.controller.ViewController;
 import projekt.fhv.teama.view.support.BlockingDialog;
 
 public class ViewMain extends Window implements Application, Bindable {
@@ -51,8 +51,8 @@ public class ViewMain extends Window implements Application, Bindable {
 	private Window window = null;
 	
 	/* Labels */
-	Label lbReservationDetails;	
-	Label lbLoginShow;
+	@BXML Label lbReservationDetails;	
+	@BXML Label lbLoginShow;
 	
 	/* Border Container = Forms */
 	Border reservationForm01;Border checkInForm01;Border checkInForm02;Border checkInForm03;Border checkInForm04;

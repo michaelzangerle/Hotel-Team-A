@@ -1,4 +1,4 @@
-package projekt.fhv.teama.view.controller;
+package projekt.fhv.teama.view;
 
 import java.util.List;
 import org.apache.pivot.beans.BXMLSerializer;
@@ -35,8 +35,6 @@ import projekt.fhv.teama.model.ModelReservierung;
 import projekt.fhv.teama.model.ModelTeilreservierung;
 import projekt.fhv.teama.model.ModelZimmer;
 import projekt.fhv.teama.model.ModelZimmerstatus;
-import projekt.fhv.teama.view.ViewLogin;
-import projekt.fhv.teama.view.ViewMain;
 import projekt.fhv.teama.view.tests.TestDaten;
 
 public class ViewController implements Application{
@@ -70,9 +68,10 @@ public class ViewController implements Application{
         BXMLSerializer bS = new BXMLSerializer();
         disp = display;
         
-        viewLogin = (ViewLogin) bS.readObject(getClass().getResource("../ViewLogin.bxml"));
-        viewMain = (ViewMain) bS.readObject(getClass().getResource("../ViewMain.bxml"));
-        viewLogin.open(disp);
+        viewLogin = (ViewLogin) bS.readObject(getClass().getResource("ViewLogin.bxml"));
+        viewMain = (ViewMain) bS.readObject(getClass().getResource("ViewMain.bxml"));
+        viewMain.setMaximized(true);
+        viewMain.open(disp);
         
         addLoginEventListener();
     } 
@@ -145,6 +144,8 @@ public class ViewController implements Application{
 		} else {
 			viewMain.getLvReservationSearch().setListData(wrapper.getReservationListAdapter(reservations));
 		}
+		
+	
 	}
 
 	

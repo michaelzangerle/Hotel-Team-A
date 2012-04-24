@@ -1,4 +1,4 @@
-package projekt.fhv.teama.model.Actions;
+package projekt.fhv.teama.view.actions;
 
 import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.wtk.Action;

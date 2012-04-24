@@ -1,0 +1,9 @@
+<view:ViewController xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" >
+<bxml:define>
+    <ViewLogin bxml:id="viewLogin"/>
+	<ViewMain bxml:id="viewMain" />
+</bxml:define>
+	<bxml:include bxml:id="styles" src="styles.json" inline="true"/>
+<bxml:reference id="viewLogin"/>
+<bxml:reference id="viewMain"/>
+</view:ViewController>
