@@ -268,4 +268,18 @@ public class Zimmer extends Leistung implements IZimmer {
 		}
 		
 	}
+
+	@Override
+	public void addStatusentwicklung(IStatusentwicklung statusentwicklung) {
+		this.statusentwicklungen.add(statusentwicklung);
+		
+	}
+
+	@Override
+	public void removeStatusentwicklung(IStatusentwicklung statusentwicklung) {
+		if(this.statusentwicklungen.contains(statusentwicklung)){
+			this.statusentwicklungen.remove(statusentwicklung);
+		}
+		
+	}
 }

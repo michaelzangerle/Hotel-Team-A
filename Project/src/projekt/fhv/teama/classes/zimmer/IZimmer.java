@@ -28,6 +28,10 @@ public interface IZimmer extends IModel {
 	public Set<IStatusentwicklung> getStatusentwicklungen();
 
 	public void setStatusentwicklungen(Set<IStatusentwicklung> statusenticklung);
+	
+	public void addStatusentwicklung(IStatusentwicklung statusentwicklung);
+	
+	public void removeStatusentwicklung(IStatusentwicklung statusentwicklung);
 
 	public void addReservierung(IReservierung res);
 
