@@ -32,6 +32,5 @@ public interface ILand extends IModel {
 	 * Um die Kuerzel abzurufen
 	 * @return String
 	 */
-	publi
 	public String getKuerzel();
 }
