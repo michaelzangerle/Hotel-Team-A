@@ -7,8 +7,9 @@ import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 
 /**
- * @author mike
- * 
+ * Regelt die Zugriffe auf die Teilreservierung-Tabelle 
+ * @author Team A
+ * @version 1.2
  */
 public class TeilreservierungDao extends GenericDao<ITeilreservierung> implements ITeilreservierungDao {
 

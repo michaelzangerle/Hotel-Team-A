@@ -15,9 +15,9 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
- * @author mike
- * @param <T>
- * 
+ * Regelt die Zugriffe auf die Kategorie-Tabelle
+ * @author Team A
+ * @version 1.2
  */
 public class KategorieDao extends GenericDao<IKategorie> implements IKategorieDao {
 

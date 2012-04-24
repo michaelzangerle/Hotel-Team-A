@@ -12,6 +12,11 @@ import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
+/**
+ * Regelt die Zugriffe auf die Saison-Tabelle 
+ * @author Team A
+ * @version 1.2
+ */
 public class SaisonDao extends GenericDao<ISaison> implements ISaisonDao{
 
 	private static SaisonDao instance;

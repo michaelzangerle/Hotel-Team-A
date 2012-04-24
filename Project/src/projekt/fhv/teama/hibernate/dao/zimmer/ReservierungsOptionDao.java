@@ -14,6 +14,11 @@ import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
+/**
+ * Regelt die Zugriffe auf die Reservierungs-Optionen-Tabelle 
+ * @author Team A
+ * @version 1.2
+ */
 public class ReservierungsOptionDao extends GenericDao<IReservierungsOption> implements IReservierungsOptionDao {
 
 	private static ReservierungsOptionDao instance;

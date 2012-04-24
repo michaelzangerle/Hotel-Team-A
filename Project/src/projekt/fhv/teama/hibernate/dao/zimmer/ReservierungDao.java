@@ -1,6 +1,3 @@
-/**
- * 
- */
 package projekt.fhv.teama.hibernate.dao.zimmer;
 
 import java.util.HashSet;
@@ -19,8 +16,9 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
- * @author mike
- * 
+ * Regelt die Zugriffe auf die Reservierungs-Tabelle 
+ * @author Team A
+ * @version 1.2
  */
 public class ReservierungDao extends GenericDao<IReservierung> implements IReservierungDao {
 	

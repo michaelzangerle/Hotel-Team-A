@@ -16,8 +16,9 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
- * @author mike
- * 
+ * Regelt die Zugriffe auf die Zimmerstatus-Tabelle 
+ * @author Team A
+ * @version 1.2
  */
 public class ZimmerstatusDao extends GenericDao<IZimmerstatus> implements IZimmerStatusDao {
 
