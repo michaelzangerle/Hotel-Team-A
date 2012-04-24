@@ -10,8 +10,9 @@ import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 
 /**
- * @author mike
- *
+ * Beschreibt eine Rechnungsposition 
+ * @author Team A
+ * @version 1.9
  */
 public class Rechnungsposition implements IRechnungsposition {
 
