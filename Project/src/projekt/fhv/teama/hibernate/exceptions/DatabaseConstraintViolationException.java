@@ -4,8 +4,9 @@
 package projekt.fhv.teama.hibernate.exceptions;
 
 /**
- * @author mike
- *
+ * Diese Exception wird geworfen wenn eine Verletzung von Datenbank-Constrains vorliegt! 
+ * @author Team A
+ * @version 1.0
  */
 public class DatabaseConstraintViolationException extends DatabaseException{
 	/**

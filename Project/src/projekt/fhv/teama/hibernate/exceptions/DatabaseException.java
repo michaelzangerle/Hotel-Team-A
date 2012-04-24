@@ -4,8 +4,9 @@
 package projekt.fhv.teama.hibernate.exceptions;
 
 /**
- * @author mike
- *
+ * Ist die Überklasse für alle Datenbank nahe Exceptions 
+ * @author Team A
+ * @version 1.0
  */
 public class DatabaseException extends Exception {
 	

@@ -2,16 +2,12 @@ package projekt.fhv.teama.hibernate.dao.tests;
 
 import java.sql.Date;
 import java.util.GregorianCalendar;
-import java.util.Set;
 
-import projekt.fhv.teama.classes.IKontingent;
-import projekt.fhv.teama.classes.Kontingent;
 import projekt.fhv.teama.hibernate.dao.IKontingentDao;
 import projekt.fhv.teama.hibernate.dao.KontingentDao;
 import projekt.fhv.teama.hibernate.dao.personen.IVertragspartnerDao;
 import projekt.fhv.teama.hibernate.dao.personen.VertragspartnerDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 public class KontingentTest {
 

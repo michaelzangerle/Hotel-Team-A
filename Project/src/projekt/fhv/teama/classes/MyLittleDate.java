@@ -28,7 +28,7 @@ public class  MyLittleDate {
 	  * Gibt das aktuelle Datum zurück
 	 * @return Aktuelles java.sql.Date
 	 */
-	@SuppressWarnings({ "unused", "deprecation" })
+	@SuppressWarnings({ "deprecation" })
 	public static Date getCurrentDate()
 	 {
 		 java.util.Date date =new java.util.Date();

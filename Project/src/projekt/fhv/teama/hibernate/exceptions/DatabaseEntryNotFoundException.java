@@ -4,8 +4,9 @@
 package projekt.fhv.teama.hibernate.exceptions;
 
 /**
- * @author mike
- *
+ * Wird geworfen wenn kein Datensatz mit den entsprechenden Parametern gefudnen wurde
+ * @author Team A
+ * @version 1.0
  */
 public class DatabaseEntryNotFoundException extends DatabaseException {
 	

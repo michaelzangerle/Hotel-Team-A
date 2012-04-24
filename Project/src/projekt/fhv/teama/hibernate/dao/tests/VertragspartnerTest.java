@@ -1,13 +1,5 @@
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import java.util.Set;
-
-import projekt.fhv.teama.classes.IKontingent;
-import projekt.fhv.teama.classes.personen.IAdresse;
-import projekt.fhv.teama.classes.personen.IVertragspartner;
-import projekt.fhv.teama.classes.personen.IVertragspartnertyp;
-import projekt.fhv.teama.classes.personen.Vertragspartner;
-import projekt.fhv.teama.classes.personen.Vertragspartnertyp;
 import projekt.fhv.teama.hibernate.dao.IKontingentDao;
 import projekt.fhv.teama.hibernate.dao.KontingentDao;
 import projekt.fhv.teama.hibernate.dao.personen.AdresseDao;
@@ -21,7 +13,6 @@ import projekt.fhv.teama.hibernate.dao.personen.LandDao;
 import projekt.fhv.teama.hibernate.dao.personen.VertragspartnerDao;
 import projekt.fhv.teama.hibernate.dao.personen.VertragspartnertypDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
 
 public class VertragspartnerTest {
 	public static void main (String[] args) throws DatabaseException {

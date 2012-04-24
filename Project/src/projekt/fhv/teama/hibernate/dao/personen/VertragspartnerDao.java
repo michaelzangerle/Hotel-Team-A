@@ -8,10 +8,11 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+
 import projekt.fhv.teama.classes.personen.IVertragspartner;
 import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
-import projekt.fhv.teama.hibernate.exceptions.NoDatabaseEntryFoundException;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -34,7 +35,7 @@ public class VertragspartnerDao extends GenericDao<IVertragspartner> implements 
 		super("Vertragspartner");
 	}
 	
-	public IVertragspartner getVertragspartnerByName(String name) throws NoDatabaseEntryFoundException {
+	public IVertragspartner getVertragspartnerByName(String name) throws DatabaseEntryNotFoundException {
 		
 		try {
 			Session session = HibernateHelper.getSession();
@@ -49,7 +50,7 @@ public class VertragspartnerDao extends GenericDao<IVertragspartner> implements 
 			}
 
 			if (results.size() == 0) {
-				throw new NoDatabaseEntryFoundException();
+				throw new DatabaseEntryNotFoundException();
 			}
 
 		} catch (HibernateException e) {
