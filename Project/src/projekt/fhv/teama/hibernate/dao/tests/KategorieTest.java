@@ -17,15 +17,15 @@ public class KategorieTest {
 	public static void main(String[] args) throws DatabaseException {
 		IKategorieDao kategoriedao = KategorieDao.getInstance();
 		
-//		IKategorie kategorie1 = new Kategorie("Einzelzimmer", "Zimmer ausgestattet mit einem Bett.");
-//		IKategorie kategorie2 = new Kategorie("Doppelzimmer", "Zimmer ausgestattet mit zwei Betten.");
-//		IKategorie kategorie3 = new Kategorie("Doppelzimmer + Zusatzbett", "Zimmer ausgestattet mit zwei Betten inklusive Zusatzbett.");
+		IKategorie kategorie1 = new Kategorie("Einzelzimmer", "Zimmer ausgestattet mit einem Bett.");
+		IKategorie kategorie2 = new Kategorie("Doppelzimmer", "Zimmer ausgestattet mit zwei Betten.");
+		IKategorie kategorie3 = new Kategorie("Doppelzimmer + Zusatzbett", "Zimmer ausgestattet mit zwei Betten inklusive Zusatzbett.");
 		
 		
 		//einfügen
-//		kategoriedao.create(kategorie1);
-//		kategoriedao.create(kategorie2);
-//		kategoriedao.create(kategorie3);
+		kategoriedao.create(kategorie1);
+		kategoriedao.create(kategorie2);
+		kategoriedao.create(kategorie3);
 //		
 		
 		//get by ID

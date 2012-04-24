@@ -37,7 +37,15 @@ public class ModelReservierung implements IModelReservierung {
 		
 		  try {
 			List<IReservierung> reservierungen=new Vector<IReservierung>(reservierungsDao.getAll());
-			return reservierungen;
+			List<IReservierung> alleNichtBearbeiteten=new Vector<IReservierung>();
+			for (IReservierung res : reservierungen) {
+				if(!res.getBearbeitet())
+				{
+					alleNichtBearbeiteten.add(res);
+				}
+			}
+			
+			return alleNichtBearbeiteten;
 			
 		} catch (DatabaseEntryNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -112,6 +120,43 @@ public class ModelReservierung implements IModelReservierung {
 
 	public void save(IReservierung r) throws DatabaseException {
 		reservierungsDao.create(r);
+	}
+
+
+
+	@Override
+	public List<IReservierung> getCheckInReservierungen(Date date) {
+		try {
+			List<IReservierung> reservierungen=new Vector<IReservierung>(reservierungsDao.getAll());
+			List<IReservierung> alleCheckIn=new Vector<IReservierung>();
+			for (IReservierung res : reservierungen) {
+				if(!res.getBearbeitet()&&res.getVon().compareTo(date)==0)
+				{
+					alleCheckIn.add(res);
+				}
+			}
+			
+			return alleCheckIn;
+			
+		} catch (DatabaseEntryNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DatabaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
+	@Override
+	public void setBearbeitet(boolean b) {
+		if(b==true ||b==false)
+		{
+			reservierungModel.setBearbeitet(b);
+		}
+		
 	}
 
 	
