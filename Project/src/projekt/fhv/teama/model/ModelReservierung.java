@@ -12,6 +12,9 @@ import projekt.fhv.teama.hibernate.dao.zimmer.IReservierungDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.ReservierungDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
+import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.model.interfaces.IModelReservierung;
 
 public class ModelReservierung implements IModelReservierung {
@@ -33,9 +36,8 @@ public class ModelReservierung implements IModelReservierung {
 
 
 	@Override
-	public List<IReservierung> getAllReservierungen() {
+	public List<IReservierung> getAllReservierungen() throws DatabaseException {
 		
-		  try {
 			List<IReservierung> reservierungen=new Vector<IReservierung>(reservierungsDao.getAll());
 			List<IReservierung> alleNichtBearbeiteten=new Vector<IReservierung>();
 			for (IReservierung res : reservierungen) {
@@ -46,16 +48,6 @@ public class ModelReservierung implements IModelReservierung {
 			}
 			
 			return alleNichtBearbeiteten;
-			
-		} catch (DatabaseEntryNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DatabaseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-		
 	}
 	
 	
@@ -64,17 +56,22 @@ public class ModelReservierung implements IModelReservierung {
 			reservierungModel=reservierung;
 		
 	}
-	public IReservierung getAktuelleReservierung()
+	public IReservierung getAktuelleReservierung() throws FokusException
 	{
+		if(reservierungModel==null)
+			throw new FokusException();
+		
 		return reservierungModel;
 	}
 
 
 	@Override
-	public List<ITeilreservierung> getTeilreservierungen() {
+	public List<ITeilreservierung> getTeilreservierungen() throws FokusException {
 		if(reservierungModel!=null)
 			return new Vector<ITeilreservierung>(reservierungModel.getTeilreservierungen());
-			return null;
+		else {
+			throw new FokusException();
+		}
 	}
 
 	@Override
@@ -96,15 +93,14 @@ public class ModelReservierung implements IModelReservierung {
 
 
 	@Override
-	public List<IGast> getGaeste() {
+	public List<IGast> getGaeste() throws FokusException {
 		if(reservierungModel!=null)
 		{
 			List<IGast> list=new Vector<IGast>(reservierungModel.getGaeste());
 			return list;
 		}
 		else {
-			//TODO Exeption
-			return null;
+			throw new FokusException();
 		}
 	}
 	
@@ -118,15 +114,18 @@ public class ModelReservierung implements IModelReservierung {
 
 
 
-	public void save(IReservierung r) throws DatabaseException {
+	public void save(IReservierung r) throws DatabaseException, EmptyParameterException {
+		if(r!=null)
 		reservierungsDao.create(r);
+		else
+			throw new EmptyParameterException();
 	}
 
 
 
 	@Override
-	public List<IReservierung> getCheckInReservierungen(Date date) {
-		try {
+	public List<IReservierung> getCheckInReservierungen(Date date) throws DatabaseException {
+
 			List<IReservierung> reservierungen=new Vector<IReservierung>(reservierungsDao.getAll());
 			List<IReservierung> alleCheckIn=new Vector<IReservierung>();
 			for (IReservierung res : reservierungen) {
@@ -138,24 +137,18 @@ public class ModelReservierung implements IModelReservierung {
 			
 			return alleCheckIn;
 			
-		} catch (DatabaseEntryNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DatabaseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 
 
 	@Override
-	public void setBearbeitet(boolean b) {
+	public void setBearbeitet(boolean b) throws WrongParameterException {
 		if(b==true ||b==false)
 		{
 			reservierungModel.setBearbeitet(b);
 		}
+		else
+			throw new WrongParameterException();
 		
 	}
 

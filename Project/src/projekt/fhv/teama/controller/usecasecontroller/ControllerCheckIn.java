@@ -17,6 +17,9 @@ import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
+import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.model.interfaces.IModelAdresse;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
@@ -75,8 +78,9 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Methode um alle Reservierungen zu holen
 	 * 
 	 * @return List<IReservierung>
+	 * @throws DatabaseException 
 	 */
-	public List<IReservierung> getAllReservierungen() {
+	public List<IReservierung> getAllReservierungen() throws DatabaseException {
 		return modelReservierung.getAllReservierungen();
 	}
 
@@ -93,12 +97,13 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * Die Referenz der aktuellen reservierung zu erhalten
 	 * 
 	 * @return IReservierung
+	 * @throws FokusException 
 	 */
-	public IReservierung getAktuelleReservierung() {
+	public IReservierung getAktuelleReservierung() throws FokusException {
 		return modelReservierung.getAktuelleReservierung();
 	}
 
-	public List<IReservierung> getCheckInReservierungen() {
+	public List<IReservierung> getCheckInReservierungen() throws DatabaseException {
 		return modelReservierung.getCheckInReservierungen(MyLittleDate.getDate(2012, 3, 24));
 	}
 
@@ -261,9 +266,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param k
 	 * @return List<IZimmer>
 	 * @throws DatabaseEntryNotFoundException
+	 * @throws FokusException 
 	 */
 	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)
-			throws DatabaseEntryNotFoundException {
+			throws DatabaseEntryNotFoundException, FokusException {
 		return modelZimmer.getVerfuegbareZimmerFürGegebeneKategorie(k,
 				getAktuelleReservierung());
 	}
@@ -284,10 +290,13 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param pfand
 	 * @param pfandnummer
 	 * @throws DatabaseException
+	 * @throws FokusException 
+	 * @throws WrongParameterException 
+	 * @throws EmptyParameterException 
 	 */
 	public void saveAufenthalt(float preis, Date von, Date bis,
 			boolean schluessel, IGast gast, IZimmer zimmer, IPfandtyp pfand,
-			String pfandnummer) throws DatabaseException {
+			String pfandnummer) throws DatabaseException, FokusException, WrongParameterException, EmptyParameterException {
 
 		modelKontodaten.save(gast.getKontodaten());
 		modelZimmer.setAktullesZimmer(zimmer);
