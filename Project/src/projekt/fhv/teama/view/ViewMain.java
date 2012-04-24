@@ -27,6 +27,7 @@ import org.apache.pivot.wtk.Dialog;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListButton;
+import org.apache.pivot.wtk.ListButtonSelectionListener;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.MessageType;
@@ -65,7 +66,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	PushButton cf3PBtnCancel; PushButton cf4PBtnCancel;
 	
 	/* ListViews, ListButtons and CalendarButtons */
-	ListView lvAssignedRooms; ListView lvBookedRoomCategories; private ListView lvReservationSearch; ListView lvArrivingSearch; ListView lvGuestSearch;
+	ListView lvAssignedRooms; ListView lvBookedRoomCategories; ListView lvReservationSearch; ListView lvArrivingSearch; ListView lvGuestSearch;
 	ListButton lbtnGuests; ListButton lbtnAddresses; ListButton lbtnDepositType; CalendarButton cbBirthdate; CalendarButton cbArrival;
 	CalendarButton cbDeparture;
 
@@ -252,51 +253,7 @@ public class ViewMain extends Window implements Application, Bindable {
 		 /** Action Listeners ****************************************************************************/
 		/* ToDo - in ViewController umsetzen*/
 		 
-		cf1PBtnNext.getButtonPressListeners().add(new ButtonPressListener()  {
 
-			@Override
-			public void buttonPressed(Button arg0) {
-				
-				checkInForm01.setVisible(false);
-				checkInForm02.setVisible(true);
-				meter.setPercentage(meter.getPercentage() + 0.25);
-			}
-			
-		});
-		
-		cf2PBtnNext.getButtonPressListeners().add(new ButtonPressListener()  {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-				
-				checkInForm02.setVisible(false);
-				checkInForm03.setVisible(true);
-				meter.setPercentage(meter.getPercentage() + 0.25);
-			}
-			
-		});
-				
-		cf3PBtnNext.getButtonPressListeners().add(new ButtonPressListener()  {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-				
-				checkInForm03.setVisible(false);
-				checkInForm04.setVisible(true);
-				meter.setPercentage(meter.getPercentage() + 0.25);
-
-		        //Set label font.
-		       // helloLabel.getStyles().put("font", new Font("Verdana", Font.PLAIN, 16));
-
-		        //Set label font color.
-		       // helloLabel.getStyles().put("color", new Color(134, 107, 64));
-
-		        //Add the Label to the BoxPane Layout.
-		     //   bpRoomsSummary.add(helloLabel);
-
-			}
-			
-		});
 		
 		
 	
@@ -337,17 +294,14 @@ public class ViewMain extends Window implements Application, Bindable {
 			
 		});
 		
-//		cf1PBtnCancel.setAction(cancel);
-//		cf2PBtnCancel.setAction(cancel);
-//		cf3PBtnCancel.setAction(cancel);
-//		cf4PBtnCancel.setAction(cancel);
+		
 	}
 	
-	public void showCheckInForm1 () {
-		reservationForm01.setVisible(false);
-		progress.setVisible(true);
-		checkInForm01.setVisible(true);	
-	}
+//	public void showCheckInForm1 () {
+//		reservationForm01.setVisible(false);
+//		progress.setVisible(true);
+//		checkInForm01.setVisible(true);	
+//	}
 	
 	
 	
@@ -417,5 +371,9 @@ public class ViewMain extends Window implements Application, Bindable {
 	
 	public void setcf4PBtnFinishListener (ButtonPressListener e) {
 		cf4PBtnFinish.getButtonPressListeners().add(e);
+	}
+
+	public void setlbtnGuestsListener (ListButtonSelectionListener e) {
+		lbtnGuests.getListButtonSelectionListeners().add(e);
 	}
 }

@@ -193,11 +193,6 @@ public class ViewController implements Application{
 		CalendarDate d1 = CalendarDate.decode(arrival.toString());
 		CalendarDate d2 = CalendarDate.decode(departure.toString());
 		
-//
-//		Calendar cal = Calendar.getInstance();
-//		cal.setTime(arrival);
-////		CalendarDate car = new CalendarDate(arrival);
-//		
 		viewMain.rf1CBArrival.setSelectedDate(d1);
 		viewMain.rf1CBDeparture.setSelectedDate(d2);
 	}

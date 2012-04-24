@@ -33,9 +33,8 @@ public class Wrapper {
         Collections.sort(guests, guestNameComparator);
 
         for(IGast guest : guests) {
-            curGuests.add("Nr. " + numberFormat.format(guest.getNummer() + " | " + guest.getNachname().toUpperCase() + " " + guest.getVorname()));
+            curGuests.add("Nr. " + guest.getNummer() + " | " + guest.getNachname().toUpperCase() + " " + guest.getVorname());
         }
-        Collections.sort(curGuests);
         return new ListAdapter<String>(curGuests);
     }
 
