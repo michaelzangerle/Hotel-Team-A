@@ -9,15 +9,13 @@ package projekt.fhv.teama.classes;
 public interface IModel {
 
 	/**
-	 * Setzt die Property ID
-	 * 
+	 * Setzt das Attribut ID
 	 * @param ID Akzeptiert einen int-Wert
 	 */
 	public void setID(int ID);
 
 	/**
-	 * Gibt den Wert der Property ID als int zurück
-	 * 
+	 * Gibt den Wert des Attributs ID als int zurück
 	 * @return Gibt die ID als int zurück
 	 */
 	public int getID();
