@@ -2,9 +2,9 @@ package projekt.fhv.teama.classes.rechnung;
 
 import java.util.Set;
 
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface ITeilzahlung extends IDao {
+public interface ITeilzahlung extends IModel {
 
 	public void setZahlungsmethoden(Set<IZahlungsmethode> zahlungsmethoden);
 

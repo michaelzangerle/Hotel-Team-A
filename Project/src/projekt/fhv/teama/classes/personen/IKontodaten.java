@@ -1,8 +1,8 @@
 package projekt.fhv.teama.classes.personen;
 
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IKontodaten extends IDao {
+public interface IKontodaten extends IModel {
 
 	public void setIban(String iban);
 	public String getIban();

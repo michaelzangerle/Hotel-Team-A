@@ -2,9 +2,9 @@ package projekt.fhv.teama.classes.zimmer;
 
 import java.sql.Date;
 
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IStatusentwicklung extends IDao {
+public interface IStatusentwicklung extends IModel {
 	
 	public void setVon(Date von);
 	public Date getVon();

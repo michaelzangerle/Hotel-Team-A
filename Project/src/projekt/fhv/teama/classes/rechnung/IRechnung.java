@@ -5,9 +5,9 @@ import java.util.Set;
 
 import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IRechnung extends IDao {
+public interface IRechnung extends IModel {
 	public String getNummer();
 	public void setNummer(String nummer);
 	public void addRechnungsposition(IRechnungsposition rePos);

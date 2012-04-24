@@ -5,9 +5,9 @@ import java.util.Set;
 
 import projekt.fhv.teama.classes.personen.IKontodaten;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IPerson extends IDao {
+public interface IPerson extends IModel {
 	public void setVorname(String vorname);
 
 	public String getVorname();

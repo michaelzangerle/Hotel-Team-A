@@ -1,8 +1,8 @@
 package projekt.fhv.teama.classes;
 
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IPfandtyp extends IDao {
+public interface IPfandtyp extends IModel {
 	
 	public void setBezeichnung(String bezeichnung);
 

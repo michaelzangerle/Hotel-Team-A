@@ -3,9 +3,9 @@ package projekt.fhv.teama.classes.zimmer;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.IKategoriekontingent;
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IKategorie extends IDao {
+public interface IKategorie extends IModel {
 	
 	public void setBezeichnung(String bezeichnung);
 

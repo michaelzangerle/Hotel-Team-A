@@ -2,9 +2,9 @@ package projekt.fhv.teama.classes.personen;
 
 import java.util.Set;
 
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IAdresse extends IDao {
+public interface IAdresse extends IModel {
 
 	public void setStrasse(String strasse);
 	public String getStrasse();

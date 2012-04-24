@@ -1,8 +1,8 @@
 package projekt.fhv.teama.classes.rechnung;
 
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IZahlungsmethode extends IDao {
+public interface IZahlungsmethode extends IModel {
 	
 	public void setBezeichnung(String bezeichnung);
 

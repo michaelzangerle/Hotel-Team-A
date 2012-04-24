@@ -4,9 +4,9 @@ import java.sql.Date;
 
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IAufenthalt extends IDao {
+public interface IAufenthalt extends IModel {
 	public void setPreis(Float preis);
 
 	public Float getPreis();

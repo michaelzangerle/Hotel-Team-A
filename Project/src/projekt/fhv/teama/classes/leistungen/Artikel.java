@@ -2,8 +2,9 @@ package projekt.fhv.teama.classes.leistungen;
 
 
 /**
- * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
- * this template use File | Settings | File Templates.
+ * Beschreibt die Leistung Artikel 
+ * @author Team A
+ * @version 1.8
  */
 public class Artikel extends Leistung implements IArtikel{
 	

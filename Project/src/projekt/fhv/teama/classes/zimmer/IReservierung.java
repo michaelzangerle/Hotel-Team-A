@@ -6,9 +6,9 @@ import java.util.Set;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IReservierung extends IDao {
+public interface IReservierung extends IModel {
 	
 	public void addZimmer(IZimmer zimmer);
 	public void removeZimmer(IZimmer zimmer);

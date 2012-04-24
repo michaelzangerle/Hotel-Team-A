@@ -2,9 +2,9 @@ package projekt.fhv.teama.classes.personen;
 
 import java.util.Set;
 
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IBerechtigung extends IDao {
+public interface IBerechtigung extends IModel {
 	public void setBezeichnung(String bezeichnung);
 	public String getBezeichnung();
 	public void setBeschreibung(String beschreibung);

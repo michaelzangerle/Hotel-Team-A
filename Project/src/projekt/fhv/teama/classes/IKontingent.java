@@ -3,9 +3,9 @@ package projekt.fhv.teama.classes;
 import java.sql.Date;
 
 import projekt.fhv.teama.classes.personen.IVertragspartner;
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IKontingent extends IDao {
+public interface IKontingent extends IModel {
 	
 	public void setVon(Date von);
 

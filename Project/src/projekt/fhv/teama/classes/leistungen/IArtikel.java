@@ -1,8 +1,8 @@
 package projekt.fhv.teama.classes.leistungen;
 
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IArtikel extends IDao {
+public interface IArtikel extends IModel {
 	
 	public void setBezeichnung(String bezeichnung);
 

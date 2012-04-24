@@ -3,9 +3,9 @@ package projekt.fhv.teama.classes.zimmer;
 import java.sql.Date;
 import java.util.Set;
 
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface ISaison extends IDao {
+public interface ISaison extends IModel {
 	
 	public void setBezeichnung(String bezeichnung);
 

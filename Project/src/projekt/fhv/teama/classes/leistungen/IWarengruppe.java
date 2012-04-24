@@ -2,9 +2,9 @@ package projekt.fhv.teama.classes.leistungen;
 
 import java.util.Set;
 
-import projekt.fhv.teama.hibernate.dao.IDao;
+import projekt.fhv.teama.hibernate.dao.IModel;
 
-public interface IWarengruppe extends IDao {
+public interface IWarengruppe extends IModel {
 	
 	public void setBezeichnung(String bezeichnung);
 
