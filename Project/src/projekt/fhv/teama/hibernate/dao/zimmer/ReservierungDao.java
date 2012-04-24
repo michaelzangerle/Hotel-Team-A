@@ -38,30 +38,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 
 	}
 	
-//    public Set<ITeilreservierung> getTeilreservierungen(IReservierung reservierung) {
-//    	List<ITeilreservierung> teilreservierungen = null;
-//    	
-//    	try {
-//        	Session s = HibernateHelper.getSession();
-//            s.beginTransaction();
-//            Query query = s.createQuery("FROM roomanizer.teamb.data.model.Teilreservierung WHERE reservierungID=:reservierung");
-//            query.setEntity("reservierung", reservierung);
-//            	
-//            teilreservierungen = query.list();
-//            if (teilreservierungen.size() == 0) {
-//            	throw new DatabaseEntryNotFoundException();
-//            }
-//            
-//
-//        } finally {
-//            s.getTransaction().commit();
-//        }
-//        
-//        
-//        
-//    }
 	
-	//kiken??
 	@SuppressWarnings("unchecked")
 	public Set<IReservierung> getReservierungByPerson(String vorname, String nachname)
 			throws DatabaseEntryNotFoundException {
@@ -72,7 +49,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 			Session session = HibernateHelper.getSession();
 			// Person -ID herausfinden
 			Query queryID = session
-					.createQuery("from Person p where (p.vorname = :vorname AND p.nachname= :nachname) OR (p.vorname = :nachname AND p.nachname= :vorname)");
+					.createQuery("from Person p where ((p.vorname = :vorname AND p.nachname= :nachname) OR (p.vorname = :nachname AND p.nachname= :vorname)) AND p.bearbeitet = 0");
 			queryID.setString("vorname", vorname);
 			queryID.setString("nachname", nachname);
 			List<Person> persons = queryID.list();
@@ -104,7 +81,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 		return set;
 	}
 
-	//kiken??
+
 	@SuppressWarnings("unchecked")
 	public Set<IReservierung> getReservierungByVP(String name) throws DatabaseEntryNotFoundException {
 
@@ -125,7 +102,7 @@ public class ReservierungDao extends GenericDao<IReservierung> implements IReser
 			}
 
 			// die reservierungen mit der entsprechenden id suchen
-			Query query = session.createQuery("from " + getTable() + " r where r.vertragsPartnerID = :id");
+			Query query = session.createQuery("from " + getTable() + " r where r.vertragsPartnerID = :id AND p.bearbeitet = 0");
 			query.setString("id", String.valueOf(id));
 
 			List<IReservierung> results2 = query.list();

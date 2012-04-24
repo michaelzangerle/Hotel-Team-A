@@ -28,7 +28,7 @@ public class Reservierung implements IReservierung {
 
 	public Reservierung(Date von, Date bis, IPerson person, IVertragspartner vertragspartner,
 			Set<IReservierungsOption> optionen, Set<IZimmer> zimmer, Set<IGast> gaeste,
-			Set<ITeilreservierung> teilreservierungen) {
+			Set<ITeilreservierung> teilreservierungen, boolean bearbeitet) {
 		this.von = von;
 		this.bis = bis;
 		this.person = person;
@@ -37,6 +37,7 @@ public class Reservierung implements IReservierung {
 		this.zimmer = zimmer;
 		this.gaeste = gaeste;
 		this.teilreservierungen = teilreservierungen;
+		this.bearbeitet = bearbeitet;
 	}
 
 	public boolean getBearbeitet() {
