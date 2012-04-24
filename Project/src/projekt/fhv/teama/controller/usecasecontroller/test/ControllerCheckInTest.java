@@ -81,7 +81,7 @@ public class ControllerCheckInTest {
 		
 		// 1. Schritt - hole alle Reservierungen
 		
-		
+//		
 //		try {
 //			List<IReservierung> reservierungs = controllerCheckIn.getAllReservierungen();
 //
