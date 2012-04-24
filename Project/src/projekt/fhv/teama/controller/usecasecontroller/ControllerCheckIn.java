@@ -6,6 +6,7 @@ import java.util.List;
 import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
@@ -17,6 +18,7 @@ import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
 import projekt.fhv.teama.model.interfaces.IModelKategorie;
 import projekt.fhv.teama.model.interfaces.IModelKontodaten;
+import projekt.fhv.teama.model.interfaces.IModelLand;
 import projekt.fhv.teama.model.interfaces.IModelPfandTyp;
 import projekt.fhv.teama.model.interfaces.IModelReservierung;
 import projekt.fhv.teama.model.interfaces.IModelTeilreservierung;
@@ -25,16 +27,17 @@ import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
 
 public class ControllerCheckIn implements IControllerCheckIn {
 
-	IModelReservierung controllerReservierung;
-	IModelAufenthalt controllerAufenthalt;
-	IModelGast controllerGast;
-	IModelTeilreservierung controllerTeilreservierung;
-	IModelKategorie controllerKategorie;
-	IModelPfandTyp controllerPfandtyp;
-	IModelZimmer controllerZimmer;
-	IModelZimmerstatus controllerZimmerstatus;
-	IModelKontodaten controllerKontodaten;
-	IModelAdresse controllerAdresse;
+	IModelReservierung modelReservierung;
+	IModelAufenthalt modelAufenthalt;
+	IModelGast modelGast;
+	IModelTeilreservierung modelTeilreservierung;
+	IModelKategorie modelKategorie;
+	IModelPfandTyp modelPfandtyp;
+	IModelZimmer modelZimmer;
+	IModelZimmerstatus modelZimmerstatus;
+	IModelKontodaten modelKontodaten;
+	IModelAdresse modelAdresse;
+	IModelLand modelLand;
 
 	/**
 	 * 
@@ -44,18 +47,19 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	public ControllerCheckIn(IModelReservierung cres, IModelAufenthalt cauf, IModelGast cgast,
 			IModelTeilreservierung ctres, IModelKategorie ckat, IModelKontodaten ckonto,
 			IModelPfandTyp cpfandTyp, IModelZimmer czimmer, IModelZimmerstatus czimmerStatus,
-			IModelAdresse cadr) {
+			IModelAdresse cadr,IModelLand cland) {
 
-		controllerReservierung = cres;
-		controllerAufenthalt = cauf;
-		controllerGast = cgast;
-		controllerTeilreservierung = ctres;
-		controllerKategorie = ckat;
-		controllerPfandtyp = cpfandTyp;
-		controllerZimmer = czimmer;
-		controllerZimmerstatus = czimmerStatus;
-		controllerKontodaten = ckonto;
-		controllerAdresse = cadr;
+		modelReservierung = cres;
+		modelAufenthalt = cauf;
+		modelGast = cgast;
+		modelTeilreservierung = ctres;
+		modelKategorie = ckat;
+		modelPfandtyp = cpfandTyp;
+		modelZimmer = czimmer;
+		modelZimmerstatus = czimmerStatus;
+		modelKontodaten = ckonto;
+		modelAdresse = cadr;
+		modelLand=cland;
 	}
 
 	/**
@@ -64,7 +68,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @return List<IReservierung>
 	 */
 	public List<IReservierung> getAllReservierungen() {
-		return controllerReservierung.getAllReservierungen();
+		return modelReservierung.getAllReservierungen();
 	}
 
 	/**
@@ -73,7 +77,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param reservierung
 	 */
 	public void setAktuelleReservierung(IReservierung reservierung) {
-		controllerReservierung.setAktuelleReservierung(reservierung);
+		modelReservierung.setAktuelleReservierung(reservierung);
 	}
 
 	/**
@@ -82,7 +86,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @return IReservierung
 	 */
 	public IReservierung getAktuelleReservierung() {
-		return controllerReservierung.getAktuelleReservierung();
+		return modelReservierung.getAktuelleReservierung();
 	}
 
 	/**
@@ -91,7 +95,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param IGast
 	 */
 	public void setGast(IGast gast) {
-		controllerGast.setAktuellGast(gast);
+		modelGast.setAktuellGast(gast);
 	}
 
 	/**
@@ -99,7 +103,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * 
 	 */
 	public IGast getGast() {
-		return controllerGast.getAktuellGast();
+		return modelGast.getAktuellGast();
 	}
 
 	// Änderungen am Gast
@@ -110,7 +114,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param vorname
 	 */
 	public void setVorname(String vorname) {
-		controllerGast.setVorname(vorname);
+		modelGast.setVorname(vorname);
 	}
 
 	/**
@@ -119,7 +123,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param nachname
 	 */
 	public void setNachname(String nachname) {
-		controllerGast.setNachname(nachname);
+		modelGast.setNachname(nachname);
 
 	}
 
@@ -129,7 +133,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param geschlecht
 	 */
 	public void setGeschlecht(char geschlecht) {
-		controllerGast.setGeschlecht(geschlecht);
+		modelGast.setGeschlecht(geschlecht);
 	}
 
 	/**
@@ -138,7 +142,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param geburtsdatum
 	 */
 	public void setGeburtsdatum(Date geburtsdatum) {
-		controllerGast.setGeburtsdatum(geburtsdatum);
+		modelGast.setGeburtsdatum(geburtsdatum);
 	}
 
 	/**
@@ -147,7 +151,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param email
 	 */
 	public void setEmail(String email) {
-		controllerGast.setEmail(email);
+		modelGast.setEmail(email);
 	}
 
 	/**
@@ -159,7 +163,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param bic
 	 */
 	public void setKontodaten(String kontonummer, String blz, String iban, String bic) {
-		controllerGast.setKontodaten(kontonummer, blz, iban, bic);
+		modelGast.setKontodaten(kontonummer, blz, iban, bic);
 	}
 
 	/**
@@ -168,7 +172,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param telefonnummer
 	 */
 	public void setTelefonnummer(String telefonnummer) {
-		controllerGast.setTelefonnummer(telefonnummer);
+		modelGast.setTelefonnummer(telefonnummer);
 	}
 
 	/**
@@ -177,7 +181,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param nummer
 	 */
 	public void setNummer(String nummer) {
-		controllerGast.setNummer(nummer);
+		modelGast.setNummer(nummer);
 	}
 
 	/**
@@ -186,7 +190,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param zimmer
 	 */
 	public void setZimmer(IZimmer zimmer) {
-		controllerGast.setZimmer(zimmer);
+		modelGast.setZimmer(zimmer);
 	}
 
 	/**
@@ -195,7 +199,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param adresse
 	 */
 	public void addAdresse(IAdresse adresse) {
-		controllerGast.addAdresse(adresse);
+		modelGast.addAdresse(adresse);
 	}
 
 	/**
@@ -204,7 +208,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param adresse
 	 */
 	public void removeAdresse(IAdresse adresse) {
-		controllerGast.removeAdresse(adresse);
+		modelGast.removeAdresse(adresse);
 	}
 
 	/**
@@ -214,7 +218,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 */
 
 	public void setVon(Date date) {
-		controllerReservierung.setVon(date);
+		modelReservierung.setVon(date);
 	}
 
 	/**
@@ -223,7 +227,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param date
 	 */
 	public void setBis(Date date) {
-		controllerReservierung.setBis(date);
+		modelReservierung.setBis(date);
 
 	}
 
@@ -234,7 +238,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @throws DatabaseException
 	 */
 	public List<IPfandtyp> getPfandtyps() throws DatabaseException {
-		return controllerPfandtyp.getPfandtyps();
+		return modelPfandtyp.getPfandtyps();
 	}
 
 	/**
@@ -245,11 +249,11 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @throws DatabaseEntryNotFoundException
 	 */
 	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k) throws DatabaseEntryNotFoundException {
-		return controllerZimmer.getVerfuegbareZimmerFürGegebeneKategorie(k,getAktuelleReservierung());
+		return modelZimmer.getVerfuegbareZimmerFürGegebeneKategorie(k,getAktuelleReservierung());
 	}
 
 	public List<IZimmer> getVerfügbareZimmer() {
-		return controllerZimmer.getVerfügbareZimmer();
+		return modelZimmer.getVerfügbareZimmer();
 	}
 
 	/**
@@ -268,16 +272,20 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	public void saveAufenthalt(float preis, Date von, Date bis, boolean schluessel, IGast gast, IZimmer zimmer,
 			IPfandtyp pfand, String pfandnummer) throws DatabaseException {
 
-		controllerKontodaten.save(gast.getKontodaten());
-		controllerZimmer.setAktullesZimmer(zimmer);
-		controllerZimmer.setStatus(controllerZimmerstatus.getStatusByKuerzel("BNG"));
-		controllerZimmer.save(controllerZimmer.getAktullesZimmer());
+		modelKontodaten.save(gast.getKontodaten());
+		modelZimmer.setAktullesZimmer(zimmer);
+		modelZimmer.setStatus(modelZimmerstatus.getStatusByKuerzel("BNG"));
+		modelZimmer.save(modelZimmer.getAktullesZimmer());
 		for (IAdresse adr : gast.getAdressen()) {
-			controllerAdresse.save(adr);
+			modelAdresse.save(adr);
 		}
-		controllerGast.save(gast);
-		controllerAufenthalt.create(preis, von, bis, schluessel, gast, zimmer, pfand, pfandnummer);
+		modelGast.save(gast);
+		modelAufenthalt.create(preis, von, bis, schluessel, gast, zimmer, pfand, pfandnummer);
 
+	}
+
+	public ILand getLandByKuerzel(String kuerzel) throws DatabaseException {
+		return modelLand.getLandByKuerzel(kuerzel);
 	}
 
 }

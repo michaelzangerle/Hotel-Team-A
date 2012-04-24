@@ -111,9 +111,7 @@ public class ModelGast implements IModelGast {
 	public void addAdresse(IAdresse adresse) {
 		if(gastModel!=null)
 		{
-			List<IAdresse> adressen=new Vector<IAdresse>(gastModel.getAdressen());
-			if(!adressen.contains(adresse))
-				adressen.add(adresse);
+			gastModel.addAdresse(adresse);
 		}
 		
 	}

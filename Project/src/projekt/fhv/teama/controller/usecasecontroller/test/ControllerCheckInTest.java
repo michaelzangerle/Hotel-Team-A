@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.IPfandtyp;
+import projekt.fhv.teama.classes.personen.Adresse;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
@@ -15,6 +16,7 @@ import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.ModelGast;
 import projekt.fhv.teama.model.ModelKategorie;
 import projekt.fhv.teama.model.ModelKontodaten;
+import projekt.fhv.teama.model.ModelLand;
 import projekt.fhv.teama.model.ModelPfandTyp;
 import projekt.fhv.teama.model.ModelReservierung;
 import projekt.fhv.teama.model.ModelTeilreservierung;
@@ -25,6 +27,7 @@ import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
 import projekt.fhv.teama.model.interfaces.IModelKategorie;
 import projekt.fhv.teama.model.interfaces.IModelKontodaten;
+import projekt.fhv.teama.model.interfaces.IModelLand;
 import projekt.fhv.teama.model.interfaces.IModelPfandTyp;
 import projekt.fhv.teama.model.interfaces.IModelReservierung;
 import projekt.fhv.teama.model.interfaces.IModelTeilreservierung;
@@ -50,10 +53,11 @@ public class ControllerCheckInTest {
 		IModelZimmer czimmer = new ModelZimmer();
 		IModelZimmerstatus czimmerStatus = new ModelZimmerstatus();
 		IModelAdresse cadr = new ModelAdresse();
+		IModelLand cland =new ModelLand();
 
 		// TODO Exeption von Datebank wenn kein eintrag
 		ControllerCheckIn controllerCheckIn = new ControllerCheckIn(cres, cauf, cgast, ctres, ckat, ckonto, cpfandTyp,
-				czimmer, czimmerStatus, cadr);
+				czimmer, czimmerStatus, cadr,cland);
 
 		// 1. Schritt - hole alle Reservierungen
 		
@@ -126,7 +130,8 @@ public class ControllerCheckInTest {
 			IPfandtyp pfand = controllerCheckIn.getPfandtyps().get(0);			
 			
 			//9. Schritt Änderungen Speichern 
-				controllerCheckIn.setVorname("Abdul");
+			//	controllerCheckIn.setVorname("Abdul");
+			//	controllerCheckIn.addAdresse(new Adresse("Bondstrasse 4", "007", "MI6", controllerCheckIn.getLandByKuerzel("CH")));
 			
 			
 			

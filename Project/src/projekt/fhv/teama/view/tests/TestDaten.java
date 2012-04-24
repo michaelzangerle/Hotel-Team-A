@@ -4,6 +4,17 @@ import org.apache.pivot.collections.adapter.ListAdapter;
 
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
+import projekt.fhv.teama.model.ModelAdresse;
+import projekt.fhv.teama.model.ModelAufenthalt;
+import projekt.fhv.teama.model.ModelGast;
+import projekt.fhv.teama.model.ModelKategorie;
+import projekt.fhv.teama.model.ModelKontodaten;
+import projekt.fhv.teama.model.ModelLand;
+import projekt.fhv.teama.model.ModelPfandTyp;
+import projekt.fhv.teama.model.ModelReservierung;
+import projekt.fhv.teama.model.ModelTeilreservierung;
+import projekt.fhv.teama.model.ModelZimmer;
+import projekt.fhv.teama.model.ModelZimmerstatus;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -13,7 +24,10 @@ import java.util.Random;
 
 public class TestDaten {
 		
-	IControllerCheckIn checkIn = new ControllerCheckIn(null, null, null, null, null, null, null, null, null, null);
+	IControllerCheckIn checkIn = new ControllerCheckIn(new ModelReservierung(), new ModelAufenthalt(), 
+			new ModelGast(), new ModelTeilreservierung(), new ModelKategorie(), 
+			new ModelKontodaten(), new ModelPfandTyp(), new ModelZimmer(), new ModelZimmerstatus(), 
+			new ModelAdresse(), new ModelLand());
 	
 	
 	List<String> ankommendeGaeste;

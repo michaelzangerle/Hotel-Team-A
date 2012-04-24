@@ -28,6 +28,7 @@ import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.ModelGast;
 import projekt.fhv.teama.model.ModelKategorie;
 import projekt.fhv.teama.model.ModelKontodaten;
+import projekt.fhv.teama.model.ModelLand;
 import projekt.fhv.teama.model.ModelMitarbeiter;
 import projekt.fhv.teama.model.ModelPfandTyp;
 import projekt.fhv.teama.model.ModelReservierung;
@@ -135,7 +136,8 @@ public class ViewController implements Application{
 		controllerCheckIn = new ControllerCheckIn(new ModelReservierung(), new ModelAufenthalt(), 
 				new ModelGast(), new ModelTeilreservierung(), new ModelKategorie(), 
 				new ModelKontodaten(), new ModelPfandTyp(), new ModelZimmer(), new ModelZimmerstatus(), 
-				new ModelAdresse());
+				new ModelAdresse(), new ModelLand());
+		
 		List<IReservierung> reservations = controllerCheckIn.getAllReservierungen();
 
 		if (reservations.equals(null)) {
