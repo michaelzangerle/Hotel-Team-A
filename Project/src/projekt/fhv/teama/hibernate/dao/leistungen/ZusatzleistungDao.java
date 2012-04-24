@@ -18,8 +18,10 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
- * @author mike
+ * Regelt die Zugriffe auf die Zusatzleistung-Tabelle
  * 
+ * @author Team A
+ * @version 1.2
  */
 public class ZusatzleistungDao extends GenericDao<IZusatzleistung> implements IZusatzleistungDao {
 
@@ -58,7 +60,7 @@ public class ZusatzleistungDao extends GenericDao<IZusatzleistung> implements IZ
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
-		
+
 		Set<IZusatzleistung> set = new HashSet<IZusatzleistung>(leistungen);
 		return set;
 	}

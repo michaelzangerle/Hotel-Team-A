@@ -14,6 +14,11 @@ import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
+/**
+ * Regelt die Zugriffe auf die Rechnung-Tabelle 
+ * @author Team A
+ * @version 1.2
+ */
 public class RechnungDao extends GenericDao<IRechnung> implements IRechnungDao {
 
 	private static RechnungDao instance;

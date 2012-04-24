@@ -12,6 +12,11 @@ import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
+/**
+ * Regelt die Zugriffe auf die Zahlungsmethode-Tabelle 
+ * @author Team A
+ * @version 1.2
+ */
 public class ZahlungsmethodeDao extends GenericDao<IZahlungsmethode> implements IZahlungsmethodeDao  {
 
 	private static ZahlungsmethodeDao instance;

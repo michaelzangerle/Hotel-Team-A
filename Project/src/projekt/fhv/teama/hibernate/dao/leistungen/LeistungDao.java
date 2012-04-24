@@ -14,7 +14,13 @@ import projekt.fhv.teama.hibernate.HibernateHelper;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
-public class LeistungDao extends GenericDao<ILeistung> implements ILeistungDao{
+/**
+ * Regelt die Zugriffe auf die Leistung-Tabelle
+ * 
+ * @author Team A
+ * @version 1.2
+ */
+public class LeistungDao extends GenericDao<ILeistung> implements ILeistungDao {
 
 	private static LeistungDao instance;
 
@@ -52,7 +58,7 @@ public class LeistungDao extends GenericDao<ILeistung> implements ILeistungDao{
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
-		
+
 		Set<ILeistung> set = new HashSet<ILeistung>(leistungen);
 		return set;
 	}

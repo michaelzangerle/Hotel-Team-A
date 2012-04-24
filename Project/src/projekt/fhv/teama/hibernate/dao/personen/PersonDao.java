@@ -18,8 +18,9 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
- * @author mike
- *
+ * Regelt die Zugriffe auf die Person-Tabelle 
+ * @author Team A
+ * @version 1.2
  */
 public class PersonDao extends GenericDao<IPerson> implements IPersonDao {
 	

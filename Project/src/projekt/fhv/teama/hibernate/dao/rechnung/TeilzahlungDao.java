@@ -7,8 +7,9 @@ import projekt.fhv.teama.classes.rechnung.ITeilzahlung;
 import projekt.fhv.teama.hibernate.dao.GenericDao;
 
 /**
- * @author mike
- * 
+ * Regelt die Zugriffe auf die Teilzahlung-Tabelle 
+ * @author Team A
+ * @version 1.2
  */
 public class TeilzahlungDao extends GenericDao<ITeilzahlung> implements ITeilzahlungDao {
 

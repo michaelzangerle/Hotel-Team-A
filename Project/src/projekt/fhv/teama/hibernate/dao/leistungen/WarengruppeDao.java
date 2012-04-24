@@ -16,8 +16,10 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
- * @author mike
+ * Regelt die Zugriffe auf die Warengruppe-Tabelle
  * 
+ * @author Team A
+ * @version 1.2
  */
 public class WarengruppeDao extends GenericDao<IWarengruppe> implements IWarengruppeDao {
 

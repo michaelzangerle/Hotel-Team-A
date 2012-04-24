@@ -16,6 +16,12 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
+/**
+ * Regelt die Zugriffe auf die Gast-Tabelle
+ * 
+ * @author Team A
+ * @version 1.2
+ */
 public class GastDao extends GenericDao<IGast> implements IGastDao {
 
 	private static IGastDao instance;
@@ -102,7 +108,8 @@ public class GastDao extends GenericDao<IGast> implements IGastDao {
 		try {
 			Session session = HibernateHelper.getSession();
 
-			Query query = session.createQuery("from " + getTable() + " g where g.vorname = :name OR g.nachname = :name");
+			Query query = session
+					.createQuery("from " + getTable() + " g where g.vorname = :name OR g.nachname = :name");
 			query.setString("name", name);
 			gaeste = query.list();
 

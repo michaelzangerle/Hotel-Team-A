@@ -16,6 +16,12 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
+/**
+ * Regelt die Zugriffe auf die Mitarbeiter-Tabelle
+ * 
+ * @author Team A
+ * @version 1.2
+ */
 public class MitarbeiterDao extends GenericDao<IMitarbeiter> implements IMitarbeiterDao {
 
 	private static IMitarbeiterDao instance;
@@ -112,7 +118,7 @@ public class MitarbeiterDao extends GenericDao<IMitarbeiter> implements IMitarbe
 		try {
 			Session session = HibernateHelper.getSession();
 
-			Query query = session.createQuery("from "+getTable()+" m where m.nummer = :nr");
+			Query query = session.createQuery("from " + getTable() + " m where m.nummer = :nr");
 			query.setString("nr", nr);
 			mitarbeiter = query.list();
 

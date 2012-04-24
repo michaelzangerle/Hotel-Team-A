@@ -17,8 +17,9 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
- * @author mike
- * 
+ * Regelt die Zugriffe auf die Rechnungsposition-Tabelle 
+ * @author Team A
+ * @version 1.2
  */
 public class RechnungspositionDao extends GenericDao<IRechnungsposition> implements IRechnungspositionDao {
 

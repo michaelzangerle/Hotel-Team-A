@@ -13,6 +13,12 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
+/**
+ * Regelt die Zugriffe auf die Land-Tabelle
+ * 
+ * @author Team A
+ * @version 1.2
+ */
 public class LandDao extends GenericDao<ILand> implements ILandDao {
 	private static ILandDao instance;
 
@@ -22,7 +28,7 @@ public class LandDao extends GenericDao<ILand> implements ILandDao {
 		}
 		return instance;
 	}
-	
+
 	private LandDao() {
 		super("Land");
 	}
@@ -34,7 +40,7 @@ public class LandDao extends GenericDao<ILand> implements ILandDao {
 			Session session = HibernateHelper.getSession();
 			Query q = session.createQuery("from Land where bezeichnung= :bezeichnung");
 			q.setString("bezeichnung", bezeichnung);
-			
+
 			@SuppressWarnings("rawtypes")
 			List result = q.list();
 
@@ -51,9 +57,9 @@ public class LandDao extends GenericDao<ILand> implements ILandDao {
 		}
 		return p;
 	}
-	
-	public ILand getLandByKuerzel(String kuerzel) throws DatabaseEntryNotFoundException{
-		
+
+	public ILand getLandByKuerzel(String kuerzel) throws DatabaseEntryNotFoundException {
+
 		try {
 			Session session = HibernateHelper.getSession();
 			Query query = session.createQuery("from " + getTable() + " p where p.kuerzel = :kuerzel");

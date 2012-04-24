@@ -16,11 +16,13 @@ import projekt.fhv.teama.hibernate.dao.GenericDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
- * @author mike
+ * Regelt die Zugriffe auf die Artikel-Tabelle
  * 
+ * @author Team A
+ * @version 1.2
  */
 public class ArtikelDao extends GenericDao<IArtikel> implements IArtikelDao {
-	
+
 	private static ArtikelDao instance;
 
 	public static IArtikelDao getInstance() {
@@ -58,7 +60,7 @@ public class ArtikelDao extends GenericDao<IArtikel> implements IArtikelDao {
 			e.printStackTrace();
 		}
 
-		return (IArtikel)artikel.get(0);
+		return (IArtikel) artikel.get(0);
 	}
 
 }
