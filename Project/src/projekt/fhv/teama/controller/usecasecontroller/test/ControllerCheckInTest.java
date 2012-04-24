@@ -157,7 +157,7 @@ public class ControllerCheckInTest {
 				controllerCheckIn.saveAufenthalt(999.00F, res.getVon(), res.getBis(), true, controllerCheckIn.getGast(), z, pfand, "77");
 			}
 			
-			System.out.println("Check In am asfa");
+			System.out.println("Check In beendet");
 
 		} catch (Exception e) {
 			e.printStackTrace();
