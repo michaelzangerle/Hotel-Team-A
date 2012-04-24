@@ -16,6 +16,7 @@ projekt.fhv.teama.hibernate.dao.tests
 projekt.fhv.teama.hibernate.dao.zimmer
 projekt.fhv.teama.hibernate.exceptions
 projekt.fhv.teama.model
+projekt.fhv.teama.model.exception
 projekt.fhv.teama.model.interfaces
 projekt.fhv.teama.view
 projekt.fhv.teama.view.actions

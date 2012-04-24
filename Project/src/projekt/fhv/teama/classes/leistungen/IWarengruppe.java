@@ -50,7 +50,7 @@ public interface IWarengruppe extends IModel {
 
 	/**
 	 * Gibt den Wert des Attributs zurück
-	 * @return
+	 * @return IArtikel
 	 */
 	public Set<IArtikel> getArtikel();
 

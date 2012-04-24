@@ -13,7 +13,7 @@ public interface IBerechtigungDao extends IGenericDao<IBerechtigung> {
 	
 	/**
 	 * @param bezeichnung
-	 * @return
+	 * @return IBerechtigung
 	 * @throws DatabaseException
 	 */
 	public IBerechtigung getBerechtigungByBezeichnung(String bezeichnung) throws DatabaseException;
