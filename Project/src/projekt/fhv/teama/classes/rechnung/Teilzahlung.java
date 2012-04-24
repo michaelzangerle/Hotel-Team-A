@@ -3,8 +3,9 @@ package projekt.fhv.teama.classes.rechnung;
 import java.util.Set;
 
 /**
- * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
- * this template use File | Settings | File Templates.
+ * Beschreibt eine Teilzahlung
+ * @author Team A
+ * @version 1.8
  */
 public class Teilzahlung implements ITeilzahlung {
 	private int ID;

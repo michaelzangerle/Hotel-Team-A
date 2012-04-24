@@ -19,6 +19,7 @@ import projekt.fhv.teama.model.ModelKontodaten;
 import projekt.fhv.teama.model.ModelLand;
 import projekt.fhv.teama.model.ModelPfandTyp;
 import projekt.fhv.teama.model.ModelReservierung;
+import projekt.fhv.teama.model.ModelStatusentwicklung;
 import projekt.fhv.teama.model.ModelTeilreservierung;
 import projekt.fhv.teama.model.ModelZimmer;
 import projekt.fhv.teama.model.ModelZimmerstatus;
@@ -30,6 +31,7 @@ import projekt.fhv.teama.model.interfaces.IModelKontodaten;
 import projekt.fhv.teama.model.interfaces.IModelLand;
 import projekt.fhv.teama.model.interfaces.IModelPfandTyp;
 import projekt.fhv.teama.model.interfaces.IModelReservierung;
+import projekt.fhv.teama.model.interfaces.IModelStatusentwicklung;
 import projekt.fhv.teama.model.interfaces.IModelTeilreservierung;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
 import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
@@ -54,11 +56,26 @@ public class ControllerCheckInTest {
 		IModelZimmerstatus czimmerStatus = new ModelZimmerstatus();
 		IModelAdresse cadr = new ModelAdresse();
 		IModelLand cland =new ModelLand();
+		IModelStatusentwicklung sentw=new ModelStatusentwicklung();
 
 		// TODO Exeption von Datebank wenn kein eintrag
 		ControllerCheckIn controllerCheckIn = new ControllerCheckIn(cres, cauf, cgast, ctres, ckat, ckonto, cpfandTyp,
-				czimmer, czimmerStatus, cadr,cland);
+				czimmer, czimmerStatus, cadr,cland,sentw);
 
+		
+		//Hole Check In Reservierungen
+//		try {
+//			List<IReservierung> reservierungscheckIn = controllerCheckIn.getCheckInReservierungen();
+//			for (IReservierung iReservierung : reservierungscheckIn) {
+//				System.out.println(iReservierung);
+//			}
+//			
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+
+		
+		
 		// 1. Schritt - hole alle Reservierungen
 		
 		
@@ -69,8 +86,8 @@ public class ControllerCheckInTest {
 
 			for (IReservierung r : reservierungs) {
 
-				System.out.println(String.format("ReservierungsId: %s\nVon: %s\nBis: %s\nPerson: %s %s", r.getID(),
-						r.getVon(), r.getBis(), r.getPerson().getVorname(), r.getPerson().getNachname()));
+				System.out.println(String.format("ReservierungsId: %s\nVon: %s\nBis: %s\nPerson: %s %s\nBearbeitet: %s\n", r.getID(),
+						r.getVon(), r.getBis(), r.getPerson().getVorname(), r.getPerson().getNachname(),r.getBearbeitet()));
 
 				List<IGast> gaesteGasts = new Vector<IGast>(r.getGaeste());
 				for (IGast g : gaesteGasts) {
@@ -130,9 +147,9 @@ public class ControllerCheckInTest {
 			IPfandtyp pfand = controllerCheckIn.getPfandtyps().get(0);			
 			
 			//9. Schritt Änderungen Speichern 
-			//	controllerCheckIn.setVorname("Abdul");
-			//	controllerCheckIn.addAdresse(new Adresse("Bondstrasse 4", "007", "MI6", controllerCheckIn.getLandByKuerzel("CH")));
-			
+//				controllerCheckIn.setVorname("Abdul");
+//				controllerCheckIn.addAdresse(new Adresse("Bondstrasse 4", "007", "MI6", controllerCheckIn.getLandByKuerzel("CH")));
+			controllerCheckIn.setVorname("Test");
 			
 			
 			// 10. Schritt - speichere Aufenthalt

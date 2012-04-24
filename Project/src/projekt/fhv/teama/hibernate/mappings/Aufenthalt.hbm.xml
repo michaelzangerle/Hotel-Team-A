@@ -19,11 +19,11 @@
 			<column name="pfandNr" sql-type="varchar" />
 		</property>
 		
-		<property name="von" type="java.util.Date">
+		<property name="von" type="java.sql.Date">
 			<column name="von" sql-type="date" length="10" not-null="true" />
 		</property>
 		
-		<property name="bis" type="java.util.Date">
+		<property name="bis" type="java.sql.Date">
 			<column name="bis" sql-type="date" length="10" not-null="true" />
 		</property>
 		

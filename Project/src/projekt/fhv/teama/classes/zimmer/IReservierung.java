@@ -38,4 +38,7 @@ public interface IReservierung extends IModel {
 	public Date getVon();
 	public void setBis(Date bis);
 	public Date getBis();
+	
+	public boolean getBearbeitet();
+	public void setBearbeitet(boolean b);
 }

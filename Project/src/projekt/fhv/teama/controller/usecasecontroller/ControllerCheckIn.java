@@ -2,14 +2,18 @@ package projekt.fhv.teama.controller.usecasecontroller;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Vector;
 
 import projekt.fhv.teama.classes.IPfandtyp;
+import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
+import projekt.fhv.teama.classes.zimmer.IStatusentwicklung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
@@ -21,6 +25,7 @@ import projekt.fhv.teama.model.interfaces.IModelKontodaten;
 import projekt.fhv.teama.model.interfaces.IModelLand;
 import projekt.fhv.teama.model.interfaces.IModelPfandTyp;
 import projekt.fhv.teama.model.interfaces.IModelReservierung;
+import projekt.fhv.teama.model.interfaces.IModelStatusentwicklung;
 import projekt.fhv.teama.model.interfaces.IModelTeilreservierung;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
 import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
@@ -38,16 +43,19 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	IModelKontodaten modelKontodaten;
 	IModelAdresse modelAdresse;
 	IModelLand modelLand;
+	IModelStatusentwicklung modelStatusentwicklung;
 
 	/**
 	 * 
 	 * Konstruktor ControllerCheckIn CeckIn Kontroller ist für den Usercase
 	 * Check In zuständig
 	 */
-	public ControllerCheckIn(IModelReservierung cres, IModelAufenthalt cauf, IModelGast cgast,
-			IModelTeilreservierung ctres, IModelKategorie ckat, IModelKontodaten ckonto,
-			IModelPfandTyp cpfandTyp, IModelZimmer czimmer, IModelZimmerstatus czimmerStatus,
-			IModelAdresse cadr,IModelLand cland) {
+	public ControllerCheckIn(IModelReservierung cres, IModelAufenthalt cauf,
+			IModelGast cgast, IModelTeilreservierung ctres,
+			IModelKategorie ckat, IModelKontodaten ckonto,
+			IModelPfandTyp cpfandTyp, IModelZimmer czimmer,
+			IModelZimmerstatus czimmerStatus, IModelAdresse cadr,
+			IModelLand cland, IModelStatusentwicklung cstaent) {
 
 		modelReservierung = cres;
 		modelAufenthalt = cauf;
@@ -59,7 +67,8 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		modelZimmerstatus = czimmerStatus;
 		modelKontodaten = ckonto;
 		modelAdresse = cadr;
-		modelLand=cland;
+		modelLand = cland;
+		modelStatusentwicklung = cstaent;
 	}
 
 	/**
@@ -87,6 +96,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 */
 	public IReservierung getAktuelleReservierung() {
 		return modelReservierung.getAktuelleReservierung();
+	}
+
+	public List<IReservierung> getCheckInReservierungen() {
+		return modelReservierung.getCheckInReservierungen(MyLittleDate.getDate(2012, 3, 24));
 	}
 
 	/**
@@ -162,7 +175,8 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param iban
 	 * @param bic
 	 */
-	public void setKontodaten(String kontonummer, String blz, String iban, String bic) {
+	public void setKontodaten(String kontonummer, String blz, String iban,
+			String bic) {
 		modelGast.setKontodaten(kontonummer, blz, iban, bic);
 	}
 
@@ -248,8 +262,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @return List<IZimmer>
 	 * @throws DatabaseEntryNotFoundException
 	 */
-	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k) throws DatabaseEntryNotFoundException {
-		return modelZimmer.getVerfuegbareZimmerFürGegebeneKategorie(k,getAktuelleReservierung());
+	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)
+			throws DatabaseEntryNotFoundException {
+		return modelZimmer.getVerfuegbareZimmerFürGegebeneKategorie(k,
+				getAktuelleReservierung());
 	}
 
 	public List<IZimmer> getVerfügbareZimmer() {
@@ -267,20 +283,35 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @param zimmer
 	 * @param pfand
 	 * @param pfandnummer
-	 * @throws DatabaseException 
+	 * @throws DatabaseException
 	 */
-	public void saveAufenthalt(float preis, Date von, Date bis, boolean schluessel, IGast gast, IZimmer zimmer,
-			IPfandtyp pfand, String pfandnummer) throws DatabaseException {
+	public void saveAufenthalt(float preis, Date von, Date bis,
+			boolean schluessel, IGast gast, IZimmer zimmer, IPfandtyp pfand,
+			String pfandnummer) throws DatabaseException {
 
 		modelKontodaten.save(gast.getKontodaten());
 		modelZimmer.setAktullesZimmer(zimmer);
-		modelZimmer.setStatus(modelZimmerstatus.getStatusByKuerzel("BNG"));
+		
+		IZimmerstatus b = modelZimmerstatus.getStatusByKuerzel("BNG");
+		
+		modelZimmer.setStatus(b);
+
+		modelStatusentwicklung.add(modelZimmer.getAktullesZimmer(), b,
+				getAktuelleReservierung());
+		
+				
 		modelZimmer.save(modelZimmer.getAktullesZimmer());
+		
+		
 		for (IAdresse adr : gast.getAdressen()) {
 			modelAdresse.save(adr);
+
+			modelGast.save(gast);
+			modelAufenthalt.create(preis, von, bis, schluessel, gast, zimmer,
+					pfand, pfandnummer);
+			modelReservierung.setBearbeitet(true);
+			modelReservierung.save(getAktuelleReservierung());
 		}
-		modelGast.save(gast);
-		modelAufenthalt.create(preis, von, bis, schluessel, gast, zimmer, pfand, pfandnummer);
 
 	}
 

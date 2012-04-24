@@ -28,4 +28,8 @@ public interface IModelReservierung {
 
 	void save(IReservierung r) throws DatabaseException ;
 
+	List<IReservierung> getCheckInReservierungen(Date date);
+
+	void setBearbeitet(boolean b);
+
 }

@@ -1,8 +1,9 @@
 package projekt.fhv.teama.classes;
 
 /**
- * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
- * this template use File | Settings | File Templates.
+ * Beschreibt einen Pfandtyp
+ * @author Team A
+ * @version 1.9
  */
 public class Pfandtyp implements IPfandtyp {
 

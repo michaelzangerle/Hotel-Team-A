@@ -5,8 +5,9 @@ import java.sql.Date;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
 
 /**
- * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
- * this template use File | Settings | File Templates.
+ * Beschreibt ein Kontingent
+ * @author Team A
+ * @version 1.9
  */
 public class Kontingent implements IKontingent {
 	
