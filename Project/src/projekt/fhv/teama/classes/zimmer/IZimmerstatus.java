@@ -1,6 +1,6 @@
 package projekt.fhv.teama.classes.zimmer;
 
-import projekt.fhv.teama.hibernate.dao.IModel;
+import projekt.fhv.teama.classes.IModel;
 
 public interface IZimmerstatus extends IModel {
 	public void setBezeichnung(String bezeichnung);

@@ -3,7 +3,7 @@ package projekt.fhv.teama.classes.zimmer;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.IKategoriekontingent;
-import projekt.fhv.teama.hibernate.dao.IModel;
+import projekt.fhv.teama.classes.IModel;
 
 public interface IKategorie extends IModel {
 	

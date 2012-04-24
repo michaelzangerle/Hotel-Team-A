@@ -3,9 +3,9 @@ package projekt.fhv.teama.classes.personen;
 import java.sql.Date;
 import java.util.Set;
 
+import projekt.fhv.teama.classes.IModel;
 import projekt.fhv.teama.classes.personen.IKontodaten;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
-import projekt.fhv.teama.hibernate.dao.IModel;
 
 public interface IPerson extends IModel {
 	public void setVorname(String vorname);

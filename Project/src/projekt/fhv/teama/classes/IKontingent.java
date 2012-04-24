@@ -3,7 +3,6 @@ package projekt.fhv.teama.classes;
 import java.sql.Date;
 
 import projekt.fhv.teama.classes.personen.IVertragspartner;
-import projekt.fhv.teama.hibernate.dao.IModel;
 
 public interface IKontingent extends IModel {
 	

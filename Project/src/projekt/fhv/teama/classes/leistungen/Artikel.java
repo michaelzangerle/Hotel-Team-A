@@ -57,10 +57,12 @@ public class Artikel extends Leistung implements IArtikel{
 		this.bezeichnung = bezeichnung;
 	}
 
+	
 	public IWarengruppe getWarengruppe() {
 		return warengruppe;
 	}
-
+	
+	
 	public void setWarengruppe(IWarengruppe warengruppe) {
 		this.warengruppe = warengruppe;
 	}

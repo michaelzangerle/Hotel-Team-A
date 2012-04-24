@@ -4,8 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
- * this template use File | Settings | File Templates.
+ * Beschreibt eine Warengruppe
+ * @author Team A
+ *
  */
 public class Warengruppe implements IWarengruppe {
 

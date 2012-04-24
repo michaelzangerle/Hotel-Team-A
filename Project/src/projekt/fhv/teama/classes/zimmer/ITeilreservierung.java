@@ -1,6 +1,6 @@
 package projekt.fhv.teama.classes.zimmer;
 
-import projekt.fhv.teama.hibernate.dao.IModel;
+import projekt.fhv.teama.classes.IModel;
 
 public interface ITeilreservierung extends IModel {
 	public void setReservierung(IReservierung res);

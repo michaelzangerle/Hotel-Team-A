@@ -1,6 +1,5 @@
 package projekt.fhv.teama.classes;
 
-import projekt.fhv.teama.hibernate.dao.IModel;
 
 public interface IPfandtyp extends IModel {
 	

@@ -3,9 +3,9 @@ package projekt.fhv.teama.classes.zimmer;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.IModel;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
-import projekt.fhv.teama.hibernate.dao.IModel;
 
 public interface IZimmer extends IModel {
 

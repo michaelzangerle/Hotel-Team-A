@@ -2,10 +2,10 @@ package projekt.fhv.teama.classes.rechnung;
 
 import java.sql.Date;
 
+import projekt.fhv.teama.classes.IModel;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
-import projekt.fhv.teama.hibernate.dao.IModel;
 
 public interface IRechnungsposition extends IModel {
 	public void setLeistung(ILeistung leistung);

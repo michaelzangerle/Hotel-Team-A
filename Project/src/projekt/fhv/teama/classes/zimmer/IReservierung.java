@@ -3,10 +3,10 @@ package projekt.fhv.teama.classes.zimmer;
 import java.sql.Date;
 import java.util.Set;
 
+import projekt.fhv.teama.classes.IModel;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
-import projekt.fhv.teama.hibernate.dao.IModel;
 
 public interface IReservierung extends IModel {
 	

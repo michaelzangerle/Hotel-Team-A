@@ -3,9 +3,9 @@ package projekt.fhv.teama.classes.rechnung;
 
 import java.util.Set;
 
+import projekt.fhv.teama.classes.IModel;
 import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
-import projekt.fhv.teama.hibernate.dao.IModel;
 
 public interface IRechnung extends IModel {
 	public String getNummer();

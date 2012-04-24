@@ -5,8 +5,9 @@ import java.util.Set;
 import projekt.fhv.teama.classes.rechnung.Rechnungsposition;
 
 /**
- * Created with IntelliJ IDEA. User: mike Date: 09.04.12 Time: 22:23 To change
- * this template use File | Settings | File Templates.
+ * Beschreibt die Leistung Zusatzleistung
+ * @author Team A
+ *
  */
 public class Zusatzleistung extends Leistung implements IZusatzleistung{
 	

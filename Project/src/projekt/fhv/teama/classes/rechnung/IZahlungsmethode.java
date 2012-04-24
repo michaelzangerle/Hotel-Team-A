@@ -1,6 +1,6 @@
 package projekt.fhv.teama.classes.rechnung;
 
-import projekt.fhv.teama.hibernate.dao.IModel;
+import projekt.fhv.teama.classes.IModel;
 
 public interface IZahlungsmethode extends IModel {
 	
