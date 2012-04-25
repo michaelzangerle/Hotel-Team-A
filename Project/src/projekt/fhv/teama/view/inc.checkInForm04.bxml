@@ -2,71 +2,93 @@
 	xmlns="org.apache.pivot.wtk"
 	styles="{padding:6}" xmlns:view="projekt.fhv.teama.view"
 	visible="false">
-	<BoxPane bxml:id="bpCheckInForm04" orientation="vertical" styles="{spacing:10,
-		fill:true}">
+	<BoxPane bxml:id="bpCheckInForm04" orientation="vertical" styles="{spacing:10,fill:true}">
 		<Label bxml:id="lbFinishCheckIn" text="Check-In: Hand out keys and finish check-in process"
 			styles="$styles.lbHeading1"/>
 		
 		<!-- Key Handout & Stay Summary  ############################################################################# -->
 		<Separator bxml:id="sprStaySummary" heading=" Review stay summary and hand out keys before saving " styles="$styles.sprHeading"/>
-		<BoxPane bxml:id="bpStaySummary" orientation="horizontal" styles="$styles.bpContentHorizontal" >
 			
 		<Label text="You are checking in: "  styles="$styles.lbHeading2" />
 		<!-- Step 1 ################################################################################## -->		
-		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
-					<BoxPane bxml:id="smBPName">
-						<Label bxml:id="smLBLastName" text="${tiLastName.text}"/>
+		
+						<Label bxml:id="smLBNAME" />
+						<Label bxml:id="smLBLastName" Form.label="Test" text="${tiLastName.text}"/>
 						<Label bxml:id="smLBFirstName" text="${tiFirstName.text}"/>
-					</BoxPane>
-					<BoxPane bxml:id="smBPGender" >
+
 						<Label bxml:id="smLBGender"   />								
 						<Label bxml:id="smLBBirthdate"  text="${cbBirthdate.selectedDate}"/>
-					</BoxPane>
-		</BoxPane>
+
+			
 		<!-- Step 1,5 ################################################################################	-->
 		
-		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
 					<Label bxml:id="smLBStreet" text="${tiStreet.text}" />
-					<BoxPane bxml:id="smBZipCity" >
+
 						<Label bxml:id="smLBZip" text="${tiZip.text}"/>
 						<Label bxml:id="smLBCity" text="${tiCity.text}"/>
-					</BoxPane>
-					<BoxPane>
+
+
 						<Label bxml:id="smLBZCountry" text="${tiCountry.text}" preferredWidth="80"/>
-					</BoxPane>
-		</BoxPane>
 
 		<!-- Step 1,75 #####################################################################	-->
 
-		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-					<BoxPane bxml:id="smBPContact"  styles="{spacing:5}">
+
+	
 						<Label bxml:id="smLBPhone" text="${tiPhone.text}"/>
 						<Label bxml:id="smLBMail" text="${tiMail.text}"/>
-					</BoxPane>
-		</BoxPane>
+
 		
 		<!-- Step 1,98 #####################################################################	-->
 
-		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-					<BoxPane bxml:id="smBPBankAccount" styles="{spacing:5}">
+
 						<Label bxml:id="smLBAccountNr" text="${tiAccountNr.text}"/>
 						<Label bxml:id="smLBBankCodeNr" text="${tiBankCodeNr.text}"/>
-					</BoxPane>
-					<BoxPane>
+
 						<Label bxml:id="smLBIban" text="${tiIban.text}"/>
 						<Label bxml:id="smLBBic" text="${tiBic.text}"/>
-					</BoxPane>
-		</BoxPane>				
-		
-		</BoxPane>		
-				
-		<!-- Step 2   #####################################################################	-->
 
-		<BoxPane bxml:id="bpRoomsSummary" orientation="horizontal" styles="$styles.bpContentHorizontal" >
+		<!-- Step 2   #####################################################################	-->
+		
+		<TablePane bxml:id="tablePane" styles="{verticalSpacing:1, showHorizontalGridLines:true, horizontalSpacing:1, showVerticalGridLines:true}">
+            <columns>
+                <TablePane.Column width="-1"/>
+                <TablePane.Column width="50"/>
+                <TablePane.Column width="-1"/>
+                <TablePane.Column width="1*"/>
+                <TablePane.Column width="2*"/>
+            </columns>
+ 
+            <TablePane.Row height="-1">
+                <TablePane.Filler/>
+                <Label text="50" styles="{horizontalAlignment:'center'}"/>
+                <Label text="-1" styles="{horizontalAlignment:'center'}"/>
+                <Label text="1*" styles="{horizontalAlignment:'center'}"/>
+                <Label text="2*" styles="{horizontalAlignment:'center'}"/>
+            </TablePane.Row>
+ 
+            <TablePane.Row height="50">
+                <Label text="50" styles="{verticalAlignment:'center'}"/>
+            </TablePane.Row>
+ 
+            <TablePane.Row height="-1">
+                <Label text="-1" styles="{verticalAlignment:'center'}"/>
+            </TablePane.Row>
+ 
+            <TablePane.Row height="1*">
+                <Label text="1*" styles="{verticalAlignment:'center'}"/>
+            </TablePane.Row>
+ 
+            <TablePane.Row height="2*">
+                <Label text="2*" styles="{verticalAlignment:'center'}"/>
+            </TablePane.Row>
+        </TablePane>
+		
+
+		<BoxPane bxml:id="bpRoomsSummary" orientation="vertical" styles="$styles.bpContentHorizontal" >
 		
 		<BoxPane  bxml:id="smBPRoomAssignment" orientation="horizontal"  styles="{padding:4, spacing:40}">
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-		 <Label bxml:id="smLBBookedRoomCategories" text="Booked room quantity and category" styles="$styles.libHeading" tooltipText='List shows category and quantity of rooms which were reserved by the guest.' tooltipDelay="250" cursor="hand"/>
+		 <Label bxml:id="smLBBookedRoomCategories" text="The chosen rooms: " styles="$styles.libHeading" tooltipText='List shows the chosen and verified rooms ' tooltipDelay="250" cursor="hand"/>
 		 <Border styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#e6eff8'}">
 				 <ScrollPane preferredWidth="240" preferredHeight="110"  horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#e6eff8'}" >
@@ -76,7 +98,7 @@
             </Border>
 		</BoxPane>
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-		 <Label bxml:id="smLBAssignedRooms" text="Verify Assigned Rooms" styles="$styles.libHeading" tooltipText='List shows only available "free and cleaned" rooms!' tooltipDelay="250" cursor="hand"/>
+		 <Label bxml:id="smLBAssignedRooms" text="Handed out key?" styles="$styles.libHeading" tooltipText='Handed out the keys? ' tooltipDelay="250" cursor="hand"/>
 		 <Border  styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4}">
 				 <ScrollPane preferredWidth="240" preferredHeight="110"  horizontalScrollBarPolicy="fill"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
@@ -84,12 +106,9 @@
                 	</ScrollPane>
                 	</BoxPane>
             </Border>
-		</BoxPane>		
+		</BoxPane>	
 			
-			
-			
-
-		</BoxPane>
+ 	</BoxPane>
 					
 		<!-- Action Buttons ########################################################################### -->				
 		<Separator/>		
