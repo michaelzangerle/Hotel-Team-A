@@ -35,6 +35,12 @@ import projekt.fhv.teama.model.interfaces.IModelTeilreservierung;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
 import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
 
+
+/**
+ * Controller zur Steuerung des Check In Vorganges
+ * @author Team-A
+ * @version 1.5
+ */
 public class ControllerCheckIn implements IControllerCheckIn {
 
 	IModelReservierung modelReservierung;
