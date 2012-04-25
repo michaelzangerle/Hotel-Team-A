@@ -11,33 +11,26 @@ import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.collections.List;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.Action;
-import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Border;
 import org.apache.pivot.wtk.BoxPane;
-import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonGroup;
 import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.CalendarButton;
+import org.apache.pivot.wtk.Checkbox;
 import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.ComponentMouseButtonListener;
-import org.apache.pivot.wtk.DesktopApplicationContext;
-import org.apache.pivot.wtk.Dialog;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListButton;
 import org.apache.pivot.wtk.ListButtonSelectionListener;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.ListViewSelectionListener;
-import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Meter;
 import org.apache.pivot.wtk.PushButton;
 import org.apache.pivot.wtk.RadioButton;
 import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.Window;
-
-import projekt.fhv.teama.view.support.BlockingDialog;
 
 public class ViewMain extends Window implements Application, Bindable {
 	
@@ -85,6 +78,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	
 	BoxPane bpAssignedRooms;
 	BoxPane bpRoomsSummary;
+	Checkbox cbxShowAllRooms;
 
 	@Override
 	public void startup(Display display, Map<String, String> properties)
@@ -185,6 +179,7 @@ public class ViewMain extends Window implements Application, Bindable {
 		rfTIZip = (TextInput)arg0.get("rfTIZip");
 		rf1TIPhone = (TextInput)arg0.get("rf1TIPhone");
 		rf1TIEMail = (TextInput)arg0.get("rf1TIEMail");
+		cbxShowAllRooms = (Checkbox)arg0.get("cbxShowAllRooms");
 		
 		/* CalendarButtons */
 		rf1CBArrival = (CalendarButton)arg0.get("rf1CBArrival");
@@ -218,20 +213,20 @@ public class ViewMain extends Window implements Application, Bindable {
 		occupationPreview.setVisible(false);
 		
 		/** Testdaten füllen ***********************************************************/
-		viewController.testDaten.generateTestData();
+//		viewController.testDaten.generateTestData();
 		
 //		lvReservationSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
-		lvArrivingSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
-		lvGuestSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
-	
-		lbtnGuests.setListData(viewController.testDaten.alGaesteInReservierung);
-		lbtnGuests.setSelectedIndex(0);
-		lbtnAddresses.setListData(viewController.testDaten.alGastAdressen);
-		lbtnAddresses.setSelectedIndex(0);
-		lvBookedRoomCategories.setListData(viewController.testDaten.alGebuchteZimmerkategorien);
-		lvAssignedRooms.setListData(viewController.testDaten.alVerfügbareDoppelzimmer);
-		lbtnDepositType.setListData(viewController.testDaten.alPfandkategorien);
-		lbtnDepositType.setSelectedIndex(0);
+//		lvArrivingSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
+//		lvGuestSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
+//	
+//		lbtnGuests.setListData(viewController.testDaten.alGaesteInReservierung);
+//		lbtnGuests.setSelectedIndex(0);
+//		lbtnAddresses.setListData(viewController.testDaten.alGastAdressen);
+//		lbtnAddresses.setSelectedIndex(0);
+//		lvBookedRoomCategories.setListData(viewController.testDaten.alGebuchteZimmerkategorien);
+//		lvAssignedRooms.setListData(viewController.testDaten.alVerfügbareDoppelzimmer);
+//		lbtnDepositType.setListData(viewController.testDaten.alPfandkategorien);
+//		lbtnDepositType.setSelectedIndex(0);
 		
 		meter.setPercentage(0.25);
 				

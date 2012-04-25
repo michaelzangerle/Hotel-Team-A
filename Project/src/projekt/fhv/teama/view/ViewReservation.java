@@ -2,7 +2,6 @@ package projekt.fhv.teama.view;
 
 import java.net.URL;
 
-import org.apache.pivot.beans.BeanAdapter;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;

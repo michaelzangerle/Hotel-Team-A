@@ -22,6 +22,7 @@
             </Border>
 		</BoxPane>
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
+	     <Checkbox bxml:id="cbxShowAllRooms" buttonData = "Show all available Rooms" />
 		 <Label bxml:id="lbAssignedRooms" text="Verify Assigned Rooms" styles="$styles.libHeading" tooltipText='List shows only available "free and cleaned" rooms!' tooltipDelay="250" cursor="hand"/>
 		 <Border  styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4}">
