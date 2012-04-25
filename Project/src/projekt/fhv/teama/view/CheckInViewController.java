@@ -504,8 +504,7 @@ public class CheckInViewController implements ButtonPressListener {
 			try {
 				IZimmer room = getRoomByNumber(Integer.valueOf(split[1]));
 				controllerCheckIn.addZimmer(room);
-			} catch (WrongParameterException | NumberFormatException | DatabaseException | FokusException e) {
-				// TODO Auto-generated catch block
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
