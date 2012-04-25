@@ -36,12 +36,6 @@ public interface IModelZimmer {
 	 */
 	void save(IZimmer zimmer) throws DatabaseException, EmptyParameterException;
 
-	/**
-	 * Um alle Verfügbaren Zimmer zu erhalten
-	 * @return List<IZimmer>
-	 * @throws DatabaseException
-	 */
-	List<IZimmer> getVerfügbareZimmer() throws DatabaseException;
 
 	/**
 	 * Um den Zimmerstatus zu setzen
@@ -64,6 +58,11 @@ public interface IModelZimmer {
 	 */
 	IZimmer getAktullesZimmer() throws FokusException;
 
+	/**
+	 * Um alle Verfügbaren Zimmer zu erhalten
+	 * @return List<IZimmer>
+	 * @throws DatabaseException
+	 */
 	List<IZimmer> getVerfügbareZimmer(IReservierung aktulleReservierung)
 			throws DatabaseException;
 }
