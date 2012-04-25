@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.personen.Berechtigung" table="berechtigung">
+    <class name="projekt.fhv.teama.classes.personen.Berechtigung" table="berechtigung" lazy="true">
         <id name="ID" type="int">
             <column name="berechtigungID" sql-type="int" length="10" not-null="true"/>
        		<generator class="native"/>

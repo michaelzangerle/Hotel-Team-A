@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 16.04.2012 21:35:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="projekt.fhv.teama.classes.zimmer.Kategorie" table="kategorie">
+	<class name="projekt.fhv.teama.classes.zimmer.Kategorie" table="kategorie" lazy="true">
 
 		<id name="ID" type="int">
 			<column name="kategorieID" />
@@ -30,7 +30,7 @@
 			<one-to-many class="projekt.fhv.teama.classes.zimmer.Zimmerpreis" />
 		</set>
 
-		<set name="kategoriekontingent" table="KATEGORIEKONTINGENT" lazy="false">
+		<set name="kategoriekontingent" table="KATEGORIEKONTINGENT">
 			<key column="kategoriekontingentID" />
 			<one-to-many class="projekt.fhv.teama.classes.Kategoriekontingent" />
 		</set>

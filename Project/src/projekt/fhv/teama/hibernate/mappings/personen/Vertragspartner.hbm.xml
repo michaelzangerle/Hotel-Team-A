@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="projekt.fhv.teama.classes.personen.Vertragspartner"
-		table="vertragspartner">
+		table="vertragspartner" lazy="true">
 
 		<id name="ID">
 			<column name="vertragsPartnerID" sql-type="int" length="10" not-null="true" />

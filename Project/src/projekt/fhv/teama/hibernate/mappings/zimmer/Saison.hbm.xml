@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 16.04.2012 20:45:44 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.zimmer.Saison" table="saison">
+    <class name="projekt.fhv.teama.classes.zimmer.Saison" table="saison" lazy="true">
         
         <id name="ID" type="int">
             <column name="saisonID" sql-type="int" length="11"/>

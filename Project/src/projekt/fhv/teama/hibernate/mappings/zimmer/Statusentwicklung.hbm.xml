@@ -4,14 +4,14 @@
 <!-- Generated 13.04.2012 10:26:32 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
 	<class name="projekt.fhv.teama.classes.zimmer.Statusentwicklung"
-		table="statusentwicklung">
+		table="statusentwicklung" lazy="true">
 
 		<id name="ID" type="int">
 			<column name="statusentwicklungID" />
 			<generator class="native"/>
 		</id>
 
-		<many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
+		<many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join" lazy="false">
 			<column name="ZIMMERID" />
 		</many-to-one>
 

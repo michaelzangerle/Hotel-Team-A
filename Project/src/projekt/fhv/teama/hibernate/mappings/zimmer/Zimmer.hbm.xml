@@ -5,7 +5,7 @@
 <hibernate-mapping>
 	<joined-subclass name="projekt.fhv.teama.classes.zimmer.Zimmer"
 		extends="projekt.fhv.teama.classes.leistungen.Leistung" table="zimmer"
-		lazy="false">
+		lazy="true">
 
 		<key column="leistungID" />
 
@@ -40,14 +40,14 @@
 			<one-to-many class="projekt.fhv.teama.classes.zimmer.Statusentwicklung" />
 		</set>
 
-		<set name="gaeste" table="gastreservierung" >
+		<set name="gaeste" table="gastreservierung" lazy="false">
 			<key>
 				<column name="zimmerID" />
 			</key>
 			<one-to-many  class="projekt.fhv.teama.classes.personen.Gast" />
 		</set>
 
-		<set name="aufenthalte" table="aufenthalt" lazy="false">
+		<set name="aufenthalte" table="aufenthalt">
 			<key>
 				<column name="zimmerID" />
 			</key>

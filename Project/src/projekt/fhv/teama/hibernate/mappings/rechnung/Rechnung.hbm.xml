@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 17.04.2012 18:54:57 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.rechnung.Rechnung" table="rechnung">
+    <class name="projekt.fhv.teama.classes.rechnung.Rechnung" table="rechnung" lazy="true">
         
         <id name="ID" type="int">
             <column name="RECHNUNGID" />
@@ -46,14 +46,14 @@
             <column name="BEZAHLERLANDID" />
         </many-to-one>
         
-        <set name="rechnungspositionen" table="RECHNUNGSPOSITION" inverse="false" lazy="true">
+        <set name="rechnungspositionen" table="RECHNUNGSPOSITION" inverse="false" lazy="false">
             <key>
                 <column name="rechnungID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.rechnung.Rechnungsposition" />
         </set>
         
-        <set name="teilzahlungen" table="TEILZAHLUNG" inverse="false" lazy="true">
+        <set name="teilzahlungen" table="TEILZAHLUNG" inverse="false" lazy="false">
             <key>
                 <column name="rechnungID" />
             </key>
