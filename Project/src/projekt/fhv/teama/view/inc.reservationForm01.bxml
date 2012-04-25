@@ -1,8 +1,9 @@
  <view:ViewReservation bxml:id="reservationForm01" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk" styles="{padding:6}" xmlns:view="projekt.fhv.teama.view"
 	visible="false" >
-	<BoxPane bxml:id="bpReservation" orientation="vertical">
-		<BoxPane >
+	<BoxPane bxml:id="bpReservation" orientation="vertical" styles="{spacing:10,
+		fill:true}">
+		<BoxPane>
 		<Label bxml:id="lbReservationDetails" text="Selected Reservation: No." styles="$styles.lbHeading1"/>
 		<Label bxml:id="rf1LBResNr" text="4711" styles="$styles.lbHeading1" />
 		</BoxPane>
@@ -23,21 +24,21 @@
 				<TextInput bxml:id="rf1TIPhone" Form.label="Phone"	textKey="phoneNumber" preferredWidth="350" />
 				<TextInput bxml:id="rf1TIEMail" Form.label="Email"	textKey="emailAddress" preferredWidth="350" />
 				
-				<BoxPane orientation="horizontal" bxml:id="rf1BPStay" styles="{spacing:15}">
+				<BoxPane orientation="horizontal" bxml:id="rf1BPStay" styles="{padding:{top:10, left:0, bottom:10, right:0}, spacing:35}">
 					<BoxPane orientation="vertical">
 						<Label bxml:id="rf1LBArrival" text="Arrival" styles="$styles.libHeading" />
-						<CalendarButton bxml:id="rf1CBArrival"	preferredWidth="130"/>
+						<CalendarButton bxml:id="rf1CBArrival"	preferredWidth="155"/>
 					</BoxPane>
 					<BoxPane orientation="vertical">
 						<Label bxml:id="rf1LBDeparture" text="Departure" styles="$styles.libHeading"/>
-						<CalendarButton bxml:id="rf1CBDeparture" preferredWidth="130"/>
+						<CalendarButton bxml:id="rf1CBDeparture" preferredWidth="155" />
 					</BoxPane>				
 					</BoxPane>
 			</Form.Section>
 		</Form>
-		
 		</BoxPane>
-
+			
+							<Separator />
 	<!-- Action Buttons ########################################################################### -->				
 		<BoxPane styles="{horizontalAlignment:'left', spacing:15, padding:12}">
 			<PushButton bxml:id="rf1PBtnEditReservation" buttonData="Edit"/>
