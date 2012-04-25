@@ -378,13 +378,18 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	
 	public HashMap<IKategorie, List<IZimmer>> getVerfuegbareZimmer() throws DatabaseException, FokusException
 	{
-		for (IKategorie kategorie : modelKategorie.getKategorieen()) {
+		
+		return verfuegbareZimmer;
+	}
+	
+	public void initVerfuegbareZimmer() throws DatabaseException, FokusException
+	{
+			verfuegbareZimmer.clear();
+			for (IKategorie kategorie : modelKategorie.getKategorieen()) {
 			
 			List<IZimmer>list =getVerfügbareZimmerFürGegebeneKategorie(kategorie);
 			verfuegbareZimmer.put(kategorie, list);
 		}
-		
-		return verfuegbareZimmer;
 	}
 	
 	public void addZimmer(IZimmer z) throws WrongParameterException

@@ -290,6 +290,13 @@ public interface IControllerCheckIn {
 	 */
 	public void clearLists();
 	
+	/**
+	 * Methode um die Verfuegbaren Zimmer in den Cache zu laden
+	 * @throws DatabaseException
+	 * @throws FokusException
+	 */
+	public void initVerfuegbareZimmer() throws DatabaseException, FokusException;
+	
 	
 	
 	
