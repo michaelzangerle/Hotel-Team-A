@@ -1,9 +1,6 @@
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import java.util.Set;
-
 import projekt.fhv.teama.classes.personen.Adresse;
-import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.hibernate.dao.personen.AdresseDao;
 import projekt.fhv.teama.hibernate.dao.personen.IAdresseDao;
 import projekt.fhv.teama.hibernate.dao.personen.ILandDao;

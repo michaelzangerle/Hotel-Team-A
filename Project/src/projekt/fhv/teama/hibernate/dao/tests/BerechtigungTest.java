@@ -3,17 +3,7 @@
  */
 package projekt.fhv.teama.hibernate.dao.tests;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.Vector;
-
-import projekt.fhv.teama.classes.personen.Berechtigung;
-import projekt.fhv.teama.classes.personen.IBerechtigung;
-import projekt.fhv.teama.hibernate.dao.personen.BerechtigungDao;
-import projekt.fhv.teama.hibernate.dao.personen.IBerechtigungDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 
 /**
  * @author mike
@@ -27,12 +17,12 @@ public class BerechtigungTest {
 	 */
 	public static void main(String[] args) throws DatabaseException {
 		
-		IBerechtigung b1 = new Berechtigung("Check In", "CI", "Check In abwickeln");
-		IBerechtigung b2 = new Berechtigung("Check Out", "CO", "Check Out abwickeln");
-		IBerechtigung b3 = new Berechtigung("Reservierung erstellen", "RE", "");
-		IBerechtigung b4 = new Berechtigung("Administration", "ADM", "Administrative Tätigkeiten");
-		
-		IBerechtigungDao bDao = BerechtigungDao.getInstance();
+//		IBerechtigung b1 = new Berechtigung("Check In", "CI", "Check In abwickeln");
+//		IBerechtigung b2 = new Berechtigung("Check Out", "CO", "Check Out abwickeln");
+//		IBerechtigung b3 = new Berechtigung("Reservierung erstellen", "RE", "");
+//		IBerechtigung b4 = new Berechtigung("Administration", "ADM", "Administrative Tätigkeiten");
+//		
+//		IBerechtigungDao bDao = BerechtigungDao.getInstance();
 		
 		// Einfügen
 		
