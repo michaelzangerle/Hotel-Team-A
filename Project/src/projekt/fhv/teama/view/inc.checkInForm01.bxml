@@ -15,7 +15,7 @@
 				<Form.Section>
 					<Label bxml:id="lbPrimaryGuestSelection" text="Select primary guest for this stay or enter a new one if list is empty" />
 					<BoxPane  styles="{padding:{top:0, left:0, bottom:15, right:0}}">
-						<ListButton bxml:id="lbtnGuests" listData="['Hans Hinterseer', 'Prof. Dr. Maria Hinterseer']"  preferredWidth="446" />			
+						<ListButton bxml:id="lbtnGuests" preferredWidth="446" />			
 					</BoxPane>
 					<BoxPane bxml:id="bpName" Form.label="Name" styles="{spacing:5}">
 						<TextInput bxml:id="tiLastName" prompt="Last"/>
@@ -46,7 +46,7 @@
 				<Form.Section>
 					<Label bxml:id="lbPrimaryAddress" text="Change primary address or enter and add a new one" />
 					<BoxPane  styles="{padding:{top:0, left:0, bottom:15, right:0}}">
-					<ListButton bxml:id="lbtnAddresses" listData="['Bofelstraße 26, 6845 Arktis', 'Spinnergasse 27, 6840 Antarktis']"  preferredWidth="446" />			
+					<ListButton bxml:id="lbtnAddresses" preferredWidth="446" />			
 					</BoxPane>
 					<BoxPane bxml:id="bpAddress" Form.label="Address" styles="{spacing:5}">
 						<TextInput bxml:id="tiStreet" prompt="Street"/>
