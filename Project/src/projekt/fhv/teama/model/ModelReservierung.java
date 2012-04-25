@@ -8,9 +8,7 @@ import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.hibernate.dao.zimmer.IReservierungDao;
-
 import projekt.fhv.teama.hibernate.dao.zimmer.ReservierungDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;

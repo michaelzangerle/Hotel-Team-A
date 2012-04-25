@@ -1,9 +1,5 @@
 package projekt.fhv.teama.model;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IStatusentwicklung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
