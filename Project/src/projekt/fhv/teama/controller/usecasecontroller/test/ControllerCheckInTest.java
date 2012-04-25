@@ -62,7 +62,6 @@ public class ControllerCheckInTest {
 		IModelLand cland =new ModelLand();
 		IModelStatusentwicklung sentw=new ModelStatusentwicklung();
 
-		// TODO Exeption von Datebank wenn kein eintrag
 		IControllerCheckIn controllerCheckIn = new ControllerCheckIn(cres, cauf, cgast, ctres, ckat, ckonto, cpfandTyp,
 				czimmer, czimmerStatus, cadr,cland,sentw);
 
@@ -75,7 +74,7 @@ public class ControllerCheckInTest {
 //			}
 //			
 //		} catch (Exception e) {
-//			// TODO: handle exception
+//			
 //		}
 
 		
@@ -136,7 +135,6 @@ public class ControllerCheckInTest {
 				// 6. Schritt - hole Teilreservierungen
 				System.out.println("3. Screen - Teilreservierung: "+t);	
 				// 7. Schritt - hole verfügbare Zimmer für Teilreservierung
-				//TODO Verfügbare Zimmer funkt nicht
 				List<IZimmer> verfuegbareZimmer = controllerCheckIn.getVerfügbareZimmerFürGegebeneKategorie(t.getKategorie());
 				System.out.println("3.Screen - Zimmer: "+ verfuegbareZimmer);
 				
@@ -173,12 +171,14 @@ public class ControllerCheckInTest {
 //				System.out.println(iAufenthalt);
 //			}
 //		} catch (DatabaseException e) {
-//			// TODO Auto-generated catch block
+//			
 //			e.printStackTrace();
 //		} catch (EmptyParameterException e) {
-//			// TODO Auto-generated catch block
+//			
 //			e.printStackTrace();
 //		}
+		
+		
 		
 
 	}
