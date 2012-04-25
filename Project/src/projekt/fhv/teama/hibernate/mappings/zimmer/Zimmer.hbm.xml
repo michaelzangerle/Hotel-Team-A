@@ -40,7 +40,7 @@
 			<one-to-many class="projekt.fhv.teama.classes.zimmer.Statusentwicklung" />
 		</set>
 
-		<set name="gaeste" table="gastreservierung" lazy="false">
+		<set name="gaeste" table="gast">
 			<key>
 				<column name="zimmerID" />
 			</key>

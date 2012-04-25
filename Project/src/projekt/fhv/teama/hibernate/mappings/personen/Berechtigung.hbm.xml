@@ -16,8 +16,8 @@
             <column name="kuerzel" sql-type="char" length="5" not-null="true"/>
         </property>
 
-        <property name="beschreibung" type="java.lang.String">
-            <column name="beschreibung" sql-type="longtext" length="2147483647"/>
+        <property name="beschreibung" type="text">
+            <column name="beschreibung" sql-type="varchar"/>
         </property>
         
         <set name="berechtigte" table="mitarbeiterberechtigung" cascade="all">

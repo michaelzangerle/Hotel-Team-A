@@ -11,7 +11,7 @@
 		</id>
 		
 		<property name="preis" type="float">
-			<column name="preis" sql-type="numerical" length="10" precision="2"
+			<column name="preis" sql-type="decimal" length="10" precision="2"
 				not-null="true" />
 		</property>
 		

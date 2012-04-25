@@ -15,7 +15,7 @@
         </property>
         
         <property name="bearbeitet" type="boolean">
-            <column name="BEARBEITET" />
+            <column name="BEARBEITET" sql-type="tinyint"/>
         </property>
         
         <property name="bis" type="java.sql.Date">
