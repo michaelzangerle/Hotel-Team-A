@@ -6,16 +6,16 @@
     <class name="projekt.fhv.teama.classes.zimmer.ReservierungsOption" table="reservierungsoption" lazy="true">
         
         <id name="ID" type="int">
-            <column name="optionID" />
+            <column name="optionID" sql-type="int"/>
             <generator class="native" />
         </id>
         
-        <property name="erfuellung" >
-            <column name="ERFUELLUNG"/>
+        <property name="erfuellung" type="java.sql.Date">
+            <column name="ERFUELLUNG" sql-type="date"/>
         </property>
         
-        <property name="prozentsatz">
-            <column name="PROZENTSATZ" sql-type="varchar"/>
+        <property name="prozentsatz" type="short">
+            <column name="PROZENTSATZ" sql-type="smallint"/>
         </property>
         
         <property name="erfuellt" type="boolean">

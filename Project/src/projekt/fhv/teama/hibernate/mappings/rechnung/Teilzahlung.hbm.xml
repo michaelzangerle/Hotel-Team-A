@@ -7,7 +7,7 @@
 		table="teilzahlung">
 
 		<id name="ID" type="int">
-			<column name="zahlungsmethodeID" />
+			<column name="zahlungsmethodeID" sql-type="int"/>
 			<generator class="native" />
 		</id>
 

@@ -6,7 +6,7 @@
     <joined-subclass name="projekt.fhv.teama.classes.personen.Mitarbeiter"
     				 extends="projekt.fhv.teama.classes.personen.Person" table="mitarbeiter">
         
-        <key column="personID"/>
+        <key column="personID" />
         
         <property name="nummer" type="java.lang.String">
             <column name="nummer" sql-type="varchar" not-null="true" />

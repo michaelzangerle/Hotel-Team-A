@@ -7,32 +7,32 @@
 		table="rechnungsposition">
 
 		<id name="ID" type="int">
-			<column name="rechnungspositionID" />
+			<column name="rechnungspositionID" sql-type="int"/>
 			<generator class="native" />
 		</id>
 
 		<property name="erstellung" type="java.sql.Date">
-			<column name="ERSTELLUNG" />
+			<column name="ERSTELLUNG" sql-type="date"/>
 		</property>
 
 		<property name="anzahl" type="int">
-			<column name="ANZAHL" />
+			<column name="ANZAHL" sql-type="int"/>
 		</property>
 
 		<property name="einzelpreis" type="float">
-			<column name="EINZELPREIS" />
+			<column name="EINZELPREIS" sql-type="decimal"/>
 		</property>
 
 		<property name="summe" type="float">
-			<column name="SUMME" />
+			<column name="SUMME" sql-type="decimal"/>
 		</property>
 
 		<property name="steuersatz" type="short">
-			<column name="STEUERSATZ" />
+			<column name="STEUERSATZ" sql-type="smallint"/>
 		</property>
 
 		<property name="beglichen" type="boolean">
-			<column name="BEGLICHEN" />
+			<column name="BEGLICHEN" sql-type="tinyint"/>
 		</property>
 
 		<many-to-one name="zimmer"

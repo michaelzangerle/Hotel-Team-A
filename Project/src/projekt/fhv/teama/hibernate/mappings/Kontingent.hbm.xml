@@ -6,24 +6,24 @@
     <class name="projekt.fhv.teama.classes.Kontingent" table="kontingent" lazy="true">
         
         <id name="ID" type="int">
-            <column name="kontingentID" />
+            <column name="kontingentID" sql-type="int"/>
             <generator class="native" />
         </id>
         
         <property name="von" type="java.sql.Date">
-            <column name="VON" />
+            <column name="VON" sql-type="date"/>
         </property>
         
         <property name="bis" type="java.sql.Date">
-            <column name="BIS" />
+            <column name="BIS" sql-type="date"/>
         </property>
         
         <property name="kondition" type="short">
-            <column name="KONDITION" />
+            <column name="KONDITION" sql-type="smallint"/>
         </property>
         
         <property name="ueberbuchungsgrenze" type="short">
-            <column name="UEBERBUCHUNGSGRENZE" />
+            <column name="UEBERBUCHUNGSGRENZE" sql-type="smallint" />
         </property>
         
         <many-to-one name="vertragspartner" 

@@ -10,15 +10,15 @@
 			<generator class="native" />
 		</id>
 
-		<property name="name">
+		<property name="name" type="java.lang.String">
 			<column name="name" sql-type="varchar" not-null="true" />
 		</property>
 
-		<property name="telefonNummer">
+		<property name="telefonNummer" type="java.lang.String">
 			<column name="telefonnummer" sql-type="varchar" not-null="true" />
 		</property>
 
-		<property name="email">
+		<property name="email" type="java.lang.String">
 			<column name="email" sql-type="varchar" not-null="true" />
 		</property>
 

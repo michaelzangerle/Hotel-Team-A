@@ -6,7 +6,7 @@
     <class name="projekt.fhv.teama.classes.zimmer.Zimmerpreis" table="zimmerpreis" lazy="true">
         
         <id name="ID" type="int">
-            <column name="ZIMMERPREISID" />
+            <column name="ZIMMERPREISID" sql-type="int"/>
             <generator class="native" />
         </id>
         

@@ -7,20 +7,20 @@
 		table="warengruppe">
 		
 		<id name="ID" type="int">
-			<column name="warengruppeID" />
+			<column name="warengruppeID" sql-type="int"/>
 			<generator class="native" />
 		</id>
 		
 		<property name="bezeichnung" type="java.lang.String">
-			<column name="BEZEICHNUNG" />
+			<column name="BEZEICHNUNG" sql-type="varchar"/>
 		</property>
 		
 		<property name="steuersatz" type="short">
-			<column name="STEUERSATZ" />
+			<column name="STEUERSATZ" sql-type="smallint"/>
 		</property>
 		
 		<property name="beschreibung" type="java.lang.String">
-			<column name="BESCHREIBUNG" />
+			<column name="BESCHREIBUNG" sql-type="varchar"/>
 		</property>
 
         <set name="zusatzleistungen" table="ZUSATZLEISTUNG" inverse="true" lazy="false" cascade="all">
@@ -34,7 +34,6 @@
             <key>
                 <column name="warengruppeID"/>
             </key>
-            
             <one-to-many class="projekt.fhv.teama.classes.leistungen.Artikel" />
         </set>
 

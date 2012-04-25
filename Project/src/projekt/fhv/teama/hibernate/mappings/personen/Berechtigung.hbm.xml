@@ -16,7 +16,7 @@
             <column name="kuerzel" sql-type="char" length="5" not-null="true"/>
         </property>
 
-        <property name="beschreibung" type="text">
+        <property name="beschreibung" type="java.lang.String">
             <column name="beschreibung" sql-type="varchar"/>
         </property>
         

@@ -6,11 +6,11 @@
     <joined-subclass name="projekt.fhv.teama.classes.personen.Gast" extends="projekt.fhv.teama.classes.personen.Person" table="gast" lazy="false">
         
         <key>
-            <column name="personID" />
+            <column name="personID" sql-type="int"/>
         </key>
         
         <property name="nummer" type="java.lang.String">
-            <column name="nummer" />
+            <column name="nummer" sql-type="varchar"/>
         </property>
         
         <many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">

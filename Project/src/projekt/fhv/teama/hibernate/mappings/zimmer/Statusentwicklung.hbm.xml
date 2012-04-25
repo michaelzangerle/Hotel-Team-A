@@ -7,7 +7,7 @@
 		table="statusentwicklung" lazy="true">
 
 		<id name="ID" type="int">
-			<column name="statusentwicklungID" />
+			<column name="statusentwicklungID" sql-type="int"/>
 			<generator class="native"/>
 		</id>
 

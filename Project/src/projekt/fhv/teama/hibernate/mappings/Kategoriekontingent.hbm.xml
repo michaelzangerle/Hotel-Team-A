@@ -6,7 +6,7 @@
     <class name="projekt.fhv.teama.classes.Kategoriekontingent" table="kategoriekontingent" lazy="true">
         
         <id name="ID" type="int">
-            <column name="kategorieKontingentID" />
+            <column name="kategorieKontingentID" sql-type="int"/>
             <generator class="native" />
         </id>
         
@@ -21,11 +21,11 @@
         </many-to-one>
         
         <property name="anzahl" type="int">
-            <column name="ANZAHL" />
+            <column name="ANZAHL" sql-type="int"/>
         </property>
         
-        <property name="verfuegbar" type="int">
-            <column name="VERFUEGBAR" />
+        <property name="verfuegbar" type="boolean">
+            <column name="VERFUEGBAR" sql-type="tinyint" />
         </property>
         
     </class>

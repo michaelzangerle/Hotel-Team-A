@@ -6,7 +6,7 @@
 	<class name="projekt.fhv.teama.classes.Aufenthalt" table="aufenthalt" lazy="true">
 		
 		<id name="ID" type="int">
-			<column name="aufenthaltID" />
+			<column name="aufenthaltID" sql-type="int"/>
 			<generator class="native" />
 		</id>
 		
@@ -28,7 +28,7 @@
 		</property>
 		
 		<property name="schluessel" type="boolean">
-			<column name="schluessel" sql-type="bit" not-null="true" />
+			<column name="schluessel" sql-type="tinyint" not-null="true" />
 		</property>
 		
 		<many-to-one name="gast"

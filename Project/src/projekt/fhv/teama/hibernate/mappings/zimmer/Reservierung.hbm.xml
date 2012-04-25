@@ -6,12 +6,12 @@
     <class name="projekt.fhv.teama.classes.zimmer.Reservierung" table="reservierung" lazy="true">
         
         <id name="ID" type="int">
-            <column name="reservierungID" />
+            <column name="reservierungID" sql-type="int"/>
             <generator class="native" />
         </id>
         
         <property name="von" type="java.sql.Date">
-            <column name="VON" />
+            <column name="VON" sql-type="date"/>
         </property>
         
         <property name="bearbeitet" type="boolean">
@@ -19,7 +19,7 @@
         </property>
         
         <property name="bis" type="java.sql.Date">
-            <column name="BIS" />
+            <column name="BIS" sql-type="date"/>
         </property>
         
         <many-to-one name="person" class="projekt.fhv.teama.classes.personen.Person" fetch="join" lazy="false">

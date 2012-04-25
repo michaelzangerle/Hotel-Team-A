@@ -6,7 +6,7 @@
     <class name="projekt.fhv.teama.classes.zimmer.Teilreservierung" table="teilreservierung" lazy="true">
         
         <id name="ID" type="int">
-            <column name="teilreservierungID" />
+            <column name="teilreservierungID" sql-type="int"/>
             <generator class="native" />
         </id>
         
@@ -19,7 +19,7 @@
         </many-to-one>
         
         <property name="anzahl" type="int">
-            <column name="ANZAHL" />
+            <column name="ANZAHL" sql-type="int"/>
         </property>
         
     </class>

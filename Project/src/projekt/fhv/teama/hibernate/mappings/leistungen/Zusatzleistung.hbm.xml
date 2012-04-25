@@ -8,15 +8,15 @@
         <key column="leistungID" />
         
         <property name="preis" type="float">
-            <column name="PREIS" />
+            <column name="PREIS" sql-type="decimal"/>
         </property>
         
         <property name="beschreibung" type="java.lang.String">
-            <column name="BESCHREIBUNG" />
+            <column name="BESCHREIBUNG" sql-type="varchar"/>
         </property>
         
         <property name="extern" type="boolean">
-            <column name="EXTERN" />
+            <column name="EXTERN" sql-type="tinyint"/>
         </property>
         
         <many-to-one name="warengruppe" class="projekt.fhv.teama.classes.leistungen.Warengruppe" column="WARENGRUPPEID" lazy="false"/>

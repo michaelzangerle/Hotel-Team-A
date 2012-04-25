@@ -6,16 +6,16 @@
     <class name="projekt.fhv.teama.classes.rechnung.Rechnung" table="rechnung" lazy="true">
         
         <id name="ID" type="int">
-            <column name="RECHNUNGID" />
+            <column name="RECHNUNGID" sql-type="int" />
             <generator class="native" />
         </id>
         
         <property name="bezahlerVorname" type="java.lang.String">
-            <column name="BEZAHLERVORNAME" />
+            <column name="BEZAHLERVORNAME" sql-type="varchar" />
         </property>
         
         <property name="bezahlerNachname" type="java.lang.String">
-            <column name="BEZAHLERNACHNAME" />
+            <column name="BEZAHLERNACHNAME" sql-type="varchar"/>
         </property>
         
         <property name="bezahlerStrasse" type="java.lang.String">
@@ -23,19 +23,19 @@
         </property>
         
         <property name="bezahlerOrt" type="java.lang.String">
-            <column name="BEZAHLERORT" />
+            <column name="BEZAHLERORT" sql-type="varchar"/>
         </property>
         
         <property name="bezahlerPLZ" type="java.lang.String">
-            <column name="BEZAHLERPLZ" />
+            <column name="BEZAHLERPLZ" sql-type="varchar"/>
         </property>
         
         <property name="summe" type="float">
-            <column name="SUMME" />
+            <column name="SUMME" sql-type="decimal"/>
         </property>
         
         <property name="nummer" type="java.lang.String">
-            <column name="NUMMER" />
+            <column name="NUMMER" sql-type="varchar"/>
         </property>
         
         <many-to-one name="mitarbeiter" class="projekt.fhv.teama.classes.personen.Mitarbeiter" fetch="join">

@@ -10,11 +10,11 @@
 		<key column="leistungID" />
 
 		<property name="nummer" type="java.lang.String">
-			<column name="NUMMER" />
+			<column name="NUMMER" sql-type="varchar"/>
 		</property>
 
 		<property name="beschreibung" type="java.lang.String">
-			<column name="BESCHREIBUNG" />
+			<column name="BESCHREIBUNG" sql-type="varchar"/>
 		</property>
 
 		<many-to-one name="kategorie"
