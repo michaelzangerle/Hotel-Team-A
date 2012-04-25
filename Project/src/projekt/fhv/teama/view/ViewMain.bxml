@@ -83,7 +83,7 @@
 								<Separator heading="Found Guests" tooltipText="Current Guests"/>
 								<Border styles="$styles.bordSearchResults">
 								 <ScrollPane preferredHeight="350" horizontalScrollBarPolicy="FILL_TO_CAPACITY" verticalScrollBarPolicy="auto" >
-								<ListView bxml:id="lvGuestSearch" selectMode="single"  cursor="hand" styles="$styles.livSHSListview" />
+								<ListView bxml:id="lvGuestSearch" selectMode="multi"  cursor="hand" styles="$styles.livSHSListview" />
 								</ScrollPane>
 								</Border>
 							</BoxPane>

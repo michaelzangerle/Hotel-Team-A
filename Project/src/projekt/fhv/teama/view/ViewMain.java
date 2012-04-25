@@ -7,6 +7,7 @@ import java.util.Locale;
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
+import org.apache.pivot.beans.NamespaceBinding;
 import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.collections.List;
 import org.apache.pivot.collections.Map;
@@ -68,7 +69,8 @@ public class ViewMain extends Window implements Application, Bindable {
 	TextInput tiStreet; TextInput tiCity; TextInput tiCountry; TextInput tiZip; TextInput tiPhone; TextInput tiMail;
 	TextInput tiAccountNr; TextInput tiBankCodeNr; TextInput tiIban; TextInput tiBic; TextInput tiDepositNumber;
 	Label rf1LBResNr; TextInput rf1TIName;TextInput rf1TIStreet;TextInput rfTICity;TextInput rf1TICountry;TextInput rfTIZip;
-	TextInput rf1TIPhone;TextInput rf1TIEMail;CalendarButton rf1CBArrival;CalendarButton rf1CBDeparture;
+	TextInput rf1TIPhone;TextInput rf1TIEMail;CalendarButton rf1CBArrival;CalendarButton rf1CBDeparture; Checkbox cbxShowAllRooms;
+
 	 
 	/* Labels */
 	Label lbProgress01;	Label lbProgress02;	Label lbProgress03;	Label lbProgress04;
@@ -78,7 +80,6 @@ public class ViewMain extends Window implements Application, Bindable {
 	
 	BoxPane bpAssignedRooms;
 	BoxPane bpRoomsSummary;
-	Checkbox cbxShowAllRooms;
 
 	@Override
 	public void startup(Display display, Map<String, String> properties)
@@ -180,10 +181,13 @@ public class ViewMain extends Window implements Application, Bindable {
 		rf1TIPhone = (TextInput)arg0.get("rf1TIPhone");
 		rf1TIEMail = (TextInput)arg0.get("rf1TIEMail");
 		cbxShowAllRooms = (Checkbox)arg0.get("cbxShowAllRooms");
+		bgGender = (ButtonGroup)arg0.get("bgGender");
 		
 		/* CalendarButtons */
 		rf1CBArrival = (CalendarButton)arg0.get("rf1CBArrival");
 		rf1CBDeparture = (CalendarButton)arg0.get("rf1CBDeparture");
+		cbArrival = (CalendarButton)arg0.get("cbArrival");
+		cbDeparture = (CalendarButton)arg0.get("cbDeparture");
 		cbBirthdate = (CalendarButton)arg0.get("cbBirthdate");
 
 		/* Labels */
@@ -212,13 +216,15 @@ public class ViewMain extends Window implements Application, Bindable {
 		checkInForm04.setVisible(false);
 		occupationPreview.setVisible(false);
 		
-		/** Testdaten füllen ***********************************************************/
-//		viewController.testDaten.generateTestData();
+		/** Testdaten füllen ***********************************************************/	
+		
+		viewController.testDaten.generateTestData();
 		
 //		lvReservationSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
 //		lvArrivingSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
-//		lvGuestSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
-//	
+		//lvGuestSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
+//		lvGuestSearch.setSelectMode("multi");
+		
 //		lbtnGuests.setListData(viewController.testDaten.alGaesteInReservierung);
 //		lbtnGuests.setSelectedIndex(0);
 //		lbtnAddresses.setListData(viewController.testDaten.alGastAdressen);
@@ -229,6 +235,23 @@ public class ViewMain extends Window implements Application, Bindable {
 //		lbtnDepositType.setSelectedIndex(0);
 		
 		meter.setPercentage(0.25);
+		
+		
+		/** TestBindings **/
+				
+		  // Bind list button selection to label text
+	  //  NamespaceBinding namespaceBinding1 = new NamespaceBinding(arg0, "cbBirthdate.selectedItem", "smLBGender.text");
+
+
+	   // namespaceBinding1.bind();    
+	    
+	    
+	  
+	    //bgGender.getSelection().getButtonData();	    
+
+		
+		/**				**/
+		
 				
 		/** Ende - Zustände zum Programmstart initialisieren **************************/
 	}
@@ -327,5 +350,15 @@ public class ViewMain extends Window implements Application, Bindable {
 	
 	public void setlvAssignedRoomsListener(ListViewSelectionListener e) {
 		lvAssignedRooms.getListViewSelectionListeners().add(e);
+	}	
+	
+
+	public void setcbxShowAllRoomsListener(ButtonPressListener e) {
+		cbxShowAllRooms.getButtonPressListeners().add(e);
 	}
+	
+	
+	
+
+	
 }

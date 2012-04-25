@@ -62,7 +62,7 @@
   
     "org.apache.pivot.wtk.ListView": {
     
-    	variableItemHeight:true,    	
+    	/*variableItemHeight:true, */ 	
     	/* alternateItemBackgroundColor: '#e6eff8', */
     	highlightBackgroundColor: '#fee379',
         inactiveSelectionBackgroundColor: '#fee379',
