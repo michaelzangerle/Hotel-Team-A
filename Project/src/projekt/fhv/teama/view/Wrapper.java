@@ -9,8 +9,11 @@ import java.util.List;
 
 import org.apache.pivot.collections.adapter.ListAdapter;
 
+import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
+import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
 
 public class Wrapper {
     ListAdapter<String> listAdapter;
@@ -37,6 +40,36 @@ public class Wrapper {
         }
         return new ListAdapter<String>(curGuests);
     }
+    
+    public ListAdapter<String> getAdressListAdapter (List<IAdresse> adresses) {
+        LinkedList<String> curAdresses = new LinkedList<String>();
+
+        for(IAdresse adress : adresses) {
+            curAdresses.add(adress.getStrasse() +" | " + adress.getOrt() + " | " +adress.getPlz() + " | " + adress.getLand().getBezeichnung());
+        }
+        return new ListAdapter<String>(curAdresses);
+    }
+    
+    public ListAdapter<String> getTeilreservierungListAdapter (List<ITeilreservierung> teilreservierungen) {
+        LinkedList<String> curteilreservierungen = new LinkedList<String>();
+        
+        for(ITeilreservierung teilreservierung : teilreservierungen) {
+        	curteilreservierungen.add(teilreservierung.getAnzahl() + "x " + teilreservierung.getKategorie().getBezeichnung());
+        }
+        return new ListAdapter<String>(curteilreservierungen);
+    }
+    
+	public ListAdapter<String> getZimmerListAdapter(List<IZimmer> roomsAvailable) {
+		LinkedList<String> curRooms = new LinkedList<String>();
+		RoomNumberComparator roomNumberComparator = new RoomNumberComparator();
+        Collections.sort(roomsAvailable, roomNumberComparator);
+        
+        for(IZimmer room : roomsAvailable) {
+        	curRooms.add(room.getID() + " | " + room.getKategorie().getBezeichnung());
+        }
+        return new ListAdapter<String>(curRooms);
+	}
+
 
     public Wrapper () {
         numberFormat = NumberFormat.getInstance();
@@ -66,6 +99,20 @@ public class Wrapper {
             }
             return g1.getNachname().compareTo(g2.getNachname());
         }
+    }
+    
+    public class RoomNumberComparator implements Comparator<IZimmer> {
+
+		@Override
+		public int compare(IZimmer z1, IZimmer z2) {
+			if (z1.getID() > z2.getID()) {
+				return 1;
+			} 
+			if (z1.getID() < z2.getID()) {
+				return -1;
+			}
+			return 0;
+		}
     }
 }
 

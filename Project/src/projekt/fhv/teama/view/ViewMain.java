@@ -86,18 +86,6 @@ public class ViewMain extends Window implements Application, Bindable {
 	BoxPane bpAssignedRooms;
 	BoxPane bpRoomsSummary;
 
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
-		DesktopApplicationContext
-				.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
-		DesktopApplicationContext.main(
-				(Class<? extends Application>) ViewMain.class, args);		
-	}
-
 	@Override
 	public void startup(Display display, Map<String, String> properties)
 			throws Exception {
@@ -247,64 +235,8 @@ public class ViewMain extends Window implements Application, Bindable {
 		meter.setPercentage(0.25);
 				
 		/** Ende - Zustände zum Programmstart initialisieren **************************/
-
-
-		
-		 /** Action Listeners ****************************************************************************/
-		/* ToDo - in ViewController umsetzen*/
-		 
-
-		
-		
-	
-		cf2PBtnBack.getButtonPressListeners().add(new ButtonPressListener()  {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-				
-				checkInForm01.setVisible(true);
-				checkInForm02.setVisible(false);
-				meter.setPercentage(meter.getPercentage() - 0.25);
-			}
-			
-		});
-				
-		cf3PBtnBack.getButtonPressListeners().add(new ButtonPressListener()  {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-				
-				checkInForm02.setVisible(true);
-				checkInForm03.setVisible(false);
-				bpRoomsSummary.remove(bpAssignedRooms);
-				meter.setPercentage(meter.getPercentage() - 0.25);
-			}
-			
-		});
-		
-		cf4PBtnBack.getButtonPressListeners().add(new ButtonPressListener()  {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-				
-				checkInForm03.setVisible(true);
-				checkInForm04.setVisible(false);
-				meter.setPercentage(meter.getPercentage() - 0.25);
-			}
-			
-		});
-		
-		
 	}
-	
-//	public void showCheckInForm1 () {
-//		reservationForm01.setVisible(false);
-//		progress.setVisible(true);
-//		checkInForm01.setVisible(true);	
-//	}
-	
-	
-	
+
 	public Label getlbLoginShow() {
 		return lbLoginShow;
 	}
@@ -372,8 +304,32 @@ public class ViewMain extends Window implements Application, Bindable {
 	public void setcf4PBtnFinishListener (ButtonPressListener e) {
 		cf4PBtnFinish.getButtonPressListeners().add(e);
 	}
+	
+	public void setcf2PBtnBackListener(ButtonPressListener e) {
+		cf2PBtnBack.getButtonPressListeners().add(e);
+	}
 
+	public void setcf3PBtnBackListener(ButtonPressListener e) {
+		cf3PBtnBack.getButtonPressListeners().add(e);
+	}
+	
+	public void setcf4PBtnBackListener(ButtonPressListener e) {
+		cf4PBtnBack.getButtonPressListeners().add(e);
+	}
+	
 	public void setlbtnGuestsListener (ListButtonSelectionListener e) {
 		lbtnGuests.getListButtonSelectionListeners().add(e);
+	}
+	
+	public void setlbtnAddressesListener(ListButtonSelectionListener e) {
+		lbtnAddresses.getListButtonSelectionListeners().add(e);
+	}
+	
+	public void setlvBookedRoomCategoriesListener(ListViewSelectionListener e) {
+		lvBookedRoomCategories.getListViewSelectionListeners().add(e);
+	}
+	
+	public void setlvAssignedRoomsListener(ListViewSelectionListener e) {
+		lvAssignedRooms.getListViewSelectionListeners().add(e);
 	}
 }

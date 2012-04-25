@@ -6,15 +6,19 @@ import java.util.List;
 import java.util.Vector;
 
 import org.apache.pivot.beans.BXMLSerializer;
+import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.util.CalendarDate;
+import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonPressListener;
+import org.apache.pivot.wtk.Dialog;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.ListViewSelectionListener;
+import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Span;
 
 import projekt.fhv.teama.classes.personen.IAdresse;
@@ -38,6 +42,7 @@ import projekt.fhv.teama.model.ModelTeilreservierung;
 import projekt.fhv.teama.model.ModelZimmer;
 import projekt.fhv.teama.model.ModelZimmerstatus;
 import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.view.support.BlockingDialog;
 import projekt.fhv.teama.view.tests.TestDaten;
 
 public class ViewController implements Application{
@@ -104,18 +109,19 @@ public class ViewController implements Application{
 			String password = viewLogin.getTfPassword().getText();
 			
 			if (username.equals("") || password.equals("")) {
-				System.out.println("Please enter your username and password");
+				BlockingDialog bd = new BlockingDialog();
+				bd.setContent(new Alert(MessageType.WARNING, "Please enter your username and password",new ArrayList<String>("OK")));
+				Dialog erg = bd.open(disp);
 				return;
 			}
 			
 			try {
 				IMitarbeiter ma =  controllerLogin.checkLogin(username, password);
-				if (ma.equals(null)) {
-					System.out.println("Invalid username or password!");
-				} else {
-					startMainView(ma.getNummer());
-				}
+				startMainView(ma.getNummer());
 			} catch (DatabaseException e) {
+				BlockingDialog bd = new BlockingDialog();
+				bd.setContent(new Alert(MessageType.WARNING, "Invalid username or password",new ArrayList<String>("OK")));
+				Dialog erg = bd.open(disp);
 				e.printStackTrace();
 			} catch (LoginInExeption e) {
 				e.printStackTrace();
