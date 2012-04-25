@@ -152,11 +152,11 @@ public class Reservierung implements IReservierung {
 
 	@Override
 	public String toString() {
-		return "Reservierung [ID=" + ID + ", von=" + von + ", bis=" + bis
-		// + ", person=" + person
-		// + ", vertragspartner=" + vertragspartner
+		return "Reservierung [ID=" + getID() + ", von=" + getVon() + ", bis=" + getBis()
+//				+ ", person=" + getPerson()
+//				+ ", vertragspartner=" + getVertragspartner()
 				+ ", optionen=" + optionen + ", zimmer=" + zimmer
-				// + ", gaeste=" + gaeste
+//				 + ", gaeste=" + gaeste
 				+ ", teilreservierungen=" + teilreservierungen 
 				+ ", bearbeitet="+ bearbeitet
 				+ "]";
