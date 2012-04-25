@@ -1,6 +1,7 @@
 package projekt.fhv.teama.controller.usecasecontroller.interfaces;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import projekt.fhv.teama.classes.IAufenthalt;
@@ -253,6 +254,41 @@ public interface IControllerCheckIn {
 	 * @throws EmptyParameterException
 	 */
 	public List<IAufenthalt> getAufenthalte() throws DatabaseException, EmptyParameterException;
+	
+	
+	/**
+	 * Metode um alle Zimmer pro Kategorie auszuwählen
+	 * @return Hasmap<IKategorie,List<IZimmer>>
+	 * @throws DatabaseException
+	 * @throws FokusException
+	 */
+	public HashMap<IKategorie, List<IZimmer>> getVerfuegbareZimmer() throws DatabaseException, FokusException;
+	
+	/**
+	 * Methode um ein Zimmer zur ausgewählten Zimmerlist hinzuzufügen
+	 * @param z
+	 * @throws WrongParameterException
+	 */
+	public void addZimmer(IZimmer z) throws WrongParameterException;
+	
+	/**
+	 * Methode um ein Zimmer von der ausgewählten Zimmerlist zu löschen
+	 * @param z
+	 * @throws WrongParameterException
+	 */
+	public void remove(IZimmer z) throws WrongParameterException;
+	
+	/**
+	 * Methode um die Ausgewählten Zimmer abzurufen
+	 * @return List<IZimmer>
+	 * @throws NotContainExeption
+	 */
+	public List<IZimmer> getAusgewählteZimmer() throws NotContainExeption;
+	
+	/**
+	 * Methode um die Listen im CheckInController  zu löschen
+	 */
+	public void clearLists();
 	
 	
 	
