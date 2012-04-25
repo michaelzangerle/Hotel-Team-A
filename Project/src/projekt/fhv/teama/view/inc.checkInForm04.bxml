@@ -70,7 +70,7 @@
 		 <Border styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#e6eff8'}">
 				 <ScrollPane preferredWidth="240" preferredHeight="110"  horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#e6eff8'}" >
-                    <ListView bxml:id="smLVFinalRooms" selectMode="multi" cursor="normal" styles="$styles.livRoomAssign" />
+                    <ListView bxml:id="smLVFinalRooms" selectMode="multi"  styles="$styles.livRoomAssign" />
                 	</ScrollPane>
                 	</BoxPane>
             </Border>
