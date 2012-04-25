@@ -378,7 +378,6 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	
 	public HashMap<IKategorie, List<IZimmer>> getVerfuegbareZimmer() throws DatabaseException, FokusException
 	{
-		
 		return verfuegbareZimmer;
 	}
 	
