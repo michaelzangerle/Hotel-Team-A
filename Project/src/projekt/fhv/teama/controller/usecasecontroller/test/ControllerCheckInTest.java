@@ -149,8 +149,8 @@ public class ControllerCheckInTest {
 			IPfandtyp pfand = controllerCheckIn.getPfandtyps().get(0);			
 			
 			//9. Schritt Änderungen Speichern 
-//				controllerCheckIn.setVorname("Abdul");
-//				controllerCheckIn.addAdresse(new Adresse("Bondstrasse 4", "007", "MI6", controllerCheckIn.getLandByKuerzel("CH")));
+				controllerCheckIn.setVorname("GIGI");
+				controllerCheckIn.addAdresse(new Adresse("Wolfurt 4", "3452", "Wolfurt", controllerCheckIn.getLandByKuerzel("AT")));
 			
 			
 			// 10. Schritt - speichere Aufenthalt
@@ -165,18 +165,18 @@ public class ControllerCheckInTest {
 
 		}
 		
-//		try {
-//			List<IAufenthalt> aufenthalts=new Vector<IAufenthalt>(controllerCheckIn.getAufenthalte());
-//			for (IAufenthalt iAufenthalt : aufenthalts) {
-//				System.out.println(iAufenthalt);
-//			}
-//		} catch (DatabaseException e) {
-//			
-//			e.printStackTrace();
-//		} catch (EmptyParameterException e) {
-//			
-//			e.printStackTrace();
-//		}
+		try {
+			List<IAufenthalt> aufenthalts=new Vector<IAufenthalt>(controllerCheckIn.getAufenthalte());
+			for (IAufenthalt iAufenthalt : aufenthalts) {
+				System.out.println(iAufenthalt);
+			}
+		} catch (DatabaseException e) {
+			
+			e.printStackTrace();
+		} catch (EmptyParameterException e) {
+			
+			e.printStackTrace();
+		}
 		
 		
 		
