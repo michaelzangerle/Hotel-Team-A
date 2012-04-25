@@ -1,7 +1,11 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Vector;
+
+import org.apache.pivot.wtk.media.ImageListener;
 
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.IPfandtyp;
@@ -52,6 +56,12 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	IModelAdresse modelAdresse;
 	IModelLand modelLand;
 	IModelStatusentwicklung modelStatusentwicklung;
+	
+	
+	//Daten
+	List<IZimmer> ausgewaehltezimmer;
+	HashMap<IKategorie, List<IZimmer>> verfuegbareZimmer;
+	
 
 	/**
 	 * 
@@ -77,6 +87,9 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		modelAdresse = cadr;
 		modelLand = cland;
 		modelStatusentwicklung = cstaent;
+		
+		ausgewaehltezimmer=new Vector<IZimmer>();
+		verfuegbareZimmer=new HashMap<IKategorie, List<IZimmer>>();
 	}
 
 	/**
@@ -305,6 +318,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	public List<IZimmer> getVerfügbareZimmer() throws DatabaseException, FokusException {
 		return modelZimmer.getVerfügbareZimmer(getAktuelleReservierung());
 	}
+	
 
 	/**
 	 * Methode um den Aufenthalt in der Datenbank zu speichern.
@@ -360,5 +374,54 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	{
 		return modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 5, 25));
 	}
+	
+	
+	public HashMap<IKategorie, List<IZimmer>> getVerfuegbareZimmer() throws DatabaseException, FokusException
+	{
+		for (IKategorie kategorie : modelKategorie.getKategorieen()) {
+			
+			List<IZimmer>list =getVerfügbareZimmerFürGegebeneKategorie(kategorie);
+			verfuegbareZimmer.put(kategorie, list);
+		}
+		
+		return verfuegbareZimmer;
+	}
+	
+	public void addZimmer(IZimmer z) throws WrongParameterException
+	{
+		if(!ausgewaehltezimmer.contains(z))
+		{
+			ausgewaehltezimmer.add(z);
+		}
+		else
+			throw new WrongParameterException();
+	}
+	public void remove(IZimmer z) throws WrongParameterException
+	{
+		if(!ausgewaehltezimmer.contains(z))
+		{
+			ausgewaehltezimmer.remove(z);
+		}
+		else
+			throw new WrongParameterException();
+	}
+	
+	public List<IZimmer> getAusgewählteZimmer() throws NotContainExeption
+	{
+		if(ausgewaehltezimmer.size()>0)
+		{
+			return ausgewaehltezimmer;
+		}
+		else
+			throw new NotContainExeption();
+	}
+	public void clearLists()
+	{
+		ausgewaehltezimmer.clear();
+		verfuegbareZimmer.clear();
+		
+	}
+	
+	
 
 }

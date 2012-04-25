@@ -1,6 +1,9 @@
 package projekt.fhv.teama.model.interfaces;
 
+import java.util.List;
+
 import projekt.fhv.teama.classes.zimmer.IKategorie;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.FokusException;
 
 /**
@@ -22,5 +25,7 @@ public interface IModelKategorie {
 	 * @param kategorie IKategorie
 	 */
 	void setKategorie(IKategorie kategorie);
+
+	List<IKategorie> getKategorieen() throws DatabaseException;
 
 }

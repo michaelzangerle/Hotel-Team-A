@@ -1,8 +1,12 @@
 package projekt.fhv.teama.model;
 
+import java.util.List;
+import java.util.Vector;
+
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.hibernate.dao.zimmer.IKategorieDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelKategorie;
 
@@ -38,6 +42,12 @@ public class ModelKategorie implements IModelKategorie {
 	public void setKategorie(IKategorie kategorie) {
 		kategorieModel=kategorie;
 		
+	}
+
+
+	@Override
+	public List<IKategorie> getKategorieen() throws DatabaseException {
+		return new Vector<IKategorie>(kategorieDao.getAll());
 	}
 
 }
