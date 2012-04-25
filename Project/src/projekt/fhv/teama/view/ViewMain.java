@@ -189,6 +189,7 @@ public class ViewMain extends Window implements Application, Bindable {
 		/* CalendarButtons */
 		rf1CBArrival = (CalendarButton)arg0.get("rf1CBArrival");
 		rf1CBDeparture = (CalendarButton)arg0.get("rf1CBDeparture");
+		cbBirthdate = (CalendarButton)arg0.get("cbBirthdate");
 
 		/* Labels */
 		lbProgress01 = (Label)arg0.get("lbProgress01");

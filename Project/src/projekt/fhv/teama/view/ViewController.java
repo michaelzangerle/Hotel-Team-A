@@ -116,8 +116,7 @@ public class ViewController implements Application{
 			}
 			
 			try {
-				viewLogin.activityIndicator.setActive(true); // Warum geht ned?
-				viewLogin.bLogin.setVisible(false); // Warum geht ned?
+
 				IMitarbeiter ma =  controllerLogin.checkLogin(username, password);	
 				startMainView(ma.getNummer());
 			} catch (DatabaseException e) {
