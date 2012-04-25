@@ -1,5 +1,11 @@
 package projekt.fhv.teama.controller.exeption;
 
+
+/**
+ * Exception für den fall eines Login Fehlers
+ * @author Team-A
+ * @version 1.5
+ */
 public class LoginInExeption extends Exception {
 	
 	private static final long serialVersionUID = 1L;
