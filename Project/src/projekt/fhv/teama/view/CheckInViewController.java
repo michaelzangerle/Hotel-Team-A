@@ -74,7 +74,7 @@ public class CheckInViewController implements ButtonPressListener {
 	
 	private void initializeStep2() {
 		try {
-			teilreservierungen = new Vector<>(controllerCheckIn.getAktuelleReservierung().getTeilreservierungen());
+			teilreservierungen = new Vector<ITeilreservierung>(controllerCheckIn.getAktuelleReservierung().getTeilreservierungen());
 			viewMain.lvBookedRoomCategories.setListData(wrapper.getTeilreservierungListAdapter(teilreservierungen));
 			
 		} catch (FokusException e) {
@@ -110,7 +110,7 @@ public class CheckInViewController implements ButtonPressListener {
 			viewMain.rbFemale.setSelected(false);
 		}
 		
-		List<IAdresse> adressen = new Vector<>(curGuest.getAdressen());
+		List<IAdresse> adressen = new Vector<IAdresse>(curGuest.getAdressen());
 		if (adressen.isEmpty()) {
 			viewMain.lbtnAddresses.setListData("no adresses found");
 		} else {
