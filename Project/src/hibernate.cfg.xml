@@ -9,7 +9,7 @@
 		<property name="hibernate.connection.url">jdbc:mysql://sql148.your-server.de/webosd_db8</property>
 		<property name="hibernate.connection.username">shs2012</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="hibernate.show_sql">true</property>
+<!-- 		<property name="hibernate.show_sql">true</property> -->
 		<property name="hibernate.transaction.auto_close_session">false</property>
 <!-- 		<property name="hibernate.hbm2ddl.auto">validate</property> -->
 
