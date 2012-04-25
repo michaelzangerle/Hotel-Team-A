@@ -105,6 +105,11 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		return modelReservierung.getAktuelleReservierung();
 	}
 
+	/**
+	 * Um alle Reservierungen abzurufen die heute einchecken
+	 * @return
+	 * @throws DatabaseException
+	 */
 	public List<IReservierung> getCheckInReservierungen() throws DatabaseException {
 		return modelReservierung.getCheckInReservierungen(MyLittleDate.getDate(2012, 3, 24));
 	}

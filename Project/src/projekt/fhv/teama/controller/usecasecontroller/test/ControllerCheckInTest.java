@@ -12,6 +12,7 @@ import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
+import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.ModelAdresse;
 import projekt.fhv.teama.model.ModelAufenthalt;
@@ -62,7 +63,7 @@ public class ControllerCheckInTest {
 		IModelStatusentwicklung sentw=new ModelStatusentwicklung();
 
 		// TODO Exeption von Datebank wenn kein eintrag
-		ControllerCheckIn controllerCheckIn = new ControllerCheckIn(cres, cauf, cgast, ctres, ckat, ckonto, cpfandTyp,
+		IControllerCheckIn controllerCheckIn = new ControllerCheckIn(cres, cauf, cgast, ctres, ckat, ckonto, cpfandTyp,
 				czimmer, czimmerStatus, cadr,cland,sentw);
 
 		
