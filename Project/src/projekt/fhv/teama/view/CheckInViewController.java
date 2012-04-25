@@ -1,17 +1,12 @@
 package projekt.fhv.teama.view;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Vector;
-
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.collections.Sequence;
@@ -20,8 +15,9 @@ import org.apache.pivot.util.CalendarDate;
 import org.apache.pivot.wtk.Action;
 import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Button;
+import org.apache.pivot.wtk.Button.State;
 import org.apache.pivot.wtk.ButtonPressListener;
-import org.apache.pivot.wtk.CalendarButton;
+import org.apache.pivot.wtk.ButtonStateListener;
 import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.ComponentMouseButtonListener;
 import org.apache.pivot.wtk.Dialog;
@@ -50,45 +46,52 @@ public class CheckInViewController implements ButtonPressListener {
 	private ControllerCheckIn controllerCheckIn;
 	private List<IGast> guests;
 	private List<ITeilreservierung> teilreservierungen;
-	private Wrapper wrapper;
-
+	private List<String> selectedRooms;
+	
+	
 	@Override
 	public void buttonPressed(Button arg0) {
 		viewMain.reservationForm01.setVisible(false);
 		viewMain.checkInForm01.setVisible(true);
 		viewMain.progress.setVisible(true);
 		viewMain.lvReservationSearch.setEnabled(false);
-		wrapper = new Wrapper();
 		try {
 			initialize();
 		} catch (FokusException e2) {
 			e2.printStackTrace();
 		} catch (DatabaseException e) {
 			e.printStackTrace();
+		} catch (NotEnoughRoomsException e) {
+			e.printStackTrace();
 		}
 	}
 
-	private void initialize() throws FokusException, DatabaseException {
+	private void initialize() throws FokusException, DatabaseException, NotEnoughRoomsException {
 		addCheckInEventListener();
-		
+		selectedRooms = new LinkedList<String>();
+		Wrapper wrapper = new Wrapper();
 		controllerCheckIn.initVerfuegbareZimmer();
 		teilreservierungen = new Vector<ITeilreservierung>(controllerCheckIn
 				.getAktuelleReservierung().getTeilreservierungen());
 		viewMain.lvBookedRoomCategories.setListData(wrapper
 				.getTeilreservierungListAdapter(teilreservierungen));
-		viewMain.lvBookedRoomCategories.setSelectedIndex(0);
+		
 		Date arrival = controllerCheckIn.getAktuelleReservierung().getVon();
 		Date departure = controllerCheckIn.getAktuelleReservierung().getBis();
 		CalendarDate d1 = CalendarDate.decode(arrival.toString());
 		CalendarDate d2 = CalendarDate.decode(departure.toString());
 
-		viewMain.rf1CBArrival.setSelectedDate(d1);
-		viewMain.rf1CBDeparture.setSelectedDate(d2);
+		viewMain.cbArrival.setSelectedDate(d1);
+		viewMain.cbDeparture.setSelectedDate(d2);
 		
 		for (ITeilreservierung teilreservierung : teilreservierungen) {
 			setSelectedPartialReservation(teilreservierung.getKategorie().getBezeichnung());
 		}
-
+		
+		
+		viewMain.lvBookedRoomCategories.setSelectedIndex(0);
+		defaultRoomAssignment();
+		
 		IReservierung reservation = controllerCheckIn.getAktuelleReservierung();
 		guests = new Vector<IGast>(reservation.getGaeste());
 		
@@ -133,6 +136,7 @@ public class CheckInViewController implements ButtonPressListener {
 		if (adressen.isEmpty()) {
 			viewMain.lbtnAddresses.setButtonData("no adresses found");
 		} else {
+			Wrapper wrapper = new Wrapper();
 			viewMain.lbtnAddresses.setListData(wrapper
 					.getAdressListAdapter(adressen));
 			viewMain.lbtnAddresses.setSelectedIndex(0);
@@ -232,6 +236,8 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.setlbtnAddressesListener(new AdressChangedListener());
 		viewMain.setlvBookedRoomCategoriesListener(new CategoryChangedListener());
 		viewMain.setlvAssignedRoomsListener(new RoomChangedListener());
+	
+		viewMain.setcbxShowAllRoomsListener(new ShowAllRoomsListener());
 	}
 
 	public CheckInViewController(ViewMain viewMain,
@@ -282,7 +288,6 @@ public class CheckInViewController implements ButtonPressListener {
 			}
 		}
 	};
-
 	
 	Action cancel = new Action(true) {
 		@Override
@@ -394,16 +399,15 @@ public class CheckInViewController implements ButtonPressListener {
 			if (adresse.getStrasse() == street && adresse.getOrt() == city
 					&& adresse.getPlz() == zip
 					&& adresse.getLand().getBezeichnung() == country) {
-				// TODO Adresse im checkin controller weglassen?
 			}
 		}
 	}
 
 	public void setSelectedPartialReservation(String categoryName) {
-		ITeilreservierung curTeilreservierung = getSelectedTeilreservierung(categoryName);
-		IKategorie category = curTeilreservierung.getKategorie();
+		IKategorie category = getCategoryByName(categoryName);
 		
 		try {
+			Wrapper wrapper = new Wrapper();
 			List<IZimmer> availableRooms = getRoomsByCategory(category);
 			viewMain.lvAssignedRooms.setListData(wrapper
 					.getZimmerListAdapter(availableRooms));
@@ -413,19 +417,25 @@ public class CheckInViewController implements ButtonPressListener {
 			e.printStackTrace();
 		} 
 	}
+	
+	public IKategorie getCategoryByName(String categoryName) {
+		ITeilreservierung curTeilreservierung = getSelectedTeilreservierung(categoryName);
+		return curTeilreservierung.getKategorie();		
+	}
 
 	public void defaultRoomAssignment() throws NotEnoughRoomsException, DatabaseException, FokusException {
-		
+		Wrapper wrapper = new Wrapper();
 		for (ITeilreservierung teilreservierung : controllerCheckIn.getAktuelleReservierung().getTeilreservierungen()){
 			List<IZimmer> availableRooms = getRoomsByCategory(teilreservierung.getKategorie());
-			for (int i = 0; i <= teilreservierung.getAnzahl(); i++) {
+			
+			for (int i = 0; i < teilreservierung.getAnzahl(); i++) {
 				if (i >= availableRooms.size()) {
 					throw new NotEnoughRoomsException(availableRooms.size()-i);
 				}
 				try {
 					controllerCheckIn.addZimmer(availableRooms.get(i));
-					System.out.println(viewMain.lvAssignedRooms.getListData().getLength());
-					viewMain.lvAssignedRooms.setSelectedItem(availableRooms.get(i).getID() + " | " + availableRooms.get(i).getKategorie().getBezeichnung());
+					viewMain.lvAssignedRooms.setItemChecked(i, true);
+					selectedRooms.add(wrapper.getZimmer(availableRooms.get(i)));
 				} catch (WrongParameterException e) {
 					e.printStackTrace();
 				}
@@ -462,6 +472,20 @@ public class CheckInViewController implements ButtonPressListener {
 		return null;
 	}
 
+	public List<IZimmer> getAllAvailableRooms () throws DatabaseException, FokusException {
+		List<IZimmer> curRooms = new LinkedList<IZimmer>();
+		HashMap<IKategorie, List<IZimmer>> rooms = controllerCheckIn.getVerfuegbareZimmer();
+		List<IZimmer> alle=new Vector<IZimmer>();
+		
+		
+		for (Map.Entry<IKategorie, List<IZimmer>> entry : rooms.entrySet()) {
+			alle.addAll(entry.getValue());
+			
+		}
+		
+		return alle;
+	}
+
 	class CategoryChangedListener implements ListViewSelectionListener {
 		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
@@ -472,54 +496,118 @@ public class CheckInViewController implements ButtonPressListener {
 			String[] split = text.split(" ");
 
 			String categoryName = split[1];
-
-			setSelectedPartialReservation(categoryName);
 			
+			setSelectedPartialReservation(categoryName);
+			IKategorie category = getCategoryByName(categoryName);
+			
+//			try {
+//				for (IZimmer zimmer : controllerCheckIn.getAusgewählteZimmer()) {
+//					if (zimmer.getKategorie().equals(category)) {
+//						
+//					}
+//				}
+//			} catch (NotContainExeption e) {
+//				e.printStackTrace();
+//			}
 		}
-
-		@Override
 		public void selectedRangeAdded(ListView arg0, int arg1, int arg2) {
 		}
-
-		@Override
 		public void selectedRangeRemoved(ListView arg0, int arg1, int arg2) {
 		}
-
-		@Override
 		public void selectedRangesChanged(ListView arg0, Sequence<Span> arg1) {
 		}
 	}
 
 	class RoomChangedListener implements ListViewSelectionListener {
-
-		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
 			if (listView.getSelectedItem() == null) {
 				return;
 			}
-
 			String text = (String) listView.getSelectedItem();
 			String[] split = text.split(" \\| ");
 			
-			try {
-				IZimmer room = getRoomByNumber(Integer.valueOf(split[1]));
-				controllerCheckIn.addZimmer(room);
-			} catch (Exception e) {
-				e.printStackTrace();
+			if (selectedRooms.contains(text)){
+				
+				selectedRooms.remove(text);
+				
+				try {
+					removeRoom(getRoomByNumber(Integer.valueOf(text)));
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (WrongParameterException e) {
+					e.printStackTrace();
+				} catch (DatabaseException e) {
+					e.printStackTrace();
+				} catch (FokusException e) {
+					e.printStackTrace();
+				}
+				
+			} else {
+				selectedRooms.add(text);
+				
+				try {
+					controllerCheckIn.addZimmer(getRoomByNumber(Integer.valueOf(split[1])));
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				} catch (WrongParameterException e) {
+					e.printStackTrace();
+				} catch (DatabaseException e) {
+					e.printStackTrace();
+				} catch (FokusException e) {
+					e.printStackTrace();
+				}
 			}
 		}
-
-		@Override
 		public void selectedRangeAdded(ListView arg0, int arg1, int arg2) {
 		}
-
-		@Override
 		public void selectedRangeRemoved(ListView arg0, int arg1, int arg2) {
 		}
-
-		@Override
 		public void selectedRangesChanged(ListView arg0, Sequence<Span> arg1) {
 		}
 	}
+	
+	public void removeRoom(IZimmer room) throws WrongParameterException {
+		controllerCheckIn.remove(room);
+	}
+	
+	public void addRoom (IZimmer room) throws WrongParameterException{
+		controllerCheckIn.addZimmer(room);
+	}
 
+	class ShowAllRoomsListener implements ButtonStateListener {
+		public void stateChanged(Button arg0, State arg1) {
+			if (arg0.isSelected()) {
+				List<IZimmer> allAvailableRooms;
+				try {
+					allAvailableRooms = getAllAvailableRooms();
+
+					Wrapper wrapper = new Wrapper();
+					ListAdapter<String> rooms = wrapper.getZimmerListAdapter(allAvailableRooms);
+					viewMain.lvAssignedRooms.setListData(rooms);
+					checkSelectedRooms(rooms, viewMain.lvAssignedRooms);
+				} catch (DatabaseException e) {
+					e.printStackTrace();
+				} catch (FokusException e) {
+					e.printStackTrace();
+				}
+			} else {
+				String selectedItem = (String) viewMain.lvBookedRoomCategories.getSelectedItem();
+				String[] split = selectedItem.split(" ");
+
+				String categoryName = split[1];
+				
+				setSelectedPartialReservation(categoryName);
+			}
+		}
+	}
+	
+	public void checkSelectedRooms(ListAdapter<String> rooms, ListView view) {
+		int i = 0;
+		for (String room : rooms) {
+			if(selectedRooms.contains(room)) {
+				view.setItemChecked(i, true);
+			}
+			i++;
+		}
+	}
 }

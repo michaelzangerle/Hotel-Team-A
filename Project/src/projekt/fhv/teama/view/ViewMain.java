@@ -17,6 +17,7 @@ import org.apache.pivot.wtk.Border;
 import org.apache.pivot.wtk.BoxPane;
 import org.apache.pivot.wtk.ButtonGroup;
 import org.apache.pivot.wtk.ButtonPressListener;
+import org.apache.pivot.wtk.ButtonStateListener;
 import org.apache.pivot.wtk.CalendarButton;
 import org.apache.pivot.wtk.Checkbox;
 import org.apache.pivot.wtk.Component;
@@ -358,7 +359,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	}
 	
 	
-	
-
-	
+	public void setcbxShowAllRoomsListener(ButtonStateListener e) {
+		cbxShowAllRooms.getButtonStateListeners().add(e);
+	}
 }

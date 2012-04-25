@@ -81,6 +81,11 @@ public class Wrapper {
 		}
 		return new ListAdapter<String>(curRooms);
 	}
+	
+	public String getZimmer (IZimmer zimmer){
+		return zimmer.getID() + " | "
+				+ zimmer.getKategorie().getBezeichnung();
+	}
 
 	public ListAdapter<String> getPfandTypListAdapter(List<IPfandtyp> pfandtypen) {
 		LinkedList<String> curPfandTypen = new LinkedList<String>();

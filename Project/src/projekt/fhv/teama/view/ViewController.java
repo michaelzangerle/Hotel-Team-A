@@ -203,7 +203,6 @@ public class ViewController implements Application{
 		try {
 			curReservation = controllerCheckIn.getAktuelleReservierung();
 		} catch (FokusException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		viewMain.rf1LBResNr.setText(String.valueOf(curReservation.getID()));
