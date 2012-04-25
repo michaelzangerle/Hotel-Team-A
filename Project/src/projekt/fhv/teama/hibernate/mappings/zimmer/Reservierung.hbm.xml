@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 18.04.2012 14:10:00 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.zimmer.Reservierung" table="reservierung">
+    <class name="projekt.fhv.teama.classes.zimmer.Reservierung" table="reservierung" lazy="true">
         
         <id name="ID" type="int">
             <column name="reservierungID" />
@@ -37,21 +37,21 @@
             <one-to-many class="projekt.fhv.teama.classes.zimmer.ReservierungsOption" />
         </set>
         
-        <set name="zimmer" table="zimmerreservierung" lazy="false">
+        <set name="zimmer" table="zimmerreservierung">
             <key>
                 <column name="reservierungID" />
             </key>
             <many-to-many column="zimmerID" class="projekt.fhv.teama.classes.zimmer.Zimmer" />
         </set>
         
-        <set name="gaeste" table="gastreservierung" lazy="true">
+        <set name="gaeste" table="gastreservierung">
             <key>
                 <column name="reservierungID" />
             </key>
             <many-to-many column="gastID" class="projekt.fhv.teama.classes.personen.Gast" />
         </set>
         
-        <set name="teilreservierungen" table="teilreservierung" cascade="all" lazy="false" >
+        <set name="teilreservierungen" table="teilreservierung" cascade="all">
             <key>
                 <column name="reservierungID" />
             </key>
