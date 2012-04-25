@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 17.04.2012 19:08:51 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="projekt.fhv.teama.classes.Kontingent" table="kontingent">
+    <class name="projekt.fhv.teama.classes.Kontingent" table="kontingent" lazy="true">
         
         <id name="ID" type="int">
             <column name="kontingentID" />
@@ -28,6 +28,6 @@
         
         <many-to-one name="vertragspartner" 
         class="projekt.fhv.teama.classes.personen.Vertragspartner" column="VertragspartnerID"
-        not-null="true" />
+        not-null="true"  lazy="false"/>
     </class>
 </hibernate-mapping>

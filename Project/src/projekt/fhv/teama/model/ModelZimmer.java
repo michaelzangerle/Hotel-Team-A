@@ -1,25 +1,18 @@
 package projekt.fhv.teama.model;
 
-import java.awt.image.RescaleOp;
 import java.util.List;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
-import projekt.fhv.teama.classes.zimmer.IStatusentwicklung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
-import projekt.fhv.teama.classes.zimmer.Zimmerstatus;
 import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerDao;
-import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerStatusDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerDao;
-import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerstatusDao;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
-import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
 /**
  * Model für den Umgang mit einem Zimmer
  * @author Team-A

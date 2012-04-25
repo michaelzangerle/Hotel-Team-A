@@ -7,6 +7,7 @@ package projekt.fhv.teama.model.exception;
  */
 public class NotContainExeption extends Exception {
 
+	private static final long serialVersionUID = 9094704683771274091L;
 	
 	private String message;
 	public NotContainExeption() {

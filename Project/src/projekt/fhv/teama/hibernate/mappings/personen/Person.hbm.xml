@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="projekt.fhv.teama.classes.personen.Person" table="person">
+	<class name="projekt.fhv.teama.classes.personen.Person" table="person" lazy="true">
 
 		<id name="ID" type="int">
 			<column name="personID" sql-type="int" length="10" not-null="true" />
@@ -42,7 +42,7 @@
 			class="projekt.fhv.teama.classes.personen.Kontodaten" column="kontodatenID"
 			not-null="true" unique="true" foreign-key="ID"  cascade="all" lazy="false"/>
 			
-		<set name="reserviert" table="Reservierung" lazy="false" cascade="all">
+		<set name="reserviert" table="Reservierung" cascade="all">
             <key>
                 <column name="reservierungID" />
             </key>

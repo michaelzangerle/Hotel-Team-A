@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 16.04.2012 15:54:17 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="projekt.fhv.teama.classes.Aufenthalt" table="aufenthalt">
+	<class name="projekt.fhv.teama.classes.Aufenthalt" table="aufenthalt" lazy="true">
 		
 		<id name="ID" type="int">
 			<column name="aufenthaltID" />
@@ -32,12 +32,12 @@
 		</property>
 		
 		<many-to-one name="gast"
-					class="projekt.fhv.teama.classes.personen.Gast" fetch="join">
+					class="projekt.fhv.teama.classes.personen.Gast" fetch="join" lazy="false">
 					<column name="gastID"/>
 		</many-to-one>
 		
 		<many-to-one name="zimmer"
-					class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
+					class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join" lazy="false">
 					<column name="zimmerID" />
 		</many-to-one>
 		
