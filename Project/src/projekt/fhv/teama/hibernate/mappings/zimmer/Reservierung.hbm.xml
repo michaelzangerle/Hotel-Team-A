@@ -44,7 +44,7 @@
             <many-to-many column="zimmerID" class="projekt.fhv.teama.classes.zimmer.Zimmer" />
         </set>
         
-        <set name="gaeste" table="gastreservierung" lazy="false" inverse="false">
+        <set name="gaeste" table="gastreservierung" lazy="true">
             <key>
                 <column name="reservierungID" />
             </key>
