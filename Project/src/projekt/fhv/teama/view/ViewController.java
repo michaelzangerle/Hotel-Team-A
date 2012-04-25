@@ -102,35 +102,62 @@ public class ViewController implements Application{
 	
 	class LoginListener implements ButtonPressListener {
 		private ControllerLogin controllerLogin;
+		private String username;
+		private String password;
+		private IMitarbeiter ma;
 		
 		@Override
 		public void buttonPressed(Button arg0) {
-			String username = viewLogin.getTfUsername().getText();
-			String password = viewLogin.getTfPassword().getText();
-			
+			this.username = viewLogin.getTfUsername().getText();
+			this.password = viewLogin.getTfPassword().getText();
+
 			if (username.equals("") || password.equals("")) {
+				
 				BlockingDialog bd = new BlockingDialog();
 				bd.setContent(new Alert(MessageType.WARNING, "Please enter your username and password",new ArrayList<String>("OK")));
 				Dialog erg = bd.open(disp);
 				return;
-			}
+			} 
+			
+//			SHSActivityIndicator indicator = new SHSActivityIndicator(viewLogin);
+//			Thread t = new Thread(indicator);
+//			t.start();
+//			
+//			synchronized(this) {
+//				Thread t1 = new Thread(this);
+//				t1.start();
+//			}
 			
 			try {
-
-				IMitarbeiter ma =  controllerLogin.checkLogin(username, password);	
+				ma =  controllerLogin.checkLogin(username, password);
 				startMainView(ma.getNummer());
 			} catch (DatabaseException e) {
-				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(MessageType.WARNING, "Invalid username or password",new ArrayList<String>("OK")));
-				Dialog erg = bd.open(disp);
 				e.printStackTrace();
 			} catch (LoginInExeption e) {
 				e.printStackTrace();
-			}
+			}	
+			
 		}
+		
 		public LoginListener() {
 			controllerLogin = new ControllerLogin(new ModelMitarbeiter());
 		}
+		
+//		@Override
+//		public void run() {
+//			try {
+//				ma =  controllerLogin.checkLogin(username, password);	
+//				this.notifyAll();
+//			} catch (DatabaseException e) {
+//				BlockingDialog bd = new BlockingDialog();
+//				bd.setContent(new Alert(MessageType.WARNING, "Invalid username or password",new ArrayList<String>("OK")));
+//				Dialog erg = bd.open(disp);
+//				e.printStackTrace();
+//			} catch (LoginInExeption e) {
+//				e.printStackTrace();
+//			}
+//			
+//		}
 	}
 
 	public void startMainView(String username) {
