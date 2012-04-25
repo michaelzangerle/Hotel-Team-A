@@ -11,9 +11,61 @@
 		<Separator bxml:id="sprStaySummary" heading=" Review stay summary and hand out keys before saving " styles="$styles.sprHeading"/>
 		<BoxPane bxml:id="bpStaySummary" orientation="horizontal" styles="$styles.bpContentHorizontal" >
 			
+		<Label text="You are checking in: "  styles="$styles.lbHeading2" />
+		<!-- Step 1 ################################################################################## -->		
+		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
+					<BoxPane bxml:id="smBPName">
+						<Label bxml:id="smLBLastName" text="${tiLastName.text}"/>
+						<Label bxml:id="smLBFirstName" text="${tiFirstName.text}"/>
+					</BoxPane>
+					<BoxPane bxml:id="smBPGender" >
+						<Label bxml:id="smLBGender" text="binding not possible"  />								
+						<Label bxml:id="smLBBirthdate" text="binding not possible" />
+					</BoxPane>
+		</BoxPane>
+		<!-- Step 1,5 ################################################################################	-->
+		
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
+					<Label bxml:id="smLBStreet" text="${tiStreet.text}" />
+					<BoxPane bxml:id="smBZipCity" >
+						<Label bxml:id="smLBZip" text="${tiZip.text}"/>
+						<Label bxml:id="smLBCity" text="${tiCity.text}"/>
+					</BoxPane>
+					<BoxPane>
+						<Label bxml:id="smLBZCountry" text="${tiCountry.text}" preferredWidth="80"/>
+					</BoxPane>
+		</BoxPane>
+
+		<!-- Step 1,75 #####################################################################	-->
+
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
+					<BoxPane bxml:id="smBPContact"  styles="{spacing:5}">
+						<Label bxml:id="smLBPhone" text="${tiPhone.text}"/>
+						<Label bxml:id="smLBMail" text="${tiMail.text}"/>
+					</BoxPane>
+		</BoxPane>
+		
+		<!-- Step 1,98 #####################################################################	-->
+
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
+					<BoxPane bxml:id="smBPBankAccount" styles="{spacing:5}">
+						<Label bxml:id="smLBAccountNr" text="${tiAccountNr.text}"/>
+						<Label bxml:id="smLBBankCodeNr" text="${tiBankCodeNr.text}"/>
+					</BoxPane>
+					<BoxPane>
+						<Label bxml:id="smLBIban" text="${tiIban.text}"/>
+						<Label bxml:id="smLBBic" text="${tiBic.text}"/>
+					</BoxPane>
+		</BoxPane>				
+				
 		</BoxPane>				
 		
 		<BoxPane bxml:id="bpRoomsSummary" orientation="horizontal" styles="$styles.bpContentHorizontal" >
+		
+		<!-- Step 1,98 #####################################################################	-->
+				
+		
+		
 		
 		</BoxPane>
 					
