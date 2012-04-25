@@ -42,18 +42,8 @@ public class ViewReservation extends Border implements Bindable {
 	        cf1PBtnNext = (PushButton)namespace.get("cf1PBtnNext");
 	        form.setEnabled(false);
 	        	        
-	        clearButton.setVisible(false);
-	        rf1PBtnLoadJava.setVisible(false);
-	 
-	        rf1PBtnLoadJava.getButtonPressListeners().add(new ButtonPressListener() {
-	            @Override
-	            public void buttonPressed(Button button) {
-	                form.load(new BeanAdapter(CONTACT));
-	               
-	                form.setFocusTraversalPolicy(getFocusTraversalPolicy());
-	            }
-	        });
-	 	        
+	        clearButton.setVisible(false);	 
+	      	        
 	        clearButton.getButtonPressListeners().add(new ButtonPressListener() {
 	            @Override
 	            public void buttonPressed(Button button) {
@@ -77,6 +67,5 @@ public class ViewReservation extends Border implements Bindable {
 	            }
 	        });	        
 	        
-	        rf1PBtnLoadJava.press();
 	    }
 }

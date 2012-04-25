@@ -181,7 +181,20 @@
             color: "#2a5580"   	
     },
     
+    lbReservationNr: {
     
+            font: { size: "130%", bold: true },
+            padding:{top:2, left:0, bottom:10, right:0},
+            color: "#2a5580"   	
+    },
+    
+   lbResNr: {
+    
+            font: { size: "130%", bold: true },
+            padding:{top:2, left:10, bottom:10, right:0},
+            color: "#2a5580"   	
+    },
+            
     sprHeading: {
     
             font: { size: "130%", bold: true },

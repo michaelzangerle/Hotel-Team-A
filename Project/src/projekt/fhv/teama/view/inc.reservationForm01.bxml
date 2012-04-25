@@ -1,46 +1,45 @@
  <view:ViewReservation bxml:id="reservationForm01" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk" styles="{padding:6}" xmlns:view="projekt.fhv.teama.view"
 	visible="false" >
-	<BoxPane bxml:id="bpReservation" orientation="vertical" styles="{spacing:10,fill:true}">
-		<Label bxml:id="lbReservationDetails" text="Selected Reservation" styles="$styles.lbHeading1"/>
+	<BoxPane bxml:id="bpReservation" orientation="vertical">
+		<BoxPane >
+		<Label bxml:id="lbReservationDetails" text="Selected Reservation: No." styles="$styles.lbHeading1"/>
+		<Label bxml:id="rf1LBResNr" text="4711" styles="$styles.lbHeading1" />
+		</BoxPane>
+		<BoxPane styles="{padding:30}">
 		<Form bxml:id="form" styles="{showFlagIcons:true}">
 			<Form.Section>
-				<Label bxml:id="rf1LBResNr" Form.label="Reservation-Nr." textKey="id"/>
-				<TextInput bxml:id="rf1TIName" Form.label="Name" textKey="name"/>
-				
-				<BoxPane orientation="vertical">									
-							<BoxPane bxml:id="rf1BPAddress" Form.label="Address">
-								<TextInput bxml:id="rf1TIStreet" prompt="Street"/>
-								<TextInput bxml:id="rfTICity" prompt="City"/>
+				<TextInput bxml:id="rf1TIName" Form.label="Name" textKey="name" preferredWidth="350" />
+				<BoxPane orientation="vertical" Form.label="Address">									
+							<BoxPane orientation="horizontal" bxml:id="rf1BPAddress">
+								<TextInput bxml:id="rf1TIStreet" prompt="Street" preferredWidth="350" />
 							</BoxPane>
-							<BoxPane>
-								<TextInput bxml:id="rf1TICountry" prompt="Country"/>
-								<TextInput bxml:id="rfTIZip" prompt="Zip" preferredWidth="80"/>
+							<BoxPane orientation="horizontal" >
+								<TextInput bxml:id="rfTICity" prompt="City" preferredWidth="245" />
+								<TextInput bxml:id="rfTIZip" prompt="Zip" preferredWidth="100"/>
 						</BoxPane>
+						    <TextInput bxml:id="rf1TICountry" prompt="Country" preferredWidth="350"/>
 				</BoxPane>
+				<TextInput bxml:id="rf1TIPhone" Form.label="Phone"	textKey="phoneNumber" preferredWidth="350" />
+				<TextInput bxml:id="rf1TIEMail" Form.label="Email"	textKey="emailAddress" preferredWidth="350" />
 				
-				<TextInput bxml:id="rf1TIPhone" Form.label="Phone"	textKey="phoneNumber"/>
-				<TextInput bxml:id="rf1TIEMail" Form.label="Email"	textKey="emailAddress"/>
-				
-				<BoxPane orientation="horizontal" bxml:id="rf1BPStay" >
+				<BoxPane orientation="horizontal" bxml:id="rf1BPStay" styles="{spacing:15}">
 					<BoxPane orientation="vertical">
-						<Label bxml:id="rf1LBArrival" text="Arrival"/>
-						<CalendarButton bxml:id="rf1CBArrival"
-							preferredWidth="130"/>
+						<Label bxml:id="rf1LBArrival" text="Arrival" styles="$styles.libHeading" />
+						<CalendarButton bxml:id="rf1CBArrival"	preferredWidth="130"/>
 					</BoxPane>
 					<BoxPane orientation="vertical">
-						<Label bxml:id="rf1LBDeparture" text="Departure"/>
-						<CalendarButton bxml:id="rf1CBDeparture"
-							preferredWidth="130"/>
+						<Label bxml:id="rf1LBDeparture" text="Departure" styles="$styles.libHeading"/>
+						<CalendarButton bxml:id="rf1CBDeparture" preferredWidth="130"/>
+					</BoxPane>				
 					</BoxPane>
-				</BoxPane>
 			</Form.Section>
 		</Form>
+		
+		</BoxPane>
 
 	<!-- Action Buttons ########################################################################### -->				
-		<Separator/>
-		<BoxPane styles="{horizontalAlignment:'left', padding:12, spacing:15}" >
-			<PushButton bxml:id="rf1PBtnLoadJava" buttonData="Load Java"/>
+		<BoxPane styles="{horizontalAlignment:'left', spacing:15, padding:12}">
 			<PushButton bxml:id="rf1PBtnEditReservation" buttonData="Edit"/>
 			<PushButton bxml:id="rf1PBtnSaveReservation" buttonData="Save"/>
 			<PushButton bxml:id="rf1PBtnDeleteReservation" buttonData="Delete"/>
