@@ -1,5 +1,6 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
+import java.io.ObjectInputStream.GetField;
 import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
@@ -305,8 +306,8 @@ public class ControllerCheckIn implements IControllerCheckIn {
 				getAktuelleReservierung());
 	}
 
-	public List<IZimmer> getVerfügbareZimmer() throws DatabaseException {
-		return modelZimmer.getVerfügbareZimmer();
+	public List<IZimmer> getVerfügbareZimmer() throws DatabaseException, FokusException {
+		return modelZimmer.getVerfügbareZimmer(getAktuelleReservierung());
 	}
 
 	/**

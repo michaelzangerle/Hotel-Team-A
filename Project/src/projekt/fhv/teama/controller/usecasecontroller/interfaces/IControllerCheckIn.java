@@ -211,8 +211,9 @@ public interface IControllerCheckIn {
 	 * Methode um alle verfügbaren Zimmer zu erhalten
 	 * @return List<IZimmer>
 	 * @throws DatabaseException
+	 * @throws FokusException 
 	 */
-	public List<IZimmer> getVerfügbareZimmer() throws DatabaseException;
+	public List<IZimmer> getVerfügbareZimmer() throws DatabaseException, FokusException;
 
 	/**
 	 * Methode um den Aufenthalt in der Datenbank zu speichern.

@@ -63,4 +63,7 @@ public interface IModelZimmer {
 	 * @throws FokusException
 	 */
 	IZimmer getAktullesZimmer() throws FokusException;
+
+	List<IZimmer> getVerfügbareZimmer(IReservierung aktulleReservierung)
+			throws DatabaseException;
 }

@@ -84,7 +84,7 @@ public class ModelZimmer implements IModelZimmer {
 	}
 
 	@Override
-	public List<IZimmer> getVerfügbareZimmer() throws DatabaseException {
+	public List<IZimmer> getVerfügbareZimmer(IReservierung aktulleReservierung) throws DatabaseException {
 
 		List<IZimmer> verfügbare = new Vector<IZimmer>();
 		List<IZimmer> alle = null;
@@ -95,8 +95,20 @@ public class ModelZimmer implements IModelZimmer {
 		}
 
 		for (IZimmer zi : alle) {
-			if (zi.getZimmerstatus().getKuerzel().equals("fuck")) {
-				verfügbare.add(zi);
+			if (zi.getZimmerstatus().getKuerzel().equals("FG")) {
+				List<IReservierung> zimmerreserierungen = new Vector<IReservierung>(
+						zi.getReservierungen());
+				if (zimmerreserierungen.size() > 0) {
+					for (IReservierung res : zimmerreserierungen) {
+						if (res.getVon().after(aktulleReservierung.getBis())
+								|| res.getBis().before(
+										aktulleReservierung.getVon()))
+							verfügbare.add(zi);
+					}
+				} else {
+					verfügbare.add(zi);
+				}
+
 			}
 		}
 		return verfügbare;
