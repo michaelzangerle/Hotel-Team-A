@@ -22,15 +22,15 @@
             <column name="BIS" />
         </property>
         
-        <many-to-one name="person" class="projekt.fhv.teama.classes.personen.Person" fetch="join" lazy="false">
+        <many-to-one name="person" class="projekt.fhv.teama.classes.personen.Person" fetch="join">
             <column name="PERSONID" />
         </many-to-one>
         
-        <many-to-one name="vertragspartner" class="projekt.fhv.teama.classes.personen.Vertragspartner" fetch="join" lazy="false">
+        <many-to-one name="vertragspartner" class="projekt.fhv.teama.classes.personen.Vertragspartner" fetch="join">
             <column name="VERTRAGSPARTNERID" />
         </many-to-one>
         
-        <set name="optionen" table="reservierungsoption" lazy="false" cascade="all-delete-orphan"> 
+        <set name="optionen" table="reservierungsoption" cascade="all-delete-orphan"> 
             <key>
                 <column name="optionID" />
             </key>
