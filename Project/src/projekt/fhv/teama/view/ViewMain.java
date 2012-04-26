@@ -49,6 +49,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	/* Labels */
 	@BXML Label lbReservationDetails;	
 	@BXML Label lbLoginShow;
+	@BXML Label smLBGender;
 	
 	/* Border Container = Forms */
 	Border reservationForm01;Border checkInForm01;Border checkInForm02;Border checkInForm03;Border checkInForm04;

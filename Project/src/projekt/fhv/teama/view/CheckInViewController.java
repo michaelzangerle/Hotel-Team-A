@@ -333,6 +333,13 @@ public class CheckInViewController implements ButtonPressListener {
 		Wrapper wrapper = new Wrapper();
 		viewMain.smLVFinalRooms.setListData(wrapper.getZimmerListAdapter(controllerCheckIn.getAusgewählteZimmer()));
 		viewMain.smLVHandedKeys.setListData(wrapper.getKeyListAdapter(controllerCheckIn.getAusgewählteZimmer()));
+		
+		if (viewMain.rbMale.isSelected()) {
+			viewMain.smLBGender.setText("male");
+		} else {
+			viewMain.smLBGender.setText("female");
+		}
+		
 	}
 
 	class GuestChangedListener implements ListButtonSelectionListener {
