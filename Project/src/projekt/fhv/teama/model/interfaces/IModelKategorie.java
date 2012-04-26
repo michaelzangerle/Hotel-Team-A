@@ -3,7 +3,10 @@ package projekt.fhv.teama.model.interfaces;
 import java.util.List;
 
 import projekt.fhv.teama.classes.zimmer.IKategorie;
+import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 
 /**
@@ -27,5 +30,8 @@ public interface IModelKategorie {
 	void setKategorie(IKategorie kategorie);
 
 	List<IKategorie> getKategorieen() throws DatabaseException;
+
+	IZimmerpreis getPreis(IKategorie k) throws DatabaseEntryNotFoundException, EmptyParameterException;
+	
 
 }

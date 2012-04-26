@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.zimmer.IKategorie;
+import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
 import projekt.fhv.teama.hibernate.dao.zimmer.IKategorieDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.KategorieDao;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelKategorie;
 
@@ -48,6 +51,14 @@ public class ModelKategorie implements IModelKategorie {
 	@Override
 	public List<IKategorie> getKategorieen() throws DatabaseException {
 		return new Vector<IKategorie>(kategorieDao.getAll());
+	}
+
+
+	@Override
+	public IZimmerpreis getPreis(IKategorie k) throws DatabaseEntryNotFoundException,EmptyParameterException {
+		if(k!=null)
+		 return new Vector<IZimmerpreis>(kategorieDao.getKategorie(k.getBezeichnung()).getZimmerpreise()).get(0);
+		else throw new EmptyParameterException();
 	}
 
 }

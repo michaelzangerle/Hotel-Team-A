@@ -21,6 +21,7 @@ import org.apache.pivot.wtk.ButtonStateListener;
 import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.ComponentMouseButtonListener;
 import org.apache.pivot.wtk.Dialog;
+import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListButton;
 import org.apache.pivot.wtk.ListButtonSelectionListener;
 import org.apache.pivot.wtk.ListView;
@@ -665,7 +666,7 @@ public class CheckInViewController implements ButtonPressListener {
 		
 		int count = 0;
 		
-		List<Component> components = new Vector<Component>();
+		List<Label> components = new Vector<Label>();
 		components.add(viewMain.smLBLastName);
 		components.add(viewMain.smLBFirstName);
 		components.add(viewMain.smLBStreet);
@@ -678,7 +679,17 @@ public class CheckInViewController implements ButtonPressListener {
 		components.add(viewMain.smLBBic);
 		components.add(viewMain.smLBArrival);
 		components.add(viewMain.smLBDeparture);
-		components.add(viewMain);
+		components.add(viewMain.smLBDepositType);
+		components.add(viewMain.smLBDepositNr);
+		
+		for (Label comp : components) {
+			if (comp.getText().equals(new String())) {
+				comp.setStyles("{backgroundColor:'#f7a600'}");
+			} else {
+				comp.setStyles("{backgroundColor:'#ffffff'}");
+			}
+		}
+		
 		
 //		if (lastName.equals(new String())) {
 //			viewMain.smLBLastName.setStyles("{backgroundColor:'#f7a600'}");
@@ -781,6 +792,26 @@ public class CheckInViewController implements ButtonPressListener {
 		if (isNewAdress(street, zip, city, country)) {
 			controllerCheckIn.addAdresse(new Adresse(street, zip, city, country));
 		}
+		
+		String pfandNummer = viewMain.smLBDepositNr.getText();
+		String pfandTyp = viewMain.smLBDepositType.getText();
+		List<IPfandtyp> typs=controllerCheckIn.getPfandtyps();
+		IPfandtyp selectedPfandTyp;
+		for (IPfandtyp typ : typs) {
+			if(typ.getBezeichnung().equals(pfandTyp))
+			{
+				selectedPfandTyp=typ;
+				break;
+			}
+		}
+		List<IZimmer> rooms = controllerCheckIn.getAusgewählteZimmer();
+		
+		
+		
+//		for (IZimmer room : rooms) {
+//			controllerCheckIn.saveAufenthalt(preis, von, bis, schluessel, gast, zimmer, pfand, pfandnummer)
+//		}
+//		
 	}
 
 	class CreateAufenthaltListener implements ButtonPressListener {

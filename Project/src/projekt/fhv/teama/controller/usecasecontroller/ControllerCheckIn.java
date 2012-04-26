@@ -17,8 +17,10 @@ import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
 import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
@@ -373,6 +375,8 @@ public class ControllerCheckIn implements IControllerCheckIn {
 			needReloadAufenthalt=true;
 		
 	}
+	
+	
 
 	public ILand getLandByKuerzel(String kuerzel) throws DatabaseException, EmptyParameterException, NotContainExeption {
 		return modelLand.getLandByKuerzel(kuerzel);
@@ -481,6 +485,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		return zimmers;
 	}
 	
+	public IZimmerpreis getZimmerpreisProKategorie(IKategorie k) throws DatabaseEntryNotFoundException, EmptyParameterException
+	{
+		return modelKategorie.getPreis(k);
+	}
 	
 	
 
