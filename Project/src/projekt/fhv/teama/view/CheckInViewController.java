@@ -774,7 +774,9 @@ public class CheckInViewController implements ButtonPressListener {
 
 //		String arrival = viewMain.smLBArrival.getText();
 //		String departure = viewMain.smLBDeparture.getText();
-				
+			
+		java.sql.Date von = MyLittleDate.getDate(viewMain.cbArrival.getSelectedDate().year, viewMain.cbArrival.getSelectedDate().month, viewMain.cbArrival.getSelectedDate().day);
+		java.sql.Date bis = MyLittleDate.getDate(viewMain.cbDeparture.getSelectedDate().year, viewMain.cbDeparture.getSelectedDate().month, viewMain.cbDeparture.getSelectedDate().day);
 		java.sql.Date birthdate = MyLittleDate.getDate(viewMain.cbBirthdate.getSelectedDate().year, viewMain.cbBirthdate.getSelectedDate().month, viewMain.cbBirthdate.getSelectedDate().day);
 		if (birthdate != null) {
 			controllerCheckIn.setGeburtsdatum(birthdate);
@@ -796,7 +798,7 @@ public class CheckInViewController implements ButtonPressListener {
 		String pfandNummer = viewMain.smLBDepositNr.getText();
 		String pfandTyp = viewMain.smLBDepositType.getText();
 		List<IPfandtyp> typs=controllerCheckIn.getPfandtyps();
-		IPfandtyp selectedPfandTyp;
+		IPfandtyp selectedPfandTyp=null;
 		for (IPfandtyp typ : typs) {
 			if(typ.getBezeichnung().equals(pfandTyp))
 			{
@@ -807,11 +809,10 @@ public class CheckInViewController implements ButtonPressListener {
 		List<IZimmer> rooms = controllerCheckIn.getAusgewählteZimmer();
 		
 		
+		for (IZimmer room : rooms) {
+			controllerCheckIn.saveAufenthalt(controllerCheckIn.getZimmerpreisProKategorie(room.getKategorie()).getPreis(),von, bis, true, controllerCheckIn.getGast(), room, selectedPfandTyp, pfandNummer);
+		}
 		
-//		for (IZimmer room : rooms) {
-//			controllerCheckIn.saveAufenthalt(preis, von, bis, schluessel, gast, zimmer, pfand, pfandnummer)
-//		}
-//		
 	}
 
 	class CreateAufenthaltListener implements ButtonPressListener {
