@@ -25,7 +25,7 @@ public class AdresseTest {
 //		adao.create(new Adresse("Via Claudia 94", "36547", "Roma", lnd.getLandByKuerzel("I")));
 //		adao.create(new Adresse("Marktplatz 256", "983214", "Berlin", lnd.getLandByKuerzel("DE")));
 //		adao.create(new Adresse("Dorf 136", "134679", "Luxemburg", lnd.getLandByKuerzel("LX")));
-		adao.create(new Adresse("Uga 57", "6884", "Damüls", lnd.getLandByKuerzel("AT")));
+		adao.create(new Adresse("Klausstrasse 24", "7654", "Klaus", lnd.getLandByKuerzel("AT")));
 		
 		// Alle holen
 //		Set<IAdresse> adr = adao.getAll();

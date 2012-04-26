@@ -1,5 +1,6 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
+import java.security.KeyStore.Entry;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -309,13 +310,13 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @throws FokusException 
 	 * @throws DatabaseException 
 	 */
-	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)
+	private List<IZimmer> getVerfügbareZimmerFürGegebeneKategorieDatabase(IKategorie k)
 			throws FokusException, DatabaseException {
 		return modelZimmer.getVerfuegbareZimmerFürGegebeneKategorie(k,
 				getAktuelleReservierung());
 	}
 
-	public List<IZimmer> getVerfügbareZimmer() throws DatabaseException, FokusException {
+	private List<IZimmer> getVerfügbareZimmerDatabase() throws DatabaseException, FokusException {
 		return modelZimmer.getVerfügbareZimmer(getAktuelleReservierung());
 	}
 	
@@ -386,7 +387,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 			verfuegbareZimmer.clear();
 			for (IKategorie kategorie : modelKategorie.getKategorieen()) {
 			
-			List<IZimmer>list =getVerfügbareZimmerFürGegebeneKategorie(kategorie);
+			List<IZimmer>list =getVerfügbareZimmerFürGegebeneKategorieDatabase(kategorie);
 			verfuegbareZimmer.put(kategorie, list);
 		}
 	}
@@ -422,6 +423,27 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		ausgewaehltezimmer.clear();
 		verfuegbareZimmer.clear();
 		
+	}
+
+	@Override
+	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)
+			throws FokusException, DatabaseException,NotContainExeption {
+		if(verfuegbareZimmer.containsKey(k))
+		{
+			return verfuegbareZimmer.get(k);
+		}
+		throw new NotContainExeption();
+	}
+
+	@Override
+	public List<IZimmer> getVerfügbareZimmer() throws DatabaseException,
+			FokusException {
+		List<IZimmer> zimmers=new Vector<IZimmer>();
+		for ( IKategorie k : verfuegbareZimmer.keySet()) {
+			zimmers.addAll(verfuegbareZimmer.get(k));
+		}
+		
+		return zimmers;
 	}
 	
 	

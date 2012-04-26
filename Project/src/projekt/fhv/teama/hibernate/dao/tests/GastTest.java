@@ -48,11 +48,12 @@ public class GastTest {
 //		adr2.add(aDao.getById(7));	
 		IPerson p=personDao.getById(45);
 		
-	IGast g1 = new Gast(p.getVorname(), p.getNachname(), p.getGeschlecht(), p.getAdressen() , p.getGeburtsdatum(), p.getTelefonnummer(), p.getEmail(),p.getKontodaten(), "12435");
+		
+	//IGast g1 = new Gast("Thomas", "Gaida", 'm',adr2 , getDate(1989, 7, 7), "06649740099", "thomas.gaida@gmail.com", kdao.getById(11), "12435");
 	//IGast g2 = new Gast("Mr", "Goldfinger", 'm', adr2 , getDate(1975, 5, 6), "0660357951", "finger@gold.cz", kDao.getById(1), "874562");
 
 		// Einfügen
-		gDao.create(g1);
+		//gDao.create(g1);
 //		gDao.create(g2);
 		
 		// Alle holen

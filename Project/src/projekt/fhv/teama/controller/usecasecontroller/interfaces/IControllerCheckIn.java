@@ -204,9 +204,10 @@ public interface IControllerCheckIn {
 	 * @return List<IZimmer>
 	 * @throws FokusException 
 	 * @throws DatabaseException 
+	 * @throws NotContainExeption 
 	 */
 	public List<IZimmer> getVerfügbareZimmerFürGegebeneKategorie(IKategorie k)
-			throws FokusException, DatabaseException ;
+			throws FokusException, DatabaseException, NotContainExeption ;
 
 	/**
 	 * Methode um alle verfügbaren Zimmer zu erhalten

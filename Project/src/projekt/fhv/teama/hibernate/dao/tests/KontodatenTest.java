@@ -19,8 +19,8 @@ public class KontodatenTest {
 		IKontodatenDao kdao = KontodatenDao.getInstance();
 		
 		
-		kdao.create(new Kontodaten("23445", "1213255", "345634653", "234523"));
-		//kdao.create(new Kontodaten("159843", "365124", "15948732", "15742"));
+		kdao.create(new Kontodaten("E 21 12435753 98754324", "1213255", "98754324", "12435753"));
+		kdao.create(new Kontodaten("AT 43 34523452 123098762", "1213255", "123098762", "34523452"));
 //		
 //		IKontodaten konto = kdao.getById(1);
 //		System.out.println(konto.toString());
