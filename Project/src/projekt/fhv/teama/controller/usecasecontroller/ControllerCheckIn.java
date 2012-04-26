@@ -422,6 +422,8 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	{
 		ausgewaehltezimmer.clear();
 		verfuegbareZimmer.clear();
+		setAktuelleReservierung(null);
+		setGast(null);
 		
 	}
 
@@ -445,6 +447,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		
 		return zimmers;
 	}
+	
 	
 	
 
