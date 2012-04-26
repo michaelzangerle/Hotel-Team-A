@@ -259,6 +259,7 @@ public class ViewController implements Application{
 		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
 			String text = (String) listView.getSelectedItem();
+			System.out.println("affafd");
 			
 		}
 

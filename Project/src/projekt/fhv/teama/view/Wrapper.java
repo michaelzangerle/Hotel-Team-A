@@ -76,14 +76,14 @@ public class Wrapper {
 		Collections.sort(roomsAvailable, roomNumberComparator);
 
 		for (IZimmer room : roomsAvailable) {
-			curRooms.add(room.getID() + " | "
+			curRooms.add(room.getNummer() + " | "
 					+ room.getKategorie().getBezeichnung());
 		}
 		return new ListAdapter<String>(curRooms);
 	}
 	
 	public String getZimmer (IZimmer zimmer){
-		return zimmer.getID() + " | "
+		return zimmer.getNummer() + " | "
 				+ zimmer.getKategorie().getBezeichnung();
 	}
 
@@ -130,13 +130,10 @@ public class Wrapper {
 
 		@Override
 		public int compare(IZimmer z1, IZimmer z2) {
-			if (z1.getID() > z2.getID()) {
-				return 1;
+			if (z1.getKategorie().getBezeichnung() ==z2.getKategorie().getBezeichnung()){
+				return z1.getNummer().compareTo(z2.getNummer());
 			}
-			if (z1.getID() < z2.getID()) {
-				return -1;
-			}
-			return 0;
+			return z1.getKategorie().getBezeichnung().compareTo(z2.getKategorie().getBezeichnung());
 		}
 	}
 }

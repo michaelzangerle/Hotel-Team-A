@@ -27,6 +27,7 @@ import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListButton;
 import org.apache.pivot.wtk.ListButtonSelectionListener;
 import org.apache.pivot.wtk.ListView;
+import org.apache.pivot.wtk.ListViewItemStateListener;
 import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.Meter;
 import org.apache.pivot.wtk.PushButton;
@@ -349,8 +350,8 @@ public class ViewMain extends Window implements Application, Bindable {
 		lvBookedRoomCategories.getListViewSelectionListeners().add(e);
 	}
 	
-	public void setlvAssignedRoomsListener(ListViewSelectionListener e) {
-		lvAssignedRooms.getListViewSelectionListeners().add(e);
+	public void setlvAssignedRoomsListener(ListViewItemStateListener e) {
+		lvAssignedRooms.getListViewItemStateListeners().add(e);
 	}	
 	
 

@@ -391,23 +391,21 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		}
 	}
 	
-	public void addZimmer(IZimmer z) throws WrongParameterException
+	public void addZimmer(IZimmer z) 
 	{
 		if(!ausgewaehltezimmer.contains(z))
 		{
 			ausgewaehltezimmer.add(z);
 		}
-		else
-			throw new WrongParameterException();
+
 	}
-	public void remove(IZimmer z) throws WrongParameterException
+	public void remove(IZimmer z)
 	{
-		if(!ausgewaehltezimmer.contains(z))
+		if(ausgewaehltezimmer.contains(z))
 		{
 			ausgewaehltezimmer.remove(z);
 		}
-		else
-			throw new WrongParameterException();
+
 	}
 	
 	public List<IZimmer> getAusgewählteZimmer() throws NotContainExeption
