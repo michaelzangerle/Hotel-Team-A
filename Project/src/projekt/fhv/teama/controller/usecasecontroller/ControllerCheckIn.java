@@ -490,6 +490,23 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		return modelKategorie.getPreis(k);
 	}
 	
-	
+	public float berechneZimmerpreis(Date von,Date bis) throws FokusException, DatabaseEntryNotFoundException, EmptyParameterException
+	{
+		if(von!=null && bis!=null)
+		{
+		IReservierung res=getAktuelleReservierung();
+		if(res!=null)
+		{
+			long days= bis.getTime()-von.getTime();
+			float preis=0;
+		for (IZimmer z : ausgewaehltezimmer) {
+			preis+=getZimmerpreisProKategorie(z.getKategorie()).getPreis()*days;
+		}
+		return preis;
+		}
+		else throw new FokusException();
+		}
+		else throw new EmptyParameterException();
+	}
 
 }

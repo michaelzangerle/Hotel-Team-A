@@ -12,6 +12,8 @@ import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
@@ -317,8 +319,25 @@ public interface IControllerCheckIn {
 	 */
 	public List<IGast> getGaesteVonAuftenhalt() throws DatabaseException, EmptyParameterException;
 	
+	/**
+	 * Methode um eine Zimmerpreis einer Kategorie zu erhalten
+	 * @param k
+	 * @return IZimmerpreis
+	 * @throws DatabaseEntryNotFoundException
+	 * @throws EmptyParameterException
+	 */
+	public IZimmerpreis getZimmerpreisProKategorie(IKategorie k) throws DatabaseEntryNotFoundException, EmptyParameterException;
 	
-	
+	/**
+	 * Methode um den Gesamtpreis eines Aufenthaltes zu berechnen
+	 * @param von
+	 * @param bis
+	 * @return float preis
+	 * @throws FokusException
+	 * @throws DatabaseEntryNotFoundException
+	 * @throws EmptyParameterException
+	 */
+	public float berechneZimmerpreis(Date von,Date bis) throws FokusException, DatabaseEntryNotFoundException, EmptyParameterException;
 	
 	
 	
