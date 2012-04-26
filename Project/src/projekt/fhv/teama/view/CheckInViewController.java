@@ -1,5 +1,6 @@
 package projekt.fhv.teama.view;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -30,7 +31,10 @@ import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Span;
 
+import com.kitfox.svg.animation.parser.ParseException;
+
 import projekt.fhv.teama.classes.IPfandtyp;
+import projekt.fhv.teama.classes.personen.Adresse;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
@@ -87,15 +91,13 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.cbArrival.setSelectedDate(d1);
 		viewMain.cbDeparture.setSelectedDate(d2);
 
-		
-		
 		for (ITeilreservierung teilreservierung : teilreservierungen) {
 			showSelectedRooms(getRoomsByCategory(teilreservierung
 					.getKategorie()));
 		}
 		defaultRoomAssignment();
 		viewMain.lvBookedRoomCategories.setSelectedIndex(0);
-		
+
 		IReservierung reservation = controllerCheckIn.getAktuelleReservierung();
 		guests = new Vector<IGast>(reservation.getGaeste());
 
@@ -242,6 +244,7 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.setlvAssignedRoomsListener(new RoomChangedListener());
 
 		viewMain.setcbxShowAllRoomsListener(new ShowAllRoomsListener());
+		viewMain.setcf4PBtnFinishListener(new CreateAufenthaltListener());
 	}
 
 	public CheckInViewController(ViewMain viewMain,
@@ -324,6 +327,7 @@ public class CheckInViewController implements ButtonPressListener {
 				viewMain.meter.setPercentage(0.25);
 				viewMain.reservationForm01.setVisible(true);
 				viewMain.lvReservationSearch.setEnabled(true);
+				controllerCheckIn.clearLists();
 			}
 
 		}
@@ -331,19 +335,21 @@ public class CheckInViewController implements ButtonPressListener {
 
 	public void initializeSummaryWindow() throws NotContainExeption {
 		Wrapper wrapper = new Wrapper();
-		viewMain.smLVFinalRooms.setListData(wrapper.getZimmerListAdapter(controllerCheckIn.getAusgewählteZimmer()));
-		viewMain.smLVHandedKeys.setListData(wrapper.getKeyListAdapter(controllerCheckIn.getAusgewählteZimmer()));
-		
+		viewMain.smLVFinalRooms
+				.setListData(wrapper.getZimmerListAdapter(controllerCheckIn
+						.getAusgewählteZimmer()));
+		viewMain.smLVHandedKeys.setListData(wrapper
+				.getKeyListAdapter(controllerCheckIn.getAusgewählteZimmer()));
+
 		if (viewMain.rbMale.isSelected()) {
 			viewMain.smLBGender.setText("male");
 		} else {
 			viewMain.smLBGender.setText("female");
 		}
-		
+
 	}
 
 	class GuestChangedListener implements ListButtonSelectionListener {
-
 		@Override
 		public void selectedIndexChanged(ListButton listButton, int arg1) {
 			selectedItemChanged(listButton, arg1);
@@ -630,6 +636,44 @@ public class CheckInViewController implements ButtonPressListener {
 				viewMain.lvAssignedRooms.setItemChecked(i, true);
 			}
 			i++;
+		}
+	}
+
+	public void createStay() throws java.text.ParseException, FokusException {
+		IGast guest = controllerCheckIn.getGast();
+		String lastName = viewMain.smLBLastName.getText();
+		String firstName = viewMain.smLBFirstName.getText();
+		char gender = ' ';
+
+		if (viewMain.smLBGender.getText().equalsIgnoreCase("female")) {
+			gender = 'F';
+		} else {
+			gender = 'M';
+		}
+
+		String birthdate = viewMain.cbBirthdate.getSelectedDate().toString();
+		SimpleDateFormat sdfToDate = new SimpleDateFormat("dd.MM.yyyy");
+		Date bd = sdfToDate.parse(birthdate);
+
+		String street = viewMain.smLBStreet.getText();
+		String zip = viewMain.smLBZip.getText();
+		String city = viewMain.smLBZCountry.getText();
+		String country = viewMain.smLBZCountry.getText();
+		
+		
+	}
+
+	class CreateAufenthaltListener implements ButtonPressListener {
+		public void buttonPressed(Button arg0) {
+			try {
+				createStay();
+				controllerCheckIn.clearLists();
+			} catch (java.text.ParseException e) {
+				e.printStackTrace();
+			} catch (FokusException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 }

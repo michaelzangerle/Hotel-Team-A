@@ -49,7 +49,14 @@ public class ViewMain extends Window implements Application, Bindable {
 	/* Labels */
 	@BXML Label lbReservationDetails;	
 	@BXML Label lbLoginShow;
-	@BXML Label smLBGender;
+	@BXML Label smLBLastName; 
+	@BXML Label smLBFirstName; 
+	@BXML Label smLBGender; 
+	@BXML Label smLBBirthdate;
+	@BXML Label smLBStreet;
+	@BXML Label smLBZip;
+	@BXML Label smLBCity;
+	@BXML Label smLBZCountry;
 	
 	/* Border Container = Forms */
 	Border reservationForm01;Border checkInForm01;Border checkInForm02;Border checkInForm03;Border checkInForm04;
@@ -77,6 +84,8 @@ public class ViewMain extends Window implements Application, Bindable {
 	 
 	/* Labels */
 	Label lbProgress01;	Label lbProgress02;	Label lbProgress03;	Label lbProgress04;
+	
+	
 	
 	/* Processbar */
 	Border progress; Meter meter;
@@ -366,4 +375,5 @@ public class ViewMain extends Window implements Application, Bindable {
 	public void setcbxShowAllRoomsListener(ButtonStateListener e) {
 		cbxShowAllRooms.getButtonStateListeners().add(e);
 	}
+
 }
