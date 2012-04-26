@@ -26,7 +26,7 @@
 		 <Border  styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4}">
 				 <ScrollPane preferredWidth="240" preferredHeight="110"  horizontalScrollBarPolicy="fill"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
-                    <ListView bxml:id="lvAssignedRooms" selectMode="single" checkmarksEnabled="true" cursor="hand"  styles="$styles.livRoomAssign"  />
+                    <ListView bxml:id="lvAssignedRooms" selectMode="multi" checkmarksEnabled="true" cursor="hand"  styles="$styles.livRoomAssign"  />
                 	</ScrollPane>
                 	</BoxPane>
             </Border>
@@ -37,7 +37,7 @@
 		<!-- Residence Timespan ################################################################################ -->
 		<Separator bxml:id="sprStayDetails" heading=" Stay " styles="$styles.sprHeading"/>
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-		<Form styles="{showFlagIcons:false}">	
+		<Form bxml:id="chf5" styles="{showFlagIcons:false}">	
 			     <Form.Section>
 					<BoxPane orientation="horizontal" bxml:id="bpStay" styles="{spacing:30}">
 					<BoxPane orientation="vertical">

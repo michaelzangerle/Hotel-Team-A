@@ -10,7 +10,7 @@
 		<!-- Deposit  ################################################################################## -->
 		<Separator bxml:id="sprDeposit" heading=" Deposit " styles="$styles.sprHeading"/>
 		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
-			<Form styles="{showFlagIcons:false}">
+			<Form bxml:id="chf6" styles="{showFlagIcons:false}">
 				<Form.Section>
 					<BoxPane bxml:id="bpDeposit" Form.label="Type of Deposit" styles="{spacing:5}">
 						<ListButton bxml:id="lbtnDepositType" />

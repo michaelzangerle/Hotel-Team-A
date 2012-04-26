@@ -2,6 +2,11 @@
 	xmlns="org.apache.pivot.wtk"
 	styles="{padding:6}" xmlns:view="projekt.fhv.teama.view"
 	visible="false">
+  <bxml:script>
+    function toUpperCase(value) {
+        return value.toUpperCase();
+    }
+    </bxml:script>
 	<BoxPane bxml:id="bpCheckInForm04" orientation="vertical" styles="{spacing:10,fill:true}">
 		<Label bxml:id="lbFinishCheckIn" text="Check-In: Hand out keys and finish check-in process"
 			styles="$styles.lbHeading1"/>
@@ -10,81 +15,88 @@
 		<Separator bxml:id="sprStaySummary" heading=" Review stay summary and hand out keys before saving " styles="$styles.sprHeading"/>
 			
 		<Label text="You are checking in: "  styles="$styles.lbHeading2" />
-		<!-- Step 1 ################################################################################## -->		
-		
-						<Label bxml:id="smLBNAME" />
-						<Label bxml:id="smLBLastName" Form.label="Test" text="${tiLastName.text}"/>
-						<Label bxml:id="smLBFirstName" text="${tiFirstName.text}"/>
-
-						<Label bxml:id="smLBGender"   />								
-						<Label bxml:id="smLBBirthdate"  text="${cbBirthdate.selectedDate}"/>
-
-			
-		<!-- Step 1,5 ################################################################################	-->
-		
-					<Label bxml:id="smLBStreet" text="${tiStreet.text}" />
-
-						<Label bxml:id="smLBZip" text="${tiZip.text}"/>
-						<Label bxml:id="smLBCity" text="${tiCity.text}"/>
-
-
-						<Label bxml:id="smLBZCountry" text="${tiCountry.text}" preferredWidth="80"/>
-
-		<!-- Step 1,75 #####################################################################	-->
-
-
-	
-						<Label bxml:id="smLBPhone" text="${tiPhone.text}"/>
-						<Label bxml:id="smLBMail" text="${tiMail.text}"/>
-
-		
-		<!-- Step 1,98 #####################################################################	-->
-
-
-						<Label bxml:id="smLBAccountNr" text="${tiAccountNr.text}"/>
-						<Label bxml:id="smLBBankCodeNr" text="${tiBankCodeNr.text}"/>
-
-						<Label bxml:id="smLBIban" text="${tiIban.text}"/>
-						<Label bxml:id="smLBBic" text="${tiBic.text}"/>
 
 		<!-- Step 2   #####################################################################	-->
 		
-		<TablePane bxml:id="tablePane" styles="{verticalSpacing:1, showHorizontalGridLines:true, horizontalSpacing:1, showVerticalGridLines:true}">
+		<TablePane bxml:id="smTPSummary" styles="$styles.smTPSummary" preferredWidth="500">
             <columns>
-                <TablePane.Column width="-1"/>
-                <TablePane.Column width="50"/>
-                <TablePane.Column width="-1"/>
-                <TablePane.Column width="1*"/>
                 <TablePane.Column width="2*"/>
+                <TablePane.Column width="2*"/>
+                <TablePane.Column width="1*"/>
+                <TablePane.Column width="1*"/>
             </columns>
  
-            <TablePane.Row height="-1">
-                <TablePane.Filler/>
-                <Label text="50" styles="{horizontalAlignment:'center'}"/>
-                <Label text="-1" styles="{horizontalAlignment:'center'}"/>
-                <Label text="1*" styles="{horizontalAlignment:'center'}"/>
-                <Label text="2*" styles="{horizontalAlignment:'center'}"/>
+             <TablePane.Row height="25">
+                <Label text="Lastname"  styles="$styles.smTableHeader"/>
+                <Label text="Firstname"  styles="$styles.smTableHeader"/>
+                <Label text="Gender"  styles="$styles.smTableHeader"/>
+                <Label text="Birthdate"  styles="$styles.smTableHeader"/>             
+            </TablePane.Row>
+            
+            <TablePane.Row height="25">
+                <Label bxml:id="smLBLastName"  text="${toUpperCase:tiLastName.text}" styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBFirstName" text="${tiFirstName.text}" styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBGender"   styles="$styles.smTableCell"/>								
+				<Label bxml:id="smLBBirthdate"  text="${cbBirthdate.selectedDate}"  styles="$styles.smTableCell"/>
+			</TablePane.Row>
+			
+			<TablePane.Row height="15">
+            <TablePane.Filler/>
+            </TablePane.Row>
+			
+		   <TablePane.Row height="25">
+                <Label text="Street"  styles="$styles.smTableHeader"/>
+                <Label text="Zip"  styles="$styles.smTableHeader"/>
+                <Label text="City"  styles="$styles.smTableHeader"/>
+                <Label text="Country"  styles="$styles.smTableHeader"/>                
+            </TablePane.Row>
+            
+            <TablePane.Row height="25">
+				<Label bxml:id="smLBStreet" text="${tiStreet.text}"  styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBZip" text="${tiZip.text}"  styles="$styles.smTableCell"/>
+			    <Label bxml:id="smLBCity" text="${tiCity.text}"  styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBZCountry" text="${tiCountry.text}"  styles="$styles.smTableCell"/>
+			</TablePane.Row>
+			 
+            <TablePane.Row height="15">
+                  <TablePane.Filler/>
             </TablePane.Row>
  
-            <TablePane.Row height="50">
-                <Label text="50" styles="{verticalAlignment:'center'}"/>
+            <TablePane.Row height="25">
+                <Label text="Phone"  styles="$styles.smTableHeader"/>
+                <Label text="EMail"  styles="$styles.smTableHeader"/>
+                <Label text="Account No."  styles="$styles.smTableHeader"/>
+                <Label text="Bank No."  styles="$styles.smTableHeader"/>
             </TablePane.Row>
  
-            <TablePane.Row height="-1">
-                <Label text="-1" styles="{verticalAlignment:'center'}"/>
+            <TablePane.Row height="25">
+				<Label bxml:id="smLBPhone" text="${tiPhone.text}" styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBMail" text="${tiMail.text}" styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBAccountNr" text="${tiAccountNr.text}" styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBBankCodeNr" text="${tiBankCodeNr.text}" styles="$styles.smTableCell"/>
+            </TablePane.Row>
+            
+            <TablePane.Row height="15">
+            <TablePane.Filler/>
             </TablePane.Row>
  
-            <TablePane.Row height="1*">
-                <Label text="1*" styles="{verticalAlignment:'center'}"/>
+            <TablePane.Row height="25">
+                <Label text="IBAN"  styles="$styles.smTableHeader"/>
+                <Label text="BIC"  styles="$styles.smTableHeader"/>
+                <Label text="Arrival"  styles="$styles.smTableHeader"/>
+                <Label text="Departure"  styles="$styles.smTableHeader"/>
             </TablePane.Row>
  
-            <TablePane.Row height="2*">
-                <Label text="2*" styles="{verticalAlignment:'center'}"/>
-            </TablePane.Row>
-        </TablePane>
-		
+            <TablePane.Row height="25">
+				<Label bxml:id="smLBIban" text="${tiIban.text}" styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBBic" text="${tiBic.text}" styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBArrival" text="${cbArrival.selectedDate}" styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBDeparture" text="${cbDeparture.selectedDate}" styles="$styles.smTableCell"/>
+            </TablePane.Row>  
+ 
+        </TablePane>		
 
-		<BoxPane bxml:id="bpRoomsSummary" orientation="vertical" styles="$styles.bpContentHorizontal" >
+		<BoxPane bxml:id="bpRoomsSummary" orientation="vertical" styles="{fill:true}">
 		
 		<BoxPane  bxml:id="smBPRoomAssignment" orientation="horizontal"  styles="{padding:4, spacing:40}">
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >

@@ -14,25 +14,28 @@ import projekt.fhv.teama.view.support.IMAccount;
 
 
 public class ViewCheckIn extends Border implements Bindable {
-	    Form form = null;
-	    PushButton loadJavaButton = null;
+	    Form chf1;Form chf2;Form chf3;Form chf4;Form chf5;Form chf6;
 	    PushButton clearButton = null;
-	    Label sourceLabel = null;
-	    
-	    PushButton cf1PBtnNext = null;
 	 
-	    private static final Contact CONTACT = new Contact("101", "Michael Zangerle",
-	        new Address("123 Main St.", "Cambridge", "MA", "02142"),
-	        "(617) 555-1234", "master@meister.msc",
-	        new IMAccount("mza180°", "Yahoo"));
 	 
 	    @Override
-	    public void initialize(Map<String, Object> namespace, URL location, Resources resources) {
-	        form = (Form)namespace.get("form");
-	        loadJavaButton = (PushButton)namespace.get("loadJavaButton");
-	        clearButton = (PushButton)namespace.get("clearButton");
-	        sourceLabel = (Label)namespace.get("sourceLabel");	        
-	        cf1PBtnNext = (PushButton)namespace.get("cf1PBtnNext");	 
-	      
+		public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
+	        chf1 = (Form)arg0.get("chf1");
+	        chf2 = (Form)arg0.get("chf2");
+	        chf3 = (Form)arg0.get("chf3");
+	        chf4 = (Form)arg0.get("chf4");
+	        chf5 = (Form)arg0.get("chf5");
+	        chf6 = (Form)arg0.get("chf6");    
+	    }
+	    
+	    
+	    void clearCheckInForms() {
+	    	
+	    	chf1.clear();
+	    	chf2.clear();
+	    	chf3.clear();
+	    	chf4.clear();
+	    	chf5.clear();
+	    	chf6.clear();	    	
 	    }
 }

@@ -11,7 +11,7 @@
 		<!-- Personal Data ################################################################################## -->
 		<Separator bxml:id="sprPersonalDetail" heading=" Personal Detail " styles="$styles.sprHeading"/>
 		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
-			<Form styles="{showFlagIcons:false}">
+			<Form bxml:id="chf1" styles="{showFlagIcons:false}">
 				<Form.Section>
 					<Label bxml:id="lbPrimaryGuestSelection" text="Select primary guest for this stay or enter a new one if list is empty" />
 					<BoxPane  styles="{padding:{top:0, left:0, bottom:15, right:0}}">
@@ -42,7 +42,7 @@
 		<!-- Adresses ################################################################################	-->
 		<Separator bxml:id="sprAdressDetail" heading=" Addresses " styles="$styles.sprHeading"/>
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-			<Form styles="{showFlagIcons:false}">		
+			<Form bxml:id="chf2" styles="{showFlagIcons:false}">		
 				<Form.Section>
 					<Label bxml:id="lbPrimaryAddress" text="Change primary address or enter and add a new one" />
 					<BoxPane  styles="{padding:{top:0, left:0, bottom:15, right:0}}">
@@ -63,7 +63,7 @@
 		<!-- Contact Information #####################################################################	-->
 		<Separator bxml:id="sprContactDetail" heading=" Contact Information " styles="$styles.sprHeading"/>
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-			<Form styles="{showFlagIcons:false}">		
+			<Form bxml:id="chf3" styles="{showFlagIcons:false}">		
 				<Form.Section>
 					<BoxPane bxml:id="bpContact" Form.label="Contact" styles="{spacing:5}">
 						<TextInput bxml:id="tiPhone" prompt="Phone"/>
@@ -76,7 +76,7 @@
 		<!-- Financial Information #####################################################################	-->
 		<Separator bxml:id="sprFinancialDetail" heading=" Financial Information " styles="$styles.sprHeading"/>
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-			<Form styles="{showFlagIcons:false}">
+			<Form bxml:id="chf4" styles="{showFlagIcons:false}">
 				<Form.Section>
 					<BoxPane bxml:id="bpBankAccount" Form.label="    Bank" styles="{spacing:5}">
 						<TextInput bxml:id="tiAccountNr" prompt="Account Nr."/>

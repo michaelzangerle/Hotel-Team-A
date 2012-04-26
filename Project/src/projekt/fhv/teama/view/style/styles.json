@@ -269,7 +269,29 @@
        	highlightBackgroundColor: '#fee379',
         inactiveSelectionBackgroundColor: '#fee379',
         selectionBackgroundColor: '#2d4776',
-    }
-   
+    },
     
+        smTableCell: {
+           horizontalAlignment:'left',
+           backgroundColor: '#ffffff',
+           color:'#000000',          
+           padding:{top:5, left:10, bottom:5, right:5}       
+    },
+          
+       smTableHeader: {
+           font: { size: "100%", bold: true },       
+           horizontalAlignment:'center',
+           backgroundColor: '#e6eff8',
+           color:'#2d4776',          
+           padding:{top:5, left:5, bottom:5, right:5}       
+    },
+    
+    smTPSummary: {
+           verticalSpacing:2,
+           showHorizontalGridLines:false,
+           horizontalSpacing:5,
+           showVerticalGridLines:false,
+    	   padding:{top:3, left:7, bottom:15, right:0}
+    }
+        
 }
