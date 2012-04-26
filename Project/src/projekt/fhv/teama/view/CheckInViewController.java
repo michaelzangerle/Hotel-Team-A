@@ -34,6 +34,7 @@ import org.apache.pivot.wtk.Span;
 import com.kitfox.svg.animation.parser.ParseException;
 
 import projekt.fhv.teama.classes.IPfandtyp;
+import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.personen.Adresse;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
@@ -650,15 +651,25 @@ public class CheckInViewController implements ButtonPressListener {
 		} else {
 			gender = 'M';
 		}
-
-		String birthdate = viewMain.cbBirthdate.getSelectedDate().toString();
-		SimpleDateFormat sdfToDate = new SimpleDateFormat("dd.MM.yyyy");
-		Date bd = sdfToDate.parse(birthdate);
-
+		
+		java.sql.Date birthdate = MyLittleDate.getDate(viewMain.cbBirthdate.getSelectedDate().year, viewMain.cbBirthdate.getSelectedDate().month, viewMain.cbBirthdate.getSelectedDate().day);
+		
 		String street = viewMain.smLBStreet.getText();
 		String zip = viewMain.smLBZip.getText();
 		String city = viewMain.smLBZCountry.getText();
 		String country = viewMain.smLBZCountry.getText();
+//		
+//		if (isNewAdress(street, zip, city, country)) {
+//			
+//		}
+		
+		
+		
+		
+		
+		controllerCheckIn.setGeburtsdatum(birthdate);
+		
+		
 		
 		
 	}
@@ -675,5 +686,14 @@ public class CheckInViewController implements ButtonPressListener {
 			}
 
 		}
+	}
+	
+	public boolean isNewAdress (String street, String zip, String city, String country) throws FokusException {
+		
+		for (IAdresse adress : controllerCheckIn.getGast().getAdressen()) {
+			//if (adress.getStrasse() .equalsIgnoreCase(street) && )
+		}
+		return false;
+		
 	}
 }

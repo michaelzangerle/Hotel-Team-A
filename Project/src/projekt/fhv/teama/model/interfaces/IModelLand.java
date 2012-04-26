@@ -22,4 +22,6 @@ public interface IModelLand {
 	 */
 	ILand getLandByKuerzel(String kuerzel) throws DatabaseException, EmptyParameterException, NotContainExeption ;
 
+	ILand getLandByBezeichnung(String bezeichnung) throws DatabaseException, NotContainExeption, EmptyParameterException;
+
 }

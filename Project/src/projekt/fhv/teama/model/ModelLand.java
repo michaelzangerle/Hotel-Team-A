@@ -38,6 +38,22 @@ public class ModelLand implements IModelLand {
 			throw new EmptyParameterException();
 		}
 	}
+
+	@Override
+	public ILand getLandByBezeichnung(String bezeichnung) throws DatabaseException,NotContainExeption,EmptyParameterException{
+		if(bezeichnung!=null)
+		{
+			ILand land=landDao.getLandByBez(bezeichnung);
+			if(land!=null)
+				return land;
+			else
+				throw new NotContainExeption();
+		}
+		else
+		{
+			throw new EmptyParameterException();
+		}
+	}
 	
 	
 }

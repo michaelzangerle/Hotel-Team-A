@@ -298,9 +298,24 @@ public interface IControllerCheckIn {
 	 */
 	public void initVerfuegbareZimmer() throws DatabaseException, FokusException;
 	
+	/**
+	 * Methode um ein Land über eine Bezeichnung zu suchen
+	 * @param bezeichnung
+	 * @return ILand
+	 * @throws DatabaseException
+	 * @throws EmptyParameterException
+	 * @throws NotContainExeption
+	 */
+	public ILand getLandByBezeichnung(String bezeichnung) throws DatabaseException, EmptyParameterException, NotContainExeption;
 	
 	
-	
+	/**
+	 * Methode um die Gaeste die Momentan einen Aufenthalt haben holen
+	 * @return List<IGast>
+	 * @throws DatabaseException
+	 * @throws EmptyParameterException
+	 */
+	public List<IGast> getGaesteVonAuftenhalt() throws DatabaseException, EmptyParameterException;
 	
 	
 	

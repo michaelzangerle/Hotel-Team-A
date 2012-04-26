@@ -62,6 +62,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	//Daten
 	List<IZimmer> ausgewaehltezimmer;
 	HashMap<IKategorie, List<IZimmer>> verfuegbareZimmer;
+	List<IAufenthalt> gaestMitMomentanemAufenthalt;
 	
 
 	/**
@@ -91,6 +92,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		
 		ausgewaehltezimmer=new Vector<IZimmer>();
 		verfuegbareZimmer=new HashMap<IKategorie, List<IZimmer>>();
+		gaestMitMomentanemAufenthalt=new Vector<IAufenthalt>();
 	}
 
 	/**
@@ -371,9 +373,33 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		return modelLand.getLandByKuerzel(kuerzel);
 	}
 	
+	public ILand getLandByBezeichnung(String bezeichnung) throws DatabaseException, EmptyParameterException, NotContainExeption {
+		return modelLand.getLandByBezeichnung(bezeichnung);
+	}
+	
 	public List<IAufenthalt> getAufenthalte() throws DatabaseException, EmptyParameterException
 	{
-		return modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 5, 25));
+		if(gaestMitMomentanemAufenthalt.size()>0)
+			return gaestMitMomentanemAufenthalt;
+		else
+		{
+		gaestMitMomentanemAufenthalt=modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 5, 25));
+		return gaestMitMomentanemAufenthalt;
+		}
+	}
+	
+	public List<IGast> getGaesteVonAuftenhalt() throws DatabaseException, EmptyParameterException
+	{
+		if(gaestMitMomentanemAufenthalt.size()<1)
+		{
+			getAufenthalte();
+		}
+		List<IGast> gaest=new Vector<IGast>();
+		for (IAufenthalt aufenthalt : gaestMitMomentanemAufenthalt) {
+			if(!gaest.contains(aufenthalt.getGast())&&aufenthalt.getGast()!=null)
+					gaest.add(aufenthalt.getGast());
+		}
+			return gaest;
 	}
 	
 	
