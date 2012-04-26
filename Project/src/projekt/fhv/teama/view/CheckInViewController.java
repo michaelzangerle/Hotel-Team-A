@@ -99,7 +99,7 @@ public class CheckInViewController implements ButtonPressListener {
 		IReservierung reservation = controllerCheckIn.getAktuelleReservierung();
 		guests = new Vector<IGast>(reservation.getGaeste());
 
-		if (guests.size() == 0) {
+		if (guests.size() != 0) {
 			viewMain.lbtnGuests
 					.setListData(wrapper.getGuestListAdapter(guests));
 			String nummer = guests.get(0).getNummer();
