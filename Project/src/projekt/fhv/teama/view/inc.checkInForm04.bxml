@@ -104,7 +104,7 @@
 		 <Border styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#e6eff8'}">
 				 <ScrollPane preferredWidth="240" preferredHeight="110"  horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#e6eff8'}" >
-                    <ListView bxml:id="smLVFinalRooms" selectMode="multi"  styles="$styles.livRoomAssign" />
+                    <ListView bxml:id="smLVFinalRooms" selectMode="multi" styles="$styles.livRoomAssign" />
                 	</ScrollPane>
                 	</BoxPane>
             </Border>
@@ -113,12 +113,27 @@
 		 <Label bxml:id="smLBAssignedRooms" text="Handed out key?" styles="$styles.libHeading" tooltipText='Handed out the keys? ' tooltipDelay="250" cursor="hand"/>
 		 <Border  styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4}">
-				 <ScrollPane preferredWidth="240" preferredHeight="110"  horizontalScrollBarPolicy="fill"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
+				 <ScrollPane preferredWidth="180" preferredHeight="110"  horizontalScrollBarPolicy="fill"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
                     <ListView bxml:id="smLVHandedKeys" selectMode="multi" checkmarksEnabled="true" cursor="hand"  styles="$styles.livRoomAssign"  />
                 	</ScrollPane>
                 	</BoxPane>
             </Border>
-		</BoxPane>	
+		</BoxPane>
+		<TablePane styles="{padding:12}">
+		<columns>
+			<TablePane.Column width="1*"/>
+		</columns>
+		<TablePane.Row height="1*">
+			<Label text="Deposit" styles="$styles.smTableHeader"/>
+		</TablePane.Row>
+				<TablePane.Row height="1*">
+					<Label bxml:id="smDepositType" text="${lbtnDepositType.selectedItem}"  styles="$styles.smTableCell"/>
+				</TablePane.Row>
+				<TablePane.Row height="1*">
+					<Label bxml:id="smLBDepositNr" text="${tiDepositNumber.text}"  styles="$styles.smTableCell"/>
+				</TablePane.Row>
+
+		</TablePane>
 			
  	</BoxPane>
 					
