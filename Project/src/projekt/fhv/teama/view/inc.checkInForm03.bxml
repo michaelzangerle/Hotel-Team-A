@@ -14,8 +14,7 @@
 				<Form.Section>
 					<BoxPane bxml:id="bpDeposit" Form.label="Type of Deposit" styles="{spacing:5}">
 						<ListButton bxml:id="lbtnDepositType" />
-						<TextInput bxml:id="tiDepositNumber" prompt="Number of Deposit" preferredWidth="246"/>
-						<TextArea />					
+						<TextInput bxml:id="tiDepositNumber" prompt="Number of Deposit" preferredWidth="246"/>					
 					</BoxPane>					
 				</Form.Section>
 			</Form>

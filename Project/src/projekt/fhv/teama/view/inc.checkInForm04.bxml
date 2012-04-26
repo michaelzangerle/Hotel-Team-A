@@ -126,13 +126,18 @@
 		<TablePane.Row height="1*">
 			<Label text="Deposit" styles="$styles.smTableHeader"/>
 		</TablePane.Row>
-				<TablePane.Row height="1*">
-					<Label bxml:id="smDepositType" text="${lbtnDepositType.selectedItem}"  styles="$styles.smTableCell"/>
-				</TablePane.Row>
-				<TablePane.Row height="1*">
-					<Label bxml:id="smLBDepositNr" text="${tiDepositNumber.text}"  styles="$styles.smTableCell" preferredWidth="150"/>
-				</TablePane.Row>
-
+		<TablePane.Row height="1*">
+		    <Label bxml:id="smDepositType" text="${lbtnDepositType.selectedItem}"  styles="$styles.smTableCell"/>
+		</TablePane.Row>
+		<TablePane.Row height="1*">
+			<Label bxml:id="smLBDepositNr" text="${tiDepositNumber.text}"  styles="$styles.smTableCell" preferredWidth="150"/>
+		</TablePane.Row>
+		<TablePane.Row height="1*">
+		    <Label text="Total price" styles="$styles.smTableHeader"/>
+		</TablePane.Row>
+		<TablePane.Row height="1*">
+			<Label bxml:id="smLBTotalPrice" styles="$styles.smTableCell"/>
+		</TablePane.Row>
 		</TablePane>
 			
  	</BoxPane>
