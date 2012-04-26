@@ -57,8 +57,8 @@ public class ReservierungTest {
 		// odao.create(o2);
 		// odao.create(o3);
 
-//		 IReservierung res1 = new Reservierung(getDate(2012, 4, 24),
-//		 getDate(2012, 4, 28), pnd.getById(36));
+		IReservierung res1 = new Reservierung(getDate(2012, 6, 13),
+			getDate(2012, 6, 47), pnd.getById(48));
 		// IReservierung res2 = new Reservierung(getDate(2012, 3, 24),
 		// getDate(2012, 4, 28), pnd.getById(36));
 		// IReservierung res3 = new Reservierung(getDate(2012, 4, 24),
@@ -75,9 +75,9 @@ public class ReservierungTest {
 		 
 		IGastDao gDao = GastDao.getInstance();
 		
-		IReservierung reservierung=rnd.getById(3);
-		reservierung.addGast(gDao.getById(39));
-		rnd.create(reservierung);
+		//IReservierung reservierung=rnd.getById(3);
+		res1.addGast(gDao.getById(48));
+		rnd.create(res1);
 		
 //		IReservierung r1 = rnd.getById(4);
 //		r1.addGast(gDao.getById(40));

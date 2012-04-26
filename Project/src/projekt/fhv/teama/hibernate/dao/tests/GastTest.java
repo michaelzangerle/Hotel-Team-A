@@ -43,17 +43,17 @@ public class GastTest {
 //		
 //		adr1.add(aDao.getById(6));	
 //		
-//		Set<IAdresse> adr2 = new HashSet<IAdresse>();
+		Set<IAdresse> adr2 = new HashSet<IAdresse>();
 //		
-//		adr2.add(aDao.getById(7));	
-		IPerson p=personDao.getById(45);
+		adr2.add(aDao.getById(33));	
+		//IPerson p=personDao.getById(45);
 		
 		
-	//IGast g1 = new Gast("Thomas", "Gaida", 'm',adr2 , getDate(1989, 7, 7), "06649740099", "thomas.gaida@gmail.com", kdao.getById(11), "12435");
+	IGast g1 = new Gast("Kai", "von Kotze", 'w',adr2 , getDate(2000, 10, 3), "080033456", "kai.likes@to.ko", kDao.getById(13), "35676");
 	//IGast g2 = new Gast("Mr", "Goldfinger", 'm', adr2 , getDate(1975, 5, 6), "0660357951", "finger@gold.cz", kDao.getById(1), "874562");
 
 		// Einfügen
-		//gDao.create(g1);
+		gDao.create(g1);
 //		gDao.create(g2);
 		
 		// Alle holen
