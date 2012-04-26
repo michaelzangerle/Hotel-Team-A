@@ -64,6 +64,9 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	HashMap<IKategorie, List<IZimmer>> verfuegbareZimmer;
 	List<IAufenthalt> gaestMitMomentanemAufenthalt;
 	
+	
+	//Variablen
+	private boolean needReloadAufenthalt=true;
 
 	/**
 	 * 
@@ -366,6 +369,8 @@ public class ControllerCheckIn implements IControllerCheckIn {
 					pfand, pfandnummer);
 			modelReservierung.setBearbeitet(true);
 			modelReservierung.save(getAktuelleReservierung());
+			
+			needReloadAufenthalt=true;
 		
 	}
 
@@ -379,7 +384,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	
 	public List<IAufenthalt> getAufenthalte() throws DatabaseException, EmptyParameterException
 	{
-		if(gaestMitMomentanemAufenthalt.size()>0)
+		if(gaestMitMomentanemAufenthalt.size()>0&&needReloadAufenthalt==false)
 			return gaestMitMomentanemAufenthalt;
 		else
 		{
@@ -390,9 +395,11 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	
 	public List<IGast> getGaesteVonAuftenhalt() throws DatabaseException, EmptyParameterException
 	{
-		if(gaestMitMomentanemAufenthalt.size()<1)
+		if(gaestMitMomentanemAufenthalt.size()<1||needReloadAufenthalt==true)
 		{
+			gaestMitMomentanemAufenthalt.clear();
 			getAufenthalte();
+			needReloadAufenthalt=false;
 		}
 		List<IGast> gaest=new Vector<IGast>();
 		for (IAufenthalt aufenthalt : gaestMitMomentanemAufenthalt) {

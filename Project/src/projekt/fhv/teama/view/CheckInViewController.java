@@ -1,9 +1,7 @@
 package projekt.fhv.teama.view;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +10,7 @@ import java.util.Vector;
 import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.collections.adapter.ListAdapter;
+import org.apache.pivot.serialization.SerializationException;
 import org.apache.pivot.util.CalendarDate;
 import org.apache.pivot.wtk.Action;
 import org.apache.pivot.wtk.Alert;
@@ -25,25 +24,24 @@ import org.apache.pivot.wtk.Dialog;
 import org.apache.pivot.wtk.ListButton;
 import org.apache.pivot.wtk.ListButtonSelectionListener;
 import org.apache.pivot.wtk.ListView;
-import org.apache.pivot.wtk.ListViewItemListener;
 import org.apache.pivot.wtk.ListViewItemStateListener;
 import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Span;
-
-import com.kitfox.svg.animation.parser.ParseException;
 
 import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.personen.Adresse;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.exception.WrongParameterException;
@@ -295,7 +293,10 @@ public class CheckInViewController implements ButtonPressListener {
 				viewMain.checkInForm04.setVisible(true);
 				try {
 					initializeSummaryWindow();
+					checkFormOnEmptyFields ();
 				} catch (NotContainExeption e) {
+					e.printStackTrace();
+				} catch (SerializationException e) {
 					e.printStackTrace();
 				}
 			}
@@ -640,60 +641,185 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
-	public void createStay() throws java.text.ParseException, FokusException {
-		IGast guest = controllerCheckIn.getGast();
-		String lastName = viewMain.smLBLastName.getText();
-		String firstName = viewMain.smLBFirstName.getText();
+	public int checkFormOnEmptyFields () throws SerializationException {
+//		String lastName = viewMain.smLBLastName.getText();
+//		String firstName = viewMain.smLBFirstName.getText();
+//		String street = viewMain.smLBStreet.getText();
+//		String zip = viewMain.smLBZip.getText();
+//		String city = viewMain.smLBZCountry.getText();
+//		String countryDescription = viewMain.smLBZCountry.getText();
 		char gender = ' ';
-
 		if (viewMain.smLBGender.getText().equalsIgnoreCase("female")) {
-			gender = 'F';
+			gender = 'w';
 		} else {
-			gender = 'M';
+			gender = 'm';
+		}
+//		String phone = viewMain.smLBPhone.getText();
+//		String mail = viewMain.smLBMail.getText();
+//		String account = viewMain.smLBAccountNr.getText();
+//		String blz = viewMain.smLBBankCodeNr.getText();
+//		String IBAN = viewMain.smLBIban.getText();
+//		String BIC = viewMain.smLBBic.getText();
+//		String arrival = viewMain.smLBArrival.getText();
+//		String departure = viewMain.smLBDeparture.getText();
+		
+		int count = 0;
+		
+		List<Component> components = new Vector<Component>();
+		components.add(viewMain.smLBLastName);
+		components.add(viewMain.smLBFirstName);
+		components.add(viewMain.smLBStreet);
+		components.add(viewMain.smLBZip);
+		components.add(viewMain.smLBZCountry);
+		components.add(viewMain.smLBPhone);
+		components.add(viewMain.smLBMail);
+		components.add(viewMain.smLBAccountNr);
+		components.add(viewMain.smLBIban);
+		components.add(viewMain.smLBBic);
+		components.add(viewMain.smLBArrival);
+		components.add(viewMain.smLBDeparture);
+		components.add(viewMain);
+		
+//		if (lastName.equals(new String())) {
+//			viewMain.smLBLastName.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (firstName.equals(new String())) {
+//			viewMain.smLBFirstName.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (street.equals(new String())) {
+//			viewMain.smLBStreet.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (zip.equals(new String())) {
+//			viewMain.smLBZip.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (city.equals(new String())) {
+//			viewMain.smLBCity.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (countryDescription.equals(new String())) {
+//			viewMain.smLBZCountry.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (gender == ' ') {
+//			viewMain.smLBGender.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (phone.equals(new String())) {
+//			viewMain.smLBPhone.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (mail.equals(new String())) {
+//			viewMain.smLBMail.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (account.equals(new String())) {
+//			viewMain.smLBAccountNr.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (blz.equals(new String())) {
+//			viewMain.smLBBankCodeNr.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (IBAN.equals(new String())) {
+//			viewMain.smLBIban.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (BIC.equals(new String())) {
+//			viewMain.smLBBic.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (arrival.equals(new String())) {
+//			viewMain.smLBArrival.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+//		if (departure.equals(new String())) {
+//			viewMain.smLBDeparture.setStyles("{backgroundColor:'#f7a600'}");
+//			count++;
+//		}
+		return count; 
+	}
+	
+	
+	public void createStay() throws java.text.ParseException, FokusException, DatabaseException, EmptyParameterException, NotContainExeption, InvalidCountryException, WrongParameterException {
+		
+		controllerCheckIn.setVorname(viewMain.smLBFirstName.getText());
+		controllerCheckIn.setNachname(viewMain.smLBLastName.getText());
+		controllerCheckIn.setKontodaten(viewMain.smLBAccountNr.getText(), viewMain.smLBBankCodeNr.getText(), viewMain.smLBIban.getText(), viewMain.smLBBic.getText());
+		controllerCheckIn.setTelefonnummer(viewMain.smLBPhone.getText());
+		controllerCheckIn.setEmail(viewMain.smLBMail.getText());
+		
+		char gender = ' ';
+		if (viewMain.smLBGender.getText().equalsIgnoreCase("female")) {
+			gender = 'w';
+		} else {
+			gender = 'm';
 		}
 		
+		controllerCheckIn.setGeschlecht(gender);
+
+//		String arrival = viewMain.smLBArrival.getText();
+//		String departure = viewMain.smLBDeparture.getText();
+				
 		java.sql.Date birthdate = MyLittleDate.getDate(viewMain.cbBirthdate.getSelectedDate().year, viewMain.cbBirthdate.getSelectedDate().month, viewMain.cbBirthdate.getSelectedDate().day);
+		if (birthdate != null) {
+			controllerCheckIn.setGeburtsdatum(birthdate);
+		}
 		
 		String street = viewMain.smLBStreet.getText();
 		String zip = viewMain.smLBZip.getText();
 		String city = viewMain.smLBZCountry.getText();
-		String country = viewMain.smLBZCountry.getText();
-//		
-//		if (isNewAdress(street, zip, city, country)) {
-//			
-//		}
+		String countryDescription = viewMain.smLBZCountry.getText();
 		
-		
-		
-		
-		
-		controllerCheckIn.setGeburtsdatum(birthdate);
-		
-		
-		
-		
+		ILand country = controllerCheckIn.getLandByBezeichnung(countryDescription);
+		if (country == null) {
+			throw new InvalidCountryException(); 
+		}
+		if (isNewAdress(street, zip, city, country)) {
+			controllerCheckIn.addAdresse(new Adresse(street, zip, city, country));
+		}
 	}
 
 	class CreateAufenthaltListener implements ButtonPressListener {
 		public void buttonPressed(Button arg0) {
 			try {
-				createStay();
-				controllerCheckIn.clearLists();
+				int errors = checkFormOnEmptyFields();
+				if (errors > 0) {
+					System.out.println("asdf");
+				} else {
+					createStay();
+					controllerCheckIn.clearLists();
+				}
 			} catch (java.text.ParseException e) {
 				e.printStackTrace();
 			} catch (FokusException e) {
 				e.printStackTrace();
+			} catch (DatabaseException e) {
+				e.printStackTrace();
+			} catch (EmptyParameterException e) {
+				e.printStackTrace();
+			} catch (NotContainExeption e) {
+				e.printStackTrace();
+			} catch (InvalidCountryException e) {
+				e.printStackTrace();
+			} catch (WrongParameterException e) {
+				e.printStackTrace();
+			} catch (SerializationException e) {
+				e.printStackTrace();
 			}
-
 		}
 	}
 	
-	public boolean isNewAdress (String street, String zip, String city, String country) throws FokusException {
+	public boolean isNewAdress (String street, String zip, String city, ILand country) throws FokusException, DatabaseException, EmptyParameterException, NotContainExeption {
 		
 		for (IAdresse adress : controllerCheckIn.getGast().getAdressen()) {
-			//if (adress.getStrasse() .equalsIgnoreCase(street) && )
+			if (adress.getStrasse() .equalsIgnoreCase(street) && adress.getPlz().equalsIgnoreCase(zip) && adress.getOrt().equalsIgnoreCase(city) && adress.getLand().equals(country)){
+				return true;
+			}
 		}
 		return false;
-		
 	}
 }

@@ -47,16 +47,10 @@ public class ViewMain extends Window implements Application, Bindable {
 	private Window window = null;
 	
 	/* Labels */
-	@BXML Label lbReservationDetails;	
-	@BXML Label lbLoginShow;
-	@BXML Label smLBLastName; 
-	@BXML Label smLBFirstName; 
-	@BXML Label smLBGender; 
-	@BXML Label smLBBirthdate;
-	@BXML Label smLBStreet;
-	@BXML Label smLBZip;
-	@BXML Label smLBCity;
-	@BXML Label smLBZCountry;
+	@BXML Label lbReservationDetails;	@BXML Label lbLoginShow;	@BXML Label smLBLastName;	@BXML Label smLBFirstName;	@BXML Label smLBGender; 
+	@BXML Label smLBBirthdate;	@BXML Label smLBStreet;	@BXML Label smLBZip;	@BXML Label smLBCity;	@BXML Label smLBZCountry;	@BXML Label smLBPhone;
+	@BXML Label smLBMail;	@BXML Label smLBAccountNr;	@BXML Label smLBBankCodeNr; @BXML Label smLBIban; @BXML Label smLBBic; @BXML Label smLBArrival;
+	@BXML Label smLBDeparture;
 	
 	/* Border Container = Forms */
 	Border reservationForm01;Border checkInForm01;Border checkInForm02;Border checkInForm03;Border checkInForm04;
