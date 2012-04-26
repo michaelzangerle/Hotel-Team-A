@@ -26,7 +26,7 @@
 		 <Border  styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4}">
 				 <ScrollPane preferredWidth="240" preferredHeight="110"  horizontalScrollBarPolicy="fill"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
-                    <ListView bxml:id="lvAssignedRooms" selectMode="multi" checkmarksEnabled="true" cursor="hand"  styles="$styles.livRoomAssign"  />
+                    <ListView bxml:id="lvAssignedRooms" selectMode="single" checkmarksEnabled="true" cursor="hand"  styles="$styles.livRoomAssign"  />
                 	</ScrollPane>
                 	</BoxPane>
             </Border>

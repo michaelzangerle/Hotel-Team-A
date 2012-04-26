@@ -289,6 +289,11 @@ public class CheckInViewController implements ButtonPressListener {
 				viewMain.checkInForm02.setVisible(false);
 				viewMain.checkInForm03.setVisible(false);
 				viewMain.checkInForm04.setVisible(true);
+				try {
+					initializeSummaryWindow();
+				} catch (NotContainExeption e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	};
@@ -323,6 +328,12 @@ public class CheckInViewController implements ButtonPressListener {
 
 		}
 	};
+
+	public void initializeSummaryWindow() throws NotContainExeption {
+		Wrapper wrapper = new Wrapper();
+		viewMain.smLVFinalRooms.setListData(wrapper.getZimmerListAdapter(controllerCheckIn.getAusgewählteZimmer()));
+		viewMain.smLVHandedKeys.setListData(wrapper.getKeyListAdapter(controllerCheckIn.getAusgewählteZimmer()));
+	}
 
 	class GuestChangedListener implements ListButtonSelectionListener {
 

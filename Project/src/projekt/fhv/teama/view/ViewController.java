@@ -22,6 +22,7 @@ import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Span;
 
 import projekt.fhv.teama.classes.personen.IAdresse;
+import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.controller.exeption.LoginInExeption;
@@ -52,7 +53,9 @@ public class ViewController implements Application{
 	public TestDaten testDaten = new TestDaten();
 	private ControllerCheckIn controllerCheckIn;
 	private Wrapper wrapper;
-	private List<IReservierung> reservations;
+	List<IReservierung> reservationList;
+	List<IReservierung> arrivingTodayList;
+	List<IGast> guestList;
 	
 	@Override
 	public void resume() throws Exception {
@@ -164,40 +167,53 @@ public class ViewController implements Application{
 		viewMain.open(disp);
 		//viewMain.getlbLoginShow().setText(username);
 		wrapper = new Wrapper();
-		initializeMainView();
+		try {
+			initializeMainView();
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+		}
 		addMainEventListener();
 	}
 	
 	
-	private void initializeMainView() {
+	private void initializeMainView() throws DatabaseException {
 		controllerCheckIn = new ControllerCheckIn(new ModelReservierung(), new ModelAufenthalt(), 
 				new ModelGast(), new ModelTeilreservierung(), new ModelKategorie(), 
 				new ModelKontodaten(), new ModelPfandTyp(), new ModelZimmer(), new ModelZimmerstatus(), 
 				new ModelAdresse(), new ModelLand(), new ModelStatusentwicklung());
 		
 		try {
-			reservations = controllerCheckIn.getAllReservierungen();
+			reservationList = controllerCheckIn.getAllReservierungen();
+			arrivingTodayList = controllerCheckIn.getCheckInReservierungen();
+			//guestList = controllerCheckIn.get
 		} catch (DatabaseException e) {
 			e.printStackTrace();
 		}
 
-		if (reservations.equals(null)) {
+		if (reservationList.size() == 0) {
 			viewMain.getLvReservationSearch().setListData("Currently no reservations available");
 		} else {
-			viewMain.getLvReservationSearch().setListData(wrapper.getReservationListAdapter(reservations));
+			viewMain.getLvReservationSearch().setListData(wrapper.getReservationListAdapter(reservationList));
 		}
 		setSelectedReservation(1);
+		
+		if (arrivingTodayList.size() == 0) {
+			viewMain.lvArrivingSearch.setListData("No entry found");
+		} else {
+			viewMain.lvArrivingSearch.setListData(wrapper.getReservationListAdapter(arrivingTodayList));
+		}
 	}
 
-	public void setReservationFocus (int ID) {
-		for (IReservierung reservation : reservations) {
+	public void setReservationFocus (int ID) throws DatabaseException {
+		for (IReservierung reservation : reservationList) {
 			if (reservation.getID() == ID) {
 				controllerCheckIn.setAktuelleReservierung(reservation);
+				break;
 			}
 		}
 	}
 	
-	public void setSelectedReservation(int reservierungsnummer) {
+	public void setSelectedReservation(int reservierungsnummer) throws DatabaseException {
 		setReservationFocus(reservierungsnummer);
 		IReservierung curReservation = null;
 		try {
@@ -238,7 +254,11 @@ public class ViewController implements Application{
 			String[] split = text.split(" ", 3);
 			int reservierungsnummer = Integer.valueOf(split[1]);
 			
-			setSelectedReservation(reservierungsnummer);
+			try {
+				setSelectedReservation(reservierungsnummer);
+			} catch (DatabaseException e) {
+				e.printStackTrace();
+			}
 		}
 
 		@Override

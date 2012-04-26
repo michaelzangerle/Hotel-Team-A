@@ -82,6 +82,17 @@ public class Wrapper {
 		return new ListAdapter<String>(curRooms);
 	}
 	
+	public ListAdapter<String> getKeyListAdapter(List<IZimmer> rooms) {
+		LinkedList<String> keyNumber = new LinkedList<String>();
+		RoomNumberComparator roomNumberComparator = new RoomNumberComparator();
+		Collections.sort(rooms, roomNumberComparator);
+
+		for (IZimmer room : rooms) {
+			keyNumber.add("Key No. " + room.getNummer());
+		}
+		return new ListAdapter<String>(keyNumber);
+	}
+	
 	public String getZimmer (IZimmer zimmer){
 		return zimmer.getNummer() + " | "
 				+ zimmer.getKategorie().getBezeichnung();

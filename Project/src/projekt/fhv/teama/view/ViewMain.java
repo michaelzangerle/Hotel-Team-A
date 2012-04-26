@@ -64,7 +64,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	/* ListViews, ListButtons and CalendarButtons */
 	ListView lvAssignedRooms; ListView lvBookedRoomCategories; ListView lvReservationSearch; ListView lvArrivingSearch; ListView lvGuestSearch;
 	ListButton lbtnGuests; ListButton lbtnAddresses; ListButton lbtnDepositType; CalendarButton cbBirthdate; CalendarButton cbArrival;
-	CalendarButton cbDeparture;
+	CalendarButton cbDeparture; ListView smLVFinalRooms; ListView smLVHandedKeys;
 
 	/* TextInputs, RadioButtons and Checkboxes */
 	TextInput tiLastName; TextInput tiFirstName; ButtonGroup bgGender; RadioButton rbMale; RadioButton rbFemale;
@@ -152,6 +152,8 @@ public class ViewMain extends Window implements Application, Bindable {
 		lvGuestSearch = (ListView)arg0.get("lvGuestSearch");
 		lvAssignedRooms = (ListView)arg0.get("lvAssignedRooms");
 		lvBookedRoomCategories = (ListView)arg0.get("lvBookedRoomCategories");
+		smLVFinalRooms = (ListView)arg0.get("smLVFinalRooms");
+		smLVHandedKeys = (ListView)arg0.get("smLVHandedKeys");
 		
 		lbtnGuests = (ListButton)arg0.get("lbtnGuests");
 		lbtnAddresses = (ListButton)arg0.get("lbtnAddresses");
