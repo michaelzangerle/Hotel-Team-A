@@ -46,9 +46,9 @@ import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.view.support.BlockingDialog;
 import projekt.fhv.teama.view.tests.TestDaten;
 
-public class ViewController implements Application{
-    private ViewLogin viewLogin; 
-    private ViewMain viewMain;
+public class ViewController implements Application {
+	private ViewLogin viewLogin;
+	private ViewMain viewMain;
 	private Display disp;
 	public TestDaten testDaten = new TestDaten();
 	private ControllerCheckIn controllerCheckIn;
@@ -56,10 +56,10 @@ public class ViewController implements Application{
 	List<IReservierung> reservationList;
 	List<IReservierung> arrivingTodayList;
 	List<IGast> guestList;
-	
+
 	@Override
 	public void resume() throws Exception {
-		
+
 	}
 
 	@Override
@@ -67,31 +67,33 @@ public class ViewController implements Application{
 		return false;
 	}
 
-    /**
-    * The Application startup method is where to put your code for rendering UI.
-    * The startup method requires the throws Exception to prevent an error
-    * when trying to read to the bxml document. This handles the Serialization
-    * Exception thrown if file not found.
-    */
-    @Override
-    public void startup(Display display, Map<String, String> properties)
-        throws Exception {
+	/**
+	 * The Application startup method is where to put your code for rendering
+	 * UI. The startup method requires the throws Exception to prevent an error
+	 * when trying to read to the bxml document. This handles the Serialization
+	 * Exception thrown if file not found.
+	 */
+	@Override
+	public void startup(Display display, Map<String, String> properties)
+			throws Exception {
 
-        BXMLSerializer bS = new BXMLSerializer();
-        disp = display;
-        
-        viewLogin = (ViewLogin) bS.readObject(getClass().getResource("ViewLogin.bxml"));
-        viewMain = (ViewMain) bS.readObject(getClass().getResource("ViewMain.bxml"));
-        viewMain.setMaximized(true);
-        viewLogin.open(disp);
-        
-        addLoginEventListener();
-    } 
+		BXMLSerializer bS = new BXMLSerializer();
+		disp = display;
+
+		viewLogin = (ViewLogin) bS.readObject(getClass().getResource(
+				"ViewLogin.bxml"));
+		viewMain = (ViewMain) bS.readObject(getClass().getResource(
+				"ViewMain.bxml"));
+		viewMain.setMaximized(true);
+		viewLogin.open(disp);
+
+		addLoginEventListener();
+	}
 
 	@Override
 	public void suspend() throws Exception {
 	}
-    
+
 	private void addLoginEventListener() {
 		viewLogin.setPushBLoginListener(new LoginListener());
 	}
@@ -99,73 +101,61 @@ public class ViewController implements Application{
 	private void addMainEventListener() {
 		viewMain.setLvReservationSearchListener(new ReservationListListener());
 		viewMain.setlvArrivingSearchListener(new ReservationListListener());
-		viewMain.setrf1PBtnCheckInListener(new CheckInViewController(viewMain, controllerCheckIn));
+		viewMain.setrf1PBtnCheckInListener(new CheckInViewController(viewMain,
+				controllerCheckIn, this));
 		viewMain.setlvGuestSearchListener(new GuestListListener());
 	}
-	
+
 	class LoginListener implements ButtonPressListener {
 		private ControllerLogin controllerLogin;
 		private String username;
 		private String password;
 		private IMitarbeiter ma;
-		
+
 		@Override
 		public void buttonPressed(Button arg0) {
 			this.username = viewLogin.getTfUsername().getText();
 			this.password = viewLogin.getTfPassword().getText();
 
 			if (username.equals("") || password.equals("")) {
-				
+
 				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(MessageType.WARNING, "Please enter your username and password",new ArrayList<String>("OK")));
+				bd.setContent(new Alert(MessageType.WARNING,
+						"Please enter your username and password",
+						new ArrayList<String>("OK")));
 				Dialog erg = bd.open(disp);
 				return;
-			} 
-			
-//			SHSActivityIndicator indicator = new SHSActivityIndicator(viewLogin);
-//			Thread t = new Thread(indicator);
-//			t.start();
-//			
-//			synchronized(this) {
-//				Thread t1 = new Thread(this);
-//				t1.start();
-//			}
-			
+			}
+
+			// SHSActivityIndicator indicator = new
+			// SHSActivityIndicator(viewLogin);
+			// Thread t = new Thread(indicator);
+			// t.start();
+			//			
+			// synchronized(this) {
+			// Thread t1 = new Thread(this);
+			// t1.start();
+			// }
+
 			try {
-				ma =  controllerLogin.checkLogin(username, password);
+				ma = controllerLogin.checkLogin(username, password);
 				startMainView(ma.getNummer());
 			} catch (DatabaseException e) {
 				e.printStackTrace();
 			} catch (LoginInExeption e) {
 				e.printStackTrace();
-			}	
-			
+			}
+
 		}
-		
+
 		public LoginListener() {
 			controllerLogin = new ControllerLogin(new ModelMitarbeiter());
 		}
-		
-//		@Override
-//		public void run() {
-//			try {
-//				ma =  controllerLogin.checkLogin(username, password);	
-//				this.notifyAll();
-//			} catch (DatabaseException e) {
-//				BlockingDialog bd = new BlockingDialog();
-//				bd.setContent(new Alert(MessageType.WARNING, "Invalid username or password",new ArrayList<String>("OK")));
-//				Dialog erg = bd.open(disp);
-//				e.printStackTrace();
-//			} catch (LoginInExeption e) {
-//				e.printStackTrace();
-//			}
-//			
-//		}
 	}
 
 	public void startMainView(String username) {
 		viewMain.open(disp);
-		//viewMain.getlbLoginShow().setText(username);
+		// viewMain.getlbLoginShow().setText(username);
 		wrapper = new Wrapper();
 		try {
 			initializeMainView();
@@ -174,37 +164,44 @@ public class ViewController implements Application{
 		}
 		addMainEventListener();
 	}
-	
-	
-	private void initializeMainView() throws DatabaseException {
-		controllerCheckIn = new ControllerCheckIn(new ModelReservierung(), new ModelAufenthalt(), 
-				new ModelGast(), new ModelTeilreservierung(), new ModelKategorie(), 
-				new ModelKontodaten(), new ModelPfandTyp(), new ModelZimmer(), new ModelZimmerstatus(), 
-				new ModelAdresse(), new ModelLand(), new ModelStatusentwicklung());
-		
+
+	public void initializeMainView() throws DatabaseException {
+		if (controllerCheckIn == null) {
+			controllerCheckIn = new ControllerCheckIn(new ModelReservierung(),
+					new ModelAufenthalt(), new ModelGast(),
+					new ModelTeilreservierung(), new ModelKategorie(),
+					new ModelKontodaten(), new ModelPfandTyp(),
+					new ModelZimmer(), new ModelZimmerstatus(),
+					new ModelAdresse(), new ModelLand(),
+					new ModelStatusentwicklung());
+		}
+
 		try {
 			reservationList = controllerCheckIn.getAllReservierungen();
 			arrivingTodayList = controllerCheckIn.getCheckInReservierungen();
-			//guestList = controllerCheckIn.get
+			// guestList = controllerCheckIn.get
 		} catch (DatabaseException e) {
 			e.printStackTrace();
 		}
 
 		if (reservationList.size() == 0) {
-			viewMain.getLvReservationSearch().setListData("Currently no reservations available");
+			viewMain.getLvReservationSearch().setListData(
+					"Currently no reservations available");
 		} else {
-			viewMain.getLvReservationSearch().setListData(wrapper.getReservationListAdapter(reservationList));
+			viewMain.getLvReservationSearch().setListData(
+					wrapper.getReservationListAdapter(reservationList));
 		}
 		setSelectedReservation(1);
-		
+
 		if (arrivingTodayList.size() == 0) {
 			viewMain.lvArrivingSearch.setListData("No entry found");
 		} else {
-			viewMain.lvArrivingSearch.setListData(wrapper.getReservationListAdapter(arrivingTodayList));
+			viewMain.lvArrivingSearch.setListData(wrapper
+					.getReservationListAdapter(arrivingTodayList));
 		}
 	}
 
-	public void setReservationFocus (int ID) throws DatabaseException {
+	public void setReservationFocus(int ID) throws DatabaseException {
 		for (IReservierung reservation : reservationList) {
 			if (reservation.getID() == ID) {
 				controllerCheckIn.setAktuelleReservierung(reservation);
@@ -212,8 +209,9 @@ public class ViewController implements Application{
 			}
 		}
 	}
-	
-	public void setSelectedReservation(int reservierungsnummer) throws DatabaseException {
+
+	public void setSelectedReservation(int reservierungsnummer)
+			throws DatabaseException {
 		setReservationFocus(reservierungsnummer);
 		IReservierung curReservation = null;
 		try {
@@ -222,12 +220,16 @@ public class ViewController implements Application{
 			e.printStackTrace();
 		}
 		viewMain.rf1LBResNr.setText(String.valueOf(curReservation.getID()));
-		viewMain.rf1TIName.setText(curReservation.getPerson().getNachname().toUpperCase() + " " + curReservation.getPerson().getVorname());
+		viewMain.rf1TIName.setText(curReservation.getPerson().getNachname()
+				.toUpperCase()
+				+ " " + curReservation.getPerson().getVorname());
 		viewMain.rf1TIEMail.setText(curReservation.getPerson().getEmail());
-		viewMain.rf1TIPhone.setText(curReservation.getPerson().getTelefonnummer());
-		
-		List<IAdresse> adressen = new Vector<IAdresse>(curReservation.getPerson().getAdressen());
-		
+		viewMain.rf1TIPhone.setText(curReservation.getPerson()
+				.getTelefonnummer());
+
+		List<IAdresse> adressen = new Vector<IAdresse>(curReservation
+				.getPerson().getAdressen());
+
 		if (!adressen.equals(null)) {
 			IAdresse adresse = adressen.get(0);
 			viewMain.rf1TIStreet.setText(adresse.getStrasse());
@@ -235,25 +237,27 @@ public class ViewController implements Application{
 			viewMain.rfTICity.setText(adresse.getOrt());
 			viewMain.rfTIZip.setText(adresse.getPlz());
 		}
-		
-		Date arrival = curReservation.getVon(); 
+
+		Date arrival = curReservation.getVon();
 		Date departure = curReservation.getBis();
-		
+
 		CalendarDate d1 = CalendarDate.decode(arrival.toString());
 		CalendarDate d2 = CalendarDate.decode(departure.toString());
-		
+
 		viewMain.rf1CBArrival.setSelectedDate(d1);
 		viewMain.rf1CBDeparture.setSelectedDate(d2);
 	}
-	
-	class ReservationListListener implements ListViewSelectionListener{
+
+	class ReservationListListener implements ListViewSelectionListener {
 
 		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
 			String text = (String) listView.getSelectedItem();
+			if(text==null)
+				return;
 			String[] split = text.split(" ", 3);
 			int reservierungsnummer = Integer.valueOf(split[1]);
-			
+
 			try {
 				setSelectedReservation(reservierungsnummer);
 			} catch (DatabaseException e) {
@@ -273,13 +277,13 @@ public class ViewController implements Application{
 		public void selectedRangesChanged(ListView listView, Sequence<Span> arg1) {
 		}
 	}
-	
+
 	class GuestListListener implements ListViewSelectionListener {
 
 		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
 			String text = (String) listView.getSelectedItem();
-			
+
 		}
 
 		@Override
@@ -293,6 +297,6 @@ public class ViewController implements Application{
 		@Override
 		public void selectedRangesChanged(ListView listView, Sequence<Span> arg1) {
 		}
-		
+
 	}
 }

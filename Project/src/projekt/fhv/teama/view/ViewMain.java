@@ -2,16 +2,18 @@ package projekt.fhv.teama.view;
 
 import java.awt.Dimension;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Vector;
 
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.beans.NamespaceBinding;
-import org.apache.pivot.collections.ArrayList;
-import org.apache.pivot.collections.List;
-import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
+import org.apache.pivot.collections.Map;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Border;
 import org.apache.pivot.wtk.BoxPane;
@@ -48,9 +50,9 @@ public class ViewMain extends Window implements Application, Bindable {
 	
 	/* Labels */
 	@BXML Label lbReservationDetails;	@BXML Label lbLoginShow;	@BXML Label smLBLastName;	@BXML Label smLBFirstName;	@BXML Label smLBGender; 
-	@BXML Label smLBBirthdate;	@BXML Label smLBStreet;	@BXML Label smLBZip;	@BXML Label smLBCity;	@BXML Label smLBZCountry;	@BXML Label smLBPhone;
+	@BXML Label smLBBirthdate;	@BXML Label smLBStreet;	@BXML Label smLBZip;	@BXML Label smLBCity;	@BXML Label smLBCountry;	@BXML Label smLBPhone;
 	@BXML Label smLBMail;	@BXML Label smLBAccountNr;	@BXML Label smLBBankCodeNr; @BXML Label smLBIban; @BXML Label smLBBic; @BXML Label smLBArrival;
-	@BXML Label smLBDeparture; @BXML Label smLBDepositType; @BXML Label smLBDepositNr;
+	@BXML Label smLBDeparture; @BXML Label smLBDepositType; @BXML Label smLBDepositNr; @BXML Label smLBTotalPrice;
 	
 	/* Border Container = Forms */
 	Border reservationForm01;Border checkInForm01;Border checkInForm02;Border checkInForm03;Border checkInForm04;
@@ -59,9 +61,17 @@ public class ViewMain extends Window implements Application, Bindable {
 	/* Buttons */
     PushButton rf1PBtnCheckIn;;
 		
+    
+    TextInput tiLastName; TextInput tiFirstName; ButtonGroup bgGender; RadioButton rbMale; RadioButton rbFemale;
+	TextInput tiStreet; TextInput tiCity; TextInput tiCountry; TextInput tiZip; TextInput tiPhone; TextInput tiMail;
+	TextInput tiAccountNr; TextInput tiBankCodeNr; TextInput tiIban; TextInput tiBic; TextInput tiDepositNumber;
+	
+	Checkbox cbxShowAllRooms;
+	
 	PushButton cf1PBtnNext;	PushButton cf2PBtnNext;	PushButton cf3PBtnNext;	PushButton cf4PBtnFinish; PushButton cf1PBtnBack;
 	PushButton cf2PBtnBack; PushButton cf3PBtnBack; PushButton cf4PBtnBack;	PushButton cf1PBtnCancel; PushButton cf2PBtnCancel;
 	PushButton cf3PBtnCancel; PushButton cf4PBtnCancel;
+
 	
 	/* ListViews, ListButtons and CalendarButtons */
 	ListView lvAssignedRooms; ListView lvBookedRoomCategories; ListView lvReservationSearch; ListView lvArrivingSearch; ListView lvGuestSearch;
@@ -69,11 +79,9 @@ public class ViewMain extends Window implements Application, Bindable {
 	CalendarButton cbDeparture; ListView smLVFinalRooms; ListView smLVHandedKeys;
 
 	/* TextInputs, RadioButtons and Checkboxes */
-	TextInput tiLastName; TextInput tiFirstName; ButtonGroup bgGender; RadioButton rbMale; RadioButton rbFemale;
-	TextInput tiStreet; TextInput tiCity; TextInput tiCountry; TextInput tiZip; TextInput tiPhone; TextInput tiMail;
-	TextInput tiAccountNr; TextInput tiBankCodeNr; TextInput tiIban; TextInput tiBic; TextInput tiDepositNumber;
+	
 	Label rf1LBResNr; TextInput rf1TIName;TextInput rf1TIStreet;TextInput rfTICity;TextInput rf1TICountry;TextInput rfTIZip;
-	TextInput rf1TIPhone;TextInput rf1TIEMail;CalendarButton rf1CBArrival;CalendarButton rf1CBDeparture; Checkbox cbxShowAllRooms;
+	TextInput rf1TIPhone;TextInput rf1TIEMail;CalendarButton rf1CBArrival;CalendarButton rf1CBDeparture; 
 
 	 
 	/* Labels */
@@ -263,6 +271,45 @@ public class ViewMain extends Window implements Application, Bindable {
 				
 		/** Ende - Zustände zum Programmstart initialisieren **************************/
 	}
+	
+	public List<TextInput> getAllCheckInTextFields () {
+		List<TextInput> components = (List<TextInput>) new LinkedList<TextInput>();
+		components.add(tiFirstName);
+		components.add(tiLastName);
+		components.add(tiAccountNr);
+		components.add(tiBankCodeNr);
+		components.add(tiBic);
+		components.add(tiCity);
+		components.add(tiCountry);
+		components.add(tiDepositNumber);
+		components.add(tiIban);
+		components.add(tiMail);
+		components.add(tiPhone);
+		components.add(tiStreet);
+		components.add(tiZip);
+		return components;
+	}
+	
+	public List<Label> getAllCheckInLabels () {
+		List<Label> components = new Vector<Label>();
+		components.add(smLBLastName);
+		components.add(smLBFirstName);
+		components.add(smLBStreet);
+		components.add(smLBZip);
+		components.add(smLBCountry);
+		components.add(smLBPhone);
+		components.add(smLBMail);
+		components.add(smLBAccountNr);
+		components.add(smLBIban);
+		components.add(smLBBic);
+		components.add(smLBArrival);
+		components.add(smLBDeparture);
+		components.add(smLBDepositType);
+		components.add(smLBDepositNr);
+		return components;
+	}
+	
+
 
 	public Label getlbLoginShow() {
 		return lbLoginShow;

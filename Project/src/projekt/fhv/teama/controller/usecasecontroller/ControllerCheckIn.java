@@ -429,13 +429,14 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		}
 	}
 	
-	public void addZimmer(IZimmer z) 
+	public boolean addZimmer(IZimmer z) 
 	{
 		if(!ausgewaehltezimmer.contains(z))
 		{
 			ausgewaehltezimmer.add(z);
+			return true;
 		}
-
+		return false;
 	}
 	public void remove(IZimmer z)
 	{
@@ -497,7 +498,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		IReservierung res=getAktuelleReservierung();
 		if(res!=null)
 		{
-			long days= bis.getTime()-von.getTime();
+			long days= (bis.getTime()-von.getTime()) / (1000 * 60 * 60 * 24);
 			float preis=0;
 		for (IZimmer z : ausgewaehltezimmer) {
 			preis+=getZimmerpreisProKategorie(z.getKategorie()).getPreis()*days;

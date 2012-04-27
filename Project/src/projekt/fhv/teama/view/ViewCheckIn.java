@@ -1,9 +1,11 @@
 package projekt.fhv.teama.view;
 
 import java.net.URL;
+import java.util.LinkedList;
 
 import org.apache.pivot.beans.BeanAdapter;
 import org.apache.pivot.beans.Bindable;
+import org.apache.pivot.collections.List;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.*;
@@ -16,7 +18,7 @@ import projekt.fhv.teama.view.support.IMAccount;
 public class ViewCheckIn extends Border implements Bindable {
 	    Form chf1;Form chf2;Form chf3;Form chf4;Form chf5;Form chf6;
 	    PushButton clearButton = null;
-	 
+		
 	 
 	    @Override
 		public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
@@ -38,4 +40,6 @@ public class ViewCheckIn extends Border implements Bindable {
 	    	chf5.clear();
 	    	chf6.clear();	    	
 	    }
+	    
+
 }

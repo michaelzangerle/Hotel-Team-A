@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
 import org.apache.pivot.collections.adapter.ListAdapter;
 
@@ -15,6 +16,8 @@ import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
+import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
 
 public class Wrapper {
 	ListAdapter<String> listAdapter;
@@ -77,7 +80,7 @@ public class Wrapper {
 
 		for (IZimmer room : roomsAvailable) {
 			curRooms.add(room.getNummer() + " | "
-					+ room.getKategorie().getBezeichnung());
+					+ room.getKategorie().getBezeichnung()+ " | € " +new Vector<IZimmerpreis>(room.getKategorie().getZimmerpreise()).get(0).getPreis());
 		}
 		return new ListAdapter<String>(curRooms);
 	}
@@ -95,7 +98,7 @@ public class Wrapper {
 	
 	public String getZimmer (IZimmer zimmer){
 		return zimmer.getNummer() + " | "
-				+ zimmer.getKategorie().getBezeichnung();
+				+ zimmer.getKategorie().getBezeichnung()+ " | € " +new Vector<IZimmerpreis>(zimmer.getKategorie().getZimmerpreise()).get(0).getPreis();
 	}
 
 	public ListAdapter<String> getPfandTypListAdapter(List<IPfandtyp> pfandtypen) {

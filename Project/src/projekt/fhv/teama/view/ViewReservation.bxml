@@ -1,0 +1,3 @@
+<view:ViewReservation xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" >
+<bxml:include src="inc.reservationForm01.bxml"/>
+</view:ViewReservation>

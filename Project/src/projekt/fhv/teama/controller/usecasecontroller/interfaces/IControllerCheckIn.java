@@ -272,7 +272,7 @@ public interface IControllerCheckIn {
 	 * @param z
 	 * @throws WrongParameterException
 	 */
-	public void addZimmer(IZimmer z) throws WrongParameterException;
+	public boolean addZimmer(IZimmer z) throws WrongParameterException;
 	
 	/**
 	 * Methode um ein Zimmer von der ausgewählten Zimmerlist zu löschen

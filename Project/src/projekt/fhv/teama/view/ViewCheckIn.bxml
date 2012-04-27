@@ -1,0 +1,6 @@
+<view:ViewCheckIn xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk">
+<bxml:include src="inc.checkInForm01.bxml" />	
+<bxml:include src="inc.checkInForm02.bxml" />
+<bxml:include src="inc.checkInForm03.bxml" />
+<!-- <bxml:include src="inc.checkInForm04.bxml" /> -->
+</view:ViewCheckIn>
