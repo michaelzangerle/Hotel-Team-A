@@ -10,6 +10,7 @@ import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.util.CalendarDate;
+import org.apache.pivot.util.Vote;
 import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Button;
@@ -20,6 +21,8 @@ import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Span;
+import org.apache.pivot.wtk.TabPane;
+import org.apache.pivot.wtk.TabPaneSelectionListener;
 
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
@@ -104,6 +107,7 @@ public class ViewController implements Application {
 		viewMain.setrf1PBtnCheckInListener(new CheckInViewController(viewMain,
 				controllerCheckIn, this));
 		viewMain.setlvGuestSearchListener(new GuestListListener());
+		viewMain.settabPLeftMainListener(new SearchPanelListener());
 	}
 
 	class LoginListener implements ButtonPressListener {
@@ -191,7 +195,7 @@ public class ViewController implements Application {
 			viewMain.getLvReservationSearch().setListData(
 					wrapper.getReservationListAdapter(reservationList));
 		}
-		setSelectedReservation(1);
+		setSelectedReservation(reservationList.get(0).getID());
 
 		if (arrivingTodayList.size() == 0) {
 			viewMain.lvArrivingSearch.setListData("No entry found");
@@ -298,5 +302,24 @@ public class ViewController implements Application {
 		public void selectedRangesChanged(ListView listView, Sequence<Span> arg1) {
 		}
 
+	}
+	
+	class SearchPanelListener implements TabPaneSelectionListener {
+
+		@Override
+		public Vote previewSelectedIndexChange(TabPane arg0, int arg1) {
+			return null;
+		}
+
+		@Override
+		public void selectedIndexChangeVetoed(TabPane arg0, Vote arg1) {
+			
+		}
+
+		@Override
+		public void selectedIndexChanged(TabPane arg0, int arg1) {
+			
+		}
+		
 	}
 }

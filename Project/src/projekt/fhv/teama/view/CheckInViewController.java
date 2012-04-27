@@ -1,5 +1,6 @@
 package projekt.fhv.teama.view;
 
+import java.awt.TextField;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -339,8 +340,6 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	};
 	
-	
-	
 	public void resetCheckInForms() {
 		viewMain.checkInForm01.repaint();
 		viewMain.checkInForm02.repaint();
@@ -359,10 +358,12 @@ public class CheckInViewController implements ButtonPressListener {
 		try {
 			viewController.initializeMainView();
 		} catch (DatabaseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		List<TextInput> components = viewMain.getAllCheckInTextFields();
+		for (TextInput comp : components) {
+			comp.setText("");
+		}
 	}
 
 	public void initializeSummaryWindow() throws NotContainExeption, DatabaseEntryNotFoundException, FokusException, EmptyParameterException {
@@ -498,13 +499,18 @@ public class CheckInViewController implements ButtonPressListener {
 				if (i >= availableRooms.size()) {
 					throw new NotEnoughRoomsException(availableRooms.size() - i);
 				}
-				boolean ok=controllerCheckIn.addZimmer(availableRooms.get(i));
-				
-				if(ok){
-					selectedRooms.add(wrapper.getZimmer(availableRooms.get(i)));
-					viewMain.lvAssignedRooms.setItemChecked(i, true);
-				}
+				controllerCheckIn.addZimmer(availableRooms.get(i));
+				selectedRooms.add(wrapper.getZimmer(availableRooms.get(i)));
+//				if(ok){
+//					
+//					viewMain.lvAssignedRooms.setItemChecked(i, true);
+//				}
 			}
+		}
+		try {
+			showSelectedRooms(controllerCheckIn.getAusgewählteZimmer());
+		} catch (NotContainExeption e) {
+			e.printStackTrace();
 		}
 	}
 

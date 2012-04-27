@@ -34,6 +34,8 @@ import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.Meter;
 import org.apache.pivot.wtk.PushButton;
 import org.apache.pivot.wtk.RadioButton;
+import org.apache.pivot.wtk.TabPane;
+import org.apache.pivot.wtk.TabPaneSelectionListener;
 import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.Window;
 
@@ -57,6 +59,8 @@ public class ViewMain extends Window implements Application, Bindable {
 	/* Border Container = Forms */
 	Border reservationForm01;Border checkInForm01;Border checkInForm02;Border checkInForm03;Border checkInForm04;
 	Border occupationPreview;
+	@BXML TabPane tabPLeftMain;
+	
 	
 	/* Buttons */
     PushButton rf1PBtnCheckIn;;
@@ -412,9 +416,11 @@ public class ViewMain extends Window implements Application, Bindable {
 		cbxShowAllRooms.getButtonPressListeners().add(e);
 	}
 	
-	
 	public void setcbxShowAllRoomsListener(ButtonStateListener e) {
 		cbxShowAllRooms.getButtonStateListeners().add(e);
 	}
 
+	public void settabPLeftMainListener(TabPaneSelectionListener e) {
+		tabPLeftMain.getTabPaneSelectionListeners().add(e);
+	}
 }
