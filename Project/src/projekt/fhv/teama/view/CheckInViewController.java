@@ -360,10 +360,10 @@ public class CheckInViewController implements ButtonPressListener {
 		} catch (DatabaseException e) {
 			e.printStackTrace();
 		}
-		List<TextInput> components = viewMain.getAllCheckInTextFields();
-		for (TextInput comp : components) {
-			comp.setText("");
-		}
+//		List<TextInput> components = viewMain.getAllCheckInTextFields();
+//		for (TextInput comp : components) {
+//			comp.setText("");
+//		}
 	}
 
 	public void initializeSummaryWindow() throws NotContainExeption, DatabaseEntryNotFoundException, FokusException, EmptyParameterException {
@@ -727,9 +727,9 @@ public class CheckInViewController implements ButtonPressListener {
 //		String arrival = viewMain.smLBArrival.getText();
 //		String departure = viewMain.smLBDeparture.getText();
 			
-		java.sql.Date von = MyLittleDate.getDate(viewMain.cbArrival.getSelectedDate().year, viewMain.cbArrival.getSelectedDate().month, viewMain.cbArrival.getSelectedDate().day);
-		java.sql.Date bis = MyLittleDate.getDate(viewMain.cbDeparture.getSelectedDate().year, viewMain.cbDeparture.getSelectedDate().month, viewMain.cbDeparture.getSelectedDate().day);
-		java.sql.Date birthdate = MyLittleDate.getDate(viewMain.cbBirthdate.getSelectedDate().year, viewMain.cbBirthdate.getSelectedDate().month, viewMain.cbBirthdate.getSelectedDate().day);
+		java.sql.Date von = MyLittleDate.getDate(viewMain.cbArrival.getSelectedDate().year, viewMain.cbArrival.getSelectedDate().month, viewMain.cbArrival.getSelectedDate().day-1);
+		java.sql.Date bis = MyLittleDate.getDate(viewMain.cbDeparture.getSelectedDate().year, viewMain.cbDeparture.getSelectedDate().month, viewMain.cbDeparture.getSelectedDate().day-1);
+		java.sql.Date birthdate = MyLittleDate.getDate(viewMain.cbBirthdate.getSelectedDate().year, viewMain.cbBirthdate.getSelectedDate().month, viewMain.cbBirthdate.getSelectedDate().day-1);
 		if (birthdate != null) {
 			controllerCheckIn.setGeburtsdatum(birthdate);
 		}
@@ -779,7 +779,6 @@ public class CheckInViewController implements ButtonPressListener {
 			} catch (java.text.ParseException e) {
 				e.printStackTrace();
 			} catch (FokusException e) {
-				e.printStackTrace();
 			} catch (DatabaseException e) {
 				e.printStackTrace();
 			} catch (EmptyParameterException e) {

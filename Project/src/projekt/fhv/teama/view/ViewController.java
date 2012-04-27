@@ -9,6 +9,7 @@ import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.collections.Sequence;
+import org.apache.pivot.collections.adapter.ListAdapter;
 import org.apache.pivot.util.CalendarDate;
 import org.apache.pivot.util.Vote;
 import org.apache.pivot.wtk.Alert;
@@ -45,6 +46,7 @@ import projekt.fhv.teama.model.ModelStatusentwicklung;
 import projekt.fhv.teama.model.ModelTeilreservierung;
 import projekt.fhv.teama.model.ModelZimmer;
 import projekt.fhv.teama.model.ModelZimmerstatus;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.view.support.BlockingDialog;
 import projekt.fhv.teama.view.tests.TestDaten;
@@ -189,8 +191,9 @@ public class ViewController implements Application {
 		}
 
 		if (reservationList.size() == 0) {
-			viewMain.getLvReservationSearch().setListData(
-					"Currently no reservations available");
+			List<String> list=new Vector<String>();
+			list.add("Currently no reservation available");
+			viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
 		} else {
 			viewMain.getLvReservationSearch().setListData(
 					wrapper.getReservationListAdapter(reservationList));
@@ -198,7 +201,9 @@ public class ViewController implements Application {
 		setSelectedReservation(reservationList.get(0).getID());
 
 		if (arrivingTodayList.size() == 0) {
-			viewMain.lvArrivingSearch.setListData("No entry found");
+			List<String> list=new Vector<String>();
+			list.add("No entry found");
+			viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
 		} else {
 			viewMain.lvArrivingSearch.setListData(wrapper
 					.getReservationListAdapter(arrivingTodayList));
@@ -307,18 +312,47 @@ public class ViewController implements Application {
 	class SearchPanelListener implements TabPaneSelectionListener {
 
 		@Override
-		public Vote previewSelectedIndexChange(TabPane arg0, int arg1) {
-			return null;
+		public Vote previewSelectedIndexChange(TabPane arg0, int index) {
+			if (arg0 == null) {
+				return Vote.DENY;
+			}
+			Wrapper wrapper = new Wrapper();
+			if (index == 0) {
+				
+				try {
+					ListAdapter<String> reservations = wrapper.getReservationListAdapter(controllerCheckIn.getAllReservierungen());
+					viewMain.lvReservationSearch.setListData(reservations);
+				} catch (DatabaseException e) {
+					e.printStackTrace();
+				}
+			} else if(index == 1) {
+				try {
+					ListAdapter<String> curReservations = wrapper.getReservationListAdapter(controllerCheckIn.getCheckInReservierungen());
+					viewMain.lvArrivingSearch.setListData(curReservations);
+				} catch (DatabaseException e) {
+					e.printStackTrace();
+				}
+			} else if (index == 2) {
+				try {
+					ListAdapter<String> guests = wrapper.getGuestListAdapter(controllerCheckIn.getGaesteVonAuftenhalt());
+					viewMain.lvGuestSearch.setListData(guests);
+				} catch (DatabaseException e) {
+					e.printStackTrace();
+				} catch (EmptyParameterException e) {
+					e.printStackTrace();
+				}
+			}
+			return Vote.APPROVE;
 		}
 
 		@Override
 		public void selectedIndexChangeVetoed(TabPane arg0, Vote arg1) {
-			
+			//System.out.println("selectedIndexChangeVetoed arg1" +arg1);
 		}
 
 		@Override
 		public void selectedIndexChanged(TabPane arg0, int arg1) {
-			
+			System.out.println("selectedIndexChanged arg1: " +arg1);
 		}
 		
 	}

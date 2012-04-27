@@ -69,6 +69,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	
 	//Variablen
 	private boolean needReloadAufenthalt=true;
+	
 
 	/**
 	 * 
@@ -98,6 +99,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		ausgewaehltezimmer=new Vector<IZimmer>();
 		verfuegbareZimmer=new HashMap<IKategorie, List<IZimmer>>();
 		gaestMitMomentanemAufenthalt=new Vector<IAufenthalt>();
+		
 	}
 
 	/**
@@ -392,7 +394,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 			return gaestMitMomentanemAufenthalt;
 		else
 		{
-		gaestMitMomentanemAufenthalt=modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 5, 25));
+		gaestMitMomentanemAufenthalt=modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 3, 25));
 		return gaestMitMomentanemAufenthalt;
 		}
 	}
