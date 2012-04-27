@@ -7,7 +7,7 @@
 		<Label bxml:id="lbDeposit" text="Check-In: Deposit"
 			styles="$styles.lbHeading1"/>
 		
-		<!-- Deposit  ################################################################################## -->
+		<!-- Deposit  ##################################################################### -->
 		<Separator bxml:id="sprDeposit" heading=" Deposit " styles="$styles.sprHeading"/>
 		<BoxPane orientation="horizontal" styles="$styles.bpContentHorizontal" >
 			<Form bxml:id="chf6" styles="{showFlagIcons:false}">
