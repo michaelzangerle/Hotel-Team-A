@@ -301,6 +301,7 @@ public class ViewMain extends Window implements Application, Bindable {
 		components.add(smLBStreet);
 		components.add(smLBZip);
 		components.add(smLBCountry);
+		components.add(smLBCity);
 		components.add(smLBPhone);
 		components.add(smLBMail);
 		components.add(smLBAccountNr);

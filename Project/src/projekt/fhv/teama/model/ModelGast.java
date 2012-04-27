@@ -43,7 +43,7 @@ public class ModelGast implements IModelGast {
 		if (gastModel != null)
 			return gastModel;
 		else
-			throw new FokusException();
+			return null;
 	}
 
 	public void setVorname(String vorname) throws EmptyParameterException,

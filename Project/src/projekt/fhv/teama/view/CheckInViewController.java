@@ -3,9 +3,11 @@ package projekt.fhv.teama.view;
 import java.awt.TextField;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
 import org.apache.pivot.collections.ArrayList;
@@ -30,15 +32,18 @@ import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.ListViewItemStateListener;
 import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.MessageType;
+import org.apache.pivot.wtk.Prompt;
 import org.apache.pivot.wtk.Span;
 import org.apache.pivot.wtk.TextInput;
 
 import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.personen.Adresse;
+import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.ILand;
+import projekt.fhv.teama.classes.personen.Kontodaten;
 import projekt.fhv.teama.classes.zimmer.IKategorie;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
@@ -59,8 +64,7 @@ public class CheckInViewController implements ButtonPressListener {
 	private List<ITeilreservierung> teilreservierungen;
 	private List<String> selectedRooms;
 	private ViewController viewController;
-	
-	
+
 	@Override
 	public void buttonPressed(Button arg0) {
 		viewMain.reservationForm01.setVisible(false);
@@ -97,15 +101,13 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.cbArrival.setSelectedDate(d1);
 		viewMain.cbDeparture.setSelectedDate(d2);
 
-		
-		
 		for (ITeilreservierung teilreservierung : teilreservierungen) {
 			showSelectedRooms(getRoomsByCategory(teilreservierung
 					.getKategorie()));
 		}
-		
+
 		defaultRoomAssignment();
-		
+
 		viewMain.lvBookedRoomCategories.setSelectedIndex(0);
 
 		IReservierung reservation = controllerCheckIn.getAktuelleReservierung();
@@ -129,8 +131,11 @@ public class CheckInViewController implements ButtonPressListener {
 	}
 
 	public void setSelectedGuest(String nummer) throws FokusException {
+		
 		setGuestFocus(nummer);
-		IGast curGuest = controllerCheckIn.getGast();
+		IGast curGuest= controllerCheckIn.getGast();
+	
+	
 		viewMain.tiFirstName.setText(curGuest.getVorname());
 		viewMain.tiLastName.setText(curGuest.getNachname());
 
@@ -305,7 +310,7 @@ public class CheckInViewController implements ButtonPressListener {
 				viewMain.checkInForm04.setVisible(true);
 				try {
 					initializeSummaryWindow();
-					checkFormOnEmptyFields ();
+					checkFormOnEmptyFields();
 				} catch (NotContainExeption e) {
 					e.printStackTrace();
 				} catch (SerializationException e) {
@@ -339,12 +344,12 @@ public class CheckInViewController implements ButtonPressListener {
 
 		}
 	};
-	
+
 	public void resetCheckInForms() {
-		viewMain.checkInForm01.repaint();
-		viewMain.checkInForm02.repaint();
-		viewMain.checkInForm03.repaint();
-		viewMain.checkInForm04.repaint();
+//		viewMain.checkInForm01.repaint();
+//		viewMain.checkInForm02.repaint();
+//		viewMain.checkInForm03.repaint();
+//		viewMain.checkInForm04.repaint();
 		viewMain.checkInForm01.setVisible(false);
 		viewMain.checkInForm02.setVisible(false);
 		viewMain.checkInForm03.setVisible(false);
@@ -353,20 +358,22 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.meter.setPercentage(0.25);
 		viewMain.reservationForm01.setVisible(true);
 		viewMain.lvReservationSearch.setEnabled(true);
-		
+
 		controllerCheckIn.clearLists();
 		try {
 			viewController.initializeMainView();
 		} catch (DatabaseException e) {
 			e.printStackTrace();
 		}
-//		List<TextInput> components = viewMain.getAllCheckInTextFields();
-//		for (TextInput comp : components) {
-//			comp.setText("");
-//		}
+		List<TextInput> components = viewMain.getAllCheckInTextFields();
+		for (TextInput comp : components) {
+			comp.setText("");
+		}
 	}
 
-	public void initializeSummaryWindow() throws NotContainExeption, DatabaseEntryNotFoundException, FokusException, EmptyParameterException {
+	public void initializeSummaryWindow() throws NotContainExeption,
+			DatabaseEntryNotFoundException, FokusException,
+			EmptyParameterException {
 		Wrapper wrapper = new Wrapper();
 		viewMain.smLVFinalRooms
 				.setListData(wrapper.getZimmerListAdapter(controllerCheckIn
@@ -380,10 +387,18 @@ public class CheckInViewController implements ButtonPressListener {
 			viewMain.smLBGender.setText("female");
 		}
 
-		java.sql.Date von = MyLittleDate.getDate(viewMain.cbArrival.getSelectedDate().year, viewMain.cbArrival.getSelectedDate().month, viewMain.cbArrival.getSelectedDate().day);
-		java.sql.Date bis = MyLittleDate.getDate(viewMain.cbDeparture.getSelectedDate().year, viewMain.cbDeparture.getSelectedDate().month, viewMain.cbDeparture.getSelectedDate().day);
-		viewMain.smLBTotalPrice.setText("€ "+String.valueOf(controllerCheckIn.berechneZimmerpreis(von, bis)));
-		
+		java.sql.Date von = MyLittleDate.getDate(
+				viewMain.cbArrival.getSelectedDate().year,
+				viewMain.cbArrival.getSelectedDate().month,
+				viewMain.cbArrival.getSelectedDate().day);
+		java.sql.Date bis = MyLittleDate.getDate(
+				viewMain.cbDeparture.getSelectedDate().year,
+				viewMain.cbDeparture.getSelectedDate().month,
+				viewMain.cbDeparture.getSelectedDate().day);
+		viewMain.smLBTotalPrice.setText("€ "
+				+ String.valueOf(controllerCheckIn
+						.berechneZimmerpreis(von, bis)));
+
 	}
 
 	class GuestChangedListener implements ListButtonSelectionListener {
@@ -488,7 +503,8 @@ public class CheckInViewController implements ButtonPressListener {
 		return curTeilreservierung.getKategorie();
 	}
 
-	public void defaultRoomAssignment() throws NotEnoughRoomsException, DatabaseException, FokusException {
+	public void defaultRoomAssignment() throws NotEnoughRoomsException,
+			DatabaseException, FokusException {
 		Wrapper wrapper = new Wrapper();
 		for (ITeilreservierung teilreservierung : controllerCheckIn
 				.getAktuelleReservierung().getTeilreservierungen()) {
@@ -501,10 +517,10 @@ public class CheckInViewController implements ButtonPressListener {
 				}
 				controllerCheckIn.addZimmer(availableRooms.get(i));
 				selectedRooms.add(wrapper.getZimmer(availableRooms.get(i)));
-//				if(ok){
-//					
-//					viewMain.lvAssignedRooms.setItemChecked(i, true);
-//				}
+				// if(ok){
+				//
+				// viewMain.lvAssignedRooms.setItemChecked(i, true);
+				// }
 			}
 		}
 		try {
@@ -683,11 +699,10 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
-	
-	public int checkFormOnEmptyFields () throws SerializationException {
+	public int checkFormOnEmptyFields() throws SerializationException {
 		List<Label> components = (List<Label>) viewMain.getAllCheckInLabels();
 		int count = 0;
-		
+
 		for (Label comp : components) {
 			if (comp.getText().equals(new String())) {
 				comp.setStyles("{backgroundColor:'#f7a600'}");
@@ -696,82 +711,105 @@ public class CheckInViewController implements ButtonPressListener {
 				comp.setStyles("{backgroundColor:'#ffffff'}");
 			}
 		}
-		int length=viewMain.smLVHandedKeys.getListData().getLength();
+		int length = viewMain.smLVHandedKeys.getListData().getLength();
 
 		for (int i = 0; i < length; i++) {
-			if (!viewMain.smLVHandedKeys.isItemChecked(i)){
+			if (!viewMain.smLVHandedKeys.isItemChecked(i)) {
 				count++;
 			}
 		}
-		return count; 
+		return count;
 	}
-	
-	
-	public void createStay() throws java.text.ParseException, FokusException, DatabaseException, EmptyParameterException, NotContainExeption, InvalidCountryException, WrongParameterException {
+
+	public void createStay() throws java.text.ParseException, FokusException,
+			DatabaseException, EmptyParameterException, NotContainExeption,
+			InvalidCountryException, WrongParameterException {
+
+		if(controllerCheckIn.getGast()==null)
+		{
+			Set<IAdresse> adr=new HashSet<IAdresse>();
+			controllerCheckIn.setGast(new Gast("", "", 'm', adr, MyLittleDate.getCurrentDate(), "xxxxxx", "xxx", new Kontodaten("xxx", "xxx", "xxx", "xxx"),"NoNumber",null));
+		}
 		
 		controllerCheckIn.setVorname(viewMain.smLBFirstName.getText());
 		controllerCheckIn.setNachname(viewMain.smLBLastName.getText());
-		controllerCheckIn.setKontodaten(viewMain.smLBAccountNr.getText(), viewMain.smLBBankCodeNr.getText(), viewMain.smLBIban.getText(), viewMain.smLBBic.getText());
+		controllerCheckIn.setKontodaten(viewMain.smLBAccountNr.getText(),
+				viewMain.smLBBankCodeNr.getText(), viewMain.smLBIban.getText(),
+				viewMain.smLBBic.getText());
 		controllerCheckIn.setTelefonnummer(viewMain.smLBPhone.getText());
 		controllerCheckIn.setEmail(viewMain.smLBMail.getText());
-		
+
 		char gender = ' ';
 		if (viewMain.smLBGender.getText().equalsIgnoreCase("female")) {
 			gender = 'w';
 		} else {
 			gender = 'm';
 		}
-		
+
 		controllerCheckIn.setGeschlecht(gender);
 
-//		String arrival = viewMain.smLBArrival.getText();
-//		String departure = viewMain.smLBDeparture.getText();
-			
-		java.sql.Date von = MyLittleDate.getDate(viewMain.cbArrival.getSelectedDate().year, viewMain.cbArrival.getSelectedDate().month, viewMain.cbArrival.getSelectedDate().day-1);
-		java.sql.Date bis = MyLittleDate.getDate(viewMain.cbDeparture.getSelectedDate().year, viewMain.cbDeparture.getSelectedDate().month, viewMain.cbDeparture.getSelectedDate().day-1);
-		java.sql.Date birthdate = MyLittleDate.getDate(viewMain.cbBirthdate.getSelectedDate().year, viewMain.cbBirthdate.getSelectedDate().month, viewMain.cbBirthdate.getSelectedDate().day-1);
+		// String arrival = viewMain.smLBArrival.getText();
+		// String departure = viewMain.smLBDeparture.getText();
+
+		java.sql.Date von = MyLittleDate.getDate(
+				viewMain.cbArrival.getSelectedDate().year,
+				viewMain.cbArrival.getSelectedDate().month,
+				viewMain.cbArrival.getSelectedDate().day - 1);
+		java.sql.Date bis = MyLittleDate.getDate(
+				viewMain.cbDeparture.getSelectedDate().year,
+				viewMain.cbDeparture.getSelectedDate().month,
+				viewMain.cbDeparture.getSelectedDate().day - 1);
+		java.sql.Date birthdate = MyLittleDate.getDate(
+				viewMain.cbBirthdate.getSelectedDate().year,
+				viewMain.cbBirthdate.getSelectedDate().month,
+				viewMain.cbBirthdate.getSelectedDate().day - 1);
 		if (birthdate != null) {
 			controllerCheckIn.setGeburtsdatum(birthdate);
 		}
-		
+
 		String street = viewMain.smLBStreet.getText();
 		String zip = viewMain.smLBZip.getText();
 		String city = viewMain.smLBCity.getText();
 		String countryDescription = viewMain.smLBCountry.getText();
-		
-		ILand country = controllerCheckIn.getLandByBezeichnung(countryDescription);
+
+		ILand country = controllerCheckIn
+				.getLandByBezeichnung(countryDescription);
 		if (country == null) {
-			throw new InvalidCountryException(); 
+			throw new InvalidCountryException();
 		}
-		if (!isNewAdress(street, zip, city, country)) {
-			controllerCheckIn.addAdresse(new Adresse(street, zip, city, country));
+		if (isNewAdress(street, zip, city, country)) {
+			controllerCheckIn
+					.addAdresse(new Adresse(street, zip, city, country));
 		}
-		
+
 		String pfandNummer = viewMain.smLBDepositNr.getText();
 		String pfandTyp = viewMain.smLBDepositType.getText();
-		List<IPfandtyp> typs=controllerCheckIn.getPfandtyps();
-		IPfandtyp selectedPfandTyp=null;
+		List<IPfandtyp> typs = controllerCheckIn.getPfandtyps();
+		IPfandtyp selectedPfandTyp = null;
 		for (IPfandtyp typ : typs) {
-			if(typ.getBezeichnung().equals(pfandTyp))
-			{
-				selectedPfandTyp=typ;
+			if (typ.getBezeichnung().equals(pfandTyp)) {
+				selectedPfandTyp = typ;
 				break;
 			}
 		}
 		List<IZimmer> rooms = controllerCheckIn.getAusgewählteZimmer();
-		
-		
+
 		for (IZimmer room : rooms) {
-			controllerCheckIn.saveAufenthalt(controllerCheckIn.getZimmerpreisProKategorie(room.getKategorie()).getPreis(),von, bis, true, controllerCheckIn.getGast(), room, selectedPfandTyp, pfandNummer);
+			controllerCheckIn.saveAufenthalt(
+					controllerCheckIn.getZimmerpreisProKategorie(
+							room.getKategorie()).getPreis(), von, bis, true,
+					controllerCheckIn.getGast(), room, selectedPfandTyp,
+					pfandNummer);
 		}
 	}
 
 	class CreateAufenthaltListener implements ButtonPressListener {
 		public void buttonPressed(Button arg0) {
 			try {
+
 				int errors = checkFormOnEmptyFields();
 				if (errors > 0) {
-					Alert.alert(MessageType.ERROR, "Reg di net uf zefix", viewMain);
+					Prompt.prompt(MessageType.ERROR, "EPIC FAIL", viewMain);
 				} else {
 					createStay();
 					resetCheckInForms();
@@ -794,14 +832,19 @@ public class CheckInViewController implements ButtonPressListener {
 			}
 		}
 	}
-	
-	public boolean isNewAdress (String street, String zip, String city, ILand country) throws FokusException, DatabaseException, EmptyParameterException, NotContainExeption {
+
+	public boolean isNewAdress(String street, String zip, String city,
+			ILand country) throws FokusException, DatabaseException,
+			EmptyParameterException, NotContainExeption {
 		
 		for (IAdresse adress : controllerCheckIn.getGast().getAdressen()) {
-			if (adress.getStrasse() .equalsIgnoreCase(street) && adress.getPlz().equalsIgnoreCase(zip) && adress.getOrt().equalsIgnoreCase(city) && adress.getLand().equals(country)){
-				return true;
+			if (adress.getStrasse().equalsIgnoreCase(street)
+					&& adress.getPlz().equalsIgnoreCase(zip)
+					&& adress.getOrt().equalsIgnoreCase(city)
+					&& adress.getLand().equals(country)) {
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 }
