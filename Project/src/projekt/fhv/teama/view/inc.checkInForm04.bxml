@@ -56,7 +56,7 @@
 				<Label bxml:id="smLBStreet" text="${tiStreet.text}" styles="$styles.smTableCell"/>
 				<Label bxml:id="smLBZip" text="${tiZip.text}" styles="$styles.smTableCell"/>
 				<Label bxml:id="smLBCity" text="${tiCity.text}" styles="$styles.smTableCell"/>
-				<Label bxml:id="smLBCountry" text="${tiCountry.text}" styles="$styles.smTableCell"/>
+				<Label bxml:id="smLBCountry" text="${lbtnCountry.selectedItem}" styles="$styles.smTableCell"/>
 			</TablePane.Row>
 
 			<TablePane.Row height="15">
