@@ -277,13 +277,36 @@
            color:'#000000',          
            padding:{top:5, left:10, bottom:5, right:5}       
     },
-          
+
        smTableHeader: {
            font: { size: "100%", bold: true },       
            horizontalAlignment:'center',
            backgroundColor: '#e6eff8',
            color:'#2d4776',          
            padding:{top:5, left:5, bottom:5, right:5}       
+    },
+    
+    smTableCellDepositType: {
+           horizontalAlignment:'left',
+           backgroundColor: '#ffffff',
+           color:'#000000',          
+           padding:{top:5, left:10, bottom:5, right:150}       
+    },
+    
+    smTableCellDepositNr: {
+           horizontalAlignment:'left',
+           backgroundColor: '#ffffff',
+           color:'#000000',          
+           padding:{top:5, left:5, bottom:5, right:5}       
+    },
+    
+    
+   smTableCellTotal: {
+  		   font: { size: "140%", bold: false },       
+           horizontalAlignment:'right',
+           backgroundColor: '#ffffff',
+           color:'#2d4776',          
+           padding:{top:5, left:10, bottom:5, right:15}       
     },
     
     smTPSummary: {
