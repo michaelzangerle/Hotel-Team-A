@@ -85,7 +85,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	/* ListViews, ListButtons and CalendarButtons */
 	ListView lvAssignedRooms; ListView lvBookedRoomCategories; ListView lvReservationSearch; ListView lvArrivingSearch; ListView lvGuestSearch;
 	ListButton lbtnGuests; ListButton lbtnAddresses; ListButton lbtnDepositType; CalendarButton cbBirthdate; CalendarButton cbArrival;
-	CalendarButton cbDeparture; ListView smLVFinalRooms; ListView smLVHandedKeys;
+	CalendarButton cbDeparture; ListView smLVFinalRooms; ListView smLVHandedKeys; ListButton lbtnCountry;
 
 	/* TextInputs, RadioButtons and Checkboxes */
 	
@@ -175,6 +175,7 @@ public class ViewMain extends Window implements Application, Bindable {
 		lvBookedRoomCategories = (ListView)arg0.get("lvBookedRoomCategories");
 		smLVFinalRooms = (ListView)arg0.get("smLVFinalRooms");
 		smLVHandedKeys = (ListView)arg0.get("smLVHandedKeys");
+		lbtnCountry = (ListButton)arg0.get("lbtnCountry");
 		
 		lbtnGuests = (ListButton)arg0.get("lbtnGuests");
 		lbtnAddresses = (ListButton)arg0.get("lbtnAddresses");
@@ -289,7 +290,6 @@ public class ViewMain extends Window implements Application, Bindable {
 		components.add(tiBankCodeNr);
 		components.add(tiBic);
 		components.add(tiCity);
-		components.add(tiCountry);
 		components.add(tiDepositNumber);
 		components.add(tiIban);
 		components.add(tiMail);

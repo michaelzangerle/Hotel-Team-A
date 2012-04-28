@@ -281,29 +281,7 @@ public class ViewController implements Application {
 		}
 	}
 
-	class GuestListListener implements ListViewSelectionListener {
-		@Override
-		public void selectedItemChanged(ListView listView, Object arg1) {
-			String text = (String) listView.getSelectedItem();
-
-		}
-
-		@Override
-		public void selectedRangeAdded(ListView listView, int arg1, int arg2) {
-		}
-
-		@Override
-		public void selectedRangeRemoved(ListView listView, int arg1, int arg2) {
-		}
-
-		@Override
-		public void selectedRangesChanged(ListView listView, Sequence<Span> arg1) {
-		}
-
-	}
-	
 	class SearchPanelListener implements TabPaneSelectionListener {
-
 		@Override
 		public Vote previewSelectedIndexChange(TabPane arg0, int index) {
 			if (arg0 == null) {
@@ -315,6 +293,7 @@ public class ViewController implements Application {
 				try {
 					ListAdapter<String> reservations = wrapper.getReservationListAdapter(controllerCheckIn.getAllReservierungen());
 					viewMain.lvReservationSearch.setListData(reservations);
+					viewMain.lvReservationSearch.setSelectedIndex(0);
 				} catch (DatabaseException e) {
 					List<String> list=new Vector<String>();
 					list.add("Currently no reservation available");
@@ -325,6 +304,7 @@ public class ViewController implements Application {
 				try {
 					ListAdapter<String> curReservations = wrapper.getReservationListAdapter(controllerCheckIn.getCheckInReservierungen());
 					viewMain.lvArrivingSearch.setListData(curReservations);
+					viewMain.lvArrivingSearch.setSelectedIndex(0);
 				} catch (DatabaseException e) {
 					List<String> list=new Vector<String>();
 					list.add("Currently no reservation available");
@@ -335,6 +315,7 @@ public class ViewController implements Application {
 				try {
 					ListAdapter<String> guests = wrapper.getGuestListAdapter(controllerCheckIn.getGaesteVonAuftenhalt());
 					viewMain.lvGuestSearch.setListData(guests);
+					viewMain.lvGuestSearch.setSelectedIndex(0);
 				} catch (DatabaseException e) {
 					List<String> list=new Vector<String>();
 					list.add("Currently no guests found");
@@ -352,5 +333,24 @@ public class ViewController implements Application {
 		public void selectedIndexChanged(TabPane arg0, int arg1) {
 		}
 		
+	}
+
+	class GuestListListener implements ListViewSelectionListener {
+		@Override
+		public void selectedItemChanged(ListView listView, Object arg1) {
+		}
+
+		@Override
+		public void selectedRangeAdded(ListView listView, int arg1, int arg2) {
+		}
+
+		@Override
+		public void selectedRangeRemoved(ListView listView, int arg1, int arg2) {
+		}
+
+		@Override
+		public void selectedRangesChanged(ListView listView, Sequence<Span> arg1) {
+		}
+
 	}
 }

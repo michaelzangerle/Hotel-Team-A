@@ -13,6 +13,7 @@ import org.apache.pivot.collections.adapter.ListAdapter;
 import projekt.fhv.teama.classes.IPfandtyp;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
@@ -109,6 +110,17 @@ public class Wrapper {
 		}
 		return new ListAdapter<String>(curPfandTypen);
 	}
+	
+	public ListAdapter<String> getCountryListAdapter(List<ILand> countries) {
+		LinkedList<String> curCountries = new LinkedList<String>();
+		CountryNameComparator countryComparator = new CountryNameComparator();
+		Collections.sort(countries, countryComparator);
+		
+		for (ILand country : countries) {
+			curCountries.add(country.getBezeichnung());
+		}
+		return new ListAdapter<String>(curCountries);
+	}
 
 	public Wrapper() {
 		numberFormat = NumberFormat.getInstance();
@@ -148,6 +160,14 @@ public class Wrapper {
 				return z1.getNummer().compareTo(z2.getNummer());
 			}
 			return z1.getKategorie().getBezeichnung().compareTo(z2.getKategorie().getBezeichnung());
+		}
+	}
+	
+	public class CountryNameComparator implements Comparator<ILand> {
+
+		@Override
+		public int compare(ILand l1, ILand l2) {
+			return l1.getBezeichnung().compareTo(l2.getBezeichnung());
 		}
 	}
 }
