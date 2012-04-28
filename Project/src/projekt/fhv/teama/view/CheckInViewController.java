@@ -71,11 +71,21 @@ public class CheckInViewController implements ButtonPressListener {
 		try {
 			initialize();
 		} catch (FokusException e2) {
-			e2.printStackTrace();
+			BlockingDialog bd = new BlockingDialog();
+			bd.setContent(new Alert(MessageType.WARNING,
+					"no reservation selected",
+					new ArrayList<String>("OK")));
+			bd.open(viewController.getDisp());
 		} catch (DatabaseException e) {
-			e.printStackTrace();
+			BlockingDialog bd = new BlockingDialog();
+			bd.setContent(new Alert(MessageType.WARNING,
+					"no reservation found",
+					new ArrayList<String>("OK")));
 		} catch (NotEnoughRoomsException e) {
-			e.printStackTrace();
+			BlockingDialog bd = new BlockingDialog();
+			bd.setContent(new Alert(MessageType.WARNING,
+					"not enough free rooms found",
+					new ArrayList<String>("OK")));
 		}
 	}
 
@@ -326,6 +336,7 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	};
 
+	
 	Action cancel = new Action(true) {
 		@Override
 		public void perform(Component source) {
@@ -388,8 +399,6 @@ public class CheckInViewController implements ButtonPressListener {
 			viewMain.smLVHandedKeys.setListData(list);
 			viewMain.smLVFinalRooms.setStyles("{backgroundColor:'#fbe28e'}");
 		}
-		
-		
 
 		if (viewMain.rbMale.isSelected()) {
 			viewMain.smLBGender.setText("male");
@@ -408,7 +417,6 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.smLBTotalPrice.setText("€ "
 				+ String.valueOf(controllerCheckIn
 						.berechneZimmerpreis(von, bis)));
-
 	}
 
 	class GuestChangedListener implements ListButtonSelectionListener {
@@ -427,13 +435,22 @@ public class CheckInViewController implements ButtonPressListener {
 			try {
 				setSelectedGuest(split[1]);
 			} catch (FokusException e) {
-				e.printStackTrace();
+				BlockingDialog bd = new BlockingDialog();
+				bd.setContent(new Alert(MessageType.WARNING,
+						"no guest selected",
+						new ArrayList<String>("OK")));
 			} catch (DatabaseException e) {
-				e.printStackTrace();
+				BlockingDialog bd = new BlockingDialog();
+				bd.setContent(new Alert(MessageType.WARNING,
+						"not guest found",
+						new ArrayList<String>("OK")));
 			}
 		}
 	}
 
+	
+	
+	
 	class AdressChangedListener implements ListButtonSelectionListener {
 		@Override
 		public void selectedIndexChanged(ListButton listButton, int arg1) {
@@ -460,8 +477,9 @@ public class CheckInViewController implements ButtonPressListener {
 		setAdressFocus(street, city, zip, country);
 		viewMain.tiStreet.setText(street);
 		viewMain.tiCity.setText(city);
-		viewMain.tiCountry.setText(country);
+		viewMain.lbtnCountry.setSelectedItem(country);
 		viewMain.tiZip.setText(zip);
+		
 	}
 
 	public IAdresse getSelectedAdress(String street, String city, String zip,
@@ -657,6 +675,7 @@ public class CheckInViewController implements ButtonPressListener {
 		controllerCheckIn.remove(room);
 	}
 
+	
 	public void addRoom(IZimmer room) {
 		controllerCheckIn.addZimmer(room);
 	}

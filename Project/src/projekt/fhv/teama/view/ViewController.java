@@ -78,14 +78,14 @@ public class ViewController implements Application {
 			throws Exception {
 
 		BXMLSerializer bS = new BXMLSerializer();
-		disp = display;
+		setDisp(display);
 
 		viewLogin = (ViewLogin) bS.readObject(getClass().getResource(
 				"ViewLogin.bxml"));
 		viewMain = (ViewMain) bS.readObject(getClass().getResource(
 				"ViewMain.bxml"));
 		viewMain.setMaximized(true);
-		viewLogin.open(disp);
+		viewLogin.open(getDisp());
 
 		addLoginEventListener();
 	}
@@ -124,7 +124,7 @@ public class ViewController implements Application {
 				bd.setContent(new Alert(MessageType.WARNING,
 						"Please enter your username and password",
 						new ArrayList<String>("OK")));
-				bd.open(disp);
+				bd.open(getDisp());
 				return;
 			}
 
@@ -136,7 +136,7 @@ public class ViewController implements Application {
 				bd.setContent(new Alert(MessageType.WARNING,
 						"Invalid username or password!",
 						new ArrayList<String>("OK")));
-				bd.open(disp);
+				bd.open(getDisp());
 			} catch (LoginInExeption e) {
 				e.printStackTrace();
 			}
@@ -149,7 +149,7 @@ public class ViewController implements Application {
 	}
 
 	public void startMainView(String vorname, String nachname) {
-		viewMain.open(disp);
+		viewMain.open(getDisp());
 		viewMain.lbLoginName.setText(vorname + " " + nachname);
 		wrapper = new Wrapper();
 		try {
@@ -247,6 +247,14 @@ public class ViewController implements Application {
 
 		viewMain.rf1CBArrival.setSelectedDate(d1);
 		viewMain.rf1CBDeparture.setSelectedDate(d2);
+	}
+
+	public Display getDisp() {
+		return disp;
+	}
+
+	public void setDisp(Display disp) {
+		this.disp = disp;
 	}
 
 	class ReservationListListener implements ListViewSelectionListener {
