@@ -119,7 +119,7 @@
                 	</BoxPane>
             </Border>
 		</BoxPane>
-		<TablePane styles="{padding:12}">
+		<TablePane styles="$styles.smTPSummary">
 		<columns>
 			<TablePane.Column width="1*"/>
 		</columns>

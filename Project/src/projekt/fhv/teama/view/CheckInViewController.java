@@ -694,7 +694,7 @@ public class CheckInViewController implements ButtonPressListener {
 
 		for (Label comp : components) {
 			if (comp.getText().equals(new String())) {
-				comp.setStyles("{backgroundColor:'#f7a600'}");
+				comp.setStyles("{backgroundColor:'#fbe28e'}");				
 //				comp.setText("<<<<<<<<<<<<<<<<<<<<<!");
 				count++;
 			} else {
