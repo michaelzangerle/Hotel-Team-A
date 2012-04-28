@@ -147,16 +147,14 @@
 			<Label text="Deposit" styles="$styles.smTableHeader"/>
 		</TablePane.Row>
 		<TablePane.Row height="1*">		
-			<BoxPane orientation="vertical" styles="{horizontalAlignment:'left',fill:true}">
-			<BoxPane orientation="horizontal">
-			<BoxPane preferredWidth="120">
-		    <Label bxml:id="smLBDepositType" text="${addDoubleDot:lbtnDepositType.selectedItem}" styles="$styles.smTableCellDepositNr" />
-		    </BoxPane>
-		    <BoxPane orientation="vertical"  styles="{horizontalAlignment:'left',fill:true}">
-		    <Label bxml:id="smLBDepositNr" text="${tiDepositNumber.text}" styles="$styles.smTableCellDepositType" />
-		    </BoxPane>
-		    </BoxPane>		
-		    </BoxPane>
+			<SplitPane orientation="horizontal" splitRatio="0.1f" locked="true" styles="{splitterThickness:0}">
+			<left>	
+		    <Label bxml:id="smLBDepositType" text="${addDoubleDot:lbtnDepositType.selectedItem}" styles="$styles.smTableCellDepositNr" minimumWidth="120"  maximumWidth="120" preferredWidth="120"/> 
+		    </left>
+		    <right>
+		    <Label bxml:id="smLBDepositNr" text="${tiDepositNumber.text}" styles="$styles.smTableCellDepositType" />			
+		    </right>
+		    </SplitPane>
 		</TablePane.Row>
 		<TablePane.Row height="25">
 			<TablePane.Filler/>		
@@ -167,8 +165,9 @@
 		<TablePane.Row height="2*">
 			<Label bxml:id="smLBTotalPrice" styles="$styles.smTableCellTotal"/>
 		</TablePane.Row>
-		</TablePane>				
-		</BoxPane>
+		</TablePane>
+				
+				</BoxPane>
 			</TablePane.Row>
 		</TablePane>
 

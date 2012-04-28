@@ -288,9 +288,9 @@
     
     smTableCellDepositType: {
            horizontalAlignment:'left',
-           backgroundColor: '#ffffff',
+           backgroundColor: '#fbe28e',
            color:'#000000',          
-           padding:{top:5, left:10, bottom:5, right:150}       
+           padding:{top:5, left:10, bottom:5, right:5}       
     },
     
     smTableCellDepositNr: {
@@ -314,7 +314,15 @@
            showHorizontalGridLines:false,
            horizontalSpacing:5,
            showVerticalGridLines:false,
-    	   padding:{top:3, left:7, bottom:15, right:0}
+    	   padding:{top:3, left:7, bottom:0, right:0}
+    },
+    
+   smTPDepositTotal: {
+           verticalSpacing:2,
+           showHorizontalGridLines:false,
+           horizontalSpacing:5,
+           showVerticalGridLines:false,
+    	   padding:{top:0, left:0, bottom:0, right:0}
     },
           
     searchButton: {
