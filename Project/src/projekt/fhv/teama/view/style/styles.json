@@ -292,6 +292,19 @@
            horizontalSpacing:5,
            showVerticalGridLines:false,
     	   padding:{top:3, left:7, bottom:15, right:0}
+    },
+          
+    searchButton: {
+       	backgroundColor: '#2d4776',
+       	color:'#fff4cd',
+       	font: {size:"110%", bold:true},
+       	minimumAspectRatio:2,       	
+        padding:{top:5, left:5, bottom:5, right:5}
+    },
+          
+    cbxShowAllRooms: {
+       	color:'#2d4776',
+       	font: {size:"90%", bold:false},
     }
         
 }

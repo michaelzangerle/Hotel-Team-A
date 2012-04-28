@@ -23,7 +23,7 @@
 				<StackPane>
 					<ImageView image="@images/back_shs2.svg" styles="{fill:true, preserveAspectRatio:false}"/>
 					<BoxPane orientation="horizontal" preferredHeight="20" styles="{padding:{top:0, left:0, bottom:10, right:21}, horizontalAlignment:'right', verticalAlignment:'bottom'}">						
-						<Label bxml:id="lbLoginShow" text="Logged-in:"/><Label bxml:id="lbLoginName" text="Karl-Heinz Weidmann" styles="{font:{bold:true}, color: '#2a5580'}"/>            
+						<Label bxml:id="lbLoginShow" text="Logged-in:"/><Label bxml:id="lbLoginName" text="Hans-Joachim Vollbrecht" styles="{font:{bold:true}, color: '#2a5580'}"/>            
 					</BoxPane>
 				<!-- <bxml:include bxml:id="topMenu" src="inc.topmenu.bxml" inline="true" styles="{backgroundColor:null}" />	-->							
 				</StackPane>
@@ -42,15 +42,15 @@
 								<TabPane.tabData styles="{backgroundColor:'#f2f2f2', fill:true}">
 									<content:ButtonData icon="@icons/User-yellow24.png" text="Reservations"/>
 								</TabPane.tabData>
-								<Label bxml:id="lbReservationSearch" text="Enter Number or Name:" styles="$styles.lbSearch"/>
-								<TextInput bxml:id="tiReservationSearch" styles="$styles.tiSearch"/>
-								<PushButton bxml:id="pushBReservationSearch" buttonData="Find" preferredHeight="35"/>
+							<!--	<Label bxml:id="lbReservationSearch" text="Enter Number or Name:" styles="$styles.lbSearch"/> -->
+								<BoxPane orientation="horizontal" styles="{padding:{top:15, left:0, bottom:0, right:0}}" >
+								<TextInput bxml:id="tiReservationSearch" styles="$styles.tiSearch" prompt="Search for No. or Name" preferredWidth="300" enabled="false"/>
+								<PushButton bxml:id="pushBReservationSearch" buttonData="find" styles="$styles.searchButton" enabled="false" />
+								</BoxPane>
 								<Separator heading="Found Reservations" tooltipText="Current Reservations"/>
 								<Border styles="$styles.bordSearchResults">
 								<ScrollPane preferredHeight="350" horizontalScrollBarPolicy="FILL_TO_CAPACITY" verticalScrollBarPolicy="auto"  styles="{backgroundColor:'#fcfcfc'}">															
-								<ListView bxml:id="lvReservationSearch"  selectMode="single" cursor="hand" styles="$styles.livSHSListview" listData="['Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems',
-									'Alfred Meier, Heiligenbergstraße 26, 6845 Hohenems', 'Alfred Meier,
-									Heiligenbergstraße 26, 6845 Hohenems']" />
+								<ListView bxml:id="lvReservationSearch"  selectMode="single" cursor="hand" styles="$styles.livSHSListview"  />
 								</ScrollPane>
 								</Border>
 							</BoxPane>
@@ -60,9 +60,11 @@
 								<TabPane.tabData>
 									<content:ButtonData icon="@icons/User-blue24.png" text="Arriving Today"/>
 								</TabPane.tabData>
-								<Label bxml:id="lbArrivingSearch" text="Enter Number or Name:" styles="$styles.lbSearch"/>
-								<TextInput bxml:id="tiArrivingSearch" styles="$styles.tiSearch"/>
-								<PushButton bxml:id="pushBArrivingSearch" buttonData="Find" preferredHeight="35"/>
+							<!--	<Label bxml:id="lbArrivingSearch" text="Enter Number or Name:" styles="$styles.lbSearch"/> -->
+								<BoxPane orientation="horizontal" styles="{padding:{top:15, left:0, bottom:0, right:0}}" >
+								<TextInput bxml:id="tiArrivingSearch" styles="$styles.tiSearch" prompt="Search for No. or Name" preferredWidth="300" enabled="false"/>
+								<PushButton bxml:id="pushBArrivingSearch" buttonData="find" styles="$styles.searchButton" enabled="false" />
+								</BoxPane>								
 								<Separator heading="Found todays arriving People" tooltipText="People who
 									will check-in today"/>
 								<Border styles="$styles.bordSearchResults">
@@ -77,9 +79,11 @@
 								<TabPane.tabData>
 									<content:ButtonData icon="@icons/User-green24.png" text="Current Guests"/>
 								</TabPane.tabData>
-								<Label bxml:id="lbGuestSearch" text="Enter Number or Name:" styles="$styles.lbSearch"/>
-								<TextInput bxml:id="tiGuestSearch" styles="$styles.tiSearch"/>
-								<PushButton bxml:id="pushBGuestSearch" buttonData="Find" preferredHeight="35"/>
+							<!--	<Label bxml:id="lbGuestSearch" text="Enter Number or Name:" styles="$styles.lbSearch"/> -->
+								<BoxPane orientation="horizontal" styles="{padding:{top:15, left:0, bottom:0, right:0}}" >
+								<TextInput bxml:id="tiGuestSearch" styles="$styles.tiSearch" prompt="Search for No. or Name" preferredWidth="300" enabled="false"/>
+								<PushButton bxml:id="pushBGuestSearch" buttonData="find" styles="$styles.searchButton" enabled="false" />
+								</BoxPane>
 								<Separator heading="Found Guests" tooltipText="Current Guests"/>
 								<Border styles="$styles.bordSearchResults">
 								 <ScrollPane preferredHeight="350" horizontalScrollBarPolicy="FILL_TO_CAPACITY" verticalScrollBarPolicy="auto" >

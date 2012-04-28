@@ -14,18 +14,20 @@
 		 <Label bxml:id="lbBookedRoomCategories" text="Booked room quantity and category" styles="$styles.libHeading" tooltipText='List shows category and quantity of rooms which were reserved by the guest.' tooltipDelay="250" cursor="hand"/>
 		 <Border styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#e6eff8'}">
-				 <ScrollPane preferredWidth="240" preferredHeight="110"  horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#e6eff8'}" >
+				 <ScrollPane preferredWidth="215" preferredHeight="140"  horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#e6eff8'}" >
                     <ListView bxml:id="lvBookedRoomCategories" selectMode="single" cursor="hand" styles="$styles.livRoomAssign" />
                 	</ScrollPane>
                 	</BoxPane>
             </Border>
 		</BoxPane>
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
-	     <Checkbox bxml:id="cbxShowAllRooms" buttonData = "Show all available Rooms" />
-		 <Label bxml:id="lbAssignedRooms" text="Verify Assigned Rooms" styles="$styles.libHeading" tooltipText='List shows only available "free and cleaned" rooms!' tooltipDelay="250" cursor="hand"/>
+		 <BoxPane orientation="horizontal" width="150">	     
+		 <Label bxml:id="lbAssignedRooms" text="Verify Assigned Rooms        " styles="$styles.libHeading" tooltipText='List shows only available "free and cleaned" rooms!' tooltipDelay="250" cursor="hand"/>
+		 <Checkbox bxml:id="cbxShowAllRooms" buttonData = "Show all available" styles="$styles.cbxShowAllRooms" preferredHeight="20"/>
+		 </BoxPane>
 		 <Border  styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4}">
-				 <ScrollPane preferredWidth="240" preferredHeight="110"  horizontalScrollBarPolicy="fill"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
+				 <ScrollPane preferredWidth="290" preferredHeight="140"  horizontalScrollBarPolicy="fill"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
                     <ListView bxml:id="lvAssignedRooms" selectMode="single" checkmarksEnabled="true" cursor="hand"  styles="$styles.livRoomAssign"  />
                 	</ScrollPane>
                 	</BoxPane>
@@ -42,11 +44,11 @@
 					<BoxPane orientation="horizontal" bxml:id="bpStay" styles="{spacing:30}">
 					<BoxPane orientation="vertical">
 					<Label bxml:id="lbArrival" text="Arrival" styles="$styles.libHeading" />
-					<CalendarButton bxml:id="cbArrival" preferredWidth="130" />
+					<CalendarButton bxml:id="cbArrival" preferredWidth="130" enabled="false"/>
 					</BoxPane>
 					<BoxPane orientation="vertical">
 					<Label bxml:id="lbDeparture" text="Departure" styles="$styles.libHeading" />
-					<CalendarButton bxml:id="cbDeparture"  preferredWidth="130" />
+					<CalendarButton bxml:id="cbDeparture"  preferredWidth="130" enabled="false"/>
 				    </BoxPane>	
 				   </BoxPane>
 				</Form.Section>

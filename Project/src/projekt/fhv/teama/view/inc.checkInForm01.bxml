@@ -53,7 +53,8 @@
 						<TextInput bxml:id="tiCity" prompt="City"/>
 					</BoxPane>
 					<BoxPane>
-						<TextInput bxml:id="tiCountry" prompt="Country"/>
+						<TextInput bxml:id="tiCountry" prompt="Country" visible="false"/>
+						<ListButton bxml:id="lbtnCountry" listData="['Rußland','Australien','Norwegen']" preferredWidth="136"/>
 						<TextInput bxml:id="tiZip" prompt="Zip" preferredWidth="80"/>
 					</BoxPane>
 				</Form.Section>
