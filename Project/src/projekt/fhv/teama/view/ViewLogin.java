@@ -25,7 +25,6 @@ public class ViewLogin extends Window implements Bindable {
 	
 	BXMLSerializer bxmlSerializer = new BXMLSerializer();
 	
-	private Window window = null;
 	private static SHSDateTime shsDateTime = new SHSDateTime();
 
 	public TextInput getTfUsername() {
@@ -57,10 +56,6 @@ public class ViewLogin extends Window implements Bindable {
 			}
 		}), 1000);
 
-		
-//		lbcurrentTime.setText(shsDateTime.getCurrentTime());
-//		lbcurrentDay.setText(shsDateTime.getCurrentDay());
-//		lbcurrentDate.setText(shsDateTime.getCurrentDate());
 	}
 	
 	public void setPushBLoginListener(ButtonPressListener e) {

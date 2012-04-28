@@ -12,37 +12,9 @@ import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.Map;
-import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.Alert;
-import org.apache.pivot.wtk.Application;
-import org.apache.pivot.wtk.Border;
-import org.apache.pivot.wtk.BoxPane;
-import org.apache.pivot.wtk.ButtonGroup;
-import org.apache.pivot.wtk.ButtonPressListener;
-import org.apache.pivot.wtk.ButtonStateListener;
-import org.apache.pivot.wtk.CalendarButton;
-import org.apache.pivot.wtk.Checkbox;
-import org.apache.pivot.wtk.Component;
-import org.apache.pivot.wtk.ComponentMouseButtonListener;
-import org.apache.pivot.wtk.Dialog;
-import org.apache.pivot.wtk.Display;
-import org.apache.pivot.wtk.Label;
-import org.apache.pivot.wtk.ListButton;
-import org.apache.pivot.wtk.ListButtonSelectionListener;
-import org.apache.pivot.wtk.ListView;
-import org.apache.pivot.wtk.ListViewItemStateListener;
-import org.apache.pivot.wtk.ListViewSelectionListener;
-import org.apache.pivot.wtk.MessageType;
-import org.apache.pivot.wtk.Meter;
-import org.apache.pivot.wtk.PushButton;
-import org.apache.pivot.wtk.RadioButton;
-import org.apache.pivot.wtk.TabPane;
-import org.apache.pivot.wtk.TabPaneSelectionListener;
-import org.apache.pivot.wtk.TextInput;
-import org.apache.pivot.wtk.Window;
+import org.apache.pivot.wtk.*;
 
-import projekt.fhv.teama.view.support.BlockingDialog;
 
 public class ViewMain extends Window implements Application, Bindable {
 	

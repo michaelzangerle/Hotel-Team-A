@@ -1,14 +1,13 @@
 package projekt.fhv.teama.view;
 
 import java.net.URL;
-import java.util.LinkedList;
 
-import org.apache.pivot.beans.BeanAdapter;
 import org.apache.pivot.beans.Bindable;
-import org.apache.pivot.collections.List;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.*;
+import org.apache.pivot.wtk.Border;
+import org.apache.pivot.wtk.Form;
+import org.apache.pivot.wtk.PushButton;
 
 
 public class ViewCheckIn extends Border implements Bindable {
