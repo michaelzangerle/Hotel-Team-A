@@ -47,7 +47,7 @@ public class ModelAufenthalt implements IModelAufenthalt {
 
 
 	@Override
-	public List<IAufenthalt> getAufenthalte(Date date) throws DatabaseException,EmptyParameterException {
+	public List<IAufenthalt> getAufenthalte(Date date) throws DatabaseException {
 		if(date!=null)
 		{
 			List<IAufenthalt> currentAufenthalte=new Vector<IAufenthalt>();
@@ -60,9 +60,7 @@ public class ModelAufenthalt implements IModelAufenthalt {
 			}
 			return currentAufenthalte;
 		}
-		else {
-			throw new EmptyParameterException();
-		}
+		return null;
 	}
 	
 

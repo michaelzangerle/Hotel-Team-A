@@ -154,14 +154,12 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 
 		List<IAdresse> adressen = new Vector<IAdresse>(curGuest.getAdressen());
-		if (adressen.isEmpty()) {
-			viewMain.lbtnAddresses.setButtonData("no adresses found");
-		} else {
+		if (!adressen.isEmpty()) {
 			Wrapper wrapper = new Wrapper();
 			viewMain.lbtnAddresses.setListData(wrapper
 					.getAdressListAdapter(adressen));
 			viewMain.lbtnAddresses.setSelectedIndex(0);
-		}
+		} 
 
 		viewMain.tiPhone.setText(curGuest.getTelefonnummer());
 		viewMain.tiMail.setText(curGuest.getEmail());
@@ -346,10 +344,6 @@ public class CheckInViewController implements ButtonPressListener {
 	};
 
 	public void resetCheckInForms() {
-//		viewMain.checkInForm01.repaint();
-//		viewMain.checkInForm02.repaint();
-//		viewMain.checkInForm03.repaint();
-//		viewMain.checkInForm04.repaint();
 		viewMain.checkInForm01.setVisible(false);
 		viewMain.checkInForm02.setVisible(false);
 		viewMain.checkInForm03.setVisible(false);
@@ -446,7 +440,6 @@ public class CheckInViewController implements ButtonPressListener {
 	public void setSelectedAdress(String street, String city, String zip,
 			String country) throws FokusException {
 		setAdressFocus(street, city, zip, country);
-		// IAdresse curAdress = getSelectedAdress(street, city, zip, country);
 		viewMain.tiStreet.setText(street);
 		viewMain.tiCity.setText(city);
 		viewMain.tiCountry.setText(country);
@@ -517,10 +510,6 @@ public class CheckInViewController implements ButtonPressListener {
 				}
 				controllerCheckIn.addZimmer(availableRooms.get(i));
 				selectedRooms.add(wrapper.getZimmer(availableRooms.get(i)));
-				// if(ok){
-				//
-				// viewMain.lvAssignedRooms.setItemChecked(i, true);
-				// }
 			}
 		}
 		try {
@@ -706,6 +695,7 @@ public class CheckInViewController implements ButtonPressListener {
 		for (Label comp : components) {
 			if (comp.getText().equals(new String())) {
 				comp.setStyles("{backgroundColor:'#f7a600'}");
+//				comp.setText("<<<<<<<<<<<<<<<<<<<<<!");
 				count++;
 			} else {
 				comp.setStyles("{backgroundColor:'#ffffff'}");

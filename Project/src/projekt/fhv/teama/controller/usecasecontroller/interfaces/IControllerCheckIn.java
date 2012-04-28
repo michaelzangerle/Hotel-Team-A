@@ -317,7 +317,7 @@ public interface IControllerCheckIn {
 	 * @throws DatabaseException
 	 * @throws EmptyParameterException
 	 */
-	public List<IGast> getGaesteVonAuftenhalt() throws DatabaseException, EmptyParameterException;
+	public List<IGast> getGaesteVonAuftenhalt() throws DatabaseException;
 	
 	/**
 	 * Methode um eine Zimmerpreis einer Kategorie zu erhalten

@@ -40,6 +40,6 @@ public interface IModelAufenthalt {
 	 * @throws DatabaseException
 	 * @throws EmptyParameterException
 	 */
-	public List<IAufenthalt> getAufenthalte(Date date) throws DatabaseException, EmptyParameterException;
+	public List<IAufenthalt> getAufenthalte(Date date) throws DatabaseException;
 	
 }

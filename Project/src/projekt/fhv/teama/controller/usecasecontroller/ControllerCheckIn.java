@@ -388,7 +388,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		return modelLand.getLandByBezeichnung(bezeichnung);
 	}
 	
-	public List<IAufenthalt> getAufenthalte() throws DatabaseException, EmptyParameterException
+	public List<IAufenthalt> getAufenthalte() throws DatabaseException
 	{
 		if(gaestMitMomentanemAufenthalt.size()>0&&needReloadAufenthalt==false)
 			return gaestMitMomentanemAufenthalt;
@@ -399,7 +399,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		}
 	}
 	
-	public List<IGast> getGaesteVonAuftenhalt() throws DatabaseException, EmptyParameterException
+	public List<IGast> getGaesteVonAuftenhalt() throws DatabaseException
 	{
 		if(gaestMitMomentanemAufenthalt.size()<1||needReloadAufenthalt==true)
 		{

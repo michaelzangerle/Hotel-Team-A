@@ -11,9 +11,10 @@ import java.util.Vector;
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
-import org.apache.pivot.beans.NamespaceBinding;
-import org.apache.pivot.util.Resources;
 import org.apache.pivot.collections.Map;
+import org.apache.pivot.collections.Sequence;
+import org.apache.pivot.util.Resources;
+import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Border;
 import org.apache.pivot.wtk.BoxPane;
@@ -24,6 +25,7 @@ import org.apache.pivot.wtk.CalendarButton;
 import org.apache.pivot.wtk.Checkbox;
 import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.ComponentMouseButtonListener;
+import org.apache.pivot.wtk.Dialog;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListButton;
@@ -31,6 +33,7 @@ import org.apache.pivot.wtk.ListButtonSelectionListener;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.ListViewItemStateListener;
 import org.apache.pivot.wtk.ListViewSelectionListener;
+import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Meter;
 import org.apache.pivot.wtk.PushButton;
 import org.apache.pivot.wtk.RadioButton;
@@ -38,6 +41,8 @@ import org.apache.pivot.wtk.TabPane;
 import org.apache.pivot.wtk.TabPaneSelectionListener;
 import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.Window;
+
+import projekt.fhv.teama.view.support.BlockingDialog;
 
 public class ViewMain extends Window implements Application, Bindable {
 	
@@ -54,7 +59,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	@BXML Label lbReservationDetails;	@BXML Label lbLoginShow;	@BXML Label smLBLastName;	@BXML Label smLBFirstName;	@BXML Label smLBGender; 
 	@BXML Label smLBBirthdate;	@BXML Label smLBStreet;	@BXML Label smLBZip;	@BXML Label smLBCity;	@BXML Label smLBCountry;	@BXML Label smLBPhone;
 	@BXML Label smLBMail;	@BXML Label smLBAccountNr;	@BXML Label smLBBankCodeNr; @BXML Label smLBIban; @BXML Label smLBBic; @BXML Label smLBArrival;
-	@BXML Label smLBDeparture; @BXML Label smLBDepositType; @BXML Label smLBDepositNr; @BXML Label smLBTotalPrice;
+	@BXML Label smLBDeparture; @BXML Label smLBDepositType; @BXML Label smLBDepositNr; @BXML Label smLBTotalPrice; @BXML Label lbLoginName;
 	
 	/* Border Container = Forms */
 	Border reservationForm01;Border checkInForm01;Border checkInForm02;Border checkInForm03;Border checkInForm04;
@@ -311,18 +316,11 @@ public class ViewMain extends Window implements Application, Bindable {
 		components.add(smLBDeparture);
 		components.add(smLBDepositType);
 		components.add(smLBDepositNr);
+		components.add(smLBBankCodeNr);
 		return components;
 	}
 	
 
-
-	public Label getlbLoginShow() {
-		return lbLoginShow;
-	}
-	
-	public void setlbLoginShow(String username) {
-		lbLoginShow.setText(username);
-	}
 
 	public ListView getLvReservationSearch() {
 		return lvReservationSearch;

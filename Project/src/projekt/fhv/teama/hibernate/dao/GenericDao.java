@@ -65,7 +65,6 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 		} catch (Exception e) {
 
-			e.printStackTrace();
 			throw new DatabaseException("FATAL ERROR: Error occured while trying to create some entry!");
 
 		} finally {
@@ -93,12 +92,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 		} catch (HibernateException e) {
 
-			e.printStackTrace();
 			throw new DatabaseException("ERROR: Error occured while trying to get all entries!");
 
 		} catch (Exception e) {
 
-			e.printStackTrace();
 			throw new DatabaseException("FATAL ERROR: Error occured while trying to get all entries!");
 
 		} finally {
@@ -134,12 +131,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 		} catch (HibernateException e) {
 
-			e.printStackTrace();
 			throw new DatabaseException("ERROR: Error occured while trying to get some entry by ID!");
 
 		} catch (Exception e) {
 
-			e.printStackTrace();
 			throw new DatabaseException("FATAL ERROR: Error occured while trying to get some entry by ID!");
 
 		} finally {
@@ -174,12 +169,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 				tx.rollback();
 			}
 
-			e.printStackTrace();
 			throw new DatabaseException("ERROR: Error occured while trying to remove some entry!");
 
 		} catch (Exception e) {
 
-			e.printStackTrace();
 			throw new DatabaseException("FATAL ERROR: Error occured while trying to remove some entry!");
 
 		} finally {
@@ -213,12 +206,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 				tx.rollback();
 			}
 
-			e.printStackTrace();
 			throw new DatabaseException("ERROR: Error occured while trying to update some entry!");
 
 		} catch (Exception e) {
 
-			e.printStackTrace();
 			throw new DatabaseException("FATAL ERROR: Error occured while trying to update some entry!");
 
 		} finally {
