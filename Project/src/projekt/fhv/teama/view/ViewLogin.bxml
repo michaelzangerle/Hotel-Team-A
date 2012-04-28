@@ -27,7 +27,7 @@
 			<Border bxml:id="bLogin" title="Login" styles="{padding:30}" visible="true">
 					<BoxPane bxml:id="bpLogin" orientation="vertical" styles="{ padding:{top:25, left:0, bottom:25, right:0}, verticalAlignment:'top', spacing:20, fill:true}">			
 					<TextInput bxml:id="tfUsername" prompt="username" preferredHeight="30"  />
-					<TextInput bxml:id="tfPassword" prompt="password" preferredHeight="30" />
+					<TextInput bxml:id="tfPassword" prompt="password" preferredHeight="30" password="true"/>
 					<PushButton bxml:id="pushBLogin" buttonData="Login to SHS" preferredHeight="45"/>			
 					</BoxPane>
 			</Border>

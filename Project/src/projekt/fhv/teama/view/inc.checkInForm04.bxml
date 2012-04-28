@@ -149,7 +149,7 @@
 		<TablePane.Row height="1*">		
 			<SplitPane orientation="horizontal" splitRatio="0.1f" locked="true" styles="{splitterThickness:0}">
 			<left>	
-		    <Label bxml:id="smLBDepositType" text="${addDoubleDot:lbtnDepositType.selectedItem}" styles="$styles.smTableCellDepositNr" minimumWidth="120"  maximumWidth="120" preferredWidth="120"/> 
+		    <Label bxml:id="smLBDepositType" text="${lbtnDepositType.selectedItem}" styles="$styles.smTableCellDepositNr" minimumWidth="120"  maximumWidth="120" preferredWidth="120"/> 
 		    </left>
 		    <right>
 		    <Label bxml:id="smLBDepositNr" text="${tiDepositNumber.text}" styles="$styles.smTableCellDepositType" />			

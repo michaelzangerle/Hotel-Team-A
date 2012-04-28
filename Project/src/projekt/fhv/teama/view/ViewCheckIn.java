@@ -10,10 +10,6 @@ import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.*;
 
-import projekt.fhv.teama.view.support.Address;
-import projekt.fhv.teama.view.support.Contact;
-import projekt.fhv.teama.view.support.IMAccount;
-
 
 public class ViewCheckIn extends Border implements Bindable {
 	    Form chf1;Form chf2;Form chf3;Form chf4;Form chf5;Form chf6;

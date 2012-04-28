@@ -242,43 +242,6 @@ public class ViewMain extends Window implements Application, Bindable {
 		checkInForm04.setVisible(false);
 		occupationPreview.setVisible(false);
 		
-		/** Testdaten füllen ***********************************************************/	
-		
-		viewController.testDaten.generateTestData();
-		
-//		lvReservationSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
-//		lvArrivingSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
-		//lvGuestSearch.setListData(viewController.testDaten.alAnkommendeGaeste);
-//		lvGuestSearch.setSelectMode("multi");
-		
-//		lbtnGuests.setListData(viewController.testDaten.alGaesteInReservierung);
-//		lbtnGuests.setSelectedIndex(0);
-//		lbtnAddresses.setListData(viewController.testDaten.alGastAdressen);
-//		lbtnAddresses.setSelectedIndex(0);
-//		lvBookedRoomCategories.setListData(viewController.testDaten.alGebuchteZimmerkategorien);
-//		lvAssignedRooms.setListData(viewController.testDaten.alVerfügbareDoppelzimmer);
-//		lbtnDepositType.setListData(viewController.testDaten.alPfandkategorien);
-//		lbtnDepositType.setSelectedIndex(0);
-		
-		meter.setPercentage(0.25);
-		
-		
-		/** TestBindings **/
-				
-		  // Bind list button selection to label text
-	  //  NamespaceBinding namespaceBinding1 = new NamespaceBinding(arg0, "cbBirthdate.selectedItem", "smLBGender.text");
-
-
-	   // namespaceBinding1.bind();    
-	    
-	    
-	  
-	    //bgGender.getSelection().getButtonData();	    
-
-		
-		/**				**/
-		
-				
 		/** Ende - Zustände zum Programmstart initialisieren **************************/
 	}
 	

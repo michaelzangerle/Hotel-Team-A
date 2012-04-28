@@ -172,7 +172,7 @@ public class ViewController implements Application {
 		}
 		viewMain.rf1PBtnCheckIn.setEnabled(true);
 		viewMain.tabPLeftMain.setSelectedIndex(1);
-		
+
 		try {
 			viewMain.getLvReservationSearch().setListData(
 					wrapper.getReservationListAdapter(controllerCheckIn.getAllReservierungen()));
@@ -191,7 +191,7 @@ public class ViewController implements Application {
 			list.add("Currently no reservation available");
 			viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
 		}
-		
+
 		try {
 			viewMain.lvGuestSearch.setListData(wrapper.getGuestListAdapter(controllerCheckIn.getGaesteVonAuftenhalt()));
 		} catch (DatabaseException e) {
@@ -218,7 +218,7 @@ public class ViewController implements Application {
 		try {
 			curReservation = controllerCheckIn.getAktuelleReservierung();
 		} catch (FokusException e) {
-			
+
 		}
 		viewMain.rf1LBResNr.setText(String.valueOf(curReservation.getID()));
 		viewMain.rf1TIName.setText(curReservation.getPerson().getNachname()
@@ -340,7 +340,7 @@ public class ViewController implements Application {
 		@Override
 		public void selectedIndexChanged(TabPane arg0, int arg1) {
 		}
-		
+
 	}
 
 	class GuestListListener implements ListViewSelectionListener {
