@@ -1,5 +1,8 @@
 package projekt.fhv.teama.model;
 
+import java.util.List;
+import java.util.Vector;
+
 import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.hibernate.dao.personen.ILandDao;
 import projekt.fhv.teama.hibernate.dao.personen.LandDao;
@@ -54,6 +57,12 @@ public class ModelLand implements IModelLand {
 			throw new EmptyParameterException();
 		}
 	}
+
+	@Override
+	public List<ILand> getLaender() throws DatabaseException {
+		return new Vector<ILand>(landDao.getAll());
+	}
+	
 	
 	
 }

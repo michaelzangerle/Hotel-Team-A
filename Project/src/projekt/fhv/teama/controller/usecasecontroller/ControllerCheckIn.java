@@ -47,24 +47,25 @@ import projekt.fhv.teama.model.interfaces.IModelZimmerstatus;
  */
 public class ControllerCheckIn implements IControllerCheckIn {
 
-	IModelReservierung modelReservierung;
-	IModelAufenthalt modelAufenthalt;
-	IModelGast modelGast;
-	IModelTeilreservierung modelTeilreservierung;
-	IModelKategorie modelKategorie;
-	IModelPfandTyp modelPfandtyp;
-	IModelZimmer modelZimmer;
-	IModelZimmerstatus modelZimmerstatus;
-	IModelKontodaten modelKontodaten;
-	IModelAdresse modelAdresse;
-	IModelLand modelLand;
-	IModelStatusentwicklung modelStatusentwicklung;
+	private IModelReservierung modelReservierung;
+	private IModelAufenthalt modelAufenthalt;
+	private IModelGast modelGast;
+	private IModelTeilreservierung modelTeilreservierung;
+	private IModelKategorie modelKategorie;
+	private IModelPfandTyp modelPfandtyp;
+	private IModelZimmer modelZimmer;
+	private IModelZimmerstatus modelZimmerstatus;
+	private IModelKontodaten modelKontodaten;
+	private IModelAdresse modelAdresse;
+	private IModelLand modelLand;
+	private IModelStatusentwicklung modelStatusentwicklung;
 	
 	
 	//Daten
-	List<IZimmer> ausgewaehltezimmer;
-	HashMap<IKategorie, List<IZimmer>> verfuegbareZimmer;
-	List<IAufenthalt> gaestMitMomentanemAufenthalt;
+	private List<IZimmer> ausgewaehltezimmer;
+	private HashMap<IKategorie, List<IZimmer>> verfuegbareZimmer;
+	private List<IAufenthalt> gaestMitMomentanemAufenthalt;
+	private List<ILand> laender;
 	
 	
 	//Variablen
@@ -99,7 +100,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		ausgewaehltezimmer=new Vector<IZimmer>();
 		verfuegbareZimmer=new HashMap<IKategorie, List<IZimmer>>();
 		gaestMitMomentanemAufenthalt=new Vector<IAufenthalt>();
-		
+		laender=new Vector<ILand>();		
 	}
 
 	/**
@@ -462,6 +463,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	{
 		ausgewaehltezimmer.clear();
 		verfuegbareZimmer.clear();
+		laender.clear();
 		setAktuelleReservierung(null);
 		setGast(null);
 		
@@ -510,6 +512,16 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		else throw new FokusException();
 		}
 		else throw new EmptyParameterException();
+	}
+	
+	public List<ILand> getLaender() throws DatabaseException
+	{
+		if(laender.size()<=0)
+		{
+			laender=modelLand.getLaender();
+		}
+		
+		return laender;
 	}
 
 }

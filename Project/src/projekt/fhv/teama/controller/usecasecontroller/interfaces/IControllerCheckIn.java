@@ -339,8 +339,12 @@ public interface IControllerCheckIn {
 	 */
 	public float berechneZimmerpreis(Date von,Date bis) throws FokusException, DatabaseEntryNotFoundException, EmptyParameterException;
 	
-	
-	
+	/**
+	 * Methode um alle Länder zu erhalten
+	 * @return List<ILand>
+	 * @throws DatabaseException
+	 */
+	public List<ILand> getLaender() throws DatabaseException;
 	
 	
 
