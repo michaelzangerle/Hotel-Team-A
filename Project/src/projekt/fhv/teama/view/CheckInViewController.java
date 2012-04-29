@@ -46,6 +46,7 @@ import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
+import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
@@ -56,9 +57,7 @@ import projekt.fhv.teama.view.support.BlockingDialog;
 
 public class CheckInViewController implements ButtonPressListener {
 	private ViewMain viewMain;
-	private ControllerCheckIn controllerCheckIn;
-	private List<IGast> guests;
-	private List<ITeilreservierung> teilreservierungen;
+	private IControllerCheckIn controllerCheckIn;
 	private List<String> selectedRooms;
 	private ViewController viewController;
 
@@ -68,35 +67,31 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.checkInForm01.setVisible(true);
 		viewMain.progress.setVisible(true);
 		viewMain.tabPLeftMain.setEnabled(false);
+		viewMain.lvArrivingSearch.setEnabled(false);
 		try {
 			initialize();
 		} catch (FokusException e2) {
 			BlockingDialog bd = new BlockingDialog();
 			bd.setContent(new Alert(MessageType.WARNING,
-					"no reservation selected",
-					new ArrayList<String>("OK")));
+					"no reservation selected", new ArrayList<String>("OK")));
 			bd.open(viewController.getDisp());
 		} catch (DatabaseException e) {
 			BlockingDialog bd = new BlockingDialog();
 			bd.setContent(new Alert(MessageType.WARNING,
-					"no reservation found",
-					new ArrayList<String>("OK")));
-		} catch (NotEnoughRoomsException e) {
-			BlockingDialog bd = new BlockingDialog();
-			bd.setContent(new Alert(MessageType.WARNING,
-					"not enough free rooms found",
-					new ArrayList<String>("OK")));
+					"no reservation found", new ArrayList<String>("OK")));
+		} catch (WrongParameterException e) {
 		}
 	}
 
 	private void initialize() throws FokusException, DatabaseException,
-			NotEnoughRoomsException {
+			WrongParameterException {
 		addCheckInEventListener();
 		selectedRooms = new LinkedList<String>();
 		Wrapper wrapper = new Wrapper();
 		controllerCheckIn.initVerfuegbareZimmer();
-		teilreservierungen = new Vector<ITeilreservierung>(controllerCheckIn
-				.getAktuelleReservierung().getTeilreservierungen());
+		List<ITeilreservierung> teilreservierungen = new Vector<ITeilreservierung>(
+				controllerCheckIn.getAktuelleReservierung()
+						.getTeilreservierungen());
 		viewMain.lvBookedRoomCategories.setListData(wrapper
 				.getTeilreservierungListAdapter(teilreservierungen));
 
@@ -113,12 +108,19 @@ public class CheckInViewController implements ButtonPressListener {
 					.getKategorie()));
 		}
 
-		defaultRoomAssignment();
+		try {
+			defaultRoomAssignment();
+		} catch (NotEnoughRoomsException e) {
+			BlockingDialog bd = new BlockingDialog();
+			bd.setContent(new Alert(MessageType.WARNING,
+					"not enough free rooms found", new ArrayList<String>("OK")));
+			bd.open(viewController.getDisp());
+		}
 
 		viewMain.lvBookedRoomCategories.setSelectedIndex(0);
 
 		IReservierung reservation = controllerCheckIn.getAktuelleReservierung();
-		guests = new Vector<IGast>(reservation.getGaeste());
+		List<IGast> guests = new Vector<IGast>(reservation.getGaeste());
 
 		List<ILand> countries = controllerCheckIn.getLaender();
 		viewMain.lbtnCountry.setListData(wrapper
@@ -140,55 +142,7 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.lbtnDepositType.setListData(wrapper
 				.getPfandTypListAdapter(pfandTypen));
 		viewMain.lbtnDepositType.setSelectedIndex(0);
-	}
-
-	public void setSelectedGuest(String nummer) throws FokusException,
-			DatabaseException {
-		Wrapper wrapper = new Wrapper();
-		setGuestFocus(nummer);
-		IGast curGuest = controllerCheckIn.getGast();
-
-		viewMain.tiFirstName.setText(curGuest.getVorname());
-		viewMain.tiLastName.setText(curGuest.getNachname());
-
-		if (curGuest.getGeburtsdatum() != null) {
-			Date birthday = curGuest.getGeburtsdatum();
-			CalendarDate d1 = CalendarDate.decode(birthday.toString());
-			viewMain.cbBirthdate.setSelectedDate(d1);
-		}
-
-		if (curGuest.getGeschlecht() == 'F') {
-			viewMain.rbMale.setSelected(false);
-			viewMain.rbFemale.setSelected(true);
-		} else {
-			viewMain.rbMale.setSelected(true);
-			viewMain.rbFemale.setSelected(false);
-		}
-
-		List<IAdresse> adressen = new Vector<IAdresse>(curGuest.getAdressen());
-		if (!adressen.isEmpty()) {
-			wrapper = new Wrapper();
-			viewMain.lbtnAddresses.setListData(wrapper
-					.getAdressListAdapter(adressen));
-			viewMain.lbtnAddresses.setSelectedIndex(0);
-			viewMain.lbtnCountry.setSelectedItem(adressen.get(0).getLand()
-					.getBezeichnung());
-		}
-
-		viewMain.tiPhone.setText(curGuest.getTelefonnummer());
-		viewMain.tiMail.setText(curGuest.getEmail());
-		viewMain.tiAccountNr.setText(curGuest.getKontodaten().getKontonummer());
-		viewMain.tiBankCodeNr.setText(curGuest.getKontodaten().getBlz());
-		viewMain.tiIban.setText(curGuest.getKontodaten().getIban());
-		viewMain.tiBic.setText(curGuest.getKontodaten().getBic());
-	}
-
-	public void setGuestFocus(String nummer) {
-		for (IGast guest : guests) {
-			if (guest.getNummer().equals(nummer)) {
-				controllerCheckIn.setGast(guest);
-			}
-		}
+		viewMain.meter.setPercentage(0.25);
 	}
 
 	public void addCheckInEventListener() {
@@ -274,6 +228,57 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.setcf4PBtnFinishListener(new CreateAufenthaltListener());
 	}
 
+	public void setSelectedGuest(String nummer) throws FokusException,
+			DatabaseException {
+		Wrapper wrapper = new Wrapper();
+		setGuestFocus(nummer);
+		IGast curGuest = controllerCheckIn.getGast();
+
+		viewMain.tiFirstName.setText(curGuest.getVorname());
+		viewMain.tiLastName.setText(curGuest.getNachname());
+
+		if (curGuest.getGeburtsdatum() != null) {
+			Date birthday = curGuest.getGeburtsdatum();
+			CalendarDate d1 = CalendarDate.decode(birthday.toString());
+			viewMain.cbBirthdate.setSelectedDate(d1);
+		}
+
+		if (curGuest.getGeschlecht() == 'F') {
+			viewMain.rbMale.setSelected(false);
+			viewMain.rbFemale.setSelected(true);
+		} else {
+			viewMain.rbMale.setSelected(true);
+			viewMain.rbFemale.setSelected(false);
+		}
+
+		List<IAdresse> adressen = new Vector<IAdresse>(curGuest.getAdressen());
+		if (!adressen.isEmpty()) {
+			wrapper = new Wrapper();
+			viewMain.lbtnAddresses.setListData(wrapper
+					.getAdressListAdapter(adressen));
+			viewMain.lbtnAddresses.setSelectedIndex(0);
+			viewMain.lbtnCountry.setSelectedItem(adressen.get(0).getLand()
+					.getBezeichnung());
+		}
+
+		viewMain.tiPhone.setText(curGuest.getTelefonnummer());
+		viewMain.tiMail.setText(curGuest.getEmail());
+		viewMain.tiAccountNr.setText(curGuest.getKontodaten().getKontonummer());
+		viewMain.tiBankCodeNr.setText(curGuest.getKontodaten().getBlz());
+		viewMain.tiIban.setText(curGuest.getKontodaten().getIban());
+		viewMain.tiBic.setText(curGuest.getKontodaten().getBic());
+	}
+
+	public void setGuestFocus(String nummer) throws FokusException {
+		List<IGast> guests = new Vector<IGast>(controllerCheckIn
+				.getAktuelleReservierung().getGaeste());
+		for (IGast guest : guests) {
+			if (guest.getNummer().equals(nummer)) {
+				controllerCheckIn.setGast(guest);
+			}
+		}
+	}
+
 	public CheckInViewController(ViewMain viewMain,
 			ControllerCheckIn controllerCheckIn, ViewController viewController) {
 		this.viewMain = viewMain;
@@ -336,7 +341,6 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	};
 
-	
 	Action cancel = new Action(true) {
 		@Override
 		public void perform(Component source) {
@@ -388,8 +392,8 @@ public class CheckInViewController implements ButtonPressListener {
 					.getZimmerListAdapter(controllerCheckIn
 							.getAusgewählteZimmer()));
 			viewMain.smLVHandedKeys
-			.setListData(wrapper.getKeyListAdapter(controllerCheckIn
-					.getAusgewählteZimmer()));
+					.setListData(wrapper.getKeyListAdapter(controllerCheckIn
+							.getAusgewählteZimmer()));
 		} catch (NotContainExeption e) {
 			LinkedList<String> listmsg = new LinkedList<String>();
 			listmsg.add(" ");
@@ -419,59 +423,6 @@ public class CheckInViewController implements ButtonPressListener {
 						.berechneZimmerpreis(von, bis)));
 	}
 
-	class GuestChangedListener implements ListButtonSelectionListener {
-		@Override
-		public void selectedIndexChanged(ListButton listButton, int arg1) {
-			selectedItemChanged(listButton, arg1);
-		}
-
-		@Override
-		public void selectedItemChanged(ListButton listButton, Object arg1) {
-			if (listButton.getSelectedItem() == null) {
-				return;
-			}
-			String text = (String) listButton.getSelectedItem();
-			String[] split = text.split(" ", 3);
-			try {
-				setSelectedGuest(split[1]);
-			} catch (FokusException e) {
-				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(MessageType.WARNING,
-						"no guest selected",
-						new ArrayList<String>("OK")));
-			} catch (DatabaseException e) {
-				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(MessageType.WARNING,
-						"not guest found",
-						new ArrayList<String>("OK")));
-			}
-		}
-	}
-
-	
-	
-	
-	class AdressChangedListener implements ListButtonSelectionListener {
-		@Override
-		public void selectedIndexChanged(ListButton listButton, int arg1) {
-
-		}
-
-		@Override
-		public void selectedItemChanged(ListButton listButton, Object arg1) {
-			if (listButton.getSelectedItem() == null) {
-				return;
-			}
-			String text = (String) listButton.getSelectedItem();
-			String[] split = text.split(" \\| ");
-			try {
-				setSelectedAdress(split[0], split[1], split[2], split[3]);
-			} catch (FokusException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public void setSelectedAdress(String street, String city, String zip,
 			String country) throws FokusException {
 		setAdressFocus(street, city, zip, country);
@@ -479,7 +430,7 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.tiCity.setText(city);
 		viewMain.lbtnCountry.setSelectedItem(country);
 		viewMain.tiZip.setText(zip);
-		
+
 	}
 
 	public IAdresse getSelectedAdress(String street, String city, String zip,
@@ -512,28 +463,23 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
-	public void setSelectedPartialReservation(String categoryName) {
+	public void setSelectedPartialReservation(String categoryName)
+			throws FokusException, DatabaseException {
 		IKategorie category = getCategoryByName(categoryName);
-
-		try {
-			Wrapper wrapper = new Wrapper();
-			List<IZimmer> availableRooms = getRoomsByCategory(category);
-			viewMain.lvAssignedRooms.setListData(wrapper
-					.getZimmerListAdapter(availableRooms));
-		} catch (FokusException e) {
-			e.printStackTrace();
-		} catch (DatabaseException e) {
-			e.printStackTrace();
-		}
+		Wrapper wrapper = new Wrapper();
+		List<IZimmer> availableRooms = getRoomsByCategory(category);
+		viewMain.lvAssignedRooms.setListData(wrapper
+				.getZimmerListAdapter(availableRooms));
 	}
 
-	public IKategorie getCategoryByName(String categoryName) {
+	public IKategorie getCategoryByName(String categoryName)
+			throws FokusException {
 		ITeilreservierung curTeilreservierung = getSelectedTeilreservierung(categoryName);
 		return curTeilreservierung.getKategorie();
 	}
 
 	public void defaultRoomAssignment() throws NotEnoughRoomsException,
-			DatabaseException, FokusException {
+			DatabaseException, FokusException, WrongParameterException {
 		Wrapper wrapper = new Wrapper();
 		for (ITeilreservierung teilreservierung : controllerCheckIn
 				.getAktuelleReservierung().getTeilreservierungen()) {
@@ -574,7 +520,11 @@ public class CheckInViewController implements ButtonPressListener {
 		return null;
 	}
 
-	public ITeilreservierung getSelectedTeilreservierung(String categoryName) {
+	public ITeilreservierung getSelectedTeilreservierung(String categoryName)
+			throws FokusException {
+		List<ITeilreservierung> teilreservierungen = new Vector<ITeilreservierung>(
+				controllerCheckIn.getAktuelleReservierung()
+						.getTeilreservierungen());
 		for (ITeilreservierung teilreservierung : teilreservierungen) {
 			if (teilreservierung.getKategorie().getBezeichnung()
 					.equalsIgnoreCase(categoryName)) {
@@ -654,6 +604,8 @@ public class CheckInViewController implements ButtonPressListener {
 						e.printStackTrace();
 					} catch (FokusException e) {
 						e.printStackTrace();
+					} catch (WrongParameterException e) {
+						e.printStackTrace();
 					}
 				}
 			} else {
@@ -665,18 +617,19 @@ public class CheckInViewController implements ButtonPressListener {
 						e.printStackTrace();
 					} catch (FokusException e) {
 						e.printStackTrace();
+					} catch (WrongParameterException e) {
+						e.printStackTrace();
 					}
 				}
 			}
 		}
 	}
 
-	public void removeRoom(IZimmer room) {
+	public void removeRoom(IZimmer room) throws WrongParameterException {
 		controllerCheckIn.remove(room);
 	}
 
-	
-	public void addRoom(IZimmer room) {
+	public void addRoom(IZimmer room) throws WrongParameterException {
 		controllerCheckIn.addZimmer(room);
 	}
 
@@ -731,7 +684,8 @@ public class CheckInViewController implements ButtonPressListener {
 		int count = 0;
 
 		for (Label comp : components) {
-			if (comp.getText().equals(new String())) {
+			if (comp.getText().equals(new String())
+					|| comp.getText().equals("MISSING!")) {
 				comp.setText(message);
 				comp.setStyles("{backgroundColor:'#fbe28e'}");
 				count++;
@@ -740,16 +694,24 @@ public class CheckInViewController implements ButtonPressListener {
 			}
 		}
 		int length = viewMain.smLVHandedKeys.getListData().getLength();
-
 		for (int i = 0; i < length; i++) {
 			if (!viewMain.smLVHandedKeys.isItemChecked(i)) {
+				viewMain.smLVHandedKeys
+						.setStyles("{backgroundColor:'#fbe28e'}");
+				viewMain.smLVHandedKeys
+						.setStyles("{alternateItemBackgroundColor:'#fbe28e'}");
 				count++;
+			} else {
+				viewMain.smLVHandedKeys
+						.setStyles("{backgroundColor:'#e6eff8'}");
+				viewMain.smLVHandedKeys
+						.setStyles("{alternateItemBackgroundColor:'#e6eff8'}");
 			}
 		}
 		try {
 			if (controllerCheckIn.getAusgewählteZimmer().size() != 0) {
-				viewMain.smLVFinalRooms.setStyles("{backgroundColor:'#e6eff8'}");
-				viewMain.smLVHandedKeys.setStyles("{backgroundColor:'#e6eff8'}");
+				viewMain.smLVFinalRooms
+						.setStyles("{backgroundColor:'#e6eff8'}");
 			}
 		} catch (NotContainExeption e) {
 			count++;
@@ -758,8 +720,6 @@ public class CheckInViewController implements ButtonPressListener {
 			ListAdapter<String> list = new ListAdapter<String>(listmsg);
 			viewMain.smLVFinalRooms.setListData(list);
 			viewMain.smLVFinalRooms.setStyles("{backgroundColor:'#fbe28e'}");
-			viewMain.smLVHandedKeys.setListData(list);
-			viewMain.smLVHandedKeys.setStyles("{backgroundColor:'#fbe28e'}");
 		}
 		return count;
 	}
@@ -847,10 +807,72 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
+	public boolean isNewAdress(String street, String zip, String city,
+			ILand country) throws FokusException, DatabaseException,
+			EmptyParameterException, NotContainExeption {
+
+		for (IAdresse adress : controllerCheckIn.getGast().getAdressen()) {
+			if (adress.getStrasse().equalsIgnoreCase(street)
+					&& adress.getPlz().equalsIgnoreCase(zip)
+					&& adress.getOrt().equalsIgnoreCase(city)
+					&& adress.getLand().equals(country)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	class GuestChangedListener implements ListButtonSelectionListener {
+		@Override
+		public void selectedIndexChanged(ListButton listButton, int arg1) {
+			selectedItemChanged(listButton, arg1);
+		}
+
+		@Override
+		public void selectedItemChanged(ListButton listButton, Object arg1) {
+			if (listButton.getSelectedItem() == null) {
+				return;
+			}
+			String text = (String) listButton.getSelectedItem();
+			String[] split = text.split(" ", 3);
+			try {
+				setSelectedGuest(split[1]);
+			} catch (FokusException e) {
+				BlockingDialog bd = new BlockingDialog();
+				bd.setContent(new Alert(MessageType.WARNING,
+						"no guest selected", new ArrayList<String>("OK")));
+			} catch (DatabaseException e) {
+				BlockingDialog bd = new BlockingDialog();
+				bd.setContent(new Alert(MessageType.WARNING, "no guest found",
+						new ArrayList<String>("OK")));
+			}
+		}
+	}
+
+	class AdressChangedListener implements ListButtonSelectionListener {
+		@Override
+		public void selectedIndexChanged(ListButton listButton, int arg1) {
+
+		}
+
+		@Override
+		public void selectedItemChanged(ListButton listButton, Object arg1) {
+			if (listButton.getSelectedItem() == null) {
+				return;
+			}
+			String text = (String) listButton.getSelectedItem();
+			String[] split = text.split(" \\| ");
+			try {
+				setSelectedAdress(split[0], split[1], split[2], split[3]);
+			} catch (FokusException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	class CreateAufenthaltListener implements ButtonPressListener {
 		public void buttonPressed(Button arg0) {
 			try {
-				int errors = checkFormOnEmptyFields("MISSING");
+				int errors = checkFormOnEmptyFields("MISSING!");
 				if (errors == 0) {
 					createStay();
 					resetCheckInForms();
@@ -872,20 +894,5 @@ public class CheckInViewController implements ButtonPressListener {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public boolean isNewAdress(String street, String zip, String city,
-			ILand country) throws FokusException, DatabaseException,
-			EmptyParameterException, NotContainExeption {
-
-		for (IAdresse adress : controllerCheckIn.getGast().getAdressen()) {
-			if (adress.getStrasse().equalsIgnoreCase(street)
-					&& adress.getPlz().equalsIgnoreCase(zip)
-					&& adress.getOrt().equalsIgnoreCase(city)
-					&& adress.getLand().equals(country)) {
-				return false;
-			}
-		}
-		return true;
 	}
 }

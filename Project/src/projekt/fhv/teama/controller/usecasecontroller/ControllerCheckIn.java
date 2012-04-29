@@ -432,7 +432,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		}
 	}
 	
-	public boolean addZimmer(IZimmer z) 
+	public boolean addZimmer(IZimmer z)
 	{
 		if(!ausgewaehltezimmer.contains(z))
 		{

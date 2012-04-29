@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.collections.ArrayList;
+import org.apache.pivot.collections.LinkedList;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.collections.adapter.ListAdapter;
@@ -110,11 +111,15 @@ public class ViewController implements Application {
 			} catch (DatabaseException e) {
 				BlockingDialog bd = new BlockingDialog();
 				bd.setContent(new Alert(MessageType.WARNING,
-						"Invalid username or password!",
+						"Invalid username or password! Please don´t forget case sensitive",
 						new ArrayList<String>("OK")));
 				bd.open(getDisp());
 			} catch (LoginInExeption e) {
-				e.printStackTrace();
+				BlockingDialog bd = new BlockingDialog();
+				bd.setContent(new Alert(MessageType.WARNING,
+						"Invalid username or password! Please don´t forget case sensitive",
+						new ArrayList<String>("OK")));
+				bd.open(getDisp());
 			}
 
 		}
@@ -159,20 +164,26 @@ public class ViewController implements Application {
 		}
 
 		try {
-			viewMain.lvArrivingSearch.setListData(wrapper.getReservationListAdapter(controllerCheckIn.getCheckInReservierungen()));
-			setSelectedReservation(controllerCheckIn.getCheckInReservierungen().get(0).getID());
-			viewMain.lvArrivingSearch.setSelectedIndex(0);
-		} catch (DatabaseException e) {
-			List<String> list=new Vector<String>();
-			list.add("Currently no reservation available");
-			viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
-		}
-
-		try {
 			viewMain.lvGuestSearch.setListData(wrapper.getGuestListAdapter(controllerCheckIn.getGaesteVonAuftenhalt()));
 		} catch (DatabaseException e) {
 			List<String> list=new Vector<String>();
 			list.add("Currently no guests found");
+			viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
+		}
+		
+		try {
+			if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
+				List<String> list=new Vector<String>();
+				list.add("Currently no reservation available");
+				viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
+			} else {
+				viewMain.lvArrivingSearch.setListData(wrapper.getReservationListAdapter(controllerCheckIn.getCheckInReservierungen()));
+				setSelectedReservation(controllerCheckIn.getCheckInReservierungen().get(0).getID());
+				viewMain.lvArrivingSearch.setSelectedIndex(0);
+			}
+		} catch (DatabaseException e) {
+			List<String> list=new Vector<String>();
+			list.add("Currently no reservation available");
 			viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
 		}
 	}
@@ -232,6 +243,20 @@ public class ViewController implements Application {
 	public void setDisp(Display disp) {
 		this.disp = disp;
 	}
+	
+	public void clearReservationPanel() {
+		viewMain.rf1LBResNr.setText("");
+		viewMain.rf1TIEMail.setText("");
+		viewMain.rf1TIName.setText("");
+		viewMain.rf1TIPhone.setText("");
+		viewMain.rf1TIStreet.setText("");
+		viewMain.rf1TICountry.setText("");
+		viewMain.rfTIZip.setText("");
+		viewMain.rfTICity.setText("");
+		List<String> emptyString = new Vector<String>();
+		emptyString.add("");
+		viewMain.lvAssignedRooms.setListData(new ListAdapter<String>(emptyString));
+	}
 
 	class ReservationListListener implements ListViewSelectionListener {
 
@@ -247,11 +272,10 @@ public class ViewController implements Application {
 				setSelectedReservation(reservierungsnummer);
 			} catch (DatabaseException e) {
 				List<String> list=new Vector<String>();
-				list.add("Currently no reservation available");
+				list.add("No reservation available");
 				viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
 			}
 		}
-
 		@Override
 		public void selectedRangeAdded(ListView listView, int arg1, int arg2) {
 		}
@@ -274,10 +298,17 @@ public class ViewController implements Application {
 			Wrapper wrapper = new Wrapper();
 			if (index == 0) {
 				viewMain.rf1PBtnCheckIn.setEnabled(false);
+				clearReservationPanel();
 				try {
-					ListAdapter<String> reservations = wrapper.getReservationListAdapter(controllerCheckIn.getAllReservierungen());
-					viewMain.lvReservationSearch.setListData(reservations);
-					viewMain.lvReservationSearch.setSelectedIndex(0);
+					if (controllerCheckIn.getAllReservierungen().size() == 0) {
+						List<String> list=new Vector<String>();
+						list.add("Currently no reservation available");
+						viewMain.lvReservationSearch.setListData(new ListAdapter<String>(list));
+					} else {
+						ListAdapter<String> reservations = wrapper.getReservationListAdapter(controllerCheckIn.getAllReservierungen());
+						viewMain.lvReservationSearch.setListData(reservations);
+						viewMain.lvReservationSearch.setSelectedIndex(0);
+					}
 				} catch (DatabaseException e) {
 					List<String> list=new Vector<String>();
 					list.add("Currently no reservation available");
@@ -285,10 +316,18 @@ public class ViewController implements Application {
 				}
 			} else if(index == 1) {
 				viewMain.rf1PBtnCheckIn.setEnabled(true);
+				clearReservationPanel();
 				try {
-					ListAdapter<String> curReservations = wrapper.getReservationListAdapter(controllerCheckIn.getCheckInReservierungen());
-					viewMain.lvArrivingSearch.setListData(curReservations);
-					viewMain.lvArrivingSearch.setSelectedIndex(0);
+					if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
+						List<String> list=new Vector<String>();
+						list.add("Currently no reservation available");
+						viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
+						viewMain.rf1PBtnCheckIn.setEnabled(false);
+					} else {
+						ListAdapter<String> curReservations = wrapper.getReservationListAdapter(controllerCheckIn.getCheckInReservierungen());
+						viewMain.lvArrivingSearch.setListData(curReservations);
+						viewMain.lvArrivingSearch.setSelectedIndex(0);
+					}
 				} catch (DatabaseException e) {
 					List<String> list=new Vector<String>();
 					list.add("Currently no reservation available");
@@ -296,10 +335,17 @@ public class ViewController implements Application {
 				}
 			} else if (index == 2) {
 				viewMain.rf1PBtnCheckIn.setEnabled(false);
+				clearReservationPanel();
 				try {
-					ListAdapter<String> guests = wrapper.getGuestListAdapter(controllerCheckIn.getGaesteVonAuftenhalt());
-					viewMain.lvGuestSearch.setListData(guests);
-					viewMain.lvGuestSearch.setSelectedIndex(0);
+					if (controllerCheckIn.getGaesteVonAuftenhalt().size() == 0) {
+						List<String> list=new Vector<String>();
+						list.add("Currently no guests found");
+						viewMain.lvGuestSearch.setListData(new ListAdapter<String>(list));
+					} else {
+						ListAdapter<String> guests = wrapper.getGuestListAdapter(controllerCheckIn.getGaesteVonAuftenhalt());
+						viewMain.lvGuestSearch.setListData(guests);
+						viewMain.lvGuestSearch.setSelectedIndex(0);
+					}
 				} catch (DatabaseException e) {
 					List<String> list=new Vector<String>();
 					list.add("Currently no guests found");
