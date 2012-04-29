@@ -17,24 +17,6 @@ public class ViewCheckIn extends Border implements Bindable {
 	 
 	    @Override
 		public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
-	        chf1 = (Form)arg0.get("chf1");
-	        chf2 = (Form)arg0.get("chf2");
-	        chf3 = (Form)arg0.get("chf3");
-	        chf4 = (Form)arg0.get("chf4");
-	        chf5 = (Form)arg0.get("chf5");
-	        chf6 = (Form)arg0.get("chf6");    
-	    }
-	    
-	    
-	    void clearCheckInForms() {
-	    	
-	    	chf1.clear();
-	    	chf2.clear();
-	    	chf3.clear();
-	    	chf4.clear();
-	    	chf5.clear();
-	    	chf6.clear();	    	
-	    }
-	    
+	    }	   
 
 }

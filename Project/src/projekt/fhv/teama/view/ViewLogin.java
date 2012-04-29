@@ -40,13 +40,7 @@ public class ViewLogin extends Window implements Bindable {
 		shsDateTime.start();
 		final Label lbcurrentTime =(Label)arg0.get("lbcurrentTime");
 		final Label lbcurrentDate = (Label)arg0.get("lbcurrentDate");
-		final Label lbcurrentDay = (Label)arg0.get("lbcurrentDay");
-		pushBLogin = (PushButton)arg0.get("pushBLogin");
-		tfUsername = (TextInput)arg0.get("tfUsername");
-		tfPassword = (TextInput)arg0.get("tfPassword");
-		activityIndicator = (ActivityIndicator)arg0.get("activityIndicator");
-		bLogin = (Border)arg0.get("bLogin");
-		
+		final Label lbcurrentDay = (Label)arg0.get("lbcurrentDay");		
 		
 		ApplicationContext.scheduleRecurringCallback((new Runnable() {
 			public void run() {

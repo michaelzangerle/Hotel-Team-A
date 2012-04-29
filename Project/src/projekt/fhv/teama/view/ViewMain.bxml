@@ -108,9 +108,6 @@
 						<bxml:include bxml:id="mainCheckInForm03" src="inc.checkInForm03.bxml" inline="true" />
 						<bxml:include bxml:id="mainCheckInForm04" src="inc.checkInForm04.bxml" inline="true" />												
 						</BoxPane>
-						<BoxPane orientation="vertical" styles="{spacing:25, padding:{top:5, left:15, bottom:10, right:15} }">	
-						<bxml:include bxml:id="occupationPreview" src="inc.occupationPreview.bxml" inline="true" />	
-						</BoxPane>
 						</BoxPane>
 						</ScrollPane>
 						</left>

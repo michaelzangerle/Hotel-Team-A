@@ -24,58 +24,60 @@ public class ViewMain extends Window implements Application, Bindable {
 	ViewController viewController = new ViewController();
 	BXMLSerializer bxmlSerializer = new BXMLSerializer();
 	
-	
 	private Window window = null;
 	
+	/** Controls initialisieren *********************************************/
+
 	/* Labels */
-	@BXML Label lbReservationDetails;	@BXML Label lbLoginShow;	@BXML Label smLBLastName;	@BXML Label smLBFirstName;	@BXML Label smLBGender; 
+	@BXML Label lbReservationDetails;	@BXML Label lbLoginShow; @BXML Label smLBLastName;	@BXML Label smLBFirstName;	@BXML Label smLBGender; 
 	@BXML Label smLBBirthdate;	@BXML Label smLBStreet;	@BXML Label smLBZip;	@BXML Label smLBCity;	@BXML Label smLBCountry;	@BXML Label smLBPhone;
 	@BXML Label smLBMail;	@BXML Label smLBAccountNr;	@BXML Label smLBBankCodeNr; @BXML Label smLBIban; @BXML Label smLBBic; @BXML Label smLBArrival;
 	@BXML Label smLBDeparture; @BXML Label smLBDepositType; @BXML Label smLBDepositNr; @BXML Label smLBTotalPrice; @BXML Label lbLoginName;
 	
 	/* Border Container = Forms */
-	Border reservationForm01;Border checkInForm01;Border checkInForm02;Border checkInForm03;Border checkInForm04;
-	Border occupationPreview;
-	@BXML TabPane tabPLeftMain;
+	@BXML Border reservationForm01;@BXML Border checkInForm01;@BXML Border checkInForm02;@BXML Border checkInForm03;@BXML Border checkInForm04;
+	@BXML Border occupationPreview;@BXML TabPane tabPLeftMain;
 	
 	
 	/* Buttons */
-    PushButton rf1PBtnCheckIn;;
+	@BXML PushButton rf1PBtnCheckIn;;
 		
     
-    TextInput tiLastName; TextInput tiFirstName; ButtonGroup bgGender; RadioButton rbMale; RadioButton rbFemale;
-	TextInput tiStreet; TextInput tiCity; TextInput tiCountry; TextInput tiZip; TextInput tiPhone; TextInput tiMail;
-	TextInput tiAccountNr; TextInput tiBankCodeNr; TextInput tiIban; TextInput tiBic; TextInput tiDepositNumber;
+	@BXML TextInput tiLastName; @BXML TextInput tiFirstName; @BXML ButtonGroup bgGender; @BXML RadioButton rbMale; @BXML RadioButton rbFemale;
+	@BXML TextInput tiStreet; @BXML TextInput tiCity; @BXML TextInput tiCountry;@BXML TextInput tiZip;@BXML TextInput tiPhone;@BXML TextInput tiMail;
+	@BXML TextInput tiAccountNr;@BXML TextInput tiBankCodeNr;@BXML TextInput tiIban;@BXML TextInput tiBic;@BXML TextInput tiDepositNumber;
 	
-	Checkbox cbxShowAllRooms;
+	@BXML Checkbox cbxShowAllRooms;
 	
-	PushButton cf1PBtnNext;	PushButton cf2PBtnNext;	PushButton cf3PBtnNext;	PushButton cf4PBtnFinish; PushButton cf1PBtnBack;
-	PushButton cf2PBtnBack; PushButton cf3PBtnBack; PushButton cf4PBtnBack;	PushButton cf1PBtnCancel; PushButton cf2PBtnCancel;
-	PushButton cf3PBtnCancel; PushButton cf4PBtnCancel;
+	@BXML PushButton cf1PBtnNext;@BXML PushButton cf2PBtnNext;@BXML	PushButton cf3PBtnNext;@BXML PushButton cf4PBtnFinish;@BXML PushButton cf1PBtnBack;
+	@BXML PushButton cf2PBtnBack;@BXML PushButton cf3PBtnBack;@BXML PushButton cf4PBtnBack;@BXML PushButton cf1PBtnCancel;@BXML PushButton cf2PBtnCancel;
+	@BXML PushButton cf3PBtnCancel;@BXML PushButton cf4PBtnCancel;
 
 	
 	/* ListViews, ListButtons and CalendarButtons */
-	ListView lvAssignedRooms; ListView lvBookedRoomCategories; ListView lvReservationSearch; ListView lvArrivingSearch; ListView lvGuestSearch;
-	ListButton lbtnGuests; ListButton lbtnAddresses; ListButton lbtnDepositType; CalendarButton cbBirthdate; CalendarButton cbArrival;
-	CalendarButton cbDeparture; ListView smLVFinalRooms; ListView smLVHandedKeys; ListButton lbtnCountry;
+	@BXML ListView lvAssignedRooms;@BXML ListView lvBookedRoomCategories;@BXML ListView lvReservationSearch;@BXML ListView lvArrivingSearch;@BXML ListView lvGuestSearch;
+	@BXML ListButton lbtnGuests;@BXML ListButton lbtnAddresses;@BXML ListButton lbtnDepositType;@BXML CalendarButton cbBirthdate;@BXML CalendarButton cbArrival;
+	@BXML CalendarButton cbDeparture;@BXML ListView smLVFinalRooms;@BXML ListView smLVHandedKeys;@BXML ListButton lbtnCountry;
 
 	/* TextInputs, RadioButtons and Checkboxes */
 	
-	Label rf1LBResNr; TextInput rf1TIName;TextInput rf1TIStreet;TextInput rfTICity;TextInput rf1TICountry;TextInput rfTIZip;
-	TextInput rf1TIPhone;TextInput rf1TIEMail;CalendarButton rf1CBArrival;CalendarButton rf1CBDeparture; 
+	@BXML Label rf1LBResNr;@BXML TextInput rf1TIName;@BXML TextInput rf1TIStreet;@BXML TextInput rfTICity;@BXML TextInput rf1TICountry;@BXML TextInput rfTIZip;
+	@BXML TextInput rf1TIPhone;@BXML TextInput rf1TIEMail;@BXML CalendarButton rf1CBArrival;@BXML CalendarButton rf1CBDeparture; 
 
 	 
 	/* Labels */
-	Label lbProgress01;	Label lbProgress02;	Label lbProgress03;	Label lbProgress04;
-	
+	@BXML Label lbProgress01;@BXML Label lbProgress02;@BXML	Label lbProgress03;@BXML Label lbProgress04;
 	
 	
 	/* Processbar */
-	Border progress; Meter meter;
+	@BXML Border progress;@BXML Meter meter;
 	
-	BoxPane bpAssignedRooms;
-	BoxPane bpRoomsSummary;
+	@BXML BoxPane bpAssignedRooms;
+	@BXML BoxPane bpRoomsSummary;
 
+	/** Ende - Controls initialisieren *********************************************/
+	
+	
 	@Override
 	public void startup(Display display, Map<String, String> properties)
 			throws Exception {
@@ -102,117 +104,15 @@ public class ViewMain extends Window implements Application, Bindable {
 	@Override
 	public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 		
-	    Locale.setDefault(Locale.ENGLISH);
-		
-		/** Controls initialisieren *********************************************/
-
-		/* Borders & Forms initialisieren */
-		reservationForm01 = (Border)arg0.get("reservationForm01");
-		checkInForm01 = (Border)arg0.get("checkInForm01");
-		checkInForm02 = (Border)arg0.get("checkInForm02");
-		checkInForm03 = (Border)arg0.get("checkInForm03");
-		checkInForm04 = (Border)arg0.get("checkInForm04");
-		
-		checkInForms.add(checkInForm01);
-		checkInForms.add(checkInForm02);
-		checkInForms.add(checkInForm03);
-		checkInForms.add(checkInForm04);
-		checkInForms.add(reservationForm01);
-			
-		occupationPreview = (Border)arg0.get("occupationPreview");		
-		
-		/* Buttons initialisieren | ViewRegistration */
-		rf1PBtnCheckIn  = (PushButton)arg0.get("rf1PBtnCheckIn");		
-		
-		/* Buttons initialisieren | ViewCheckIn */
-		cf1PBtnNext = (PushButton)arg0.get("cf1PBtnNext");
-		cf2PBtnNext = (PushButton)arg0.get("cf2PBtnNext");
-		cf3PBtnNext = (PushButton)arg0.get("cf3PBtnNext");
-		cf4PBtnFinish = (PushButton)arg0.get("cf4PBtnFinish");
-		
-		cf2PBtnBack = (PushButton)arg0.get("cf2PBtnBack");
-		cf3PBtnBack = (PushButton)arg0.get("cf3PBtnBack");
-		cf4PBtnBack = (PushButton)arg0.get("cf4PBtnBack");
-		
-		cf1PBtnCancel= (PushButton)arg0.get("cf1PBtnCancel");
-		cf2PBtnCancel = (PushButton)arg0.get("cf2PBtnCancel");
-		cf3PBtnCancel = (PushButton)arg0.get("cf3PBtnCancel");
-		cf4PBtnCancel = (PushButton)arg0.get("cf4PBtnCancel");
-				
-		/* ListViews u. ListButtons initialisieren */
-		setLvReservationSearch((ListView)arg0.get("lvReservationSearch"));
-		lvArrivingSearch = (ListView)arg0.get("lvArrivingSearch");
-		lvGuestSearch = (ListView)arg0.get("lvGuestSearch");
-		lvAssignedRooms = (ListView)arg0.get("lvAssignedRooms");
-		lvBookedRoomCategories = (ListView)arg0.get("lvBookedRoomCategories");
-		smLVFinalRooms = (ListView)arg0.get("smLVFinalRooms");
-		smLVHandedKeys = (ListView)arg0.get("smLVHandedKeys");
-		lbtnCountry = (ListButton)arg0.get("lbtnCountry");
-		
-		lbtnGuests = (ListButton)arg0.get("lbtnGuests");
-		lbtnAddresses = (ListButton)arg0.get("lbtnAddresses");
-		lbtnDepositType = (ListButton)arg0.get("lbtnDepositType");
-		
-		/* TextInputs, RadioButtons and CheckBoxes */
-		tiLastName = (TextInput)arg0.get("tiLastName");
-		tiFirstName = (TextInput)arg0.get("tiFirstName");
-		bgGender = (ButtonGroup)arg0.get("bgGender");
-		rbMale = (RadioButton)arg0.get("rbMale");
-		rbFemale = (RadioButton)arg0.get("rbFemale");
-		tiStreet = (TextInput)arg0.get("tiStreet");
-		tiCity = (TextInput)arg0.get("tiCity");
-		tiCountry = (TextInput)arg0.get("tiCountry");
-		tiZip = (TextInput)arg0.get("tiZip");
-		tiPhone = (TextInput)arg0.get("tiPhone");
-		tiMail = (TextInput)arg0.get("tiMail");
-		tiAccountNr = (TextInput)arg0.get("tiAccountNr");		
-		tiBankCodeNr = (TextInput)arg0.get("tiBankCodeNr");
-		tiIban = (TextInput)arg0.get("tiIban");
-		tiBic = (TextInput)arg0.get("tiBic");
-		tiDepositNumber = (TextInput)arg0.get("tiDepositNumber");
-		rf1LBResNr = (Label)arg0.get("rf1LBResNr");
-		rf1TIName = (TextInput)arg0.get("rf1TIName");
-		rf1TIStreet = (TextInput)arg0.get("rf1TIStreet");
-		rfTICity = (TextInput)arg0.get("rfTICity");
-		rf1TICountry = (TextInput)arg0.get("rf1TICountry");
-		rfTIZip = (TextInput)arg0.get("rfTIZip");
-		rf1TIPhone = (TextInput)arg0.get("rf1TIPhone");
-		rf1TIEMail = (TextInput)arg0.get("rf1TIEMail");
-		cbxShowAllRooms = (Checkbox)arg0.get("cbxShowAllRooms");
-		bgGender = (ButtonGroup)arg0.get("bgGender");
-		
-		/* CalendarButtons */
-		rf1CBArrival = (CalendarButton)arg0.get("rf1CBArrival");
-		rf1CBDeparture = (CalendarButton)arg0.get("rf1CBDeparture");
-		cbArrival = (CalendarButton)arg0.get("cbArrival");
-		cbDeparture = (CalendarButton)arg0.get("cbDeparture");
-		cbBirthdate = (CalendarButton)arg0.get("cbBirthdate");
-
-		/* Labels */
-		lbProgress01 = (Label)arg0.get("lbProgress01");
-		lbProgress02 = (Label)arg0.get("lbProgress02");
-		lbProgress03 = (Label)arg0.get("lbProgress03");
-		lbProgress04 = (Label)arg0.get("lbProgress04");
-				
-		/* ProgressBar */
-		progress = (Border)arg0.get("mainProgress");
-		meter = (Meter)arg0.get("meter");		
-		
-
-		bpRoomsSummary = (BoxPane)arg0.get("bpRoomsSummary");
-		bpAssignedRooms = (BoxPane)arg0.get("bpAssignedRooms");			
-						
-		/** Ende - Controls initialisieren *********************************************/
-
-		
+	    Locale.setDefault(Locale.ENGLISH);		
+	
 		/** Zustände zum Programmstart initialisieren *********************************/
 		
 		reservationForm01.setVisible(true);
 		checkInForm01.setVisible(false);
 		checkInForm02.setVisible(false);
 		checkInForm03.setVisible(false);
-		checkInForm04.setVisible(false);
-		occupationPreview.setVisible(false);
+		checkInForm04.setVisible(false);	
 		
 		/** Ende - Zustände zum Programmstart initialisieren **************************/
 	}
@@ -254,8 +154,6 @@ public class ViewMain extends Window implements Application, Bindable {
 		components.add(smLBBankCodeNr);
 		return components;
 	}
-	
-
 
 	public ListView getLvReservationSearch() {
 		return lvReservationSearch;
@@ -345,7 +243,6 @@ public class ViewMain extends Window implements Application, Bindable {
 		lvAssignedRooms.getListViewItemStateListeners().add(e);
 	}	
 	
-
 	public void setcbxShowAllRoomsListener(ButtonPressListener e) {
 		cbxShowAllRooms.getButtonPressListeners().add(e);
 	}

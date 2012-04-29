@@ -46,11 +46,9 @@ public class SHSDateTime extends Thread implements Bindable {
 	   currentTime = timeformat;
 	}
 
-
-
 	@Override
 	public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
-		// TODO Auto-generated method stub
+		// wird nicht benötigt
 		
 	}
 
@@ -67,7 +65,7 @@ public class SHSDateTime extends Thread implements Bindable {
 		
 			while(true) {
 				
-				 time = new SimpleDateFormat("K:mm:ss a");
+				 time = new SimpleDateFormat("KK:mm:ss a");
 				 this.setCurrentTime(time.format(new Date()));
 			}
 	}
