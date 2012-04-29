@@ -1,4 +1,4 @@
-<view:Progress bxml:id="brdProgress" xmlns:bxml="http://pivot.apache.org/bxml"
+<view:Progress bxml:id="progress" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk" xmlns:view="projekt.fhv.teama.view"
 	visible="false"
 	styles="$styles.brdProgress">
