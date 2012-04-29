@@ -55,13 +55,23 @@ import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.view.support.BlockingDialog;
 
+
+/**
+ * Der CheckInViewController ist für das Eventhandling des Check-In Vorganges zuständig.
+ * 
+ * 
+ * @author Team A
+ * @version 1.0
+ */
 public class CheckInViewController implements ButtonPressListener {
 	private ViewMain viewMain;
 	private IControllerCheckIn controllerCheckIn;
 	private List<String> selectedRooms;
 	private ViewController viewController;
 
-	@Override
+	/**
+	 * Startpunkt des Controllers - die benötigten gui Komponenten werden sichtbar gemacht.
+	 */
 	public void buttonPressed(Button arg0) {
 		viewMain.reservationForm01.setVisible(false);
 		viewMain.checkInForm01.setVisible(true);
@@ -83,6 +93,12 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * In der initialize Methode werden die benötigten Daten geladen und an der GUI angezeigt.
+	 * @throws FokusException
+	 * @throws DatabaseException
+	 * @throws WrongParameterException
+	 */
 	private void initialize() throws FokusException, DatabaseException,
 			WrongParameterException {
 		addCheckInEventListener();
@@ -145,6 +161,9 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.meter.setPercentage(0.25);
 	}
 
+	/**
+	 * Hier werden die Action- Events des Check- In Vorganges initialisiert und den Event- Listener zugewiesen.
+	 */
 	public void addCheckInEventListener() {
 		viewMain.setlbProgress01Listener(new ComponentMouseButtonListener.Adapter() {
 			public boolean mouseClick(Component arg0,
@@ -228,6 +247,12 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.setcf4PBtnFinishListener(new CreateAufenthaltListener());
 	}
 
+	/**
+	 * Die setSelectedGuest Methode weist die Gast-Informationen, wie Name, Geschlecht, Adresse, Bankdaten, usw. der inc.checkInForm01 zu.
+	 * @param nummer
+	 * @throws FokusException
+	 * @throws DatabaseException
+	 */
 	public void setSelectedGuest(String nummer) throws FokusException,
 			DatabaseException {
 		Wrapper wrapper = new Wrapper();
@@ -269,6 +294,11 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.tiBic.setText(curGuest.getKontodaten().getBic());
 	}
 
+	/**
+	 * Fokus über den ausgewählten Gast wird dem controllerCheckIn übergeben.
+	 * @param nummer
+	 * @throws FokusException
+	 */
 	public void setGuestFocus(String nummer) throws FokusException {
 		List<IGast> guests = new Vector<IGast>(controllerCheckIn
 				.getAktuelleReservierung().getGaeste());
@@ -279,6 +309,12 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * Instanzen der ViewMain, ControllerCheckIn und ViewController werden dem CheckInViewController zugewiesen.
+	 * @param viewMain
+	 * @param controllerCheckIn
+	 * @param viewController
+	 */
 	public CheckInViewController(ViewMain viewMain,
 			ControllerCheckIn controllerCheckIn, ViewController viewController) {
 		this.viewMain = viewMain;
@@ -286,6 +322,9 @@ public class CheckInViewController implements ButtonPressListener {
 		this.viewController = viewController;
 	}
 
+	/**
+	 * 
+	 */
 	Action gotoStep = new Action(true) {
 		@Override
 		public void perform(Component source) {
@@ -494,7 +533,7 @@ public class CheckInViewController implements ButtonPressListener {
 			for (int i = 0; i < teilreservierung.getAnzahl(); i++) {
 				if (i >= availableRooms.size()) {
 					int missingRooms = teilreservierung.getAnzahl() - i;
-					message.append("Missing rooms in category " + teilreservierung.getKategorie().getBezeichnung() + " amount: " + missingRooms + "  ");
+					message.append("Not enough rooms in category " + teilreservierung.getKategorie().getBezeichnung() + " amount: " + missingRooms + "  ");
 					break;
 				} else {
 					controllerCheckIn.addZimmer(availableRooms.get(i));
