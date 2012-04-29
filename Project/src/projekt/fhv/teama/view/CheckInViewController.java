@@ -328,7 +328,7 @@ public class CheckInViewController implements ButtonPressListener {
 				try {
 					initializeSummaryWindow();
 					checkFormOnEmptyFields("");
-					viewController.clearReservationPanel();
+					
 				} catch (SerializationException e) {
 					e.printStackTrace();
 				} catch (DatabaseEntryNotFoundException e) {
@@ -876,6 +876,7 @@ public class CheckInViewController implements ButtonPressListener {
 				int errors = checkFormOnEmptyFields("MISSING!");
 				if (errors == 0) {
 					createStay();
+					viewController.clearReservationPanel();
 					resetCheckInForms();
 				}
 			} catch (java.text.ParseException e) {
