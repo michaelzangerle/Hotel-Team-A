@@ -19,7 +19,5 @@ projekt.fhv.teama.model
 projekt.fhv.teama.model.exception
 projekt.fhv.teama.model.interfaces
 projekt.fhv.teama.view
-projekt.fhv.teama.view.actions
 projekt.fhv.teama.view.startup
 projekt.fhv.teama.view.support
-projekt.fhv.teama.view.tests
