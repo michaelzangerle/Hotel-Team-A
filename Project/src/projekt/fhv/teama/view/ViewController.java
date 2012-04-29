@@ -333,7 +333,7 @@ public class ViewController implements Application {
 		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
 			String text = (String) listView.getSelectedItem();
-			if(text==null)
+			if(text==null || text.contains("no reservation"))
 				return;
 			String[] split = text.split(" ", 3);
 			int reservierungsnummer = Integer.valueOf(split[1]);
