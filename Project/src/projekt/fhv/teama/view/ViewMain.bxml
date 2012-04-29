@@ -34,12 +34,12 @@
 			</Border>
 		</left>
 		<right>
-			<SplitPane bxml:id="spLeftMiddle" preferredHeight="600" width="1236" orientation="horizontal" splitRatio="0.3f" resizeMode="primary_region" primaryRegion="top_left"
+			<SplitPane bxml:id="spLeftMiddle" preferredHeight="600" width="1236" orientation="horizontal" splitRatio="0.3" resizeMode="primary_region" primaryRegion="top_left"
 				locked="true" styles="{splitterThickness:5}">
 				<left>	
 					<BoxPane bxml:id="bpLeftMain" orientation="horizontal" styles="{backgroundColor:'#f2f2f2',
-						fill:true}">
-						<TabPane bxml:id="tabPLeftMain" styles="$styles.tabPLeftMain">
+						fill:true}"  minimumWidth="370">
+						<TabPane bxml:id="tabPLeftMain" styles="$styles.tabPLeftMain"  minimumWidth="360">
 							<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top',
 								spacing:25,
 								fill:true}">
