@@ -1,3 +1,7 @@
+<!-- BXML Dokument für den Schritt 4 des CheckIN Vorgangs - der BXML Serialisierer erstellt hieraus das 
+	 Objekt auf welches dann auch seitens des Controllers zugegriffen werden kann
+  -->
+
  <view:ViewCheckIn bxml:id="checkInForm04" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk"
 	styles="{padding:6}"
@@ -144,12 +148,12 @@
 			<TablePane.Column width="1*"/>
 		</columns>
 		<TablePane.Row height="1*">
-			<Label text="Deposit" styles="$styles.smTableHeader"/>
+			<Label text="Deposit (Type and Number)" styles="$styles.smTableHeader"/>
 		</TablePane.Row>
 		<TablePane.Row height="1*">		
 			<SplitPane orientation="horizontal" splitRatio="0.1f" locked="true" styles="{splitterThickness:0}">
 			<left>	
-		    <Label bxml:id="smLBDepositType" text="${lbtnDepositType.selectedItem}" styles="$styles.smTableCellDepositNr" minimumWidth="120"  maximumWidth="120" preferredWidth="120"/> 
+		    <Label bxml:id="smLBDepositType" text="${lbtnDepositType.selectedItem}" styles="$styles.smTableCellDepositNr" minimumWidth="105"  maximumWidth="105" preferredWidth="105"/> 
 		    </left>
 		    <right>
 		    <Label bxml:id="smLBDepositNr" text="${tiDepositNumber.text}" styles="$styles.smTableCellDepositType" />			

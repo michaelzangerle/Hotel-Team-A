@@ -16,14 +16,20 @@ import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.Window;
 import projekt.fhv.teama.view.support.SHSDateTime;
 
+/**
+ * Diese Klasse erweitert Window und wird als erstes vom ViewController
+ * geladen, damit der Login in das SHS abgehandelt werden kann.
+ *
+ * @author Team A
+ * @version 1.1
+ */
 public class ViewLogin extends Window implements Bindable {
 	@BXML TextInput tfUsername = null;
 	@BXML TextInput tfPassword = null;
 	@BXML PushButton pushBLogin = null;
-	@BXML ActivityIndicator activityIndicator = null;
 	@BXML Border bLogin = null;
 	
-	BXMLSerializer bxmlSerializer = new BXMLSerializer();
+//	BXMLSerializer bxmlSerializer = new BXMLSerializer();
 	
 	private static SHSDateTime shsDateTime = new SHSDateTime();
 
@@ -35,6 +41,12 @@ public class ViewLogin extends Window implements Bindable {
 		return tfPassword;
 	}
 
+	/**
+	 * Die initialize() Methode wird vom Interface Bindable vorgeschrieben,
+	 * damit werden die Componenten der Oberfläche initialisiert.
+	 * 
+	 * @see org.apache.pivot.beans.Bindable#initialize(org.apache.pivot.collections.Map, java.net.URL, org.apache.pivot.util.Resources)
+	 */
 	@Override
 	public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 		shsDateTime.start();
@@ -52,6 +64,11 @@ public class ViewLogin extends Window implements Bindable {
 
 	}
 	
+	/**
+	 * Damit kann der Button Listener vom ViewController gesetzt werden.
+	 * 
+	 * @param e Event 
+	 */
 	public void setPushBLoginListener(ButtonPressListener e) {
 		pushBLogin.getButtonPressListeners().add(e);
 	}

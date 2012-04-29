@@ -1,3 +1,7 @@
+<!-- BXML Dokument für den Schritt 1 des CheckIN Vorgangs - der BXML Serialisierer erstellt hieraus das 
+	 Objekt auf welches dann auch seitens des Controllers zugegriffen werden kann
+  -->
+
  <view:ViewCheckIn bxml:id="checkInForm01" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk"
 	styles="{padding:6}"

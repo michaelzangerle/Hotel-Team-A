@@ -10,10 +10,19 @@ import org.apache.pivot.wtk.Form;
 import org.apache.pivot.wtk.PushButton;
 
 
+/**
+ * Um den UseCase bzw. die Formulare für den CheckIn umzusetzen.
+ * Die Klasse ist momentan nur benutzt um das BXML File einzulesen.
+ * Es ist vorgesehen hier das Setup bzw. die Properties und 
+ * und Methoden zu implementieren, die die Oberfläche des UseCase
+ * CheckIn betreffen.
+ * 
+ * Aus zeitlichen Gründen ist dieses momentan in der ViewMain umgesetzt. 
+ *
+ * @author Team A
+ * @version 1.1
+ */
 public class ViewCheckIn extends Border implements Bindable {
-	    Form chf1;Form chf2;Form chf3;Form chf4;Form chf5;Form chf6;
-	    PushButton clearButton = null;
-		
 	 
 	    @Override
 		public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {

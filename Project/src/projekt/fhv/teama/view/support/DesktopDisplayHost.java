@@ -14,6 +14,15 @@ import org.apache.pivot.wtk.ApplicationContext.DisplayHost;
 import org.apache.pivot.wtk.media.Image;
 import org.apache.pivot.wtk.media.Picture;
 
+/**
+ * Wird benötigt, um einen DisplayHost zu erzeugen, welcher
+ * unabängig vom jetzigen Display geöffnet werden kann.
+ * 
+ * Dabei kann dann ein blockierendes Dialogfenster geöffnet werden.
+ *
+ * @author Team A
+ * @version 1.1
+ */
 public class DesktopDisplayHost extends DisplayHost {
   private static final long serialVersionUID = 0;
 

@@ -1,4 +1,9 @@
- {  button: {
+/* Json Dokument, dass die optische Gestaltung der Oberfläche über CSS ähnliche Syntax ermöglicht. Damit
+ 	 werden Objekteigenschaften gesetzt und entsprechend beim Deserialisieren berücksichtigt. Es ist möglich dies
+ 	 über Namensdeklaration bzw. ID vergabe zu machen. Dieser Ansatz für eine zentrale Gestaltung des UI und saubere Trennung von der Logik
+ 	 wurde hier durch uns auch umgesetzt  */
+ 	 
+{  button: {
         color: "#aa0000"
     },
 

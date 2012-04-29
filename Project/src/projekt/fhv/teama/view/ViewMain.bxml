@@ -1,3 +1,7 @@
+<!-- BXML Dokument für das Hauptfenster der Anwendung - der BXML Serialisierer erstellt hieraus das 
+	 Window Objekt welches durch den Controller aufgerufen werden kann
+  -->
+
 <view:ViewMain bxml:id="viewMain" title="Smart Hotel System v1.0 | your own personal roomanizer
 	by
 	Team

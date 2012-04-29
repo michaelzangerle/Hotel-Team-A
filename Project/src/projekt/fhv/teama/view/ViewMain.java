@@ -16,6 +16,31 @@ import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.*;
 
 
+/**
+ * Stellt das Hauptfenster für die Anwendung dar. Das gesamte UI wird über
+ * eine BXML Beschreibung eingelesen und erstellt. Die einzelnen Properties
+ * können via Annotation @BXML automatisch beim Deserialisieren instanziiert
+ * werden.
+ *
+ * Der modulare Ansatz von Pivot mit BXML Includes erlaubt es in der Definitions-
+ * Datei ViewMain.bxml include Files mit einzulesen und so den Aufbau der
+ * Struktur dynamisch zu halten. Für die Architektur der Software ist vorgesehen,
+ * die includes als UseCase Implementierungen einzubinden - daraus folgt ein sehr
+ * flexibles und erweiterbares User Interface. 
+ * 
+ * Der Modulare Ansatz ist in dem BXML Files umgesetzt mit den include Dateien für den
+ * Reservierungs und insbsondere den CheckIn Ablauf. (inc.checkInForm01.bxml...)
+ * 
+ * Aus terminlichen Überlegungen und Relevanz der Umsetzung für die Beurteilung 
+ * wurde der Focus auf die Datenbank und Datenbankanbindung sowie Controller gesetzt,
+ * weshalb die Umsetzung und das Testen des UI mehrheitlich hier in der ViewMain erfolgte.
+ * 
+ * Eine Aufteilung in die zueghörige ViewCheckIn Klasse bzw. ist jedoch ohne großen Aufwand
+ * möglich. Da auch das Framework Pivot diesen Ansatz vorsieht.
+ *
+ * @author Team A
+ * @version 1.1
+ */
 public class ViewMain extends Window implements Application, Bindable {
 	
 	List<Component> checkInForms = new ArrayList<Component>();
@@ -26,7 +51,12 @@ public class ViewMain extends Window implements Application, Bindable {
 	
 	private Window window = null;
 	
-	/** Controls initialisieren *********************************************/
+	/**
+	 * Controls für das Fenster festlegen. Die Felder werden bei Deserialisierung
+	 * automatisch initialisiert.
+	 * 
+	 */
+
 
 	/* Labels */
 	@BXML Label lbReservationDetails;	@BXML Label lbLoginShow; @BXML Label smLBLastName;	@BXML Label smLBFirstName;	@BXML Label smLBGender; 
@@ -63,7 +93,6 @@ public class ViewMain extends Window implements Application, Bindable {
 	
 	@BXML Label rf1LBResNr;@BXML TextInput rf1TIName;@BXML TextInput rf1TIStreet;@BXML TextInput rfTICity;@BXML TextInput rf1TICountry;@BXML TextInput rfTIZip;
 	@BXML TextInput rf1TIPhone;@BXML TextInput rf1TIEMail;@BXML CalendarButton rf1CBArrival;@BXML CalendarButton rf1CBDeparture; 
-
 	 
 	/* Labels */
 	@BXML Label lbProgress01;@BXML Label lbProgress02;@BXML	Label lbProgress03;@BXML Label lbProgress04;
@@ -78,29 +107,63 @@ public class ViewMain extends Window implements Application, Bindable {
 	/** Ende - Controls initialisieren *********************************************/
 	
 	
+	/**
+	 * Die Methode startup() wird vom Interface Application vorgeschrieben
+	 * und stellt den Einstiegspunkt für die Pivot Andwendung dar. Über den
+	 * BXML Serialisierer wird das zugehörige Object eingelesen. Da die ViewMain
+	 * Klasse von Window erbt kann diese anschließend über window.open geöffnet
+	 * werden.
+	 * 
+	 * Unsere Anwendung wird allerdings über ApplicationStartUp gestartet, weshalb
+	 * diese methode nicht implementiert sein muss.
+	 * 
+	 * @see org.apache.pivot.wtk.Application#startup(org.apache.pivot.wtk.Display, org.apache.pivot.collections.Map)
+	 */
 	@Override
 	public void startup(Display display, Map<String, String> properties)
 			throws Exception {
 		
-		window = (Window) bxmlSerializer.readObject(ViewLogin.class,
-				"ViewMain.bxml");
-		display.getHostWindow().setMinimumSize(new Dimension(1024,600));
-		window.open(display);
+//		window = (Window) bxmlSerializer.readObject(ViewLogin.class,
+//				"ViewMain.bxml");
+//		display.getHostWindow().setMinimumSize(new Dimension(1024,600));
+//		window.open(display);
 	}
 	
+	/** 
+	 * Wird durch das Application Interface benötigt. Aufruf erfolgt, wenn eine "suspended"
+	 * Anwendung wieder aufgenommen wird.
+	 * 
+	 * @see org.apache.pivot.wtk.Application#resume()
+	 */
 	@Override
 	public void resume() throws Exception {
 	}
 
+	/**
+	 * Wird ausgeführt, wenn die  Anwendung heruntergefahren werden soll
+	 * 
+	 * @see org.apache.pivot.wtk.Application#shutdown(boolean)
+	 */
 	@Override
 	public boolean shutdown(boolean arg0) throws Exception {
 		return false;
 	}
 
+	/**
+	 * Damit ist es möglich eine Anwendung auf "suspended" zu setzen
+	 * 
+	 * @see org.apache.pivot.wtk.Application#suspend()
+	 */
 	@Override
 	public void suspend() throws Exception {
 	}
 	
+	/** In dieser Methode des Application Interfaces wird das Hauptfenster
+	 *  initialisiert. Hier werden die Starteinstellungen der Darstellung
+	 *  angegeben und eingelesen.
+	 * 
+	 * @see org.apache.pivot.beans.Bindable#initialize(org.apache.pivot.collections.Map, java.net.URL, org.apache.pivot.util.Resources)
+	 */
 	@Override
 	public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 		
@@ -117,6 +180,12 @@ public class ViewMain extends Window implements Application, Bindable {
 		/** Ende - Zustände zum Programmstart initialisieren **************************/
 	}
 	
+	/**
+	 * Gibt alle TextInput Felder zurück. Damit kann sich der Controller die
+	 * TextFelder als Liste holen und durcharbeiten.
+	 * 
+	 * @return Liste mit TextInput Components
+	 */
 	public List<TextInput> getAllCheckInTextFields () {
 		List<TextInput> components = (List<TextInput>) new LinkedList<TextInput>();
 		components.add(tiFirstName);
@@ -134,6 +203,13 @@ public class ViewMain extends Window implements Application, Bindable {
 		return components;
 	}
 	
+	/**
+	 * Gibt alle für den CheckIn Vorgang wichtigen Labels an den
+	 * Aufrufer zurück. Damit kann sich der CheckInController die
+	 * Labels als Liste holen und durcharbeiten.
+	 * 
+	 * @return
+	 */
 	public List<Label> getAllCheckInLabels () {
 		List<Label> components = new Vector<Label>();
 		components.add(smLBLastName);
@@ -155,6 +231,13 @@ public class ViewMain extends Window implements Application, Bindable {
 		return components;
 	}
 
+	/**
+	 * Hier folgen eine ganze Reihe von erstellten Listenern.
+	 * Damit kann der Controller die bestehenden
+	 * Componenten mit Listener versehen.
+	 * 
+	 * @return Component
+	 */
 	public ListView getLvReservationSearch() {
 		return lvReservationSearch;
 	}

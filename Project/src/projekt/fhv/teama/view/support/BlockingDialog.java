@@ -17,6 +17,15 @@ import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Window;
 
 
+/**
+ * Kann ein Dialogfenster öffnen mit ja/nein Entscheidung. Der Programmfluss
+ * wird derweil gestoppt.
+ * 
+ * Der Inhalt wird dem Dialog im Konstruktor oder via bxml übergeben.
+ *
+ * @author Team A
+ * @version 1.1
+ */
 @DefaultProperty("content")
 public class BlockingDialog
 {
@@ -99,7 +108,7 @@ public class BlockingDialog
 
 
   /**
-   * Creates a new secondary display.
+   * Erstellt ein zweites Display
    * 
    * @param width
    * @param height
@@ -132,7 +141,18 @@ public class BlockingDialog
   
   
   
-  static public Alert sAlert (MessageType messageType, String message, String title, Display display, Object... options)
+  /**
+   * 
+   * Methoden um eine Dialogbox mit übergebener Message zu öffnen.
+   * 
+ * @param messageType
+ * @param message
+ * @param title
+ * @param display
+ * @param options
+ * @return
+ */
+static public Alert sAlert (MessageType messageType, String message, String title, Display display, Object... options)
   {
     Alert alert = new Alert (messageType, message, new ArrayList<Object>(options));
     alert.setTitle(title);

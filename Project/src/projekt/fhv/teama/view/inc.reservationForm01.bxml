@@ -1,3 +1,7 @@
+<!-- BXML Dokument für die Darstellung von Reservierungsdaten (Schritt 0) - der BXML Serialisierer erstellt hieraus das 
+	 Objekt auf welches dann auch seitens des Controllers zugegriffen werden kann
+ -->
+
  <view:ViewReservation bxml:id="reservationForm01" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk" styles="{padding:6}" xmlns:view="projekt.fhv.teama.view"
 	visible="false" >

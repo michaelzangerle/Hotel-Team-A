@@ -1,3 +1,7 @@
+<!-- BXML Dokument für den CheckIn UseCase mit jeweiligen includes für die notwendigen Schritte - der BXML Serialisierer erstellt hieraus das 
+	 Objekt auf welches dann auch seitens des Controllers zugegriffen werden kann. Die eingebundenen Includes sind dann ebenso als Objekte instanziiert.
+  -->
+
 <view:ViewCheckIn xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk">
 <bxml:include src="inc.checkInForm01.bxml" />	
 <bxml:include src="inc.checkInForm02.bxml" />

@@ -13,6 +13,18 @@ import org.apache.pivot.wtk.Form;
 import org.apache.pivot.wtk.PushButton;
 import org.apache.pivot.wtk.TextInput;
 
+/**
+ * Um den UseCase bzw. die Formulare für die Reservierung umzusetzen.
+ * Die Klasse ist momentan nur benutzt um das BXML File einzulesen.
+ * Es ist vorgesehen hier das Setup bzw. die Properties und 
+ * und Methoden zu implementieren, die die Oberfläche der UseCases 
+ * mit Reservierung betreffen.
+ * 
+ * Aus zeitlichen Gründen ist notwendiges momentan in der ViewMain umgesetzt. 
+ *
+ * @author Team A
+ * @version 1.1
+ */
 public class ViewReservation extends Border implements Bindable {
 	    @BXML Form form = null;
 	    @BXML PushButton rf1PBtnLoadJava = null;
@@ -23,10 +35,14 @@ public class ViewReservation extends Border implements Bindable {
 	    @BXML TextInput rf1TIName = null; 
 	    @BXML PushButton cf1PBtnNext = null;
 	 
+	    /**
+	     * Initialisierungsmethode für ViewReservation.
+	     * 
+	     * @see org.apache.pivot.beans.Bindable#initialize(org.apache.pivot.collections.Map, java.net.URL, org.apache.pivot.util.Resources)
+	     */
 	    @Override
 	    public void initialize(Map<String, Object> namespace, URL location, Resources resources) {
 	        
-	        cf1PBtnNext = (PushButton)namespace.get("cf1PBtnNext");
 	        form.setEnabled(false);
 	        	        
 	        clearButton.setVisible(false);	 

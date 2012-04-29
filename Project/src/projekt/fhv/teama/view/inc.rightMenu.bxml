@@ -1,3 +1,7 @@
+<!-- BXML Dokument für den linken Menübereich des Hauptfensters der Anwendung - der BXML Serialisierer erstellt hieraus das 
+	 Objekt auf welches dann auch seitens des Controllers zugegriffen werden kann
+  -->
+
 <Border xmlns:bxml="http://pivot.apache.org/bxml"  xmlns="org.apache.pivot.wtk"  styles="{ backgroundColor:'#f2f2f2', thickness:'0'}">
         <ScrollPane horizontalScrollBarPolicy="fill" >
             <BoxPane orientation="vertical" styles="{backgroundColor:'#f2f2f2', fill:true}">

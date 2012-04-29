@@ -9,6 +9,13 @@ import org.apache.pivot.wtk.ApplicationContext.DisplayHost;
 import org.apache.pivot.wtk.DesktopApplicationContext.DisplayListener;
 
 
+/**
+ * Ein AWT-Dialog der den Programmfluß blockiert. Wird benötigt, da Pivot selbst
+ * nur Dialogboxen ohne Blockierung zur Verfügung stellt.
+ *
+ * @author Team A
+ * @version 1.0
+ */
 public class HostDialog extends java.awt.Dialog
 {
   private static final long serialVersionUID = 5340356674429280196L;

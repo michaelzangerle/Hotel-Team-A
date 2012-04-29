@@ -1,3 +1,7 @@
+<!-- BXML Dokument für den ViewController - hiermit hat der Controller die Referenzen der Views beim serialisieren durch den BXML Serialisierer 
+     automatisch zur Verfügung. -> bxml:reference..
+  -->
+
 <view:ViewController xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" >
 <bxml:define>
     <ViewLogin bxml:id="viewLogin"/>
