@@ -1,15 +1,15 @@
 package projekt.fhv.teama.view;
 
 public class NotEnoughRoomsException extends Exception {
-	private int roomsRequired;
+	private String message;
 	
 	
-	public NotEnoughRoomsException(int roomsRequired) {
-		this.roomsRequired = roomsRequired;
+	public NotEnoughRoomsException(String message) {
+		this.message = message;
 	}
 
 
-	public int getRoomsRequired() {
-		return roomsRequired;
+	public String getMessage() {
+		return message;
 	}
 }

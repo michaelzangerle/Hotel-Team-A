@@ -113,7 +113,7 @@ public class CheckInViewController implements ButtonPressListener {
 		} catch (NotEnoughRoomsException e) {
 			BlockingDialog bd = new BlockingDialog();
 			bd.setContent(new Alert(MessageType.WARNING,
-					"not enough free rooms found", new ArrayList<String>("OK")));
+					e.getMessage(), new ArrayList<String>("OK")));
 			bd.open(viewController.getDisp());
 		}
 
@@ -361,6 +361,7 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	};
 
+	
 	public void resetCheckInForms() {
 		viewMain.checkInForm01.setVisible(false);
 		viewMain.checkInForm02.setVisible(false);
@@ -451,6 +452,7 @@ public class CheckInViewController implements ButtonPressListener {
 		return null;
 	}
 
+	
 	public void setAdressFocus(String street, String city, String zip,
 			String country) throws FokusException {
 		List<IAdresse> adressen = new Vector<IAdresse>(controllerCheckIn
@@ -482,6 +484,8 @@ public class CheckInViewController implements ButtonPressListener {
 	public void defaultRoomAssignment() throws NotEnoughRoomsException,
 			DatabaseException, FokusException, WrongParameterException {
 		Wrapper wrapper = new Wrapper();
+		StringBuilder message = new StringBuilder();
+		
 		for (ITeilreservierung teilreservierung : controllerCheckIn
 				.getAktuelleReservierung().getTeilreservierungen()) {
 			List<IZimmer> availableRooms = getRoomsByCategory(teilreservierung
@@ -489,11 +493,17 @@ public class CheckInViewController implements ButtonPressListener {
 
 			for (int i = 0; i < teilreservierung.getAnzahl(); i++) {
 				if (i >= availableRooms.size()) {
-					throw new NotEnoughRoomsException(availableRooms.size() - i);
+					int missingRooms = teilreservierung.getAnzahl() - i;
+					message.append("Missing rooms in category " + teilreservierung.getKategorie().getBezeichnung() + " amount: " + missingRooms + "  ");
+					break;
+				} else {
+					controllerCheckIn.addZimmer(availableRooms.get(i));
+					selectedRooms.add(wrapper.getZimmer(availableRooms.get(i)));
 				}
-				controllerCheckIn.addZimmer(availableRooms.get(i));
-				selectedRooms.add(wrapper.getZimmer(availableRooms.get(i)));
 			}
+		}
+		if (!message.toString().equals("")) {
+			throw new NotEnoughRoomsException(message.toString());
 		}
 		try {
 			showSelectedRooms(controllerCheckIn.getAusgewählteZimmer());
@@ -510,6 +520,7 @@ public class CheckInViewController implements ButtonPressListener {
 		return z;
 	}
 
+	
 	public IZimmer getRoomByNumber(String roomNumber) throws DatabaseException,
 			FokusException {
 		List<IZimmer> availableRooms = getAllAvailableRooms();
@@ -549,6 +560,7 @@ public class CheckInViewController implements ButtonPressListener {
 		return alle;
 	}
 
+	
 	class CategoryChangedListener implements ListViewSelectionListener {
 		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
@@ -725,6 +737,7 @@ public class CheckInViewController implements ButtonPressListener {
 		return count;
 	}
 
+	
 	public void createStay() throws java.text.ParseException, FokusException,
 			DatabaseException, EmptyParameterException, NotContainExeption,
 			InvalidCountryException, WrongParameterException {
@@ -752,9 +765,6 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 
 		controllerCheckIn.setGeschlecht(gender);
-
-		// String arrival = viewMain.smLBArrival.getText();
-		// String departure = viewMain.smLBDeparture.getText();
 
 		java.sql.Date von = MyLittleDate.getDate(
 				viewMain.cbArrival.getSelectedDate().year,
@@ -822,6 +832,7 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 		return true;
 	}
+	
 	class GuestChangedListener implements ListButtonSelectionListener {
 		@Override
 		public void selectedIndexChanged(ListButton listButton, int arg1) {
