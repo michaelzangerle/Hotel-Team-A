@@ -152,7 +152,11 @@ public class ViewController implements Application {
 					new ModelStatusentwicklung());
 		}
 		viewMain.rf1PBtnCheckIn.setEnabled(true);
+		viewMain.tabPLeftMain.setEnabled(true);
 		viewMain.tabPLeftMain.setSelectedIndex(1);
+		viewMain.lvArrivingSearch.setEnabled(true);
+		viewMain.lvReservationSearch.setEnabled(true);
+		viewMain.lvGuestSearch.setEnabled(true);
 
 		try {
 			viewMain.getLvReservationSearch().setListData(
@@ -295,10 +299,10 @@ public class ViewController implements Application {
 			if (arg0 == null) {
 				return Vote.DENY;
 			}
+			clearReservationPanel();
 			Wrapper wrapper = new Wrapper();
 			if (index == 0) {
 				viewMain.rf1PBtnCheckIn.setEnabled(false);
-				clearReservationPanel();
 				try {
 					if (controllerCheckIn.getAllReservierungen().size() == 0) {
 						List<String> list=new Vector<String>();
@@ -316,7 +320,6 @@ public class ViewController implements Application {
 				}
 			} else if(index == 1) {
 				viewMain.rf1PBtnCheckIn.setEnabled(true);
-				clearReservationPanel();
 				try {
 					if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
 						List<String> list=new Vector<String>();
@@ -335,7 +338,6 @@ public class ViewController implements Application {
 				}
 			} else if (index == 2) {
 				viewMain.rf1PBtnCheckIn.setEnabled(false);
-				clearReservationPanel();
 				try {
 					if (controllerCheckIn.getGaesteVonAuftenhalt().size() == 0) {
 						List<String> list=new Vector<String>();

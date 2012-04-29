@@ -328,6 +328,7 @@ public class CheckInViewController implements ButtonPressListener {
 				try {
 					initializeSummaryWindow();
 					checkFormOnEmptyFields("");
+					viewController.clearReservationPanel();
 				} catch (SerializationException e) {
 					e.printStackTrace();
 				} catch (DatabaseEntryNotFoundException e) {
