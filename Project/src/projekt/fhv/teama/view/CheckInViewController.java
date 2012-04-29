@@ -1,11 +1,9 @@
 package projekt.fhv.teama.view;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
@@ -58,8 +56,7 @@ import projekt.fhv.teama.view.support.BlockingDialog;
 
 /**
  * Der CheckInViewController ist für das Eventhandling des Check-In Vorganges zuständig.
- * 
- * 
+ * Hier werden die vom User ausgelösten Interaktionen ermittelt und an den Check-In usecase- Controller weitergeleitet.
  * @author Team A
  * @version 1.0
  */
@@ -70,7 +67,7 @@ public class CheckInViewController implements ButtonPressListener {
 	private ViewController viewController;
 
 	/**
-	 * Startpunkt des Controllers - die benötigten gui Komponenten werden sichtbar gemacht.
+	 * Startpunkt des Controllers - hier wird der Check-In Vorgang gestartet und die initialize Methode aufgerufen.
 	 */
 	public void buttonPressed(Button arg0) {
 		viewMain.reservationForm01.setVisible(false);
@@ -80,7 +77,7 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.lvArrivingSearch.setEnabled(false);
 		try {
 			initialize();
-		} catch (FokusException e2) {
+		} catch (FokusException e) {
 			BlockingDialog bd = new BlockingDialog();
 			bd.setContent(new Alert(MessageType.WARNING,
 					"no reservation selected", new ArrayList<String>("OK")));
@@ -90,17 +87,21 @@ public class CheckInViewController implements ButtonPressListener {
 			bd.setContent(new Alert(MessageType.WARNING,
 					"no reservation found", new ArrayList<String>("OK")));
 		} catch (WrongParameterException e) {
+		} catch (NotContainExeption e) {
+			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * In der initialize Methode werden die benötigten Daten geladen und an der GUI angezeigt.
+	 * In der initialize Methode werden die Daten der ausgewählten Reservierung geladen und an der GUI an den entsprechenden Komponenten als Text angezeigt.
+	 * Zudem wird die defaultRoomAssignment Methode aufgerufen die den automatischen Zimmerzuteilungsprozess abhandelt.
 	 * @throws FokusException
 	 * @throws DatabaseException
 	 * @throws WrongParameterException
+	 * @throws NotContainExeption 
 	 */
 	private void initialize() throws FokusException, DatabaseException,
-			WrongParameterException {
+			WrongParameterException, NotContainExeption {
 		addCheckInEventListener();
 		selectedRooms = new LinkedList<String>();
 		Wrapper wrapper = new Wrapper();
@@ -120,7 +121,7 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.cbDeparture.setSelectedDate(d2);
 
 		for (ITeilreservierung teilreservierung : teilreservierungen) {
-			showSelectedRooms(getRoomsByCategory(teilreservierung
+			showSelectedRooms(controllerCheckIn.getVerfügbareZimmerFürGegebeneKategorie(teilreservierung
 					.getKategorie()));
 		}
 
@@ -162,7 +163,7 @@ public class CheckInViewController implements ButtonPressListener {
 	}
 
 	/**
-	 * Hier werden die Action- Events des Check- In Vorganges initialisiert und den Event- Listener zugewiesen.
+	 * Hier werden die Action- Events der Check- In Views initialisiert und den Event- Listener zugewiesen.
 	 */
 	public void addCheckInEventListener() {
 		viewMain.setlbProgress01Listener(new ComponentMouseButtonListener.Adapter() {
@@ -248,7 +249,7 @@ public class CheckInViewController implements ButtonPressListener {
 	}
 
 	/**
-	 * Die setSelectedGuest Methode weist die Gast-Informationen, wie Name, Geschlecht, Adresse, Bankdaten, usw. der inc.checkInForm01 zu.
+	 * Die setSelectedGuest Methode wird aufgerufen, wenn ein Gast aus der Reservierung ausgewählt wird. Sie initialisiert die Gast Daten der Check-In Form 1.
 	 * @param nummer
 	 * @throws FokusException
 	 * @throws DatabaseException
@@ -310,7 +311,7 @@ public class CheckInViewController implements ButtonPressListener {
 	}
 
 	/**
-	 * Instanzen der ViewMain, ControllerCheckIn und ViewController werden dem CheckInViewController zugewiesen.
+	 * Konstruktor: Instanzen der ViewMain, ControllerCheckIn und ViewController werden dem CheckInViewController zugewiesen.
 	 * @param viewMain
 	 * @param controllerCheckIn
 	 * @param viewController
@@ -323,7 +324,7 @@ public class CheckInViewController implements ButtonPressListener {
 	}
 
 	/**
-	 * 
+	 * Die gotoStep- Action regelt die Steps des Check-In Ablaufes und somit die Sichtbarkeit der einzelnen Check-In Forms.
 	 */
 	Action gotoStep = new Action(true) {
 		@Override
@@ -381,6 +382,10 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	};
 
+
+	/**
+	 * Die cancel- Action ruft ein BlockingDialog auf und ist bei einer Bestätigung für einen korrekten Abbruch des aktuellen Fensters zuständig.
+	 */
 	Action cancel = new Action(true) {
 		@Override
 		public void perform(Component source) {
@@ -401,6 +406,12 @@ public class CheckInViewController implements ButtonPressListener {
 	};
 
 	
+	
+	/**
+	 * Bei der resetCheckInForms Methode wird die View auf den Ausgangszustand zurückgesetzt und die Texteingaben aus den TextInputs gelöscht. 
+	 * Zudem werden die controllerCheckIn Listen und Fokusse gelöscht und neu initialisiert.
+	 * Gesperrte Komponenten werden wieder freigegeben und die initialize View Main Methode wird aufgerufen.
+	 */
 	public void resetCheckInForms() {
 		viewMain.checkInForm01.setVisible(false);
 		viewMain.checkInForm02.setVisible(false);
@@ -423,6 +434,13 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * Hier wird die inc.checkInForm04 Form initialisiert. Bei nicht vorhandenen Einträgen wird der Hintergrund dieser Komponente Gelb hinterlegt. 
+	 * @throws DatabaseEntryNotFoundException
+	 * @throws FokusException
+	 * @throws EmptyParameterException
+	 * @throws SerializationException
+	 */
 	public void initializeSummaryWindow()
 			throws DatabaseEntryNotFoundException, FokusException,
 			EmptyParameterException, SerializationException {
@@ -463,10 +481,17 @@ public class CheckInViewController implements ButtonPressListener {
 				+ String.valueOf(controllerCheckIn
 						.berechneZimmerpreis(von, bis)));
 	}
-
+	
+	/**
+	 * Bei einer Adressänderung aus der vorhandenen Reservierung werden die Adressdaten in der Check-In View neu gesetzt.
+	 * @param street
+	 * @param city
+	 * @param zip
+	 * @param country
+	 * @throws FokusException
+	 */
 	public void setSelectedAdress(String street, String city, String zip,
 			String country) throws FokusException {
-		setAdressFocus(street, city, zip, country);
 		viewMain.tiStreet.setText(street);
 		viewMain.tiCity.setText(city);
 		viewMain.lbtnCountry.setSelectedItem(country);
@@ -474,6 +499,15 @@ public class CheckInViewController implements ButtonPressListener {
 
 	}
 
+	/**
+	 * liefert eine IAdresse, anhand der übergebenen Parameter.
+	 * @param street
+	 * @param city
+	 * @param zip
+	 * @param country
+	 * @return IAdresse
+	 * @throws FokusException
+	 */
 	public IAdresse getSelectedAdress(String street, String city, String zip,
 			String country) throws FokusException {
 		List<IAdresse> adressen = new Vector<IAdresse>(controllerCheckIn
@@ -491,43 +525,52 @@ public class CheckInViewController implements ButtonPressListener {
 		return null;
 	}
 
-	
-	public void setAdressFocus(String street, String city, String zip,
-			String country) throws FokusException {
-		List<IAdresse> adressen = new Vector<IAdresse>(controllerCheckIn
-				.getGast().getAdressen());
 
-		for (IAdresse adresse : adressen) {
-			if (adresse.getStrasse() == street && adresse.getOrt() == city
-					&& adresse.getPlz() == zip
-					&& adresse.getLand().getBezeichnung() == country) {
-			}
-		}
-	}
-
+	/**
+	 * Hier werden die verfügbaren Zimmer pro Teilreservierung ermittelt und an den ListViews (Check-In Step2) angezeigt.
+	 * @param categoryName
+	 * @throws FokusException
+	 * @throws DatabaseException
+	 * @throws NotContainExeption 
+	 */
 	public void setSelectedPartialReservation(String categoryName)
-			throws FokusException, DatabaseException {
+			throws FokusException, DatabaseException, NotContainExeption {
 		IKategorie category = getCategoryByName(categoryName);
 		Wrapper wrapper = new Wrapper();
-		List<IZimmer> availableRooms = getRoomsByCategory(category);
+		List<IZimmer> availableRooms = controllerCheckIn.getVerfügbareZimmerFürGegebeneKategorie(category);
 		viewMain.lvAssignedRooms.setListData(wrapper
 				.getZimmerListAdapter(availableRooms));
 	}
 
+	/**
+	 * liefert eine Kategorie anhand der Bezeichnung.
+	 * @param categoryName
+	 * @return IKategorie
+	 * @throws FokusException
+	 */
 	public IKategorie getCategoryByName(String categoryName)
 			throws FokusException {
 		ITeilreservierung curTeilreservierung = getSelectedTeilreservierung(categoryName);
 		return curTeilreservierung.getKategorie();
 	}
 
+	/**
+	 * Hier werden automatisch Zimmer für die entspechenden Teilreservierungen/Zimmerkategorien dem Gast zugewiesen. 
+	 * Falls nicht genügend freie Zimmer vorhanden sind, wird eine NotEnoughRoomsException geworfen.
+	 * @throws NotEnoughRoomsException
+	 * @throws DatabaseException
+	 * @throws FokusException
+	 * @throws WrongParameterException
+	 * @throws NotContainExeption
+	 */
 	public void defaultRoomAssignment() throws NotEnoughRoomsException,
-			DatabaseException, FokusException, WrongParameterException {
+			DatabaseException, FokusException, WrongParameterException, NotContainExeption {
 		Wrapper wrapper = new Wrapper();
 		StringBuilder message = new StringBuilder();
 		
 		for (ITeilreservierung teilreservierung : controllerCheckIn
 				.getAktuelleReservierung().getTeilreservierungen()) {
-			List<IZimmer> availableRooms = getRoomsByCategory(teilreservierung
+			List<IZimmer> availableRooms = controllerCheckIn.getVerfügbareZimmerFürGegebeneKategorie(teilreservierung
 					.getKategorie());
 
 			for (int i = 0; i < teilreservierung.getAnzahl(); i++) {
@@ -551,18 +594,16 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
-	public List<IZimmer> getRoomsByCategory(IKategorie kat)
-			throws DatabaseException, FokusException {
-		HashMap<IKategorie, List<IZimmer>> availableRooms = controllerCheckIn
-				.getVerfuegbareZimmer();
-		List<IZimmer> z = availableRooms.get(kat);
-		return z;
-	}
-
-	
+	/**
+	 * getRoomByNumber liefert ein IZimmer anhand der Zimmernummer.
+	 * @param roomNumber
+	 * @return
+	 * @throws DatabaseException
+	 * @throws FokusException
+	 */
 	public IZimmer getRoomByNumber(String roomNumber) throws DatabaseException,
 			FokusException {
-		List<IZimmer> availableRooms = getAllAvailableRooms();
+		List<IZimmer> availableRooms = controllerCheckIn.getVerfügbareZimmer();
 		for (IZimmer room : availableRooms) {
 			if (room.getNummer().equals(roomNumber)) {
 				return room;
@@ -571,6 +612,12 @@ public class CheckInViewController implements ButtonPressListener {
 		return null;
 	}
 
+	/**
+	 * Hier wird eine Teilreservierung anhand der Kategoriebezeichnung zurückgegeben.
+	 * @param categoryName
+	 * @return ITeilreservierung
+	 * @throws FokusException
+	 */
 	public ITeilreservierung getSelectedTeilreservierung(String categoryName)
 			throws FokusException {
 		List<ITeilreservierung> teilreservierungen = new Vector<ITeilreservierung>(
@@ -585,21 +632,9 @@ public class CheckInViewController implements ButtonPressListener {
 		return null;
 	}
 
-	public List<IZimmer> getAllAvailableRooms() throws DatabaseException,
-			FokusException {
-		List<IZimmer> curRooms = new LinkedList<IZimmer>();
-		HashMap<IKategorie, List<IZimmer>> rooms = controllerCheckIn
-				.getVerfuegbareZimmer();
-		List<IZimmer> alle = new Vector<IZimmer>();
-
-		for (Map.Entry<IKategorie, List<IZimmer>> entry : rooms.entrySet()) {
-			alle.addAll(entry.getValue());
-
-		}
-		return alle;
-	}
-
-	
+	/**
+	 * ActionListener für die Zimmerkategorien/Teilreservierungen.
+	 */
 	class CategoryChangedListener implements ListViewSelectionListener {
 		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
@@ -614,11 +649,13 @@ public class CheckInViewController implements ButtonPressListener {
 			String categoryName = split[1];
 
 			try {
-				showSelectedRooms(getRoomsByCategory(getCategoryByName(categoryName)));
+				showSelectedRooms(controllerCheckIn.getVerfügbareZimmerFürGegebeneKategorie(getCategoryByName(categoryName)));
 			} catch (DatabaseException e1) {
 				e1.printStackTrace();
 			} catch (FokusException e1) {
 				e1.printStackTrace();
+			} catch (NotContainExeption e) {
+				e.printStackTrace();
 			}
 		}
 		public void selectedRangeAdded(ListView arg0, int arg1, int arg2) {
@@ -629,6 +666,10 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * 	Der RoomChangedListener kontrolliert den Ablauf, wenn ein Zimmer dem Gast hinzugefügt bzw. gelöscht wird.
+	 *  Hierfür wird der eingetragene Text anhand der Zimmernummer geparst und das ausgewählte Zimmer dem Check-In Controller zugewiesen.
+	 */
 	class RoomChangedListener implements ListViewItemStateListener {
 		public void selectedItemChanged(ListView listView, Object arg1) {
 
@@ -677,19 +718,33 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * Hier wird das zu löschende Zimmer dem usecase Controller übermittelt.
+	 * @param room
+	 * @throws WrongParameterException
+	 */
 	public void removeRoom(IZimmer room) throws WrongParameterException {
 		controllerCheckIn.remove(room);
 	}
 
+	/**
+	 * Hier wird das zu hinzufügende Zimmer dem usecase Controller übergeben.
+	 * @param room
+	 * @throws WrongParameterException
+	 */
 	public void addRoom(IZimmer room) throws WrongParameterException {
 		controllerCheckIn.addZimmer(room);
 	}
 
+	/**
+	 * ActionListener: Übermittelt alle verügbaren und freien Zimmer.
+	 *
+	 */
 	class ShowAllRoomsListener implements ButtonStateListener {
 		public void stateChanged(Button arg0, State arg1) {
 			if (arg0.isSelected()) {
 				try {
-					List<IZimmer> allAvailableRooms = getAllAvailableRooms();
+					List<IZimmer> allAvailableRooms = controllerCheckIn.getVerfügbareZimmer();
 					showSelectedRooms(allAvailableRooms);
 				} catch (DatabaseException e) {
 					e.printStackTrace();
@@ -705,16 +760,22 @@ public class CheckInViewController implements ButtonPressListener {
 				String categoryName = split[1];
 
 				try {
-					showSelectedRooms(getRoomsByCategory(getCategoryByName(categoryName)));
+					showSelectedRooms(controllerCheckIn.getVerfügbareZimmerFürGegebeneKategorie(getCategoryByName(categoryName)));
 				} catch (DatabaseException e) {
 					e.printStackTrace();
 				} catch (FokusException e) {
+					e.printStackTrace();
+				} catch (NotContainExeption e) {
 					e.printStackTrace();
 				}
 			}
 		}
 	}
 
+	/**
+	 * Ausgewählte Zimmer werden an die GUI übernommen.
+	 * @param availableRooms
+	 */
 	public void showSelectedRooms(List<IZimmer> availableRooms) {
 		int i = 0;
 		Wrapper wrapper = new Wrapper();
@@ -730,6 +791,12 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * Überprüft die Check-In Eingabefelder auf fehlende Parameter und liefert die Fehleranzahl zurück.
+	 * @param message
+	 * @return int
+	 * @throws SerializationException
+	 */
 	public int checkFormOnEmptyFields(String message)
 			throws SerializationException {
 		List<Label> components = (List<Label>) viewMain.getAllCheckInLabels();
@@ -777,15 +844,24 @@ public class CheckInViewController implements ButtonPressListener {
 	}
 
 	
+	/**
+	 * Hier werden die benötigten Check-In Informationen ausgelesen, dem ausgewähltem Gast hinzugefügt und bei Vollständigkeit ein neuer Aufenthalt pro ausgewähltes Zimmer erstellt.
+	 * @throws java.text.ParseException
+	 * @throws FokusException
+	 * @throws DatabaseException
+	 * @throws EmptyParameterException
+	 * @throws NotContainExeption
+	 * @throws WrongParameterException
+	 */
 	public void createStay() throws java.text.ParseException, FokusException,
 			DatabaseException, EmptyParameterException, NotContainExeption,
-			InvalidCountryException, WrongParameterException {
+			WrongParameterException {
 
 		if (controllerCheckIn.getGast() == null) {
 			Set<IAdresse> adr = new HashSet<IAdresse>();
-			controllerCheckIn.setGast(new Gast("", "", 'm', adr, MyLittleDate
-					.getCurrentDate(), "xxxxxx", "xxx", new Kontodaten("xxx",
-					"xxx", "xxx", "xxx"), "NoNumber", null));
+			controllerCheckIn.setGast(new Gast("", "", ' ', adr, MyLittleDate
+					.getCurrentDate(), "", "", new Kontodaten("",
+					"", "", ""), "", null));
 		}
 
 		controllerCheckIn.setVorname(viewMain.smLBFirstName.getText());
@@ -828,9 +904,7 @@ public class CheckInViewController implements ButtonPressListener {
 
 		ILand country = controllerCheckIn
 				.getLandByBezeichnung(countryDescription);
-		if (country == null) {
-			throw new InvalidCountryException();
-		}
+
 		if (isNewAdress(street, zip, city, country)) {
 			controllerCheckIn
 					.addAdresse(new Adresse(street, zip, city, country));
@@ -857,6 +931,18 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * Überprüft, ob sich die Adresse des Gastes geändert hat.
+	 * @param street
+	 * @param zip
+	 * @param city
+	 * @param country
+	 * @return boolean
+	 * @throws FokusException
+	 * @throws DatabaseException
+	 * @throws EmptyParameterException
+	 * @throws NotContainExeption
+	 */
 	public boolean isNewAdress(String street, String zip, String city,
 			ILand country) throws FokusException, DatabaseException,
 			EmptyParameterException, NotContainExeption {
@@ -871,6 +957,11 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 		return true;
 	}
+	
+	/**
+	 * Der GuestChangedListener kontrolliert den Ablauf, wenn ein Gast aus der Reservierung ausgewählt wird.
+	 * Hierfür wird der eingetragene Text nach der Gastnummer geparst und die setSelectedGuest Methode aufgerufen.
+	 */
 	
 	class GuestChangedListener implements ListButtonSelectionListener {
 		@Override
@@ -899,6 +990,11 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * Der GuestChangedListener kontrolliert den Ablauf, wenn ein Adresse aus der Reservierung ausgewählt wird.
+	 * Hierfür wird der eingetragene Text nach der Straße, Ort, PLZ und Land geparst und die setSelectedAdress Methode aufgerufen.
+	 *
+	 */
 	class AdressChangedListener implements ListButtonSelectionListener {
 		@Override
 		public void selectedIndexChanged(ListButton listButton, int arg1) {
@@ -920,6 +1016,12 @@ public class CheckInViewController implements ButtonPressListener {
 		}
 	}
 
+	
+	/**
+	 * 	Der GuestChangedListener kontrolliert den Ablauf, wenn der Aufenthalt abgespeichert werden soll.
+	 *  Hierfür wird die checkFormOnEmptyFields Methode aufgerufen und bei Vollständigkeit der benötigten Daten die createStay Methode.
+	 *  Zudem werden die Einträge der Reservierungsforms gelöscht und die View zurück auf den Ausgangspunkt gestellt.
+	 */
 	class CreateAufenthaltListener implements ButtonPressListener {
 		public void buttonPressed(Button arg0) {
 			try {
@@ -937,8 +1039,6 @@ public class CheckInViewController implements ButtonPressListener {
 			} catch (EmptyParameterException e) {
 				e.printStackTrace();
 			} catch (NotContainExeption e) {
-				e.printStackTrace();
-			} catch (InvalidCountryException e) {
 				e.printStackTrace();
 			} catch (WrongParameterException e) {
 				e.printStackTrace();

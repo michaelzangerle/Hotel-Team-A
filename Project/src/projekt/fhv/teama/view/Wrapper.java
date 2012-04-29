@@ -18,12 +18,21 @@ import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
-import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
 
+/**
+ * Die Wrapper Klasse ist für das ListAdapter- Management verantwortlich, d.h. die Umwandlung von Objekten zu String listen.
+ * @author Team A
+ * @version 1.0
+ */
 public class Wrapper {
 	ListAdapter<String> listAdapter;
 	NumberFormat numberFormat;
 
+	/**
+	 * liefert den Reservierungs- ListAdapter
+	 * @param reservations
+	 * @return ListAdapter<String>
+	 */
 	public ListAdapter<String> getReservationListAdapter(
 			List<IReservierung> reservations) {
 		List<String> curReservations = new ArrayList<String>();
@@ -39,6 +48,11 @@ public class Wrapper {
 		return new ListAdapter<String>(curReservations);
 	}
 
+	/**
+	 * liefert den Gast- ListAdapter
+	 * @param guests
+	 * @return ListAdapter<String>
+	 */
 	public ListAdapter<String> getGuestListAdapter(List<IGast> guests) {
 		LinkedList<String> curGuests = new LinkedList<String>();
 		GuestNameComparator guestNameComparator = new GuestNameComparator();
@@ -52,6 +66,11 @@ public class Wrapper {
 		return new ListAdapter<String>(curGuests);
 	}
 
+	/**
+	 * liefert den Adress- ListAdapter
+	 * @param adresses
+	 * @return ListAdapter<String>
+	 */
 	public ListAdapter<String> getAdressListAdapter(List<IAdresse> adresses) {
 		LinkedList<String> curAdresses = new LinkedList<String>();
 
@@ -63,6 +82,11 @@ public class Wrapper {
 		return new ListAdapter<String>(curAdresses);
 	}
 
+	/**
+	 * liefert den teilreservierungs- ListAdapter
+	 * @param teilreservierungen
+	 * @return ListAdapter<String>
+	 */
 	public ListAdapter<String> getTeilreservierungListAdapter(
 			List<ITeilreservierung> teilreservierungen) {
 		LinkedList<String> curteilreservierungen = new LinkedList<String>();
@@ -74,6 +98,11 @@ public class Wrapper {
 		return new ListAdapter<String>(curteilreservierungen);
 	}
 
+	/**
+	 * liefert den Zimmer- ListAdapter
+	 * @param roomsAvailable
+	 * @return ListAdapter<String>
+	 */
 	public ListAdapter<String> getZimmerListAdapter(List<IZimmer> roomsAvailable) {
 		LinkedList<String> curRooms = new LinkedList<String>();
 		RoomNumberComparator roomNumberComparator = new RoomNumberComparator();
@@ -86,6 +115,11 @@ public class Wrapper {
 		return new ListAdapter<String>(curRooms);
 	}
 	
+	/**
+	 * liefert den Schlüssel- ListAdapter
+	 * @param rooms
+	 * @return ListAdapter<String>
+	 */
 	public ListAdapter<String> getKeyListAdapter(List<IZimmer> rooms) {
 		LinkedList<String> keyNumber = new LinkedList<String>();
 		RoomNumberComparator roomNumberComparator = new RoomNumberComparator();
@@ -97,11 +131,21 @@ public class Wrapper {
 		return new ListAdapter<String>(keyNumber);
 	}
 	
+	/**
+	 * Liefert den Ausgabe- String für das übergebene Zimmer.
+	 * @param zimmer
+	 * @return String
+	 */
 	public String getZimmer (IZimmer zimmer){
 		return zimmer.getNummer() + " | "
 				+ zimmer.getKategorie().getBezeichnung()+ " | € " +new Vector<IZimmerpreis>(zimmer.getKategorie().getZimmerpreise()).get(0).getPreis();
 	}
-
+	
+	/**
+	 * liefert den PfandTyp- ListAdapter
+	 * @param pfandtypen
+	 * @return ListAdapter<String>
+	 */
 	public ListAdapter<String> getPfandTypListAdapter(List<IPfandtyp> pfandtypen) {
 		LinkedList<String> curPfandTypen = new LinkedList<String>();
 
@@ -111,6 +155,11 @@ public class Wrapper {
 		return new ListAdapter<String>(curPfandTypen);
 	}
 	
+	/**
+	 * liefert den Land- ListAdapter
+	 * @param reservations
+	 * @return ListAdapter<String>
+	 */
 	public ListAdapter<String> getCountryListAdapter(List<ILand> countries) {
 		LinkedList<String> curCountries = new LinkedList<String>();
 		CountryNameComparator countryComparator = new CountryNameComparator();
@@ -122,11 +171,17 @@ public class Wrapper {
 		return new ListAdapter<String>(curCountries);
 	}
 
+	/**
+	 * Konstruktor - initialisierung des Nummerformates.
+	 */
 	public Wrapper() {
 		numberFormat = NumberFormat.getInstance();
 		numberFormat.setMinimumIntegerDigits(3);
 	}
 
+	/**
+	 * Der ReservationID Comparator sortiert die Reservierungen anhand der Reservierungsnummer.
+	 */
 	public class ReservationIDComparator implements Comparator<IReservierung> {
 
 		@Override
@@ -141,6 +196,9 @@ public class Wrapper {
 		}
 	}
 
+	/**
+	 * Der GuestName Comparator sortiert die Gaeste anhand des Nachnamen und Vornamen.
+	 */
 	public class GuestNameComparator implements Comparator<IGast> {
 
 		@Override
@@ -152,6 +210,9 @@ public class Wrapper {
 		}
 	}
 
+	/**
+	 * Der RoomNumber Comparator sortiert die Zimmer anhand der Kategorie- Bezeichnung und Zimmernummer.
+	 */
 	public class RoomNumberComparator implements Comparator<IZimmer> {
 
 		@Override
@@ -163,6 +224,9 @@ public class Wrapper {
 		}
 	}
 	
+	/**
+	 * Der CountryName Comparator sortiert die Laender anhand der Bezeichnung.
+	 */
 	public class CountryNameComparator implements Comparator<ILand> {
 
 		@Override
