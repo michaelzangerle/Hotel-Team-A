@@ -6,8 +6,15 @@
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.password"></property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost/webosd_db8</property>
-		<property name="hibernate.connection.username">root</property>
+		
+		<property name="hibernate.connection.url">jdbc:mysql://sql148.your-server.de/webosd_db8</property>
+		<property name="hibernate.connection.username">shs2012</property>
+		<property name="hibernate.connection.password">smartsys12</property>
+		
+<!-- 		<property name="hibernate.connection.url">jdbc:mysql://localhost/webosd_db8</property> -->
+<!-- 		<property name="hibernate.connection.username">root</property> -->
+<!-- 		<property name="hibernate.connection.password"></property> -->
+
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.current_session_context_class">thread</property>
