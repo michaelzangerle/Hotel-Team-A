@@ -1,0 +1,6 @@
+<!-- BXML Dokument für die Übersichtsdaten eines momentan eingecheckten Gastes.
+  -->
+
+<view:ViewCurrentGuest bxml:id="bdViewCurrentGuest" xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" visible="false" >
+<bxml:include src="inc.currentGuestForm01.bxml" inline="true"/>
+</view:ViewCurrentGuest>

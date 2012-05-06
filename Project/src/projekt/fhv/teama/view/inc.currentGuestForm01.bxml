@@ -1,0 +1,53 @@
+<!-- BXML Dokument für die Darstellung von Gastinformationen -->
+
+<BoxPane bxml:id="bpCurrentGuestForm01" xmlns:bxml="http://pivot.apache.org/bxml"
+	xmlns="org.apache.pivot.wtk" xmlns:view="projekt.fhv.teama.view"
+	visible="true" orientation="vertical" styles="{padding:6, spacing:10,fill:true}">
+		<BoxPane>
+		<Label bxml:id="cgf1LBCurrentGuestDetails" text="Selected Guest: No." styles="$styles.lbHeading1"/>
+		<Label bxml:id="cgf1LBGuestNr" text="4711" styles="$styles.lbHeading1" />
+		</BoxPane>
+		<BoxPane styles="{padding:30}">
+		<Form bxml:id="cgf1Form" styles="{showFlagIcons:true}">
+			<Form.Section>
+				<TextInput bxml:id="cgf1TIName" Form.label="Name" textKey="name" preferredWidth="350" />
+				<BoxPane orientation="vertical" Form.label="Address">									
+							<BoxPane orientation="horizontal" bxml:id="cgf1BPAddress">
+								<TextInput bxml:id="cgf1TIStreet" prompt="Street" preferredWidth="350" />
+							</BoxPane>
+							<BoxPane orientation="horizontal" >
+								<TextInput bxml:id="cgf1TICity" prompt="City" preferredWidth="245" />
+								<TextInput bxml:id="cgf1TIZip" prompt="Zip" preferredWidth="100"/>
+						</BoxPane>
+						    <TextInput bxml:id="cgf1TICountry" prompt="Country" preferredWidth="350"/>
+				</BoxPane>
+				<TextInput bxml:id="cgf1TIPhone" Form.label="Phone"	textKey="phoneNumber" preferredWidth="350" />
+				<TextInput bxml:id="cgf1TIEMail" Form.label="Email"	textKey="emailAddress" preferredWidth="350" />
+				
+				<BoxPane orientation="horizontal" bxml:id="cgf1BPStay" styles="{padding:{top:10, left:0, bottom:10, right:0}, spacing:35}">
+					<BoxPane orientation="vertical">
+						<Label bxml:id="cgf1LBArrival" text="Arrival" styles="$styles.libHeading" />
+						<CalendarButton bxml:id="cgf1CBArrival"	preferredWidth="155" />
+					</BoxPane>
+					<BoxPane orientation="vertical">
+						<Label bxml:id="cgf1LBDeparture" text="Departure" styles="$styles.libHeading"/>
+						<CalendarButton bxml:id="cgf1CBDeparture" preferredWidth="155"/>
+					</BoxPane>				
+					</BoxPane>
+			</Form.Section>
+		</Form>
+		</BoxPane>
+			
+		<Separator />
+	<!-- Action Buttons ########################################################################### -->				
+		<BoxPane styles="{horizontalAlignment:'left', spacing:15, padding:12}">
+			<PushButton bxml:id="cgf1PBtnEditGuest" buttonData="Edit" enabled="false"/>
+			<PushButton bxml:id="cgf1PBtnSaveGuest" buttonData="Save" enabled="false"/>
+			<PushButton bxml:id="cgf1PBtnDeleteGuest" buttonData="Delete" enabled="false"/>
+			<PushButton bxml:id="cgf1ClearButton" buttonData="Clear" visible="false"/>
+			<PushButton bxml:id="cgf1PBtnBookExtras" buttonData="Book Additional Services" styles="$styles.btSpecial" enabled="true"/>
+			<PushButton bxml:id="cgf1PBtnCheckOut" buttonData="Start Check-Out" styles="$styles.btSpecial" enabled="true"/>
+		</BoxPane>
+	</BoxPane>
+<!-- 
+</view:ViewCurrentGuest> -->

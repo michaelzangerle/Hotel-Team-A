@@ -1,0 +1,94 @@
+<BoxPane bxml:id="bpAdditionalServicesForm02" xmlns:bxml="http://pivot.apache.org/bxml"
+	xmlns="org.apache.pivot.wtk" xmlns:view="projekt.fhv.teama.view"
+	visible="false" orientation="vertical" styles="{padding:6, spacing:10, fill:true}">
+		<Label bxml:id="asf2LBAdditionalServicesHead" text="Additional Services: Verify and finish service assignment"
+			styles="$styles.lbHeading1"/>
+
+		<!-- Key Handout & Stay Summary #############################################################################
+			-->
+		<Separator bxml:id="asf2smServicesSummary" heading=" Review summary before saving " styles="$styles.sprHeading"/>
+
+		<Label text="You are booking the following services for guest No. 001 | ERICSSON Christopher: "  styles="$styles.lbHeading2" />
+
+		<!-- Step 2 #####################################################################	-->
+
+		<TablePane bxml:id="asf2smTPSummary" styles="$styles.smTPSummary" preferredWidth="500">
+			<columns>
+				<TablePane.Column width="2*"/>
+				<TablePane.Column width="2*"/>
+				<TablePane.Column width="1*"/>
+			</columns>
+
+			<TablePane.Row height="25">
+				<Label text="Room"  styles="$styles.smTableHeader"/>
+				<Label text="Additional Services"  styles="$styles.smTableHeader"/>
+				<Label text="Total amount per room"  styles="$styles.smTableHeader"/>
+			</TablePane.Row>
+
+			<TablePane.Row height="2*">
+				<Label bxml:id="asf2smLBRoom" text="Nr. 0145 Single room" styles="$styles.smTableCell"/>
+				<Label bxml:id="asf2smLBServices" text="4x Parken im Klo, 2x Duschen im Klo, 1x Essen aus dem Klo" styles="$styles.smTableCell"/>
+				<Label bxml:id="asf2smLBTotal" text="€ 500.000,00" styles="$styles.smTableCell"/>
+			</TablePane.Row>
+
+			<TablePane.Row height="15">
+				<TablePane.Filler/>
+			</TablePane.Row>
+
+			<TablePane.Row height="25">
+				<Label text="Room"  styles="$styles.smTableHeader"/>
+				<Label text="Additional Services"  styles="$styles.smTableHeader"/>
+				<Label text="Total amount per room"  styles="$styles.smTableHeader"/>
+			</TablePane.Row>
+
+			<TablePane.Row height="2*">
+				<Label text="Nr. 0007 Double room" styles="$styles.smTableCell"/>
+				<Label text="4x Parken im Klo, 100x Duschen im Klo" styles="$styles.smTableCell"/>
+				<Label text="€ 500.000,00" styles="$styles.smTableCell"/>
+			</TablePane.Row>
+
+			<TablePane.Row height="15">
+				<TablePane.Filler/>
+			</TablePane.Row>
+
+			<TablePane.Row height="25">
+				<Label text="Room"  styles="$styles.smTableHeader"/>
+				<Label text="Additional Services"  styles="$styles.smTableHeader"/>
+				<Label text="Total amount per room"  styles="$styles.smTableHeader"/>
+			</TablePane.Row>
+
+			<TablePane.Row height="2*">
+				<Label text="Nr. 1000 Double room + extra bed" styles="$styles.smTableCell"/>
+				<Label text="1x Parken im Klo, 4x Duschen im Klo, 20x Essen aus dem Klo" styles="$styles.smTableCell"/>
+				<Label text="€ 500.000,00" styles="$styles.smTableCell"/>
+			</TablePane.Row>
+
+			<TablePane.Row height="15">
+				<TablePane.Filler/>
+			</TablePane.Row>
+		</TablePane>		
+		<FillPane orientation="horizontal" styles="{padding:{top:25, left:6, bottom:15, right:6}}">
+		<Label text="Total amount for services: "  styles="$styles.asf2Total" minimumWidth="300" maximumWidth="300"/><Label text="€ 15.000.000.000,00"  styles="$styles.asf2Total"/>			
+		</FillPane>
+
+			<!-- Action Buttons ###########################################################################
+				-->
+			<Separator/>
+
+			<TablePane styles="{padding:12}">
+				<columns>
+					<TablePane.Column width="1*"/>
+					<TablePane.Column width="300"/>
+				</columns>
+
+				<TablePane.Row height="1*">
+					<BoxPane  styles="{horizontalAlignment:'left', spacing:15}">
+						<PushButton bxml:id="asf2PBtnCancel" buttonData="Cancel"/>
+					</BoxPane>
+					<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
+						<PushButton bxml:id="asf2PBtnBack" buttonData="Previous Step"/>
+						<PushButton bxml:id="asf2PBtnFinish" buttonData="Finish and Save" styles="$styles.btSpecial"/>
+					</BoxPane>
+				</TablePane.Row>
+			</TablePane>
+		</BoxPane>

@@ -55,6 +55,8 @@ import projekt.fhv.teama.view.support.BlockingDialog;
 public class ViewController implements Application {
 	private ViewLogin viewLogin;
 	private ViewMain viewMain;
+	private ViewAdditionalServices bdViewAdditionalServices;
+	private ViewCurrentGuest bdViewCurrentGuest;
 	private Display disp;
 	private ControllerCheckIn controllerCheckIn;
 	private Wrapper wrapper;
@@ -86,6 +88,13 @@ public class ViewController implements Application {
 				"ViewLogin.bxml"));
 		viewMain = (ViewMain) bS.readObject(getClass().getResource(
 				"ViewMain.bxml"));
+		
+		bdViewAdditionalServices = (ViewAdditionalServices) bS.readObject(
+				ViewAdditionalServices.class,"ViewAdditionalServices.bxml");
+		
+		bdViewCurrentGuest = (ViewCurrentGuest) bS.readObject(
+				ViewAdditionalServices.class,"ViewCurrentGuest.bxml");
+		
 		viewMain.setMaximized(true);
 		viewLogin.open(getDisp());
 
@@ -233,7 +242,83 @@ public class ViewController implements Application {
 			list.add("Currently no reservation available");
 			viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
 		}
-	}
+		
+		/** insert Tests - Pat *************************************************************************/
+
+		
+		viewMain.reservationForm01.setVisible(false);
+		viewMain.lbProgress03.setVisible(false);
+		viewMain.lbProgress04.setVisible(false);
+		viewMain.lbProgress01.setTooltipText("Select a room and add services");
+		viewMain.lbProgress02.setTooltipText("Check the overview of the booked services and finish the process by saving");
+		
+		viewMain.meter.setPercentage(0.5);
+		viewMain.meter.getStyles().put("gridFrequency", "0.5");
+
+		viewMain.mainContent.add(bdViewAdditionalServices);
+		viewMain.mainContent.add(bdViewCurrentGuest);
+		bdViewCurrentGuest.setVisible(true);
+		
+		bdViewCurrentGuest.cgf1PBtnBookExtras.getButtonPressListeners().add(new ButtonPressListener() {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+				
+				bdViewCurrentGuest.setVisible(false);
+				bdViewAdditionalServices.setVisible(true);
+				viewMain.progress.setVisible(true);
+				viewMain.meter.setPercentage(0.5);
+			}
+			});
+		
+		
+		bdViewAdditionalServices.asf1PBtnNext.getButtonPressListeners().add(new ButtonPressListener() {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+
+				bdViewAdditionalServices.bpAdditionalServicesForm01.setVisible(false);
+				bdViewAdditionalServices.bpAdditionalServicesForm02.setVisible(true);
+				viewMain.meter.setPercentage(1);
+			}
+			
+			
+		});
+		
+		bdViewAdditionalServices.asf1PBtnBack.getButtonPressListeners().add(new ButtonPressListener() {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+
+			
+			}
+			
+			
+		});
+		
+		bdViewAdditionalServices.asf2PBtnBack.getButtonPressListeners().add(new ButtonPressListener() {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+
+				bdViewAdditionalServices.bpAdditionalServicesForm01.setVisible(true);
+				bdViewAdditionalServices.bpAdditionalServicesForm02.setVisible(false);
+				viewMain.meter.setPercentage(0.5);
+			}
+			
+			
+		});
+		
+		
+		
+		
+		}
+	
+	
+	
+		/** end insert Tests - Pat ***************************************************************************/
+		
+	
 
 	/**
 	 * Fokus einer ausgewählten Reservierung wird dem controllerCheckIn übergeben.

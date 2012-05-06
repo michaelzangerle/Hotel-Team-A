@@ -1,0 +1,105 @@
+<BoxPane bxml:id="bpAdditionalServicesForm01" xmlns:bxml="http://pivot.apache.org/bxml"
+	xmlns="org.apache.pivot.wtk" xmlns:view="projekt.fhv.teama.view" xmlns:content="org.apache.pivot.wtk.content" xmlns:collections="org.apache.pivot.collections"
+	xmlns:support="projekt.fhv.teama.view.support" visible="true" orientation="vertical" styles="{padding:6, spacing:10, fill:true}">
+		<Label bxml:id="asf1LBAdditionalServicesHead" text="Additional Services: Add services to a booked room"
+			styles="$styles.lbHeading1"/>
+				
+		<!-- Zimmerliste des Gastes ######################################################################################## -->
+		<Separator bxml:id="asf1SPBookedRooms" heading=" Add additional services to a booked room " styles="$styles.sprHeading"/>
+		<BoxPane  bxml:id="asf1BPBookedRooms" orientation="horizontal"  styles="{padding:4, spacing:20, fill:true}">
+		<BoxPane preferredWidth="240" orientation="vertical" styles="{ padding:{top:3, left:7, bottom:15, right:0}, spacing:15, fill:true}" >
+		 <Label bxml:id="asf1LBBookedRooms" text="Select a currently booked room" styles="$styles.libHeading" tooltipText='List shows rooms which are currently booked by the guest.' tooltipDelay="250" cursor="hand"/>
+		 <Border preferredWidth="240" preferredHeight="450" styles="$styles.bordSHS">
+         <BoxPane preferredWidth="240" orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#e6eff8', fill:true}">
+				 <ScrollPane preferredWidth="240"  preferredHeight="380" horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#e6eff8'}" >
+                    <ListView bxml:id="asf1LVBookedRooms" selectMode="single" cursor="hand" styles="$styles.livRoomAssign" listData="['Nr. 0145 Single room', 'Nr. 0007 Double room', 'Nr. 1000 Double room + extra bed']" />
+                	</ScrollPane>
+                	</BoxPane>
+            </Border>
+		</BoxPane>
+		
+		<!-- Tabelle mit Zusatzleistungen ################################################################################## -->			
+		
+		<BoxPane orientation="vertical"  styles="{ padding:{top:3, left:7, bottom:15, right:0}, spacing:15, fill:true}">		
+		 <Label bxml:id="asf1LBAdditionalServices" text="Assign quantity and type of service to room by doubleclicking a tablerow   " styles="$styles.libHeading" tooltipText='Select room on the left and enter type and amount of service' tooltipDelay="250" cursor="hand"/>
+		 <Border preferredHeight="450" styles="$styles.bordSHS">
+         <BoxPane orientation="vertical" styles="{padding:4, spacing:4, fill:true}">
+           <Label bxml:id="asf1TISelectedRoom" text="Nr. 0145 Single room - adding services: "  styles="$styles.asf1SelectedRoom" />	 		        
+           <ScrollPane preferredWidth="555" preferredHeight="380" horizontalScrollBarPolicy="fill_to_capacity"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
+                      <TableView bxml:id="asf1TVAdditionalServices" selectMode="single" cursor="hand">
+              <columns>
+                <TableView.Column name="quantity" width="70" headerData="Quantity">
+                 <cellRenderer>
+                    <content:TableViewTextAreaCellRenderer styles="{margin:5}"/>
+                    </cellRenderer>
+                  </TableView.Column>
+                <TableView.Column name="type" width="110" headerData="Type">
+                 <cellRenderer>
+                    <content:TableViewTextAreaCellRenderer styles="{margin:5}"/>
+                    </cellRenderer>
+                  </TableView.Column>
+                <TableView.Column name="description" width="160" headerData="Description">
+                   <cellRenderer>
+                    <content:TableViewTextAreaCellRenderer styles="{margin:5}"/>
+                  </cellRenderer>
+                  </TableView.Column>
+                <TableView.Column name="amount" width="1*" headerData="Amount">
+                  <cellRenderer>
+                    <content:TableViewNumberCellRenderer numberFormat="€ #,##0.00" />
+                  </cellRenderer>
+                </TableView.Column>
+                <TableView.Column name="total" width="1*" headerData="Total">
+                  <cellRenderer>
+                    <content:TableViewNumberCellRenderer numberFormat="€ #,##0.00" />
+                  </cellRenderer>
+                </TableView.Column>
+                 </columns>                              
+                <tableViewSortListeners>
+                    function sortChanged(tableView) {
+                        var tableData = tableView.getTableData();
+                        tableData.setComparator(new org.apache.pivot.wtk.content.TableViewRowComparator(asf1TVAdditionalServices));
+                    }
+                </tableViewSortListeners>              
+              <tableData>
+                <collections:ArrayList>
+                  <support:AdditionalServicesTableRow quantity="1" type="Travel" description="Ticket #145-XX-71903-09" amount="1286.90" total="5286.90"/>
+                  <support:AdditionalServicesTableRow quantity="2" type="Parking" description="2 Parking spots" amount="1286.90" total="5286.90"/>
+                  <support:AdditionalServicesTableRow quantity="4" type="Travel" description="Four tickets for hiking" amount="1286.90" total="5286.90"/>
+                  <support:AdditionalServicesTableRow quantity="1" type="Parking" description="none" amount="1286.90" total="5286.90"/>
+                  <support:AdditionalServicesTableRow quantity="5" type="Meals" description="none" amount="1286.90" total="5286.90"/>
+                  <support:AdditionalServicesTableRow quantity="3" type="Travel" description="none" amount="1286.90" total="5286.90"/>
+                  <support:AdditionalServicesTableRow quantity="2" type="Meals" description="none" amount="1286.90" total="5286.90"/>
+                  <support:AdditionalServicesTableRow quantity="18" type="Travel" description="none" amount="1286.90" total="5286.90"/>
+                </collections:ArrayList>
+              </tableData>
+            </TableView>
+            <columnHeader>
+				<TableViewHeader tableView="$asf1TVAdditionalServices" sortMode="single_column" styles="{headersPressable:true}"/>
+            </columnHeader>          
+                	</ScrollPane>               	
+                	</BoxPane>
+            </Border>
+		</BoxPane>
+		</BoxPane>		
+		
+		<!-- Action Buttons ########################################################################### -->				
+		<Separator/>
+	
+		<TablePane styles="{padding:12}">
+		<columns>
+			<TablePane.Column width="12*"/>
+			<TablePane.Column width="300"/>
+		</columns>
+
+		<TablePane.Row height="1*">
+			<BoxPane  styles="{horizontalAlignment:'left', spacing:15}">
+			<PushButton bxml:id="asf1PBtnCancel" buttonData="Cancel"/>
+			</BoxPane>
+			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
+		    <PushButton bxml:id="asf1PBtnBack" buttonData="Previous Step"/>
+			<PushButton bxml:id="asf1PBtnNext" buttonData="Next Step"/>			
+			</BoxPane>
+		</TablePane.Row>
+	</TablePane>		
+		
+	</BoxPane>

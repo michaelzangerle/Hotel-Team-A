@@ -31,7 +31,11 @@
         padding:{top:5, left:10, bottom:5, right:0}
     },
     
-        "org.apache.pivot.wtk.ListButton": {
+    "org.apache.pivot.wtk.Label": {
+        wrapText: 'true'
+    },
+    
+     "org.apache.pivot.wtk.ListButton": {
        	backgroundColor: '#e6eff8',
        	font: {size:"120%"},
         padding:{top:5, left:5, bottom:5, right:5}
@@ -53,18 +57,7 @@
        	font: {size:"120%"},
         padding:{top:5, left:5, bottom:5, right:5}
     },
-        
-        
-   "org.apache.pivot.wtk.TableView": {
-        font: { size: "140%", bold: false }, 
-       	backgroundColor: '#fcfcfc',
-       	alternateRowBackgroundColor: '#f2f2f2',
-       	highlightBackgroundColor: '#fee379',
-       	showHorizontalGridLines: 'true',
-       	showVerticalGridLines: 'true',       	
-       	font: {size:"100%"},
-        },        
-  
+                  
     "org.apache.pivot.wtk.ListView": {
     
     	/*variableItemHeight:true, */ 	
@@ -73,6 +66,15 @@
         inactiveSelectionBackgroundColor: '#fee379',
         selectionBackgroundColor: '#2d4776',
     	  	
+    },  
+        "org.apache.pivot.wtk.TableView": {
+       font: { size: "105%", bold: false }, 
+    	alternateRowBackgroundColor: '#e6eff8',
+    	highlightBackgroundColor: '#fee379',
+        inactiveSelectionBackgroundColor: '#fee379',
+        selectionBackgroundColor: '#2d4776',
+        showHighlight: 'true',
+        variableRowHeight:'true'
     },  
     
     
@@ -154,6 +156,11 @@
     tabPLeftMain: {    
     	
     	buttonPadding:{top:5, left:5, bottom:5, right:5},
+    	backgroundColor: '#ffffff',
+    	activeTabColor:'#dde1e5',
+    	borderColor:'#d0d5db',
+    	inactiveTabColor: '#b2bcc4',
+    	inactiveBorderColor: '#f2f2f2'
     },
     
     tiSearch: {
@@ -249,7 +256,13 @@
     
     bordSHS: {
            backgroundColor: '#e6eff8',
+           color:'#e3e3e3', 
            padding:{top:4, left:4, bottom:4, right:4}       
+    },
+    
+   bordMainContent: {
+           color:'#e3e3e3',
+           padding:6
     },
     
     bordSearchResults: {
@@ -341,6 +354,22 @@
     cbxShowAllRooms: {
        	color:'#2d4776',
        	font: {size:"90%", bold:false},
+    },
+    
+     asf1SelectedRoom: {
+  		   font: { size: "140%", bold: true },       
+           horizontalAlignment:'left',
+           backgroundColor: '#e2edf8',
+           color:'#2d4776',          
+           padding:{top:5, left:5, bottom:5, right:15}       
+    },
+    asf2Total: {
+  		   font: { size: "140%", bold: true },       
+           horizontalAlignment:'right',
+           backgroundColor: '#e2edf8',
+           color:'#2d4776',          
+           padding:{top:5, left:5, bottom:5, right:15}       
     }
+    
         
 }

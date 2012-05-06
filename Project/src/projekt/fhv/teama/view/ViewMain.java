@@ -35,7 +35,7 @@ import org.apache.pivot.wtk.*;
  * wurde der Focus auf die Datenbank und Datenbankanbindung sowie Controller gesetzt,
  * weshalb die Umsetzung und das Testen des UI mehrheitlich hier in der ViewMain erfolgte.
  * 
- * Eine Aufteilung in die zueghörige ViewCheckIn Klasse bzw. ist jedoch ohne großen Aufwand
+ * Eine Aufteilung in die zughörige ViewCheckIn Klasse ist jedoch ohne großen Aufwand
  * möglich. Da auch das Framework Pivot diesen Ansatz vorsieht.
  *
  * @author Team A
@@ -57,7 +57,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	 * 
 	 */
 
-
+	
 	/* Labels */
 	@BXML Label lbReservationDetails;	@BXML Label lbLoginShow; @BXML Label smLBLastName;	@BXML Label smLBFirstName;	@BXML Label smLBGender; 
 	@BXML Label smLBBirthdate;	@BXML Label smLBStreet;	@BXML Label smLBZip;	@BXML Label smLBCity;	@BXML Label smLBCountry;	@BXML Label smLBPhone;
@@ -65,12 +65,12 @@ public class ViewMain extends Window implements Application, Bindable {
 	@BXML Label smLBDeparture; @BXML Label smLBDepositType; @BXML Label smLBDepositNr; @BXML Label smLBTotalPrice; @BXML Label lbLoginName;
 	
 	/* Border Container = Forms */
-	@BXML Border reservationForm01;@BXML Border checkInForm01;@BXML Border checkInForm02;@BXML Border checkInForm03;@BXML Border checkInForm04;
+	@BXML BoxPane mainContent;@BXML Border reservationForm01;@BXML Border checkInForm01;@BXML Border checkInForm02;@BXML Border checkInForm03;@BXML Border checkInForm04;
 	@BXML Border occupationPreview;@BXML TabPane tabPLeftMain;
 	
 	
 	/* Buttons */
-	@BXML PushButton rf1PBtnCheckIn;;
+	@BXML PushButton rf1PBtnCheckIn;
 		
     
 	@BXML TextInput tiLastName; @BXML TextInput tiFirstName; @BXML ButtonGroup bgGender; @BXML RadioButton rbMale; @BXML RadioButton rbFemale;
@@ -175,7 +175,8 @@ public class ViewMain extends Window implements Application, Bindable {
 		checkInForm01.setVisible(false);
 		checkInForm02.setVisible(false);
 		checkInForm03.setVisible(false);
-		checkInForm04.setVisible(false);	
+		checkInForm04.setVisible(false);
+		
 		
 		/** Ende - Zustände zum Programmstart initialisieren **************************/
 	}

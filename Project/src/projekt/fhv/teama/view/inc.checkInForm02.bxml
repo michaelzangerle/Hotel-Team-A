@@ -4,7 +4,7 @@
  
  <view:ViewCheckIn bxml:id="checkInForm02" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk"
-	styles="{padding:6}" xmlns:view="projekt.fhv.teama.view"
+	styles="$styles.bordMainContent" xmlns:view="projekt.fhv.teama.view"
 	visible="false" >
 	<BoxPane bxml:id="bpCheckInForm02" orientation="vertical" styles="{spacing:10,
 		fill:true}">

@@ -35,7 +35,7 @@
 		</left>
 		<right>
 			<SplitPane bxml:id="spLeftMiddle" preferredHeight="600" width="1236" orientation="horizontal" splitRatio="0.3" resizeMode="primary_region" primaryRegion="top_left"
-				locked="true" styles="{splitterThickness:5}">
+				locked="true" styles="{splitterThickness:0}">
 				<left>	
 					<BoxPane bxml:id="bpLeftMain" orientation="horizontal" styles="{backgroundColor:'#f2f2f2',
 						fill:true}"  minimumWidth="370">
@@ -61,7 +61,7 @@
 							<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top',
 								spacing:25,
 								fill:true}">
-								<TabPane.tabData>
+								<TabPane.tabData >
 									<content:ButtonData icon="@icons/User-blue24.png" text="Arriving Today"/>
 								</TabPane.tabData>
 							<!--	<Label bxml:id="lbArrivingSearch" text="Enter Number or Name:" styles="$styles.lbSearch"/> -->
@@ -100,11 +100,11 @@
 				</left>				
 				<right>	    
 					<SplitPane bxml:id="spMiddleRight" orientation="horizontal" splitRatio="0.77" 
-						styles="{splitterThickness:5}">
+						styles="{splitterThickness:5,backgroundColor:'#fefefe'}">
 						<left>	
 						<ScrollPane horizontalScrollBarPolicy="FILL_TO_CAPACITY" verticalScrollBarPolicy="auto" styles="{ backgroundColor:'#f2f2f2'}">						
 						<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top', spacing:25, fill:true}">					
-						<BoxPane orientation="vertical" styles="{ backgroundColor:'#f2f2f2', spacing:20, padding:{top:5, left:15, bottom:10, right:15}, fill:true }">						
+						<BoxPane bxml:id="mainContent" orientation="vertical" styles="{ backgroundColor:'#f2f2f2', spacing:20, padding:{top:5, left:15, bottom:10, right:15}, fill:true }">						
 						<bxml:include bxml:id="mainProgress" src="inc.progress.bxml" inline="true" />
 						<bxml:include bxml:id="mainReservationForm01" src="inc.reservationForm01.bxml" inline="true" />
 					    <bxml:include bxml:id="mainCheckInForm01" src="inc.checkInForm01.bxml" inline="true" />	
