@@ -10,6 +10,7 @@ import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
+import projekt.fhv.teama.model.exception.FokusException;
 
 /**
  * Interface des Aufenthalts Model, beschreibt die wichtigsten Methden um mit einem Model arbeiten zu können
@@ -41,5 +42,25 @@ public interface IModelAufenthalt {
 	 * @throws EmptyParameterException
 	 */
 	public List<IAufenthalt> getAufenthalte(Date date) throws DatabaseException;
+
+	/**
+	 * Methode um den Fokus auf einen Aufenhalt zu legen
+	 * @param aufenhalt
+	 * @throws EmptyParameterException
+	 */
+	public void setAufenthalt(IAufenthalt aufenhalt) throws EmptyParameterException;
+
+	/**
+	 * Methode um den Momentanten Aufenhalt der verwendet wird zu bekommen
+	 * @return IAufenthalt
+	 * @throws FokusException
+	 */
+	public IAufenthalt getAufenthalt() throws FokusException;
+	/**
+	 * Liefert eine Liste von Gaesten des Ausgewählten aufenthaltes
+	 * @return List<IGast>
+	 * @throws FokusException
+	 */
+	public List<IGast> getGaesteZumAufenhalt() throws FokusException;
 	
 }

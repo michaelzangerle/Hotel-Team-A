@@ -13,6 +13,7 @@ import projekt.fhv.teama.hibernate.dao.AufenthaltDao;
 import projekt.fhv.teama.hibernate.dao.IAufenthaltDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
+import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 
 /**
@@ -63,6 +64,37 @@ public class ModelAufenthalt implements IModelAufenthalt {
 		return null;
 	}
 	
+	
+	public List<IGast> getGaesteZumAufenhalt() throws FokusException
+	{
+		if(aufenthaltModel!=null)
+		{
+			List<IGast> gaeste=new Vector<IGast>();
+				if(!gaeste.contains(aufenthaltModel.getGast())&&aufenthaltModel.getGast()!=null)
+						gaeste.add(aufenthaltModel.getGast());
+			
+				return gaeste;
+		}
+		throw new FokusException();
+	}
+
+
+	@Override
+	public void setAufenthalt(IAufenthalt aufenhalt) throws EmptyParameterException {
+		if(aufenhalt!=null)
+		aufenthaltModel=aufenhalt;
+		else
+			throw new EmptyParameterException();
+	}
+
+
+	@Override
+	public IAufenthalt getAufenthalt() throws FokusException {
+		if(aufenthaltModel!=null)
+			return aufenthaltModel;
+		else
+			throw new FokusException();
+	}
 
 	
 
