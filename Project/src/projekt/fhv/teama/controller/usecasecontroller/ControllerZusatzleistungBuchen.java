@@ -47,6 +47,7 @@ public class ControllerZusatzleistungBuchen {
 					gaeste.add(aufenthalt.getGast());
 		}
 			return gaeste;
+			
 	}
 	
 	
