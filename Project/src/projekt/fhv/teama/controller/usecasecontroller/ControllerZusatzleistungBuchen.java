@@ -10,11 +10,14 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
+import projekt.fhv.teama.model.interfaces.IModelGast;
 
 public class ControllerZusatzleistungBuchen {
 	
 	//ModelRespositorys
 	private IModelAufenthalt modelAufenthalt;
+	private IModelGast modelGast;
+	
 	
 	private List<IAufenthalt> aufenthalte=new Vector<IAufenthalt>();
 	
@@ -61,5 +64,20 @@ public class ControllerZusatzleistungBuchen {
 	{
 		return modelAufenthalt.getAufenthalt();
 	}
+	
+	public void setGast(IGast gast) {
+		modelGast.setAktuellGast(gast);
+	}
+
+	public IGast getGast() throws FokusException {
+		return modelGast.getAktuellGast();
+	}
+	
+	public void getZimmerVonGast()
+	{
+		//TODO Zimmer für den Gast herausbekommen
+	}
+	
+	
 
 }

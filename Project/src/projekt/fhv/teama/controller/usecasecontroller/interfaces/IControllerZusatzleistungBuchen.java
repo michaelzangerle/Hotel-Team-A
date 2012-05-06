@@ -44,4 +44,18 @@ public interface IControllerZusatzleistungBuchen {
 	 * @throws FokusException
 	 */
 	public IAufenthalt getAufenthalt() throws FokusException;
+	
+	/**
+	 * Die Referenz auf den aktuellen Gast setzen
+	 * 
+	 * @param IGast
+	 */
+	public void setGast(IGast gast);
+	
+	/**
+	 * Die Referenz des aktuellen Gast zu erhalten
+	 * @throws FokusException 
+	 * 
+	 */
+	public IGast getGast() throws FokusException;
 }
