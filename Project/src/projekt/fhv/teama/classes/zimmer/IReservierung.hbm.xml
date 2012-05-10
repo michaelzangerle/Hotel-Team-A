@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10.05.2012 16:03:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.zimmer.IReservierung" table="IRESERVIERUNG" abstract="true">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <set name="zimmer" table="IZIMMER" inverse="false" lazy="true">
+            <key></key>
+            <one-to-many class="projekt.fhv.teama.classes.zimmer.IZimmer" />
+        </set>
+        <many-to-one name="person" class="projekt.fhv.teama.classes.personen.IPerson" fetch="join">
+            <column name="PERSON" />
+        </many-to-one>
+        <set name="gaeste" table="IGAST" inverse="false" lazy="true">
+            <key></key>
+            <one-to-many class="projekt.fhv.teama.classes.personen.IGast" />
+        </set>
+        <set name="optionen" table="IRESERVIERUNGSOPTION" inverse="false" lazy="true">
+            <key></key>
+            <one-to-many class="projekt.fhv.teama.classes.zimmer.IReservierungsOption" />
+        </set>
+        <many-to-one name="vertragspartner" class="projekt.fhv.teama.classes.personen.IVertragspartner" fetch="join">
+            <column name="VERTRAGSPARTNER" />
+        </many-to-one>
+        <set name="teilreservierungen" table="ITEILRESERVIERUNG" inverse="false" lazy="true">
+            <key></key>
+            <one-to-many class="projekt.fhv.teama.classes.zimmer.ITeilreservierung" />
+        </set>
+        <property name="von" type="java.sql.Date">
+            <column name="VON" />
+        </property>
+        <property name="bis" type="java.sql.Date">
+            <column name="BIS" />
+        </property>
+        <property name="bearbeitet" type="boolean">
+            <column name="BEARBEITET" />
+        </property>
+    </class>
+</hibernate-mapping>

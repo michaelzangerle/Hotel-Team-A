@@ -1,7 +1,10 @@
 package projekt.fhv.teama.classes;
 
 import java.sql.Date;
+import java.util.Set;
 
+import projekt.fhv.teama.classes.leistungen.ILeistung;
+import projekt.fhv.teama.classes.leistungen.IZusatzleistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 
@@ -11,6 +14,7 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
  * @version 1.8
  */
 public class Aufenthalt implements IAufenthalt {
+	
     private int ID;
 	private Float preis;
     private String pfandNr;
@@ -20,6 +24,79 @@ public class Aufenthalt implements IAufenthalt {
     private IGast gast;
     private IZimmer zimmer;
     private IPfandtyp pfandtyp;
+    private Set<ILeistung> leistungen;
+    private IZusatzleistung paket;
+    
+	public Aufenthalt() {
+	}
+	
+	
+	
+	public Aufenthalt(Float preis, String pfandNr, Date von, Date bis, boolean schluessel, IGast gast, IZimmer zimmer,
+			IPfandtyp pfandtyp) {
+		super();
+		this.preis = preis;
+		this.pfandNr = pfandNr;
+		this.von = von;
+		this.bis = bis;
+		this.schluessel = schluessel;
+		this.gast = gast;
+		this.zimmer = zimmer;
+		this.pfandtyp = pfandtyp;
+	}
+
+
+
+	public Aufenthalt(Float preis, Date von, Date bis, boolean schluessel, IGast gast, IZimmer zimmer) {
+		this.von = von;
+		this.bis = bis;
+		this.schluessel = schluessel;
+		this.gast = gast;
+		this.zimmer = zimmer;
+	}
+
+	public Aufenthalt(Float preis, String pfandNr, Date von, Date bis, boolean schluessel, IGast gast,
+			IZimmer zimmer, IPfandtyp pfandtyp, Set<ILeistung> leistungen, IZusatzleistung paket) {
+		this.preis = preis;
+		this.pfandNr = pfandNr;
+		this.von = von;
+		this.bis = bis;
+		this.schluessel = schluessel;
+		this.gast = gast;
+		this.zimmer = zimmer;
+		this.pfandtyp = pfandtyp;
+		this.leistungen = leistungen;
+		this.paket = paket;
+	}
+	
+	public Aufenthalt(Float preis, String pfandNr, Date von, Date bis, boolean schluessel, IGast gast,
+			IZimmer zimmer, IPfandtyp pfandtyp, IZusatzleistung paket) {
+		this.preis = preis;
+		this.pfandNr = pfandNr;
+		this.von = von;
+		this.bis = bis;
+		this.schluessel = schluessel;
+		this.gast = gast;
+		this.zimmer = zimmer;
+		this.pfandtyp = pfandtyp;
+		this.paket = paket;
+	}
+
+	public Set<ILeistung> getLeistungen() {
+		return leistungen;
+	}
+
+	public void setLeistungen(Set<ILeistung> leistungen) {
+		this.leistungen = leistungen;
+	}
+
+	public IZusatzleistung getPaket() {
+		return paket;
+	}
+
+	public void setPaket(IZusatzleistung paket) {
+		this.paket = paket;
+	}
 
 	public void setID(int ID) {
 		this.ID = ID;
@@ -95,43 +172,22 @@ public class Aufenthalt implements IAufenthalt {
 	public IPfandtyp getPfandtyp() {
 		return pfandtyp;
 	}
-
-	public Aufenthalt() {
-	}
-
-	public Aufenthalt(Float preis, Date von, Date bis,
-			boolean schluessel, IGast gast, IZimmer zimmer) {
-		this.von = von;
-		this.bis = bis;
-		this.schluessel = schluessel;
-		this.gast = gast;
-		this.zimmer = zimmer;
-	}
 	
-	public Aufenthalt(Float preis, String pfandNr, Date von, Date bis,
-			boolean schluessel, IGast gast, IZimmer zimmer, IPfandtyp pfand) {
-		this.preis = preis;
-		this.pfandNr = pfandNr;
-		this.von = von;
-		this.bis = bis;
-		this.schluessel = schluessel;
-		this.gast = gast;
-		this.zimmer = zimmer;
-		this.pfandtyp = pfand;
-	}
-	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ID;
 		result = prime * result + ((bis == null) ? 0 : bis.hashCode());
-		result = prime * result + ((gast == null) ? 0 : gast.hashCode());
+		result = prime * result + ((gast == null) ? 0 : gast.getID());
+		result = prime * result + ((leistungen == null) ? 0 : leistungen.hashCode());
+		result = prime * result + ((paket == null) ? 0 : paket.getID());
 		result = prime * result + ((pfandNr == null) ? 0 : pfandNr.hashCode());
+		result = prime * result + ((pfandtyp == null) ? 0 : pfandtyp.hashCode());
 		result = prime * result + ((preis == null) ? 0 : preis.hashCode());
 		result = prime * result + (schluessel ? 1231 : 1237);
 		result = prime * result + ((von == null) ? 0 : von.hashCode());
-		result = prime * result + ((zimmer == null) ? 0 : zimmer.hashCode());
+		result = prime * result + ((zimmer == null) ? 0 : zimmer.getID());
 		return result;
 	}
 
@@ -144,6 +200,8 @@ public class Aufenthalt implements IAufenthalt {
 		if (getClass() != obj.getClass())
 			return false;
 		Aufenthalt other = (Aufenthalt) obj;
+		if (ID != other.ID)
+			return false;
 		if (bis == null) {
 			if (other.bis != null)
 				return false;
@@ -152,12 +210,27 @@ public class Aufenthalt implements IAufenthalt {
 		if (gast == null) {
 			if (other.gast != null)
 				return false;
-		} else if (!gast.equals(other.gast))
+		} else if (gast.getID() != other.gast.getID())
+			return false;
+		if (leistungen == null) {
+			if (other.leistungen != null)
+				return false;
+		} else if (!leistungen.equals(other.leistungen))
+			return false;
+		if (paket == null) {
+			if (other.paket != null)
+				return false;
+		} else if (paket.getID() != other.paket.getID())
 			return false;
 		if (pfandNr == null) {
 			if (other.pfandNr != null)
 				return false;
 		} else if (!pfandNr.equals(other.pfandNr))
+			return false;
+		if (pfandtyp == null) {
+			if (other.pfandtyp != null)
+				return false;
+		} else if (!pfandtyp.equals(other.pfandtyp))
 			return false;
 		if (preis == null) {
 			if (other.preis != null)
@@ -174,15 +247,15 @@ public class Aufenthalt implements IAufenthalt {
 		if (zimmer == null) {
 			if (other.zimmer != null)
 				return false;
-		} else if (!zimmer.equals(other.zimmer))
+		} else if (zimmer.getID() != other.zimmer.getID())
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Aufenthalt [preis=" + preis + ", pfandNr=" + pfandNr + ", von="
-				+ von + ", bis=" + bis + ", schluessel=" + schluessel
-				+ ", gast=" + gast + ", zimmer=" + zimmer + "]";
+		return "Aufenthalt [ID=" + ID + ", preis=" + preis + ", pfandNr=" + pfandNr + ", von=" + von + ", bis=" + bis
+				+ ", schluessel=" + schluessel + ", gast=" + gast.getID() + ", zimmer=" + zimmer.getID() + ", pfandtyp=" + pfandtyp
+				+ ", leistungen=" + leistungen + ", paket=" + paket.getID() + "]";
 	}
 }

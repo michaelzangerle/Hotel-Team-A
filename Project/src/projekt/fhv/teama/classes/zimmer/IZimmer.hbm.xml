@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10.05.2012 16:03:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.zimmer.IZimmer" table="IZIMMER" abstract="true">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="nummer" type="java.lang.String">
+            <column name="NUMMER" />
+        </property>
+        <many-to-one name="kategorie" class="projekt.fhv.teama.classes.zimmer.IKategorie" fetch="join">
+            <column name="KATEGORIE" />
+        </many-to-one>
+        <property name="beschreibung" type="java.lang.String">
+            <column name="BESCHREIBUNG" />
+        </property>
+        <many-to-one name="zimmerstatus" class="projekt.fhv.teama.classes.zimmer.IZimmerstatus" fetch="join">
+            <column name="ZIMMERSTATUS" />
+        </many-to-one>
+        <set name="statusentwicklungen" table="ISTATUSENTWICKLUNG" inverse="false" lazy="true">
+            <key></key>
+            <one-to-many class="projekt.fhv.teama.classes.zimmer.IStatusentwicklung" />
+        </set>
+        <set name="reservierungen" table="IRESERVIERUNG" inverse="false" lazy="true">
+            <key></key>
+            <one-to-many class="projekt.fhv.teama.classes.zimmer.IReservierung" />
+        </set>
+        <set name="rechnungspositionen" table="IRECHNUNGSPOSITION" inverse="false" lazy="true">
+            <key></key>
+            <one-to-many class="projekt.fhv.teama.classes.rechnung.IRechnungsposition" />
+        </set>
+        <set name="gaeste" table="IGAST" inverse="false" lazy="true">
+            <key></key>
+            <one-to-many class="projekt.fhv.teama.classes.personen.IGast" />
+        </set>
+        <set name="aufenthalte" table="IAUFENTHALT" inverse="false" lazy="true">
+            <key></key>
+            <one-to-many class="projekt.fhv.teama.classes.IAufenthalt" />
+        </set>
+    </class>
+</hibernate-mapping>

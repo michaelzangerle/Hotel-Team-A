@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10.05.2012 16:03:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.zimmer.IStatusentwicklung" table="ISTATUSENTWICKLUNG" abstract="true">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="von" type="java.sql.Date">
+            <column name="VON" />
+        </property>
+        <property name="bis" type="java.sql.Date">
+            <column name="BIS" />
+        </property>
+        <property name="beschreibung" type="java.lang.String">
+            <column name="BESCHREIBUNG" />
+        </property>
+        <many-to-one name="zimmerStatus" class="projekt.fhv.teama.classes.zimmer.IZimmerstatus" fetch="join">
+            <column name="ZIMMERSTATUS" />
+        </many-to-one>
+        <many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.IZimmer" fetch="join">
+            <column name="ZIMMER" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
