@@ -63,4 +63,6 @@ public abstract class Leistung implements ILeistung {
 		return true;
 	}
 
+	public abstract float getPreis();
+	
 }

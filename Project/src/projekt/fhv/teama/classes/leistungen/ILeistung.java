@@ -20,4 +20,10 @@ public interface ILeistung extends IModel {
 	 * @return Gibt das Attribut als String-Wert zurück
 	 */
 	public String getBezeichnung();
+	
+	/**
+	 * Abstakte Methode für den Preis
+	 * @return
+	 */
+	public abstract float getPreis();
 }

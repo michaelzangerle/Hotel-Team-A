@@ -14,4 +14,6 @@ public class ModelZusatzleistung {
 	public ModelZusatzleistung() {
 		zusatzleistungDao=ZusatzleistungDao.getInstance();
 	}
+	
+	
 }
