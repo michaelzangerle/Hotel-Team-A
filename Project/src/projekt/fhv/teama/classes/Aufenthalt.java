@@ -255,7 +255,7 @@ public class Aufenthalt implements IAufenthalt {
 	@Override
 	public String toString() {
 		return "Aufenthalt [ID=" + ID + ", preis=" + preis + ", pfandNr=" + pfandNr + ", von=" + von + ", bis=" + bis
-				+ ", schluessel=" + schluessel + ", gast=" + gast.getID() + ", zimmer=" + zimmer.getID() + ", pfandtyp=" + pfandtyp
-				+ ", leistungen=" + leistungen + ", paket=" + paket.getID() + "]";
+				+ ", schluessel=" + schluessel + ", gast=" + gast + ", zimmer=" + zimmer + ", pfandtyp=" + pfandtyp
+				+ ", leistungen=" + leistungen + ", paket=" + paket + "]";
 	}
 }

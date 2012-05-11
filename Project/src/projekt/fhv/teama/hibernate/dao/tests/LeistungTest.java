@@ -72,7 +72,7 @@ public class LeistungTest {
 //		adao.create(a1);
 		
 //		adao.remove(adao.getById(24));
-		wdao.remove(wdao.getById(2));
+//		wdao.remove(wdao.getById(2));
 		
 //		System.out.println(adao.getArtikel("Kellerbier"));
 		

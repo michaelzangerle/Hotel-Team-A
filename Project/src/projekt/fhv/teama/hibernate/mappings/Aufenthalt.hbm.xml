@@ -42,7 +42,7 @@
 		</many-to-one>
 		
 		<many-to-one name="pfandtyp"
-					class="projekt.fhv.teama.classes.Pfandtyp" fetch="join">
+					class="projekt.fhv.teama.classes.Pfandtyp" fetch="join" lazy="false">
 					<column name="pfandTypID" />
 		</many-to-one>
 		

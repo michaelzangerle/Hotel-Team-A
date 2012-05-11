@@ -91,7 +91,8 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			}
 
 		} catch (HibernateException e) {
-
+			
+//			e.printStackTrace();
 			throw new DatabaseException("ERROR: Error occured while trying to get all entries!");
 
 		} catch (Exception e) {
@@ -130,7 +131,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			}
 
 		} catch (HibernateException e) {
-
+			
 			throw new DatabaseException("ERROR: Error occured while trying to get some entry by ID!");
 
 		} catch (Exception e) {

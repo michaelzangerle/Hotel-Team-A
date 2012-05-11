@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11.05.2012 18:12:04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="projekt.fhv.teama.classes.AufenthaltLeistung" table="aufenthaltleistung">
+    
+        <id name="ID" type="int">
+            <column name="aufenthaltLeistungID" />
+            <generator class="native" />
+        </id>
+        
+        <many-to-one name="leistung" class="projekt.fhv.teama.classes.leistungen.Leistung" access="field" fetch="join" lazy="false">
+            <column name="LEISTUNGID" />
+        </many-to-one>
+        
+        <many-to-one name="aufenthalt" class="projekt.fhv.teama.classes.Aufenthalt" fetch="join" lazy="false">
+            <column name="AUFENTHALTID" />
+        </many-to-one>
+        
+        <property name="anzahl" type="int">
+            <column name="ANZAHL" sql-type="int" />
+        </property>
+        
+        <property name="datum" type="java.sql.Date">
+            <column name="DATUM" sql-type="date"/>
+        </property>
+        
+    </class>
+</hibernate-mapping>

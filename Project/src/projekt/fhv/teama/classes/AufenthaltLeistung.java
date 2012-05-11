@@ -13,7 +13,7 @@ import projekt.fhv.teama.classes.leistungen.ILeistung;
  * @author Team A
  * @version 1.2
  */
-public class AufenthaltLeistung {
+public class AufenthaltLeistung implements IAufenthaltLeistung {
 
 	private int ID;
 	private ILeistung leistung;
@@ -75,7 +75,7 @@ public class AufenthaltLeistung {
 
 	@Override
 	public String toString() {
-		return "AufentLeistung [ID=" + ID + ", paket=" + leistung.getID() + ", aufenthalt=" + aufenthalt.getID() + ", anzahl=" + anzahl
+		return "AufentLeistung [ID=" + ID + ", paket=" + leistung.getBezeichnung() + ", aufenthalt=" + aufenthalt.getID() + ", anzahl=" + anzahl
 				+ ", datum=" + datum + "]";
 	}
 

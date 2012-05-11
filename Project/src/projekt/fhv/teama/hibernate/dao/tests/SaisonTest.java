@@ -16,22 +16,22 @@ public class SaisonTest {
 	public static void main(String[] args) throws DatabaseException {
 		ISaisonDao sDao = SaisonDao.getInstance();
 		
-		ISaison s1 = new Saison("Frühling", getDate(2012, 3, 1), getDate(2012, 5, 30), null);
-		ISaison s2 = new Saison("Sommer", getDate(2012, 6, 1), getDate(2012, 8, 30), null);
-		ISaison s3 = new Saison("Herbst", getDate(2012, 9, 1), getDate(2012, 11, 30), null);
-		ISaison s4 = new Saison("Winter", getDate(2012, 12, 1), getDate(2012, 2, 30), null);
+//		ISaison s1 = new Saison("Frühling", getDate(2012, 3, 1), getDate(2012, 5, 30), null);
+//		ISaison s2 = new Saison("Sommer", getDate(2012, 6, 1), getDate(2012, 8, 30), null);
+//		ISaison s3 = new Saison("Herbst", getDate(2012, 9, 1), getDate(2012, 11, 30), null);
+//		ISaison s4 = new Saison("Winter", getDate(2012, 12, 1), getDate(2012, 2, 30), null);
 //		
 		// Einfügen
-		sDao.create(s1);
-		sDao.create(s2);
-		sDao.create(s3);
-		sDao.create(s4);
+//		sDao.create(s1);
+//		sDao.create(s2);
+//		sDao.create(s3);
+//		sDao.create(s4);
 		
 		// Alle holen
-//		Set<ISaison> saisons = new HashSet<ISaison>(sDao.getAll());
-//		for (ISaison s : saisons) {
-//			System.out.println(s);
-//		}
+		Set<ISaison> saisons = new HashSet<ISaison>(sDao.getAll());
+		for (ISaison s : saisons) {
+			System.out.println(s);
+		}
 		
 
 		// 1 holen

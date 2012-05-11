@@ -12,14 +12,22 @@ import projekt.fhv.teama.hibernate.dao.IAufenthaltLeistungDao;
  * @version 1.2
  */
 public class AufenthaltLeistungDao extends GenericDao<IAufenthaltLeistung> implements IAufenthaltLeistungDao{
-
+	
+	private static AufenthaltLeistungDao instance;
+	
 	/**
 	 * @param table
 	 */
 	public AufenthaltLeistungDao() {
-		super("aufenthaltLeistung");
+		super("AufenthaltLeistung");
 	}
 	
-	
+	public static IAufenthaltLeistungDao getInstance() {
+		if (instance == null) {
+			instance = new AufenthaltLeistungDao();
+		}
+		return instance;
+	}
+
 
 }
