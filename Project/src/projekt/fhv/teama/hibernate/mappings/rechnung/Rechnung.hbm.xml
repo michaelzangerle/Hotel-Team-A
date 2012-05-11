@@ -6,44 +6,44 @@
     <class name="projekt.fhv.teama.classes.rechnung.Rechnung" table="rechnung" lazy="true">
         
         <id name="ID" type="int">
-            <column name="RECHNUNGID" sql-type="int" />
+            <column name="rechnungID" sql-type="int" />
             <generator class="native" />
         </id>
         
         <property name="bezahlerVorname" type="java.lang.String">
-            <column name="BEZAHLERVORNAME" sql-type="varchar" />
+            <column name="bezahlerVorname" sql-type="varchar" />
         </property>
         
         <property name="bezahlerNachname" type="java.lang.String">
-            <column name="BEZAHLERNACHNAME" sql-type="varchar"/>
+            <column name="bezahlerNachname" sql-type="varchar"/>
         </property>
         
         <property name="bezahlerStrasse" type="java.lang.String">
-            <column name="BEZAHLERSTRASSE" />
+            <column name="bezahlerStrasse" />
         </property>
         
         <property name="bezahlerOrt" type="java.lang.String">
-            <column name="BEZAHLERORT" sql-type="varchar"/>
+            <column name="bezahlerOrt" sql-type="varchar"/>
         </property>
         
         <property name="bezahlerPLZ" type="java.lang.String">
-            <column name="BEZAHLERPLZ" sql-type="varchar"/>
+            <column name="bezahlerPLZ" sql-type="varchar"/>
         </property>
         
         <property name="summe" type="float">
-            <column name="SUMME" sql-type="decimal"/>
+            <column name="summe" sql-type="decimal"/>
         </property>
         
         <property name="nummer" type="java.lang.String">
-            <column name="NUMMER" sql-type="varchar"/>
+            <column name="bummer" sql-type="varchar"/>
         </property>
         
         <many-to-one name="mitarbeiter" class="projekt.fhv.teama.classes.personen.Mitarbeiter" fetch="join">
-            <column name="MITARBEITERID" />
+            <column name="mitarbeiterID" />
         </many-to-one>
         
         <many-to-one name="bezahlerLand" class="projekt.fhv.teama.classes.personen.Land" fetch="join">
-            <column name="BEZAHLERLANDID" />
+            <column name="bezahlerLandID" />
         </many-to-one>
         
         <set name="rechnungspositionen" table="RECHNUNGSPOSITION" inverse="false" lazy="false">

@@ -3,48 +3,60 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 16.04.2012 15:54:17 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="projekt.fhv.teama.classes.Aufenthalt" table="aufenthalt" lazy="true">
-		
+	<class name="projekt.fhv.teama.classes.Aufenthalt" table="aufenthalt"
+		lazy="true">
+
 		<id name="ID" type="int">
-			<column name="aufenthaltID" sql-type="int"/>
+			<column name="aufenthaltID" sql-type="int" />
 			<generator class="native" />
 		</id>
-		
+
 		<property name="preis" type="float">
 			<column name="preis" sql-type="decimal" length="10" precision="2"
 				not-null="true" />
 		</property>
-		
+
 		<property name="pfandNr" type="java.lang.String">
 			<column name="pfandNr" sql-type="varchar" />
 		</property>
-		
+
 		<property name="von" type="java.sql.Date">
 			<column name="von" sql-type="date" length="10" not-null="true" />
 		</property>
-		
+
 		<property name="bis" type="java.sql.Date">
 			<column name="bis" sql-type="date" length="10" not-null="true" />
 		</property>
-		
+
 		<property name="schluessel" type="boolean">
 			<column name="schluessel" sql-type="tinyint" not-null="true" />
 		</property>
-		
+
 		<many-to-one name="gast"
-					class="projekt.fhv.teama.classes.personen.Gast" fetch="join" lazy="false">
-					<column name="gastID"/>
+			class="projekt.fhv.teama.classes.personen.Gast" fetch="join" lazy="false">
+			<column name="gastID" />
 		</many-to-one>
-		
+
 		<many-to-one name="zimmer"
-					class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join" lazy="false">
-					<column name="zimmerID" />
+			class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join" lazy="false">
+			<column name="zimmerID" />
 		</many-to-one>
-		
-		<many-to-one name="pfandtyp"
-					class="projekt.fhv.teama.classes.Pfandtyp" fetch="join" lazy="false">
-					<column name="pfandTypID" />
+
+		<many-to-one name="pfandtyp" class="projekt.fhv.teama.classes.Pfandtyp"
+			fetch="join" lazy="false">
+			<column name="pfandTypID" />
 		</many-to-one>
-		
+
+		<set name="leistungen" table="aufenthaltleistung" lazy="false">
+			<key>
+				<column name="aufenthaltID" />
+			</key>
+			<one-to-many class="projekt.fhv.teama.classes.AufenthaltLeistung" />
+		</set>
+
+		<many-to-one name="paket"
+			class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" fetch="join" lazy="false">
+			<column name="paketID" />
+		</many-to-one>
 	</class>
 </hibernate-mapping>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11.05.2012 18:54:42 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <subclass name="projekt.fhv.teama.classes.Aufenthalt" extends="projekt.fhv.teama.classes.IAufenthalt" discriminator-value="Aufenthalt" lazy="false">
+        <property name="ID" type="int">
+            <column name="ID" />
+        </property>
+        <property name="preis" type="java.lang.Float">
+            <column name="PREIS" />
+        </property>
+        <property name="pfandNr" type="java.lang.String">
+            <column name="PFANDNR" />
+        </property>
+        <property name="von" type="java.sql.Date">
+            <column name="VON" />
+        </property>
+        <property name="bis" type="java.sql.Date">
+            <column name="BIS" />
+        </property>
+        <property name="schluessel" type="boolean">
+            <column name="SCHLUESSEL" />
+        </property>
+        <many-to-one name="gast" class="projekt.fhv.teama.classes.personen.IGast" fetch="join">
+            <column name="GAST" />
+        </many-to-one>
+        <many-to-one name="zimmer" class="projekt.fhv.teama.classes.zimmer.IZimmer" fetch="join">
+            <column name="ZIMMER" />
+        </many-to-one>
+        <many-to-one name="pfandtyp" class="projekt.fhv.teama.classes.IPfandtyp" fetch="join">
+            <column name="PFANDTYP" />
+        </many-to-one>
+        <set name="leistungen" table="ILEISTUNG" inverse="false" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <one-to-many class="projekt.fhv.teama.classes.leistungen.ILeistung" />
+        </set>
+        <many-to-one name="paket" class="projekt.fhv.teama.classes.leistungen.IZusatzleistung" fetch="join">
+            <column name="PAKET" />
+        </many-to-one>
+    </subclass>
+</hibernate-mapping>

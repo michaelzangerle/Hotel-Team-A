@@ -35,13 +35,15 @@ public class AufenthaltTest {
 		IAufenthaltDao aDao = AufenthaltDao.getInstance();
 		IPfandtypDao pDao = PfandtypDao.getInstance();
 		
-		IAufenthalt a1 = new Aufenthalt(355.90F, "Pfandnummer 1", getDate(2012, 10, 1), getDate(2012, 10, 10), true, gDao.getById(42), zDao.getById(29), pDao.getById(1));
-		IAufenthalt a2 = new Aufenthalt(345.90F, "Pfandnummer 2", getDate(2012, 10, 1), getDate(2012, 10, 10), true, gDao.getById(42), zDao.getById(30), pDao.getById(2));
-		IAufenthalt a3 = new Aufenthalt(385.90F, "Pfandnummer 3", getDate(2012, 10, 1), getDate(2012, 10, 10), true, gDao.getById(42), zDao.getById(31), pDao.getById(3));
+//		IAufenthalt a1 = new Aufenthalt(355.90F, "Pfandnummer 1", getDate(2012, 10, 1), getDate(2012, 10, 10), true, gDao.getById(42), zDao.getById(29), pDao.getById(1));
+//		IAufenthalt a2 = new Aufenthalt(345.90F, "Pfandnummer 2", getDate(2012, 10, 1), getDate(2012, 10, 10), true, gDao.getById(42), zDao.getById(30), pDao.getById(2));
+//		IAufenthalt a3 = new Aufenthalt(385.90F, "Pfandnummer 3", getDate(2012, 10, 1), getDate(2012, 10, 10), true, gDao.getById(42), zDao.getById(31), pDao.getById(3));
+//		
+//		aDao.create(a1);
+//		aDao.create(a2);
+//		aDao.create(a3);
 		
-		aDao.create(a1);
-		aDao.create(a2);
-		aDao.create(a3);
+		System.out.println(aDao.getById(218));
 		
 	}
 
