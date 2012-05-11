@@ -90,5 +90,26 @@ public interface IControllerZusatzleistungBuchen {
 	public List<ILeistung> getArtikelundZusatzleistungen() throws DatabaseException;
 	
 	
+	/**
+	 * Methode um das aktuell bearbeitete Zimmer zu setzen
+	 * @param zimmer
+	 * @throws EmptyParameterException
+	 */
+	public void setAktuellesZimmer(IZimmer zimmer) throws EmptyParameterException;
+	
+	/**
+	 * Methode um das aktuell bearbeitete Zimmer zu erhalten
+	 * @return IZimmer
+	 * @throws FokusException
+	 */
+	public IZimmer getAktuellesZimmer() throws FokusException;
+	
+	/**
+	 * Methode um eine Leistung auf ein Zimme zu schreiben
+	 * @param leistung ILeistung
+	 * @throws FokusException
+	 * @throws EmptyParameterException
+	 */
+	public void addLeistung(ILeistung leistung) throws FokusException, EmptyParameterException;
 	
 }

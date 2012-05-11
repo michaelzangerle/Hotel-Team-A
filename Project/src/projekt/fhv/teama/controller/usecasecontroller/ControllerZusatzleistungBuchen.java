@@ -1,5 +1,7 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Vector;
 
@@ -15,6 +17,7 @@ import projekt.fhv.teama.model.ModelArtikel;
 import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.ModelGast;
 import projekt.fhv.teama.model.ModelLeistung;
+import projekt.fhv.teama.model.ModelZimmer;
 import projekt.fhv.teama.model.ModelZusatzleistung;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
@@ -24,6 +27,7 @@ import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
 import projekt.fhv.teama.model.interfaces.IModelLand;
 import projekt.fhv.teama.model.interfaces.IModelLeistung;
+import projekt.fhv.teama.model.interfaces.IModelZimmer;
 import projekt.fhv.teama.model.interfaces.IModelZusatzleistung;
 
 public class ControllerZusatzleistungBuchen {
@@ -34,6 +38,7 @@ public class ControllerZusatzleistungBuchen {
 	private IModelLeistung modelLeistung;
 	private IModelArtikel modelArtikel;
 	private IModelZusatzleistung modelZusatzleistung;
+	private IModelZimmer modelZimmer;
 	
 	public ControllerZusatzleistungBuchen() {
 		modelArtikel=new ModelArtikel();
@@ -41,6 +46,7 @@ public class ControllerZusatzleistungBuchen {
 		modelLeistung=new ModelLeistung();
 		modelZusatzleistung=new ModelZusatzleistung();
 		modelGast=new ModelGast();
+		modelZimmer=new ModelZimmer();
 	}
 	
 	
@@ -49,6 +55,8 @@ public class ControllerZusatzleistungBuchen {
 	private List<ILeistung> artikel=new Vector<ILeistung>();
 	private List<ILeistung> zusatzleistungen=new Vector<ILeistung>();
 	private List<ILeistung> leistungen=new Vector<ILeistung>();
+	
+	private HashMap<IZimmer, ILeistung> gebuchteLeistungen;
 
 	public List<IAufenthalt> getAufenthalte() throws DatabaseException
 	{
@@ -149,7 +157,29 @@ public class ControllerZusatzleistungBuchen {
 		
 	}
 	
+	public void setAktuellesZimmer(IZimmer zimmer) throws EmptyParameterException
+	{
+		modelZimmer.setAktullesZimmer(zimmer);
+		
+	}
 	
+	public IZimmer getAktuellesZimmer() throws FokusException
+	{
+		return modelZimmer.getAktullesZimmer();
+	}
+	
+	public void addLeistung(ILeistung leistung) throws FokusException, EmptyParameterException
+	{
+		if(leistung!=null)
+		{
+			gebuchteLeistungen.put(getAktuellesZimmer(), leistung);
+		}
+		
+		throw new EmptyParameterException();
+	}
+	
+	
+
 	
 	
 	
