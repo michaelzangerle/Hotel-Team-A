@@ -3,12 +3,15 @@ package projekt.fhv.teama.controller.usecasecontroller;
 import java.util.List;
 import java.util.Vector;
 
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
+
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
 
@@ -79,6 +82,21 @@ public class ControllerZusatzleistungBuchen {
 		//TODO Zimmer für den Gast herausbekommen
 	}
 	
-	
+	public IGast getGastByNummer(String nummer) throws DatabaseException, EmptyParameterException, NotContainExeption
+	{
+		if(nummer==null)
+			throw new EmptyParameterException();
+		
+		if(aufenthalte.size()<0)
+			getAufenthalte();
+		
+		for (IAufenthalt aufenthalt : aufenthalte) {
+			if(aufenthalt.getGast().getNummer().equals(nummer))
+				return aufenthalt.getGast();
+		}
+		
+		throw new NotContainExeption();
+		
+	}
 
 }
