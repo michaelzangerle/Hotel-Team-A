@@ -7,6 +7,7 @@ import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.MyLittleDate;
+import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
@@ -45,6 +46,9 @@ public class ControllerZusatzleistungBuchen {
 	
 	private List<IAufenthalt> aufenthalte=new Vector<IAufenthalt>();
 	
+	private List<ILeistung> artikel=new Vector<ILeistung>();
+	private List<ILeistung> zusatzleistungen=new Vector<ILeistung>();
+	private List<ILeistung> leistungen=new Vector<ILeistung>();
 
 	public List<IAufenthalt> getAufenthalte() throws DatabaseException
 	{
@@ -101,7 +105,7 @@ public class ControllerZusatzleistungBuchen {
 	public List<IZimmer> getZimmerVonGast() throws FokusException, DatabaseException
 	{
 		List<IZimmer> zimmers=new Vector<IZimmer>();
-		if(aufenthalte.size()<0)
+		if(aufenthalte.size()<=0)
 			getAufenthalte();
 		
 		for (IAufenthalt aufenthalt : aufenthalte) {
@@ -117,7 +121,7 @@ public class ControllerZusatzleistungBuchen {
 		if(nummer==null)
 			throw new EmptyParameterException();
 		
-		if(aufenthalte.size()<0)
+		if(aufenthalte.size()<=0)
 			getAufenthalte();
 		
 		for (IAufenthalt aufenthalt : aufenthalte) {
@@ -128,6 +132,22 @@ public class ControllerZusatzleistungBuchen {
 		throw new NotContainExeption();
 		
 	}
+	
+	
+	public List<ILeistung> getArtikelundZusatzleistungen() throws DatabaseException
+	{
+		if(artikel.size()<=0 ||zusatzleistungen.size()<=0)
+		{
+			artikel=modelArtikel.getArtikel();
+			zusatzleistungen=modelZusatzleistung.getZusatzleistungen();
+		}
+		
+		leistungen.addAll(artikel);
+		leistungen.addAll(zusatzleistungen);
+		
+		return leistungen;
+	}
+	
 	
 	
 	

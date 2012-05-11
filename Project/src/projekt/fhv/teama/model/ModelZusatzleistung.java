@@ -3,6 +3,7 @@ package projekt.fhv.teama.model;
 import java.util.List;
 import java.util.Vector;
 
+import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.leistungen.IZusatzleistung;
 import projekt.fhv.teama.hibernate.dao.leistungen.IZusatzleistungDao;
 import projekt.fhv.teama.hibernate.dao.leistungen.ZusatzleistungDao;
@@ -20,8 +21,8 @@ public class ModelZusatzleistung implements IModelZusatzleistung{
 		zusatzleistungDao=ZusatzleistungDao.getInstance();
 	}
 	
-	public List<IZusatzleistung> getArtikel() throws DatabaseException
+	public List<ILeistung> getZusatzleistungen() throws DatabaseException
 	{
-		return new Vector<IZusatzleistung>(zusatzleistungDao.getAll());
+		return new Vector<ILeistung>(zusatzleistungDao.getAll());
 	}
 }

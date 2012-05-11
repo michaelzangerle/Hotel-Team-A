@@ -2,6 +2,7 @@ package projekt.fhv.teama.model.interfaces;
 
 import java.util.List;
 
+import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.leistungen.IZusatzleistung;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 
@@ -13,5 +14,5 @@ public interface IModelZusatzleistung {
 	 * @return List<IZusatzleistung>
 	 * @throws DatabaseException
 	 */
-	public List<IZusatzleistung> getArtikel() throws DatabaseException;
+	public List<ILeistung> getZusatzleistungen() throws DatabaseException;
 }

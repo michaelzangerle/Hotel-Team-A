@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.leistungen.IArtikel;
+import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.hibernate.dao.leistungen.ArtikelDao;
 import projekt.fhv.teama.hibernate.dao.leistungen.IArtikelDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
@@ -18,9 +19,9 @@ public class ModelArtikel implements IModelArtikel{
 		artikelDao=ArtikelDao.getInstance();
 	}
 	
-	public List<IArtikel> getArtikel() throws DatabaseException
+	public List<ILeistung> getArtikel() throws DatabaseException
 	{
-		return new Vector<IArtikel>(artikelDao.getAll());
+		return new Vector<ILeistung>(artikelDao.getAll());
 	}
 	
 }
