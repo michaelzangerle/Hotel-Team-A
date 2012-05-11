@@ -30,7 +30,7 @@ public class AufenthaltLeistung {
 
 	public AufenthaltLeistung() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public int getID() {

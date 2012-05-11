@@ -286,7 +286,7 @@ public class Zimmer extends Leistung implements IZimmer {
 
 	@Override
 	public float getPreis() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 }

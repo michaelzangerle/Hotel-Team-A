@@ -56,7 +56,7 @@ public class ControllerZusatzleistungBuchen {
 	private List<ILeistung> zusatzleistungen=new Vector<ILeistung>();
 	private List<ILeistung> leistungen=new Vector<ILeistung>();
 	
-	private HashMap<IZimmer, ILeistung> gebuchteLeistungen;
+	private HashMap<IZimmer, List<ILeistung>> gebuchteLeistungen=new HashMap<IZimmer, List<ILeistung>>();
 
 	public List<IAufenthalt> getAufenthalte() throws DatabaseException
 	{
@@ -172,7 +172,15 @@ public class ControllerZusatzleistungBuchen {
 	{
 		if(leistung!=null)
 		{
-			gebuchteLeistungen.put(getAktuellesZimmer(), leistung);
+			if(gebuchteLeistungen.containsKey(getAktuellesZimmer()))
+			{
+				gebuchteLeistungen.get(getAktuellesZimmer()).add(leistung);
+			}
+			else {
+				List<ILeistung> l=new Vector<ILeistung>();
+				l.add(leistung);
+				gebuchteLeistungen.put(getAktuellesZimmer(), l);
+			}
 		}
 		
 		throw new EmptyParameterException();
@@ -180,7 +188,17 @@ public class ControllerZusatzleistungBuchen {
 	
 	
 
-	
+	public void saveLeistungen()
+	{
+		for (IZimmer z : gebuchteLeistungen.keySet()) {
+			
+			for (ILeistung l : gebuchteLeistungen.get(z)) {
+				
+				//TODO speichern in die DB
+			}
+		}
+		
+	}
 	
 	
 	
