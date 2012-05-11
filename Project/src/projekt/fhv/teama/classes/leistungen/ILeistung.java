@@ -23,7 +23,7 @@ public interface ILeistung extends IModel {
 	
 	/**
 	 * Abstakte Methode für den Preis
-	 * @return
+	 * @return float für den Preis
 	 */
 	public abstract float getPreis();
 }

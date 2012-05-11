@@ -9,7 +9,7 @@ public interface IModelArtikel {
 
 	/**
 	 * Methode um alle Artikel aus der Datenbank zu bekommen
-	 * @return
+	 * @return List<IArtikel>
 	 * @throws DatabaseException
 	 */
 	public List<IArtikel> getArtikel() throws DatabaseException;

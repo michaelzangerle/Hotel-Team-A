@@ -10,19 +10,37 @@ import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.ModelArtikel;
+import projekt.fhv.teama.model.ModelAufenthalt;
+import projekt.fhv.teama.model.ModelGast;
+import projekt.fhv.teama.model.ModelLeistung;
+import projekt.fhv.teama.model.ModelZusatzleistung;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
+import projekt.fhv.teama.model.interfaces.IModelArtikel;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
 import projekt.fhv.teama.model.interfaces.IModelLand;
+import projekt.fhv.teama.model.interfaces.IModelLeistung;
+import projekt.fhv.teama.model.interfaces.IModelZusatzleistung;
 
 public class ControllerZusatzleistungBuchen {
 	
 	//ModelRespositorys
 	private IModelAufenthalt modelAufenthalt;
 	private IModelGast modelGast;
+	private IModelLeistung modelLeistung;
+	private IModelArtikel modelArtikel;
+	private IModelZusatzleistung modelZusatzleistung;
 	
+	public ControllerZusatzleistungBuchen() {
+		modelArtikel=new ModelArtikel();
+		modelAufenthalt=new ModelAufenthalt();
+		modelLeistung=new ModelLeistung();
+		modelZusatzleistung=new ModelZusatzleistung();
+		modelGast=new ModelGast();
+	}
 	
 	
 	private List<IAufenthalt> aufenthalte=new Vector<IAufenthalt>();
@@ -110,6 +128,8 @@ public class ControllerZusatzleistungBuchen {
 		throw new NotContainExeption();
 		
 	}
+	
+	
 	
 	
 
