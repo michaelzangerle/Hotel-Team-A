@@ -146,7 +146,9 @@ public class ControllerZusatzleistungBuchen {
 		leistungen.addAll(zusatzleistungen);
 		
 		return leistungen;
+		
 	}
+	
 	
 	
 	

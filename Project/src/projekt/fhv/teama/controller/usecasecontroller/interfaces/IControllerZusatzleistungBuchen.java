@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
@@ -80,4 +81,14 @@ public interface IControllerZusatzleistungBuchen {
 	 * @throws NotContainExeption
 	 */
 	public IGast getGastByNummer(String nummer) throws DatabaseException, EmptyParameterException, NotContainExeption;
+
+	/**
+	 * Methode um die Artikel und die Zusatzleistungen zu holen
+	 * @return	List<ILeistung>
+	 * @throws DatabaseException
+	 */
+	public List<ILeistung> getArtikelundZusatzleistungen() throws DatabaseException;
+	
+	
+	
 }
