@@ -8,6 +8,7 @@ import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
@@ -77,9 +78,18 @@ public class ControllerZusatzleistungBuchen {
 		return modelGast.getAktuellGast();
 	}
 	
-	public void getZimmerVonGast()
+	public List<IZimmer> getZimmerVonGast() throws FokusException, DatabaseException
 	{
-		//TODO Zimmer für den Gast herausbekommen
+		List<IZimmer> zimmers=new Vector<IZimmer>();
+		if(aufenthalte.size()<0)
+			getAufenthalte();
+		
+		for (IAufenthalt aufenthalt : aufenthalte) {
+			if(aufenthalt.getGast().equals(getGast())&&aufenthalt.getZimmer()!=null)
+				zimmers.add(aufenthalt.getZimmer());
+		}
+		
+		return zimmers;
 	}
 	
 	public IGast getGastByNummer(String nummer) throws DatabaseException, EmptyParameterException, NotContainExeption
