@@ -1,11 +1,14 @@
 package projekt.fhv.teama.controller.usecasecontroller.interfaces;
 import java.util.List;
+import java.util.Vector;
 
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.model.exception.NotContainExeption;
 
 
 public interface IControllerZusatzleistungBuchen {
@@ -58,4 +61,23 @@ public interface IControllerZusatzleistungBuchen {
 	 * 
 	 */
 	public IGast getGast() throws FokusException;
+	
+	
+	/**
+	 * Methode um die eine Liste von Zimmern zu erhalten die auf diesen Gast Laufen
+	 * @return List<IZimmer>
+	 * @throws FokusException
+	 * @throws DatabaseException
+	 */
+	public List<IZimmer> getZimmerVonGast() throws FokusException, DatabaseException;
+	
+	/**
+	 * Methode um den Gast anhand seiner Nummer zu erhalten
+	 * @param nummer
+	 * @return IGast
+	 * @throws DatabaseException
+	 * @throws EmptyParameterException
+	 * @throws NotContainExeption
+	 */
+	public IGast getGastByNummer(String nummer) throws DatabaseException, EmptyParameterException, NotContainExeption;
 }

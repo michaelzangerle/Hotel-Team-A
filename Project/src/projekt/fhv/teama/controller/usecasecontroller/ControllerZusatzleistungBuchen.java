@@ -15,12 +15,14 @@ import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
+import projekt.fhv.teama.model.interfaces.IModelLand;
 
 public class ControllerZusatzleistungBuchen {
 	
 	//ModelRespositorys
 	private IModelAufenthalt modelAufenthalt;
 	private IModelGast modelGast;
+	
 	
 	
 	private List<IAufenthalt> aufenthalte=new Vector<IAufenthalt>();
@@ -108,5 +110,7 @@ public class ControllerZusatzleistungBuchen {
 		throw new NotContainExeption();
 		
 	}
+	
+	
 
 }
