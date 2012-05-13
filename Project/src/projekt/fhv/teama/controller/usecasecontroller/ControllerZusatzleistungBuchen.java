@@ -110,6 +110,21 @@ public class ControllerZusatzleistungBuchen {
 		return modelGast.getAktuellGast();
 	}
 	
+	public IZimmer getZimmerVonGastByNummer(String nummer) throws EmptyParameterException, DatabaseException, FokusException {
+		if (nummer == null)
+			throw new EmptyParameterException();
+		
+		if (aufenthalte.size() <= 0)
+			getAufenthalte();
+		
+		for (IAufenthalt aufenthalt : aufenthalte) {
+			if (aufenthalt.getGast().equals(getGast())&&aufenthalt.getZimmer()!=null && aufenthalt.getZimmer().getNummer().equals(nummer)) {
+				return aufenthalt.getZimmer();
+			}
+		}
+		return null;
+	}
+	
 	public List<IZimmer> getZimmerVonGast() throws FokusException, DatabaseException
 	{
 		List<IZimmer> zimmers=new Vector<IZimmer>();

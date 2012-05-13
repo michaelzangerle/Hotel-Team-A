@@ -115,6 +115,18 @@ public class Wrapper {
 		return new ListAdapter<String>(curRooms);
 	}
 	
+	public ListAdapter<String> getZimmerWithoutPriceListAdapter(List<IZimmer> roomsAvailable) {
+		LinkedList<String> curRooms = new LinkedList<String>();
+		RoomNumberComparator roomNumberComparator = new RoomNumberComparator();
+		Collections.sort(roomsAvailable, roomNumberComparator);
+
+		for (IZimmer room : roomsAvailable) {
+			curRooms.add(room.getNummer() + " | "
+					+ room.getKategorie().getBezeichnung());
+		}
+		return new ListAdapter<String>(curRooms);
+	}
+	
 	/**
 	 * liefert den Schlüssel- ListAdapter
 	 * @param rooms

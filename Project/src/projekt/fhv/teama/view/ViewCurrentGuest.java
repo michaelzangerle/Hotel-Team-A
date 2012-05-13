@@ -16,6 +16,7 @@ import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Border;
 import org.apache.pivot.wtk.BoxPane;
+import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.CalendarButton;
 import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.Display;
@@ -88,5 +89,7 @@ public class ViewCurrentGuest extends Border implements Bindable {
 	    }
 
 
-
+	    public void setcgf1PBtnBookExtrasListener(ButtonPressListener e) {
+	    	cgf1PBtnBookExtras.getButtonPressListeners().add(e);
+	    }
 }

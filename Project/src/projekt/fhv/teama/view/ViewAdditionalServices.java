@@ -11,9 +11,12 @@ import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.Border;
 import org.apache.pivot.wtk.Bounds;
 import org.apache.pivot.wtk.BoxPane;
+import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListButton;
 import org.apache.pivot.wtk.ListView;
+import org.apache.pivot.wtk.ListViewListener;
+import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.PushButton;
 import org.apache.pivot.wtk.Spinner;
 import org.apache.pivot.wtk.TableView;
@@ -57,6 +60,7 @@ public class ViewAdditionalServices extends Border implements Bindable {
 	
 	/* Buttons */
 	@BXML PushButton asf1PBtnCancel;@BXML PushButton asf1PBtnBack;@BXML PushButton asf1PBtnNext;@BXML PushButton asf2PBtnBack;@BXML PushButton asf2PBtnFinish;
+	@BXML PushButton asf2PBtnCancel;
 	
 	/* ListViews */
 	@BXML ListView asf1LVBookedRooms;
@@ -99,7 +103,30 @@ public class ViewAdditionalServices extends Border implements Bindable {
 	    	    tableViewRowEditor.getCellEditors().put("description", descriptionTextInput);	
 	    		    		  			    	
 	    }
-
+	    
+	    public void setasf1PBtnNextListener(ButtonPressListener e) {
+	    	asf1PBtnNext.getButtonPressListeners().add(e);
+	    }
+	    
+	    public void setasf2PBtnFinishListener(ButtonPressListener e) {
+	    	asf2PBtnFinish.getButtonPressListeners().add(e);
+	    }
+	    
+	    public void setas1PBtnBack (ButtonPressListener e) {
+	    	asf1PBtnBack.getButtonPressListeners().add(e);
+	    }
+	    
+	    public void setasf2PBtnBack (ButtonPressListener e) {
+	    	asf2PBtnBack.getButtonPressListeners().add(e);
+	    }
+	    
+	    public void setasf1PBtnCancel (ButtonPressListener e) {
+	    	asf1PBtnCancel.getButtonPressListeners().add(e);
+	    }
+	    
+	    public void setasf1LVBookedRoomsListener(ListViewSelectionListener e) {
+	    	asf1LVBookedRooms.getListViewSelectionListeners().add(e);
+	    }
   
 
 }

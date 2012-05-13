@@ -2,6 +2,7 @@ package projekt.fhv.teama.view;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 import org.apache.pivot.beans.BXMLSerializer;
@@ -23,12 +24,26 @@ import org.apache.pivot.wtk.Span;
 import org.apache.pivot.wtk.TabPane;
 import org.apache.pivot.wtk.TabPaneSelectionListener;
 
+import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IAdresse;
+import projekt.fhv.teama.classes.personen.IGast;
+import projekt.fhv.teama.classes.personen.IKontodaten;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
+import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.exeption.LoginInExeption;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerLogin;
+import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
+import projekt.fhv.teama.hibernate.dao.personen.AdresseDao;
+import projekt.fhv.teama.hibernate.dao.personen.GastDao;
+import projekt.fhv.teama.hibernate.dao.personen.IAdresseDao;
+import projekt.fhv.teama.hibernate.dao.personen.IGastDao;
+import projekt.fhv.teama.hibernate.dao.personen.IKontodatenDao;
+import projekt.fhv.teama.hibernate.dao.personen.KontodatenDao;
+import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerDao;
+import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.ModelAdresse;
 import projekt.fhv.teama.model.ModelAufenthalt;
@@ -43,7 +58,9 @@ import projekt.fhv.teama.model.ModelStatusentwicklung;
 import projekt.fhv.teama.model.ModelTeilreservierung;
 import projekt.fhv.teama.model.ModelZimmer;
 import projekt.fhv.teama.model.ModelZimmerstatus;
+import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.view.support.BlockingDialog;
 
 
@@ -54,11 +71,12 @@ import projekt.fhv.teama.view.support.BlockingDialog;
  */
 public class ViewController implements Application {
 	private ViewLogin viewLogin;
-	private ViewMain viewMain;
+	ViewMain viewMain;
 	private ViewAdditionalServices bdViewAdditionalServices;
 	private ViewCurrentGuest bdViewCurrentGuest;
 	private Display disp;
 	private ControllerCheckIn controllerCheckIn;
+	private ControllerZusatzleistungBuchen controllerZusatzleistung;
 	private Wrapper wrapper;
 
 	
@@ -121,6 +139,8 @@ public class ViewController implements Application {
 		viewMain.setrf1PBtnCheckInListener(new CheckInViewController(viewMain,
 				controllerCheckIn, this));
 		viewMain.settabPLeftMainListener(new SearchPanelListener());
+		viewMain.setlvGuestSearchListener(new GuestListListener());
+		bdViewCurrentGuest.setcgf1PBtnBookExtrasListener(new BookExtrasViewController(bdViewAdditionalServices, viewMain, bdViewCurrentGuest, controllerZusatzleistung));
 	}
 
 	/**
@@ -181,6 +201,9 @@ public class ViewController implements Application {
 		viewMain.open(getDisp());
 		viewMain.lbLoginName.setText(vorname + " " + nachname);
 		wrapper = new Wrapper();
+		viewMain.mainContent.add(bdViewAdditionalServices);
+		viewMain.mainContent.add(bdViewCurrentGuest);
+		
 		try {
 			initializeMainView();
 		} catch (DatabaseException e) {
@@ -203,6 +226,9 @@ public class ViewController implements Application {
 					new ModelAdresse(), new ModelLand(),
 					new ModelStatusentwicklung());
 		}
+		if (controllerZusatzleistung == null) {
+			controllerZusatzleistung = new ControllerZusatzleistungBuchen();
+		}
 		viewMain.rf1PBtnCheckIn.setEnabled(true);
 		viewMain.tabPLeftMain.setEnabled(true);
 		viewMain.tabPLeftMain.setSelectedIndex(1);
@@ -216,7 +242,7 @@ public class ViewController implements Application {
 		} catch (DatabaseException e) {
 			List<String> list=new Vector<String>();
 			list.add("Currently no reservation available");
-			viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
+			viewMain.lvReservationSearch.setListData(new ListAdapter<String>(list));
 		}
 
 		try {
@@ -224,7 +250,7 @@ public class ViewController implements Application {
 		} catch (DatabaseException e) {
 			List<String> list=new Vector<String>();
 			list.add("Currently no guests found");
-			viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
+			viewMain.lvGuestSearch.setListData(new ListAdapter<String>(list));
 		}
 		
 		try {
@@ -246,20 +272,19 @@ public class ViewController implements Application {
 		/** insert Tests - Pat *************************************************************************/
 
 		
-		viewMain.reservationForm01.setVisible(false);
-		viewMain.lbProgress03.setVisible(false);
-		viewMain.lbProgress04.setVisible(false);
+		viewMain.reservationForm01.setVisible(true);
+		viewMain.lbProgress03.setVisible(true);
+		viewMain.lbProgress04.setVisible(true);
 		viewMain.lbProgress01.setTooltipText("Select a room and add services");
 		viewMain.lbProgress02.setTooltipText("Check the overview of the booked services and finish the process by saving");
 		
 		viewMain.meter.setPercentage(0.5);
 		viewMain.meter.getStyles().put("gridFrequency", "0.5");
 
-		viewMain.mainContent.add(bdViewAdditionalServices);
-		viewMain.mainContent.add(bdViewCurrentGuest);
-		bdViewCurrentGuest.setVisible(true);
 		
-		bdViewCurrentGuest.cgf1PBtnBookExtras.getButtonPressListeners().add(new ButtonPressListener() {
+		bdViewCurrentGuest.setVisible(false);
+		
+	/*	bdViewCurrentGuest.cgf1PBtnBookExtras.getButtonPressListeners().add(new ButtonPressListener() {
 
 			@Override
 			public void buttonPressed(Button arg0) {
@@ -307,14 +332,9 @@ public class ViewController implements Application {
 			}
 			
 			
-		});
-		
-		
-		
+		});*/
 		
 		}
-	
-	
 	
 		/** end insert Tests - Pat ***************************************************************************/
 		
@@ -420,6 +440,7 @@ public class ViewController implements Application {
 			String text = (String) listView.getSelectedItem();
 			if(text==null || text.contains("no reservation"))
 				return;
+			
 			String[] split = text.split(" ", 3);
 			int reservierungsnummer = Integer.valueOf(split[1]);
 
@@ -444,6 +465,72 @@ public class ViewController implements Application {
 		}
 	}
 
+	
+	public void setSelectedGuest(String gastNummer) throws DatabaseException, EmptyParameterException, NotContainExeption {
+		if (controllerZusatzleistung == null) {
+			controllerZusatzleistung = new ControllerZusatzleistungBuchen();
+		}
+		IGast curGast = controllerZusatzleistung.getGastByNummer(gastNummer);
+		controllerZusatzleistung.setGast(curGast);
+		bdViewCurrentGuest.cgf1LBGuestNr.setText(curGast.getNummer());
+		bdViewCurrentGuest.cgf1TIEMail.setText(curGast.getEmail());
+		bdViewCurrentGuest.cgf1TIName.setText(curGast.getVorname() + " " + curGast.getNachname().toUpperCase());
+		bdViewCurrentGuest.cgf1TIPhone.setText(curGast.getTelefonnummer());
+		List<IAdresse> adressen = new Vector<IAdresse>(curGast.getAdressen());
+		
+		
+		if (!adressen.equals(null)) {
+			IAdresse adresse = adressen.get(0);
+			bdViewCurrentGuest.cgf1TICity.setText(adresse.getOrt());
+			bdViewCurrentGuest.cgf1TICountry.setText(adresse.getLand().getBezeichnung());
+			bdViewCurrentGuest.cgf1TIStreet.setText(adresse.getStrasse());
+			bdViewCurrentGuest.cgf1TIZip.setText(adresse.getPlz());
+		}
+		List<IAufenthalt> aufenthalte = controllerZusatzleistung.getAufenthalte();
+		IAufenthalt aufenthalt = aufenthalte.get(0);
+		
+		Date arrival = aufenthalt.getVon();
+		Date departure = aufenthalt.getBis();
+
+		CalendarDate d1 = CalendarDate.decode(arrival.toString());
+		CalendarDate d2 = CalendarDate.decode(departure.toString());
+
+		bdViewCurrentGuest.cgf1CBArrival.setSelectedDate(d1);
+		bdViewCurrentGuest.cgf1CBDeparture.setSelectedDate(d2);
+		
+		bdViewCurrentGuest.cgf1LBArrival.setText(arrival.toString());
+		bdViewCurrentGuest.cgf1LBDeparture.setText(departure.toString());
+		
+	}
+	
+	class GuestListListener implements ListViewSelectionListener {
+
+		@Override
+		public void selectedItemChanged(ListView listView, Object arg1) {
+			String text = (String) listView.getSelectedItem();
+			if (text == null)
+				return;
+			
+			String[] split = text.split(" ");
+			try {
+				setSelectedGuest(split[1]);
+			} catch (DatabaseException e) {
+				e.printStackTrace();
+			} catch (EmptyParameterException e) {
+				e.printStackTrace();
+			} catch (NotContainExeption e) {
+				e.printStackTrace();
+			}
+			
+		}
+		public void selectedRangeAdded(ListView arg0, int arg1, int arg2) {
+		}
+		public void selectedRangeRemoved(ListView arg0, int arg1, int arg2) {
+		}
+		public void selectedRangesChanged(ListView arg0, Sequence<Span> arg1) {
+		}
+	}
+	
 	/**
 	 * Der SearchPanel- Listener kontrolliert den Ablauf, wenn ein Tab im linken Suchfeld ausgewählt wird.
 	 * Hierfür werden der benötigte ListAdapter geladen.
@@ -457,6 +544,8 @@ public class ViewController implements Application {
 			clearReservationPanel();
 			Wrapper wrapper = new Wrapper();
 			if (index == 0) {
+				viewMain.reservationForm01.setVisible(true);
+				bdViewCurrentGuest.setVisible(false);
 				viewMain.rf1PBtnCheckIn.setEnabled(false);
 				try {
 					if (controllerCheckIn.getAllReservierungen().size() == 0) {
@@ -474,6 +563,8 @@ public class ViewController implements Application {
 					viewMain.lvReservationSearch.setListData(new ListAdapter<String>(list));
 				}
 			} else if(index == 1) {
+				viewMain.reservationForm01.setVisible(true);
+				bdViewCurrentGuest.setVisible(false);
 				viewMain.rf1PBtnCheckIn.setEnabled(true);
 				try {
 					if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
@@ -492,6 +583,8 @@ public class ViewController implements Application {
 					viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
 				}
 			} else if (index == 2) {
+				viewMain.reservationForm01.setVisible(false);
+				bdViewCurrentGuest.setVisible(true);
 				viewMain.rf1PBtnCheckIn.setEnabled(false);
 				try {
 					if (controllerCheckIn.getGaesteVonAuftenhalt().size() == 0) {
