@@ -11,6 +11,11 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
  * @version 1.9
  */
 public interface IAufenthalt extends IModel {
+	
+	/**
+	 * Setzt den Preis den Aufenthalt fest
+	 * @param preis
+	 */
 	public void setPreis(Float preis);
 
 	/**
