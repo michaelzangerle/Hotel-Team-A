@@ -13,7 +13,7 @@
 
 		<many-to-one name="rechnung"
 			class="projekt.fhv.teama.classes.rechnung.Rechnung" fetch="join">
-			<column name="RECHNUNG" />
+			<column name="RECHNUNGID" />
 		</many-to-one>
 
 		<property name="betrag" type="float">

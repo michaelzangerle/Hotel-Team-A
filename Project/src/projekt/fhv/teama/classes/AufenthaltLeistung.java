@@ -21,8 +21,8 @@ public class AufenthaltLeistung implements IAufenthaltLeistung {
 	private int anzahl;
 	private Date datum;
 
-	public AufenthaltLeistung(ILeistung paket, IAufenthalt aufenthalt, int anzahl, Date datum) {
-		this.leistung = paket;
+	public AufenthaltLeistung(ILeistung leistung, IAufenthalt aufenthalt, int anzahl, Date datum) {
+		this.leistung = leistung;
 		this.aufenthalt = aufenthalt;
 		this.anzahl = anzahl;
 		this.datum = datum;
@@ -33,42 +33,61 @@ public class AufenthaltLeistung implements IAufenthaltLeistung {
 		
 	}
 
+
+	@Override
 	public int getID() {
 		return ID;
 	}
 
+
+	@Override
 	public void setID(int iD) {
 		ID = iD;
 	}
 
-	public ILeistung getPaket() {
+
+	@Override
+	public ILeistung getLeistung() {
 		return leistung;
 	}
 
-	public void setPaket(ILeistung paket) {
-		this.leistung = paket;
+
+	@Override
+	public void setLeistung(ILeistung leistung) {
+		this.leistung = leistung;
 	}
 
+
+	@Override
 	public IAufenthalt getAufenthalt() {
 		return aufenthalt;
 	}
 
+	@Override
 	public void setAufenthalt(IAufenthalt aufenthalt) {
 		this.aufenthalt = aufenthalt;
 	}
 
+
+	@Override
 	public int getAnzahl() {
 		return anzahl;
 	}
 
+
+	@Override
 	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
 	}
 
+
+	@Override
 	public Date getDatum() {
 		return datum;
 	}
 
+
+	@Override
 	public void setDatum(Date datum) {
 		this.datum = datum;
 	}

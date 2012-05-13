@@ -35,7 +35,7 @@
         </property>
         
         <property name="nummer" type="java.lang.String">
-            <column name="bummer" sql-type="varchar"/>
+            <column name="nummer" sql-type="varchar"/>
         </property>
         
         <many-to-one name="mitarbeiter" class="projekt.fhv.teama.classes.personen.Mitarbeiter" fetch="join">
