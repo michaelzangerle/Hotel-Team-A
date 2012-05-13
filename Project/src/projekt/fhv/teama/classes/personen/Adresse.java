@@ -3,13 +3,16 @@ package projekt.fhv.teama.classes.personen;
 import java.util.HashSet;
 import java.util.Set;
 
+import projekt.fhv.teama.classes.interfaces.teamb.IBAdresse;
+import projekt.fhv.teama.classes.interfaces.teamb.IBLand;
+
 
 /**
  * Beschreibt die Adresse die eine Person oder ein Vertragspartner im System haben kann
  * @author Team-A
  * @version 1.5
  */
-public class Adresse implements IAdresse {
+public class Adresse implements IAdresse, IBAdresse {
 	private int ID;
 	private String strasse;
     private String plz;
@@ -130,5 +133,10 @@ public class Adresse implements IAdresse {
 	public String toString() {
 		return "Adresse [ID=" + ID + ", strasse=" + strasse + ", plz=" + plz
 				+ ", ort=" + ort + "]";
+	}
+
+	@Override
+	public IBLand getBLand() {
+		return (IBLand)land;
 	}
 }

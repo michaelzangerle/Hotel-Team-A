@@ -1,17 +1,24 @@
 package projekt.fhv.teama.classes.rechnung;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import projekt.fhv.teama.classes.interfaces.teamb.IBLand;
+import projekt.fhv.teama.classes.interfaces.teamb.IBRechnung;
+import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
+import projekt.fhv.teama.classes.interfaces.teamb.IBTeilzahlung;
+import projekt.fhv.teama.classes.interfaces.teamb.IBZahlungsmethode;
 import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 
 /**
  * Beschreibt eine Rechnung
+ * 
  * @author Team A
  * @version 1.9
  */
-public class Rechnung implements IRechnung {
+public class Rechnung implements IRechnung, IBRechnung {
 	private int ID;
 	private String bezahlerVorname;
 	private String bezahlerNachname;
@@ -259,6 +266,129 @@ public class Rechnung implements IRechnung {
 	public void removeTeilzahlung(ITeilzahlung teilzahl) {
 		if (this.teilzahlungen.contains(teilzahl)) {
 			this.teilzahlungen.remove(teilzahl);
+		}
+	}
+
+	@Override
+	public String getFirstname() {
+
+		return this.getBezahlerVorname();
+	}
+
+	@Override
+	public void setFirstname(String first) {
+		this.setBezahlerVorname(first);
+	}
+
+	@Override
+	public String getSurname() {
+		return this.getBezahlerNachname();
+	}
+
+	@Override
+	public void setSurname(String sur) {
+		this.setBezahlerVorname(sur);
+	}
+
+	@Override
+	public String getPostalCode() {
+		return this.getBezahlerPLZ();
+	}
+
+	@Override
+	public void setPostalCode(String postal) {
+		this.setBezahlerPLZ(postal);
+	}
+
+	@Override
+	public String getAddress() {
+		return this.getBezahlerOrt();
+	}
+
+	@Override
+	public void setAddress(String addresse) {
+		this.setBezahlerStrasse(addresse);
+	}
+
+	@Override
+	public String getLocation() {
+		return this.getBezahlerOrt();
+	}
+
+	@Override
+	public void setLocation(String location) {
+		this.setBezahlerOrt(location);
+	}
+
+	@Override
+	public IBLand getCountry() {
+		return (IBLand) this.bezahlerLand;
+	}
+
+	@Override
+	public void setCountry(IBLand country) {
+		this.setBezahlerLand((ILand) country);
+	}
+
+	@Override
+	public String getRechnungsNummer() {
+		return this.getNummer();
+	}
+
+	@Override
+	public void setRechnungsNummer(String nummer) {
+		this.setNummer(nummer);
+	}
+
+	@Override
+	public Set<IBRechnungsPosition> getRechnungsPositionen() {
+
+		Set<IBRechnungsPosition> rpos = new HashSet<IBRechnungsPosition>();
+		for (IRechnungsposition r : this.getRechnungspositionen()) {
+			rpos.add((IBRechnungsPosition) r);
+		}
+
+		return rpos;
+	}
+
+	@Override
+	public void addRechnungsPosition(IBRechnungsPosition position) {
+		this.addRechnungsposition((IRechnungsposition) position);
+	}
+
+	@Override
+	public void removeRechnungsPosition(IBRechnungsPosition position) {
+		if (this.getRechnungsPositionen().contains((IRechnungsposition) position)) {
+			this.getRechnungsPositionen().remove((IRechnungsposition) position);
+		}
+	}
+
+	@Override
+	public Set<IBTeilzahlung> getBTeilzahlungen() {
+
+		Set<IBTeilzahlung> tz = new HashSet<IBTeilzahlung>();
+		for (ITeilzahlung t : this.getTeilzahlungen()) {
+			tz.add((IBTeilzahlung) t);
+		}
+
+		return tz;
+	}
+
+	@Override
+	public void addBezahlung(IBZahlungsmethode methode, BigDecimal betrag) {
+
+		Set<IZahlungsmethode> zmeth = new HashSet<IZahlungsmethode>();
+		zmeth.add((IZahlungsmethode) methode);
+		float betr = betrag.floatValue();
+		ITeilzahlung teilzahl = new Teilzahlung(this, betr, zmeth);
+
+		this.addTeilzahlung(teilzahl);
+	}
+
+	@Override
+	public void removeBezahlung(IBTeilzahlung teilzahlung) {
+		if (this.getTeilzahlungen().contains((ITeilzahlung) teilzahlung)) {
+			this.getTeilzahlungen().remove((ITeilzahlung) teilzahlung);
 		}
 	}
 }

@@ -3,8 +3,14 @@
  */
 package projekt.fhv.teama.classes.rechnung;
 
+import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 
+import projekt.fhv.teama.classes.interfaces.teamb.IBGast;
+import projekt.fhv.teama.classes.interfaces.teamb.IBLeistung;
+import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
+import projekt.fhv.teama.classes.interfaces.teamb.IBZimmer;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
@@ -14,7 +20,7 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
  * @author Team A
  * @version 1.9
  */
-public class Rechnungsposition implements IRechnungsposition {
+public class Rechnungsposition implements IRechnungsposition,IBRechnungsPosition {
 
     private int ID;
     private Date erstellung;
@@ -221,6 +227,89 @@ public class Rechnungsposition implements IRechnungsposition {
 		return "Rechnungsposition [ID=" + ID + ", erstellung=" + erstellung + ", anzahl=" + anzahl + ", einzelpreis="
 				+ einzelpreis + ", summe=" + summe + ", steuersatz=" + steuersatz + ", beglichen=" + beglichen
 				+ ", zimmer=" + zimmer + ", rechnung=" + rechnung.getID() + ", leistung=" + leistung + ", gast=" + gast + "]";
+	}
+
+	/* (non-Javadoc)
+	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getBrutto()
+	 */
+	@Override
+	public BigDecimal getBrutto() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getInvoiceLine()
+	 */
+	@Override
+	public String getInvoiceLine() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getDate()
+	 */
+	@Override
+	public Timestamp getDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getAmount()
+	 */
+	@Override
+	public Integer getAmount() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getUnitPrice()
+	 */
+	@Override
+	public BigDecimal getUnitPrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getTotalPrice()
+	 */
+	@Override
+	public BigDecimal getTotalPrice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public short getTaxRate() {
+		return this.getSteuersatz();
+	}
+
+	@Override
+	public IBGast getGuest() {
+		return (IBGast)this.getGast();
+	}
+
+	@Override
+	public IBZimmer getRoom() {
+		return (IBZimmer) this.getZimmer();
+	}
+
+	@Override
+	public IBLeistung getBLeistung() {
+		return (IBLeistung)this.getLeistung();
+	}
+
+	/* (non-Javadoc)
+	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getSteuerbetrag()
+	 */
+	@Override
+	public BigDecimal getSteuerbetrag() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

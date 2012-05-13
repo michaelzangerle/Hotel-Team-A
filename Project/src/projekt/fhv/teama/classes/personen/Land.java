@@ -1,12 +1,14 @@
 package projekt.fhv.teama.classes.personen;
 
+import projekt.fhv.teama.classes.interfaces.teamb.IBLand;
+
 
 /**
  * Beschreibt ein Land mit allen Informationen diesbezüglich
  * @author Team-A
  * @version 1.5
  */
-public class Land implements ILand {
+public class Land implements ILand,IBLand {
 	private int ID;
     private String bezeichnung;
     private String kuerzel;

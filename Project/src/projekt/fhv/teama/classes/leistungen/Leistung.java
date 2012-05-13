@@ -1,11 +1,13 @@
 package projekt.fhv.teama.classes.leistungen;
 
+import projekt.fhv.teama.classes.interfaces.teamb.IBLeistung;
+
 /**
  * Beschreibt eine Leistung
  * @author Team A
  * 
  */
-public abstract class Leistung implements ILeistung {
+public abstract class Leistung implements ILeistung,IBLeistung {
 
 	private int ID;
 	private String bezeichnung;

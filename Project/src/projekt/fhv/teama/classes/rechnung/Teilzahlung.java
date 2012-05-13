@@ -2,12 +2,15 @@ package projekt.fhv.teama.classes.rechnung;
 
 import java.util.Set;
 
+import projekt.fhv.teama.classes.interfaces.teamb.IBTeilzahlung;
+import projekt.fhv.teama.classes.interfaces.teamb.IBZahlungsmethode;
+
 /**
  * Beschreibt eine Teilzahlung
  * @author Team A
  * @version 1.8
  */
-public class Teilzahlung implements ITeilzahlung {
+public class Teilzahlung implements ITeilzahlung,IBTeilzahlung {
 	private int ID;
 	private IRechnung rechnung;
 	private float betrag;
@@ -110,6 +113,15 @@ public class Teilzahlung implements ITeilzahlung {
 		} else if (!zahlungsmethoden.equals(other.zahlungsmethoden))
 			return false;
 		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBTeilzahlung#getBZahlungsmethode()
+	 */
+	@Override
+	public IBZahlungsmethode getBZahlungsmethode() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

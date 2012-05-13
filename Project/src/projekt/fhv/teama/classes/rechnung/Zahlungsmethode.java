@@ -1,11 +1,13 @@
 package projekt.fhv.teama.classes.rechnung;
 
+import projekt.fhv.teama.classes.interfaces.teamb.IBZahlungsmethode;
+
 /**
  * Beschreibt eine Zahlungsmethode
  * @author Team A
  * @version 1.9
  */
-public class Zahlungsmethode implements IZahlungsmethode {
+public class Zahlungsmethode implements IZahlungsmethode,IBZahlungsmethode {
 	
 	private int ID;
 	private String bezeichnung;

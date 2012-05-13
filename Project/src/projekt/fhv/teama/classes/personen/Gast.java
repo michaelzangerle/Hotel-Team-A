@@ -1,9 +1,14 @@
 package projekt.fhv.teama.classes.personen;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.interfaces.teamb.IBAdresse;
+import projekt.fhv.teama.classes.interfaces.teamb.IBGast;
+import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
@@ -15,21 +20,13 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
  * @author Team-A
  * @version 1.5
  */
-public class Gast extends Person implements IGast {
+public class Gast extends Person implements IGast,IBGast {
 	// private int ID;
 	private String nummer;
 	private IZimmer zimmer;
 	private Set<IReservierung> reservierungen;
 	private Set<IRechnungsposition> rechnungspositionen;
 	private Set<IAufenthalt> aufenthalte;
-
-	// public int getID() {
-	// return ID;
-	// }
-	//
-	// public void setID(int gastId) {
-	// this.ID = gastId;
-	// }
 
 	public String getNummer() {
 		return nummer;
@@ -188,6 +185,37 @@ public class Gast extends Person implements IGast {
 		if (reservierungen.contains(res)) {
 			this.reservierungen.remove(res);
 		}
+	}
+
+	@Override
+	public List<IBRechnungsPosition> getBRechnungsPositionen() {
+		
+		List<IBRechnungsPosition> rpos = new Vector<IBRechnungsPosition>();
+		for (IRechnungsposition pos : this.getRechnungsposition()) {
+			rpos.add((IBRechnungsPosition)pos);
+		}
+		return rpos;
+	}
+
+	@Override
+	public String getFirstname() {
+		return this.getVorname();
+	}
+
+	@Override
+	public String getSurname() {
+		return this.getNachname();
+	}
+
+	@Override
+	public List<IBAdresse> getBAdressen() {
+		
+		List<IBAdresse> adds = new Vector<IBAdresse>();
+		for (IAdresse adr : this.getAdressen()) {
+			adds.add((IBAdresse)adr);
+		}
+				
+		return adds;
 	}
 
 }
