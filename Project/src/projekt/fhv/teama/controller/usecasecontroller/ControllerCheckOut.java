@@ -8,6 +8,7 @@ import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
@@ -24,6 +25,11 @@ public class ControllerCheckOut {
 
 	private List<IAufenthalt> aufenthalte = new Vector<IAufenthalt>();
 	
+	/**
+	 * 
+	 * @param cgast
+	 * @param cauf
+	 */
 	public ControllerCheckOut(IModelGast cgast, IModelAufenthalt cauf) {
 		modelGast = cgast;
 		modelAufenthalt = cauf;		
@@ -119,7 +125,7 @@ public class ControllerCheckOut {
 	/**
 	 * Rechnung erstellen aufrufen
 	 */
-	public void aufrufenRechnungErstellen() {
+	public void aufrufenRechnungErstellen(List<IAufenthalte>, IGast) {
 		//TODO
 	}
 	
