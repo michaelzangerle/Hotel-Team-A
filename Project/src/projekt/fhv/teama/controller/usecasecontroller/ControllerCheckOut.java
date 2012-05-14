@@ -7,8 +7,10 @@ import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckOut;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.ModelAufenthalt;
+import projekt.fhv.teama.model.ModelGast;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
@@ -19,44 +21,33 @@ import projekt.fhv.teama.model.interfaces.IModelGast;
  * @author Team-A
  * @version 1.0
  */
-public class ControllerCheckOut {
+public class ControllerCheckOut implements IControllerCheckOut {
+	
+	// Models
 	private IModelGast modelGast;
 	private IModelAufenthalt modelAufenthalt; 
 
+	// Listen
 	private List<IAufenthalt> aufenthalte = new Vector<IAufenthalt>();
 	
-	/**
-	 * 
-	 * @param cgast
-	 * @param cauf
-	 */
-	public ControllerCheckOut(IModelGast cgast, IModelAufenthalt cauf) {
-		modelGast = cgast;
-		modelAufenthalt = cauf;		
+	
+	public ControllerCheckOut() {
+		modelGast = new ModelGast();
+		modelAufenthalt = new ModelAufenthalt();		
 	}
 	
-	/**
-	 * Die Referenz auf den aktuellen Gast setzen
-	 * @param gast
-	 */
+
+	@Override
 	public void setGast(IGast gast) {
 		modelGast.setAktuellGast(gast);
 	}
 
-	/**
-	 * Referenz des aktuellen Gastes erhalten
-	 * @return
-	 * @throws FokusException
-	 */
+	@Override
 	public IGast getGast() throws FokusException {
 		return modelGast.getAktuellGast();
 	}
 	
-	/**
-	 * Liste aller aktuellen Gaeste
-	 * @return
-	 * @throws DatabaseException
-	 */
+	@Override
 	public List<IGast> getGaesteVonAuftenhalten() throws DatabaseException
 	{
 		if(aufenthalte.size() < 1)
@@ -72,29 +63,18 @@ public class ControllerCheckOut {
 			return gaeste;			
 	}
 	
-	/**
-	 * Referenz auf den akteullen Aufenthalt setzen
-	 * @param aufenhalt
-	 * @throws EmptyParameterException
-	 */
+	@Override
 	public void setAufenthalt(IAufenthalt aufenhalt) throws EmptyParameterException {
 		modelAufenthalt.setAufenthalt(aufenhalt);
 	}
 	
-	/**
-	 * Referenz des aktellen Aufenthaltes erhalten
-	 * @return
-	 * @throws FokusException
-	 */
+	@Override
 	public IAufenthalt getAufenthalt() throws FokusException {
 		return modelAufenthalt.getAufenthalt();
 	}
 	
-	/**
-	 * Liste aller Aufenthalte
-	 * @return
-	 * @throws DatabaseException
-	 */
+	
+	@Override
 	public List<IAufenthalt> getAufenthalte() throws DatabaseException {
 		if (aufenthalte.size() > 0) {
 			return aufenthalte;
@@ -104,12 +84,7 @@ public class ControllerCheckOut {
 		}
 	}
 	
-	/**
-	 * Liste der Zimmer eines Gastes 
-	 * @return
-	 * @throws FokusException
-	 * @throws DatabaseException
-	 */
+	@Override
 	public List<IZimmer> getZimmerVonGast() throws FokusException, DatabaseException {
 		List<IZimmer> zimmers=new Vector<IZimmer>();
 		if(aufenthalte.size()<=0) {
@@ -125,25 +100,27 @@ public class ControllerCheckOut {
 	/**
 	 * Rechnung erstellen aufrufen
 	 */
-	public void aufrufenRechnungErstellen(List<IAufenthalte>, IGast) {
+	public void aufrufenRechnungErstellen() {
 		//TODO
 	}
 	
-	/**
-	 * Sind alle Rechnungspositionen beglichen
-	 * @return
+	/* (non-Javadoc)
+	 * @see projekt.fhv.teama.controller.usecasecontroller.IControllerCheckOut#offeneRechnungspositionenVorhanden()
 	 */
+	@Override
 	public boolean offeneRechnungspositionenVorhanden() {
-		//TODO
+		//TODO Offene Rechnungspositionen noch vorhanden sind
 		return false;
 		
 	}
 	
-	/**
-	 * speichern
+	/* (non-Javadoc)
+	 * @see projekt.fhv.teama.controller.usecasecontroller.IControllerCheckOut#save()
 	 */
+	@Override
 	public void save() {
-		//TODO
+		//TODO Speichern des Check Out Vorganges(Schlüssel rückgabe etc)
 	}
+	
 }
 	
