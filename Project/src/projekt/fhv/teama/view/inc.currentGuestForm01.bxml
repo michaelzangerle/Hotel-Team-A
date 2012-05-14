@@ -7,7 +7,7 @@
 		<Label bxml:id="cgf1LBCurrentGuestDetails" text="Selected Guest: No." styles="$styles.lbHeading1"/>
 		<Label bxml:id="cgf1LBGuestNr" text="4711" styles="$styles.lbHeading1" />
 		</BoxPane>
-		<BoxPane styles="{padding:30}">
+		<BoxPane orientation="horizontal" styles="{padding:30, spacing:35}">
 		<Form bxml:id="cgf1Form" styles="{showFlagIcons:true}">
 			<Form.Section>
 				<TextInput bxml:id="cgf1TIName" Form.label="Name" textKey="name" preferredWidth="350" />
@@ -36,6 +36,13 @@
 					</BoxPane>
 			</Form.Section>
 		</Form>
+		 <Border title="Booked Additional Services" styles="{color:'#e3e3e3', backgroundColor: '#fcfcfc', padding:{top:4, left:4, bottom:4, right:4}}">
+         <BoxPane orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#fcfcfc'}"  enabled="false">
+				 <ScrollPane preferredWidth="250" preferredHeight="232"  horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#fcfcfc'}">
+                    <ListView bxml:id="cgf1LVBookedAdditionalServices" selectMode="single" listData="['5x McChicken', '5x McNuggets', '1000x Bier mit Schlagsahne']" styles="{backgroundColor: '#fcfcfc'}"/>
+                	</ScrollPane>
+                	</BoxPane>
+            </Border>
 		</BoxPane>
 			
 		<Separator />

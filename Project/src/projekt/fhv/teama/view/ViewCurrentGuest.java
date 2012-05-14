@@ -22,6 +22,7 @@ import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Form;
 import org.apache.pivot.wtk.Label;
+import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.PushButton;
 import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.Window;
@@ -64,6 +65,9 @@ public class ViewCurrentGuest extends Border implements Bindable {
 	/* TextInputs */
 	@BXML TextInput cgf1TIName;@BXML TextInput cgf1TIStreet;@BXML TextInput cgf1TICity;@BXML TextInput cgf1TIZip;@BXML TextInput cgf1TICountry;
 	@BXML TextInput cgf1TIPhone;@BXML TextInput	cgf1TIEMail;
+	
+	/* ListViews */
+	@BXML ListView cgf1LVBookedAdditionalServices;
 	
 				
 	
