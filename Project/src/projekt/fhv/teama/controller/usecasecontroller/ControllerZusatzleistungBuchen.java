@@ -214,6 +214,21 @@ public class ControllerZusatzleistungBuchen {
 		}
 	}
 	
+	public ILeistung getLeistungByBezeichnung(String bez) throws DatabaseException, NotContainExeption
+	{
+		if(leistungen.size()<1)
+		{
+			getArtikelundZusatzleistungen();
+		}
+		
+		for (ILeistung leistung : leistungen) {
+			if(leistung.getBezeichnung().equals(bez))
+				return leistung;
+		}
+		
+		throw new NotContainExeption();
+	}
+	
 	
 	
 	

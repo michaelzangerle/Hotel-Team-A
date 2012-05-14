@@ -119,4 +119,13 @@ public interface IControllerZusatzleistungBuchen {
 	 * @return HashMap<IZimmer, List<LeistungAnzahl>>
 	 */
 	public HashMap<IZimmer, List<LeistungAnzahl>> getGebuchteLeistungen();
+	
+	/**
+	 * Methode um eine Leistung anhand der Bezeichnung zu erhalten
+	 * @param bez
+	 * @return ILeistung
+	 * @throws DatabaseException
+	 * @throws NotContainExeption
+	 */
+	public ILeistung getLeistungByBezeichnung(String bez) throws DatabaseException, NotContainExeption;
 }
