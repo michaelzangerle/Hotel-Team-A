@@ -3,7 +3,19 @@
  */
 package projekt.fhv.teama.view.support;
 
-import org.apache.pivot.util.CalendarDate;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.pivot.collections.ArrayList;
+import org.apache.pivot.collections.adapter.ListAdapter;
+import org.apache.pivot.wtk.ListButton;
+import org.apache.pivot.wtk.content.TableViewRowEditor;
+
+import projekt.fhv.teama.classes.leistungen.ILeistung;
+import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
+import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.view.ViewAdditionalServices;
+
 
 /**
  *  
@@ -13,11 +25,11 @@ import org.apache.pivot.util.CalendarDate;
  */
 public class AdditionalServicesTableRow {
     private int quantity = 0;
-    private Services type = null;
+    private Service type = null;
     private double amount = 0;
     private double	total = 0;
     private String description = "";
-
+    
     public int getQuantity() {
         return quantity;
     }
@@ -30,18 +42,19 @@ public class AdditionalServicesTableRow {
     	setQuantity(Integer.valueOf(quantity));
     }
 
-    public Services getType() {
-        return type;
+    public Service getType() {
+
+        return this.type;
     }
 
-    public void setType(Services type) {
+    public void setType(Service type) {
         this.type = type;
     }
-
+    
     public final void setType(String type) {
-        setType(Services.valueOf(type));
+    	
     }
-
+    
     public double getAmount() {
         return amount;
     }
@@ -81,4 +94,9 @@ public class AdditionalServicesTableRow {
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    public AdditionalServicesTableRow () {
+    }
+    
+    
 }
