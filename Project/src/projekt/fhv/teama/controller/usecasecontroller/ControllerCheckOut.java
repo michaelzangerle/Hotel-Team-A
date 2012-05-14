@@ -18,24 +18,23 @@ import projekt.fhv.teama.model.interfaces.IModelGast;
 
 /**
  * Controller zur Steuerung des Check Out Vorganges
+ * 
  * @author Team-A
  * @version 1.0
  */
 public class ControllerCheckOut implements IControllerCheckOut {
-	
+
 	// Models
 	private IModelGast modelGast;
-	private IModelAufenthalt modelAufenthalt; 
+	private IModelAufenthalt modelAufenthalt;
 
 	// Listen
 	private List<IAufenthalt> aufenthalte = new Vector<IAufenthalt>();
-	
-	
+
 	public ControllerCheckOut() {
 		modelGast = new ModelGast();
-		modelAufenthalt = new ModelAufenthalt();		
+		modelAufenthalt = new ModelAufenthalt();
 	}
-	
 
 	@Override
 	public void setGast(IGast gast) {
@@ -46,81 +45,90 @@ public class ControllerCheckOut implements IControllerCheckOut {
 	public IGast getGast() throws FokusException {
 		return modelGast.getAktuellGast();
 	}
-	
+
 	@Override
-	public List<IGast> getGaesteVonAuftenhalten() throws DatabaseException
-	{
-		if(aufenthalte.size() < 1)
-		{
+	public List<IGast> getGaesteVonAuftenhalten() throws DatabaseException {
+		if (aufenthalte.size() < 1) {
 			aufenthalte.clear();
 			getAufenthalte();
 		}
-		List<IGast> gaeste=new Vector<IGast>();
+		List<IGast> gaeste = new Vector<IGast>();
 		for (IAufenthalt aufenthalt : aufenthalte) {
-			if(!gaeste.contains(aufenthalt.getGast())&&aufenthalt.getGast()!=null)
-					gaeste.add(aufenthalt.getGast());
+			if (!gaeste.contains(aufenthalt.getGast())
+					&& aufenthalt.getGast() != null)
+				gaeste.add(aufenthalt.getGast());
 		}
-			return gaeste;			
+		return gaeste;
 	}
-	
+
 	@Override
-	public void setAufenthalt(IAufenthalt aufenhalt) throws EmptyParameterException {
+	public void setAufenthalt(IAufenthalt aufenhalt)
+			throws EmptyParameterException {
 		modelAufenthalt.setAufenthalt(aufenhalt);
 	}
-	
+
 	@Override
 	public IAufenthalt getAufenthalt() throws FokusException {
 		return modelAufenthalt.getAufenthalt();
 	}
-	
-	
+
 	@Override
 	public List<IAufenthalt> getAufenthalte() throws DatabaseException {
 		if (aufenthalte.size() > 0) {
 			return aufenthalte;
 		} else {
-			aufenthalte = modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 3, 25));
+			aufenthalte = modelAufenthalt.getAufenthalte(MyLittleDate.getDate(
+					2012, 3, 25));
 			return aufenthalte;
 		}
 	}
-	
+
 	@Override
-	public List<IZimmer> getZimmerVonGast() throws FokusException, DatabaseException {
-		List<IZimmer> zimmers=new Vector<IZimmer>();
-		if(aufenthalte.size()<=0) {
+	public List<IZimmer> getZimmerVonGast() throws FokusException,
+			DatabaseException {
+
+		List<IZimmer> zimmers = new Vector<IZimmer>();
+
+		if (aufenthalte.size() <= 0) {
 			getAufenthalte();
 		}
+
 		for (IAufenthalt aufenthalt : aufenthalte) {
-			if(aufenthalt.getGast().equals(getGast())&&aufenthalt.getZimmer()!=null)
+			if (aufenthalt.getGast().equals(getGast()) && aufenthalt.getZimmer() != null)
 				zimmers.add(aufenthalt.getZimmer());
-		}		
+		}
 		return zimmers;
 	}
-	
+
 	/**
 	 * Rechnung erstellen aufrufen
 	 */
 	public void aufrufenRechnungErstellen() {
-		//TODO
+		// TODO aufrufenRechnungErstellen Team B
 	}
-	
-	/* (non-Javadoc)
-	 * @see projekt.fhv.teama.controller.usecasecontroller.IControllerCheckOut#offeneRechnungspositionenVorhanden()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see projekt.fhv.teama.controller.usecasecontroller.IControllerCheckOut#
+	 * offeneRechnungspositionenVorhanden()
 	 */
 	@Override
 	public boolean offeneRechnungspositionenVorhanden() {
-		//TODO Offene Rechnungspositionen noch vorhanden sind
+		// TODO Offene Rechnungspositionen noch vorhanden sind
 		return false;
-		
+
 	}
-	
-	/* (non-Javadoc)
-	 * @see projekt.fhv.teama.controller.usecasecontroller.IControllerCheckOut#save()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * projekt.fhv.teama.controller.usecasecontroller.IControllerCheckOut#save()
 	 */
 	@Override
 	public void save() {
-		//TODO Speichern des Check Out Vorganges(Schlüssel rückgabe etc)
+		// TODO Speichern des Check Out Vorganges(Schlüssel rückgabe etc)
 	}
-	
+
 }
-	
