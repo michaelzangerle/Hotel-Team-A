@@ -18,18 +18,34 @@ public class LeistungAnzahl {
 		this.anzahl=anzahl;
 	}
 	
+	/**
+	 * Methode um die Leistung zu holen
+	 * @return ILeistung
+	 */
 	public ILeistung getLeistung() {
 		return leistung;
 	}
 
+	/**
+	 * Methode um die Leistung zu sezten
+	 * @param leistung
+	 */
 	public void setLeistung(ILeistung leistung) {
 		this.leistung = leistung;
 	}
 
+	/**
+	 * Methode um die Anzahl zu holen
+	 * @return int
+	 */
 	public int getAnzahl() {
 		return anzahl;
 	}
 
+	/**
+	 * Methode um die Anzahl zu setzen
+	 * @param anzahl
+	 */
 	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
 	}
