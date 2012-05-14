@@ -1,11 +1,8 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Vector;
-
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.MyLittleDate;
@@ -25,7 +22,6 @@ import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.interfaces.IModelArtikel;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
-import projekt.fhv.teama.model.interfaces.IModelLand;
 import projekt.fhv.teama.model.interfaces.IModelLeistung;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
 import projekt.fhv.teama.model.interfaces.IModelZusatzleistung;
@@ -39,6 +35,7 @@ public class ControllerZusatzleistungBuchen {
 	private IModelArtikel modelArtikel;
 	private IModelZusatzleistung modelZusatzleistung;
 	private IModelZimmer modelZimmer;
+	
 	
 	public ControllerZusatzleistungBuchen() {
 		modelArtikel=new ModelArtikel();
@@ -56,7 +53,8 @@ public class ControllerZusatzleistungBuchen {
 	private List<ILeistung> zusatzleistungen=new Vector<ILeistung>();
 	private List<ILeistung> leistungen=new Vector<ILeistung>();
 	
-	private HashMap<IZimmer, List<ILeistung>> gebuchteLeistungen=new HashMap<IZimmer, List<ILeistung>>();
+	private HashMap<IZimmer, List<LeistungAnzahl>> gebuchteLeistungen=new HashMap<IZimmer, List<LeistungAnzahl>>();
+
 
 	public List<IAufenthalt> getAufenthalte() throws DatabaseException
 	{
@@ -110,7 +108,7 @@ public class ControllerZusatzleistungBuchen {
 		return modelGast.getAktuellGast();
 	}
 	
-	public IZimmer getZimmerVonGastByNummer(String nummer) throws EmptyParameterException, DatabaseException, FokusException {
+	public IZimmer getZimmerByNummer(String nummer) throws EmptyParameterException, DatabaseException, FokusException {
 		if (nummer == null)
 			throw new EmptyParameterException();
 		
@@ -183,17 +181,17 @@ public class ControllerZusatzleistungBuchen {
 		return modelZimmer.getAktullesZimmer();
 	}
 	
-	public void addLeistung(ILeistung leistung) throws FokusException, EmptyParameterException
+	public void addLeistung(ILeistung leistung,int anzahl) throws FokusException, EmptyParameterException
 	{
-		if(leistung!=null)
+		if(leistung!=null && anzahl>0)
 		{
 			if(gebuchteLeistungen.containsKey(getAktuellesZimmer()))
 			{
-				gebuchteLeistungen.get(getAktuellesZimmer()).add(leistung);
+				gebuchteLeistungen.get(getAktuellesZimmer()).add(new LeistungAnzahl(leistung, anzahl));
 			}
 			else {
-				List<ILeistung> l=new Vector<ILeistung>();
-				l.add(leistung);
+				List<LeistungAnzahl> l=new Vector<LeistungAnzahl>();
+				l.add(new LeistungAnzahl(leistung, anzahl));
 				gebuchteLeistungen.put(getAktuellesZimmer(), l);
 			}
 		}
@@ -201,20 +199,37 @@ public class ControllerZusatzleistungBuchen {
 		throw new EmptyParameterException();
 	}
 	
-	
+	public HashMap<IZimmer, List<LeistungAnzahl>> getGebuchteLeistungen()
+	{
+		return gebuchteLeistungen;
+	}
 
 	public void saveLeistungen()
 	{
 		for (IZimmer z : gebuchteLeistungen.keySet()) {
 			
-			for (ILeistung l : gebuchteLeistungen.get(z)) {
-				
+			for (LeistungAnzahl l : gebuchteLeistungen.get(z)) {
 				//TODO speichern in die DB
-				
 			}
 		}
-		
 	}
+	
+	public ILeistung getLeistungByBezeichnung(String bez) throws DatabaseException, NotContainExeption
+	{
+		if(leistungen.size()<1)
+		{
+			getArtikelundZusatzleistungen();
+		}
+		
+		for (ILeistung leistung : leistungen) {
+			if(leistung.getBezeichnung().equals(bez))
+				return leistung;
+		}
+		
+		throw new NotContainExeption();
+	}
+	
+	
 	
 	
 	
