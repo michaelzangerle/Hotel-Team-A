@@ -13,6 +13,7 @@ import projekt.fhv.teama.classes.interfaces.teamb.IBLand;
  * @version 1.5
  */
 public class Adresse implements IAdresse, IBAdresse {
+	
 	private int ID;
 	private String strasse;
     private String plz;

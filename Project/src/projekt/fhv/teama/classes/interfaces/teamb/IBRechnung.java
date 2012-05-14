@@ -13,13 +13,8 @@ import java.util.Set;
  */
 public interface IBRechnung {
 
-    /**
-     *
-     * @return
-     */
-    public Integer getID();
+    public Integer getBID();
 
-    //<editor-fold defaultstate="collapsed" desc="Adresse">
     String getFirstname();
 
     void setFirstname(String first);
@@ -43,27 +38,21 @@ public interface IBRechnung {
     IBLand getCountry();
 
     void setCountry(IBLand country);
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="Nummer">
+    
     String getRechnungsNummer();
 
     void setRechnungsNummer(String nummer);
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="Positionen">
+ 
     Set<IBRechnungsPosition> getRechnungsPositionen();
 
     void addRechnungsPosition(IBRechnungsPosition position);
 
     void removeRechnungsPosition(IBRechnungsPosition position);
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc="Teilzahlungen">
+   
     Set<IBTeilzahlung> getBTeilzahlungen();
 
     void addBezahlung(IBZahlungsmethode methode, BigDecimal betrag);
 
     void removeBezahlung(IBTeilzahlung teilzahlung);
-    //</editor-fold>
+    
 }

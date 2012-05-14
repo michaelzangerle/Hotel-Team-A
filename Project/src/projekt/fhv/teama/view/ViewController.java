@@ -270,9 +270,11 @@ public class ViewController implements Application {
 		}
 		
 		/** insert Tests - Pat *************************************************************************/
-
+		bdViewCurrentGuest.setVisible(false);
 		
 		viewMain.reservationForm01.setVisible(true);
+		viewMain.lbProgress01.setVisible(true);
+		viewMain.lbProgress02.setVisible(true);
 		viewMain.lbProgress03.setVisible(true);
 		viewMain.lbProgress04.setVisible(true);
 		viewMain.lbProgress01.setTooltipText("Select a room and add services");
@@ -282,7 +284,7 @@ public class ViewController implements Application {
 		viewMain.meter.getStyles().put("gridFrequency", "0.5");
 
 		
-		bdViewCurrentGuest.setVisible(false);
+		
 		
 	/*	bdViewCurrentGuest.cgf1PBtnBookExtras.getButtonPressListeners().add(new ButtonPressListener() {
 

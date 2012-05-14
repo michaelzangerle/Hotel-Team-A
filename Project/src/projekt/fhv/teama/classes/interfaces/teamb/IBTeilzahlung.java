@@ -14,5 +14,5 @@ public interface IBTeilzahlung {
 
     IBZahlungsmethode getBZahlungsmethode();
 
-    BigDecimal getBetrag();
+    BigDecimal getBBetrag();
 }

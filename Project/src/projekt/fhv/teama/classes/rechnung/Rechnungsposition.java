@@ -229,58 +229,38 @@ public class Rechnungsposition implements IRechnungsposition,IBRechnungsPosition
 				+ ", zimmer=" + zimmer + ", rechnung=" + rechnung.getID() + ", leistung=" + leistung + ", gast=" + gast + "]";
 	}
 
-	/* (non-Javadoc)
-	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getBrutto()
-	 */
 	@Override
 	public BigDecimal getBrutto() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		float netto = this.getSumme();
+		float steueranteil = netto*this.getSteuersatz()/100;
+		
+		return new BigDecimal(netto+steueranteil);
 	}
 
-	/* (non-Javadoc)
-	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getInvoiceLine()
-	 */
 	@Override
 	public String getInvoiceLine() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getBLeistung().getBezeichnung();
 	}
 
-	/* (non-Javadoc)
-	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getDate()
-	 */
 	@Override
 	public Timestamp getDate() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Timestamp(this.getErstellung().getTime());
 	}
 
-	/* (non-Javadoc)
-	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getAmount()
-	 */
 	@Override
 	public Integer getAmount() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Integer(this.getAnzahl());
 	}
 
-	/* (non-Javadoc)
-	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getUnitPrice()
-	 */
 	@Override
 	public BigDecimal getUnitPrice() {
-		// TODO Auto-generated method stub
-		return null;
+		return new BigDecimal(this.getEinzelpreis());
 	}
 
-	/* (non-Javadoc)
-	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getTotalPrice()
-	 */
 	@Override
 	public BigDecimal getTotalPrice() {
-		// TODO Auto-generated method stub
-		return null;
+		return new BigDecimal(this.getSumme());
 	}
 
 	@Override
@@ -302,14 +282,10 @@ public class Rechnungsposition implements IRechnungsposition,IBRechnungsPosition
 	public IBLeistung getBLeistung() {
 		return (IBLeistung)this.getLeistung();
 	}
-
-	/* (non-Javadoc)
-	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition#getSteuerbetrag()
-	 */
+	
 	@Override
 	public BigDecimal getSteuerbetrag() {
-		// TODO Auto-generated method stub
-		return null;
+		return new BigDecimal(this.getSumme()*this.getSteuersatz()/100);
 	}
 
 }

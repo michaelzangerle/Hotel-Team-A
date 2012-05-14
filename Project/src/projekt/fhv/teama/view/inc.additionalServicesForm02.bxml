@@ -8,7 +8,7 @@
 			-->
 		<Separator bxml:id="asf2smServicesSummary" heading=" Review summary before saving " styles="$styles.sprHeading"/>
 
-		<Label text="You are booking the following services for guest No. 001 | ERICSSON Christopher: "  styles="$styles.lbHeading2" />
+		<Label bxml:id="asf2smServiceGuest" text="You are booking the following services for guest No. 001 | ERICSSON Christopher: "  styles="$styles.lbHeading2" />
 
 		<!-- Step 2 #####################################################################	-->
 

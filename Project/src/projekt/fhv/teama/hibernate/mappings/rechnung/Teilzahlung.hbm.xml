@@ -20,13 +20,9 @@
 			<column name="BETRAG" sql-type="DECIMAL" />
 		</property>
 
-		<set name="zahlungsmethoden" table="ZAHLUNGSMETHODE" inverse="false"
-			lazy="true">
-			<key>
-				<column name="zahlungsmethodeID" />
-			</key>
-			<one-to-many class="projekt.fhv.teama.classes.rechnung.Zahlungsmethode" />
-		</set>
+        <many-to-one name="zahlungsmethode" class="projekt.fhv.teama.classes.rechnung.IZahlungsmethode" fetch="join">
+            <column name="ZAHLUNGSMETHODEID" />
+        </many-to-one>
 
 	</class>
 </hibernate-mapping>

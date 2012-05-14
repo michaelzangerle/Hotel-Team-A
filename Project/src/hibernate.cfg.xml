@@ -5,7 +5,6 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.password"></property>
 		
 		<property name="hibernate.connection.url">jdbc:mysql://sql148.your-server.de/webosd_db8</property>
 		<property name="hibernate.connection.username">shs2012</property>
@@ -22,6 +21,7 @@
 <!-- 		<property name="hibernate.hbm2ddl.auto">validate</property> -->
 
 		<!-- Mapping-Files -->
+		<mapping resource="projekt/fhv/teama/hibernate/mappings/AufenthaltLeistung.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/personen/VertragspartnerTyp.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/personen/Berechtigung.hbm.xml" />
 		<mapping resource="projekt/fhv/teama/hibernate/mappings/personen/Mitarbeiter.hbm.xml" />

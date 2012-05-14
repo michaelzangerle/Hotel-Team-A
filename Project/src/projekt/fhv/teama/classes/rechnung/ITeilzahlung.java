@@ -1,7 +1,5 @@
 package projekt.fhv.teama.classes.rechnung;
 
-import java.util.Set;
-
 import projekt.fhv.teama.classes.IModel;
 
 /**
@@ -15,25 +13,13 @@ public interface ITeilzahlung extends IModel {
 	 * Setzt den Wert des Attributs Zahlungsmethode auf den übergebenen Wert
 	 * @param zahlungsmethoden Set<IZahlunsmethode>
 	 */
-	public void setZahlungsmethoden(Set<IZahlungsmethode> zahlungsmethoden);
+	public void setZahlungsmethode(IZahlungsmethode zahlungsmethode);
 
 	/**
 	 * Gibt den Wert des Attributs Zahlungsmethode zurück
 	 * @return Set<IZahlungsmethode>
 	 */
-	public Set<IZahlungsmethode> getZahlungsmethoden();
-
-	/**
-	 * Fügt eine Zahlungsmethode zum Attribut Zahlungsmethoden hinzu
-	 * @param zahlungsmethode IZahlungsmethode
-	 */
-	public void addZahlungsmethode(IZahlungsmethode zahlungsmethode);
-
-	/**
-	 * Entfernt den übergebenen Wert aus dem Attribut Zahlungsmethoden
-	 * @param zahlungsmethode IZahlungsmethode
-	 */
-	public void removeZahlungsmethode(IZahlungsmethode zahlungsmethode);
+	public IZahlungsmethode getZahlungsmethode();
 
 	/**
 	 * Setzt das Attribut Rechnung auf den übergebenen Wert
