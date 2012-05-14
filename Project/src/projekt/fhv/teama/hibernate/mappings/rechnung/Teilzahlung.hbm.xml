@@ -20,7 +20,7 @@
 			<column name="BETRAG" sql-type="DECIMAL" />
 		</property>
 
-        <many-to-one name="zahlungsmethode" class="projekt.fhv.teama.classes.rechnung.IZahlungsmethode" fetch="join">
+        <many-to-one name="zahlungsmethode" class="projekt.fhv.teama.classes.rechnung.Zahlungsmethode" fetch="join">
             <column name="ZAHLUNGSMETHODEID" />
         </many-to-one>
 
