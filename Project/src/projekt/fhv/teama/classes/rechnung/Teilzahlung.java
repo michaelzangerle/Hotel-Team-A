@@ -1,26 +1,25 @@
 package projekt.fhv.teama.classes.rechnung;
 
-import java.util.Set;
+import java.math.BigDecimal;
 
 import projekt.fhv.teama.classes.interfaces.teamb.IBTeilzahlung;
 import projekt.fhv.teama.classes.interfaces.teamb.IBZahlungsmethode;
-
 /**
  * Beschreibt eine Teilzahlung
  * @author Team A
  * @version 1.8
  */
-public class Teilzahlung implements ITeilzahlung,IBTeilzahlung {
+public class Teilzahlung implements ITeilzahlung,IBTeilzahlung{
 	private int ID;
 	private IRechnung rechnung;
 	private float betrag;
 
-	private Set<IZahlungsmethode> zahlungsmethoden;
+	private IZahlungsmethode zahlungsmethode;
 
-	public Teilzahlung(IRechnung rechnung, float betrag, Set<IZahlungsmethode> zahlungsmethoden) {
+	public Teilzahlung(IRechnung rechnung, float betrag, IZahlungsmethode zahlungsmethoden) {
 		this.rechnung = rechnung;
 		this.betrag = betrag;
-		this.zahlungsmethoden = zahlungsmethoden;
+		this.zahlungsmethode = zahlungsmethoden;
 	}
 
 	public Teilzahlung() {
@@ -50,32 +49,18 @@ public class Teilzahlung implements ITeilzahlung,IBTeilzahlung {
 		this.betrag = betrag;
 	}
 
-	public Set<IZahlungsmethode> getZahlungsmethoden() {
-		return zahlungsmethoden;
+	public IZahlungsmethode getZahlungsmethode() {
+		return zahlungsmethode;
 	}
 
-	public void setZahlungsmethoden(Set<IZahlungsmethode> zahlungsmethoden) {
-		this.zahlungsmethoden = zahlungsmethoden;
+	public void setZahlungsmethode(IZahlungsmethode zahlungsmethode) {
+		this.zahlungsmethode = zahlungsmethode;
 	}
 
 	@Override
 	public String toString() {
 		return "Teilzahlung [ID=" + ID + ", rechnung=" + rechnung.getID() + ", betrag=" + betrag + ", zahlungsmethoden="
-				+ zahlungsmethoden + "]";
-	}
-
-	@Override
-	public void addZahlungsmethode(IZahlungsmethode zahlungsmethode) {
-		this.zahlungsmethoden.add(zahlungsmethode);
-
-	}
-
-	@Override
-	public void removeZahlungsmethode(IZahlungsmethode zahlungsmethode) {
-		if (this.zahlungsmethoden.contains(zahlungsmethode)) {
-			this.zahlungsmethoden.remove(zahlungsmethode);
-		}
-
+				+ zahlungsmethode + "]";
 	}
 
 	@Override
@@ -85,7 +70,7 @@ public class Teilzahlung implements ITeilzahlung,IBTeilzahlung {
 		result = prime * result + ID;
 		result = prime * result + Float.floatToIntBits(betrag);
 		result = prime * result + ((rechnung == null) ? 0 : rechnung.getID());
-		result = prime * result + ((zahlungsmethoden == null) ? 0 : zahlungsmethoden.hashCode());
+		result = prime * result + ((zahlungsmethode == null) ? 0 : zahlungsmethode.hashCode());
 		return result;
 	}
 
@@ -107,21 +92,22 @@ public class Teilzahlung implements ITeilzahlung,IBTeilzahlung {
 				return false;
 		} else if (rechnung.getID() != other.rechnung.getID())
 			return false;
-		if (zahlungsmethoden == null) {
-			if (other.zahlungsmethoden != null)
+		if (zahlungsmethode == null) {
+			if (other.zahlungsmethode != null)
 				return false;
-		} else if (!zahlungsmethoden.equals(other.zahlungsmethoden))
+		} else if (!zahlungsmethode.equals(other.zahlungsmethode))
 			return false;
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see projekt.fhv.teama.classes.interfaces.teamb.IBTeilzahlung#getBZahlungsmethode()
-	 */
 	@Override
 	public IBZahlungsmethode getBZahlungsmethode() {
-		// TODO Auto-generated method stub
-		return null;
+		return (IBZahlungsmethode) this.getZahlungsmethode();
+	}
+
+	@Override
+	public BigDecimal getBBetrag() {
+		return new BigDecimal(this.getBetrag());
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
@@ -14,10 +15,11 @@ import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 
 /**
  * Beschreibt ein Zimmer
+ * 
  * @author Team A
  * @version 1.2
  */
-public class Zimmer extends Leistung implements IZimmer,IBZimmer {
+public class Zimmer extends Leistung implements IZimmer, IBZimmer {
 
 	private String nummer;
 	private String beschreibung;
@@ -32,8 +34,8 @@ public class Zimmer extends Leistung implements IZimmer,IBZimmer {
 	private Set<IAufenthalt> aufenthalte = new HashSet<IAufenthalt>();
 	private Set<IRechnungsposition> rechnungspositionen = new HashSet<IRechnungsposition>();
 
-	public Zimmer(String nummer,String bezeichnung, String beschreibung, IKategorie kategorie, IZimmerstatus zimmerStatus,
-			Set<IReservierung> reservierungen, Set<IStatusentwicklung> statusenticklungen,
+	public Zimmer(String nummer, String bezeichnung, String beschreibung, IKategorie kategorie,
+			IZimmerstatus zimmerStatus, Set<IReservierung> reservierungen, Set<IStatusentwicklung> statusenticklungen,
 			Set<IRechnungsposition> rechnungspositionen) {
 		super(bezeichnung);
 		this.nummer = nummer;
@@ -107,16 +109,13 @@ public class Zimmer extends Leistung implements IZimmer,IBZimmer {
 
 	@Override
 	public String toString() {
-		return "Zimmer [ID=" + getID() 
-				+ ", nummer=" + nummer 
-				+ ", beschreibung=" + beschreibung 
-				+ ", kategorie="+ kategorie.getBezeichnung() 
-				+ ", zimmerStatus=" + zimmerstatus.getBezeichnung() 
-//				+ ", reservierungen=" + reservierungen
-//				+ ", statusenticklungen=" + statusentwicklungen 
-//				+ ", gaeste=" + gaeste 
-//				+ ", aufenthalte=" + aufenthalte
-//				+ ", rechnungspositionen=" + rechnungspositionen 
+		return "Zimmer [ID=" + getID() + ", nummer=" + nummer + ", beschreibung=" + beschreibung + ", kategorie="
+				+ kategorie.getBezeichnung() + ", zimmerStatus=" + zimmerstatus.getBezeichnung()
+				// + ", reservierungen=" + reservierungen
+				// + ", statusenticklungen=" + statusentwicklungen
+				// + ", gaeste=" + gaeste
+				// + ", aufenthalte=" + aufenthalte
+				// + ", rechnungspositionen=" + rechnungspositionen
 				+ "]";
 	}
 
@@ -125,14 +124,17 @@ public class Zimmer extends Leistung implements IZimmer,IBZimmer {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + getID();
-//		result = prime * result + ((aufenthalte == null) ? 0 : aufenthalte.hashCode());
+		// result = prime * result + ((aufenthalte == null) ? 0 :
+		// aufenthalte.hashCode());
 		result = prime * result + ((beschreibung == null) ? 0 : beschreibung.hashCode());
-		//result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
+		// result = prime * result + ((gaeste == null) ? 0 : gaeste.hashCode());
 		result = prime * result + ((kategorie == null) ? 0 : kategorie.hashCode());
 		result = prime * result + ((nummer == null) ? 0 : nummer.hashCode());
-		//result = prime * result + ((rechnungspositionen == null) ? 0 : rechnungspositionen.hashCode());
+		// result = prime * result + ((rechnungspositionen == null) ? 0 :
+		// rechnungspositionen.hashCode());
 		result = prime * result + ((reservierungen == null) ? 0 : reservierungen.hashCode());
-//		result = prime * result + ((statusentwicklungen == null) ? 0 : statusentwicklungen.hashCode());
+		// result = prime * result + ((statusentwicklungen == null) ? 0 :
+		// statusentwicklungen.hashCode());
 		result = prime * result + ((zimmerstatus == null) ? 0 : zimmerstatus.hashCode());
 		return result;
 	}
@@ -158,11 +160,11 @@ public class Zimmer extends Leistung implements IZimmer,IBZimmer {
 				return false;
 		} else if (!beschreibung.equals(other.beschreibung))
 			return false;
-//		if (gaeste == null) {
-//			if (other.gaeste != null)
-//				return false;
-//		} else if (!gaeste.equals(other.gaeste))
-//			return false;
+		// if (gaeste == null) {
+		// if (other.gaeste != null)
+		// return false;
+		// } else if (!gaeste.equals(other.gaeste))
+		// return false;
 		if (kategorie == null) {
 			if (other.kategorie != null)
 				return false;
@@ -173,21 +175,21 @@ public class Zimmer extends Leistung implements IZimmer,IBZimmer {
 				return false;
 		} else if (!nummer.equals(other.nummer))
 			return false;
-//		if (rechnungspositionen == null) {
-//			if (other.rechnungspositionen != null)
-//				return false;
-//		} else if (!rechnungspositionen.equals(other.rechnungspositionen))
-//			return false;
+		// if (rechnungspositionen == null) {
+		// if (other.rechnungspositionen != null)
+		// return false;
+		// } else if (!rechnungspositionen.equals(other.rechnungspositionen))
+		// return false;
 		if (reservierungen == null) {
 			if (other.reservierungen != null)
 				return false;
 		} else if (!reservierungen.equals(other.reservierungen))
 			return false;
-//		if (statusentwicklungen == null) {
-//			if (other.statusentwicklungen != null)
-//				return false;
-//		} else if (!statusentwicklungen.equals(other.statusentwicklungen))
-//			return false;
+		// if (statusentwicklungen == null) {
+		// if (other.statusentwicklungen != null)
+		// return false;
+		// } else if (!statusentwicklungen.equals(other.statusentwicklungen))
+		// return false;
 		if (zimmerstatus == null) {
 			if (other.zimmerstatus != null)
 				return false;
@@ -227,7 +229,7 @@ public class Zimmer extends Leistung implements IZimmer,IBZimmer {
 	@Override
 	public void setGaeste(Set<IGast> gaeste) {
 		this.gaeste = gaeste;
-		
+
 	}
 
 	@Override
@@ -238,21 +240,21 @@ public class Zimmer extends Leistung implements IZimmer,IBZimmer {
 	@Override
 	public void addGast(IGast gast) {
 		gaeste.add(gast);
-		
+
 	}
 
 	@Override
 	public void removeGast(IGast gast) {
-		if(gaeste.contains(gast)){
+		if (gaeste.contains(gast)) {
 			gaeste.remove(gast);
 		}
-		
+
 	}
 
 	@Override
 	public void addAufenthalt(IAufenthalt aufenthalt) {
 		this.aufenthalte.add(aufenthalt);
-		
+
 	}
 
 	@Override
@@ -263,44 +265,48 @@ public class Zimmer extends Leistung implements IZimmer,IBZimmer {
 	@Override
 	public void setAufenthalte(Set<IAufenthalt> aufenthalte) {
 		this.aufenthalte = aufenthalte;
-		
+
 	}
 
 	@Override
 	public void removeAufenthalt(IAufenthalt aufenthalt) {
-		if(aufenthalte.contains(aufenthalt)){
+		if (aufenthalte.contains(aufenthalt)) {
 			aufenthalte.remove(aufenthalt);
 		}
-		
+
 	}
 
 	@Override
 	public void addStatusentwicklung(IStatusentwicklung statusentwicklung) {
 		this.statusentwicklungen.add(statusentwicklung);
-		
+
 	}
 
 	@Override
 	public void removeStatusentwicklung(IStatusentwicklung statusentwicklung) {
-		if(this.statusentwicklungen.contains(statusentwicklung)){
+		if (this.statusentwicklungen.contains(statusentwicklung)) {
 			this.statusentwicklungen.remove(statusentwicklung);
 		}
-		
+
 	}
 
 	@Override
 	public float getPreis() {
-		
-		return 0;
+		// TODO - zimmer hat keinen preis
+		List<IZimmerpreis> preise = new Vector<IZimmerpreis>(this.getKategorie().getZimmerpreise());
+		if (preise.size() > 0) {
+			return preise.get(0).getPreis();
+		} else {
+			return 0;
+		}
 	}
-
 
 	@Override
 	public List<IBRechnungsPosition> getBRechnungsPositionen() {
-		
+
 		List<IBRechnungsPosition> rpos = new ArrayList<IBRechnungsPosition>();
 		for (IRechnungsposition r : this.getRechnungspositionen()) {
-			rpos.add((IBRechnungsPosition)r);
+			rpos.add((IBRechnungsPosition) r);
 		}
 		return rpos;
 	}

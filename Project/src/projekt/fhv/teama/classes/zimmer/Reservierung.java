@@ -2,18 +2,25 @@ package projekt.fhv.teama.classes.zimmer;
 
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
+import projekt.fhv.teama.classes.interfaces.teamb.IBGast;
+import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
+import projekt.fhv.teama.classes.interfaces.teamb.IBReservierung;
+import projekt.fhv.teama.classes.interfaces.teamb.IBZimmer;
 
 /**
  * Beschreibt eine Reservierung
+ * 
  * @author Team A
  * @version 1.2
  */
-public class Reservierung implements IReservierung {
+public class Reservierung implements IReservierung, IBReservierung {
 
 	private int ID;
 	private Date von;
@@ -153,13 +160,11 @@ public class Reservierung implements IReservierung {
 	@Override
 	public String toString() {
 		return "Reservierung [ID=" + getID() + ", von=" + getVon() + ", bis=" + getBis()
-//				+ ", person=" + getPerson()
-//				+ ", vertragspartner=" + getVertragspartner()
+		// + ", person=" + getPerson()
+		// + ", vertragspartner=" + getVertragspartner()
 				+ ", optionen=" + optionen + ", zimmer=" + zimmer
-//				 + ", gaeste=" + gaeste
-				+ ", teilreservierungen=" + teilreservierungen 
-				+ ", bearbeitet="+ bearbeitet
-				+ "]";
+				// + ", gaeste=" + gaeste
+				+ ", teilreservierungen=" + teilreservierungen + ", bearbeitet=" + bearbeitet + "]";
 	}
 
 	@Override
@@ -290,6 +295,38 @@ public class Reservierung implements IReservierung {
 			this.teilreservierungen.remove(teilreservierung);
 		}
 
+	}
+
+	@Override
+	public List<IBGast> getBGaeste() {
+
+		List<IBGast> g = new Vector<IBGast>();
+		for (IGast gast : this.getGaeste()) {
+			g.add((IBGast) gast);
+		}
+
+		return g;
+	}
+
+	@Override
+	public List<IBZimmer> getBZimmer() {
+		
+		List<IBZimmer> z = new Vector<IBZimmer>();
+		for (IZimmer zimmer : this.getZimmer()) {
+			z.add((IBZimmer) zimmer);
+		}
+
+		return z;
+	}
+	
+	//TODO
+	@Override
+	public Set<IBRechnungsPosition> getBRechnungsPositionen() {
+		Set<IBRechnungsPosition> rpos = new HashSet<IBRechnungsPosition>();
+//		for (IRechnungsposition r : this.get) {
+//			rpos.add((IBRechnungsPosition) r);
+//		}
+		return rpos;
 	}
 
 }

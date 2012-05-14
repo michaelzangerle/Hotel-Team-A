@@ -377,10 +377,9 @@ public class Rechnung implements IRechnung, IBRechnung {
 	@Override
 	public void addBezahlung(IBZahlungsmethode methode, BigDecimal betrag) {
 
-		Set<IZahlungsmethode> zmeth = new HashSet<IZahlungsmethode>();
-		zmeth.add((IZahlungsmethode) methode);
+		IZahlungsmethode z1 = (IZahlungsmethode) methode;
 		float betr = betrag.floatValue();
-		ITeilzahlung teilzahl = new Teilzahlung(this, betr, zmeth);
+		ITeilzahlung teilzahl = new Teilzahlung(this, betr, z1);
 
 		this.addTeilzahlung(teilzahl);
 	}
@@ -390,5 +389,10 @@ public class Rechnung implements IRechnung, IBRechnung {
 		if (this.getTeilzahlungen().contains((ITeilzahlung) teilzahlung)) {
 			this.getTeilzahlungen().remove((ITeilzahlung) teilzahlung);
 		}
+	}
+
+	@Override
+	public Integer getBID() {
+		return new Integer(this.getID());
 	}
 }
