@@ -144,7 +144,7 @@
 			<PushButton bxml:id="asf1PBtnCancel" buttonData="Cancel"/>
 			</BoxPane>
 			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
-		    <PushButton bxml:id="asf1PBtnBack" buttonData="Previous Step"/>
+		    <PushButton bxml:id="asf1PBtnBack" buttonData="Previous Step" visible="false"/>
 			<PushButton bxml:id="asf1PBtnNext" buttonData="Next Step"/>			
 			</BoxPane>
 		</TablePane.Row>
