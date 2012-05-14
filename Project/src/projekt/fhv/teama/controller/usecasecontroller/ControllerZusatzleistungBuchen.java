@@ -1,6 +1,5 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -210,13 +209,12 @@ public class ControllerZusatzleistungBuchen {
 		for (IZimmer z : gebuchteLeistungen.keySet()) {
 			
 			for (LeistungAnzahl l : gebuchteLeistungen.get(z)) {
-				
 				//TODO speichern in die DB
-				
 			}
 		}
-		
 	}
+	
+	
 	
 	
 	
