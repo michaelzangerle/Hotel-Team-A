@@ -2,6 +2,12 @@ package projekt.fhv.teama.controller.usecasecontroller;
 
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 
+/**
+ * Diese Klasse dient als Wrapper um eine Leistung in Verbindung zu einer Anzahl 
+ *
+ * @author Team-A
+ * @version 1.5
+ */
 public class LeistungAnzahl {
 
 	private ILeistung leistung;

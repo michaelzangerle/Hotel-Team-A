@@ -1,4 +1,5 @@
 package projekt.fhv.teama.controller.usecasecontroller.interfaces;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
@@ -6,6 +7,7 @@ import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
@@ -112,4 +114,9 @@ public interface IControllerZusatzleistungBuchen {
 	 */
 	public void addLeistung(ILeistung leistung) throws FokusException, EmptyParameterException;
 	
+	/**
+	 * Gibt eine Hashmap von gebuchten Leistungen inklusive Anzahl zu einem Zimmer
+	 * @return HashMap<IZimmer, List<LeistungAnzahl>>
+	 */
+	public HashMap<IZimmer, List<LeistungAnzahl>> getGebuchteLeistungen();
 }

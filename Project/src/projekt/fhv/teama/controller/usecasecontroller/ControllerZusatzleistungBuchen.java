@@ -109,7 +109,7 @@ public class ControllerZusatzleistungBuchen {
 		return modelGast.getAktuellGast();
 	}
 	
-	public IZimmer getZimmerVonGastByNummer(String nummer) throws EmptyParameterException, DatabaseException, FokusException {
+	public IZimmer getZimmerByNummer(String nummer) throws EmptyParameterException, DatabaseException, FokusException {
 		if (nummer == null)
 			throw new EmptyParameterException();
 		
@@ -184,7 +184,7 @@ public class ControllerZusatzleistungBuchen {
 	
 	public void addLeistung(ILeistung leistung,int anzahl) throws FokusException, EmptyParameterException
 	{
-		if(leistung!=null)
+		if(leistung!=null && anzahl>0)
 		{
 			if(gebuchteLeistungen.containsKey(getAktuellesZimmer()))
 			{
@@ -200,13 +200,16 @@ public class ControllerZusatzleistungBuchen {
 		throw new EmptyParameterException();
 	}
 	
-	
+	public HashMap<IZimmer, List<LeistungAnzahl>> getGebuchteLeistungen()
+	{
+		return gebuchteLeistungen;
+	}
 
 	public void saveLeistungen()
 	{
 		for (IZimmer z : gebuchteLeistungen.keySet()) {
 			
-			for (ILeistung l : gebuchteLeistungen.get(z)) {
+			for (LeistungAnzahl l : gebuchteLeistungen.get(z)) {
 				
 				//TODO speichern in die DB
 				
