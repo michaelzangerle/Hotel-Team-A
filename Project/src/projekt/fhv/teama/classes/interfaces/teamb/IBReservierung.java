@@ -5,7 +5,6 @@
 package projekt.fhv.teama.classes.interfaces.teamb;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -17,5 +16,5 @@ public interface IBReservierung {
 
     List<IBZimmer> getBZimmer();
 
-    Set<IBRechnungsPosition> getBRechnungsPositionen();
+    //Set<IBRechnungsPosition> getBRechnungsPositionen();
 }

@@ -319,14 +319,14 @@ public class Reservierung implements IReservierung, IBReservierung {
 		return z;
 	}
 	
-	//TODO
-	@Override
-	public Set<IBRechnungsPosition> getBRechnungsPositionen() {
-		Set<IBRechnungsPosition> rpos = new HashSet<IBRechnungsPosition>();
+	//TODO-- ist im zimmer breits implementiert
+//	@Override
+//	public Set<IBRechnungsPosition> getBRechnungsPositionen() {
+//		Set<IBRechnungsPosition> rpos = new HashSet<IBRechnungsPosition>();
 //		for (IRechnungsposition r : this.get) {
 //			rpos.add((IBRechnungsPosition) r);
 //		}
-		return rpos;
-	}
+//		return rpos;
+//	}
 
 }

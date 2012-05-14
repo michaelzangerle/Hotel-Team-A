@@ -237,7 +237,8 @@ public class Rechnungsposition implements IRechnungsposition,IBRechnungsPosition
 		
 		return new BigDecimal(netto+steueranteil);
 	}
-
+	
+	
 	@Override
 	public String getInvoiceLine() {
 		return this.getBLeistung().getBezeichnung();
@@ -252,7 +253,8 @@ public class Rechnungsposition implements IRechnungsposition,IBRechnungsPosition
 	public Integer getAmount() {
 		return new Integer(this.getAnzahl());
 	}
-
+	
+	
 	@Override
 	public BigDecimal getUnitPrice() {
 		return new BigDecimal(this.getEinzelpreis());

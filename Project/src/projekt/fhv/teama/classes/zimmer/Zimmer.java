@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Vector;
 
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
@@ -292,13 +291,7 @@ public class Zimmer extends Leistung implements IZimmer, IBZimmer {
 
 	@Override
 	public float getPreis() {
-		// TODO - zimmer hat keinen preis
-		List<IZimmerpreis> preise = new Vector<IZimmerpreis>(this.getKategorie().getZimmerpreise());
-		if (preise.size() > 0) {
-			return preise.get(0).getPreis();
-		} else {
-			return 0;
-		}
+		return 0;
 	}
 
 	@Override
