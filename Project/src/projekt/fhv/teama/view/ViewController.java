@@ -1,6 +1,7 @@
 package projekt.fhv.teama.view;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
@@ -24,6 +25,7 @@ import org.apache.pivot.wtk.Span;
 import org.apache.pivot.wtk.TabPane;
 import org.apache.pivot.wtk.TabPaneSelectionListener;
 
+import projekt.fhv.teama.classes.AufenthaltLeistung;
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IAdresse;
@@ -36,6 +38,7 @@ import projekt.fhv.teama.controller.exeption.LoginInExeption;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerLogin;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
+import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.dao.personen.AdresseDao;
 import projekt.fhv.teama.hibernate.dao.personen.GastDao;
 import projekt.fhv.teama.hibernate.dao.personen.IAdresseDao;
@@ -494,7 +497,7 @@ public class ViewController implements Application {
 	}
 
 	public void setSelectedGuest(String gastNummer) throws DatabaseException,
-			EmptyParameterException, NotContainExeption {
+			EmptyParameterException, NotContainExeption, FokusException {
 		if (controllerZusatzleistung == null) {
 			controllerZusatzleistung = new ControllerZusatzleistungBuchen();
 		}
@@ -527,6 +530,15 @@ public class ViewController implements Application {
 
 		bdViewCurrentGuest.cgf1CBArrival.setSelectedDate(d1);
 		bdViewCurrentGuest.cgf1CBDeparture.setSelectedDate(d2);
+		
+		List<LeistungAnzahl> services = controllerZusatzleistung.bereitsgebuchtLeistungenFuerGast();
+		if (services.size() == 0) {
+			List<String> message = new LinkedList<String>();
+			message.add("Currently no additional service found");
+			bdViewCurrentGuest.cgf1LVBookedAdditionalServices.setListData(new ListAdapter<String>(message));
+		} else {
+			bdViewCurrentGuest.cgf1LVBookedAdditionalServices.setListData(wrapper.getZusatzleistungListAdapter(services));
+		}
 	}
 
 	class GuestListListener implements ListViewSelectionListener {
@@ -541,10 +553,11 @@ public class ViewController implements Application {
 			try {
 				setSelectedGuest(split[1]);
 			} catch (DatabaseException e) {
-				e.printStackTrace();
 			} catch (EmptyParameterException e) {
 				e.printStackTrace();
 			} catch (NotContainExeption e) {
+				e.printStackTrace();
+			} catch (FokusException e) {
 				e.printStackTrace();
 			}
 

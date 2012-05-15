@@ -315,7 +315,6 @@ public class BookExtrasViewController implements ButtonPressListener {
 		}
 	};
 
-	
 	public void buttonPressed(Button arg0) {
 		addBookExtrasEventListener();
 		try {

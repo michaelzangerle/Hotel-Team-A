@@ -57,7 +57,7 @@ public class CheckOutViewController implements ButtonPressListener {
 			public boolean mouseClick(Component arg0,
 					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
 					int arg4) {
-				view.bpCheckOutForm02.setVisible(false);
+//				view.bpCheckOutForm02.setVisible(false);
 				view.bpCheckOutForm01.setVisible(true);
 				viewMain.meter.setPercentage(0.5);
 				return false;
@@ -76,7 +76,7 @@ public class CheckOutViewController implements ButtonPressListener {
 					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
 				viewMain.meter.setPercentage(1);
 				view.bpCheckOutForm01.setVisible(false);
-				view.bpCheckOutForm02.setVisible(true);
+//				view.bpCheckOutForm02.setVisible(true);
 				return false;
 			}
 			public boolean mouseDown(Component arg0,
@@ -107,7 +107,7 @@ public class CheckOutViewController implements ButtonPressListener {
 
 			if (erg.getResult() && i == 0) {
 				view.bpCheckOutForm01.setVisible(true);
-				view.bpCheckOutForm02.setVisible(false);
+//				view.bpCheckOutForm02.setVisible(false);
 				view.setVisible(false);
 				exit();
 			}
@@ -119,7 +119,7 @@ public class CheckOutViewController implements ButtonPressListener {
 		public void perform(Component source) {
 			if (source.getName().equals("lbProgress01")
 					|| source.getName().equals("asf2PBtnBack")) {
-				view.bpCheckOutForm02.setVisible(false);
+//				view.bpCheckOutForm02.setVisible(false);
 				view.bpCheckOutForm01.setVisible(true);
 				viewMain.meter.setPercentage(0.5);
 			}
@@ -128,7 +128,7 @@ public class CheckOutViewController implements ButtonPressListener {
 					|| source.getName().equals("cof1PBtnNext")) {
 				viewMain.meter.setPercentage(1);
 				view.bpCheckOutForm01.setVisible(false);
-				view.bpCheckOutForm02.setVisible(true);
+//				view.bpCheckOutForm02.setVisible(true);
 			}
 		}
 	};

@@ -39,7 +39,7 @@
 		 <Border title="Booked Additional Services" styles="{color:'#e3e3e3', backgroundColor: '#fcfcfc', padding:{top:4, left:4, bottom:4, right:4}}">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#fcfcfc'}"  enabled="false">
 				 <ScrollPane preferredWidth="250" preferredHeight="232"  horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#fcfcfc'}">
-                    <ListView bxml:id="cgf1LVBookedAdditionalServices" selectMode="single" listData="['5x McChicken', '5x McNuggets', '1000x Bier mit Schlagsahne']" styles="{backgroundColor: '#fcfcfc'}"/>
+                    <ListView bxml:id="cgf1LVBookedAdditionalServices" selectMode="single" listData="['Currently no additional service found']" styles="{backgroundColor: '#fcfcfc'}"/>
                 	</ScrollPane>
                 	</BoxPane>
             </Border>
