@@ -64,9 +64,9 @@ import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.view.invoice.ViewInvoice;
 import projekt.fhv.teama.view.support.BlockingDialog;
 
-
 /**
- * Der ViewController handelt die Events des Homescreens (ViewMain) ab. 
+ * Der ViewController handelt die Events des Homescreens (ViewMain) ab.
+ * 
  * @author Team A
  * @version 1.0
  */
@@ -82,7 +82,6 @@ public class ViewController implements Application {
 	private Display disp;
 	private ViewInvoice viewInvoice;
 
-	
 	@Override
 	public void resume() throws Exception {
 
@@ -94,8 +93,8 @@ public class ViewController implements Application {
 	}
 
 	/**
-	 * Die Startup Methode stellt den Einstiegspunkt eines Apache Pivot Projektes da. 
-	 * Hier werden die bxml files serialisiert und eingelesen.
+	 * Die Startup Methode stellt den Einstiegspunkt eines Apache Pivot
+	 * Projektes da. Hier werden die bxml files serialisiert und eingelesen.
 	 * Zudem wird die Methode addLoginEvents aufgerufen.
 	 */
 	@Override
@@ -109,17 +108,16 @@ public class ViewController implements Application {
 				"ViewLogin.bxml"));
 		viewMain = (ViewMain) bS.readObject(getClass().getResource(
 				"ViewMain.bxml"));
-		
+
 		bdViewAdditionalServices = (ViewAdditionalServices) bS.readObject(
-				ViewAdditionalServices.class,"ViewAdditionalServices.bxml");
+				ViewAdditionalServices.class, "ViewAdditionalServices.bxml");
 
 		bdViewCurrentGuest = (ViewCurrentGuest) bS.readObject(
-				ViewAdditionalServices.class,"ViewCurrentGuest.bxml");
-		
-				bdViewCheckOut = (ViewCheckOut) bS.readObject(
-				ViewAdditionalServices.class,"ViewCheckOut.bxml");
-		
-		
+				ViewAdditionalServices.class, "ViewCurrentGuest.bxml");
+
+		bdViewCheckOut = (ViewCheckOut) bS.readObject(
+				ViewAdditionalServices.class, "ViewCheckOut.bxml");
+
 		viewMain.setMaximized(true);
 		viewLogin.open(getDisp());
 
@@ -131,14 +129,16 @@ public class ViewController implements Application {
 	}
 
 	/**
-	 * Hier werden die Action- Events des Login Screens initialisiert und den Event- Listener zugewiesen.
+	 * Hier werden die Action- Events des Login Screens initialisiert und den
+	 * Event- Listener zugewiesen.
 	 */
 	private void addLoginEventListener() {
 		viewLogin.setPushBLoginListener(new LoginListener());
 	}
 
 	/**
-	 * Hier werden die Action- Events der Main View initialisiert und den Event- Listener zugewiesen.
+	 * Hier werden die Action- Events der Main View initialisiert und den Event-
+	 * Listener zugewiesen.
 	 */
 	private void addMainEventListener() {
 		viewMain.setLvReservationSearchListener(new ReservationListListener());
@@ -147,12 +147,19 @@ public class ViewController implements Application {
 				controllerCheckIn, this));
 		viewMain.settabPLeftMainListener(new SearchPanelListener());
 		viewMain.setlvGuestSearchListener(new GuestListListener());
-		bdViewCurrentGuest.setcgf1PBtnBookExtrasListener(new BookExtrasViewController(bdViewAdditionalServices, viewMain, bdViewCurrentGuest, controllerZusatzleistung));
+		bdViewCurrentGuest
+				.setcgf1PBtnBookExtrasListener(new BookExtrasViewController(
+						bdViewAdditionalServices, viewMain, bdViewCurrentGuest,
+						controllerZusatzleistung));
+		bdViewCurrentGuest
+				.setcgf1PBtnCheckOutListener(new CheckOutViewController(bdViewCheckOut, viewMain, bdViewCurrentGuest));
 	}
 
 	/**
-	 * Der LoginListener handelt den Login- Vorgang ab. Username und Passwort werden auf Fehleingaben überprüft und dem controllerLogin weitergegeben.
-	 * Falls ein falscher Username bzw. ein falsches Passwort eingegeben wurde, wird eine entprechende Fehlermeldung angezeigt. 
+	 * Der LoginListener handelt den Login- Vorgang ab. Username und Passwort
+	 * werden auf Fehleingaben überprüft und dem controllerLogin weitergegeben.
+	 * Falls ein falscher Username bzw. ein falsches Passwort eingegeben wurde,
+	 * wird eine entprechende Fehlermeldung angezeigt.
 	 */
 	class LoginListener implements ButtonPressListener {
 		private ControllerLogin controllerLogin;
@@ -180,18 +187,19 @@ public class ViewController implements Application {
 				startMainView(ma.getVorname(), ma.getNachname());
 			} catch (DatabaseException e) {
 				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(MessageType.WARNING,
+				bd.setContent(new Alert(
+						MessageType.WARNING,
 						"Invalid username or password! Please don´t forget case sensitive",
 						new ArrayList<String>("OK")));
 				bd.open(getDisp());
 			} catch (LoginInExeption e) {
 				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(MessageType.WARNING,
+				bd.setContent(new Alert(
+						MessageType.WARNING,
 						"Invalid username or password! Please don´t forget case sensitive",
 						new ArrayList<String>("OK")));
 				bd.open(getDisp());
 			}
-
 		}
 
 		public LoginListener() {
@@ -200,7 +208,9 @@ public class ViewController implements Application {
 	}
 
 	/**
-	 * Bei korrekter Eingabe der LoginDaten wird die mainView angezeigt und die initialize und add Eventlistener Methoden aufgerufen.
+	 * Bei korrekter Eingabe der LoginDaten wird die mainView angezeigt und die
+	 * initialize und add Eventlistener Methoden aufgerufen.
+	 * 
 	 * @param vorname
 	 * @param nachname
 	 */
@@ -210,7 +220,7 @@ public class ViewController implements Application {
 		wrapper = new Wrapper();
 		viewMain.mainContent.add(bdViewAdditionalServices);
 		viewMain.mainContent.add(bdViewCurrentGuest);
-		
+
 		try {
 			initializeMainView();
 		} catch (DatabaseException e) {
@@ -220,7 +230,9 @@ public class ViewController implements Application {
 	}
 
 	/**
-	 * Initialisierung der Suchlisten: Reservierungs-, Arriving- und Gastsuchliste
+	 * Initialisierung der Suchlisten: Reservierungs-, Arriving- und
+	 * Gastsuchliste
+	 * 
 	 * @throws DatabaseException
 	 */
 	public void initializeMainView() throws DatabaseException {
@@ -245,105 +257,118 @@ public class ViewController implements Application {
 
 		try {
 			viewMain.getLvReservationSearch().setListData(
-					wrapper.getReservationListAdapter(controllerCheckIn.getAllReservierungen()));
+					wrapper.getReservationListAdapter(controllerCheckIn
+							.getAllReservierungen()));
 		} catch (DatabaseException e) {
-			List<String> list=new Vector<String>();
+			List<String> list = new Vector<String>();
 			list.add("Currently no reservation available");
-			viewMain.lvReservationSearch.setListData(new ListAdapter<String>(list));
+			viewMain.lvReservationSearch.setListData(new ListAdapter<String>(
+					list));
 		}
 
 		try {
-			viewMain.lvGuestSearch.setListData(wrapper.getGuestListAdapter(controllerCheckIn.getGaesteVonAuftenhalt()));
+			viewMain.lvGuestSearch.setListData(wrapper
+					.getGuestListAdapter(controllerCheckIn
+							.getGaesteVonAuftenhalt()));
 		} catch (DatabaseException e) {
-			List<String> list=new Vector<String>();
+			List<String> list = new Vector<String>();
 			list.add("Currently no guests found");
 			viewMain.lvGuestSearch.setListData(new ListAdapter<String>(list));
 		}
-		
+
 		try {
 			if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
-				List<String> list=new Vector<String>();
+				List<String> list = new Vector<String>();
 				list.add("Currently no reservation available");
-				viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
+				viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(
+						list));
 			} else {
-				viewMain.lvArrivingSearch.setListData(wrapper.getReservationListAdapter(controllerCheckIn.getCheckInReservierungen()));
-				setSelectedReservation(controllerCheckIn.getCheckInReservierungen().get(0).getID());
+				viewMain.lvArrivingSearch.setListData(wrapper
+						.getReservationListAdapter(controllerCheckIn
+								.getCheckInReservierungen()));
+				setSelectedReservation(controllerCheckIn
+						.getCheckInReservierungen().get(0).getID());
 				viewMain.lvArrivingSearch.setSelectedIndex(0);
 			}
 		} catch (DatabaseException e) {
-			List<String> list=new Vector<String>();
+			List<String> list = new Vector<String>();
 			list.add("Currently no reservation available");
-			viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
+			viewMain.lvArrivingSearch
+					.setListData(new ListAdapter<String>(list));
 		}
-		
+
 		/** insert Tests - Pat *************************************************************************/
-//		bdViewCurrentGuest.setVisible(false);
-//		bdViewCheckOut.setVisible(true);
-//		
-//		viewMain.reservationForm01.setVisible(true);
-//		viewMain.lbProgress01.setVisible(true);
-//		viewMain.lbProgress02.setVisible(true);
-//		viewMain.lbProgress03.setVisible(true);
-//		viewMain.lbProgress04.setVisible(true);
-		
+		// bdViewCurrentGuest.setVisible(false);
+		// bdViewCheckOut.setVisible(true);
+		//
+		// viewMain.reservationForm01.setVisible(true);
+		// viewMain.lbProgress01.setVisible(true);
+		// viewMain.lbProgress02.setVisible(true);
+		// viewMain.lbProgress03.setVisible(true);
+		// viewMain.lbProgress04.setVisible(true);
+
 		/* Tool Tipp für Steps bei Additional Service Vorgang */
 		viewMain.lbProgress01.setTooltipText("Select a room and add services");
-		viewMain.lbProgress02.setTooltipText("Check the overview of the booked services and finish the process by saving");
-		
+		viewMain.lbProgress02
+				.setTooltipText("Check the overview of the booked services and finish the process by saving");
+
 		viewMain.meter.setPercentage(0.5);
 		viewMain.meter.getStyles().put("gridFrequency", "0.5");
-		
-		bdViewCurrentGuest.cgf1PBtnCheckOut.getButtonPressListeners().add(new ButtonPressListener(){
-			
-			@Override
-			public void buttonPressed(Button arg0) {
-		
-				/* Steps Anzeige für Check-Out */
-				viewMain.progress.setVisible(true);
-				viewMain.lbProgress01.setVisible(true);
-				viewMain.lbProgress02.setVisible(true);
-				viewMain.lbProgress03.setVisible(false);
-				viewMain.lbProgress04.setVisible(false);
-				viewMain.lbProgress01.setTooltipText("Generate Invoices for the guest");
-				viewMain.lbProgress02.setTooltipText("Take back room-keys and remove deposit");				
 
-				/* CheckOutView in MainContent einfügen und auf visible setzen */				
-				viewMain.mainContent.add(bdViewCheckOut);
-				bdViewCurrentGuest.setVisible(false);
-				bdViewCheckOut.setVisible(true);
-			}			
-			
-		});	
-		
-		bdViewCheckOut.cof1PBtnCreateInvoice.getButtonPressListeners().add(new ButtonPressListener(){
+		bdViewCurrentGuest.cgf1PBtnCheckOut.getButtonPressListeners().add(
+				new ButtonPressListener() {
 
-			@Override
-			public void buttonPressed(Button arg0) {
-				
-				new ViewInvoice();
-				
-			}
-			
-			
-			
-		});
-		
-	   }
-	
-	
-	
-	
-		/** end insert Tests - Pat ***************************************************************************/
-		
-	
+					@Override
+					public void buttonPressed(Button arg0) {
+
+						/* Steps Anzeige für Check-Out */
+						viewMain.progress.setVisible(true);
+						viewMain.lbProgress01.setVisible(true);
+						viewMain.lbProgress02.setVisible(true);
+						viewMain.lbProgress03.setVisible(false);
+						viewMain.lbProgress04.setVisible(false);
+						viewMain.lbProgress01
+								.setTooltipText("Generate Invoices for the guest");
+						viewMain.lbProgress02
+								.setTooltipText("Take back room-keys and remove deposit");
+
+						/*
+						 * CheckOutView in MainContent einfügen und auf visible
+						 * setzen
+						 */
+						viewMain.mainContent.add(bdViewCheckOut);
+						bdViewCurrentGuest.setVisible(false);
+						bdViewCheckOut.setVisible(true);
+					}
+
+				});
+
+		bdViewCheckOut.cof1PBtnCreateInvoice.getButtonPressListeners().add(
+				new ButtonPressListener() {
+
+					@Override
+					public void buttonPressed(Button arg0) {
+
+						new ViewInvoice();
+
+					}
+
+				});
+
+	}
+
+	/** end insert Tests - Pat ***************************************************************************/
 
 	/**
-	 * Fokus einer ausgewählten Reservierung wird dem controllerCheckIn übergeben.
+	 * Fokus einer ausgewählten Reservierung wird dem controllerCheckIn
+	 * übergeben.
+	 * 
 	 * @param ID
 	 * @throws DatabaseException
 	 */
 	public void setReservationFocus(int ID) throws DatabaseException {
-		for (IReservierung reservation : controllerCheckIn.getAllReservierungen()) {
+		for (IReservierung reservation : controllerCheckIn
+				.getAllReservierungen()) {
 			if (reservation.getID() == ID) {
 				controllerCheckIn.setAktuelleReservierung(reservation);
 				break;
@@ -352,7 +377,9 @@ public class ViewController implements Application {
 	}
 
 	/**
-	 * Reservierungsdaten, der ausgewählten Reservierung, werden in die entsprechende Form (inc.reservationForm01) gesetzt. 
+	 * Reservierungsdaten, der ausgewählten Reservierung, werden in die
+	 * entsprechende Form (inc.reservationForm01) gesetzt.
+	 * 
 	 * @param reservierungsnummer
 	 * @throws DatabaseException
 	 */
@@ -403,12 +430,13 @@ public class ViewController implements Application {
 
 	/**
 	 * setzt den Display Parameter der ViewMain.
+	 * 
 	 * @param disp
 	 */
 	public void setDisp(Display disp) {
 		this.disp = disp;
 	}
-	
+
 	/**
 	 * Löscht die vorhandenen Daten einer Reservierung in der ReservierungsForm.
 	 */
@@ -423,30 +451,33 @@ public class ViewController implements Application {
 		viewMain.rfTICity.setText("");
 		List<String> emptyString = new Vector<String>();
 		emptyString.add("");
-		viewMain.lvAssignedRooms.setListData(new ListAdapter<String>(emptyString));
+		viewMain.lvAssignedRooms.setListData(new ListAdapter<String>(
+				emptyString));
 	}
 
-
 	/**
-	 * Der Reservation- Listener kontrolliert den Ablauf, wenn eine Reservierung im Suchpanel ausgewählt wurde.
-	 * Hierfür wird die Reservierungsnummer aus dem gesetzten Text geparst und die stSelectedReservation Methode aufgerufen.
+	 * Der Reservation- Listener kontrolliert den Ablauf, wenn eine Reservierung
+	 * im Suchpanel ausgewählt wurde. Hierfür wird die Reservierungsnummer aus
+	 * dem gesetzten Text geparst und die stSelectedReservation Methode
+	 * aufgerufen.
 	 */
 	class ReservationListListener implements ListViewSelectionListener {
 		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
 			String text = (String) listView.getSelectedItem();
-			if(text==null || text.contains("no reservation"))
+			if (text == null || text.contains("no reservation"))
 				return;
-			
+
 			String[] split = text.split(" ", 3);
 			int reservierungsnummer = Integer.valueOf(split[1]);
 
 			try {
 				setSelectedReservation(reservierungsnummer);
 			} catch (DatabaseException e) {
-				List<String> list=new Vector<String>();
+				List<String> list = new Vector<String>();
 				list.add("No reservation available");
-				viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
+				viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(
+						list));
 			}
 		}
 		@Override
@@ -462,8 +493,8 @@ public class ViewController implements Application {
 		}
 	}
 
-	
-	public void setSelectedGuest(String gastNummer) throws DatabaseException, EmptyParameterException, NotContainExeption {
+	public void setSelectedGuest(String gastNummer) throws DatabaseException,
+			EmptyParameterException, NotContainExeption {
 		if (controllerZusatzleistung == null) {
 			controllerZusatzleistung = new ControllerZusatzleistungBuchen();
 		}
@@ -471,21 +502,23 @@ public class ViewController implements Application {
 		controllerZusatzleistung.setGast(curGast);
 		bdViewCurrentGuest.cgf1LBGuestNr.setText(curGast.getNummer());
 		bdViewCurrentGuest.cgf1TIEMail.setText(curGast.getEmail());
-		bdViewCurrentGuest.cgf1TIName.setText(curGast.getVorname() + " " + curGast.getNachname().toUpperCase());
+		bdViewCurrentGuest.cgf1TIName.setText(curGast.getVorname() + " "
+				+ curGast.getNachname().toUpperCase());
 		bdViewCurrentGuest.cgf1TIPhone.setText(curGast.getTelefonnummer());
 		List<IAdresse> adressen = new Vector<IAdresse>(curGast.getAdressen());
-		
-		
+
 		if (!adressen.equals(null)) {
 			IAdresse adresse = adressen.get(0);
 			bdViewCurrentGuest.cgf1TICity.setText(adresse.getOrt());
-			bdViewCurrentGuest.cgf1TICountry.setText(adresse.getLand().getBezeichnung());
+			bdViewCurrentGuest.cgf1TICountry.setText(adresse.getLand()
+					.getBezeichnung());
 			bdViewCurrentGuest.cgf1TIStreet.setText(adresse.getStrasse());
 			bdViewCurrentGuest.cgf1TIZip.setText(adresse.getPlz());
 		}
-		List<IAufenthalt> aufenthalte = controllerZusatzleistung.getAufenthalte();
+		List<IAufenthalt> aufenthalte = controllerZusatzleistung
+				.getAufenthalte();
 		IAufenthalt aufenthalt = aufenthalte.get(0);
-		
+
 		Date arrival = aufenthalt.getVon();
 		Date departure = aufenthalt.getBis();
 
@@ -495,7 +528,7 @@ public class ViewController implements Application {
 		bdViewCurrentGuest.cgf1CBArrival.setSelectedDate(d1);
 		bdViewCurrentGuest.cgf1CBDeparture.setSelectedDate(d2);
 	}
-	
+
 	class GuestListListener implements ListViewSelectionListener {
 
 		@Override
@@ -503,7 +536,7 @@ public class ViewController implements Application {
 			String text = (String) listView.getSelectedItem();
 			if (text == null)
 				return;
-			
+
 			String[] split = text.split(" ");
 			try {
 				setSelectedGuest(split[1]);
@@ -514,7 +547,7 @@ public class ViewController implements Application {
 			} catch (NotContainExeption e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 		public void selectedRangeAdded(ListView arg0, int arg1, int arg2) {
 		}
@@ -523,10 +556,11 @@ public class ViewController implements Application {
 		public void selectedRangesChanged(ListView arg0, Sequence<Span> arg1) {
 		}
 	}
-	
+
 	/**
-	 * Der SearchPanel- Listener kontrolliert den Ablauf, wenn ein Tab im linken Suchfeld ausgewählt wird.
-	 * Hierfür werden der benötigte ListAdapter geladen.
+	 * Der SearchPanel- Listener kontrolliert den Ablauf, wenn ein Tab im linken
+	 * Suchfeld ausgewählt wird. Hierfür werden der benötigte ListAdapter
+	 * geladen.
 	 */
 	class SearchPanelListener implements TabPaneSelectionListener {
 		@Override
@@ -542,38 +576,46 @@ public class ViewController implements Application {
 				viewMain.rf1PBtnCheckIn.setEnabled(false);
 				try {
 					if (controllerCheckIn.getAllReservierungen().size() == 0) {
-						List<String> list=new Vector<String>();
+						List<String> list = new Vector<String>();
 						list.add("Currently no reservation available");
-						viewMain.lvReservationSearch.setListData(new ListAdapter<String>(list));
+						viewMain.lvReservationSearch
+								.setListData(new ListAdapter<String>(list));
 					} else {
-						ListAdapter<String> reservations = wrapper.getReservationListAdapter(controllerCheckIn.getAllReservierungen());
+						ListAdapter<String> reservations = wrapper
+								.getReservationListAdapter(controllerCheckIn
+										.getAllReservierungen());
 						viewMain.lvReservationSearch.setListData(reservations);
 						viewMain.lvReservationSearch.setSelectedIndex(0);
 					}
 				} catch (DatabaseException e) {
-					List<String> list=new Vector<String>();
+					List<String> list = new Vector<String>();
 					list.add("Currently no reservation available");
-					viewMain.lvReservationSearch.setListData(new ListAdapter<String>(list));
+					viewMain.lvReservationSearch
+							.setListData(new ListAdapter<String>(list));
 				}
-			} else if(index == 1) {
+			} else if (index == 1) {
 				viewMain.reservationForm01.setVisible(true);
 				bdViewCurrentGuest.setVisible(false);
 				viewMain.rf1PBtnCheckIn.setEnabled(true);
 				try {
 					if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
-						List<String> list=new Vector<String>();
+						List<String> list = new Vector<String>();
 						list.add("Currently no reservation available");
-						viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
+						viewMain.lvArrivingSearch
+								.setListData(new ListAdapter<String>(list));
 						viewMain.rf1PBtnCheckIn.setEnabled(false);
 					} else {
-						ListAdapter<String> curReservations = wrapper.getReservationListAdapter(controllerCheckIn.getCheckInReservierungen());
+						ListAdapter<String> curReservations = wrapper
+								.getReservationListAdapter(controllerCheckIn
+										.getCheckInReservierungen());
 						viewMain.lvArrivingSearch.setListData(curReservations);
 						viewMain.lvArrivingSearch.setSelectedIndex(0);
 					}
 				} catch (DatabaseException e) {
-					List<String> list=new Vector<String>();
+					List<String> list = new Vector<String>();
 					list.add("Currently no reservation available");
-					viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(list));
+					viewMain.lvArrivingSearch
+							.setListData(new ListAdapter<String>(list));
 				}
 			} else if (index == 2) {
 				viewMain.reservationForm01.setVisible(false);
@@ -581,19 +623,23 @@ public class ViewController implements Application {
 				viewMain.rf1PBtnCheckIn.setEnabled(false);
 				try {
 					if (controllerCheckIn.getGaesteVonAuftenhalt().size() == 0) {
-						List<String> list=new Vector<String>();
+						List<String> list = new Vector<String>();
 						list.add("Currently no guests found");
-						viewMain.lvGuestSearch.setListData(new ListAdapter<String>(list));
+						viewMain.lvGuestSearch
+								.setListData(new ListAdapter<String>(list));
 					} else {
-						ListAdapter<String> guests = wrapper.getGuestListAdapter(controllerCheckIn.getGaesteVonAuftenhalt());
+						ListAdapter<String> guests = wrapper
+								.getGuestListAdapter(controllerCheckIn
+										.getGaesteVonAuftenhalt());
 						viewMain.lvGuestSearch.setListData(guests);
 						viewMain.lvGuestSearch.setSelectedIndex(0);
 					}
 				} catch (DatabaseException e) {
-					List<String> list=new Vector<String>();
+					List<String> list = new Vector<String>();
 					list.add("Currently no guests found");
-					viewMain.lvGuestSearch.setListData(new ListAdapter<String>(list));
-				} 
+					viewMain.lvGuestSearch.setListData(new ListAdapter<String>(
+							list));
+				}
 			}
 			return Vote.APPROVE;
 		}

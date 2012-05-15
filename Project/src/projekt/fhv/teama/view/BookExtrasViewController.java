@@ -281,7 +281,6 @@ public class BookExtrasViewController implements ButtonPressListener {
 			int i = ((Alert) erg).getSelectedOptionIndex();
 
 			if (erg.getResult() && i == 0) {
-				// resetCheckInForms();
 				view.bpAdditionalServicesForm01.setVisible(true);
 				view.bpAdditionalServicesForm02.setVisible(false);
 				view.setVisible(false);
