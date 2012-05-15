@@ -494,10 +494,6 @@ public class ViewController implements Application {
 
 		bdViewCurrentGuest.cgf1CBArrival.setSelectedDate(d1);
 		bdViewCurrentGuest.cgf1CBDeparture.setSelectedDate(d2);
-		
-		bdViewCurrentGuest.cgf1LBArrival.setText(arrival.toString());
-		bdViewCurrentGuest.cgf1LBDeparture.setText(departure.toString());
-		
 	}
 	
 	class GuestListListener implements ListViewSelectionListener {

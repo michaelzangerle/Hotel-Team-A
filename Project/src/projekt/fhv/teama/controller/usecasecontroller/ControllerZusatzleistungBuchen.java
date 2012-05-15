@@ -194,9 +194,29 @@ public class ControllerZusatzleistungBuchen {
 				l.add(new LeistungAnzahl(leistung, anzahl));
 				gebuchteLeistungen.put(getAktuellesZimmer(), l);
 			}
+		} 
+		else {
+			throw new EmptyParameterException();
 		}
 		
-		throw new EmptyParameterException();
+		
+	}
+	
+	public void removeLeistung(ILeistung leistung) throws FokusException, EmptyParameterException
+	{
+		if(leistung!=null)
+		{
+			if(gebuchteLeistungen.containsKey(getAktuellesZimmer()) && gebuchteLeistungen.get(getAktuellesZimmer()).contains(leistung))
+			{
+				gebuchteLeistungen.get(getAktuellesZimmer()).remove(leistung);
+			}
+			else {
+				throw new FokusException();
+			}
+		}
+		else {
+			throw new EmptyParameterException();
+		}
 	}
 	
 	public HashMap<IZimmer, List<LeistungAnzahl>> getGebuchteLeistungen()

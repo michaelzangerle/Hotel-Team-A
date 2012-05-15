@@ -18,8 +18,9 @@
 				<TablePane.Column width="2*"/>
 				<TablePane.Column width="1*"/>
 			</columns>
+			
 
-			<TablePane.Row height="25">
+	<!--		<TablePane.Row height="25">
 				<Label text="Room"  styles="$styles.smTableHeader"/>
 				<Label text="Additional Services"  styles="$styles.smTableHeader"/>
 				<Label text="Total amount per room"  styles="$styles.smTableHeader"/>
@@ -65,7 +66,7 @@
 
 			<TablePane.Row height="15">
 				<TablePane.Filler/>
-			</TablePane.Row>
+			</TablePane.Row> -->
 		</TablePane>		
 		<FillPane orientation="horizontal" styles="{padding:{top:25, left:6, bottom:15, right:6}}">
 		<Label text="Total amount for services: "  styles="$styles.asf2Total" minimumWidth="300" maximumWidth="300"/><Label text="€ 15.000.000.000,00"  styles="$styles.asf2Total"/>			

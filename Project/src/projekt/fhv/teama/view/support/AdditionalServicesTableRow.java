@@ -3,32 +3,16 @@
  */
 package projekt.fhv.teama.view.support;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.pivot.collections.ArrayList;
-import org.apache.pivot.collections.adapter.ListAdapter;
-import org.apache.pivot.wtk.ListButton;
-import org.apache.pivot.wtk.content.TableViewRowEditor;
-
-import projekt.fhv.teama.classes.leistungen.ILeistung;
-import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
-import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.view.ViewAdditionalServices;
-
-
 /**
- *  
- *
  * @author Team A
  * @version 1.1
  */
 public class AdditionalServicesTableRow {
-    private int quantity = 0;
-    private Service type = null;
-    private double amount = 0;
-    private double	total = 0;
-    private String description = "";
+    private int quantity;
+    private String type;
+    private double amount;
+    private double	total;
+    private String description;
     
     public int getQuantity() {
         return quantity;
@@ -42,17 +26,13 @@ public class AdditionalServicesTableRow {
     	setQuantity(Integer.valueOf(quantity));
     }
 
-    public Service getType() {
+    public String getType() {
 
         return this.type;
     }
 
-    public void setType(Service type) {
+    public void setType(String type) {
         this.type = type;
-    }
-    
-    public final void setType(String type) {
-    	
     }
     
     public double getAmount() {
@@ -96,7 +76,10 @@ public class AdditionalServicesTableRow {
     }
     
     public AdditionalServicesTableRow () {
+    	this.quantity = 0;
+        this.type = "";
+        this.amount = 0;
+        this.total = 0;
+        this.description = "";
     }
-    
-    
 }

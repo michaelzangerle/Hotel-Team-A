@@ -67,6 +67,7 @@ public class ViewAdditionalServices extends Border implements Bindable {
 	BoxPane bpAdditionalServicesForm02;
 	@BXML
 	TablePane asf2smTPSummary;
+	
 	/* Label */
 	@BXML
 	Label asf1LBBookedRooms;
@@ -115,40 +116,11 @@ public class ViewAdditionalServices extends Border implements Bindable {
 	public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 		tableViewRowEditor = new TableViewRowEditor();
 		asf1TVAdditionalServices.setRowEditor(tableViewRowEditor);
-//		TestData td = new TestData();
-//		td.generateTestData();
-//
-//		asf1TVAdditionalServices.setTableData(td.testDataServices);
-//
-//		// Quantity uses a TextInput
+
+		// Quantity uses a TextInput
 		TextInput quantityTextInput = new TextInput();
 		quantityTextInput.setTextKey("quantity");
 		tableViewRowEditor.getCellEditors().put("quantity", quantityTextInput);
-
-		// Expense type uses a ListButton that presents the expense types
-//		List<String> list = new LinkedList<String>();
-//		ListAdapter<String> la = new ListAdapter<String>(list);
-		
-		
-//		ListButton listButton = new ListButton();
-//		listButton.setListData(new ArrayList<String>());
-//		listButton.setSelectedItemKey("type");
-//		tableViewRowEditor.getCellEditors().put("type", listButton);
-		
-		
-//		asf1LBtypes = new ListButton
-//    	        (new ListAdapter(list));
-//		typeListButton.setSelectedItemKey("type");
-//	    tableViewRowEditor.getCellEditors().put("type", typeListButton);
-		
-//		List<String> list = new LinkedList<String>();
-//		list.add("asdf1");
-//		list.add("asdf2");
-//		ListAdapter<String> li = new ListAdapter<String>(list);
-//		ListButton typeListButton = new ListButton();
-//		typeListButton.setListData(li);
-//		typeListButton.setSelectedItemKey("type");
-//		tableViewRowEditor.getCellEditors().put("type", typeListButton);
 
 		// Amount uses a TextInput with strict currency validation
 		TextInput amountTextInput = new TextInput();
@@ -156,8 +128,8 @@ public class ViewAdditionalServices extends Border implements Bindable {
 		amountTextInput.setStrictValidation(true);
 		amountTextInput.setTextKey("amount");
 		tableViewRowEditor.getCellEditors().put("amount", amountTextInput);
-//
-//		// Description uses a TextInput
+
+		// Description uses a TextInput
 		TextInput descriptionTextInput = new TextInput();
 		descriptionTextInput.setTextKey("description");
 		tableViewRowEditor.getCellEditors().put("description",
@@ -165,18 +137,6 @@ public class ViewAdditionalServices extends Border implements Bindable {
 
 	}
 
-	public void setListData(List<String> listData) {
-		List<String> list = new LinkedList<String>();
-		for (String temp : listData) {
-			list.add(temp);
-		}
-		ListAdapter<String> li = new ListAdapter<String>(list);
-		ListButton typeListButton = new ListButton();
-		typeListButton.setListData(li);
-		typeListButton.setSelectedItemKey("type");
-		tableViewRowEditor.getCellEditors().put("type", typeListButton);
-	}
-	
 	public void setasf1PBtnNextListener(ButtonPressListener e) {
 		asf1PBtnNext.getButtonPressListeners().add(e);
 	}

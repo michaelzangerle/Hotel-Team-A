@@ -1,34 +1,27 @@
 package projekt.fhv.teama.view;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.collections.Sequence;
-import org.apache.pivot.util.Filter;
 import org.apache.pivot.wtk.Action;
 import org.apache.pivot.wtk.Alert;
-import org.apache.pivot.wtk.BindType;
 import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.Component;
+import org.apache.pivot.wtk.ComponentMouseButtonListener;
 import org.apache.pivot.wtk.Dialog;
-import org.apache.pivot.wtk.ListButton;
+import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Span;
 import org.apache.pivot.wtk.TablePane;
 import org.apache.pivot.wtk.TableView;
-import org.apache.pivot.wtk.TableView.RowEditor;
-import org.apache.pivot.wtk.TableView.SelectMode;
-import org.apache.pivot.wtk.TableView.SelectedRowBindMapping;
-import org.apache.pivot.wtk.TableView.TableDataBindMapping;
-import org.apache.pivot.wtk.TableViewBindingListener;
-import org.apache.pivot.wtk.TableViewListener;
 import org.apache.pivot.wtk.TableViewRowListener;
-import org.apache.pivot.wtk.TableViewSelectionListener;
 
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
@@ -37,10 +30,9 @@ import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.view.support.AdditionalServicesTableRow;
 import projekt.fhv.teama.view.support.BlockingDialog;
-import projekt.fhv.teama.view.support.Service;
-import projekt.fhv.teama.view.tests.TestData;
 
 public class BookExtrasViewController implements ButtonPressListener {
 	private ViewAdditionalServices view;
@@ -48,19 +40,18 @@ public class BookExtrasViewController implements ButtonPressListener {
 	private ViewMain viewMain;
 	private ControllerZusatzleistungBuchen controller;
 	private ArrayList<AdditionalServicesTableRow> tableDataService;
-	private ListButton typeListButton;
-	
+
 	private void initialize() throws FokusException, DatabaseException {
 		viewGuest.setVisible(false);
 		view.setVisible(true);
+		viewMain.tabPLeftMain.setEnabled(false);
+		viewMain.lvGuestSearch.setEnabled(false);
+		viewMain.progress.setVisible(true);
 		viewMain.lbProgress01.setVisible(true);
 		viewMain.lbProgress02.setVisible(true);
 		viewMain.lbProgress03.setVisible(false);
 		viewMain.lbProgress04.setVisible(false);
 		viewMain.meter.setPercentage(0.5);
-		
-		tableDataService = new ArrayList<AdditionalServicesTableRow>();
-		initializeTableServices();
 
 		List<IZimmer> rooms = controller.getZimmerVonGast();
 		Wrapper wrapper = new Wrapper();
@@ -68,116 +59,151 @@ public class BookExtrasViewController implements ButtonPressListener {
 		view.asf1LVBookedRooms.setListData(wrapper
 				.getZimmerWithoutPriceListAdapter(rooms));
 		view.asf1LVBookedRooms.setSelectedIndex(0);
-
 	}
 
-	private void initializeTableServices() throws DatabaseException {
-		TestData td = new TestData(tableDataService);
-		td.generateTestData();
-		view.asf1TVAdditionalServices.setTableData(td.testDataServices);
+	public void exit() {
+		view.bpAdditionalServicesForm01.setVisible(true);
+		view.bpAdditionalServicesForm02.setVisible(false);
+		viewMain.tabPLeftMain.setEnabled(true);
+		viewMain.lvGuestSearch.setEnabled(true);
+		viewMain.progress.setVisible(false);
+		view.setVisible(false);
+		viewGuest.setVisible(true);
+		viewMain.lbProgress01.setVisible(true);
+		viewMain.lbProgress02.setVisible(true);
+		viewMain.lbProgress03.setVisible(true);
+		viewMain.lbProgress04.setVisible(true);
+	}
+
+	public void setTableData() throws DatabaseException, FokusException {
+		tableDataService = new ArrayList<AdditionalServicesTableRow>();
+		List<ILeistung> services = controller.getArtikelundZusatzleistungen();
+		List<ILeistung> curServices = new LinkedList<ILeistung>();
+		HashMap<ILeistung, Integer> curMap = new HashMap<ILeistung, Integer>();
+		IZimmer tempRoom = controller.getAktuellesZimmer();
+
+		if (controller.getGebuchteLeistungen().get(tempRoom) != null) {
+			for (LeistungAnzahl la : controller.getGebuchteLeistungen().get(
+					tempRoom)) {
+				curServices.add(la.getLeistung());
+				curMap.put(la.getLeistung(), la.getAnzahl());
+			}
+		}
+
+		int index = 0;
+		for (ILeistung leistung : services) {
+			tableDataService.add(new AdditionalServicesTableRow());
+			AdditionalServicesTableRow row = tableDataService.get(index);
+			if (curServices.contains(leistung)) {
+				row.setQuantity(curMap.get(leistung));
+				row.setAmount(leistung.getPreis());
+				double total = curMap.get(leistung) * leistung.getPreis();
+				row.setTotal(String.valueOf(total));
+			} else {
+				row.setQuantity(0);
+				row.setAmount(leistung.getPreis());
+				row.setTotal("0");
+			}
+			row.setDescription("----");
+			row.setType(leistung.getBezeichnung());
+			index++;
+		}
+
+		view.asf1TVAdditionalServices.setTableData(tableDataService);
 		view.asf1TVAdditionalServices.setRowEditor(view.tableViewRowEditor);
-
-		typeListButton = new ListButton(new Service(
-				controller.getArtikelundZusatzleistungen()));
-		typeListButton.setSelectedItemKey("type");
-		view.tableViewRowEditor.getCellEditors().put("type", typeListButton);
-
-		// TextInput quantityTextInput = new TextInput();
-		// quantityTextInput.setTextKey("quantity");
-		// view.tableViewRowEditor.getCellEditors().put("quantity",
-		// quantityTextInput);
-
-		// Expense type uses a ListButton that presents the expense types
-		// List<String> list = new LinkedList<String>();
-		// list.add("xyz");
-		// ListAdapter<String> la = new ListAdapter<String>(list);
-		// ListButton listButton = new ListButton();
-		// listButton.setSelectedItemKey("type");
-		// listButton.setListData(la);
-		// view.tableViewRowEditor.getCellEditors().put("type", listButton);
-		// listButton.setSelectedIndex(0);
-		// Amount uses a TextInput with strict currency validation
-		// TextInput amountTextInput = new TextInput();
-		// amountTextInput.setValidator(new CurrencyValidator());
-		// amountTextInput.setStrictValidation(true);
-		// amountTextInput.setTextKey("amount");
-		// view.tableViewRowEditor.getCellEditors().put("amount",
-		// amountTextInput);
-		// //
-		// // // Description uses a TextInput
-		// TextInput descriptionTextInput = new TextInput();
-		// descriptionTextInput.setTextKey("description");
-		// view.tableViewRowEditor.getCellEditors().put("description",
-		// descriptionTextInput);
-
-		// TestData td = new TestData();
-		// td.generateTestData();
-		// view.asf1TVAdditionalServices.setTableData(td.testDataServices);
-		// List<ILeistung> leistungen =
-		// controller.getArtikelundZusatzleistungen();
-		// List<String> list = new LinkedList<String>();
-		// for (ILeistung leistung : leistungen) {
-		// list.add(leistung.getBezeichnung());
-		// }
-		// view.setListData(list);
-
-		// // Quantity uses a TextInput
-		// TextInput quantityTextInput = new TextInput();
-		// quantityTextInput.setTextKey("quantity");
-		// tableViewRowEditor.getCellEditors().put("quantity",
-		// quantityTextInput);
-		//
-		// // Expense type uses a ListButton that presents the expense types
-		// List<String> list = new LinkedList<String>();
-		// list.add("asdf1");
-		// list.add("asdf2");
-		// ListAdapter<String> li = new ListAdapter<String>(list);
-		// ListButton typeListButton = new ListButton();
-		// typeListButton.setListData(li);
-		// typeListButton.setSelectedItemKey("type");
-		// tableViewRowEditor.getCellEditors().put("type", typeListButton);
-		//
-		// // Amount uses a TextInput with strict currency validation
-		// TextInput amountTextInput = new TextInput();
-		// amountTextInput.setValidator(new CurrencyValidator());
-		// amountTextInput.setStrictValidation(true);
-		// amountTextInput.setTextKey("amount");
-		// tableViewRowEditor.getCellEditors().put("amount", amountTextInput);
-		// //
-		// // // Description uses a TextInput
-		// TextInput descriptionTextInput = new TextInput();
-		// descriptionTextInput.setTextKey("description");
-		// tableViewRowEditor.getCellEditors().put("description",
-		// descriptionTextInput);
-
 	}
 
 	public void initializeSummaryWindow() throws FokusException,
 			DatabaseException {
+
 		view.asf2smServiceGuest
 				.setText("You are booking the following services for guest No. "
 						+ controller.getGast().getNummer()
 						+ " | "
 						+ controller.getGast().getNachname().toUpperCase()
 						+ " " + controller.getGast().getVorname() + ":");
+
 		HashMap<IZimmer, List<LeistungAnzahl>> services = controller
 				.getGebuchteLeistungen();
 
+		double amount = 0;
 		for (Map.Entry e : services.entrySet()) {
 			IZimmer room = (IZimmer) e.getKey();
-			view.asf2smLBRoom.setText(room.getNummer());
 			List<LeistungAnzahl> tempServices = (List<LeistungAnzahl>) e
 					.getValue();
-			for (LeistungAnzahl service : tempServices) {
-				TablePane.Row row = new TablePane.Row(1, true);
-				view.asf2smLBServices.setText("test"); // service.getBezeichnung
-				view.asf2smLBTotal.setText("");
+			insertRowHeader();
+			insertRowData(room.getNummer(), room.getKategorie()
+					.getBezeichnung(), tempServices);
+			for (LeistungAnzahl temp : tempServices) {
+				amount = temp.getLeistung().getPreis() * temp.getAnzahl();
 			}
+		}
+		view.asf2smLBTotal.setText(String.valueOf(amount));
+	}
+
+	private void insertRowData(String roomNo, String roomDescription,
+			List<LeistungAnzahl> services) {
+		TablePane.Row row = new TablePane.Row();
+		view.asf2smTPSummary.getRows().add(row);
+		int n = view.asf2smTPSummary.getColumns().getLength();
+
+		StringBuilder sb = new StringBuilder();
+		double amount = 0;
+		int j = 0;
+		for (LeistungAnzahl service : services) {
+			if (j == services.size()) {
+				sb.append(service.getLeistung().getBezeichnung() + " "
+						+ service.getAnzahl());
+			} else {
+				sb.append(service.getLeistung().getBezeichnung() + " "
+						+ service.getAnzahl() + ", ");
+			}
+			amount += (service.getLeistung().getPreis() * service.getAnzahl());
+			j++;
+		}
+
+		for (int i = 1; i <= n; i++) {
+			Label label = new Label();
+			label.setStyleName("smTableCell");
+			switch (i) {
+				case 1 :
+					label.setText("Nr. " + roomNo + " " + roomDescription);
+					break;
+				case 2 :
+					label.setText(sb.toString());
+					break;
+				case 3 :
+					label.setText("€ " + amount);
+					break;
+			}
+			row.add(label);
 		}
 	}
 
-	public void addServiceToRoom() {
+	private void insertRowHeader() {
+		TablePane.Row row = new TablePane.Row();
+		view.asf2smTPSummary.getRows().add(row);
+		int n = view.asf2smTPSummary.getColumns().getLength();
 
+		for (int i = 1; i <= n; i++) {
+			Label label = new Label();
+
+			label.setStyleName("smTableHeader");
+
+			switch (i) {
+				case 1 :
+					label.setText("Room");
+					break;
+				case 2 :
+					label.setText("Additional Services");
+					break;
+				case 3 :
+					label.setText("Total amount per room");
+					break;
+			}
+			row.setHeight(20);
+			row.add(label);
+		}
 	}
 
 	private void addBookExtrasEventListener() {
@@ -196,12 +222,50 @@ public class BookExtrasViewController implements ButtonPressListener {
 				gotoStep.perform(arg0);
 			}
 		});
-		view.setasf2PBtnBack(new ButtonPressListener() {
-			public void buttonPressed(Button arg0) {
-				gotoStep.perform(arg0);
+		view.asf2PBtnBack.setAction(gotoStep);
+		viewMain.setlbProgress01Listener(new ComponentMouseButtonListener() {
+			public boolean mouseClick(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
+					int arg4) {
+				view.bpAdditionalServicesForm02.setVisible(false);
+				view.bpAdditionalServicesForm01.setVisible(true);
+				viewMain.meter.setPercentage(0.5);
+				return false;
+			}
+			public boolean mouseDown(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
+				return false;
+			}
+			public boolean mouseUp(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
+				return false;
 			}
 		});
-
+		viewMain.setlbProgress02Listener(new ComponentMouseButtonListener() {
+			public boolean mouseUp(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
+				viewMain.meter.setPercentage(1);
+				view.bpAdditionalServicesForm01.setVisible(false);
+				view.bpAdditionalServicesForm02.setVisible(true);
+				try {
+					initializeSummaryWindow();
+				} catch (FokusException e) {
+					e.printStackTrace();
+				} catch (DatabaseException e) {
+					e.printStackTrace();
+				}
+				return false;
+			}
+			public boolean mouseDown(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
+				return false;
+			}
+			public boolean mouseClick(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
+					int arg4) {
+				return false;
+			}
+		});
 	}
 
 	Action cancel = new Action(true) {
@@ -210,7 +274,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 			BlockingDialog bd = new BlockingDialog();
 			bd.setContent(new Alert(MessageType.WARNING,
-					"Cancel the Check-In Process?"
+					"Cancel the Additional Services Process?"
 							+ " Inputs will not be saved!",
 					new ArrayList<String>("Yes", "No")));
 			Dialog erg = bd.open(source.getDisplay());
@@ -221,9 +285,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 				view.bpAdditionalServicesForm01.setVisible(true);
 				view.bpAdditionalServicesForm02.setVisible(false);
 				view.setVisible(false);
-				viewGuest.setVisible(true);
-				viewMain.lbProgress03.setVisible(true);
-				viewMain.lbProgress04.setVisible(true);
+				exit();
 			}
 
 		}
@@ -233,7 +295,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		@Override
 		public void perform(Component source) {
 			if (source.getName().equals("lbProgress01")
-					|| source.getName().equals("asf2PBtnBack1")) {
+					|| source.getName().equals("asf2PBtnBack")) {
 				view.bpAdditionalServicesForm02.setVisible(false);
 				view.bpAdditionalServicesForm01.setVisible(true);
 				viewMain.meter.setPercentage(0.5);
@@ -279,9 +341,9 @@ public class BookExtrasViewController implements ButtonPressListener {
 	class SaveAdditionalService implements ButtonPressListener {
 
 		public void buttonPressed(Button arg0) {
-
+			// controller.saveLeistungen();
+			exit();
 		}
-
 	}
 
 	class RoomChangedListener implements ListViewSelectionListener {
@@ -297,6 +359,8 @@ public class BookExtrasViewController implements ButtonPressListener {
 				view.asf1TISelectedRoom.setText("Nr. " + room.getNummer() + " "
 						+ room.getKategorie().getBezeichnung()
 						+ " - adding services:");
+				setTableData();
+
 			} catch (EmptyParameterException e) {
 				e.printStackTrace();
 			} catch (DatabaseException e) {
@@ -317,51 +381,37 @@ public class BookExtrasViewController implements ButtonPressListener {
 	class AdditionalServiceListener implements TableViewRowListener {
 		@Override
 		public void rowInserted(TableView arg0, int arg1) {
-			System.out.println("row inserted " + arg0);
-			System.out.println("row inserted " + arg1);
-
 		}
 
 		@Override
 		public void rowUpdated(TableView arg0, int arg1) {
-			System.out.println("row updated " + arg0);
-			System.out.println("row updated " + arg1);
-			view.asf1LBtypes.setSelectedIndex(arg1);
-
-			// Service asdf = tableDataService.get(arg1).getType();
-
-//			System.out.println(tableDataService.get(arg1).getAmount());
-			System.out.println(tableDataService.get(arg1).getType());
+			String type = tableDataService.get(arg1).getType();
 			try {
-				ILeistung leistung = controller.getArtikelundZusatzleistungen()
-						.get(arg1);
-				System.out.println(leistung.toString());
-
-			} catch (DatabaseException e) {
-				e.printStackTrace();
+				ILeistung service = controller.getLeistungByBezeichnung(type);
+				if (tableDataService.get(arg1).getAmount() == 0) {
+					controller.removeLeistung(service);
+				} else {
+					int amount = tableDataService.get(arg1).getQuantity();
+					controller.addLeistung(service, amount);
+				}
+			} catch (DatabaseException e1) {
+				e1.printStackTrace();
+			} catch (NotContainExeption e1) {
+			} catch (FokusException e) {
+			} catch (EmptyParameterException e) {
 			}
-			if (tableDataService.get(arg1).getType() != null) {
-				tableDataService.add(new AdditionalServicesTableRow());
-			}
-
 		}
 
 		@Override
 		public void rowsCleared(TableView arg0) {
-			// TODO Auto-generated method stub
-
 		}
 
 		@Override
 		public void rowsRemoved(TableView arg0, int arg1, int arg2) {
-			// TODO Auto-generated method stub
-
 		}
 
 		@Override
 		public void rowsSorted(TableView arg0) {
-			// TODO Auto-generated method stub
-
 		}
 	}
 }
