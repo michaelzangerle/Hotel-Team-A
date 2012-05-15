@@ -1,9 +1,12 @@
 package projekt.fhv.teama.controller.usecasecontroller.test;
 
+import java.io.Console;
+
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
+import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerZusatzleistungBuchen;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
@@ -67,6 +70,12 @@ public class ControllerZBTest {
 			e.printStackTrace();
 		}
 		
+		
+		
+		//Holen der Leistungen für die Overview
+		for (LeistungAnzahl la : zbController.bereitsgebuchtLeistungenFuerGast()) {
+			System.out.println(la.getLeistung()+" "+la.getAnzahl());
+		}
 		
 	}
 	

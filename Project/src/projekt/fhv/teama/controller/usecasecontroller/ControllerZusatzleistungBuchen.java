@@ -24,6 +24,7 @@ import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.model.interfaces.IModelArtikel;
+import projekt.fhv.teama.model.interfaces.IModelAufenhaltLeistung;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
 import projekt.fhv.teama.model.interfaces.IModelLeistung;
@@ -39,7 +40,7 @@ public class ControllerZusatzleistungBuchen implements IControllerZusatzleistung
 	private IModelArtikel modelArtikel;
 	private IModelZusatzleistung modelZusatzleistung;
 	private IModelZimmer modelZimmer;
-	private ModelAufenthaltLeistung modelAufenthaltLeistung;
+	private IModelAufenhaltLeistung modelAufenthaltLeistung;
 	
 	
 	public ControllerZusatzleistungBuchen() {
@@ -284,6 +285,23 @@ public class ControllerZusatzleistungBuchen implements IControllerZusatzleistung
 		}
 		
 		throw new NotContainExeption();		
+		
+	}
+	
+	public List<LeistungAnzahl> bereitsgebuchtLeistungenFuerGast() throws DatabaseException, FokusException
+	{
+		
+		if(aufenthalte.size()<1)
+			getAufenthalt();
+	
+		List<LeistungAnzahl> erg=new Vector<LeistungAnzahl>();
+		for (IAufenthalt auf : aufenthalte) {
+			if(auf.getGast().equals(getGast()))
+			erg.addAll(modelAufenthaltLeistung.getLeistungenByAufenhalt(auf));
+		}
+		
+		return erg;
+		
 		
 	}
 

@@ -5,7 +5,6 @@ import java.util.Vector;
 
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.hibernate.dao.leistungen.ILeistungDao;
-import projekt.fhv.teama.hibernate.dao.leistungen.IZusatzleistungDao;
 import projekt.fhv.teama.hibernate.dao.leistungen.LeistungDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.interfaces.IModelLeistung;
@@ -26,4 +25,7 @@ public class ModelLeistung implements IModelLeistung{
 	{
 		return new Vector<ILeistung>(leistungDao.getAll());
 	}
+
+
+
 }

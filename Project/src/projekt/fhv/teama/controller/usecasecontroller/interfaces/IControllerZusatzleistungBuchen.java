@@ -139,5 +139,11 @@ public interface IControllerZusatzleistungBuchen {
 	 */
 	public void saveLeistungen() throws FokusException, WrongParameterException, DatabaseException, NotContainExeption;
 	
-
+	/**
+	 * Methode um die Bereits gebuchten Leistungen für diesne Aufenhalt zu bekommen
+	 * @return List<LeistungAnzahl>
+	 * @throws DatabaseException
+	 * @throws FokusException
+	 */
+	public List<LeistungAnzahl> bereitsgebuchtLeistungenFuerGast() throws DatabaseException, FokusException;
 }
