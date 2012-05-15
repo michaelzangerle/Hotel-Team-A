@@ -61,6 +61,7 @@ import projekt.fhv.teama.model.ModelZimmerstatus;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
+import projekt.fhv.teama.view.invoice.ViewInvoice;
 import projekt.fhv.teama.view.support.BlockingDialog;
 
 
@@ -74,10 +75,12 @@ public class ViewController implements Application {
 	ViewMain viewMain;
 	private ViewAdditionalServices bdViewAdditionalServices;
 	private ViewCurrentGuest bdViewCurrentGuest;
-	private Display disp;
+	private ViewCheckOut bdViewCheckOut;
 	private ControllerCheckIn controllerCheckIn;
 	private ControllerZusatzleistungBuchen controllerZusatzleistung;
 	private Wrapper wrapper;
+	private Display disp;
+	private ViewInvoice viewInvoice;
 
 	
 	@Override
@@ -109,9 +112,13 @@ public class ViewController implements Application {
 		
 		bdViewAdditionalServices = (ViewAdditionalServices) bS.readObject(
 				ViewAdditionalServices.class,"ViewAdditionalServices.bxml");
-		
+
 		bdViewCurrentGuest = (ViewCurrentGuest) bS.readObject(
 				ViewAdditionalServices.class,"ViewCurrentGuest.bxml");
+		
+				bdViewCheckOut = (ViewCheckOut) bS.readObject(
+				ViewAdditionalServices.class,"ViewCheckOut.bxml");
+		
 		
 		viewMain.setMaximized(true);
 		viewLogin.open(getDisp());
@@ -270,73 +277,61 @@ public class ViewController implements Application {
 		}
 		
 		/** insert Tests - Pat *************************************************************************/
-		bdViewCurrentGuest.setVisible(false);
+//		bdViewCurrentGuest.setVisible(false);
+//		bdViewCheckOut.setVisible(true);
+//		
+//		viewMain.reservationForm01.setVisible(true);
+//		viewMain.lbProgress01.setVisible(true);
+//		viewMain.lbProgress02.setVisible(true);
+//		viewMain.lbProgress03.setVisible(true);
+//		viewMain.lbProgress04.setVisible(true);
 		
-		viewMain.reservationForm01.setVisible(true);
-		viewMain.lbProgress01.setVisible(true);
-		viewMain.lbProgress02.setVisible(true);
-		viewMain.lbProgress03.setVisible(true);
-		viewMain.lbProgress04.setVisible(true);
+		/* Tool Tipp für Steps bei Additional Service Vorgang */
 		viewMain.lbProgress01.setTooltipText("Select a room and add services");
 		viewMain.lbProgress02.setTooltipText("Check the overview of the booked services and finish the process by saving");
 		
 		viewMain.meter.setPercentage(0.5);
 		viewMain.meter.getStyles().put("gridFrequency", "0.5");
+		
+		bdViewCurrentGuest.cgf1PBtnCheckOut.getButtonPressListeners().add(new ButtonPressListener(){
+			
+			@Override
+			public void buttonPressed(Button arg0) {
+		
+				/* Steps Anzeige für Check-Out */
+				viewMain.progress.setVisible(true);
+				viewMain.lbProgress01.setVisible(true);
+				viewMain.lbProgress02.setVisible(true);
+				viewMain.lbProgress03.setVisible(false);
+				viewMain.lbProgress04.setVisible(false);
+				viewMain.lbProgress01.setTooltipText("Generate Invoices for the guest");
+				viewMain.lbProgress02.setTooltipText("Take back room-keys and remove deposit");				
 
+				/* CheckOutView in MainContent einfügen und auf visible setzen */				
+				viewMain.mainContent.add(bdViewCheckOut);
+				bdViewCurrentGuest.setVisible(false);
+				bdViewCheckOut.setVisible(true);
+			}			
+			
+		});	
 		
-		
-		
-	/*	bdViewCurrentGuest.cgf1PBtnBookExtras.getButtonPressListeners().add(new ButtonPressListener() {
+		bdViewCheckOut.cof1PBtnCreateInvoice.getButtonPressListeners().add(new ButtonPressListener(){
 
 			@Override
 			public void buttonPressed(Button arg0) {
 				
-				bdViewCurrentGuest.setVisible(false);
-				bdViewAdditionalServices.setVisible(true);
-				viewMain.progress.setVisible(true);
-				viewMain.meter.setPercentage(0.5);
+				new ViewInvoice();
+				
 			}
-			});
-		
-		
-		bdViewAdditionalServices.asf1PBtnNext.getButtonPressListeners().add(new ButtonPressListener() {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-
-				bdViewAdditionalServices.bpAdditionalServicesForm01.setVisible(false);
-				bdViewAdditionalServices.bpAdditionalServicesForm02.setVisible(true);
-				viewMain.meter.setPercentage(1);
-			}
+			
 			
 			
 		});
 		
-		bdViewAdditionalServices.asf1PBtnBack.getButtonPressListeners().add(new ButtonPressListener() {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-
-			
-			}
-			
-			
-		});
-		
-		bdViewAdditionalServices.asf2PBtnBack.getButtonPressListeners().add(new ButtonPressListener() {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-
-				bdViewAdditionalServices.bpAdditionalServicesForm01.setVisible(true);
-				bdViewAdditionalServices.bpAdditionalServicesForm02.setVisible(false);
-				viewMain.meter.setPercentage(0.5);
-			}
-			
-			
-		});*/
-		
-		}
+	   }
+	
+	
+	
 	
 		/** end insert Tests - Pat ***************************************************************************/
 		

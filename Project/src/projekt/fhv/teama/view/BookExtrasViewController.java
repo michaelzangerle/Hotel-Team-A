@@ -49,6 +49,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 	private ControllerZusatzleistungBuchen controller;
 	private ArrayList<AdditionalServicesTableRow> tableDataService;
 	private ListButton typeListButton;
+	
 	private void initialize() throws FokusException, DatabaseException {
 		viewGuest.setVisible(false);
 		view.setVisible(true);

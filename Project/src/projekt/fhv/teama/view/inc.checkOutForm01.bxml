@@ -1,0 +1,59 @@
+<BoxPane bxml:id="bpCheckOutForm01" xmlns:bxml="http://pivot.apache.org/bxml"
+	xmlns="org.apache.pivot.wtk" xmlns:view="projekt.fhv.teama.view" xmlns:content="org.apache.pivot.wtk.content" xmlns:collections="org.apache.pivot.collections"
+	xmlns:support="projekt.fhv.teama.view.support" visible="true" orientation="vertical" styles="{padding:6, spacing:10, fill:true}">
+	<bxml:script>
+		function concatStrings(value){ return "No.: "+ cgf1LBGuestNr.text + " " + value;}
+	</bxml:script>
+	<Label bxml:id="cof1GuestInfo" text="Check-Out: Generate Invoices"
+			styles="$styles.lbHeading1"/>
+
+		<!-- Guest Data ################################################################################## -->
+		<Separator heading=" Generate invoices for guest to check-out " styles="$styles.sprHeading"/>
+		<BoxPane orientation="horizontal" styles="{ padding:{top:0, left:0, bottom:0, right:0}, spacing:30, fill:true}">
+		<BoxPane orientation="vertical" styles="{fill:true}">
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" >
+					<Label bxml:id="cof1PrimaryGuest" text="You are creating invoices for guest:" />
+					<BoxPane  styles="{padding:{top:0, left:0, bottom:0, right:0}}">
+						<TextInput bxml:id="cof1TIGuest" prompt="Guest Name" text="${concatStrings:cgf1TIName.text}" preferredWidth="446" />			
+					</BoxPane>
+		</BoxPane>
+		
+		<!-- Adress ##################################################################################### -->
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" >
+					<BoxPane bxml:id="cof1BPAddress" Form.label="Address" styles="{spacing:5, fill:true}">
+						<TextInput bxml:id="cof1TIStreet" text="${cgf1TIStreet.text}" prompt="Street"/>
+						<TextInput bxml:id="cof1TICity" text="${cgf1TICity.text}" prompt="City"/>
+					</BoxPane>
+					<BoxPane styles="{fill:true}">
+						<TextInput bxml:id="cof1TICountry" text="${cgf1TICountry.text}" prompt="Country" visible="true"/>
+						<TextInput bxml:id="cof1TIZip" text="${cgf1TIZip.text}" prompt="Zip" preferredWidth="80"/>
+					</BoxPane>
+		</BoxPane>
+		</BoxPane>
+		<BoxPane orientation="vertical" styles="{ padding:{top:32, left:0, bottom:0, right:0}, spacing:20, fill:true}">
+		<Label bxml:id="cof1LBHeaderInvoiceItems" text="Invoice items left: " styles="$styles.cof1LBHeader"/>
+		<Label bxml:id="cof1LBStatusInvoiceItems" text="Klar " styles="$styles.cof1LBStatus" preferredHeight="150" preferredWidth="400" />			
+		</BoxPane>
+		</BoxPane>
+		
+		<!-- Action Buttons ########################################################################### -->				
+		<Separator/>
+		
+		<TablePane styles="{padding:12}">
+		<columns>
+			<TablePane.Column width="12*"/>
+			<TablePane.Column width="420"/>
+		</columns>
+
+		<TablePane.Row height="1*">
+			<BoxPane  styles="{horizontalAlignment:'left', spacing:15}">
+			<PushButton bxml:id="cof1PBtnCancel" buttonData="Cancel"/>			
+			</BoxPane>
+			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
+			<PushButton bxml:id="cof1PBtnCreateInvoice" buttonData="Create Invoice" styles="$styles.btSpecial" enabled="true" />			
+		    <PushButton bxml:id="cof1PBtnNext" buttonData="Next Step" enabled="false"/>			
+			</BoxPane>
+		</TablePane.Row>
+	</TablePane>
+	
+	</BoxPane>

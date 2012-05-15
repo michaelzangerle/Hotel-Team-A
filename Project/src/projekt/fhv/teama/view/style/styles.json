@@ -222,6 +222,13 @@
     	spacing:15
     },
     
+   bpContentHorizontalFill: {
+    
+    	padding:{top:3, left:7, bottom:15, right:0},
+    	spacing:15,
+    	fill: 'true'
+    },
+    
     brdProgress: {
     
     	padding:{top:0, left:0, bottom:0, right:0},
@@ -369,6 +376,22 @@
            backgroundColor: '#e2edf8',
            color:'#2d4776',          
            padding:{top:5, left:5, bottom:5, right:15}       
+    },
+    cof1LBStatus: {
+    	   font: { size: "120%", bold: false },       
+           horizontalAlignment:'center',
+           verticalAlignment:'center',
+          /* backgroundColor: '#cae6b4',*/
+           backgroundColor: '#fbe28e',
+           color:'#000000',          
+           padding:{top:15, left:15, bottom:15, right:15},
+    },
+   cof1LBHeader: {
+    	   font: { size: "120%", bold: true },       
+           horizontalAlignment:'left',
+           backgroundColor: '#e2edf8',
+           color:'#2d4776',          
+           padding:{top:5, left:15, bottom:5, right:15}  
     }
     
         
