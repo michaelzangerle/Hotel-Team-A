@@ -12,6 +12,7 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
+import projekt.fhv.teama.model.exception.WrongParameterException;
 
 
 public interface IControllerZusatzleistungBuchen {
@@ -112,7 +113,7 @@ public interface IControllerZusatzleistungBuchen {
 	 * @throws FokusException
 	 * @throws EmptyParameterException
 	 */
-	public void addLeistung(ILeistung leistung) throws FokusException, EmptyParameterException;
+	public void addLeistung(ILeistung leistung,int anzahl) throws FokusException, EmptyParameterException;
 	
 	/**
 	 * Gibt eine Hashmap von gebuchten Leistungen inklusive Anzahl zu einem Zimmer
@@ -128,4 +129,15 @@ public interface IControllerZusatzleistungBuchen {
 	 * @throws NotContainExeption
 	 */
 	public ILeistung getLeistungByBezeichnung(String bez) throws DatabaseException, NotContainExeption;
+	
+	/**
+	 * Methode um die gebuchten Leistungen in die Datebank zu speichern
+	 * @throws FokusException
+	 * @throws WrongParameterException
+	 * @throws DatabaseException
+	 * @throws NotContainExeption
+	 */
+	public void saveLeistungen() throws FokusException, WrongParameterException, DatabaseException, NotContainExeption;
+	
+
 }

@@ -1,5 +1,6 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -9,9 +10,11 @@ import projekt.fhv.teama.classes.MyLittleDate;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerZusatzleistungBuchen;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.ModelArtikel;
 import projekt.fhv.teama.model.ModelAufenthalt;
+import projekt.fhv.teama.model.ModelAufenthaltLeistung;
 import projekt.fhv.teama.model.ModelGast;
 import projekt.fhv.teama.model.ModelLeistung;
 import projekt.fhv.teama.model.ModelZimmer;
@@ -19,6 +22,7 @@ import projekt.fhv.teama.model.ModelZusatzleistung;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
+import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.model.interfaces.IModelArtikel;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
@@ -26,7 +30,7 @@ import projekt.fhv.teama.model.interfaces.IModelLeistung;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
 import projekt.fhv.teama.model.interfaces.IModelZusatzleistung;
 
-public class ControllerZusatzleistungBuchen {
+public class ControllerZusatzleistungBuchen implements IControllerZusatzleistungBuchen {
 	
 	//ModelRespositorys
 	private IModelAufenthalt modelAufenthalt;
@@ -35,6 +39,7 @@ public class ControllerZusatzleistungBuchen {
 	private IModelArtikel modelArtikel;
 	private IModelZusatzleistung modelZusatzleistung;
 	private IModelZimmer modelZimmer;
+	private ModelAufenthaltLeistung modelAufenthaltLeistung;
 	
 	
 	public ControllerZusatzleistungBuchen() {
@@ -44,6 +49,7 @@ public class ControllerZusatzleistungBuchen {
 		modelZusatzleistung=new ModelZusatzleistung();
 		modelGast=new ModelGast();
 		modelZimmer=new ModelZimmer();
+		modelAufenthaltLeistung=new ModelAufenthaltLeistung();
 	}
 	
 	
@@ -225,12 +231,18 @@ public class ControllerZusatzleistungBuchen {
 	}
 	
 	
-	public void saveLeistungen()
+	public void saveLeistungen() throws FokusException, WrongParameterException, DatabaseException, NotContainExeption
 	{
 		for (IZimmer z : gebuchteLeistungen.keySet()) {
 			
 			for (LeistungAnzahl l : gebuchteLeistungen.get(z)) {
-				//TODO speichern in die DB
+				
+				ILeistung leistung=l.getLeistung();
+				int anzahl=l.getAnzahl();
+				IAufenthalt aufenthalt=getAufenhaltbyZimmer(z);
+				Date datum=MyLittleDate.getCurrentDate();
+				
+				modelAufenthaltLeistung.save(leistung, aufenthalt, anzahl, datum);
 			}
 		}
 	}
@@ -251,7 +263,19 @@ public class ControllerZusatzleistungBuchen {
 	}
 
 	
-	
+	private IAufenthalt getAufenhaltbyZimmer(IZimmer zimmer) throws FokusException, NotContainExeption
+	{
+		for (IAufenthalt auf : aufenthalte) {
+			
+			if(auf.getGast().equals(getGast())&&auf.getZimmer().equals(zimmer))
+				return auf;
+		}
+		
+		throw new NotContainExeption();		
+		
+	}
+
+
 	
 	
 	
