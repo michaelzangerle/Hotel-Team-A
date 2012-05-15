@@ -110,7 +110,6 @@ public class BookExtrasViewController implements ButtonPressListener {
 			row.setType(leistung.getBezeichnung());
 			index++;
 		}
-
 		view.asf1TVAdditionalServices.setTableData(tableDataService);
 		view.asf1TVAdditionalServices.setRowEditor(view.tableViewRowEditor);
 	}
@@ -118,7 +117,8 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 	public void initializeSummaryWindow() throws FokusException,
 			DatabaseException {
-
+		int length = view.asf2smTPSummary.getRows().getLength();
+		view.asf2smTPSummary.getRows().remove(0, length);
 		view.asf2smServiceGuest
 				.setText("You are booking the following services for guest No. "
 						+ controller.getGast().getNummer()
