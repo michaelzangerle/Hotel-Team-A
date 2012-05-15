@@ -37,9 +37,9 @@
 			</Form.Section>
 		</Form>
 		 <Border title="Booked Additional Services" styles="{color:'#e3e3e3', backgroundColor: '#fcfcfc', padding:{top:4, left:4, bottom:4, right:4}}">
-         <BoxPane orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#fcfcfc'}"  enabled="false">
+         <BoxPane orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#fcfcfc'}"  enabled="true">
 				 <ScrollPane preferredWidth="250" preferredHeight="232"  horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#fcfcfc'}">
-                    <ListView bxml:id="cgf1LVBookedAdditionalServices" selectMode="single" listData="['Currently no additional service found']" styles="{backgroundColor: '#fcfcfc'}"/>
+                    <ListView bxml:id="cgf1LVBookedAdditionalServices" selectMode="single" listData="['Currently no additional service booked']" styles="{backgroundColor: '#fcfcfc'}"/>
                 	</ScrollPane>
                 	</BoxPane>
             </Border>

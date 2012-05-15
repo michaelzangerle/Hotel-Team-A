@@ -301,14 +301,6 @@ public class ViewController implements Application {
 		}
 
 		/** insert Tests - Pat *************************************************************************/
-		// bdViewCurrentGuest.setVisible(false);
-		// bdViewCheckOut.setVisible(true);
-		//
-		// viewMain.reservationForm01.setVisible(true);
-		// viewMain.lbProgress01.setVisible(true);
-		// viewMain.lbProgress02.setVisible(true);
-		// viewMain.lbProgress03.setVisible(true);
-		// viewMain.lbProgress04.setVisible(true);
 
 		/* Tool Tipp für Steps bei Additional Service Vorgang */
 		viewMain.lbProgress01.setTooltipText("Select a room and add services");
@@ -534,7 +526,7 @@ public class ViewController implements Application {
 		List<LeistungAnzahl> services = controllerZusatzleistung.bereitsgebuchtLeistungenFuerGast();
 		if (services.size() == 0) {
 			List<String> message = new LinkedList<String>();
-			message.add("Currently no additional service found");
+			message.add("Currently no additional service booked");
 			bdViewCurrentGuest.cgf1LVBookedAdditionalServices.setListData(new ListAdapter<String>(message));
 		} else {
 			bdViewCurrentGuest.cgf1LVBookedAdditionalServices.setListData(wrapper.getZusatzleistungListAdapter(services));
