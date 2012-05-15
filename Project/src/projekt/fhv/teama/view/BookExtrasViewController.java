@@ -31,6 +31,7 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
+import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.view.support.AdditionalServicesTableRow;
 import projekt.fhv.teama.view.support.BlockingDialog;
 
@@ -52,7 +53,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		viewMain.lbProgress03.setVisible(false);
 		viewMain.lbProgress04.setVisible(false);
 		viewMain.meter.setPercentage(0.5);
-
+		
 		List<IZimmer> rooms = controller.getZimmerVonGast();
 		Wrapper wrapper = new Wrapper();
 
@@ -77,6 +78,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 	public void setTableData() throws DatabaseException, FokusException {
 		tableDataService = new ArrayList<AdditionalServicesTableRow>();
+
 		List<ILeistung> services = controller.getArtikelundZusatzleistungen();
 		List<ILeistung> curServices = new LinkedList<ILeistung>();
 		HashMap<ILeistung, Integer> curMap = new HashMap<ILeistung, Integer>();
@@ -113,6 +115,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		view.asf1TVAdditionalServices.setRowEditor(view.tableViewRowEditor);
 	}
 
+
 	public void initializeSummaryWindow() throws FokusException,
 			DatabaseException {
 
@@ -126,7 +129,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		HashMap<IZimmer, List<LeistungAnzahl>> services = controller
 				.getGebuchteLeistungen();
 
-		double amount = 0;
+		float total = 0;
 		for (Map.Entry e : services.entrySet()) {
 			IZimmer room = (IZimmer) e.getKey();
 			List<LeistungAnzahl> tempServices = (List<LeistungAnzahl>) e
@@ -135,10 +138,10 @@ public class BookExtrasViewController implements ButtonPressListener {
 			insertRowData(room.getNummer(), room.getKategorie()
 					.getBezeichnung(), tempServices);
 			for (LeistungAnzahl temp : tempServices) {
-				amount = temp.getLeistung().getPreis() * temp.getAnzahl();
+				total = temp.getLeistung().getPreis() * temp.getAnzahl();
 			}
 		}
-		view.asf2smLBTotal.setText(String.valueOf(amount));
+		view.asf2smLBTotal.setText(String.valueOf(total));
 	}
 
 	private void insertRowData(String roomNo, String roomDescription,
@@ -158,7 +161,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 				sb.append(service.getLeistung().getBezeichnung() + " "
 						+ service.getAnzahl() + ", ");
 			}
-			amount += (service.getLeistung().getPreis() * service.getAnzahl());
+			amount = amount + (service.getLeistung().getPreis() * service.getAnzahl());
 			j++;
 		}
 
@@ -341,7 +344,17 @@ public class BookExtrasViewController implements ButtonPressListener {
 	class SaveAdditionalService implements ButtonPressListener {
 
 		public void buttonPressed(Button arg0) {
-			// controller.saveLeistungen();
+			try {
+				controller.saveLeistungen();
+			} catch (FokusException e) {
+				e.printStackTrace();
+			} catch (WrongParameterException e) {
+				e.printStackTrace();
+			} catch (DatabaseException e) {
+				e.printStackTrace();
+			} catch (NotContainExeption e) {
+				e.printStackTrace();
+			}
 			exit();
 		}
 	}

@@ -168,6 +168,7 @@ public class ControllerZusatzleistungBuchen implements IControllerZusatzleistung
 			artikel=modelArtikel.getArtikel();
 			zusatzleistungen=modelZusatzleistung.getZusatzleistungen();
 		}
+		leistungen.clear();
 		
 		leistungen.addAll(artikel);
 		leistungen.addAll(zusatzleistungen);
