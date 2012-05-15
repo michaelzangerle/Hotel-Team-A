@@ -241,7 +241,8 @@ public class ControllerZusatzleistungBuchen implements IControllerZusatzleistung
 				ILeistung leistung=l.getLeistung();
 				int anzahl=l.getAnzahl();
 				IAufenthalt aufenthalt=getAufenhaltbyZimmer(z);
-				Date datum=MyLittleDate.getCurrentDate();
+				java.util.Date date=new java.util.Date();
+				Date datum=new Date(date.getTime());
 				
 				modelAufenthaltLeistung.save(leistung, aufenthalt, anzahl, datum);
 			}
