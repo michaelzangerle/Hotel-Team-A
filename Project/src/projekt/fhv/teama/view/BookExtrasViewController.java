@@ -106,7 +106,6 @@ public class BookExtrasViewController implements ButtonPressListener {
 				row.setAmount(leistung.getPreis());
 				row.setTotal("0");
 			}
-			row.setDescription("----");
 			row.setType(leistung.getBezeichnung());
 			index++;
 		}
@@ -138,7 +137,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 			insertRowData(room.getNummer(), room.getKategorie()
 					.getBezeichnung(), tempServices);
 			for (LeistungAnzahl temp : tempServices) {
-				total = temp.getLeistung().getPreis() * temp.getAnzahl();
+				total = total + (temp.getLeistung().getPreis() * temp.getAnzahl());
 			}
 		}
 		view.asf2smLBTotal.setText(String.valueOf(total));
@@ -152,14 +151,12 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 		StringBuilder sb = new StringBuilder();
 		double amount = 0;
-		int j = 0;
+		int j = 1;
 		for (LeistungAnzahl service : services) {
-			if (j == services.size()) {
-				sb.append(service.getLeistung().getBezeichnung() + " "
-						+ service.getAnzahl());
+			if (j < services.size()) {
+				sb.append(service.getAnzahl() + "x " + service.getLeistung().getBezeichnung() + ", ");
 			} else {
-				sb.append(service.getLeistung().getBezeichnung() + " "
-						+ service.getAnzahl() + ", ");
+				sb.append(service.getAnzahl() + "x " + service.getLeistung().getBezeichnung());
 			}
 			amount = amount + (service.getLeistung().getPreis() * service.getAnzahl());
 			j++;
@@ -290,7 +287,6 @@ public class BookExtrasViewController implements ButtonPressListener {
 				view.setVisible(false);
 				exit();
 			}
-
 		}
 	};
 
@@ -320,7 +316,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		}
 	};
 
-	@Override
+	
 	public void buttonPressed(Button arg0) {
 		addBookExtrasEventListener();
 		try {
@@ -400,12 +396,17 @@ public class BookExtrasViewController implements ButtonPressListener {
 		public void rowUpdated(TableView arg0, int arg1) {
 			String type = tableDataService.get(arg1).getType();
 			try {
+				int quantity = tableDataService.get(arg1).getQuantity();
 				ILeistung service = controller.getLeistungByBezeichnung(type);
-				if (tableDataService.get(arg1).getAmount() == 0) {
+				if (quantity > 99) {
+					tableDataService.get(arg1).setQuantity(0);
+					
+				} else if (tableDataService.get(arg1).getAmount() == 0) {
 					controller.removeLeistung(service);
 				} else {
-					int amount = tableDataService.get(arg1).getQuantity();
-					controller.addLeistung(service, amount);
+					controller.addLeistung(service, quantity);
+					double total = quantity * service.getPreis();
+					tableDataService.get(arg1).setTotal(String.valueOf(total));
 				}
 			} catch (DatabaseException e1) {
 				e1.printStackTrace();
