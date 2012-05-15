@@ -193,6 +193,16 @@ public class ControllerZusatzleistungBuchen implements IControllerZusatzleistung
 		{
 			if(gebuchteLeistungen.containsKey(getAktuellesZimmer()))
 			{
+				boolean istBereitsVorhanden=false;
+				for (LeistungAnzahl help : gebuchteLeistungen.get(getAktuellesZimmer())) {
+					if(help.getLeistung().equals(leistung))
+					{
+						help.setAnzahl(anzahl);
+						istBereitsVorhanden=true;
+					}
+					
+				}
+				if(!istBereitsVorhanden)
 				gebuchteLeistungen.get(getAktuellesZimmer()).add(new LeistungAnzahl(leistung, anzahl));
 			}
 			else {
