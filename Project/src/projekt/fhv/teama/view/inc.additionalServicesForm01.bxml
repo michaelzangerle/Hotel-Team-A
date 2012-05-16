@@ -9,9 +9,9 @@
 		<BoxPane  bxml:id="asf1BPBookedRooms" orientation="horizontal"  styles="{padding:4, spacing:20, fill:true}">
 		<BoxPane preferredWidth="240" orientation="vertical" styles="{ padding:{top:3, left:7, bottom:15, right:0}, spacing:15, fill:true}" >
 		 <Label bxml:id="asf1LBBookedRooms" text="Select a currently booked room" styles="$styles.libHeading" tooltipText='List shows rooms which are currently booked by the guest.' tooltipDelay="250" cursor="hand"/>
-		 <Border preferredWidth="240" preferredHeight="450" styles="$styles.bordSHS">
+		 <Border preferredWidth="240" preferredHeight="485" styles="$styles.bordSHS">
          <BoxPane preferredWidth="240" orientation="vertical" styles="{padding:4, spacing:4, backgroundColor: '#e6eff8', fill:true}">
-				 <ScrollPane preferredWidth="240"  preferredHeight="380" horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#e6eff8'}" >
+				 <ScrollPane preferredWidth="240"  preferredHeight="425" horizontalScrollBarPolicy="fill" styles="{backgroundColor: '#e6eff8'}" >
                     <ListView bxml:id="asf1LVBookedRooms" selectMode="single" cursor="hand" styles="$styles.livRoomAssign" listData="['Nr. 0145 Single room', 'Nr. 0007 Double room', 'Nr. 1000 Double room + extra bed']" />
                 	</ScrollPane>
                 	</BoxPane>
@@ -22,10 +22,10 @@
 		
 		<BoxPane orientation="vertical"  styles="{ padding:{top:3, left:7, bottom:15, right:0}, spacing:15, fill:true}">		
 		 <Label bxml:id="asf1LBAdditionalServices" text="Assign quantity and type of service to room by doubleclicking a tablerow   " styles="$styles.libHeading" tooltipText='Select room on the left and enter type and amount of service' tooltipDelay="250" cursor="hand"/>
-		 <Border preferredHeight="450" styles="$styles.bordSHS">
+		 <Border preferredHeight="485" styles="$styles.bordSHS">
          <BoxPane orientation="vertical" styles="{padding:4, spacing:4, fill:true}">
            <Label bxml:id="asf1TISelectedRoom" text="Nr. 0145 Single room - adding services: "  styles="$styles.asf1SelectedRoom" />	 		        
-           <ScrollPane preferredWidth="555" preferredHeight="380" horizontalScrollBarPolicy="fill_to_capacity"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
+           <ScrollPane preferredWidth="555" preferredHeight="425" horizontalScrollBarPolicy="fill_to_capacity"  verticalScrollBarPolicy="auto"  styles="{backgroundColor: '#e6eff8'}">
 						<TableView bxml:id="asf1TVAdditionalServices"
 							selectMode="single" cursor="hand">
 							<columns>

@@ -229,6 +229,12 @@
     	fill: 'true'
     },
     
+    bpContentHorizontalCheckOut: {
+    
+    	padding:{top:3, left:7, bottom:15, right:0},
+    	spacing:30
+    },
+    
     brdProgress: {
     
     	padding:{top:0, left:0, bottom:0, right:0},
@@ -366,7 +372,7 @@
      asf1SelectedRoom: {
   		   font: { size: "140%", bold: true },       
            horizontalAlignment:'left',
-           backgroundColor: '#e2edf8',
+           backgroundColor: '#e6eff8',
            color:'#2d4776',          
            padding:{top:5, left:5, bottom:5, right:15}       
     },
@@ -392,7 +398,15 @@
            backgroundColor: '#e2edf8',
            color:'#2d4776',          
            padding:{top:5, left:15, bottom:5, right:15}  
-    }
-    
+    },
+   cof2LBDeposit: {
+    	   font: { size: "120%", bold: false },       
+           horizontalAlignment:'left',
+           verticalAlignment:'top',
+          /* backgroundColor: '#cae6b4',*/
+           backgroundColor: '#fbe28e',
+           color:'#000000',          
+           padding:{top:10, left:10, bottom:10, right:10},
+    },
         
 }

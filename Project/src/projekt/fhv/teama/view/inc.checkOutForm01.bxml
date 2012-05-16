@@ -1,6 +1,6 @@
 <BoxPane bxml:id="bpCheckOutForm01" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk" xmlns:view="projekt.fhv.teama.view" xmlns:content="org.apache.pivot.wtk.content" xmlns:collections="org.apache.pivot.collections"
-	xmlns:support="projekt.fhv.teama.view.support" visible="true" orientation="vertical" styles="{padding:6, spacing:10, fill:true}">
+	xmlns:support="projekt.fhv.teama.view.support" visible="false" orientation="vertical" styles="{padding:6, spacing:10, fill:true}">
 	<bxml:script>
 		function concatStrings(value){ return "No.: "+ cgf1LBGuestNr.text + " " + value;}
 	</bxml:script>
@@ -9,10 +9,10 @@
 
 		<!-- Guest Data ################################################################################## -->
 		<Separator heading=" Generate invoices for guest to check-out " styles="$styles.sprHeading"/>
-		<BoxPane orientation="horizontal" styles="{ padding:{top:0, left:0, bottom:0, right:0}, spacing:30, fill:true}">
+		<BoxPane orientation="horizontal" styles="{ padding:{top:3, left:7, bottom:15, right:0}, spacing:20, fill:true}">
 		<BoxPane orientation="vertical" styles="{fill:true}">
 		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" >
-					<Label bxml:id="cof1PrimaryGuest" text="You are creating invoices for guest:" />
+					<Label bxml:id="cof1PrimaryGuest" text="You are creating invoices for guest:" styles="$styles.libHeading"  />
 					<BoxPane  styles="{padding:{top:0, left:0, bottom:0, right:0}}">
 						<TextInput bxml:id="cof1TIGuest" prompt="Guest Name" text="${concatStrings:cgf1TIName.text}" preferredWidth="446" />			
 					</BoxPane>
@@ -30,9 +30,9 @@
 					</BoxPane>
 		</BoxPane>
 		</BoxPane>
-		<BoxPane orientation="vertical" styles="{ padding:{top:32, left:0, bottom:0, right:0}, spacing:20, fill:true}">
+		<BoxPane orientation="vertical" styles="{ padding:{top:35, left:0, bottom:0, right:0}, spacing:22, fill:true}">
 		<Label bxml:id="cof1LBHeaderInvoiceItems" text="Invoice items left: " styles="$styles.cof1LBHeader"/>
-		<Label bxml:id="cof1LBStatusInvoiceItems" text="Klar " styles="$styles.cof1LBStatus" preferredHeight="150" preferredWidth="400" />			
+		<Label bxml:id="cof1LBStatusInvoiceItems" text="5000 " styles="$styles.cof1LBStatus" preferredHeight="80" preferredWidth="380" />			
 		</BoxPane>
 		</BoxPane>
 		
@@ -51,7 +51,7 @@
 			</BoxPane>
 			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
 			<PushButton bxml:id="cof1PBtnCreateInvoice" buttonData="Create Invoice" styles="$styles.btSpecial" enabled="true" />			
-		    <PushButton bxml:id="cof1PBtnNext" buttonData="Next Step" enabled="false"/>			
+		    <PushButton bxml:id="cof1PBtnNext" buttonData="Next Step" enabled="true"/>			
 			</BoxPane>
 		</TablePane.Row>
 	</TablePane>

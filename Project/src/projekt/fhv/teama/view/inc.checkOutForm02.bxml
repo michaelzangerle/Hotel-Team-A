@@ -1,0 +1,90 @@
+<BoxPane bxml:id="bpCheckOutForm02" xmlns:bxml="http://pivot.apache.org/bxml"
+	xmlns="org.apache.pivot.wtk" xmlns:view="projekt.fhv.teama.view" xmlns:content="org.apache.pivot.wtk.content" xmlns:collections="org.apache.pivot.collections"
+	xmlns:support="projekt.fhv.teama.view.support" visible="false" orientation="vertical" styles="{padding:6, spacing:10, fill:true}">
+	<bxml:script>
+		function concatStrings(value){ return "No.: "+ cgf1LBGuestNr.text + " " + value;}
+	</bxml:script>
+	<Label bxml:id="cof2GuestInfo" text="Check-Out: Return keys / remove deposit and finish check-out process"
+			styles="$styles.lbHeading1"/>
+
+		<!-- Guest Data ################################################################################## -->
+		<Separator heading=" Take back the keys and remove deposit " styles="$styles.sprHeading"/>
+		<BoxPane orientation="horizontal" styles="{ padding:{top:3, left:7, bottom:15, right:0}, spacing:25, fill:true}">
+		<BoxPane orientation="vertical" styles="{fill:true}">
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" >
+					<Label bxml:id="cof2PrimaryGuest" text="You are checking-out guest:" styles="$styles.libHeading"  />
+					<BoxPane  styles="{padding:{top:0, left:0, bottom:0, right:0}}">
+						<TextInput bxml:id="cof2TIGuest" prompt="Guest Name" text="${concatStrings:cgf1TIName.text}" preferredWidth="446" />			
+					</BoxPane>
+		</BoxPane>
+		
+		<!-- Adress ##################################################################################### -->
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" >
+					<BoxPane bxml:id="cof2BPAddress" Form.label="Address" styles="{spacing:5, fill:true}">
+						<TextInput bxml:id="cof2TIStreet" text="${cgf1TIStreet.text}" prompt="Street"/>
+						<TextInput bxml:id="cof2TICity" text="${cgf1TICity.text}" prompt="City"/>
+					</BoxPane>
+					<BoxPane styles="{fill:true}">
+						<TextInput bxml:id="cof2TICountry" text="${cgf1TICountry.text}" prompt="Country" visible="true"/>
+						<TextInput bxml:id="cof2TIZip" text="${cgf1TIZip.text}" prompt="Zip" preferredWidth="80"/>
+					</BoxPane>
+		</BoxPane>
+		</BoxPane>
+		
+	<!-- Keys, Deposit ################################################################################## -->
+		<TablePane styles="{padding:0}">
+			<columns>
+				<TablePane.Column width="400"/>
+				<TablePane.Column width="1*"/>
+			</columns>
+
+			<TablePane.Row height="1*">
+				<BoxPane  styles="{horizontalAlignment:'left', spacing:0}">
+					<BoxPane bxml:id="cof2BPKeysDeposit" orientation="horizontal" styles="{padding:0, spacing:20}">														
+						<BoxPane orientation="vertical" styles="$styles.bpContentHorizontal" >
+							<Label bxml:id="cof2LBKeysBack" text="Take back keys:" tooltipText='Take back the key for the rooms' tooltipDelay="250" cursor="hand" styles="$styles.libHeading" />
+							<Border  styles="$styles.bordSHS">
+								<BoxPane orientation="vertical" styles="{padding:4, spacing:4}">
+									<ScrollPane preferredWidth="120" preferredHeight="103" horizontalScrollBarPolicy="fill"
+										verticalScrollBarPolicy="auto" styles="{backgroundColor: '#e6eff8'}">
+										<ListView bxml:id="cof2LVHandedKeys" selectMode="multi" checkmarksEnabled="true"
+											cursor="hand" styles="$styles.livRoomAssign" listData="['Key No. 1409', 'Key No. 1509', 'Key No. 1709']"/>
+									</ScrollPane>
+								</BoxPane>
+							</Border>
+						</BoxPane>
+						<BoxPane orientation="vertical"  styles="{ padding:{top:3, left:0, bottom:0, right:0}}">
+						<Label bxml:id="cof2RemoveDeposit" text="Remove deposit:" tooltipText='Remove the deposit' tooltipDelay="250" cursor="hand" styles="{font: { size: '105%', bold: true }, padding:{top:0, left:0, bottom:12, right:0}, color: '#2a5580'}" />						
+						<Label bxml:id="cof2LBDepositNR" text="Passport Nr. 46498165445698 " styles="$styles.cof2LBDeposit" preferredHeight="90" preferredWidth="200"  />
+						<PushButton bxml:id="cof2BTRemoveDeposit" buttonData="remove now" cursor="hand" preferredWidth="200" styles="$styles.btSpecial"/>
+						</BoxPane>
+					</BoxPane>
+				</BoxPane>
+				<BoxPane  orientation="vertical" styles="{horizontalAlignment:'right',verticalAlignment:'bottom', spacing:15, fill:true, wrapText:true, padding:{top:37, left:0, bottom:0, right:0}}" >			
+				
+				</BoxPane>
+			</TablePane.Row>
+		</TablePane>
+		</BoxPane>
+		
+		<!-- Action Buttons ########################################################################### -->				
+		<Separator/>
+		
+		<TablePane styles="{padding:12}">
+		<columns>
+			<TablePane.Column width="12*"/>
+			<TablePane.Column width="420"/>
+		</columns>
+
+		<TablePane.Row height="1*">
+			<BoxPane  styles="{horizontalAlignment:'left', spacing:15}">
+			<PushButton bxml:id="cof2PBtnCancel" buttonData="Cancel"/>			
+			</BoxPane>
+			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
+		    <PushButton bxml:id="cof2PBtnBack" buttonData="Previous Step"/>
+		    <PushButton bxml:id="cof2PBtnFinishSave" buttonData="Finish and Save" enabled="false" styles="$styles.btSpecial"/>			
+			</BoxPane>
+		</TablePane.Row>
+	</TablePane>
+	
+	</BoxPane>

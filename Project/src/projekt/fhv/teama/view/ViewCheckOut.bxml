@@ -2,9 +2,9 @@
 	 Objekt auf welches dann auch seitens des Controllers zugegriffen werden kann. Die eingebundenen Includes sind dann ebenso als Objekte instanziiert.
   -->
 
-<view:ViewCheckOut bxml:id="bdViewCheckOut" xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk">
+<view:ViewCheckOut bxml:id="bdViewCheckOut" xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" visible="false" styles="{color:'#e3e3e3'}">
 <BoxPane orientation="vertical" styles="{fill:true}">
 <bxml:include src="inc.checkOutForm01.bxml" inline="true"/>	
-<!-- <bxml:include src="inc.checkOutForm02.bxml" inline="true"/> -->
+<bxml:include src="inc.checkOutForm02.bxml" inline="true"/>
 </BoxPane>
 </view:ViewCheckOut>

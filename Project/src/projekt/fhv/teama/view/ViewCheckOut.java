@@ -49,6 +49,12 @@ public class ViewCheckOut extends Border implements Bindable {
 	PushButton cof1PBtnCreateInvoice;
 	@BXML
 	PushButton cof1PBtnNext;
+	@BXML
+	PushButton cof2PBtnCancel;
+	@BXML
+	PushButton cof2PBtnFinishSave;
+	@BXML
+	PushButton cof2PBtnNext;
 
 	/* ListViews */
 	@BXML

@@ -334,6 +334,7 @@ public class ViewController implements Application {
 						viewMain.mainContent.add(bdViewCheckOut);
 						bdViewCurrentGuest.setVisible(false);
 						bdViewCheckOut.setVisible(true);
+						bdViewCheckOut.bpCheckOutForm01.setVisible(true);
 					}
 
 				});
@@ -349,10 +350,21 @@ public class ViewController implements Application {
 					}
 
 				});
+		
+		bdViewCheckOut.cof1PBtnNext.getButtonPressListeners().add(new ButtonPressListener() {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+	
+				bdViewCheckOut.bpCheckOutForm01.setVisible(false);
+				bdViewCheckOut.bpCheckOutForm02.setVisible(true);				
+			}
+		});
 
 	}
 
 	/** end insert Tests - Pat ***************************************************************************/
+	
 
 	/**
 	 * Fokus einer ausgewählten Reservierung wird dem controllerCheckIn
