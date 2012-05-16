@@ -63,6 +63,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 	}
 
 	public void exit() {
+		controller.clearLists();;
 		view.bpAdditionalServicesForm01.setVisible(true);
 		view.bpAdditionalServicesForm02.setVisible(false);
 		viewMain.tabPLeftMain.setEnabled(true);
@@ -74,6 +75,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		viewMain.lbProgress02.setVisible(true);
 		viewMain.lbProgress03.setVisible(true);
 		viewMain.lbProgress04.setVisible(true);
+		viewMain.lvGuestSearch.setSelectedIndex(0);
 	}
 
 	public void setTableData() throws DatabaseException, FokusException {
@@ -117,6 +119,8 @@ public class BookExtrasViewController implements ButtonPressListener {
 	public void initializeSummaryWindow() throws FokusException,
 			DatabaseException {
 		int length = view.asf2smTPSummary.getRows().getLength();
+		view.asf2PBtnFinish.setEnabled(true);
+		int countServices = 0;
 		view.asf2smTPSummary.getRows().remove(0, length);
 		view.asf2smServiceGuest
 				.setText("You are booking the following services for guest No. "
@@ -133,12 +137,20 @@ public class BookExtrasViewController implements ButtonPressListener {
 			IZimmer room = (IZimmer) e.getKey();
 			List<LeistungAnzahl> tempServices = (List<LeistungAnzahl>) e
 					.getValue();
-			insertRowHeader();
-			insertRowData(room.getNummer(), room.getKategorie()
-					.getBezeichnung(), tempServices);
-			for (LeistungAnzahl temp : tempServices) {
-				total = total + (temp.getLeistung().getPreis() * temp.getAnzahl());
+			
+			if (tempServices.size() != 0) {
+				insertRowHeader();
+				insertRowData(room.getNummer(), room.getKategorie()
+						.getBezeichnung(), tempServices);
+				
+				for (LeistungAnzahl temp : tempServices) {
+					total = total + (temp.getLeistung().getPreis() * temp.getAnzahl());
+					countServices++;
+				}
 			}
+		}
+		if (countServices == 0) {
+			view.asf2PBtnFinish.setEnabled(false);
 		}
 		view.asf2smLBTotal.setText(String.valueOf(total));
 	}
@@ -349,6 +361,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 			} catch (NotContainExeption e) {
 				e.printStackTrace();
 			}
+			
 			exit();
 		}
 	}
@@ -399,8 +412,9 @@ public class BookExtrasViewController implements ButtonPressListener {
 				if (quantity > 99) {
 					tableDataService.get(arg1).setQuantity(0);
 					
-				} else if (tableDataService.get(arg1).getAmount() == 0) {
+				} else if (quantity == 0) {
 					controller.removeLeistung(service);
+					tableDataService.get(arg1).setTotal("0");
 				} else {
 					controller.addLeistung(service, quantity);
 					double total = quantity * service.getPreis();

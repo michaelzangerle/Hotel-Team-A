@@ -44,7 +44,6 @@ public class ModelAufenthaltLeistung implements IModelAufenhaltLeistung {
 		
 		List<LeistungAnzahl> erg=new Vector<LeistungAnzahl>();
 		
-		if(list.size()<1)
 		list = new Vector<IAufenthaltLeistung>(aufenthaltLeistungDao.getAll());
 		
 		for (IAufenthaltLeistung auflei : list) {

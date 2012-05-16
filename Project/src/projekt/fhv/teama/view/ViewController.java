@@ -1,6 +1,7 @@
 package projekt.fhv.teama.view;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -27,6 +28,7 @@ import org.apache.pivot.wtk.TabPaneSelectionListener;
 
 import projekt.fhv.teama.classes.AufenthaltLeistung;
 import projekt.fhv.teama.classes.IAufenthalt;
+import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
@@ -541,7 +543,17 @@ public class ViewController implements Application {
 			message.add("Currently no additional service booked");
 			bdViewCurrentGuest.cgf1LVBookedAdditionalServices.setListData(new ListAdapter<String>(message));
 		} else {
-			bdViewCurrentGuest.cgf1LVBookedAdditionalServices.setListData(wrapper.getZusatzleistungListAdapter(services));
+			HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
+			for (LeistungAnzahl temp : services) {
+				if (temp != null) {
+					int menge = temp.getAnzahl();
+					if (tempMap.containsKey(temp.getLeistung().getBezeichnung())) {
+						 menge = tempMap.get(temp.getLeistung().getBezeichnung()) + temp.getAnzahl();
+					}
+					tempMap.put(temp.getLeistung().getBezeichnung(), menge);
+				}
+			}
+			bdViewCurrentGuest.cgf1LVBookedAdditionalServices.setListData(wrapper.getZusatzleistungListAdapter(tempMap));
 		}
 	}
 

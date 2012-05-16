@@ -47,12 +47,14 @@
 			<column name="pfandTypID" />
 		</many-to-one>
 
+		
+
 		<set name="leistungen" table="aufenthaltleistung" lazy="false">
 			<key>
 				<column name="aufenthaltID" />
 			</key>
 			<one-to-many class="projekt.fhv.teama.classes.AufenthaltLeistung" />
-		</set>
+		</set>	
 
 		<many-to-one name="paket"
 			class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" fetch="join" lazy="false">

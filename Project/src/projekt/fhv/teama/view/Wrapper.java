@@ -4,8 +4,10 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import org.apache.pivot.collections.adapter.ListAdapter;
@@ -168,10 +170,10 @@ public class Wrapper {
 		return new ListAdapter<String>(curPfandTypen);
 	}
 	
-	public ListAdapter<String> getZusatzleistungListAdapter(List<LeistungAnzahl> services) {
+	public ListAdapter<String> getZusatzleistungListAdapter(HashMap<String, Integer> services) {
 		LinkedList<String> curZusatzleistungen = new LinkedList<String>();
-		for (LeistungAnzahl la : services) {
-			curZusatzleistungen.add(la.getAnzahl() + "x " + la.getLeistung().getBezeichnung());
+		for (Map.Entry e : services.entrySet()) {
+			curZusatzleistungen.add(e.getValue() + "x " + e.getKey());
 		}
 		return new ListAdapter<String>(curZusatzleistungen);
 	}

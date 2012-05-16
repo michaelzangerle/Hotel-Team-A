@@ -14,7 +14,7 @@
             <column name="LEISTUNGID" />
         </many-to-one>
         
-        <many-to-one name="aufenthalt" class="projekt.fhv.teama.classes.Aufenthalt" fetch="join" lazy="false">
+        <many-to-one name="aufenthalt" class="projekt.fhv.teama.classes.Aufenthalt" fetch="join">
             <column name="AUFENTHALTID" />
         </many-to-one>
         

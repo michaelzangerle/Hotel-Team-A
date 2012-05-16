@@ -3,6 +3,7 @@ package projekt.fhv.teama.controller.usecasecontroller;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.IAufenthalt;
@@ -31,9 +32,11 @@ import projekt.fhv.teama.model.interfaces.IModelLeistung;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
 import projekt.fhv.teama.model.interfaces.IModelZusatzleistung;
 
-public class ControllerZusatzleistungBuchen implements IControllerZusatzleistungBuchen {
-	
-	//ModelRespositorys
+public class ControllerZusatzleistungBuchen
+		implements
+			IControllerZusatzleistungBuchen {
+
+	// ModelRespositorys
 	private IModelAufenthalt modelAufenthalt;
 	private IModelGast modelGast;
 	private IModelLeistung modelLeistung;
@@ -41,72 +44,65 @@ public class ControllerZusatzleistungBuchen implements IControllerZusatzleistung
 	private IModelZusatzleistung modelZusatzleistung;
 	private IModelZimmer modelZimmer;
 	private IModelAufenhaltLeistung modelAufenthaltLeistung;
-	
-	
+
 	public ControllerZusatzleistungBuchen() {
-		modelArtikel=new ModelArtikel();
-		modelAufenthalt=new ModelAufenthalt();
-		modelLeistung=new ModelLeistung();
-		modelZusatzleistung=new ModelZusatzleistung();
-		modelGast=new ModelGast();
-		modelZimmer=new ModelZimmer();
-		modelAufenthaltLeistung=new ModelAufenthaltLeistung();
+		modelArtikel = new ModelArtikel();
+		modelAufenthalt = new ModelAufenthalt();
+		modelLeistung = new ModelLeistung();
+		modelZusatzleistung = new ModelZusatzleistung();
+		modelGast = new ModelGast();
+		modelZimmer = new ModelZimmer();
+		modelAufenthaltLeistung = new ModelAufenthaltLeistung();
 	}
-	
-	
-	private List<IAufenthalt> aufenthalte=new Vector<IAufenthalt>();
-	
-	private List<ILeistung> artikel=new Vector<ILeistung>();
-	private List<ILeistung> zusatzleistungen=new Vector<ILeistung>();
-	private List<ILeistung> leistungen=new Vector<ILeistung>();
-	
-	private HashMap<IZimmer, List<LeistungAnzahl>> gebuchteLeistungen=new HashMap<IZimmer, List<LeistungAnzahl>>();
 
+	private List<IAufenthalt> aufenthalte = new Vector<IAufenthalt>();
 
-	public List<IAufenthalt> getAufenthalte() throws DatabaseException
-	{
-		if(aufenthalte.size()>0)
+	private List<ILeistung> artikel = new Vector<ILeistung>();
+	private List<ILeistung> zusatzleistungen = new Vector<ILeistung>();
+	private List<ILeistung> leistungen = new Vector<ILeistung>();
+
+	private HashMap<IZimmer, List<LeistungAnzahl>> gebuchteLeistungen = new HashMap<IZimmer, List<LeistungAnzahl>>();
+	private HashMap<IGast, List<LeistungAnzahl>> bereitsgebuchteLeistungen = new HashMap<IGast, List<LeistungAnzahl>>();
+	private boolean needReload = true;
+
+	public List<IAufenthalt> getAufenthalte() throws DatabaseException {
+		if (aufenthalte.size() > 0)
 			return aufenthalte;
-		else
-		{
-			aufenthalte=modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 3, 25));
+		else {
+			aufenthalte = modelAufenthalt.getAufenthalte(MyLittleDate.getDate(
+					2012, 3, 25));
 			return aufenthalte;
 		}
 	}
-	
-	
-	public List<IGast> getGaesteVonAuftenhalten() throws DatabaseException
-	{
-		if(aufenthalte.size()<1)
-		{
+
+	public List<IGast> getGaesteVonAuftenhalten() throws DatabaseException {
+		if (aufenthalte.size() < 1) {
 			aufenthalte.clear();
 			getAufenthalte();
 		}
-		List<IGast> gaeste=new Vector<IGast>();
+		List<IGast> gaeste = new Vector<IGast>();
 		for (IAufenthalt aufenthalt : aufenthalte) {
-			if(!gaeste.contains(aufenthalt.getGast())&&aufenthalt.getGast()!=null)
-					gaeste.add(aufenthalt.getGast());
+			if (!gaeste.contains(aufenthalt.getGast())
+					&& aufenthalt.getGast() != null)
+				gaeste.add(aufenthalt.getGast());
 		}
-			return gaeste;
-			
+		return gaeste;
+
 	}
-	
-	
-	public List<IGast> getGaesteZumAufenhalt() throws FokusException
-	{
+
+	public List<IGast> getGaesteZumAufenhalt() throws FokusException {
 		return modelAufenthalt.getGaesteZumAufenhalt();
 	}
-	
-	public void setAufenthalt(IAufenthalt aufenhalt) throws EmptyParameterException
-	{
+
+	public void setAufenthalt(IAufenthalt aufenhalt)
+			throws EmptyParameterException {
 		modelAufenthalt.setAufenthalt(aufenhalt);
 	}
-	
-	public IAufenthalt getAufenthalt() throws FokusException
-	{
+
+	public IAufenthalt getAufenthalt() throws FokusException {
 		return modelAufenthalt.getAufenthalt();
 	}
-	
+
 	public void setGast(IGast gast) {
 		modelGast.setAktuellGast(gast);
 	}
@@ -114,200 +110,205 @@ public class ControllerZusatzleistungBuchen implements IControllerZusatzleistung
 	public IGast getGast() throws FokusException {
 		return modelGast.getAktuellGast();
 	}
-	
-	public IZimmer getZimmerByNummer(String nummer) throws EmptyParameterException, DatabaseException, FokusException {
+
+	public IZimmer getZimmerByNummer(String nummer)
+			throws EmptyParameterException, DatabaseException, FokusException {
 		if (nummer == null)
 			throw new EmptyParameterException();
-		
+
 		if (aufenthalte.size() <= 0)
 			getAufenthalte();
-		
+
 		for (IAufenthalt aufenthalt : aufenthalte) {
-			if (aufenthalt.getGast().equals(getGast())&&aufenthalt.getZimmer()!=null && aufenthalt.getZimmer().getNummer().equals(nummer)) {
+			if (aufenthalt.getGast().equals(getGast())
+					&& aufenthalt.getZimmer() != null
+					&& aufenthalt.getZimmer().getNummer().equals(nummer)) {
 				return aufenthalt.getZimmer();
 			}
 		}
 		return null;
 	}
-	
-	public List<IZimmer> getZimmerVonGast() throws FokusException, DatabaseException
-	{
-		List<IZimmer> zimmers=new Vector<IZimmer>();
-		if(aufenthalte.size()<=0)
+
+	public List<IZimmer> getZimmerVonGast() throws FokusException,
+			DatabaseException {
+		List<IZimmer> zimmers = new Vector<IZimmer>();
+		if (aufenthalte.size() <= 0)
 			getAufenthalte();
-		
+
 		for (IAufenthalt aufenthalt : aufenthalte) {
-			if(aufenthalt.getGast().equals(getGast())&&aufenthalt.getZimmer()!=null)
+			if (aufenthalt.getGast().equals(getGast())
+					&& aufenthalt.getZimmer() != null)
 				zimmers.add(aufenthalt.getZimmer());
 		}
-		
+
 		return zimmers;
 	}
-	
-	public IGast getGastByNummer(String nummer) throws DatabaseException, EmptyParameterException, NotContainExeption
-	{
-		if(nummer==null)
+
+	public IGast getGastByNummer(String nummer) throws DatabaseException,
+			EmptyParameterException, NotContainExeption {
+		if (nummer == null)
 			throw new EmptyParameterException();
-		
-		if(aufenthalte.size()<=0)
+
+		if (aufenthalte.size() <= 0)
 			getAufenthalte();
-		
+
 		for (IAufenthalt aufenthalt : aufenthalte) {
-			if(aufenthalt.getGast().getNummer().equals(nummer))
+			if (aufenthalt.getGast().getNummer().equals(nummer))
 				return aufenthalt.getGast();
 		}
-		
+
 		throw new NotContainExeption();
-		
+
 	}
-	
-	
-	public List<ILeistung> getArtikelundZusatzleistungen() throws DatabaseException
-	{
-		if(artikel.size()<=0 ||zusatzleistungen.size()<=0)
-		{
-			artikel=modelArtikel.getArtikel();
-			zusatzleistungen=modelZusatzleistung.getZusatzleistungen();
+
+	public List<ILeistung> getArtikelundZusatzleistungen()
+			throws DatabaseException {
+		if (artikel.size() <= 0 || zusatzleistungen.size() <= 0) {
+			artikel = modelArtikel.getArtikel();
+			zusatzleistungen = modelZusatzleistung.getZusatzleistungen();
 		}
 		leistungen.clear();
-		
+
 		leistungen.addAll(artikel);
 		leistungen.addAll(zusatzleistungen);
-		
+
 		return leistungen;
-		
+
 	}
-	
-	public void setAktuellesZimmer(IZimmer zimmer) throws EmptyParameterException
-	{
+
+	public void setAktuellesZimmer(IZimmer zimmer)
+			throws EmptyParameterException {
 		modelZimmer.setAktullesZimmer(zimmer);
-		
+
 	}
-	
-	public IZimmer getAktuellesZimmer() throws FokusException
-	{
+
+	public IZimmer getAktuellesZimmer() throws FokusException {
 		return modelZimmer.getAktullesZimmer();
 	}
-	
-	public void addLeistung(ILeistung leistung,int anzahl) throws FokusException, EmptyParameterException
-	{
-		if(leistung!=null && anzahl>0)
-		{
-			if(gebuchteLeistungen.containsKey(getAktuellesZimmer()))
-			{
-				boolean istBereitsVorhanden=false;
-				for (LeistungAnzahl help : gebuchteLeistungen.get(getAktuellesZimmer())) {
-					if(help.getLeistung().equals(leistung))
-					{
+
+	public void addLeistung(ILeistung leistung, int anzahl)
+			throws FokusException, EmptyParameterException {
+		if (leistung != null && anzahl > 0) {
+			if (gebuchteLeistungen.containsKey(getAktuellesZimmer())) {
+				boolean istBereitsVorhanden = false;
+				for (LeistungAnzahl help : gebuchteLeistungen
+						.get(getAktuellesZimmer())) {
+					if (help.getLeistung().equals(leistung)) {
 						help.setAnzahl(anzahl);
-						istBereitsVorhanden=true;
+						istBereitsVorhanden = true;
 					}
-					
+
 				}
-				if(!istBereitsVorhanden)
-				gebuchteLeistungen.get(getAktuellesZimmer()).add(new LeistungAnzahl(leistung, anzahl));
-			}
-			else {
-				List<LeistungAnzahl> l=new Vector<LeistungAnzahl>();
+				if (!istBereitsVorhanden)
+					gebuchteLeistungen.get(getAktuellesZimmer()).add(
+							new LeistungAnzahl(leistung, anzahl));
+			} else {
+				List<LeistungAnzahl> l = new Vector<LeistungAnzahl>();
 				l.add(new LeistungAnzahl(leistung, anzahl));
 				gebuchteLeistungen.put(getAktuellesZimmer(), l);
 			}
-		} 
-		else {
+		} else {
 			throw new EmptyParameterException();
 		}
-		
-		
+
 	}
-	
-	public void removeLeistung(ILeistung leistung) throws FokusException, EmptyParameterException
-	{
-		if(leistung!=null)
-		{
-			if(gebuchteLeistungen.containsKey(getAktuellesZimmer()) && gebuchteLeistungen.get(getAktuellesZimmer()).contains(leistung))
-			{
-				gebuchteLeistungen.get(getAktuellesZimmer()).remove(leistung);
-			}
-			else {
+
+	public void removeLeistung(ILeistung leistung) throws FokusException,
+			EmptyParameterException {
+		if (leistung != null) {
+			if (gebuchteLeistungen.containsKey(getAktuellesZimmer())) {
+				for (LeistungAnzahl help : gebuchteLeistungen
+						.get(getAktuellesZimmer())) {
+					if (help.getLeistung().equals(leistung)) {
+						gebuchteLeistungen.get(getAktuellesZimmer()).remove(
+								help);
+						break;
+					}
+
+				}
+			} else {
 				throw new FokusException();
 			}
-		}
-		else {
+		} else {
 			throw new EmptyParameterException();
 		}
 	}
-	
-	public HashMap<IZimmer, List<LeistungAnzahl>> getGebuchteLeistungen()
-	{
+
+	public HashMap<IZimmer, List<LeistungAnzahl>> getGebuchteLeistungen() {
 		return gebuchteLeistungen;
 	}
-	
-	
-	public void saveLeistungen() throws FokusException, WrongParameterException, DatabaseException, NotContainExeption
-	{
+
+	public void saveLeistungen() throws FokusException,
+			WrongParameterException, DatabaseException, NotContainExeption {
 		for (IZimmer z : gebuchteLeistungen.keySet()) {
-			
+
 			for (LeistungAnzahl l : gebuchteLeistungen.get(z)) {
-				
-				ILeistung leistung=l.getLeistung();
-				int anzahl=l.getAnzahl();
-				IAufenthalt aufenthalt=getAufenhaltbyZimmer(z);
-				java.util.Date date=new java.util.Date();
-				Date datum=new Date(date.getTime());
-				
-				modelAufenthaltLeistung.save(leistung, aufenthalt, anzahl, datum);
+
+				ILeistung leistung = l.getLeistung();
+				int anzahl = l.getAnzahl();
+				IAufenthalt aufenthalt = getAufenhaltbyZimmer(z);
+				java.util.Date date = new java.util.Date();
+				Date datum = new Date(date.getTime());
+
+				modelAufenthaltLeistung.save(leistung, aufenthalt, anzahl,
+						datum);
 			}
 		}
+		needReload = true;
 	}
-	
-	public ILeistung getLeistungByBezeichnung(String bez) throws DatabaseException, NotContainExeption
-	{
-		if(leistungen.size()<1)
-		{
+
+	public ILeistung getLeistungByBezeichnung(String bez)
+			throws DatabaseException, NotContainExeption {
+		if (leistungen.size() < 1) {
 			getArtikelundZusatzleistungen();
 		}
-		
+
 		for (ILeistung leistung : leistungen) {
-			if(leistung.getBezeichnung().equals(bez))
+			if (leistung.getBezeichnung().equals(bez))
 				return leistung;
 		}
-		
+
 		throw new NotContainExeption();
 	}
 
-	
-	private IAufenthalt getAufenhaltbyZimmer(IZimmer zimmer) throws FokusException, NotContainExeption
-	{
+	private IAufenthalt getAufenhaltbyZimmer(IZimmer zimmer)
+			throws FokusException, NotContainExeption {
 		for (IAufenthalt auf : aufenthalte) {
-			
-			if(auf.getGast().equals(getGast())&&auf.getZimmer().equals(zimmer))
+
+			if (auf.getGast().equals(getGast())
+					&& auf.getZimmer().equals(zimmer))
 				return auf;
 		}
-		
-		throw new NotContainExeption();		
-		
+
+		throw new NotContainExeption();
+
 	}
-	
-	public List<LeistungAnzahl> bereitsgebuchtLeistungenFuerGast() throws DatabaseException, FokusException
-	{
-		
-		if(aufenthalte.size()<1)
+
+	public List<LeistungAnzahl> bereitsgebuchtLeistungenFuerGast()
+			throws DatabaseException, FokusException {
+
+		if (aufenthalte.size() < 1)
 			getAufenthalt();
-	
-		List<LeistungAnzahl> erg=new Vector<LeistungAnzahl>();
-		for (IAufenthalt auf : aufenthalte) {
-			if(auf.getGast().equals(getGast()))
-			erg.addAll(modelAufenthaltLeistung.getLeistungenByAufenhalt(auf));
+
+		List<LeistungAnzahl> erg = new Vector<LeistungAnzahl>();
+
+		if (!needReload && bereitsgebuchteLeistungen.containsKey(getGast())) {
+			erg.addAll(bereitsgebuchteLeistungen.get(getGast()));
+		} else {
+			for (IAufenthalt auf : aufenthalte) {
+				if (auf.getGast().getID() == getGast().getID())
+					erg.addAll(modelAufenthaltLeistung
+							.getLeistungenByAufenhalt(auf));
+			}
+			bereitsgebuchteLeistungen.put(getGast(), erg);
 		}
-		
+
 		return erg;
-		
-		
+
 	}
 
-
-	
-	
-	
+	public void clearLists() {
+		this.gebuchteLeistungen = new HashMap<IZimmer, List<LeistungAnzahl>>();
+	}
 
 }

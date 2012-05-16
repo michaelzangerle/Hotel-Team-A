@@ -418,6 +418,10 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.checkInForm03.setVisible(false);
 		viewMain.checkInForm04.setVisible(false);
 		viewMain.progress.setVisible(false);
+		viewMain.lbProgress01.setVisible(false);
+		viewMain.lbProgress02.setVisible(false);
+		viewMain.lbProgress03.setVisible(false);
+		viewMain.lbProgress04.setVisible(false);
 		viewMain.meter.setPercentage(0.25);
 		viewMain.reservationForm01.setVisible(true);
 		viewMain.tabPLeftMain.setEnabled(true);
