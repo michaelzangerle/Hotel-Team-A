@@ -1,5 +1,8 @@
 package projekt.fhv.teama.view;
 
+import java.awt.Color;
+import java.util.List;
+
 import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.wtk.Action;
 import org.apache.pivot.wtk.Alert;
@@ -9,34 +12,99 @@ import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.ComponentMouseButtonListener;
 import org.apache.pivot.wtk.Dialog;
 import org.apache.pivot.wtk.MessageType;
+import org.hibernate.id.IdentityGenerator.GetGeneratedKeysDelegate;
 
+import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckOut;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.view.invoice.ViewInvoice;
 import projekt.fhv.teama.view.support.BlockingDialog;
 
+
+/**
+ * 
+ * @author Team A
+ *
+ */
 public class CheckOutViewController implements ButtonPressListener {
 	private ViewCheckOut view; 
 	private ViewMain viewMain;
 	private ViewCurrentGuest viewGuest;
 	private ControllerCheckOut controller;
+	private ViewInvoice viewInvoice;
+	
+
+	/**
+	 * Hier wird der usecase Rechnung erstellen von Team B aufgerufen
+	 */
+	class CreateInvoiceListener implements ButtonPressListener{
+		public void buttonPressed(Button arg0) {
+//			viewInvoice = new ViewInvoice();		//neuer Frame für den Rechnungserstellungs- Usecase wird erstellt
+			controller.aufrufenRechnungErstellen();
+		}
+	}
+	
+	class FinishCheckOutListener implements ButtonPressListener {
+		public void buttonPressed(Button arg0) {
+			if (controller.offeneRechnungspositionenVorhanden()) {
+				BlockingDialog bd = new BlockingDialog();
+				bd.setContent(new Alert(MessageType.WARNING,
+						"All invoice line items must be paid",
+						new ArrayList<String>("OK")));
+				bd.open(view.getDisplay());
+			}
+			controller.save();
+		}
+		
+	}
+	
 	
 	public void buttonPressed(Button arg0) {
-		initialize();
+		try {
+			initialize();
+			addCheckOutEventListener();
+			setHandedKeysTable();
+			setDeposit();
+		} catch (FokusException e) {
+			e.printStackTrace();
+			exit();
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+			exit();
+		}
 	}
+	
+	public void setDeposit() throws DatabaseException {
+		List<IAufenthalt> aufenthalte = controller.getAufenthalte();
+		IAufenthalt aufenthalt = aufenthalte.get(0);
+		String bezeichnung = aufenthalt.getPfandtyp().getBezeichnung();
+		String nummer = aufenthalt.getPfandNr();
+		view.cof2LBDepositNr.setText("Pfand: " + bezeichnung + " Nummer: " + nummer);
+	}
+	
+	public void setHandedKeysTable () throws FokusException, DatabaseException {
+		Wrapper wrapper = new Wrapper();
+		view.cof2LVHandedKeys.setListData(wrapper.getKeyListAdapter(controller.getZimmerVonGast()));
+	}
+	
 
-	private void initialize() {
+	private void initialize() throws FokusException {
 		viewMain.tabPLeftMain.setEnabled(false);
 		viewMain.lvGuestSearch.setEnabled(false);
 		viewGuest.setVisible(false);
 		view.setVisible(true);
+		view.bpCheckOutForm01.setVisible(true);
 		viewMain.progress.setVisible(true);
 		viewMain.lbProgress01.setVisible(true);
 		viewMain.lbProgress02.setVisible(true);
 		viewMain.lbProgress03.setVisible(false);
 		viewMain.lbProgress04.setVisible(false);
+		viewMain.lbProgress01
+		.setTooltipText("Generate Invoices for the guest");
+		viewMain.lbProgress02
+		.setTooltipText("Take back room-keys and remove deposit");
 		viewMain.meter.setPercentage(0.5);
-		addCheckOutEventListener();
 	}
 	
 	private void exit () {
@@ -45,10 +113,14 @@ public class CheckOutViewController implements ButtonPressListener {
 		view.setVisible(false);
 		viewGuest.setVisible(true);
 		viewMain.progress.setVisible(false);
-		viewMain.lbProgress01.setVisible(true);
-		viewMain.lbProgress02.setVisible(true);
-		viewMain.lbProgress03.setVisible(true);
-		viewMain.lbProgress04.setVisible(true);
+		viewMain.lbProgress01
+		.setTooltipText("");
+		viewMain.lbProgress02
+		.setTooltipText("");
+		viewMain.lbProgress01.setVisible(false);
+		viewMain.lbProgress02.setVisible(false);
+		viewMain.lbProgress03.setVisible(false);
+		viewMain.lbProgress04.setVisible(false);
 		viewMain.meter.setPercentage(0.5);
 	}
 	
@@ -57,7 +129,7 @@ public class CheckOutViewController implements ButtonPressListener {
 			public boolean mouseClick(Component arg0,
 					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
 					int arg4) {
-//				view.bpCheckOutForm02.setVisible(false);
+				view.bpCheckOutForm02.setVisible(false);
 				view.bpCheckOutForm01.setVisible(true);
 				viewMain.meter.setPercentage(0.5);
 				return false;
@@ -76,7 +148,7 @@ public class CheckOutViewController implements ButtonPressListener {
 					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
 				viewMain.meter.setPercentage(1);
 				view.bpCheckOutForm01.setVisible(false);
-//				view.bpCheckOutForm02.setVisible(true);
+				view.bpCheckOutForm02.setVisible(true);
 				return false;
 			}
 			public boolean mouseDown(Component arg0,
@@ -90,8 +162,23 @@ public class CheckOutViewController implements ButtonPressListener {
 			}
 		});
 		view.cof1PBtnCancel.setAction(cancel);
+		view.cof2PBtnCancel.setAction(cancel);
 		view.cof1PBtnNext.setAction(gotoStep);
+		view.cof2PBtnBack.setAction(gotoStep);
+		view.setcof1PBtnCreateInvoiceListener(new CreateInvoiceListener());
+		view.setcof2BTRemoveDepositListener(new ButtonPressListener() {
+
+			@Override
+			public void buttonPressed(Button arg0) {
+				view.cof2LBDepositNr.setText("");
+				view.cof2LBDepositNr.getStyles().put("backgroundColor", Color.GREEN);
+				
+			}
+			
+		});
+		view.setcof2PBtnFinishSaveListener(new FinishCheckOutListener());
 	}
+	
 
 	Action cancel = new Action(true) {
 		@Override
@@ -106,8 +193,8 @@ public class CheckOutViewController implements ButtonPressListener {
 			int i = ((Alert) erg).getSelectedOptionIndex();
 
 			if (erg.getResult() && i == 0) {
-				view.bpCheckOutForm01.setVisible(true);
-//				view.bpCheckOutForm02.setVisible(false);
+				view.bpCheckOutForm01.setVisible(false);
+				view.bpCheckOutForm02.setVisible(false);
 				view.setVisible(false);
 				exit();
 			}
@@ -118,8 +205,8 @@ public class CheckOutViewController implements ButtonPressListener {
 		@Override
 		public void perform(Component source) {
 			if (source.getName().equals("lbProgress01")
-					|| source.getName().equals("asf2PBtnBack")) {
-//				view.bpCheckOutForm02.setVisible(false);
+					|| source.getName().equals("cof2PBtnBack")) {
+				view.bpCheckOutForm02.setVisible(false);
 				view.bpCheckOutForm01.setVisible(true);
 				viewMain.meter.setPercentage(0.5);
 			}
@@ -128,15 +215,15 @@ public class CheckOutViewController implements ButtonPressListener {
 					|| source.getName().equals("cof1PBtnNext")) {
 				viewMain.meter.setPercentage(1);
 				view.bpCheckOutForm01.setVisible(false);
-//				view.bpCheckOutForm02.setVisible(true);
+				view.bpCheckOutForm02.setVisible(true);
 			}
 		}
 	};
 	
-	public CheckOutViewController(ViewCheckOut view, ViewMain viewMain, ViewCurrentGuest viewGuest) {
+	public CheckOutViewController(ViewCheckOut view, ViewMain viewMain, ViewCurrentGuest viewGuest, ControllerCheckOut controllerCheckOut) {
 		this.view = view;
 		this.viewMain = viewMain;
 		this.viewGuest = viewGuest;
-		this.controller = new ControllerCheckOut();
+		this.controller = controllerCheckOut;
 	}
 }

@@ -36,12 +36,10 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		modelAufenthalt = new ModelAufenthalt();
 	}
 
-	@Override
 	public void setGast(IGast gast) {
 		modelGast.setAktuellGast(gast);
 	}
 
-	@Override
 	public IGast getGast() throws FokusException {
 		return modelGast.getAktuellGast();
 	}
@@ -61,18 +59,15 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		return gaeste;
 	}
 
-	@Override
 	public void setAufenthalt(IAufenthalt aufenhalt)
 			throws EmptyParameterException {
 		modelAufenthalt.setAufenthalt(aufenhalt);
 	}
 
-	@Override
 	public IAufenthalt getAufenthalt() throws FokusException {
 		return modelAufenthalt.getAufenthalt();
 	}
 
-	@Override
 	public List<IAufenthalt> getAufenthalte() throws DatabaseException {
 		if (aufenthalte.size() > 0) {
 			return aufenthalte;
@@ -83,7 +78,6 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		}
 	}
 
-	@Override
 	public List<IZimmer> getZimmerVonGast() throws FokusException,
 			DatabaseException {
 
@@ -94,7 +88,7 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		}
 
 		for (IAufenthalt aufenthalt : aufenthalte) {
-			if (aufenthalt.getGast().equals(getGast()) && aufenthalt.getZimmer() != null)
+			if (aufenthalt.getGast().equals(getGast()) && aufenthalt.getZimmer() != null) 
 				zimmers.add(aufenthalt.getZimmer());
 		}
 		return zimmers;
@@ -113,7 +107,7 @@ public class ControllerCheckOut implements IControllerCheckOut {
 	 * @see projekt.fhv.teama.controller.usecasecontroller.IControllerCheckOut#
 	 * offeneRechnungspositionenVorhanden()
 	 */
-	@Override
+
 	public boolean offeneRechnungspositionenVorhanden() {
 		// TODO Offene Rechnungspositionen noch vorhanden sind
 		return false;
@@ -126,7 +120,7 @@ public class ControllerCheckOut implements IControllerCheckOut {
 	 * @see
 	 * projekt.fhv.teama.controller.usecasecontroller.IControllerCheckOut#save()
 	 */
-	@Override
+
 	public void save() {
 		// TODO Speichern des Check Out Vorganges(Schlüssel rückgabe etc)
 	}

@@ -53,13 +53,17 @@ public class BookExtrasViewController implements ButtonPressListener {
 		viewMain.lbProgress03.setVisible(false);
 		viewMain.lbProgress04.setVisible(false);
 		viewMain.meter.setPercentage(0.5);
+		viewMain.lbProgress01.setTooltipText("Select a room and add services");
+		viewMain.lbProgress02
+				.setTooltipText("Check the overview of the booked services and finish the process by saving");
+		viewMain.meter.getStyles().put("gridFrequency", "0.5");
 		
 		List<IZimmer> rooms = controller.getZimmerVonGast();
 		Wrapper wrapper = new Wrapper();
 
 		view.asf1LVBookedRooms.setListData(wrapper
 				.getZimmerWithoutPriceListAdapter(rooms));
-		view.asf1LVBookedRooms.setSelectedIndex(0);
+		
 	}
 
 	public void exit() {
@@ -100,7 +104,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 			AdditionalServicesTableRow row = tableDataService.get(index);
 			if (curServices.contains(leistung)) {
 				row.setQuantity(curMap.get(leistung));
-				row.setAmount(leistung.getPreis());
+				row.setAmount(String.valueOf(leistung.getPreis()));
 				double total = curMap.get(leistung) * leistung.getPreis();
 				row.setTotal(String.valueOf(total));
 			} else {
@@ -328,14 +332,16 @@ public class BookExtrasViewController implements ButtonPressListener {
 	};
 
 	public void buttonPressed(Button arg0) {
-		addBookExtrasEventListener();
+		
 		try {
 			initialize();
+			addBookExtrasEventListener();
+			view.asf1LVBookedRooms.setSelectedIndex(0);
 		} catch (FokusException e) {
-			e.printStackTrace();
+			exit();
 		} catch (DatabaseException e) {
-			e.printStackTrace();
-		}
+			exit();
+		} 
 	}
 
 	public BookExtrasViewController(ViewAdditionalServices view,
@@ -406,10 +412,10 @@ public class BookExtrasViewController implements ButtonPressListener {
 		@Override
 		public void rowUpdated(TableView arg0, int arg1) {
 			String type = tableDataService.get(arg1).getType();
+			int quantity = tableDataService.get(arg1).getQuantity();
 			try {
-				int quantity = tableDataService.get(arg1).getQuantity();
 				ILeistung service = controller.getLeistungByBezeichnung(type);
-				if (quantity > 99) {
+				if (quantity > 999) {
 					tableDataService.get(arg1).setQuantity(0);
 					
 				} else if (quantity == 0) {
@@ -421,7 +427,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 					tableDataService.get(arg1).setTotal(String.valueOf(total));
 				}
 			} catch (DatabaseException e1) {
-				e1.printStackTrace();
+				
 			} catch (NotContainExeption e1) {
 			} catch (FokusException e) {
 			} catch (EmptyParameterException e) {
@@ -438,6 +444,8 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 		@Override
 		public void rowsSorted(TableView arg0) {
+			System.out.println("asdf");
+			System.out.println(arg0.getRowAt(1));
 		}
 	}
 }

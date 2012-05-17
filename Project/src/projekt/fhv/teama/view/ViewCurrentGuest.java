@@ -98,7 +98,7 @@ public class ViewCurrentGuest extends Border implements Bindable {
 	    }
 	    
 	    public void setcgf1PBtnCheckOutListener (ButtonPressListener e) {
-	    	cgf1PBtnBookExtras.getButtonPressListeners().add(e);
+	    	cgf1PBtnCheckOut.getButtonPressListeners().add(e);
 	    }
 	    
 }

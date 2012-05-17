@@ -8,12 +8,10 @@ import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.Border;
 import org.apache.pivot.wtk.BoxPane;
-import org.apache.pivot.wtk.Form;
+import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.Label;
-import org.apache.pivot.wtk.ListButton;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.PushButton;
-import org.apache.pivot.wtk.TablePane;
 import org.apache.pivot.wtk.TableView;
 import org.apache.pivot.wtk.TextInput;
 
@@ -54,19 +52,37 @@ public class ViewCheckOut extends Border implements Bindable {
 	@BXML
 	PushButton cof2PBtnFinishSave;
 	@BXML
-	PushButton cof2PBtnNext;
-
+	PushButton cof2PBtnBack;
+	@BXML
+	PushButton cof2BTRemoveDeposit;
+	
 	/* ListViews */
 	@BXML
-	ListView asf1LVBookedRooms;
+	ListView asf1LVBookedRooms; 
+	@BXML 
+	ListView cof2LVHandedKeys;
 
 	/* TableViews */
 	@BXML
 	TableView asf1TVAdditionalServices;
 	
+	/* Labels */
+	@BXML
+	Label cof2LBDepositNr;
 	
 	    @Override
 		public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 	    }	   
+	    
+	    public void setcof1PBtnCreateInvoiceListener (ButtonPressListener e) {
+	    	cof1PBtnCreateInvoice.getButtonPressListeners().add(e);
+	    }
+	    
+	    public void setcof2BTRemoveDepositListener(ButtonPressListener e) {
+	    	cof2BTRemoveDeposit.getButtonPressListeners().add(e);
+	    }
 
+	    public void setcof2PBtnFinishSaveListener(ButtonPressListener e) {
+	    	cof2PBtnFinishSave.getButtonPressListeners().add(e);
+	    }
 }

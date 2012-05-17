@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.Vector;
 
 import org.apache.pivot.beans.BXMLSerializer;
@@ -26,29 +25,17 @@ import org.apache.pivot.wtk.Span;
 import org.apache.pivot.wtk.TabPane;
 import org.apache.pivot.wtk.TabPaneSelectionListener;
 
-import projekt.fhv.teama.classes.AufenthaltLeistung;
 import projekt.fhv.teama.classes.IAufenthalt;
-import projekt.fhv.teama.classes.leistungen.ILeistung;
-import projekt.fhv.teama.classes.personen.Gast;
 import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
-import projekt.fhv.teama.classes.personen.IKontodaten;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
-import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.exeption.LoginInExeption;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckIn;
+import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckOut;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerLogin;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
-import projekt.fhv.teama.hibernate.dao.personen.AdresseDao;
-import projekt.fhv.teama.hibernate.dao.personen.GastDao;
-import projekt.fhv.teama.hibernate.dao.personen.IAdresseDao;
-import projekt.fhv.teama.hibernate.dao.personen.IGastDao;
-import projekt.fhv.teama.hibernate.dao.personen.IKontodatenDao;
-import projekt.fhv.teama.hibernate.dao.personen.KontodatenDao;
-import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerDao;
-import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.ModelAdresse;
 import projekt.fhv.teama.model.ModelAufenthalt;
@@ -66,7 +53,6 @@ import projekt.fhv.teama.model.ModelZimmerstatus;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
-import projekt.fhv.teama.view.invoice.ViewInvoice;
 import projekt.fhv.teama.view.support.BlockingDialog;
 
 /**
@@ -77,15 +63,15 @@ import projekt.fhv.teama.view.support.BlockingDialog;
  */
 public class ViewController implements Application {
 	private ViewLogin viewLogin;
-	ViewMain viewMain;
+	private ViewMain viewMain;
 	private ViewAdditionalServices bdViewAdditionalServices;
 	private ViewCurrentGuest bdViewCurrentGuest;
 	private ViewCheckOut bdViewCheckOut;
 	private ControllerCheckIn controllerCheckIn;
 	private ControllerZusatzleistungBuchen controllerZusatzleistung;
+	private ControllerCheckOut controllerCheckOut;
 	private Wrapper wrapper;
 	private Display disp;
-	private ViewInvoice viewInvoice;
 
 	@Override
 	public void resume() throws Exception {
@@ -148,8 +134,7 @@ public class ViewController implements Application {
 	private void addMainEventListener() {
 		viewMain.setLvReservationSearchListener(new ReservationListListener());
 		viewMain.setlvArrivingSearchListener(new ReservationListListener());
-		viewMain.setrf1PBtnCheckInListener(new CheckInViewController(viewMain,
-				controllerCheckIn, this));
+		viewMain.setrf1PBtnCheckInListener(new CheckInViewController(viewMain, controllerCheckIn, this));
 		viewMain.settabPLeftMainListener(new SearchPanelListener());
 		viewMain.setlvGuestSearchListener(new GuestListListener());
 		bdViewCurrentGuest
@@ -157,7 +142,8 @@ public class ViewController implements Application {
 						bdViewAdditionalServices, viewMain, bdViewCurrentGuest,
 						controllerZusatzleistung));
 		bdViewCurrentGuest
-				.setcgf1PBtnCheckOutListener(new CheckOutViewController(bdViewCheckOut, viewMain, bdViewCurrentGuest));
+				.setcgf1PBtnCheckOutListener(new CheckOutViewController(bdViewCheckOut, viewMain, bdViewCurrentGuest, controllerCheckOut));
+		
 	}
 
 	/**
@@ -225,7 +211,8 @@ public class ViewController implements Application {
 		wrapper = new Wrapper();
 		viewMain.mainContent.add(bdViewAdditionalServices);
 		viewMain.mainContent.add(bdViewCurrentGuest);
-
+		viewMain.mainContent.add(bdViewCheckOut);
+		controllerCheckOut = new ControllerCheckOut();
 		try {
 			initializeMainView();
 		} catch (DatabaseException e) {
@@ -301,72 +288,7 @@ public class ViewController implements Application {
 			viewMain.lvArrivingSearch
 					.setListData(new ListAdapter<String>(list));
 		}
-
-		/** insert Tests - Pat *************************************************************************/
-
-		/* Tool Tipp für Steps bei Additional Service Vorgang */
-		viewMain.lbProgress01.setTooltipText("Select a room and add services");
-		viewMain.lbProgress02
-				.setTooltipText("Check the overview of the booked services and finish the process by saving");
-
-		viewMain.meter.setPercentage(0.5);
-		viewMain.meter.getStyles().put("gridFrequency", "0.5");
-
-		bdViewCurrentGuest.cgf1PBtnCheckOut.getButtonPressListeners().add(
-				new ButtonPressListener() {
-
-					@Override
-					public void buttonPressed(Button arg0) {
-
-						/* Steps Anzeige für Check-Out */
-						viewMain.progress.setVisible(true);
-						viewMain.lbProgress01.setVisible(true);
-						viewMain.lbProgress02.setVisible(true);
-						viewMain.lbProgress03.setVisible(false);
-						viewMain.lbProgress04.setVisible(false);
-						viewMain.lbProgress01
-								.setTooltipText("Generate Invoices for the guest");
-						viewMain.lbProgress02
-								.setTooltipText("Take back room-keys and remove deposit");
-
-						/*
-						 * CheckOutView in MainContent einfügen und auf visible
-						 * setzen
-						 */
-						viewMain.mainContent.add(bdViewCheckOut);
-						bdViewCurrentGuest.setVisible(false);
-						bdViewCheckOut.setVisible(true);
-						bdViewCheckOut.bpCheckOutForm01.setVisible(true);
-					}
-
-				});
-
-		bdViewCheckOut.cof1PBtnCreateInvoice.getButtonPressListeners().add(
-				new ButtonPressListener() {
-
-					@Override
-					public void buttonPressed(Button arg0) {
-
-						new ViewInvoice();
-
-					}
-
-				});
-		
-		bdViewCheckOut.cof1PBtnNext.getButtonPressListeners().add(new ButtonPressListener() {
-
-			@Override
-			public void buttonPressed(Button arg0) {
-	
-				bdViewCheckOut.bpCheckOutForm01.setVisible(false);
-				bdViewCheckOut.bpCheckOutForm02.setVisible(true);				
-			}
-		});
-
 	}
-
-	/** end insert Tests - Pat ***************************************************************************/
-	
 
 	/**
 	 * Fokus einer ausgewählten Reservierung wird dem controllerCheckIn
@@ -509,6 +431,7 @@ public class ViewController implements Application {
 		}
 		IGast curGast = controllerZusatzleistung.getGastByNummer(gastNummer);
 		controllerZusatzleistung.setGast(curGast);
+		controllerCheckOut.setGast(curGast);
 		bdViewCurrentGuest.cgf1LBGuestNr.setText(curGast.getNummer());
 		bdViewCurrentGuest.cgf1TIEMail.setText(curGast.getEmail());
 		bdViewCurrentGuest.cgf1TIName.setText(curGast.getVorname() + " "
@@ -682,4 +605,5 @@ public class ViewController implements Application {
 		}
 
 	}
+
 }

@@ -23,7 +23,16 @@ public class AdditionalServicesTableRow {
     }
 
     public final void setQuantity(String quantity) {
-    	setQuantity(Integer.valueOf(quantity));
+    	if (quantity == null || quantity.length() == 0){
+    		setQuantity(0);
+        } else {
+        	try {
+        		int temp = Integer.parseInt(quantity);
+        		setQuantity(temp);
+        	} catch (NumberFormatException e) {
+        		setQuantity(0);
+        	}
+        }
     }
 
     public String getType() {

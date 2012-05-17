@@ -48,14 +48,14 @@
 									<ScrollPane preferredWidth="120" preferredHeight="103" horizontalScrollBarPolicy="fill"
 										verticalScrollBarPolicy="auto" styles="{backgroundColor: '#e6eff8'}">
 										<ListView bxml:id="cof2LVHandedKeys" selectMode="multi" checkmarksEnabled="true"
-											cursor="hand" styles="$styles.livRoomAssign" listData="['Key No. 1409', 'Key No. 1509', 'Key No. 1709']"/>
+											cursor="hand" styles="$styles.livRoomAssign" listData="['Key No. asdf', 'Key No. 1509', 'Key No. 1709']"/>
 									</ScrollPane>
 								</BoxPane>
 							</Border>
 						</BoxPane>
 						<BoxPane orientation="vertical"  styles="{ padding:{top:3, left:0, bottom:0, right:0}}">
 						<Label bxml:id="cof2RemoveDeposit" text="Remove deposit:" tooltipText='Remove the deposit' tooltipDelay="250" cursor="hand" styles="{font: { size: '105%', bold: true }, padding:{top:0, left:0, bottom:12, right:0}, color: '#2a5580'}" />						
-						<Label bxml:id="cof2LBDepositNR" text="Passport Nr. 46498165445698 " styles="$styles.cof2LBDeposit" preferredHeight="90" preferredWidth="200"  />
+						<Label bxml:id="cof2LBDepositNr" text="Passport Nr. 46498165445698 " styles="$styles.cof2LBDeposit" preferredHeight="90" preferredWidth="200"  />
 						<PushButton bxml:id="cof2BTRemoveDeposit" buttonData="remove now" cursor="hand" preferredWidth="200" styles="$styles.btSpecial"/>
 						</BoxPane>
 					</BoxPane>
@@ -82,7 +82,7 @@
 			</BoxPane>
 			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
 		    <PushButton bxml:id="cof2PBtnBack" buttonData="Previous Step"/>
-		    <PushButton bxml:id="cof2PBtnFinishSave" buttonData="Finish and Save" enabled="false" styles="$styles.btSpecial"/>			
+		    <PushButton bxml:id="cof2PBtnFinishSave" buttonData="Finish and Save" styles="$styles.btSpecial"/>			
 			</BoxPane>
 		</TablePane.Row>
 	</TablePane>

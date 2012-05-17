@@ -70,12 +70,10 @@ public class CheckInViewController implements ButtonPressListener {
 	 * Startpunkt des Controllers - hier wird der Check-In Vorgang gestartet und die initialize Methode aufgerufen.
 	 */
 	public void buttonPressed(Button arg0) {
-		viewMain.reservationForm01.setVisible(false);
-		viewMain.checkInForm01.setVisible(true);
-		viewMain.progress.setVisible(true);
-		viewMain.tabPLeftMain.setEnabled(false);
-		viewMain.lvArrivingSearch.setEnabled(false);
+		
 		try {
+			addCheckInEventListener();
+			loadCheckInData();
 			initialize();
 		} catch (FokusException e) {
 			BlockingDialog bd = new BlockingDialog();
@@ -102,7 +100,20 @@ public class CheckInViewController implements ButtonPressListener {
 	 */
 	private void initialize() throws FokusException, DatabaseException,
 			WrongParameterException, NotContainExeption {
-		addCheckInEventListener();
+		viewMain.reservationForm01.setVisible(false);
+		viewMain.checkInForm01.setVisible(true);
+		viewMain.progress.setVisible(true);
+		viewMain.tabPLeftMain.setEnabled(false);
+		viewMain.lvArrivingSearch.setEnabled(false);
+		
+		viewMain.meter.setPercentage(0.25);
+		viewMain.lbProgress01.setVisible(true);
+		viewMain.lbProgress02.setVisible(true);
+		viewMain.lbProgress03.setVisible(true);
+		viewMain.lbProgress04.setVisible(true);
+	}
+	
+	private void loadCheckInData() throws DatabaseException, FokusException, NotContainExeption, WrongParameterException {
 		selectedRooms = new LinkedList<String>();
 		Wrapper wrapper = new Wrapper();
 		controllerCheckIn.initVerfuegbareZimmer();
@@ -159,13 +170,12 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.lbtnDepositType.setListData(wrapper
 				.getPfandTypListAdapter(pfandTypen));
 		viewMain.lbtnDepositType.setSelectedIndex(0);
-		viewMain.meter.setPercentage(0.25);
 	}
 
 	/**
 	 * Hier werden die Action- Events der Check- In Views initialisiert und den Event- Listener zugewiesen.
 	 */
-	public void addCheckInEventListener() {
+	private void addCheckInEventListener() {
 		viewMain.setlbProgress01Listener(new ComponentMouseButtonListener.Adapter() {
 			public boolean mouseClick(Component arg0,
 					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
