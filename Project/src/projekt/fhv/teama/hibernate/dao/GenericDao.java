@@ -19,10 +19,13 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseConstraintViolationException;
 
 /**
- * Regelt die grundlegenden Abfragen auf die Datenbank welcher bei allen Tabellen die selben sind 
+ * Regelt die grundlegenden Abfragen auf die Datenbank welcher bei allen
+ * Tabellen die selben sind
+ * 
  * @author Team A
  * @version 1.9
- * @param <T> Typ von IModel
+ * @param <T>
+ *            Typ von IModel
  */
 public abstract class GenericDao<T> implements IGenericDao<T> {
 
@@ -52,7 +55,8 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
 		} catch (ConstraintViolationException e) {
 
-			throw new DatabaseConstraintViolationException("ERROR: Probaly trying to insert a not allowed null value or unique value twice!");
+			throw new DatabaseConstraintViolationException(
+					"ERROR: Probaly trying to insert a not allowed null value or unique value twice!");
 
 		} catch (HibernateException e) {
 
@@ -91,8 +95,8 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			}
 
 		} catch (HibernateException e) {
-			
-//			e.printStackTrace();
+
+			// e.printStackTrace();
 			throw new DatabaseException("ERROR: Error occured while trying to get all entries!");
 
 		} catch (Exception e) {
@@ -131,16 +135,20 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			}
 
 		} catch (HibernateException e) {
-			
+
+			e.printStackTrace();
 			throw new DatabaseException("ERROR: Error occured while trying to get some entry by ID!");
 
 		} catch (Exception e) {
 
+			e.printStackTrace();
 			throw new DatabaseException("FATAL ERROR: Error occured while trying to get some entry by ID!");
 
 		} finally {
 
-			session.close();
+			if (session != null) {
+				session.close();
+			}
 		}
 
 		return object;
@@ -196,7 +204,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			session.update(obj);
 			tx.commit();
 			tx = null;
-			
+
 		} catch (ConstraintViolationException e) {
 
 			throw new DatabaseConstraintViolationException("ERROR: Probaly trying to insert a unique value twice!");
@@ -218,6 +226,22 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 			session.close();
 		}
 
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void saveOrUpdate(Object m) {
+		try {
+			this.create((T) m);
+		} catch (DatabaseException e) {
+
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void save(Object m) {
+		saveOrUpdate(m);
 	}
 
 }

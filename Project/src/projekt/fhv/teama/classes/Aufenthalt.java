@@ -31,7 +31,7 @@ public class Aufenthalt implements IAufenthalt {
 	}
 	
 	
-	
+	// #region
 	public Aufenthalt(Float preis, String pfandNr, Date von, Date bis, boolean schluessel, IGast gast, IZimmer zimmer,
 			IPfandtyp pfandtyp) {
 		super();
@@ -54,7 +54,8 @@ public class Aufenthalt implements IAufenthalt {
 		this.gast = gast;
 		this.zimmer = zimmer;
 	}
-
+	// #endregion
+	
 	public Aufenthalt(Float preis, String pfandNr, Date von, Date bis, boolean schluessel, IGast gast,
 			IZimmer zimmer, IPfandtyp pfandtyp, Set<ILeistung> leistungen, IZusatzleistung paket) {
 		this.preis = preis;

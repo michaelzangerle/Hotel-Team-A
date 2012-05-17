@@ -22,9 +22,9 @@
         	<many-to-many column="reservierungID" class="projekt.fhv.teama.classes.zimmer.Reservierung"/>
     	</set>
     	
-        <set name="rechnungspositionen" table="rechnungsposition" inverse="false">
+        <set name="rechnungspositionen" table="rechnungsposition" inverse="false" lazy="false">
             <key>
-                <column name="rechnungspositionID" />
+                <column name="gastID" />
             </key>
             <one-to-many class="projekt.fhv.teama.classes.rechnung.Rechnungsposition" />
         </set>

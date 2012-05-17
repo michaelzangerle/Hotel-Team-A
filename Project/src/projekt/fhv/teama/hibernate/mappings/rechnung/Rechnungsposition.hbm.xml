@@ -7,53 +7,57 @@
 		table="rechnungsposition">
 
 		<id name="ID" type="int">
-			<column name="rechnungspositionID" sql-type="int"/>
+			<column name="rechnungspositionID" sql-type="int" />
 			<generator class="native" />
 		</id>
 
 		<property name="erstellung" type="java.sql.Date">
-			<column name="ERSTELLUNG" sql-type="date"/>
+			<column name="ERSTELLUNG" sql-type="date" />
 		</property>
 
 		<property name="anzahl" type="int">
-			<column name="ANZAHL" sql-type="int"/>
+			<column name="ANZAHL" sql-type="int" />
 		</property>
 
 		<property name="einzelpreis" type="float">
-			<column name="EINZELPREIS" sql-type="decimal"/>
+			<column name="EINZELPREIS" sql-type="decimal" />
 		</property>
 
 		<property name="summe" type="float">
-			<column name="SUMME" sql-type="decimal"/>
+			<column name="SUMME" sql-type="decimal" />
 		</property>
 
 		<property name="steuersatz" type="short">
-			<column name="STEUERSATZ" sql-type="smallint"/>
+			<column name="STEUERSATZ" sql-type="smallint" />
 		</property>
 
 		<property name="beglichen" type="boolean">
-			<column name="BEGLICHEN" sql-type="tinyint"/>
+			<column name="BEGLICHEN" sql-type="tinyint" />
 		</property>
 
 		<many-to-one name="zimmer"
-			class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join">
+			class="projekt.fhv.teama.classes.zimmer.Zimmer" fetch="join" lazy="false">
 			<column name="ZIMMERID" />
 		</many-to-one>
-		
+
 		<many-to-one name="rechnung"
-			class="projekt.fhv.teama.classes.rechnung.Rechnung" fetch="join">
+			class="projekt.fhv.teama.classes.rechnung.Rechnung" fetch="join" not-null="false" lazy="false">
 			<column name="RECHNUNGID" />
 		</many-to-one>
-		
+
 		<many-to-one name="leistung"
 			class="projekt.fhv.teama.classes.leistungen.Leistung" fetch="join">
 			<column name="LEISTUNGID" />
 		</many-to-one>
-		
+
 		<many-to-one name="gast"
 			class="projekt.fhv.teama.classes.personen.Gast" fetch="join">
 			<column name="GASTID" />
 		</many-to-one>
+		
+		<property name="falsch" type="boolean">
+			<column name="falsch" sql-type="tinyint" />
+		</property>
 		
 	</class>
 </hibernate-mapping>

@@ -3,6 +3,7 @@ package projekt.fhv.teama.hibernate.dao;
 import java.util.Set;
 
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import roomanizer.teamb.service.integrate.IMapper;
 
 /**
  * Interface für GenericDao-Klasse
@@ -12,7 +13,7 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
  * @param <T>
  *            Typ von IModel
  */
-public interface IGenericDao<T> {
+public interface IGenericDao<T> extends IMapper {
 
 	/**
 	 * Holt einen Eintrag aus der Datenbank bei dem die ID mit dem übergebenen Parameter übereinstimmt

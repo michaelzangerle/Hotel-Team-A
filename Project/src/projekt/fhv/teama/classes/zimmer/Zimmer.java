@@ -6,11 +6,10 @@ import java.util.List;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.IAufenthalt;
-import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
-import projekt.fhv.teama.classes.interfaces.teamb.IBZimmer;
 import projekt.fhv.teama.classes.leistungen.Leistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
+import roomanizer.teamb.service.integrate.IBRechnungsPosition;
 
 /**
  * Beschreibt ein Zimmer
@@ -18,7 +17,7 @@ import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
  * @author Team A
  * @version 1.2
  */
-public class Zimmer extends Leistung implements IZimmer, IBZimmer {
+public class Zimmer extends Leistung implements IZimmer {
 
 	private String nummer;
 	private String beschreibung;

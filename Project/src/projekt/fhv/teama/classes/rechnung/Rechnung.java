@@ -1,16 +1,16 @@
 package projekt.fhv.teama.classes.rechnung;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
-import projekt.fhv.teama.classes.interfaces.teamb.IBLand;
-import projekt.fhv.teama.classes.interfaces.teamb.IBRechnung;
-import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
-import projekt.fhv.teama.classes.interfaces.teamb.IBTeilzahlung;
-import projekt.fhv.teama.classes.interfaces.teamb.IBZahlungsmethode;
 import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
+import roomanizer.teamb.service.integrate.IBLand;
+import roomanizer.teamb.service.integrate.IBRechnungsPosition;
+import roomanizer.teamb.service.integrate.IBTeilzahlung;
+import roomanizer.teamb.service.integrate.IBZahlungsmethode;
 
 /**
  * Beschreibt eine Rechnung
@@ -18,7 +18,7 @@ import projekt.fhv.teama.classes.personen.IMitarbeiter;
  * @author Team A
  * @version 1.9
  */
-public class Rechnung implements IRechnung, IBRechnung {
+public class Rechnung implements IRechnung{
 	private int ID;
 	private String bezahlerVorname;
 	private String bezahlerNachname;
@@ -29,6 +29,12 @@ public class Rechnung implements IRechnung, IBRechnung {
 	private String nummer;
 	private IMitarbeiter mitarbeiter;
 	private ILand bezahlerLand;
+	private Timestamp erstellung;
+
+	public Timestamp getErstellung() {
+		return erstellung;
+	}
+
 
 	private Set<IRechnungsposition> rechnungspositionen = new HashSet<IRechnungsposition>();
 	private Set<ITeilzahlung> teilzahlungen = new HashSet<ITeilzahlung>();
@@ -287,7 +293,7 @@ public class Rechnung implements IRechnung, IBRechnung {
 
 	@Override
 	public void setSurname(String sur) {
-		this.setBezahlerVorname(sur);
+		this.setBezahlerNachname(sur);
 	}
 
 	@Override
@@ -302,7 +308,7 @@ public class Rechnung implements IRechnung, IBRechnung {
 
 	@Override
 	public String getAddress() {
-		return this.getBezahlerOrt();
+		return this.getBezahlerStrasse();
 	}
 
 	@Override
@@ -391,8 +397,16 @@ public class Rechnung implements IRechnung, IBRechnung {
 		}
 	}
 
+
 	@Override
-	public Integer getBID() {
-		return new Integer(this.getID());
+	public void setSumme(BigDecimal summe) {
+		this.setSumme(summe.floatValue());		
 	}
+
+
+	@Override
+	public void setErstellung(Timestamp erstellung) {
+		this.erstellung = erstellung;
+	}
+
 }

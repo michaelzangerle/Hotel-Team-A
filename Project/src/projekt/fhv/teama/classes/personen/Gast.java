@@ -1,17 +1,17 @@
 package projekt.fhv.teama.classes.personen;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.IAufenthalt;
-import projekt.fhv.teama.classes.interfaces.teamb.IBAdresse;
-import projekt.fhv.teama.classes.interfaces.teamb.IBGast;
-import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import roomanizer.teamb.service.integrate.IBAdresse;
+import roomanizer.teamb.service.integrate.IBRechnungsPosition;
 
 
 
@@ -20,7 +20,7 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
  * @author Team-A
  * @version 1.5
  */
-public class Gast extends Person implements IGast,IBGast {
+public class Gast extends Person implements IGast {
 	// private int ID;
 	private String nummer;
 	private IZimmer zimmer;
@@ -216,6 +216,19 @@ public class Gast extends Person implements IGast,IBGast {
 		}
 				
 		return adds;
+	}
+
+	@Override
+	public Set<IBRechnungsPosition> getBOffeneRechnungsPositionen() {
+				
+		Set<IBRechnungsPosition> rpos = new HashSet<IBRechnungsPosition>();
+		for (IBRechnungsPosition r : this.rechnungspositionen) {
+			if(r.getFalsch() == false && r.getBezahlt() == false) {
+				rpos.add(r);
+			}
+		}
+		
+		return rpos;
 	}
 
 }

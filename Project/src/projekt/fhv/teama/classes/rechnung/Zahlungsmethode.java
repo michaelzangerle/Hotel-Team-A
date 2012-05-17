@@ -1,13 +1,12 @@
 package projekt.fhv.teama.classes.rechnung;
 
-import projekt.fhv.teama.classes.interfaces.teamb.IBZahlungsmethode;
 
 /**
  * Beschreibt eine Zahlungsmethode
  * @author Team A
  * @version 1.9
  */
-public class Zahlungsmethode implements IZahlungsmethode,IBZahlungsmethode {
+public class Zahlungsmethode implements IZahlungsmethode {
 	
 	private int ID;
 	private String bezeichnung;
@@ -49,9 +48,7 @@ public class Zahlungsmethode implements IZahlungsmethode,IBZahlungsmethode {
 	}
 	@Override
 	public String toString() {
-		return "Zahlungsmethode [ID=" + ID + ", bezeichnung=" + bezeichnung
-				+ ", kuerzel=" + kuerzel + ", beschreibung=" + beschreibung
-				+ "]";
+		return this.bezeichnung;
 	}
 	@Override
 	public int hashCode() {

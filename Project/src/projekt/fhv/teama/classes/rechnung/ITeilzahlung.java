@@ -1,13 +1,14 @@
 package projekt.fhv.teama.classes.rechnung;
 
 import projekt.fhv.teama.classes.IModel;
+import roomanizer.teamb.service.integrate.IBTeilzahlung;
 
 /**
  * Interface für eine Teilzahlung 
  * @author Team A
  * @version 1.9
  */
-public interface ITeilzahlung extends IModel {
+public interface ITeilzahlung extends IModel,IBTeilzahlung {
 
 	/**
 	 * Setzt den Wert des Attributs Zahlungsmethode auf den übergebenen Wert

@@ -2,14 +2,13 @@ package projekt.fhv.teama.classes.rechnung;
 
 import java.math.BigDecimal;
 
-import projekt.fhv.teama.classes.interfaces.teamb.IBTeilzahlung;
-import projekt.fhv.teama.classes.interfaces.teamb.IBZahlungsmethode;
+import roomanizer.teamb.service.integrate.IBZahlungsmethode;
 /**
  * Beschreibt eine Teilzahlung
  * @author Team A
  * @version 1.8
  */
-public class Teilzahlung implements ITeilzahlung,IBTeilzahlung{
+public class Teilzahlung implements ITeilzahlung{
 	private int ID;
 	private IRechnung rechnung;
 	private float betrag;

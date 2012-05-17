@@ -5,6 +5,7 @@ import java.util.Set;
 import projekt.fhv.teama.classes.IModel;
 import projekt.fhv.teama.classes.personen.ILand;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
+import roomanizer.teamb.service.integrate.IBRechnung;
 
 /**
  * Interface für eine Rechnung
@@ -12,7 +13,7 @@ import projekt.fhv.teama.classes.personen.IMitarbeiter;
  * @author Team A
  * @version 1.9
  */
-public interface IRechnung extends IModel {
+public interface IRechnung extends IModel,IBRechnung {
 
 	/**
 	 * Gibt den Wert des Attributs Nummer zurück

@@ -6,13 +6,14 @@ import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.IModel;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
+import roomanizer.teamb.service.integrate.IBZimmer;
 
 /**
  * Interface für die Klasse Zimmer 
  * @author Team A
  * @version 1.2
  */
-public interface IZimmer extends IModel {
+public interface IZimmer extends IModel,IBZimmer {
 
 	/**
 	 * Setzt den übergebenen Wert für das Attribut Nummer

@@ -3,6 +3,7 @@ package projekt.fhv.teama.classes.personen;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.IModel;
+import roomanizer.teamb.service.integrate.IBAdresse;
 
 
 /**
@@ -10,7 +11,7 @@ import projekt.fhv.teama.classes.IModel;
  * @author Team-A
  * @version 1.5
  */
-public interface IAdresse extends IModel {
+public interface IAdresse extends IModel,IBAdresse {
 
 	/**
 	 * Um die Strasse in der Adresse zu bearbeiten

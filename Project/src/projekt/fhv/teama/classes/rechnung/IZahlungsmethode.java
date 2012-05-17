@@ -1,13 +1,14 @@
 package projekt.fhv.teama.classes.rechnung;
 
 import projekt.fhv.teama.classes.IModel;
+import roomanizer.teamb.service.integrate.IBZahlungsmethode;
 
 /**
  * Interface für eine Zahlungsmethode 
  * @author Team A
  * @version 1.9
  */
-public interface IZahlungsmethode extends IModel {
+public interface IZahlungsmethode extends IModel,IBZahlungsmethode {
 	
 	/**
 	 * Setzt das Attribut Bezeichnung auf den übergebenen Wert

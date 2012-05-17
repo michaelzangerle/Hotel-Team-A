@@ -7,22 +7,21 @@
 		table="teilzahlung">
 
 		<id name="ID" type="int">
-			<column name="zahlungsmethodeID" sql-type="int"/>
-			<generator class="native" />
-		</id>
-
-		<many-to-one name="rechnung"
-			class="projekt.fhv.teama.classes.rechnung.Rechnung" fetch="join">
-			<column name="RECHNUNGID" />
-		</many-to-one>
-
-		<property name="betrag" type="float">
-			<column name="BETRAG" sql-type="DECIMAL" />
-		</property>
-
-        <many-to-one name="zahlungsmethode" class="projekt.fhv.teama.classes.rechnung.Zahlungsmethode" fetch="join">
+            <column name="teilzahlungID" />
+            <generator class="native" />
+        </id>
+        
+        <many-to-one name="zahlungsmethode" class="projekt.fhv.teama.classes.rechnung.Zahlungsmethode" fetch="join" lazy="false">
             <column name="ZAHLUNGSMETHODEID" />
         </many-to-one>
+        
+        <many-to-one name="rechnung" class="projekt.fhv.teama.classes.rechnung.Rechnung" fetch="join" lazy="false">
+            <column name="RECHNUNGID" />
+        </many-to-one>
+        
+        <property name="betrag" type="float">
+            <column name="BETRAG" />
+        </property>
 
 	</class>
 </hibernate-mapping>

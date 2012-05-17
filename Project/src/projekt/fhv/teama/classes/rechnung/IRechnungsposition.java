@@ -6,13 +6,14 @@ import projekt.fhv.teama.classes.IModel;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import roomanizer.teamb.service.integrate.IBRechnungsPosition;
 
 /**
  * Interface für eine Rechnungsposition 
  * @author Team A
  * @version 1.9
  */
-public interface IRechnungsposition extends IModel {
+public interface IRechnungsposition extends IModel,IBRechnungsPosition {
 	
 	/**
 	 * Setzt den Wert des Attributs Leistung auf den übergebenen Wert

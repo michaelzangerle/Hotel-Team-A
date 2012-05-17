@@ -2,17 +2,11 @@ package projekt.fhv.teama.classes.zimmer;
 
 import java.sql.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.Vector;
 
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
-import projekt.fhv.teama.classes.interfaces.teamb.IBGast;
-import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
-import projekt.fhv.teama.classes.interfaces.teamb.IBReservierung;
-import projekt.fhv.teama.classes.interfaces.teamb.IBZimmer;
 
 /**
  * Beschreibt eine Reservierung
@@ -20,7 +14,7 @@ import projekt.fhv.teama.classes.interfaces.teamb.IBZimmer;
  * @author Team A
  * @version 1.2
  */
-public class Reservierung implements IReservierung, IBReservierung {
+public class Reservierung implements IReservierung{
 
 	private int ID;
 	private Date von;
@@ -296,37 +290,5 @@ public class Reservierung implements IReservierung, IBReservierung {
 		}
 
 	}
-
-	@Override
-	public List<IBGast> getBGaeste() {
-
-		List<IBGast> g = new Vector<IBGast>();
-		for (IGast gast : this.getGaeste()) {
-			g.add((IBGast) gast);
-		}
-
-		return g;
-	}
-
-	@Override
-	public List<IBZimmer> getBZimmer() {
-		
-		List<IBZimmer> z = new Vector<IBZimmer>();
-		for (IZimmer zimmer : this.getZimmer()) {
-			z.add((IBZimmer) zimmer);
-		}
-
-		return z;
-	}
-	
-	//TODO-- ist im zimmer breits implementiert
-//	@Override
-//	public Set<IBRechnungsPosition> getBRechnungsPositionen() {
-//		Set<IBRechnungsPosition> rpos = new HashSet<IBRechnungsPosition>();
-//		for (IRechnungsposition r : this.get) {
-//			rpos.add((IBRechnungsPosition) r);
-//		}
-//		return rpos;
-//	}
 
 }

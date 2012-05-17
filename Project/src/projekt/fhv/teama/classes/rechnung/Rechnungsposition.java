@@ -7,20 +7,20 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-import projekt.fhv.teama.classes.interfaces.teamb.IBGast;
-import projekt.fhv.teama.classes.interfaces.teamb.IBLeistung;
-import projekt.fhv.teama.classes.interfaces.teamb.IBRechnungsPosition;
-import projekt.fhv.teama.classes.interfaces.teamb.IBZimmer;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import roomanizer.teamb.service.integrate.IBGast;
+import roomanizer.teamb.service.integrate.IBLeistung;
+import roomanizer.teamb.service.integrate.IBRechnung;
+import roomanizer.teamb.service.integrate.IBZimmer;
 
 /**
  * Beschreibt eine Rechnungsposition 
  * @author Team A
  * @version 1.9
  */
-public class Rechnungsposition implements IRechnungsposition,IBRechnungsPosition {
+public class Rechnungsposition implements IRechnungsposition {
 
     private int ID;
     private Date erstellung;
@@ -33,8 +33,13 @@ public class Rechnungsposition implements IRechnungsposition,IBRechnungsPosition
     private IRechnung rechnung;
     private ILeistung leistung;
     private IGast gast;
+    private boolean falsch;
 
-    public Rechnungsposition() {
+    public boolean getFalsch() {
+		return falsch;
+	}
+
+	public Rechnungsposition() {
     }
 
     public Rechnungsposition(Date erstellung, int anzahl,
@@ -224,9 +229,7 @@ public class Rechnungsposition implements IRechnungsposition,IBRechnungsPosition
 
 	@Override
 	public String toString() {
-		return "Rechnungsposition [ID=" + ID + ", erstellung=" + erstellung + ", anzahl=" + anzahl + ", einzelpreis="
-				+ einzelpreis + ", summe=" + summe + ", steuersatz=" + steuersatz + ", beglichen=" + beglichen
-				+ ", zimmer=" + zimmer + ", rechnung=" + rechnung.getID() + ", leistung=" + leistung + ", gast=" + gast + "]";
+		return "Rechnungsposition "+this.ID;
 	}
 
 	@Override
@@ -271,12 +274,12 @@ public class Rechnungsposition implements IRechnungsposition,IBRechnungsPosition
 	}
 
 	@Override
-	public IBGast getGuest() {
+	public IBGast getBGast() {
 		return (IBGast)this.getGast();
 	}
 
 	@Override
-	public IBZimmer getRoom() {
+	public IBZimmer getBZimmer() {
 		return (IBZimmer) this.getZimmer();
 	}
 
@@ -288,6 +291,33 @@ public class Rechnungsposition implements IRechnungsposition,IBRechnungsPosition
 	@Override
 	public BigDecimal getSteuerbetrag() {
 		return new BigDecimal(this.getSumme()*this.getSteuersatz()/100);
+	}
+
+	@Override
+	public void setBezahlt(boolean bezahlt) {
+		this.setBeglichen(bezahlt);		
+	}
+
+	@Override
+	public void setRechnung(IBRechnung rechnung) {
+		this.setRechnung((IRechnung)rechnung);	
+	}
+
+
+	@Override
+	public void setFalsch(boolean falsch) {
+		this.falsch = falsch;
+	}
+
+
+	@Override
+	public boolean getBezahlt() {
+		return this.getBeglichen();
+	}
+
+	@Override
+	public Timestamp getBErstellung() {
+		return new Timestamp(this.getErstellung().getTime());
 	}
 
 }

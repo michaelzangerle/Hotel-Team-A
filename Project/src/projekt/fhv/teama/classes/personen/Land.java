@@ -1,6 +1,6 @@
 package projekt.fhv.teama.classes.personen;
 
-import projekt.fhv.teama.classes.interfaces.teamb.IBLand;
+import roomanizer.teamb.service.integrate.IBLand;
 
 
 /**
@@ -15,8 +15,7 @@ public class Land implements ILand,IBLand {
 	
     @Override
 	public String toString() {
-		return "Land [ID=" + ID + ", bezeichnung=" + bezeichnung + ", kuerzel="
-				+ kuerzel + "]";
+		return this.bezeichnung;
 	}
 
     @Override

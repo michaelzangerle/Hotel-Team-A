@@ -1,13 +1,14 @@
 package projekt.fhv.teama.classes.leistungen;
 
 import projekt.fhv.teama.classes.IModel;
+import roomanizer.teamb.service.integrate.IBLeistung;
 
 /**
  * Interface für die Klasse Leistung
  * @author Team A
  * @version 1.8
  */
-public interface ILeistung extends IModel {
+public interface ILeistung extends IModel,IBLeistung {
 	
 	/**
 	 * Setzt das Attribut Bezeichnung
