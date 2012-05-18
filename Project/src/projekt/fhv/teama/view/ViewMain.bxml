@@ -105,7 +105,7 @@
 						<ScrollPane horizontalScrollBarPolicy="FILL_TO_CAPACITY" verticalScrollBarPolicy="auto" styles="{ backgroundColor:'#f2f2f2'}">						
 						<BoxPane orientation="vertical" styles="{horizontalAlignment:'left', verticalAlignment:'top', spacing:25, fill:true}">					
 						<BoxPane bxml:id="mainContent" orientation="vertical" styles="{ backgroundColor:'#f2f2f2', spacing:20, padding:{top:5, left:15, bottom:10, right:15}, fill:true }">						
-						<bxml:include bxml:id="mainProgress" src="inc.progress.bxml" inline="true" />
+						<bxml:include bxml:id="progress" src="inc.progress.bxml" inline="true" />
 						<bxml:include bxml:id="mainReservationForm01" src="inc.reservationForm01.bxml" inline="true" />
 					    <bxml:include bxml:id="mainCheckInForm01" src="inc.checkInForm01.bxml" inline="true" />	
 						<bxml:include bxml:id="mainCheckInForm02" src="inc.checkInForm02.bxml" inline="true" />
