@@ -70,6 +70,10 @@ public class ViewCheckOut extends Border implements Bindable {
 	@BXML
 	Label cof2LBDepositNr;
 	
+	/* Progressbar UseCase CheckOut */
+	@BXML
+	Progress viewCheckOutProgress;
+	
 	    @Override
 		public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 	    }	   
