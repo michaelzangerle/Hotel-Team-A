@@ -65,7 +65,7 @@ public class CheckOutViewController implements ButtonPressListener {
 	public void setDeposit() throws DatabaseException {
 		List<IAAufenthalt> aufenthalte = controller.getAufenthalte();
 		IAAufenthalt aufenthalt = aufenthalte.get(0);
-		String bezeichnung = aufenthalt.getPfandtyp().getBezeichnung();
+		String bezeichnung = aufenthalt.getAPfandtyp().getBezeichnung();
 		String nummer = aufenthalt.getPfandNr();
 		view.cof2LBDepositNr.setText("Pfand: " + bezeichnung + " Nummer: " + nummer);
 	}

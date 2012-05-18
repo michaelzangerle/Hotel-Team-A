@@ -26,7 +26,6 @@ public interface IAAdresse {
 	 * @return
 	 */
 	IALand getALand();
-
 	/**
 	 * @return
 	 */

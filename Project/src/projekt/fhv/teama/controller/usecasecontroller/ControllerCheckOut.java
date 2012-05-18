@@ -55,9 +55,9 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		}
 		List<IAGast> gaeste = new Vector<IAGast>();
 		for (IAAufenthalt aufenthalt : aufenthalte) {
-			if (!gaeste.contains(aufenthalt.getGast())
-					&& aufenthalt.getGast() != null)
-				gaeste.add(aufenthalt.getGast());
+			if (!gaeste.contains(aufenthalt.getAGast())
+					&& aufenthalt.getAGast() != null)
+				gaeste.add(aufenthalt.getAGast());
 		}
 		return gaeste;
 	}
@@ -91,8 +91,8 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		}
 
 		for (IAAufenthalt aufenthalt : aufenthalte) {
-			if (aufenthalt.getGast().equals(getGast()) && aufenthalt.getZimmer() != null) 
-				zimmers.add(aufenthalt.getZimmer());
+			if (aufenthalt.getAGast().equals(getGast()) && aufenthalt.getAZimmer() != null) 
+				zimmers.add(aufenthalt.getAZimmer());
 		}
 		return zimmers;
 	}

@@ -7,6 +7,9 @@ import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.leistungen.IZusatzleistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.integrate.IAGast;
+import projekt.fhv.teama.integrate.IAPfandtyp;
+import projekt.fhv.teama.integrate.IAZimmer;
 
 /**
  * Beschreibt einen Aufenthalt
@@ -258,5 +261,35 @@ public class Aufenthalt implements IAufenthalt {
 		return "Aufenthalt [ID=" + ID + ", preis=" + preis + ", pfandNr=" + pfandNr + ", von=" + von + ", bis=" + bis
 				+ ", schluessel=" + schluessel + ", gast=" + gast + ", zimmer=" + zimmer + ", pfandtyp=" + pfandtyp
 				+ ", leistungen=" + leistungen + ", paket=" + paket + "]";
+	}
+
+
+	@Override
+	public IAGast getAGast() {
+		return gast;
+	}
+
+
+	@Override
+	public IAZimmer getAZimmer() {
+		return zimmer;
+	}
+
+
+	@Override
+	public Date getAVon() {
+		return von;
+	}
+
+
+	@Override
+	public Date getABis() {
+		return bis;
+	}
+
+
+	@Override
+	public IAPfandtyp getAPfandtyp() {
+		return pfandtyp;
 	}
 }

@@ -13,15 +13,15 @@ import java.sql.Date;
  */
 public interface IAAufenthalt {
 
-	IAGast getGast();
+	IAGast getAGast();
 
-	IAZimmer getZimmer();
+	IAZimmer getAZimmer();
 
-	Date getVon();
+	Date getAVon();
 
-	Date getBis();
+	Date getABis();
 	
-	IAPfandtyp getPfandtyp();
+	IAPfandtyp getAPfandtyp();
 	
 	String getPfandNr();
 

@@ -90,9 +90,9 @@ public class ControllerZusatzleistungBuchen
 		}
 		List<IAGast> gaeste = new Vector<IAGast>();
 		for (IAAufenthalt aufenthalt : aufenthalte) {
-			if (!gaeste.contains(aufenthalt.getGast())
-					&& aufenthalt.getGast() != null)
-				gaeste.add(aufenthalt.getGast());
+			if (!gaeste.contains(aufenthalt.getAGast())
+					&& aufenthalt.getAGast() != null)
+				gaeste.add(aufenthalt.getAGast());
 		}
 		return gaeste;
 
@@ -128,10 +128,10 @@ public class ControllerZusatzleistungBuchen
 			getAufenthalte();
 
 		for (IAAufenthalt aufenthalt : aufenthalte) {
-			if (aufenthalt.getGast().equals(getGast())
-					&& aufenthalt.getZimmer() != null
-					&& aufenthalt.getZimmer().getNummer().equals(nummer)) {
-				return aufenthalt.getZimmer();
+			if (aufenthalt.getAGast().equals(getGast())
+					&& aufenthalt.getAZimmer() != null
+					&& aufenthalt.getAZimmer().getNummer().equals(nummer)) {
+				return aufenthalt.getAZimmer();
 			}
 		}
 		return null;
@@ -144,9 +144,9 @@ public class ControllerZusatzleistungBuchen
 			getAufenthalte();
 
 		for (IAAufenthalt aufenthalt : aufenthalte) {
-			if (aufenthalt.getGast().equals(getGast())
-					&& aufenthalt.getZimmer() != null)
-				zimmers.add(aufenthalt.getZimmer());
+			if (aufenthalt.getAGast().equals(getGast())
+					&& aufenthalt.getAZimmer() != null)
+				zimmers.add(aufenthalt.getAZimmer());
 		}
 
 		return zimmers;
@@ -161,8 +161,8 @@ public class ControllerZusatzleistungBuchen
 			getAufenthalte();
 
 		for (IAAufenthalt aufenthalt : aufenthalte) {
-			if (aufenthalt.getGast().getNummer().equals(nummer))
-				return aufenthalt.getGast();
+			if (aufenthalt.getAGast().getNummer().equals(nummer))
+				return aufenthalt.getAGast();
 		}
 
 		throw new NotContainExeption();
@@ -283,8 +283,8 @@ public class ControllerZusatzleistungBuchen
 			throws FokusException, NotContainExeption {
 		for (IAAufenthalt auf : aufenthalte) {
 
-			if (auf.getGast().equals(getGast())
-					&& auf.getZimmer().equals(zimmer))
+			if (auf.getAGast().equals(getGast())
+					&& auf.getAZimmer().equals(zimmer))
 				return auf;
 		}
 
@@ -304,7 +304,7 @@ public class ControllerZusatzleistungBuchen
 			erg.addAll(bereitsgebuchteLeistungen.get(getGast()));
 		} else {
 			for (IAAufenthalt auf : aufenthalte) {
-				if (auf.getGast().getID() == getGast().getID())
+				if (auf.getAGast().getID() == getGast().getID())
 					erg.addAll(modelAufenthaltLeistung
 							.getLeistungenByAufenhalt(auf));
 			}
