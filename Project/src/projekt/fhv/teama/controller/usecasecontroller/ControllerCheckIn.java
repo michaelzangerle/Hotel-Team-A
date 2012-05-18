@@ -22,6 +22,7 @@ import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckIn;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAAufenthalt;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
@@ -156,7 +157,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * 
 	 */
 	public IGast getGast() throws FokusException {
-		return modelGast.getAktuellGast();
+		return (IGast)modelGast.getAktuellGast();
 	}
 
 	// Änderungen am Gast
@@ -395,7 +396,10 @@ public class ControllerCheckIn implements IControllerCheckIn {
 			return gaestMitMomentanemAufenthalt;
 		else
 		{
-		gaestMitMomentanemAufenthalt=modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 3, 25));
+			List<IAAufenthalt>help=modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 3, 25));
+			for (IAAufenthalt auf : help) {
+				gaestMitMomentanemAufenthalt.add((IAufenthalt)auf);
+			}
 		return gaestMitMomentanemAufenthalt;
 		}
 	}

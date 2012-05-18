@@ -43,7 +43,7 @@ public class ModelGast implements IModelGast {
 	@Override
 	public IAGast getAktuellGast() throws FokusException {
 		if (gastModel != null)
-			return gastModel;
+			return (IAGast)gastModel;
 		else
 			return null;
 	}
@@ -212,5 +212,7 @@ public class ModelGast implements IModelGast {
 			
 
 	}
+
+
 
 }
