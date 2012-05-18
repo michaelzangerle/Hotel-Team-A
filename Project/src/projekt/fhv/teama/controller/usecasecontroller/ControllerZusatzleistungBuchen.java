@@ -49,7 +49,6 @@ public class ControllerZusatzleistungBuchen
 	// ModelRespositorys
 	private IAModelAufenthalt modelAufenthalt;
 	private IAModelGast modelGast;
-	private IAModelLeistung modelLeistung;
 	private IAModelArtikel modelArtikel;
 	private IAModelZusatzleistung modelZusatzleistung;
 	private IAModelZimmer modelZimmer;
@@ -58,7 +57,6 @@ public class ControllerZusatzleistungBuchen
 	public ControllerZusatzleistungBuchen() {
 		modelArtikel = new ModelArtikel();
 		modelAufenthalt = new ModelAufenthalt();
-		modelLeistung = new ModelLeistung();
 		modelZusatzleistung = new ModelZusatzleistung();
 		modelGast = new ModelGast();
 		modelZimmer = new ModelZimmer();
