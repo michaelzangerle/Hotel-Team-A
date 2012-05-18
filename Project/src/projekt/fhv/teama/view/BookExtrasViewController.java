@@ -23,6 +23,8 @@ import org.apache.pivot.wtk.TablePane;
 import org.apache.pivot.wtk.TableView;
 import org.apache.pivot.wtk.TableViewRowListener;
 
+import projekt.fhv.teama.classes.leistungen.Artikel;
+import projekt.fhv.teama.classes.leistungen.IArtikel;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
@@ -57,13 +59,13 @@ public class BookExtrasViewController implements ButtonPressListener {
 		viewMain.lbProgress02
 				.setTooltipText("Check the overview of the booked services and finish the process by saving");
 		viewMain.meter.getStyles().put("gridFrequency", "0.5");
-		
+
 		List<IZimmer> rooms = controller.getZimmerVonGast();
 		Wrapper wrapper = new Wrapper();
 
 		view.asf1LVBookedRooms.setListData(wrapper
 				.getZimmerWithoutPriceListAdapter(rooms));
-		
+
 	}
 
 	public void exit() {
@@ -119,7 +121,6 @@ public class BookExtrasViewController implements ButtonPressListener {
 		view.asf1TVAdditionalServices.setRowEditor(view.tableViewRowEditor);
 	}
 
-
 	public void initializeSummaryWindow() throws FokusException,
 			DatabaseException {
 		int length = view.asf2smTPSummary.getRows().getLength();
@@ -141,14 +142,15 @@ public class BookExtrasViewController implements ButtonPressListener {
 			IZimmer room = (IZimmer) e.getKey();
 			List<LeistungAnzahl> tempServices = (List<LeistungAnzahl>) e
 					.getValue();
-			
+
 			if (tempServices.size() != 0) {
 				insertRowHeader();
 				insertRowData(room.getNummer(), room.getKategorie()
 						.getBezeichnung(), tempServices);
-				
+
 				for (LeistungAnzahl temp : tempServices) {
-					total = total + (temp.getLeistung().getPreis() * temp.getAnzahl());
+					total = total
+							+ (temp.getLeistung().getPreis() * temp.getAnzahl());
 					countServices++;
 				}
 			}
@@ -170,11 +172,14 @@ public class BookExtrasViewController implements ButtonPressListener {
 		int j = 1;
 		for (LeistungAnzahl service : services) {
 			if (j < services.size()) {
-				sb.append(service.getAnzahl() + "x " + service.getLeistung().getBezeichnung() + ", ");
+				sb.append(service.getAnzahl() + "x "
+						+ service.getLeistung().getBezeichnung() + ", ");
 			} else {
-				sb.append(service.getAnzahl() + "x " + service.getLeistung().getBezeichnung());
+				sb.append(service.getAnzahl() + "x "
+						+ service.getLeistung().getBezeichnung());
 			}
-			amount = amount + (service.getLeistung().getPreis() * service.getAnzahl());
+			amount = amount
+					+ (service.getLeistung().getPreis() * service.getAnzahl());
 			j++;
 		}
 
@@ -332,7 +337,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 	};
 
 	public void buttonPressed(Button arg0) {
-		
+
 		try {
 			initialize();
 			addBookExtrasEventListener();
@@ -341,7 +346,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 			exit();
 		} catch (DatabaseException e) {
 			exit();
-		} 
+		}
 	}
 
 	public BookExtrasViewController(ViewAdditionalServices view,
@@ -367,7 +372,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 			} catch (NotContainExeption e) {
 				e.printStackTrace();
 			}
-			
+
 			exit();
 		}
 	}
@@ -417,7 +422,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 				ILeistung service = controller.getLeistungByBezeichnung(type);
 				if (quantity > 999) {
 					tableDataService.get(arg1).setQuantity(0);
-					
+
 				} else if (quantity == 0) {
 					controller.removeLeistung(service);
 					tableDataService.get(arg1).setTotal("0");
@@ -427,7 +432,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 					tableDataService.get(arg1).setTotal(String.valueOf(total));
 				}
 			} catch (DatabaseException e1) {
-				
+
 			} catch (NotContainExeption e1) {
 			} catch (FokusException e) {
 			} catch (EmptyParameterException e) {
@@ -446,6 +451,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		public void rowsSorted(TableView arg0) {
 			System.out.println("asdf");
 			System.out.println(arg0.getRowAt(1));
+			System.out.println(arg0.getTableData());
 		}
 	}
 }

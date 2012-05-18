@@ -48,7 +48,7 @@
 								</TabPane.tabData>
 							<!--	<Label bxml:id="lbReservationSearch" text="Enter Number or Name:" styles="$styles.lbSearch"/> -->
 								<BoxPane orientation="horizontal" styles="{padding:{top:15, left:0, bottom:0, right:0}}" >
-								<TextInput bxml:id="tiReservationSearch" styles="$styles.tiSearch" prompt="Search for No. or Name" preferredWidth="300" enabled="false"/>
+								<TextInput bxml:id="tiReservationSearch" styles="$styles.tiSearch" prompt="Search for No. or Name" preferredWidth="300" enabled="true"/>
 								<PushButton bxml:id="pushBReservationSearch" buttonData="find" styles="$styles.searchButton" enabled="false" />
 								</BoxPane>
 								<Separator heading="Found Reservations" tooltipText="Current Reservations"/>
@@ -66,7 +66,7 @@
 								</TabPane.tabData>
 							<!--	<Label bxml:id="lbArrivingSearch" text="Enter Number or Name:" styles="$styles.lbSearch"/> -->
 								<BoxPane orientation="horizontal" styles="{padding:{top:15, left:0, bottom:0, right:0}}" >
-								<TextInput bxml:id="tiArrivingSearch" styles="$styles.tiSearch" prompt="Search for No. or Name" preferredWidth="300" enabled="false"/>
+								<TextInput bxml:id="tiArrivingSearch" styles="$styles.tiSearch" prompt="Search for No. or Name" preferredWidth="300" enabled="true"/>
 								<PushButton bxml:id="pushBArrivingSearch" buttonData="find" styles="$styles.searchButton" enabled="false" />
 								</BoxPane>								
 								<Separator heading="Found todays arriving People" tooltipText="People who
@@ -85,7 +85,7 @@
 								</TabPane.tabData>
 							<!--	<Label bxml:id="lbGuestSearch" text="Enter Number or Name:" styles="$styles.lbSearch"/> -->
 								<BoxPane orientation="horizontal" styles="{padding:{top:15, left:0, bottom:0, right:0}}" >
-								<TextInput bxml:id="tiGuestSearch" styles="$styles.tiSearch" prompt="Search for No. or Name" preferredWidth="300" enabled="false"/>
+								<TextInput bxml:id="tiGuestSearch" styles="$styles.tiSearch" prompt="Search for No. or Name" preferredWidth="300" enabled="true"/>
 								<PushButton bxml:id="pushBGuestSearch" buttonData="find" styles="$styles.searchButton" enabled="false" />
 								</BoxPane>
 								<Separator heading="Found Guests" tooltipText="Current Guests"/>

@@ -12,14 +12,16 @@ import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.ComponentMouseButtonListener;
 import org.apache.pivot.wtk.Dialog;
 import org.apache.pivot.wtk.MessageType;
-import org.hibernate.id.IdentityGenerator.GetGeneratedKeysDelegate;
 
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckOut;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.FokusException;
-import projekt.fhv.teama.view.invoice.ViewInvoice;
 import projekt.fhv.teama.view.support.BlockingDialog;
+import roomanizer.teamb.business.BusinessFactory;
+import roomanizer.teamb.presentation.forms.invoice.InvoiceStep1;
+import roomanizer.teamb.service.integrate.IBGast;
+import roomanizer.teamb.service.integrate.IBKonsument;
 
 
 /**
@@ -32,18 +34,8 @@ public class CheckOutViewController implements ButtonPressListener {
 	private ViewMain viewMain;
 	private ViewCurrentGuest viewGuest;
 	private ControllerCheckOut controller;
-	private ViewInvoice viewInvoice;
-	
 
-	/**
-	 * Hier wird der usecase Rechnung erstellen von Team B aufgerufen
-	 */
-	class CreateInvoiceListener implements ButtonPressListener{
-		public void buttonPressed(Button arg0) {
-//			viewInvoice = new ViewInvoice();		//neuer Frame für den Rechnungserstellungs- Usecase wird erstellt
-			controller.aufrufenRechnungErstellen();
-		}
-	}
+	
 	
 	class FinishCheckOutListener implements ButtonPressListener {
 		public void buttonPressed(Button arg0) {
@@ -53,12 +45,11 @@ public class CheckOutViewController implements ButtonPressListener {
 						"All invoice line items must be paid",
 						new ArrayList<String>("OK")));
 				bd.open(view.getDisplay());
+			} else {
+				controller.save();
 			}
-			controller.save();
 		}
-		
 	}
-	
 	
 	public void buttonPressed(Button arg0) {
 		try {
@@ -165,16 +156,18 @@ public class CheckOutViewController implements ButtonPressListener {
 		view.cof2PBtnCancel.setAction(cancel);
 		view.cof1PBtnNext.setAction(gotoStep);
 		view.cof2PBtnBack.setAction(gotoStep);
-		view.setcof1PBtnCreateInvoiceListener(new CreateInvoiceListener());
+//		view.setcof1PBtnCreateInvoiceListener(new ButtonPressListener(){
+//			public void buttonPressed(Button arg0) {
+//				createInvoice();
+//			}
+//		});
 		view.setcof2BTRemoveDepositListener(new ButtonPressListener() {
 
 			@Override
 			public void buttonPressed(Button arg0) {
 				view.cof2LBDepositNr.setText("");
 				view.cof2LBDepositNr.getStyles().put("backgroundColor", Color.GREEN);
-				
 			}
-			
 		});
 		view.setcof2PBtnFinishSaveListener(new FinishCheckOutListener());
 	}

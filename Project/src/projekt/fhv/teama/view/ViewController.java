@@ -17,7 +17,13 @@ import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonPressListener;
+import org.apache.pivot.wtk.Component;
+import org.apache.pivot.wtk.ComponentKeyListener;
 import org.apache.pivot.wtk.Display;
+import org.apache.pivot.wtk.Keyboard;
+import org.apache.pivot.wtk.TextInput;
+import org.apache.pivot.wtk.TextInputContentListener;
+import org.apache.pivot.wtk.Keyboard.KeyLocation;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.MessageType;
@@ -54,6 +60,10 @@ import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.view.support.BlockingDialog;
+import roomanizer.teamb.business.BusinessFactory;
+import roomanizer.teamb.presentation.forms.invoice.InvoiceStep1;
+import roomanizer.teamb.service.integrate.IBGast;
+import roomanizer.teamb.service.integrate.IBKonsument;
 
 /**
  * Der ViewController handelt die Events des Homescreens (ViewMain) ab.
@@ -72,6 +82,7 @@ public class ViewController implements Application {
 	private ControllerCheckOut controllerCheckOut;
 	private Wrapper wrapper;
 	private Display disp;
+	private ListAdapter<String> cacheListData;
 
 	@Override
 	public void resume() throws Exception {
@@ -111,7 +122,7 @@ public class ViewController implements Application {
 
 		viewMain.setMaximized(true);
 		viewLogin.open(getDisp());
-
+		viewLogin.requestFocus();
 		addLoginEventListener();
 	}
 
@@ -124,7 +135,26 @@ public class ViewController implements Application {
 	 * Event- Listener zugewiesen.
 	 */
 	private void addLoginEventListener() {
-		viewLogin.setPushBLoginListener(new LoginListener());
+		viewLogin.setPushBLoginListener(new ButtonPressListener() {
+			public void buttonPressed(Button arg0) {
+				login();
+			}
+		});
+		viewLogin.getComponentKeyListeners().add(new ComponentKeyListener() {
+			public boolean keyPressed(Component arg0, int arg1, KeyLocation arg2) {
+				if (arg1 == Keyboard.KeyCode.ENTER) {
+					login();
+				}
+				return false;
+			}
+			public boolean keyReleased(Component arg0, int arg1,
+					KeyLocation arg2) {
+				return false;
+			}
+			public boolean keyTyped(Component arg0, char arg1) {
+				return false;
+			}
+		});
 	}
 
 	/**
@@ -134,67 +164,197 @@ public class ViewController implements Application {
 	private void addMainEventListener() {
 		viewMain.setLvReservationSearchListener(new ReservationListListener());
 		viewMain.setlvArrivingSearchListener(new ReservationListListener());
-		viewMain.setrf1PBtnCheckInListener(new CheckInViewController(viewMain, controllerCheckIn, this));
+		viewMain.setrf1PBtnCheckInListener(new CheckInViewController(viewMain,
+				controllerCheckIn, this));
 		viewMain.settabPLeftMainListener(new SearchPanelListener());
 		viewMain.setlvGuestSearchListener(new GuestListListener());
+		viewMain.tiReservationSearch.getTextInputContentListeners().add(
+				new TextInputContentListener.Adapter() {
+					public void textRemoved(TextInput arg0, int arg1, int arg2) {
+						if (cacheListData != null) {
+							viewMain.lvReservationSearch
+									.setListData(cacheListData);
+							cacheListData = null;
+						}
+					}
+					public void textInserted(TextInput textInput, int arg1,
+							int arg2) {
+						String text = textInput.getText();
+						if (cacheListData == null) {
+							cacheListData = (ListAdapter<String>) viewMain.lvReservationSearch
+									.getListData();
+						}
+						List<String> suggestions = new LinkedList<String>();
+						List<String> list = cacheListData.getList();
+						for (String temp : list) {
+							temp = temp.toUpperCase();
+							text = text.toUpperCase();
+							if (temp.contains(text)) {
+								suggestions.add(temp);
+							}
+						}
+						if (suggestions.size() == 0) {
+							List<String> temp = new LinkedList();
+							temp.add("no reservation found");
+							ListAdapter<String> adapter = new ListAdapter<String>(temp);
+							viewMain.lvReservationSearch
+									.setListData(adapter);
+						} else {
+							ListAdapter<String> adapter = new ListAdapter<String>(suggestions);
+							viewMain.lvReservationSearch
+									.setListData(adapter);
+						}
+					}
+				});
+		
+		viewMain.tiArrivingSearch.getTextInputContentListeners().add(new TextInputContentListener.Adapter() {
+			public void textRemoved(TextInput arg0, int arg1, int arg2) {
+				if (cacheListData != null) {
+					viewMain.lvArrivingSearch
+							.setListData(cacheListData);
+					cacheListData = null;
+				}
+			}
+			public void textInserted(TextInput textInput, int arg1,
+					int arg2) {
+				String text = textInput.getText();
+				if (cacheListData == null) {
+					cacheListData = (ListAdapter<String>) viewMain.lvArrivingSearch
+							.getListData();
+				}
+				List<String> suggestions = new LinkedList<String>();
+				List<String> list = cacheListData.getList();
+				for (String temp : list) {
+					temp = temp.toUpperCase();
+					text = text.toUpperCase();
+					if (temp.contains(text)) {
+						suggestions.add(temp);
+					}
+				}
+				if (suggestions.size() == 0) {
+					List<String> temp = new LinkedList();
+					temp.add("no reservation found");
+					ListAdapter<String> adapter = new ListAdapter<String>(temp);
+					viewMain.lvArrivingSearch
+							.setListData(adapter);
+				} else {
+					ListAdapter<String> adapter = new ListAdapter<String>(suggestions);
+					viewMain.lvArrivingSearch
+							.setListData(adapter);
+				}
+			}
+		});
+		
+		viewMain.tiGuestSearch.getTextInputContentListeners().add(
+				new TextInputContentListener.Adapter() {
+					public void textRemoved(TextInput arg0, int arg1, int arg2) {
+						if (cacheListData != null) {
+							viewMain.lvGuestSearch
+									.setListData(cacheListData);
+							cacheListData = null;
+						}
+					}
+					public void textInserted(TextInput textInput, int arg1,
+							int arg2) {
+						String text = textInput.getText();
+						if (cacheListData == null) {
+							cacheListData = (ListAdapter<String>) viewMain.lvGuestSearch.getListData();
+						}
+						List<String> suggestions = new LinkedList<String>();
+						List<String> list = cacheListData.getList();
+						for (String temp : list) {
+							temp = temp.toUpperCase();
+							text = text.toUpperCase();
+							if (temp.contains(text)) {
+								suggestions.add(temp);
+							}
+						}
+						if (suggestions.size() == 0) {
+							List<String> temp = new LinkedList();
+							temp.add("no guest found");
+							ListAdapter<String> adapter = new ListAdapter<String>(temp);
+							viewMain.lvGuestSearch
+									.setListData(adapter);
+						} else {
+							ListAdapter<String> adapter = new ListAdapter<String>(suggestions);
+							viewMain.lvGuestSearch
+									.setListData(adapter);
+						}
+					}
+				});
+		
 		bdViewCurrentGuest
 				.setcgf1PBtnBookExtrasListener(new BookExtrasViewController(
 						bdViewAdditionalServices, viewMain, bdViewCurrentGuest,
 						controllerZusatzleistung));
 		bdViewCurrentGuest
-				.setcgf1PBtnCheckOutListener(new CheckOutViewController(bdViewCheckOut, viewMain, bdViewCurrentGuest, controllerCheckOut));
-		
+				.setcgf1PBtnCheckOutListener(new CheckOutViewController(
+						bdViewCheckOut, viewMain, bdViewCurrentGuest,
+						controllerCheckOut));
+		bdViewCheckOut
+				.setcof1PBtnCreateInvoiceListener(new ButtonPressListener() {
+					public void buttonPressed(Button arg0) {
+						startInvoiceWindow();
+					}
+				});
+
+	}
+	/**
+	 * Hier wird ein neues Swing Fenster für den Rechnungserstellen Usecase der
+	 * Gruppe B aufgerufen.
+	 */
+	public void startInvoiceWindow() {
+		IBGast gast;
+		try {
+			gast = controllerCheckOut.getGast();
+
+			IBKonsument konsument = (IBKonsument) gast;
+			new InvoiceStep1(null, BusinessFactory.newInvoiceController(
+					konsument, gast)).showForm();
+		} catch (FokusException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Der LoginListener handelt den Login- Vorgang ab. Username und Passwort
+	 * Die Login Methode handelt den Login- Vorgang ab. Username und Passwort
 	 * werden auf Fehleingaben überprüft und dem controllerLogin weitergegeben.
 	 * Falls ein falscher Username bzw. ein falsches Passwort eingegeben wurde,
 	 * wird eine entprechende Fehlermeldung angezeigt.
 	 */
-	class LoginListener implements ButtonPressListener {
-		private ControllerLogin controllerLogin;
-		private String username;
-		private String password;
-		private IMitarbeiter ma;
+	public void login() {
+		String username = viewLogin.getTfUsername().getText();
+		String password = viewLogin.getTfPassword().getText();
+		ControllerLogin controllerLogin = new ControllerLogin(
+				new ModelMitarbeiter());
 
-		@Override
-		public void buttonPressed(Button arg0) {
-			this.username = viewLogin.getTfUsername().getText();
-			this.password = viewLogin.getTfPassword().getText();
+		if (username.equals("") || password.equals("")) {
 
-			if (username.equals("") || password.equals("")) {
-
-				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(MessageType.WARNING,
-						"Please enter your username and password",
-						new ArrayList<String>("OK")));
-				bd.open(getDisp());
-				return;
-			}
-
-			try {
-				ma = controllerLogin.checkLogin(username, password);
-				startMainView(ma.getVorname(), ma.getNachname());
-			} catch (DatabaseException e) {
-				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(
-						MessageType.WARNING,
-						"Invalid username or password! Please don´t forget case sensitive",
-						new ArrayList<String>("OK")));
-				bd.open(getDisp());
-			} catch (LoginInExeption e) {
-				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(
-						MessageType.WARNING,
-						"Invalid username or password! Please don´t forget case sensitive",
-						new ArrayList<String>("OK")));
-				bd.open(getDisp());
-			}
+			BlockingDialog bd = new BlockingDialog();
+			bd.setContent(new Alert(MessageType.WARNING,
+					"Please enter your username and password",
+					new ArrayList<String>("OK")));
+			bd.open(getDisp());
+			return;
 		}
 
-		public LoginListener() {
-			controllerLogin = new ControllerLogin(new ModelMitarbeiter());
+		try {
+			IMitarbeiter ma = controllerLogin.checkLogin(username, password);
+			startMainView(ma.getVorname(), ma.getNachname());
+		} catch (DatabaseException e) {
+			BlockingDialog bd = new BlockingDialog();
+			bd.setContent(new Alert(
+					MessageType.WARNING,
+					"Invalid username or password! Please don´t forget case sensitive",
+					new ArrayList<String>("OK")));
+			bd.open(getDisp());
+		} catch (LoginInExeption e) {
+			BlockingDialog bd = new BlockingDialog();
+			bd.setContent(new Alert(
+					MessageType.WARNING,
+					"Invalid username or password! Please don´t forget case sensitive",
+					new ArrayList<String>("OK")));
+			bd.open(getDisp());
 		}
 	}
 
@@ -459,24 +619,30 @@ public class ViewController implements Application {
 
 		bdViewCurrentGuest.cgf1CBArrival.setSelectedDate(d1);
 		bdViewCurrentGuest.cgf1CBDeparture.setSelectedDate(d2);
-		
-		List<LeistungAnzahl> services = controllerZusatzleistung.bereitsgebuchtLeistungenFuerGast();
+
+		List<LeistungAnzahl> services = controllerZusatzleistung
+				.bereitsgebuchtLeistungenFuerGast();
 		if (services.size() == 0) {
 			List<String> message = new LinkedList<String>();
 			message.add("Currently no additional service booked");
-			bdViewCurrentGuest.cgf1LVBookedAdditionalServices.setListData(new ListAdapter<String>(message));
+			bdViewCurrentGuest.cgf1LVBookedAdditionalServices
+					.setListData(new ListAdapter<String>(message));
 		} else {
 			HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
 			for (LeistungAnzahl temp : services) {
 				if (temp != null) {
 					int menge = temp.getAnzahl();
-					if (tempMap.containsKey(temp.getLeistung().getBezeichnung())) {
-						 menge = tempMap.get(temp.getLeistung().getBezeichnung()) + temp.getAnzahl();
+					if (tempMap
+							.containsKey(temp.getLeistung().getBezeichnung())) {
+						menge = tempMap
+								.get(temp.getLeistung().getBezeichnung())
+								+ temp.getAnzahl();
 					}
 					tempMap.put(temp.getLeistung().getBezeichnung(), menge);
 				}
 			}
-			bdViewCurrentGuest.cgf1LVBookedAdditionalServices.setListData(wrapper.getZusatzleistungListAdapter(tempMap));
+			bdViewCurrentGuest.cgf1LVBookedAdditionalServices
+					.setListData(wrapper.getZusatzleistungListAdapter(tempMap));
 		}
 	}
 
@@ -526,6 +692,7 @@ public class ViewController implements Application {
 				viewMain.reservationForm01.setVisible(true);
 				bdViewCurrentGuest.setVisible(false);
 				viewMain.rf1PBtnCheckIn.setEnabled(false);
+				cacheListData = null;
 				try {
 					if (controllerCheckIn.getAllReservierungen().size() == 0) {
 						List<String> list = new Vector<String>();
@@ -549,6 +716,7 @@ public class ViewController implements Application {
 				viewMain.reservationForm01.setVisible(true);
 				bdViewCurrentGuest.setVisible(false);
 				viewMain.rf1PBtnCheckIn.setEnabled(true);
+				cacheListData = null;
 				try {
 					if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
 						List<String> list = new Vector<String>();
@@ -573,6 +741,7 @@ public class ViewController implements Application {
 				viewMain.reservationForm01.setVisible(false);
 				bdViewCurrentGuest.setVisible(true);
 				viewMain.rf1PBtnCheckIn.setEnabled(false);
+				cacheListData = null;
 				try {
 					if (controllerCheckIn.getGaesteVonAuftenhalt().size() == 0) {
 						List<String> list = new Vector<String>();

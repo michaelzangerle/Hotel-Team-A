@@ -60,7 +60,7 @@
 						</BoxPane>
 					</BoxPane>
 				</BoxPane>
-				<BoxPane  orientation="vertical" styles="{horizontalAlignment:'right',verticalAlignment:'bottom', spacing:15, fill:true, wrapText:true, padding:{top:37, left:0, bottom:0, right:0}}" >			
+				<BoxPane  orientation="vertical" styles="{horizontalAlignment:'right',verticalAlignment:'bottom', spacing:15, fill:true, padding:{top:37, left:0, bottom:0, right:0}}" >			
 				
 				</BoxPane>
 			</TablePane.Row>

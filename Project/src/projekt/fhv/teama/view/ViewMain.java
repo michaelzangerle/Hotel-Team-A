@@ -92,7 +92,8 @@ public class ViewMain extends Window implements Application, Bindable {
 	/* TextInputs, RadioButtons and Checkboxes */
 	
 	@BXML Label rf1LBResNr;@BXML TextInput rf1TIName;@BXML TextInput rf1TIStreet;@BXML TextInput rfTICity;@BXML TextInput rf1TICountry;@BXML TextInput rfTIZip;
-	@BXML TextInput rf1TIPhone;@BXML TextInput rf1TIEMail;@BXML CalendarButton rf1CBArrival;@BXML CalendarButton rf1CBDeparture; 
+	@BXML TextInput rf1TIPhone;@BXML TextInput rf1TIEMail;@BXML CalendarButton rf1CBArrival;@BXML CalendarButton rf1CBDeparture; @BXML TextInput tiReservationSearch;
+	@BXML TextInput tiArrivingSearch; @BXML TextInput tiGuestSearch;
 	 
 	/* Labels */
 	@BXML Label lbProgress01;@BXML Label lbProgress02;@BXML	Label lbProgress03;@BXML Label lbProgress04;
