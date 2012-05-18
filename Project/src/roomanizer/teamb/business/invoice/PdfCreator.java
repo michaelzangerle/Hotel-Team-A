@@ -296,8 +296,8 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
 
     private List<String> calculateTaxes() {
 
-        List<String> taxCells = new LinkedList<>();
-        HashMap<Short, LinkedList<IBRechnungsPosition>> tax = new HashMap<>();
+        List<String> taxCells = new LinkedList<String>();
+        HashMap<Short, LinkedList<IBRechnungsPosition>> tax = new HashMap<Short, LinkedList<IBRechnungsPosition>>();
 
         // organize all Positions in a Hashmap corresponding do their taxrate
         Iterator i = rechnungspositionen.iterator();
@@ -308,7 +308,7 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
                 LinkedList<IBRechnungsPosition> temp = tax.get(tempR.getTaxRate());
 
                 if (temp == null) {
-                   temp = new LinkedList<>();
+                   temp = new LinkedList<IBRechnungsPosition>();
                 }
 
                 temp.add(tempR);
