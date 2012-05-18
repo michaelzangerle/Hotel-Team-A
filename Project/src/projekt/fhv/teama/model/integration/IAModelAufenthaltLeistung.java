@@ -5,6 +5,7 @@ package projekt.fhv.teama.model.integration;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
@@ -31,6 +32,6 @@ public interface IAModelAufenthaltLeistung {
 	 * @param auf
 	 * @return
 	 */
-	Collection<? extends LeistungAnzahl> getLeistungenByAufenhalt(IAAufenthalt auf) throws DatabaseException ;
+	List<LeistungAnzahl> getLeistungenByAufenhalt(IAAufenthalt auf) throws DatabaseException ;
 
 }
