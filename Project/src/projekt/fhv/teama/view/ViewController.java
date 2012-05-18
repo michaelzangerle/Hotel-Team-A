@@ -617,8 +617,8 @@ public class ViewController implements Application {
 				.getAufenthalte();
 		IAAufenthalt aufenthalt = aufenthalte.get(0);
 
-		Date arrival = aufenthalt.getVon();
-		Date departure = aufenthalt.getBis();
+		Date arrival = aufenthalt.getAVon();
+		Date departure = aufenthalt.getABis();
 
 		CalendarDate d1 = CalendarDate.decode(arrival.toString());
 		CalendarDate d2 = CalendarDate.decode(departure.toString());

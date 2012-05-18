@@ -21,7 +21,9 @@ import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
+import projekt.fhv.teama.integrate.IALeistung;
 import projekt.fhv.teama.integrate.IAZimmer;
+import projekt.fhv.teama.view.support.AdditionalServicesTableRow;
 
 /**
  * Die Wrapper Klasse ist für das ListAdapter- Management verantwortlich, d.h. die Umwandlung von Objekten zu String listen.
@@ -138,7 +140,7 @@ public class Wrapper {
 
 		for (IAZimmer room : roomsAvailable) {
 			curRooms.add(room.getNummer() + " | "
-					+ room.getKategorie().getBezeichnung());
+					+ room.getAKategorie().getBezeichnung());
 		}
 		return new ListAdapter<String>(curRooms);
 	}
@@ -170,6 +172,8 @@ public class Wrapper {
 		return new ListAdapter<String>(keyNumber);
 	}
 	
+	
+	
 	/**
 	 * Liefert den Ausgabe- String für das übergebene Zimmer.
 	 * @param zimmer
@@ -194,12 +198,19 @@ public class Wrapper {
 		return new ListAdapter<String>(curPfandTypen);
 	}
 	
+	
 	public ListAdapter<String> getZusatzleistungListAdapter(HashMap<String, Integer> services) {
 		LinkedList<String> curZusatzleistungen = new LinkedList<String>();
 		for (Map.Entry e : services.entrySet()) {
 			curZusatzleistungen.add(e.getValue() + "x " + e.getKey());
 		}
 		return new ListAdapter<String>(curZusatzleistungen);
+	}
+	
+	public List<IALeistung> getSortedLeistungList (List<IALeistung> list) {
+		ZusatzLeistungComparatorA zusatzleistungComparator = new ZusatzLeistungComparatorA();
+		Collections.sort(list, zusatzleistungComparator);
+		return list;
 	}
 	
 	/**
@@ -278,10 +289,10 @@ public class Wrapper {
 
 		@Override
 		public int compare(IAZimmer z1, IAZimmer z2) {
-			if (z1.getKategorie().getBezeichnung() ==z2.getKategorie().getBezeichnung()){
+			if (z1.getAKategorie().getBezeichnung() ==z2.getAKategorie().getBezeichnung()){
 				return z1.getNummer().compareTo(z2.getNummer());
 			}
-			return z1.getKategorie().getBezeichnung().compareTo(z2.getKategorie().getBezeichnung());
+			return z1.getAKategorie().getBezeichnung().compareTo(z2.getAKategorie().getBezeichnung());
 		}
 	}
 	
@@ -294,6 +305,15 @@ public class Wrapper {
 		@Override
 		public int compare(ILand l1, ILand l2) {
 			return l1.getBezeichnung().compareTo(l2.getBezeichnung());
+		}
+	}
+	
+	
+	public class ZusatzLeistungComparatorA implements Comparator<IALeistung> {
+
+		@Override
+		public int compare(IALeistung arg0, IALeistung arg1) {
+			return arg0.getBezeichnung().compareTo(arg1.getBezeichnung());
 		}
 	}
 }
