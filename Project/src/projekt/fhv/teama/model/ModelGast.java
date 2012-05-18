@@ -30,6 +30,7 @@ public class ModelGast implements IModelGast {
 
 	public ModelGast() {
 		gastDao = GastDao.getInstance();
+		//Test
 	}
 
 	@Override

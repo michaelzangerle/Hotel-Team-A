@@ -28,6 +28,7 @@ public class ModelAufenthalt implements IModelAufenthalt {
 	
 	public ModelAufenthalt() {
 		aufenthaltDao=AufenthaltDao.getInstance();
+		//Test
 	}
 	
 

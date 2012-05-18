@@ -10,6 +10,7 @@ import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.exception.WrongParameterException;
+import projekt.fhv.teama.model.integration.IAModelGast;
 
 
 /**
@@ -17,7 +18,7 @@ import projekt.fhv.teama.model.exception.WrongParameterException;
  * @author Team-A
  * @version 1.5
  */
-public interface IModelGast {
+public interface IModelGast extends IAModelGast{
 
 	/**
 	 * Um den Fokus auf einen Gast zu setzen
