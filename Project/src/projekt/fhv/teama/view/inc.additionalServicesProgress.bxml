@@ -9,12 +9,12 @@
 	
 	<BoxPane orientation="vertical" styles="{horizontalAlignment:'center', verticalAlignment:'top', fill:true}">
 	<StackPane>
-	<Meter bxml:id="asMeter" preferredHeight="30" styles="$styles.meter"/>
+	<Meter bxml:id="asMeter" preferredHeight="30" styles="$styles.cometer"/>
 	<FillPane orientation="horizontal">
 	<Label bxml:id="asLBProgress01" text="Step 1" cursor="hand" tooltipText="Verify the personal data of the guest or enter a new one" tooltipDelay="250" styles="$styles.lbMeter"/>
 	<Label bxml:id="asLBProgress02" text="Step 2" cursor="hand" tooltipText="Choose the room category and assign an available room" tooltipDelay="250" styles="$styles.lbMeter"/>
-	<Label bxml:id="asLBProgress03" text="Step 3" cursor="hand" tooltipText="Select a deposit category and enter the corresponding number" tooltipDelay="250" styles="$styles.lbMeter"/>
-	<Label bxml:id="asLBProgress04" text="Step 4" cursor="hand" tooltipText="Review the assigend rooms, hand out the keys and finish the check-in process" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label bxml:id="asLBProgress03" text="Step 3" cursor="hand" tooltipText="Select a deposit category and enter the corresponding number" tooltipDelay="250" styles="$styles.lbMeter" 	visible="false"/>
+	<Label bxml:id="asLBProgress04" text="Step 4" cursor="hand" tooltipText="Review the assigend rooms, hand out the keys and finish the check-in process" tooltipDelay="250" styles="$styles.lbMeter" 	visible="false"/>
 	</FillPane>
 	</StackPane>	
 	</BoxPane>

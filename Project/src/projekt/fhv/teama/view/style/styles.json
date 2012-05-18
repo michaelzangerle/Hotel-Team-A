@@ -249,6 +249,13 @@
     	color: '#f7df8c',
     },
     
+     cometer: {
+    
+       /* gridColor: '#777777',*/       
+    	color: '#f7df8c',
+    	gridFrequency: '0.5'
+    },
+    
     lbMeter: {
     	    font: { size: "150%", bold: true },
             padding:{top:4, left:8, bottom:5, right:0},

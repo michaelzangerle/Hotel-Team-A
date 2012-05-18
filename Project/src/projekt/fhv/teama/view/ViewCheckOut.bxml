@@ -1,10 +1,12 @@
 <!-- BXML Dokument für den CheckOut UseCase mit jeweiligen includes für die notwendigen Schritte - der BXML Serialisierer erstellt hieraus das 
 	 Objekt auf welches dann auch seitens des Controllers zugegriffen werden kann. Die eingebundenen Includes sind dann ebenso als Objekte instanziiert.
   -->
-<view:ViewCheckOut bxml:id="bdViewCheckOut" xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" visible="false" styles="{color:'#e3e3e3'}">
-<BoxPane orientation="vertical" styles="{fill:true}">
+<view:ViewCheckOut bxml:id="bdViewCheckOut" xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" visible="false" orientation="vertical" styles="{ backgroundColor:'#f2f2f2', spacing:20, padding:{top:0, left:0, bottom:0, right:0}, fill:true }" >
 <bxml:include src="inc.checkOutProgress.bxml" inline="true" /> 
+<Border styles="{color:'#e3e3e3'}">
+<BoxPane orientation="vertical" styles="{fill:true}">
 <bxml:include src="inc.checkOutForm01.bxml" inline="true"/>	
 <bxml:include src="inc.checkOutForm02.bxml" inline="true"/>
 </BoxPane>
+</Border>
 </view:ViewCheckOut>

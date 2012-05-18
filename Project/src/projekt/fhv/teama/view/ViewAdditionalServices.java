@@ -53,7 +53,7 @@ import projekt.fhv.teama.view.tests.TestData;
  * @author Team A
  * @version 1.1
  */
-public class ViewAdditionalServices extends Border implements Bindable {
+public class ViewAdditionalServices extends BoxPane implements Bindable {
 
 	/**
 	 * Controls für das Fenster festlegen. Die Felder werden bei

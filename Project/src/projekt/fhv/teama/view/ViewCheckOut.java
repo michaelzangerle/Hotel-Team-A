@@ -23,7 +23,7 @@ import org.apache.pivot.wtk.TextInput;
  * @author Team A
  * @version 1.1
  */
-public class ViewCheckOut extends Border implements Bindable {
+public class ViewCheckOut extends BoxPane implements Bindable {
 	 
 	/**
 	 * Controls für das Fenster festlegen. Die Felder werden bei
