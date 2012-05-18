@@ -3,6 +3,8 @@ package projekt.fhv.teama.classes.personen;
 import java.util.HashSet;
 import java.util.Set;
 
+import projekt.fhv.teama.integrate.IALand;
+
 import roomanizer.teamb.service.integrate.IBLand;
 
 /**
@@ -137,5 +139,10 @@ public class Adresse implements IAdresse {
 	@Override
 	public IBLand getBLand() {
 		return (IBLand)land;
+	}
+
+	@Override
+	public IALand getALand() {
+		return (IALand)land;
 	}
 }

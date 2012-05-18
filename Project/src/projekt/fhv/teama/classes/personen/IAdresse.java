@@ -4,6 +4,7 @@ import java.util.Set;
 
 import projekt.fhv.teama.classes.IModel;
 import projekt.fhv.teama.integrate.IAAdresse;
+import projekt.fhv.teama.integrate.IALand;
 import roomanizer.teamb.service.integrate.IBAdresse;
 
 
@@ -82,5 +83,11 @@ public interface IAdresse extends IModel,IBAdresse,IAAdresse {
 	 * @param person Set<IPerson>
 	 */
 	public void setVertragspartner(Set<IVertragspartner> vertragspartner);
+	
+	/**
+	 * Um das Land einer Adresse abrufen zu können
+	 * @return String
+	 */
+	public IALand getALand();
 
 }

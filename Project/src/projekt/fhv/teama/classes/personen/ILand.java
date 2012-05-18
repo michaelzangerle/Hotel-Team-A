@@ -1,6 +1,7 @@
 package projekt.fhv.teama.classes.personen;
 
 import projekt.fhv.teama.classes.IModel;
+import projekt.fhv.teama.integrate.IALand;
 import roomanizer.teamb.service.integrate.IBLand;
 
 /**
@@ -8,7 +9,7 @@ import roomanizer.teamb.service.integrate.IBLand;
  * @author Team-A
  * @version 1.5
  */
-public interface ILand extends IModel,IBLand{
+public interface ILand extends IModel,IBLand,IALand{
 
 
 	/**
