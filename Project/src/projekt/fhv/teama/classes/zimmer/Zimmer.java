@@ -9,6 +9,7 @@ import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.leistungen.Leistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
+import projekt.fhv.teama.integrate.IAKategorie;
 import roomanizer.teamb.service.integrate.IBRechnungsPosition;
 
 /**
@@ -306,5 +307,10 @@ public class Zimmer extends Leistung implements IZimmer {
 	@Override
 	public String getNumber() {
 		return this.getNummer();
+	}
+
+	@Override
+	public IAKategorie getAKategorie() {
+		return kategorie;
 	}
 }

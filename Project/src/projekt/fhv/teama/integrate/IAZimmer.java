@@ -20,6 +20,6 @@ public interface IAZimmer {
 	/**
 	 * @return
 	 */
-	IAKategorie getKategorie();
+	IAKategorie getAKategorie();
 
 }
