@@ -4,13 +4,14 @@ import java.sql.Date;
 
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.integrate.IAAufenthalt;
 
 /**
  * Interface für die Klasse Aufenthalt
  * @author Team A
  * @version 1.9
  */
-public interface IAufenthalt extends IModel {
+public interface IAufenthalt extends IModel,IAAufenthalt {
 	
 	/**
 	 * Setzt den Preis den Aufenthalt fest

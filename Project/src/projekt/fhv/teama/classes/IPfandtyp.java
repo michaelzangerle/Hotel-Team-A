@@ -1,11 +1,13 @@
 package projekt.fhv.teama.classes;
 
+import projekt.fhv.teama.integrate.IAPfandtyp;
+
 /**
  * Interface für die Klasse Pfandtyp
  * @author Team A
  * @version 1.8
  */
-public interface IPfandtyp extends IModel {
+public interface IPfandtyp extends IModel,IAPfandtyp {
 	
 	/**
 	 * Setzt den Wert für das Attribut Bezeichnung

@@ -13,15 +13,11 @@ import org.apache.pivot.wtk.ComponentMouseButtonListener;
 import org.apache.pivot.wtk.Dialog;
 import org.apache.pivot.wtk.MessageType;
 
-import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckOut;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAAufenthalt;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.view.support.BlockingDialog;
-import roomanizer.teamb.business.BusinessFactory;
-import roomanizer.teamb.presentation.forms.invoice.InvoiceStep1;
-import roomanizer.teamb.service.integrate.IBGast;
-import roomanizer.teamb.service.integrate.IBKonsument;
 
 
 /**
@@ -67,8 +63,8 @@ public class CheckOutViewController implements ButtonPressListener {
 	}
 	
 	public void setDeposit() throws DatabaseException {
-		List<IAufenthalt> aufenthalte = controller.getAufenthalte();
-		IAufenthalt aufenthalt = aufenthalte.get(0);
+		List<IAAufenthalt> aufenthalte = controller.getAufenthalte();
+		IAAufenthalt aufenthalt = aufenthalte.get(0);
 		String bezeichnung = aufenthalt.getPfandtyp().getBezeichnung();
 		String nummer = aufenthalt.getPfandNr();
 		view.cof2LBDepositNr.setText("Pfand: " + bezeichnung + " Nummer: " + nummer);

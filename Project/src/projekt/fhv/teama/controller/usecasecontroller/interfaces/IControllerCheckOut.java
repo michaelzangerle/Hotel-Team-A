@@ -2,10 +2,12 @@ package projekt.fhv.teama.controller.usecasecontroller.interfaces;
 
 import java.util.List;
 
-import projekt.fhv.teama.classes.IAufenthalt;
-import projekt.fhv.teama.classes.personen.IGast;
+
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAAufenthalt;
+import projekt.fhv.teama.integrate.IAGast;
+import projekt.fhv.teama.integrate.IAZimmer;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 
@@ -15,21 +17,21 @@ public interface IControllerCheckOut {
 	 * Die Referenz auf den aktuellen Gast setzen
 	 * @param gast
 	 */
-	public abstract void setGast(IGast gast);
+	public abstract void setGast(IAGast gast);
 
 	/**
 	 * Referenz des aktuellen Gastes erhalten
 	 * @return
 	 * @throws FokusException
 	 */
-	public abstract IGast getGast() throws FokusException;
+	public abstract IAGast getGast() throws FokusException;
 
 	/**
 	 * Liste aller aktuellen Gaeste
 	 * @return
 	 * @throws DatabaseException
 	 */
-	public abstract List<IGast> getGaesteVonAuftenhalten()
+	public abstract List<IAGast> getGaesteVonAuftenhalten()
 			throws DatabaseException;
 
 	/**
@@ -37,7 +39,7 @@ public interface IControllerCheckOut {
 	 * @param aufenhalt
 	 * @throws EmptyParameterException
 	 */
-	public abstract void setAufenthalt(IAufenthalt aufenhalt)
+	public abstract void setAufenthalt(IAAufenthalt aufenhalt)
 			throws EmptyParameterException;
 
 	/**
@@ -45,14 +47,14 @@ public interface IControllerCheckOut {
 	 * @return
 	 * @throws FokusException
 	 */
-	public abstract IAufenthalt getAufenthalt() throws FokusException;
+	public abstract IAAufenthalt getAufenthalt() throws FokusException;
 
 	/**
 	 * Liste aller Aufenthalte
 	 * @return
 	 * @throws DatabaseException
 	 */
-	public abstract List<IAufenthalt> getAufenthalte() throws DatabaseException;
+	public abstract List<IAAufenthalt> getAufenthalte() throws DatabaseException;
 
 	/**
 	 * Liste der Zimmer eines Gastes 
@@ -60,7 +62,7 @@ public interface IControllerCheckOut {
 	 * @throws FokusException
 	 * @throws DatabaseException
 	 */
-	public abstract List<IZimmer> getZimmerVonGast() throws FokusException,
+	public abstract List<IAZimmer> getZimmerVonGast() throws FokusException,
 			DatabaseException;
 
 	/**

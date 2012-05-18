@@ -6,6 +6,7 @@ import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.integrate.IAGast;
 import roomanizer.teamb.service.integrate.IBGast;
 import roomanizer.teamb.service.integrate.IBKonsument;
 
@@ -14,7 +15,7 @@ import roomanizer.teamb.service.integrate.IBKonsument;
  * @author Team-A
  * @version 1.5
  */
-public interface IGast extends IPerson,IBGast,IBKonsument {
+public interface IGast extends IPerson,IBGast,IBKonsument,IAGast {
 	
 	/**
 	 * Um die Gastnummer zu setzen

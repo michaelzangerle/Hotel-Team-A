@@ -3,18 +3,19 @@ package projekt.fhv.teama.controller.usecasecontroller;
 import java.util.List;
 import java.util.Vector;
 
-import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.MyLittleDate;
-import projekt.fhv.teama.classes.personen.IGast;
-import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerCheckOut;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAAufenthalt;
+import projekt.fhv.teama.integrate.IAGast;
+import projekt.fhv.teama.integrate.IAZimmer;
 import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.ModelGast;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
+
 
 /**
  * Controller zur Steuerung des Check Out Vorganges
@@ -29,29 +30,29 @@ public class ControllerCheckOut implements IControllerCheckOut {
 	private IModelAufenthalt modelAufenthalt;
 
 	// Listen
-	private List<IAufenthalt> aufenthalte = new Vector<IAufenthalt>();
+	private List<IAAufenthalt> aufenthalte = new Vector<IAAufenthalt>();
 
 	public ControllerCheckOut() {
 		modelGast = new ModelGast();
 		modelAufenthalt = new ModelAufenthalt();
 	}
 
-	public void setGast(IGast gast) {
+	public void setGast(IAGast gast) {
 		modelGast.setAktuellGast(gast);
 	}
 
-	public IGast getGast() throws FokusException {
+	public IAGast getGast() throws FokusException {
 		return modelGast.getAktuellGast();
 	}
 
 	@Override
-	public List<IGast> getGaesteVonAuftenhalten() throws DatabaseException {
+	public List<IAGast> getGaesteVonAuftenhalten() throws DatabaseException {
 		if (aufenthalte.size() < 1) {
 			aufenthalte.clear();
 			getAufenthalte();
 		}
-		List<IGast> gaeste = new Vector<IGast>();
-		for (IAufenthalt aufenthalt : aufenthalte) {
+		List<IAGast> gaeste = new Vector<IAGast>();
+		for (IAAufenthalt aufenthalt : aufenthalte) {
 			if (!gaeste.contains(aufenthalt.getGast())
 					&& aufenthalt.getGast() != null)
 				gaeste.add(aufenthalt.getGast());
@@ -59,16 +60,16 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		return gaeste;
 	}
 
-	public void setAufenthalt(IAufenthalt aufenhalt)
+	public void setAufenthalt(IAAufenthalt aufenhalt)
 			throws EmptyParameterException {
 		modelAufenthalt.setAufenthalt(aufenhalt);
 	}
 
-	public IAufenthalt getAufenthalt() throws FokusException {
+	public IAAufenthalt getAufenthalt() throws FokusException {
 		return modelAufenthalt.getAufenthalt();
 	}
 
-	public List<IAufenthalt> getAufenthalte() throws DatabaseException {
+	public List<IAAufenthalt> getAufenthalte() throws DatabaseException {
 		if (aufenthalte.size() > 0) {
 			return aufenthalte;
 		} else {
@@ -78,16 +79,16 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		}
 	}
 
-	public List<IZimmer> getZimmerVonGast() throws FokusException,
+	public List<IAZimmer> getZimmerVonGast() throws FokusException,
 			DatabaseException {
 
-		List<IZimmer> zimmers = new Vector<IZimmer>();
+		List<IAZimmer> zimmers = new Vector<IAZimmer>();
 
 		if (aufenthalte.size() <= 0) {
 			getAufenthalte();
 		}
 
-		for (IAufenthalt aufenthalt : aufenthalte) {
+		for (IAAufenthalt aufenthalt : aufenthalte) {
 			if (aufenthalt.getGast().equals(getGast()) && aufenthalt.getZimmer() != null) 
 				zimmers.add(aufenthalt.getZimmer());
 		}
@@ -101,12 +102,6 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		// TODO aufrufenRechnungErstellen Team B
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see projekt.fhv.teama.controller.usecasecontroller.IControllerCheckOut#
-	 * offeneRechnungspositionenVorhanden()
-	 */
 
 	public boolean offeneRechnungspositionenVorhanden() {
 		// TODO Offene Rechnungspositionen noch vorhanden sind
@@ -114,15 +109,10 @@ public class ControllerCheckOut implements IControllerCheckOut {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * projekt.fhv.teama.controller.usecasecontroller.IControllerCheckOut#save()
-	 */
 
 	public void save() {
 		// TODO Speichern des Check Out Vorganges(Schlüssel rückgabe etc)
 	}
+
 
 }
