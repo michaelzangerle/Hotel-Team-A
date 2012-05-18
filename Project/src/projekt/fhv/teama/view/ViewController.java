@@ -306,7 +306,9 @@ public class ViewController implements Application {
 	public void startInvoiceWindow() {
 		IBGast gast;
 		try {
-			gast = controllerCheckOut.getGast();
+			
+			// TODO - gibt IGast zurück 
+			gast = (IBGast) controllerCheckOut.getGast();
 
 			IBKonsument konsument = (IBKonsument) gast;
 			new InvoiceStep1(null, BusinessFactory.newInvoiceController(
