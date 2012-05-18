@@ -23,6 +23,7 @@ public class ModelZimmer implements IModelZimmer {
 
 	IZimmer zimmerModel;
 	IZimmerDao zimmerDao;
+	IAZimmer zimmerModelA;
 
 	public ModelZimmer() {
 		zimmerDao = ZimmerDao.getInstance();
@@ -140,7 +141,7 @@ public class ModelZimmer implements IModelZimmer {
 	
 	@Override
 	public void setAktullesZimmer(IAZimmer zimmer) {
-		this.setAktullesZimmer(zimmer);
+		this.zimmerModel = (IZimmer) zimmer;
 	}
 
 	@Override

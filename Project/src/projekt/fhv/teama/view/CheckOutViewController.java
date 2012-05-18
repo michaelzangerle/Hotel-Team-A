@@ -72,7 +72,7 @@ public class CheckOutViewController implements ButtonPressListener {
 	
 	public void setHandedKeysTable () throws FokusException, DatabaseException {
 		Wrapper wrapper = new Wrapper();
-		view.cof2LVHandedKeys.setListData(wrapper.getKeyListAdapter(controller.getZimmerVonGast()));
+		view.cof2LVHandedKeys.setListData(wrapper.getKeyListAdapaterA(controller.getZimmerVonGast()));
 	}
 	
 

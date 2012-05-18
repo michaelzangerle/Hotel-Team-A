@@ -21,6 +21,7 @@ import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
+import projekt.fhv.teama.integrate.IAZimmer;
 
 /**
  * Die Wrapper Klasse ist für das ListAdapter- Management verantwortlich, d.h. die Umwandlung von Objekten zu String listen.
@@ -130,6 +131,17 @@ public class Wrapper {
 		return new ListAdapter<String>(curRooms);
 	}
 	
+	public ListAdapter<String> getZimmerWithoutPriceListAdapterA(List<IAZimmer> roomsAvailable) {
+		LinkedList<String> curRooms = new LinkedList<String>();
+		RoomNumberComparatorA roomNumberComparator = new RoomNumberComparatorA();
+		Collections.sort(roomsAvailable, roomNumberComparator);
+
+		for (IAZimmer room : roomsAvailable) {
+			curRooms.add(room.getNummer() + " | "
+					+ room.getKategorie().getBezeichnung());
+		}
+		return new ListAdapter<String>(curRooms);
+	}
 	/**
 	 * liefert den Schlüssel- ListAdapter
 	 * @param rooms
@@ -141,6 +153,18 @@ public class Wrapper {
 		Collections.sort(rooms, roomNumberComparator);
 
 		for (IZimmer room : rooms) {
+			keyNumber.add("Key No. " + room.getNummer());
+		}
+		return new ListAdapter<String>(keyNumber);
+	}
+	
+	
+	public ListAdapter<String> getKeyListAdapaterA (List<IAZimmer> rooms) {
+		LinkedList<String> keyNumber = new LinkedList<String>();
+		RoomNumberComparatorA roomNumberComparator = new RoomNumberComparatorA();
+		Collections.sort(rooms, roomNumberComparator);
+
+		for (IAZimmer room : rooms) {
 			keyNumber.add("Key No. " + room.getNummer());
 		}
 		return new ListAdapter<String>(keyNumber);
@@ -246,6 +270,21 @@ public class Wrapper {
 			return z1.getKategorie().getBezeichnung().compareTo(z2.getKategorie().getBezeichnung());
 		}
 	}
+	
+	/**
+	 * Der RoomNumber Comparator sortiert die Zimmer anhand der Kategorie- Bezeichnung und Zimmernummer.
+	 */
+	public class RoomNumberComparatorA implements Comparator<IAZimmer> {
+
+		@Override
+		public int compare(IAZimmer z1, IAZimmer z2) {
+			if (z1.getKategorie().getBezeichnung() ==z2.getKategorie().getBezeichnung()){
+				return z1.getNummer().compareTo(z2.getNummer());
+			}
+			return z1.getKategorie().getBezeichnung().compareTo(z2.getKategorie().getBezeichnung());
+		}
+	}
+	
 	
 	/**
 	 * Der CountryName Comparator sortiert die Laender anhand der Bezeichnung.

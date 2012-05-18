@@ -23,7 +23,6 @@ import org.apache.pivot.wtk.TablePane;
 import org.apache.pivot.wtk.TableView;
 import org.apache.pivot.wtk.TableViewRowListener;
 
-import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
@@ -63,7 +62,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		Wrapper wrapper = new Wrapper();
 
 		view.asf1LVBookedRooms.setListData(wrapper
-				.getZimmerWithoutPriceListAdapter(rooms));
+				.getZimmerWithoutPriceListAdapterA(rooms));
 
 	}
 
@@ -89,7 +88,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		List<IALeistung> services = controller.getArtikelundZusatzleistungen();
 		List<IALeistung> curServices = new LinkedList<IALeistung>();
 		HashMap<IALeistung, Integer> curMap = new HashMap<IALeistung, Integer>();
-		IZimmer tempRoom = controller.getAktuellesZimmer();
+		IAZimmer tempRoom = controller.getAktuellesZimmer();
 
 		if (controller.getGebuchteLeistungen().get(tempRoom) != null) {
 			for (LeistungAnzahl la : controller.getGebuchteLeistungen().get(
@@ -138,7 +137,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 		float total = 0;
 		for (Map.Entry e : services.entrySet()) {
-			IZimmer room = (IZimmer) e.getKey();
+			IAZimmer room = (IAZimmer) e.getKey();
 			List<LeistungAnzahl> tempServices = (List<LeistungAnzahl>) e
 					.getValue();
 
@@ -448,9 +447,6 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 		@Override
 		public void rowsSorted(TableView arg0) {
-			System.out.println("asdf");
-			System.out.println(arg0.getRowAt(1));
-			System.out.println(arg0.getTableData());
 		}
 	}
 }
