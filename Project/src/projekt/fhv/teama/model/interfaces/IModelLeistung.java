@@ -6,9 +6,9 @@ import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.FokusException;
-import projekt.fhv.teama.model.integration.IAModelLeistung;
 
-public interface IModelLeistung extends IAModelLeistung {
+
+public interface IModelLeistung{
 
 	/**
 	 * Methode um alle Leistungen auszulesen die es gibt

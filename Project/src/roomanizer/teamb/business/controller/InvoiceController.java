@@ -18,6 +18,7 @@ import roomanizer.teamb.data.IntegrateFacade;
 import roomanizer.teamb.service.contract.Hibernate.IHibernateTransaction;
 import roomanizer.teamb.service.contract.controller.IInvoiceController;
 import roomanizer.teamb.service.integrate.*;
+import java.util.ArrayList;
 
 /**
  *
