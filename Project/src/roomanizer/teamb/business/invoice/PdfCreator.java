@@ -99,8 +99,8 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
             this.gast_land = rechnung.getCountry().getBezeichnung();
             this.rechnungsnummer = rechnung.getRechnungsNummer();
 
-            this.teilzahlungen = new ArrayList<>(rechnung.getBTeilzahlungen());
-            this.rechnungspositionen = new ArrayList<>(rechnung.getRechnungsPositionen());
+            this.teilzahlungen = new ArrayList<IBTeilzahlung>(rechnung.getBTeilzahlungen());
+            this.rechnungspositionen = new ArrayList<IBRechnungsPosition>(rechnung.getRechnungsPositionen());
             Collections.sort(this.rechnungspositionen, new RepoDatumComparator());
 
             File location = new File(filename);
