@@ -32,4 +32,6 @@ public interface IAAdresse {
 	 */
 	String getOrt();
 
+	ILand getLand();
+
 }
