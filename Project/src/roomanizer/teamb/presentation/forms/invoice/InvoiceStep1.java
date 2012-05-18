@@ -47,6 +47,7 @@ import roomanizer.teamb.presentation.forms.invoice.action.HasOpenPositionAction;
 import roomanizer.teamb.presentation.forms.invoice.action.LoadLaenderBAction;
 import roomanizer.teamb.presentation.forms.invoice.action.LoadLaenderBAction.ILoadLaenderBDetail;
 import roomanizer.teamb.presentation.forms.invoice.action.Step2Action;
+import roomanizer.teamb.presentation.forms.overview.TableRowFilter;
 import roomanizer.teamb.presentation.forms.overview.TableRowSorter;
 import roomanizer.teamb.service.contract.controller.IInvoiceController;
 import roomanizer.teamb.service.integrate.IBGast;
@@ -89,7 +90,7 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
     private IInvoiceController controller;
     private Date fromFilter;
     private Date untilFilter;
-    private TableRowSorter sorter;
+    private TableRowSorter<AlleRechnungPostionenTableModel> sorter;
 
     public InvoiceStep1(AbstractForm form, IInvoiceController controller) {
         super(form);
@@ -103,9 +104,10 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
         @Override
         public void started() {
             AlleRechnungPostionenTableModel model = new AlleRechnungPostionenTableModel(controller);
-            sorter = new TableRowSorter(model);
+            sorter = new TableRowSorter<AlleRechnungPostionenTableModel>(model);
             tableInvoice.setModel(model);
             tableInvoice.setRowSorter(sorter);
+            tableInvoice.setAutoCreateRowSorter(true);
 
             tableInvoice.getColumnModel().getColumn(0).setPreferredWidth(120);  //InvoiceLIne
             tableInvoice.getColumnModel().getColumn(2).setPreferredWidth(60);   //Amount
@@ -280,6 +282,28 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
 
         panelInvoiceDetails.getAccessibleContext().setAccessibleName("");
 
+        //TODO Filter From (Date)
+//        dateChooserFrom.addPropertyChangeListener(new PropertyChangeListener() {
+//
+//            @Override
+//            public void propertyChange(PropertyChangeEvent evt) {
+//                Date expr = dateChooserFrom.getDate();
+////                String expr = evt.getNewValue().toString();
+//                System.out.println("DATE OUTPUT*************************************" + expr);
+//
+//                if (evt.getPropertyName().equals("date")) {
+//                    TableRowFilter fromFilter = new TableRowFilter(expr.toString());
+////                    sorter.setRowFilter(RowFilter.dateFilter(RowFilter.ComparisonType.AFTER, dateChooserFrom.getDate()));
+////                    sorter.setRowFilter(RowFilter.regexFilter(expr));
+//                    sorter.setRowFilter(fromFilter);
+//                    tableInvoice.setRowSorter(sorter);
+//                }
+//            }
+//        });
+
+        //TODO Filter Until(Date)
+
+
 
         /**
          * TODO Action Listener für all Invoice Items
@@ -298,13 +322,16 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
 
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 String expr = comboBoxGuests.getSelectedItem().toString();
+                TableRowFilter filter = null;
 
                 if (comboBoxGuests.getSelectedIndex() == 0) {
-                    expr = "[a-zA-z0-9]*";
+                    filter = new TableRowFilter("[a-zA-Z_0-9@öüäÖÜÄ-]*" + expr + "[a-zA-Z_0-9@öüäÖÜÄ-]*");
+
                 }
 
-                sorter.setRowFilter(RowFilter.regexFilter(expr));
+                sorter.setRowFilter(filter);
                 tableInvoice.setRowSorter(sorter);
             }
         };
@@ -316,9 +343,11 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
             @Override
             public void actionPerformed(ActionEvent e) {
                 String expr = comboBoxRoom.getSelectedItem().toString();
+                TableRowFilter filter = null;
 
                 if (comboBoxRoom.getSelectedIndex() == 0) {
-                    expr = "[a-zA-z0-9]*";
+                    filter = new TableRowFilter("[a-zA-Z_0-9@öüäÖÜÄ-]*" + expr + "[a-zA-Z_0-9@öüäÖÜÄ-]*");
+//                    expr = "[a-zA-z0-9]*";
                 }
 
                 sorter.setRowFilter(RowFilter.regexFilter(expr));
@@ -393,5 +422,11 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
     public void loadFailed() {
         JOptionPane.showMessageDialog(null, "No Open Invoice Positions", "No Open Positions", JOptionPane.ERROR_MESSAGE);
         setVisible(false);
+    }
+
+    @Override
+    public void showForm() {
+        super.showForm();
+        controller.reload();
     }
 }

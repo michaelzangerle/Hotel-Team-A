@@ -67,55 +67,53 @@ public class InvoiceStep3 extends AbstractFormInvoice implements IActionResult, 
         setPreferredSize(new Dimension(891, 612));
         setResizable(false);
         setLayout(new BorderLayout());
-        pageNr = 0;
+        pageNr = 1;
         showPDF(pageNr);
         
-        labelPageXFromY = new JLabel("Page "+(pageNr+1) + " from "+ totalPages);
-
+        labelPageXFromY = new JLabel("Page "+pageNr + " from "+ totalPages);
+        
         btnNextPage = new JButton(">");
-        if(totalPages > 1){      
-            btnNextPage.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    //setzt zähler hinauf um auf nächste seite zu gelangen
-                    if (pageNr < totalPages - 1) {
-                        pageNr++;
-                        try {
-                            showPDF(pageNr);
-                            labelPageXFromY.repaint();
-                        } catch (IOException ex) {
-                            Logger.getLogger(InvoiceStep3.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+        btnNextPage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //setzt zähler hinauf um auf nächste seite zu gelangen
+                if(totalPages != pageNr){
+                    pageNr++;
+                    if(pageNr == totalPages){
+                        btnNextPage.setEnabled(false);
                     }
+                    btnPrevPage.setEnabled(true);
                 }
-            });
-        }
-        else{
-            btnNextPage.setEnabled(false);
-        }
+                try {
+                    showPDF(pageNr);
+                    labelPageXFromY.setText("Page "+(pageNr) + " from "+ totalPages);      
+                } catch (IOException ex) {
+                    Logger.getLogger(InvoiceStep3.class.getName()).log(Level.SEVERE, null, ex);
+                }                    
+            }
+        });
 
         btnPrevPage = new JButton("<");
-        if(pageNr != 0){    
-            btnPrevPage.addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    //setzt zähler hinab um auf vorige seite zu gelangen
-                    if (pageNr > 0) {
+        btnPrevPage.setEnabled(false);
+        btnPrevPage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //setzt zähler hinab um auf vorige seite zu gelangen
+                try {
+                    if(pageNr > 1){
                         pageNr--;
-                        try {
-                            showPDF(pageNr);
-                            labelPageXFromY.repaint();
-                        } catch (IOException ex) {
-                            Logger.getLogger(InvoiceStep3.class.getName()).log(Level.SEVERE, null, ex);
+                        if(pageNr == 1){
+                            btnPrevPage.setEnabled(false);
                         }
+                        btnNextPage.setEnabled(true);
                     }
+                    showPDF(pageNr);
+                    labelPageXFromY.setText("Page "+pageNr + " from "+ totalPages);
+                } catch (IOException ex) {
+                    Logger.getLogger(InvoiceStep3.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            });
-        }
-        else{
-            btnPrevPage.setEnabled(false);
-        }
+            }
+        });
 
         btnNew = new JButton("New");
         ActionEventHandler newhandler = new ActionEventHandler(new IActionResult() {

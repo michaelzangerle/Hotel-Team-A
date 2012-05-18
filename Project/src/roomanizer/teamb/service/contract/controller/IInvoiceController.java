@@ -104,4 +104,8 @@ public interface IInvoiceController extends IController {
     Boolean hasOpenPositions();
 
     void clearPosition(IBRechnungsPosition position) throws PayToMuchException;
+
+    void chooseAll();
+
+    void reload();
 }

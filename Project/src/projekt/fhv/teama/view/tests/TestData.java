@@ -13,6 +13,7 @@ import org.apache.pivot.wtk.ListButton;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IALeistung;
 import projekt.fhv.teama.view.support.*;
 
 
@@ -28,7 +29,7 @@ public class TestData {
 		
 	public void generateTestData() {
 		ControllerZusatzleistungBuchen controller = new ControllerZusatzleistungBuchen();
-		List<ILeistung> list = null;
+		List<IALeistung> list = null;
 		try {
 			list = controller.getArtikelundZusatzleistungen();
 		} catch (DatabaseException e) {
@@ -37,7 +38,7 @@ public class TestData {
 		}
 		ArrayList<String> arrayList = new ArrayList<String>();
 		List<String> stringlist = new LinkedList<String>();
-		for (ILeistung leistung : list){
+		for (IALeistung leistung : list){
 			stringlist.add(leistung.getBezeichnung());
 			arrayList.add(leistung.getBezeichnung());
 		}

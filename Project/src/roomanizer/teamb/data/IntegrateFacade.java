@@ -49,10 +49,6 @@ public class IntegrateFacade {
         return  new ArrayList<IBZahlungsmethode>();
     }
 
-    public static IMapper getRepository(Object obj) {
-        return PersistanceFacade.getInstance().getMapper(obj.getClass());
-    }
-
     public static IHibernateTransaction getTransaction() {
         return HibernateTransaction.beginn();
     }

@@ -18,7 +18,6 @@ import roomanizer.teamb.data.IntegrateFacade;
 import roomanizer.teamb.service.contract.Hibernate.IHibernateTransaction;
 import roomanizer.teamb.service.contract.controller.IInvoiceController;
 import roomanizer.teamb.service.integrate.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -26,6 +25,7 @@ import java.util.ArrayList;
  */
 public class InvoiceController extends Observable implements IInvoiceController {
 
+    private boolean started = false;
     private IBKonsument reservierung;
     private IBGast gast;
     private Set<IBRechnungsPosition> alle;
@@ -54,8 +54,8 @@ public class InvoiceController extends Observable implements IInvoiceController 
     //<editor-fold defaultstate="collapsed" desc="Controller Handling">
     @Override
     public void abort() {
+        System.out.println("Aborted");
         // TODO Abort
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -90,6 +90,7 @@ public class InvoiceController extends Observable implements IInvoiceController 
 
     @Override
     public void start() {
+        System.out.println("Started");
         // TODO Woher kommt das Hotel
         this.folder = IntegrateFacade.getHotel().getRechnungen();
         // TODO Woher bekomme ich die Rechnung?
@@ -107,6 +108,8 @@ public class InvoiceController extends Observable implements IInvoiceController 
         this.rechnung.setRechnungsNummer(this.generateNummer());
 
         this.alle = reservierung.getBOffeneRechnungsPositionen();
+
+        this.started = true;
 
         notifyObservers();
     }
@@ -190,13 +193,13 @@ public class InvoiceController extends Observable implements IInvoiceController 
     @Override
     public List<IBGast> getGaeste() {
         if (this.gaeste == null) {
-            Set<IBGast> lgaeste = new HashSet<>();
+            Set<IBGast> lgaeste = new HashSet<IBGast>();
             for (IBRechnungsPosition position : this.alle) {
                 if (position.getBGast() != null) {
                     lgaeste.add(position.getBGast());
                 }
             }
-            this.gaeste = new ArrayList<>(lgaeste);
+            this.gaeste = new ArrayList<IBGast>(lgaeste);
         }
         return this.gaeste;
     }
@@ -204,13 +207,13 @@ public class InvoiceController extends Observable implements IInvoiceController 
     @Override
     public List<IBZimmer> getZimmer() {
         if (this.zimmer == null) {
-            Set<IBZimmer> lzimmer = new HashSet<>();
+            Set<IBZimmer> lzimmer = new HashSet<IBZimmer>();
             for (IBRechnungsPosition position : this.alle) {
                 if (position.getBZimmer() != null) {
                     lzimmer.add(position.getBZimmer());
                 }
             }
-            this.zimmer = new ArrayList<>(lzimmer);
+            this.zimmer = new ArrayList<IBZimmer>(lzimmer);
         }
         return this.zimmer;
     }
@@ -224,12 +227,12 @@ public class InvoiceController extends Observable implements IInvoiceController 
     //<editor-fold defaultstate="collapsed" desc="Positionen">
     @Override
     public List<IBRechnungsPosition> getAlle() {
-        return new ArrayList<>(this.alle);
+        return new ArrayList<IBRechnungsPosition>(this.alle);
     }
 
     @Override
     public List<IBRechnungsPosition> getAusgewaehlte() {
-        return new ArrayList<>(this.rechnung.getRechnungsPositionen());
+        return new ArrayList<IBRechnungsPosition>(this.rechnung.getRechnungsPositionen());
     }
 
     @Override
@@ -253,7 +256,7 @@ public class InvoiceController extends Observable implements IInvoiceController 
 
     @Override
     public void clearPosition(IBRechnungsPosition position) throws PayToMuchException {
-        //IHibernateTransaction tx = IntegrateFacade.getTransaction();
+        IHibernateTransaction tx = IntegrateFacade.getTransaction();
         position.setFalsch(true);
         if (this.alle.contains(position)) {
             this.alle.remove(position);
@@ -261,8 +264,8 @@ public class InvoiceController extends Observable implements IInvoiceController 
         if (this.rechnung.getRechnungsPositionen().contains(position)) {
             this.removePosition(position);
         }
-        IntegrateFacade.getRepository(position).saveOrUpdate(position);
-        //tx.commit();
+        tx.saveOrUpdate(position);
+        tx.commit();
         notifyObservers();
     }
     //</editor-fold>
@@ -270,7 +273,7 @@ public class InvoiceController extends Observable implements IInvoiceController 
     //<editor-fold defaultstate="collapsed" desc="Teilzahlungen">
     @Override
     public List<IBTeilzahlung> getTeilzahlungen() {
-        return new ArrayList<>(this.rechnung.getBTeilzahlungen());
+        return new ArrayList<IBTeilzahlung>(this.rechnung.getBTeilzahlungen());
     }
 
     @Override
@@ -326,5 +329,20 @@ public class InvoiceController extends Observable implements IInvoiceController 
     @Override
     public List<IBLand> getLaender() {
         return IntegrateFacade.getAllLaender();
+    }
+
+    @Override
+    public void chooseAll() {
+        // TODO alle auswählen
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void reload() {
+        // TODO Reload Rechnungspositionen
+        if (started) {
+            this.alle = reservierung.getBOffeneRechnungsPositionen();
+            notifyObservers();
+        }
     }
 }
