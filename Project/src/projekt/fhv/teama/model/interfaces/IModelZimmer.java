@@ -10,13 +10,14 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseEntryNotFoundException;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.model.integration.IAModelZimmer;
 
 /**
  * Beschreibt das Interface für das Zimmer Model
  * @author Team-A
  * @version 1.5
  */
-public interface IModelZimmer {
+public interface IModelZimmer extends IAModelZimmer{
 
 	/**
 	 * Gibt alle Verfügbaren Zimmer der angegebenen Kategorie als Liste zurück

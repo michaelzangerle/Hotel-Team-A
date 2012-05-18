@@ -10,6 +10,7 @@ import projekt.fhv.teama.classes.zimmer.IZimmerstatus;
 import projekt.fhv.teama.hibernate.dao.zimmer.IZimmerDao;
 import projekt.fhv.teama.hibernate.dao.zimmer.ZimmerDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAZimmer;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
@@ -135,6 +136,17 @@ public class ModelZimmer implements IModelZimmer {
 			throw new FokusException();
 		}
 		}
+
+	
+	@Override
+	public void setAktullesZimmer(IAZimmer zimmer) {
+		this.setAktullesZimmer(zimmer);
+	}
+
+	@Override
+	public IAZimmer getAAktullesZimmer() throws FokusException {
+		return (IAZimmer) this.getAktullesZimmer();
+	}
 
 
 

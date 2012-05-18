@@ -8,6 +8,7 @@ import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.hibernate.dao.leistungen.ArtikelDao;
 import projekt.fhv.teama.hibernate.dao.leistungen.IArtikelDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IALeistung;
 import projekt.fhv.teama.model.interfaces.IModelArtikel;
 
 public class ModelArtikel implements IModelArtikel{
@@ -22,6 +23,11 @@ public class ModelArtikel implements IModelArtikel{
 	public List<ILeistung> getArtikel() throws DatabaseException
 	{
 		return new Vector<ILeistung>(artikelDao.getAll());
+	}
+
+	@Override
+	public List<IALeistung> getAArtikel() throws DatabaseException {
+		return new Vector<IALeistung>(artikelDao.getAll());
 	}
 	
 }

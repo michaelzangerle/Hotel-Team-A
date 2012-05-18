@@ -24,4 +24,9 @@ public interface IAAufenthalt {
 	IAPfandtyp getPfandtyp();
 	
 	String getPfandNr();
+
+	/**
+	 * @return
+	 */
+	int getID();
 }

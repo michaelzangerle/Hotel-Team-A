@@ -8,6 +8,7 @@ import projekt.fhv.teama.classes.leistungen.IZusatzleistung;
 import projekt.fhv.teama.hibernate.dao.leistungen.IZusatzleistungDao;
 import projekt.fhv.teama.hibernate.dao.leistungen.ZusatzleistungDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IALeistung;
 import projekt.fhv.teama.model.interfaces.IModelZusatzleistung;
 
 
@@ -24,5 +25,11 @@ public class ModelZusatzleistung implements IModelZusatzleistung{
 	public List<ILeistung> getZusatzleistungen() throws DatabaseException
 	{
 		return new Vector<ILeistung>(zusatzleistungDao.getAll());
+	}
+
+
+	@Override
+	public List<IALeistung> getAZusatzleistungen() throws DatabaseException {
+		return new Vector<IALeistung>(zusatzleistungDao.getAll());
 	}
 }

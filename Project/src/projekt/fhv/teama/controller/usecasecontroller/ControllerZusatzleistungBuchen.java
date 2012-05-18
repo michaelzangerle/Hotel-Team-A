@@ -1,5 +1,6 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
+
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,18 +33,27 @@ import projekt.fhv.teama.model.interfaces.IModelLeistung;
 import projekt.fhv.teama.model.interfaces.IModelZimmer;
 import projekt.fhv.teama.model.interfaces.IModelZusatzleistung;
 
+
+import projekt.fhv.teama.model.integration.IAModelAufenthalt;
+import projekt.fhv.teama.model.integration.IAModelGast;
+import projekt.fhv.teama.model.integration.IAModelLeistung;
+import projekt.fhv.teama.model.integration.IAModelArtikel;
+import projekt.fhv.teama.model.integration.IAModelZusatzleistung;
+import projekt.fhv.teama.model.integration.IAModelZimmer;
+import projekt.fhv.teama.model.integration.IAModelAufenthaltLeistung;
+
 public class ControllerZusatzleistungBuchen
 		implements
 			IControllerZusatzleistungBuchen {
 
 	// ModelRespositorys
-	private IModelAufenthalt modelAufenthalt;
-	private IModelGast modelGast;
-	private IModelLeistung modelLeistung;
-	private IModelArtikel modelArtikel;
-	private IModelZusatzleistung modelZusatzleistung;
-	private IModelZimmer modelZimmer;
-	private IModelAufenhaltLeistung modelAufenthaltLeistung;
+	private IAModelAufenthalt modelAufenthalt;
+	private IAModelGast modelGast;
+	private IAModelLeistung modelLeistung;
+	private IAModelArtikel modelArtikel;
+	private IAModelZusatzleistung modelZusatzleistung;
+	private IAModelZimmer modelZimmer;
+	private IAModelAufenthaltLeistung modelAufenthaltLeistung;
 
 	public ControllerZusatzleistungBuchen() {
 		modelArtikel = new ModelArtikel();
@@ -164,8 +174,8 @@ public class ControllerZusatzleistungBuchen
 	public List<IALeistung> getArtikelundZusatzleistungen()
 			throws DatabaseException {
 		if (artikel.size() <= 0 || zusatzleistungen.size() <= 0) {
-			artikel = modelArtikel.getArtikel();
-			zusatzleistungen = modelZusatzleistung.getZusatzleistungen();
+			artikel = modelArtikel.getAArtikel();
+			zusatzleistungen = modelZusatzleistung.getAZusatzleistungen();
 		}
 		leistungen.clear();
 
@@ -182,8 +192,8 @@ public class ControllerZusatzleistungBuchen
 
 	}
 
-	public IZimmer getAktuellesZimmer() throws FokusException {
-		return modelZimmer.getAktullesZimmer();
+	public IAZimmer getAktuellesZimmer() throws FokusException {
+		return modelZimmer.getAAktullesZimmer();
 	}
 
 	public void addLeistung(IALeistung leistung, int anzahl)
@@ -271,7 +281,7 @@ public class ControllerZusatzleistungBuchen
 		throw new NotContainExeption();
 	}
 
-	private IAAufenthalt getAufenhaltbyZimmer(IZimmer zimmer)
+	private IAAufenthalt getAufenhaltbyZimmer(IAZimmer zimmer)
 			throws FokusException, NotContainExeption {
 		for (IAAufenthalt auf : aufenthalte) {
 
