@@ -11,6 +11,7 @@ import org.apache.pivot.wtk.BoxPane;
 import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListView;
+import org.apache.pivot.wtk.Meter;
 import org.apache.pivot.wtk.PushButton;
 import org.apache.pivot.wtk.TableView;
 import org.apache.pivot.wtk.TextInput;
@@ -68,11 +69,14 @@ public class ViewCheckOut extends Border implements Bindable {
 	
 	/* Labels */
 	@BXML
-	Label cof2LBDepositNr;
+	Label cof2LBDepositNr; Label coLBProgress01; Label coLBProgress02; Label coLBProgress03; Label coLBProgress04;
 	
 	/* Progressbar UseCase CheckOut */
 	@BXML
-	Progress viewCheckOutProgress;
+	Progress coProgress;
+	@BXML
+	Meter coMeter;
+	
 	
 	    @Override
 		public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {

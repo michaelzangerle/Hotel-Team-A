@@ -1,0 +1,22 @@
+<!-- BXML Dokument die Darstellung des Fortschrittsbalkens - der BXML Serialisierer erstellt hieraus das 
+	 Objekt auf welches dann auch seitens des Controllers zugegriffen werden kann
+  -->
+
+<view:Progress bxml:id="coProgress" xmlns:bxml="http://pivot.apache.org/bxml"
+	xmlns="org.apache.pivot.wtk" xmlns:view="projekt.fhv.teama.view"
+	visible="true"
+	styles="$styles.brdProgress">
+	
+	<BoxPane orientation="vertical" styles="{horizontalAlignment:'center', verticalAlignment:'top', fill:true}">
+	<StackPane>
+	<Meter bxml:id="coMeter" preferredHeight="30" styles="$styles.meter"/>
+	<FillPane orientation="horizontal">
+	<Label bxml:id="coLBProgress01" text="Step 1" cursor="hand" tooltipText="Verify the personal data of the guest or enter a new one" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label bxml:id="coLBProgress02" text="Step 2" cursor="hand" tooltipText="Choose the room category and assign an available room" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label bxml:id="coLBProgress03" text="Step 3" cursor="hand" tooltipText="Select a deposit category and enter the corresponding number" tooltipDelay="250" styles="$styles.lbMeter"/>
+	<Label bxml:id="clLBProgress04" text="Step 4" cursor="hand" tooltipText="Review the assigend rooms, hand out the keys and finish the check-in process" tooltipDelay="250" styles="$styles.lbMeter"/>
+	</FillPane>
+	</StackPane>	
+	</BoxPane>
+	
+</view:Progress>

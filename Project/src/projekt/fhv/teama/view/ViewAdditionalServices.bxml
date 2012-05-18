@@ -1,9 +1,8 @@
  <!-- BXML Dokument für die Buchung von Zusatzleistungen
   -->
- 
 <view:ViewAdditionalServices bxml:id="bdViewAdditionalServices" xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" visible="false"  styles="$styles.bordMainContent">
-<bxml:include bxml:id="viewAdditionalServicesProgress" src="inc.progress.bxml" inline="true" />
 <BoxPane orientation="vertical" styles="{fill:true}">
+<bxml:include src="inc.additionalServicesProgress.bxml" inline="true" /> 
 <bxml:include src="inc.additionalServicesForm01.bxml" inline="true"/>
 <bxml:include src="inc.additionalServicesForm02.bxml" inline="true"/>
 </BoxPane>

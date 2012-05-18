@@ -24,6 +24,7 @@ import org.apache.pivot.wtk.ListButton;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.ListViewListener;
 import org.apache.pivot.wtk.ListViewSelectionListener;
+import org.apache.pivot.wtk.Meter;
 import org.apache.pivot.wtk.PushButton;
 import org.apache.pivot.wtk.Spinner;
 import org.apache.pivot.wtk.TablePane;
@@ -108,11 +109,13 @@ public class ViewAdditionalServices extends Border implements Bindable {
 
 	/* TableViews */
 	@BXML
-	TableView asf1TVAdditionalServices;
+	TableView asf1TVAdditionalServices; Label asLBProgress01; Label asLBProgress02; Label asLBProgress03; Label asLBProgress04;
 	
-	/* Progressbar UseCase AdditionalServices */
+	/* Progressbar UseCase CheckOut */
 	@BXML
-	Progress viewAdditionalServicesProgress;
+	Progress asProgress;
+	@BXML
+	Meter asMeter;
 	
 
 	public TableViewRowEditor tableViewRowEditor;

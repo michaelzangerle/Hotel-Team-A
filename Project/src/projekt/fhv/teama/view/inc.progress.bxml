@@ -1,9 +1,8 @@
 <!-- BXML Dokument die Darstellung des Fortschrittsbalkens - der BXML Serialisierer erstellt hieraus das 
 	 Objekt auf welches dann auch seitens des Controllers zugegriffen werden kann
-	 bxml:id="progress"
   -->
 
-<view:Progress xmlns:bxml="http://pivot.apache.org/bxml"
+<view:Progress bxml:id="progress" xmlns:bxml="http://pivot.apache.org/bxml"
 	xmlns="org.apache.pivot.wtk" xmlns:view="projekt.fhv.teama.view"
 	visible="false"
 	styles="$styles.brdProgress">
