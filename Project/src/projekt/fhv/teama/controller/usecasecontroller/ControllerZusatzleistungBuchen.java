@@ -3,16 +3,16 @@ package projekt.fhv.teama.controller.usecasecontroller;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Vector;
 
-import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.MyLittleDate;
-import projekt.fhv.teama.classes.leistungen.ILeistung;
-import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerZusatzleistungBuchen;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAAufenthalt;
+import projekt.fhv.teama.integrate.IAGast;
+import projekt.fhv.teama.integrate.IALeistung;
+import projekt.fhv.teama.integrate.IAZimmer;
 import projekt.fhv.teama.model.ModelArtikel;
 import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.ModelAufenthaltLeistung;
@@ -55,17 +55,17 @@ public class ControllerZusatzleistungBuchen
 		modelAufenthaltLeistung = new ModelAufenthaltLeistung();
 	}
 
-	private List<IAufenthalt> aufenthalte = new Vector<IAufenthalt>();
+	private List<IAAufenthalt> aufenthalte = new Vector<IAAufenthalt>();
 
-	private List<ILeistung> artikel = new Vector<ILeistung>();
-	private List<ILeistung> zusatzleistungen = new Vector<ILeistung>();
-	private List<ILeistung> leistungen = new Vector<ILeistung>();
+	private List<IALeistung> artikel = new Vector<IALeistung>();
+	private List<IALeistung> zusatzleistungen = new Vector<IALeistung>();
+	private List<IALeistung> leistungen = new Vector<IALeistung>();
 
-	private HashMap<IZimmer, List<LeistungAnzahl>> gebuchteLeistungen = new HashMap<IZimmer, List<LeistungAnzahl>>();
-	private HashMap<IGast, List<LeistungAnzahl>> bereitsgebuchteLeistungen = new HashMap<IGast, List<LeistungAnzahl>>();
+	private HashMap<IAZimmer, List<LeistungAnzahl>> gebuchteLeistungen = new HashMap<IAZimmer, List<LeistungAnzahl>>();
+	private HashMap<IAGast, List<LeistungAnzahl>> bereitsgebuchteLeistungen = new HashMap<IAGast, List<LeistungAnzahl>>();
 	private boolean needReload = true;
 
-	public List<IAufenthalt> getAufenthalte() throws DatabaseException {
+	public List<IAAufenthalt> getAufenthalte() throws DatabaseException {
 		if (aufenthalte.size() > 0)
 			return aufenthalte;
 		else {
@@ -75,13 +75,13 @@ public class ControllerZusatzleistungBuchen
 		}
 	}
 
-	public List<IGast> getGaesteVonAuftenhalten() throws DatabaseException {
+	public List<IAGast> getGaesteVonAuftenhalten() throws DatabaseException {
 		if (aufenthalte.size() < 1) {
 			aufenthalte.clear();
 			getAufenthalte();
 		}
-		List<IGast> gaeste = new Vector<IGast>();
-		for (IAufenthalt aufenthalt : aufenthalte) {
+		List<IAGast> gaeste = new Vector<IAGast>();
+		for (IAAufenthalt aufenthalt : aufenthalte) {
 			if (!gaeste.contains(aufenthalt.getGast())
 					&& aufenthalt.getGast() != null)
 				gaeste.add(aufenthalt.getGast());
@@ -90,28 +90,28 @@ public class ControllerZusatzleistungBuchen
 
 	}
 
-	public List<IGast> getGaesteZumAufenhalt() throws FokusException {
+	public List<IAGast> getGaesteZumAufenhalt() throws FokusException {
 		return modelAufenthalt.getGaesteZumAufenhalt();
 	}
 
-	public void setAufenthalt(IAufenthalt aufenhalt)
+	public void setAufenthalt(IAAufenthalt aufenhalt)
 			throws EmptyParameterException {
 		modelAufenthalt.setAufenthalt(aufenhalt);
 	}
 
-	public IAufenthalt getAufenthalt() throws FokusException {
-		return modelAufenthalt.getAufenthalt();
+	public IAAufenthalt getAufenthalt() throws FokusException {
+		return (IAAufenthalt) modelAufenthalt.getAufenthalt();
 	}
 
-	public void setGast(IGast gast) {
+	public void setGast(IAGast gast) {
 		modelGast.setAktuellGast(gast);
 	}
 
-	public IGast getGast() throws FokusException {
-		return modelGast.getAktuellGast();
+	public IAGast getGast() throws FokusException {
+		return (IAGast)modelGast.getAktuellGast();
 	}
 
-	public IZimmer getZimmerByNummer(String nummer)
+	public IAZimmer getZimmerByNummer(String nummer)
 			throws EmptyParameterException, DatabaseException, FokusException {
 		if (nummer == null)
 			throw new EmptyParameterException();
@@ -119,7 +119,7 @@ public class ControllerZusatzleistungBuchen
 		if (aufenthalte.size() <= 0)
 			getAufenthalte();
 
-		for (IAufenthalt aufenthalt : aufenthalte) {
+		for (IAAufenthalt aufenthalt : aufenthalte) {
 			if (aufenthalt.getGast().equals(getGast())
 					&& aufenthalt.getZimmer() != null
 					&& aufenthalt.getZimmer().getNummer().equals(nummer)) {
@@ -129,13 +129,13 @@ public class ControllerZusatzleistungBuchen
 		return null;
 	}
 
-	public List<IZimmer> getZimmerVonGast() throws FokusException,
+	public List<IAZimmer> getZimmerVonGast() throws FokusException,
 			DatabaseException {
-		List<IZimmer> zimmers = new Vector<IZimmer>();
+		List<IAZimmer> zimmers = new Vector<IAZimmer>();
 		if (aufenthalte.size() <= 0)
 			getAufenthalte();
 
-		for (IAufenthalt aufenthalt : aufenthalte) {
+		for (IAAufenthalt aufenthalt : aufenthalte) {
 			if (aufenthalt.getGast().equals(getGast())
 					&& aufenthalt.getZimmer() != null)
 				zimmers.add(aufenthalt.getZimmer());
@@ -144,7 +144,7 @@ public class ControllerZusatzleistungBuchen
 		return zimmers;
 	}
 
-	public IGast getGastByNummer(String nummer) throws DatabaseException,
+	public IAGast getGastByNummer(String nummer) throws DatabaseException,
 			EmptyParameterException, NotContainExeption {
 		if (nummer == null)
 			throw new EmptyParameterException();
@@ -152,7 +152,7 @@ public class ControllerZusatzleistungBuchen
 		if (aufenthalte.size() <= 0)
 			getAufenthalte();
 
-		for (IAufenthalt aufenthalt : aufenthalte) {
+		for (IAAufenthalt aufenthalt : aufenthalte) {
 			if (aufenthalt.getGast().getNummer().equals(nummer))
 				return aufenthalt.getGast();
 		}
@@ -161,7 +161,7 @@ public class ControllerZusatzleistungBuchen
 
 	}
 
-	public List<ILeistung> getArtikelundZusatzleistungen()
+	public List<IALeistung> getArtikelundZusatzleistungen()
 			throws DatabaseException {
 		if (artikel.size() <= 0 || zusatzleistungen.size() <= 0) {
 			artikel = modelArtikel.getArtikel();
@@ -176,7 +176,7 @@ public class ControllerZusatzleistungBuchen
 
 	}
 
-	public void setAktuellesZimmer(IZimmer zimmer)
+	public void setAktuellesZimmer(IAZimmer zimmer)
 			throws EmptyParameterException {
 		modelZimmer.setAktullesZimmer(zimmer);
 
@@ -186,7 +186,7 @@ public class ControllerZusatzleistungBuchen
 		return modelZimmer.getAktullesZimmer();
 	}
 
-	public void addLeistung(ILeistung leistung, int anzahl)
+	public void addLeistung(IALeistung leistung, int anzahl)
 			throws FokusException, EmptyParameterException {
 		if (leistung != null && anzahl > 0) {
 			if (gebuchteLeistungen.containsKey(getAktuellesZimmer())) {
@@ -213,7 +213,7 @@ public class ControllerZusatzleistungBuchen
 
 	}
 
-	public void removeLeistung(ILeistung leistung) throws FokusException,
+	public void removeLeistung(IALeistung leistung) throws FokusException,
 			EmptyParameterException {
 		if (leistung != null) {
 			if (gebuchteLeistungen.containsKey(getAktuellesZimmer())) {
@@ -234,19 +234,19 @@ public class ControllerZusatzleistungBuchen
 		}
 	}
 
-	public HashMap<IZimmer, List<LeistungAnzahl>> getGebuchteLeistungen() {
+	public HashMap<IAZimmer, List<LeistungAnzahl>> getGebuchteLeistungen() {
 		return gebuchteLeistungen;
 	}
 
 	public void saveLeistungen() throws FokusException,
 			WrongParameterException, DatabaseException, NotContainExeption {
-		for (IZimmer z : gebuchteLeistungen.keySet()) {
+		for (IAZimmer z : gebuchteLeistungen.keySet()) {
 
 			for (LeistungAnzahl l : gebuchteLeistungen.get(z)) {
 
-				ILeistung leistung = l.getLeistung();
+				IALeistung leistung = l.getLeistung();
 				int anzahl = l.getAnzahl();
-				IAufenthalt aufenthalt = getAufenhaltbyZimmer(z);
+				IAAufenthalt aufenthalt = getAufenhaltbyZimmer(z);
 				java.util.Date date = new java.util.Date();
 				Date datum = new Date(date.getTime());
 
@@ -257,13 +257,13 @@ public class ControllerZusatzleistungBuchen
 		needReload = true;
 	}
 
-	public ILeistung getLeistungByBezeichnung(String bez)
+	public IALeistung getLeistungByBezeichnung(String bez)
 			throws DatabaseException, NotContainExeption {
 		if (leistungen.size() < 1) {
 			getArtikelundZusatzleistungen();
 		}
 
-		for (ILeistung leistung : leistungen) {
+		for (IALeistung leistung : leistungen) {
 			if (leistung.getBezeichnung().equals(bez))
 				return leistung;
 		}
@@ -271,9 +271,9 @@ public class ControllerZusatzleistungBuchen
 		throw new NotContainExeption();
 	}
 
-	private IAufenthalt getAufenhaltbyZimmer(IZimmer zimmer)
+	private IAAufenthalt getAufenhaltbyZimmer(IZimmer zimmer)
 			throws FokusException, NotContainExeption {
-		for (IAufenthalt auf : aufenthalte) {
+		for (IAAufenthalt auf : aufenthalte) {
 
 			if (auf.getGast().equals(getGast())
 					&& auf.getZimmer().equals(zimmer))
@@ -295,7 +295,7 @@ public class ControllerZusatzleistungBuchen
 		if (!needReload && bereitsgebuchteLeistungen.containsKey(getGast())) {
 			erg.addAll(bereitsgebuchteLeistungen.get(getGast()));
 		} else {
-			for (IAufenthalt auf : aufenthalte) {
+			for (IAAufenthalt auf : aufenthalte) {
 				if (auf.getGast().getID() == getGast().getID())
 					erg.addAll(modelAufenthaltLeistung
 							.getLeistungenByAufenhalt(auf));
@@ -308,7 +308,7 @@ public class ControllerZusatzleistungBuchen
 	}
 
 	public void clearLists() {
-		this.gebuchteLeistungen = new HashMap<IZimmer, List<LeistungAnzahl>>();
+		this.gebuchteLeistungen = new HashMap<IAZimmer, List<LeistungAnzahl>>();
 	}
 
 }

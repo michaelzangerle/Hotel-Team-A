@@ -23,13 +23,12 @@ import org.apache.pivot.wtk.TablePane;
 import org.apache.pivot.wtk.TableView;
 import org.apache.pivot.wtk.TableViewRowListener;
 
-import projekt.fhv.teama.classes.leistungen.Artikel;
-import projekt.fhv.teama.classes.leistungen.IArtikel;
-import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IALeistung;
+import projekt.fhv.teama.integrate.IAZimmer;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
@@ -60,7 +59,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 				.setTooltipText("Check the overview of the booked services and finish the process by saving");
 		viewMain.meter.getStyles().put("gridFrequency", "0.5");
 
-		List<IZimmer> rooms = controller.getZimmerVonGast();
+		List<IAZimmer> rooms = controller.getZimmerVonGast();
 		Wrapper wrapper = new Wrapper();
 
 		view.asf1LVBookedRooms.setListData(wrapper
@@ -87,9 +86,9 @@ public class BookExtrasViewController implements ButtonPressListener {
 	public void setTableData() throws DatabaseException, FokusException {
 		tableDataService = new ArrayList<AdditionalServicesTableRow>();
 
-		List<ILeistung> services = controller.getArtikelundZusatzleistungen();
-		List<ILeistung> curServices = new LinkedList<ILeistung>();
-		HashMap<ILeistung, Integer> curMap = new HashMap<ILeistung, Integer>();
+		List<IALeistung> services = controller.getArtikelundZusatzleistungen();
+		List<IALeistung> curServices = new LinkedList<IALeistung>();
+		HashMap<IALeistung, Integer> curMap = new HashMap<IALeistung, Integer>();
 		IZimmer tempRoom = controller.getAktuellesZimmer();
 
 		if (controller.getGebuchteLeistungen().get(tempRoom) != null) {
@@ -101,7 +100,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		}
 
 		int index = 0;
-		for (ILeistung leistung : services) {
+		for (IALeistung leistung : services) {
 			tableDataService.add(new AdditionalServicesTableRow());
 			AdditionalServicesTableRow row = tableDataService.get(index);
 			if (curServices.contains(leistung)) {
@@ -134,7 +133,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 						+ controller.getGast().getNachname().toUpperCase()
 						+ " " + controller.getGast().getVorname() + ":");
 
-		HashMap<IZimmer, List<LeistungAnzahl>> services = controller
+		HashMap<IAZimmer, List<LeistungAnzahl>> services = controller
 				.getGebuchteLeistungen();
 
 		float total = 0;
@@ -385,7 +384,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 			String[] split = text.split(" \\| ");
 			try {
-				IZimmer room = controller.getZimmerByNummer(split[0]);
+				IAZimmer room = controller.getZimmerByNummer(split[0]);
 				controller.setAktuellesZimmer(room);
 				view.asf1TISelectedRoom.setText("Nr. " + room.getNummer() + " "
 						+ room.getKategorie().getBezeichnung()
@@ -419,7 +418,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 			String type = tableDataService.get(arg1).getType();
 			int quantity = tableDataService.get(arg1).getQuantity();
 			try {
-				ILeistung service = controller.getLeistungByBezeichnung(type);
+				IALeistung service = controller.getLeistungByBezeichnung(type);
 				if (quantity > 999) {
 					tableDataService.get(arg1).setQuantity(0);
 

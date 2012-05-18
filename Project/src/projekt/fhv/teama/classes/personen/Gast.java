@@ -10,6 +10,7 @@ import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.rechnung.IRechnungsposition;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
+import projekt.fhv.teama.integrate.IAAdresse;
 import roomanizer.teamb.service.integrate.IBAdresse;
 import roomanizer.teamb.service.integrate.IBRechnungsPosition;
 
@@ -229,6 +230,11 @@ public class Gast extends Person implements IGast {
 		}
 		
 		return rpos;
+	}
+
+	@Override
+	public Set<IAAdresse> getAAdressen() {
+		return new HashSet<IAAdresse>(this.getAdressen());
 	}
 
 }

@@ -1,6 +1,6 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
-import projekt.fhv.teama.classes.leistungen.ILeistung;
+import projekt.fhv.teama.integrate.IALeistung;
 
 /**
  * Diese Klasse dient als Wrapper um eine Leistung in Verbindung zu einer Anzahl 
@@ -10,10 +10,10 @@ import projekt.fhv.teama.classes.leistungen.ILeistung;
  */
 public class LeistungAnzahl {
 
-	private ILeistung leistung;
+	private IALeistung leistung;
 	private int anzahl;
 	
-	public LeistungAnzahl(ILeistung leistung,int anzahl) {
+	public LeistungAnzahl(IALeistung leistung,int anzahl) {
 		this.leistung=leistung;
 		this.anzahl=anzahl;
 	}
@@ -22,7 +22,7 @@ public class LeistungAnzahl {
 	 * Methode um die Leistung zu holen
 	 * @return ILeistung
 	 */
-	public ILeistung getLeistung() {
+	public IALeistung getLeistung() {
 		return leistung;
 	}
 
@@ -30,7 +30,7 @@ public class LeistungAnzahl {
 	 * Methode um die Leistung zu sezten
 	 * @param leistung
 	 */
-	public void setLeistung(ILeistung leistung) {
+	public void setLeistung(IALeistung leistung) {
 		this.leistung = leistung;
 	}
 

@@ -4,13 +4,14 @@ import java.util.Set;
 
 import projekt.fhv.teama.classes.IKategoriekontingent;
 import projekt.fhv.teama.classes.IModel;
+import projekt.fhv.teama.integrate.IAKategorie;
 
 /**
  * Interface für die Klasse Kategorie 
  * @author Team A
  * @version 1.2
  */
-public interface IKategorie extends IModel {
+public interface IKategorie extends IModel,IAKategorie {
 	
 	/**
 	 * Setzt den übergebenen Wert für das Attribut Bezeichnung

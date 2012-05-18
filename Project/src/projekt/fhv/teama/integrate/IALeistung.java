@@ -3,23 +3,21 @@
  */
 package projekt.fhv.teama.integrate;
 
-import projekt.fhv.teama.classes.leistungen.Artikel;
-
 /**
  * Beschreibt 
  * @author Team A
  * @version 1.2
  */
-public interface IAZimmer {
+public interface IALeistung {
 
 	/**
 	 * @return
 	 */
-	String getNummer();
+	float getPreis();
 
 	/**
 	 * @return
 	 */
-	IAKategorie getKategorie();
+	String getBezeichnung();
 
 }

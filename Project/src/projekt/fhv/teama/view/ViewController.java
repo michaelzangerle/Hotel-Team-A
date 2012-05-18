@@ -43,6 +43,9 @@ import projekt.fhv.teama.controller.usecasecontroller.ControllerLogin;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAGast;
+import projekt.fhv.teama.integrate.IAAdresse;
+import projekt.fhv.teama.integrate.IAAufenthalt;
 import projekt.fhv.teama.model.ModelAdresse;
 import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.ModelGast;
@@ -64,6 +67,7 @@ import roomanizer.teamb.business.BusinessFactory;
 import roomanizer.teamb.presentation.forms.invoice.InvoiceStep1;
 import roomanizer.teamb.service.integrate.IBGast;
 import roomanizer.teamb.service.integrate.IBKonsument;
+
 
 /**
  * Der ViewController handelt die Events des Homescreens (ViewMain) ab.
@@ -591,7 +595,7 @@ public class ViewController implements Application {
 		if (controllerZusatzleistung == null) {
 			controllerZusatzleistung = new ControllerZusatzleistungBuchen();
 		}
-		IGast curGast = controllerZusatzleistung.getGastByNummer(gastNummer);
+		IAGast curGast = controllerZusatzleistung.getGastByNummer(gastNummer);
 		controllerZusatzleistung.setGast(curGast);
 		controllerCheckOut.setGast(curGast);
 		bdViewCurrentGuest.cgf1LBGuestNr.setText(curGast.getNummer());
@@ -599,19 +603,19 @@ public class ViewController implements Application {
 		bdViewCurrentGuest.cgf1TIName.setText(curGast.getVorname() + " "
 				+ curGast.getNachname().toUpperCase());
 		bdViewCurrentGuest.cgf1TIPhone.setText(curGast.getTelefonnummer());
-		List<IAdresse> adressen = new Vector<IAdresse>(curGast.getAdressen());
+		List<IAAdresse> adressen = new Vector<IAAdresse>(curGast.getAAdressen());
 
 		if (!adressen.equals(null)) {
-			IAdresse adresse = adressen.get(0);
+			IAAdresse adresse = adressen.get(0);
 			bdViewCurrentGuest.cgf1TICity.setText(adresse.getOrt());
 			bdViewCurrentGuest.cgf1TICountry.setText(adresse.getLand()
 					.getBezeichnung());
 			bdViewCurrentGuest.cgf1TIStreet.setText(adresse.getStrasse());
 			bdViewCurrentGuest.cgf1TIZip.setText(adresse.getPlz());
 		}
-		List<IAufenthalt> aufenthalte = controllerZusatzleistung
+		List<IAAufenthalt> aufenthalte = controllerZusatzleistung
 				.getAufenthalte();
-		IAufenthalt aufenthalt = aufenthalte.get(0);
+		IAAufenthalt aufenthalt = aufenthalte.get(0);
 
 		Date arrival = aufenthalt.getVon();
 		Date departure = aufenthalt.getBis();

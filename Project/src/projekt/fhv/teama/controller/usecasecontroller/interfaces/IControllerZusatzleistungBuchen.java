@@ -1,14 +1,15 @@
 package projekt.fhv.teama.controller.usecasecontroller.interfaces;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Vector;
 
-import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
-import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAAufenthalt;
+import projekt.fhv.teama.integrate.IAGast;
+import projekt.fhv.teama.integrate.IALeistung;
+import projekt.fhv.teama.integrate.IAZimmer;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
@@ -22,49 +23,49 @@ public interface IControllerZusatzleistungBuchen {
 	 * @return List<IAufenthalt>
 	 * @throws DatabaseException
 	 */
-	public List<IAufenthalt> getAufenthalte() throws DatabaseException;
+	public List<IAAufenthalt> getAufenthalte() throws DatabaseException;
 	
 	/**
 	 * Methode um alle Gaeste die zurzeit im Hotel sind zu erhalten
 	 * @return List<IGast>
 	 * @throws DatabaseException
 	 */
-	public List<IGast> getGaesteVonAuftenhalten() throws DatabaseException;
+	public List<IAGast> getGaesteVonAuftenhalten() throws DatabaseException;
 
 	/**
 	 * Methode um die Gäste zum Ausgewählten Aufenthalt zu erhalten
 	 * @return List<IGast>
 	 * @throws FokusException
 	 */
-	public List<IGast> getGaesteZumAufenhalt() throws FokusException;
+	public List<IAGast> getGaesteZumAufenhalt() throws FokusException;
 	
 	/**
 	 * Methode um den Fokus auf einen Aufenthalt zu legen
 	 * @param aufenhalt
 	 * @throws EmptyParameterException
 	 */
-	public void setAufenthalt(IAufenthalt aufenhalt) throws EmptyParameterException;
+	public void setAufenthalt(IAAufenthalt aufenhalt) throws EmptyParameterException;
 	
 	/**
 	 * Methode um den Aufenhalt der derzeitig bearbeitete wird zu erhalten
 	 * @return IAufenhalt
 	 * @throws FokusException
 	 */
-	public IAufenthalt getAufenthalt() throws FokusException;
+	public IAAufenthalt getAufenthalt() throws FokusException;
 	
 	/**
 	 * Die Referenz auf den aktuellen Gast setzen
 	 * 
 	 * @param IGast
 	 */
-	public void setGast(IGast gast);
+	public void setGast(IAGast gast);
 	
 	/**
 	 * Die Referenz des aktuellen Gast zu erhalten
 	 * @throws FokusException 
 	 * 
 	 */
-	public IGast getGast() throws FokusException;
+	public IAGast getGast() throws FokusException;
 	
 	
 	/**
@@ -73,7 +74,7 @@ public interface IControllerZusatzleistungBuchen {
 	 * @throws FokusException
 	 * @throws DatabaseException
 	 */
-	public List<IZimmer> getZimmerVonGast() throws FokusException, DatabaseException;
+	public List<IAZimmer> getZimmerVonGast() throws FokusException, DatabaseException;
 	
 	/**
 	 * Methode um den Gast anhand seiner Nummer zu erhalten
@@ -83,14 +84,14 @@ public interface IControllerZusatzleistungBuchen {
 	 * @throws EmptyParameterException
 	 * @throws NotContainExeption
 	 */
-	public IGast getGastByNummer(String nummer) throws DatabaseException, EmptyParameterException, NotContainExeption;
+	public IAGast getGastByNummer(String nummer) throws DatabaseException, EmptyParameterException, NotContainExeption;
 
 	/**
 	 * Methode um die Artikel und die Zusatzleistungen zu holen
 	 * @return	List<ILeistung>
 	 * @throws DatabaseException
 	 */
-	public List<ILeistung> getArtikelundZusatzleistungen() throws DatabaseException;
+	public List<IALeistung> getArtikelundZusatzleistungen() throws DatabaseException;
 	
 	
 	/**
@@ -98,14 +99,14 @@ public interface IControllerZusatzleistungBuchen {
 	 * @param zimmer
 	 * @throws EmptyParameterException
 	 */
-	public void setAktuellesZimmer(IZimmer zimmer) throws EmptyParameterException;
+	public void setAktuellesZimmer(IAZimmer zimmer) throws EmptyParameterException;
 	
 	/**
 	 * Methode um das aktuell bearbeitete Zimmer zu erhalten
 	 * @return IZimmer
 	 * @throws FokusException
 	 */
-	public IZimmer getAktuellesZimmer() throws FokusException;
+	public IAZimmer getAktuellesZimmer() throws FokusException;
 	
 	/**
 	 * Methode um eine Leistung auf ein Zimme zu schreiben
@@ -113,13 +114,13 @@ public interface IControllerZusatzleistungBuchen {
 	 * @throws FokusException
 	 * @throws EmptyParameterException
 	 */
-	public void addLeistung(ILeistung leistung,int anzahl) throws FokusException, EmptyParameterException;
+	public void addLeistung(IALeistung leistung,int anzahl) throws FokusException, EmptyParameterException;
 	
 	/**
 	 * Gibt eine Hashmap von gebuchten Leistungen inklusive Anzahl zu einem Zimmer
 	 * @return HashMap<IZimmer, List<LeistungAnzahl>>
 	 */
-	public HashMap<IZimmer, List<LeistungAnzahl>> getGebuchteLeistungen();
+	public HashMap<IAZimmer, List<LeistungAnzahl>> getGebuchteLeistungen();
 	
 	/**
 	 * Methode um eine Leistung anhand der Bezeichnung zu erhalten
@@ -128,7 +129,7 @@ public interface IControllerZusatzleistungBuchen {
 	 * @throws DatabaseException
 	 * @throws NotContainExeption
 	 */
-	public ILeistung getLeistungByBezeichnung(String bez) throws DatabaseException, NotContainExeption;
+	public IALeistung getLeistungByBezeichnung(String bez) throws DatabaseException, NotContainExeption;
 	
 	/**
 	 * Methode um die gebuchten Leistungen in die Datebank zu speichern
