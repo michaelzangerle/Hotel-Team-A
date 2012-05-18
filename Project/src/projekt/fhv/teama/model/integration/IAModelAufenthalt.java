@@ -1,8 +1,7 @@
-package projekt.fhv.teama.model.interfaces;
+package projekt.fhv.teama.model.integration;
 
 import java.sql.Date;
 import java.util.List;
-
 
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.IPfandtyp;
@@ -15,28 +14,11 @@ import projekt.fhv.teama.integrate.IAPfandtyp;
 import projekt.fhv.teama.integrate.IAZimmer;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
-import projekt.fhv.teama.model.integration.IAModelAufenthalt;
 
-/**
- * Interface des Aufenthalts Model, beschreibt die wichtigsten Methden um mit einem Model arbeiten zu können
- * @author Team-A
- * @version 1.5
- */
-public interface IModelAufenthalt extends IAModelAufenthalt {
+public interface IAModelAufenthalt {
 
-	/**
-	 * Um einen Aufenthalt zu erzeugen und in in der Datenbank abzuspeichern
-	 * @param preis
-	 * @param von
-	 * @param bis
-	 * @param schluessel
-	 * @param gast
-	 * @param zimmer
-	 * @param pfand
-	 * @param pfandNr
-	 * @throws DatabaseException
-	 * @throws EmptyParameterException
-	 */
+	
+	
 	public void create(float preis, Date von, Date bis, boolean schluessel, IAGast gast, IAZimmer zimmer,IAPfandtyp pfand,String pfandNr) throws DatabaseException, EmptyParameterException;
 
 	/**
@@ -67,5 +49,4 @@ public interface IModelAufenthalt extends IAModelAufenthalt {
 	 * @throws FokusException
 	 */
 	public List<IAGast> getGaesteZumAufenhalt() throws FokusException;
-	
 }

@@ -6,6 +6,8 @@ import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAAdresse;
+import projekt.fhv.teama.integrate.IAGast;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
@@ -24,14 +26,14 @@ public interface IModelGast extends IAModelGast{
 	 * Um den Fokus auf einen Gast zu setzen
 	 * @param gast IGast
 	 */
-	void setAktuellGast(IGast gast);
+	void setAktuellGast(IAGast gast);
 
 	/**
 	 * Um den fokusierten Gast abzurufen
 	 * @return IGast
 	 * @throws FokusException
 	 */
-	IGast getAktuellGast() throws FokusException;
+	IAGast getAktuellGast() throws FokusException;
 
 	/**
 	 * Um den Vornamen zu ändern

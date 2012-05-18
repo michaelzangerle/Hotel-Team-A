@@ -12,6 +12,7 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.dao.personen.GastDao;
 import projekt.fhv.teama.hibernate.dao.personen.IGastDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAGast;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
@@ -34,13 +35,13 @@ public class ModelGast implements IModelGast {
 	}
 
 	@Override
-	public void setAktuellGast(IGast gast) {
-		gastModel = gast;
+	public void setAktuellGast(IAGast gast) {
+		gastModel =(IGast)gast;
 
 	}
 
 	@Override
-	public IGast getAktuellGast() throws FokusException {
+	public IAGast getAktuellGast() throws FokusException {
 		if (gastModel != null)
 			return gastModel;
 		else

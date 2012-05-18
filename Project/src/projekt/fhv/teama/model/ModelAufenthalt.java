@@ -12,6 +12,10 @@ import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.dao.AufenthaltDao;
 import projekt.fhv.teama.hibernate.dao.IAufenthaltDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
+import projekt.fhv.teama.integrate.IAAufenthalt;
+import projekt.fhv.teama.integrate.IAGast;
+import projekt.fhv.teama.integrate.IAPfandtyp;
+import projekt.fhv.teama.integrate.IAZimmer;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
@@ -32,11 +36,11 @@ public class ModelAufenthalt implements IModelAufenthalt {
 	}
 	
 
-	public void create(float preis, Date von, Date bis, boolean schluessel, IGast gast, IZimmer zimmer,IPfandtyp pfand,String pfandNr) throws DatabaseException, EmptyParameterException
+	public void create(float preis, Date von, Date bis, boolean schluessel, IAGast gast, IAZimmer zimmer,IAPfandtyp pfand,String pfandNr) throws DatabaseException, EmptyParameterException
 	{
 		if(von!=null&&bis!=null&&gast!=null&&zimmer!=null&&pfand!=null&&pfandNr!=null)
 		{
-		aufenthaltModel=new Aufenthalt(preis, pfandNr, von, bis, schluessel, gast, zimmer, pfand);
+		aufenthaltModel=new Aufenthalt(preis, pfandNr, von, bis, schluessel,(IGast) gast, (IZimmer)zimmer, (IPfandtyp)pfand);
 		try {
 			aufenthaltDao.create(aufenthaltModel);
 		} catch (DatabaseException e) {
@@ -49,12 +53,12 @@ public class ModelAufenthalt implements IModelAufenthalt {
 
 
 	@Override
-	public List<IAufenthalt> getAufenthalte(Date date) throws DatabaseException {
+	public List<IAAufenthalt> getAufenthalte(Date date) throws DatabaseException {
 		if(date!=null)
 		{
-			List<IAufenthalt> currentAufenthalte=new Vector<IAufenthalt>();
-			List<IAufenthalt> alleAufenthalte=new Vector<IAufenthalt>(aufenthaltDao.getAll());
-			for (IAufenthalt auf : alleAufenthalte) {
+			List<IAAufenthalt> currentAufenthalte=new Vector<IAAufenthalt>();
+			List<IAAufenthalt> alleAufenthalte=new Vector<IAAufenthalt>(aufenthaltDao.getAll());
+			for (IAAufenthalt auf : alleAufenthalte) {
 				if((auf.getVon().before(date)||auf.getVon().equals(date))&&(auf.getBis().after(date)||auf.getBis().equals(date)))
 				{
 					currentAufenthalte.add(auf);
@@ -66,11 +70,11 @@ public class ModelAufenthalt implements IModelAufenthalt {
 	}
 	
 	
-	public List<IGast> getGaesteZumAufenhalt() throws FokusException
+	public List<IAGast> getGaesteZumAufenhalt() throws FokusException
 	{
 		if(aufenthaltModel!=null)
 		{
-			List<IGast> gaeste=new Vector<IGast>();
+			List<IAGast> gaeste=new Vector<IAGast>();
 				if(!gaeste.contains(aufenthaltModel.getGast())&&aufenthaltModel.getGast()!=null)
 						gaeste.add(aufenthaltModel.getGast());
 			
@@ -81,21 +85,23 @@ public class ModelAufenthalt implements IModelAufenthalt {
 
 
 	@Override
-	public void setAufenthalt(IAufenthalt aufenhalt) throws EmptyParameterException {
+	public void setAufenthalt(IAAufenthalt aufenhalt) throws EmptyParameterException {
 		if(aufenhalt!=null)
-		aufenthaltModel=aufenhalt;
+		aufenthaltModel=(IAufenthalt)aufenhalt;
 		else
 			throw new EmptyParameterException();
 	}
 
 
 	@Override
-	public IAufenthalt getAufenthalt() throws FokusException {
+	public IAAufenthalt getAufenthalt() throws FokusException {
 		if(aufenthaltModel!=null)
 			return aufenthaltModel;
 		else
 			throw new FokusException();
 	}
+
+
 
 	
 

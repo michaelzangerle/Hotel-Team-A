@@ -13,6 +13,8 @@ import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.ModelGast;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
+import projekt.fhv.teama.model.integration.IAModelAufenthalt;
+import projekt.fhv.teama.model.integration.IAModelGast;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
 
@@ -26,8 +28,8 @@ import projekt.fhv.teama.model.interfaces.IModelGast;
 public class ControllerCheckOut implements IControllerCheckOut {
 
 	// Models
-	private IModelGast modelGast;
-	private IModelAufenthalt modelAufenthalt;
+	private IAModelGast modelGast;
+	private IAModelAufenthalt modelAufenthalt;
 
 	// Listen
 	private List<IAAufenthalt> aufenthalte = new Vector<IAAufenthalt>();
