@@ -13,7 +13,7 @@ public interface IALeistung {
 	/**
 	 * @return
 	 */
-	float getPreis();
+	float getAPreis();
 
 	/**
 	 * @return

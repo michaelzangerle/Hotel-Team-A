@@ -313,4 +313,9 @@ public class Zimmer extends Leistung implements IZimmer {
 	public IAKategorie getAKategorie() {
 		return kategorie;
 	}
+
+	@Override
+	public float getAPreis() {
+		return 0;
+	}
 }

@@ -107,4 +107,9 @@ public class Artikel extends Leistung implements IArtikel{
 		return true;
 	}
 
+	@Override
+	public float getAPreis() {
+		return preis;
+	}
+
 }

@@ -104,5 +104,10 @@ public class Zusatzleistung extends Leistung implements IZusatzleistung{
 		return true;
 	}
 
+	@Override
+	public float getAPreis() {
+		return preis;
+	}
+
 	
 }
