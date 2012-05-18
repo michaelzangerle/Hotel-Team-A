@@ -17,9 +17,6 @@ import projekt.fhv.teama.model.exception.FokusException;
 
 public interface IAModelAufenthalt {
 
-	
-	
-	public void create(float preis, Date von, Date bis, boolean schluessel, IAGast gast, IAZimmer zimmer,IAPfandtyp pfand,String pfandNr) throws DatabaseException, EmptyParameterException;
 
 	/**
 	 * Um alle Aufenthalt die zu einem angegebenen Zeitpunkt vorhanden sind abzurufen
