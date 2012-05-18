@@ -3,6 +3,7 @@
   -->
 
 <view:ViewCheckOut bxml:id="bdViewCheckOut" xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" visible="false" styles="{color:'#e3e3e3'}">
+<bxml:include bxml:id="viewCheckOutProgress" src="inc.progress.bxml" inline="true" />
 <BoxPane orientation="vertical" styles="{fill:true}">
 <bxml:include src="inc.checkOutForm01.bxml" inline="true"/>	
 <bxml:include src="inc.checkOutForm02.bxml" inline="true"/>

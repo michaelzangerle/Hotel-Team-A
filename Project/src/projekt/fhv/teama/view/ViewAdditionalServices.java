@@ -109,6 +109,11 @@ public class ViewAdditionalServices extends Border implements Bindable {
 	/* TableViews */
 	@BXML
 	TableView asf1TVAdditionalServices;
+	
+	/* Progressbar UseCase AdditionalServices */
+	@BXML
+	Progress viewAdditionalServicesProgress;
+	
 
 	public TableViewRowEditor tableViewRowEditor;
 	
