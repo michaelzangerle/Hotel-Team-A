@@ -113,6 +113,14 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.lbProgress04.setVisible(true);
 	}
 	
+	/**
+	 * Hier werden die gesamt benötigten Daten für einen Check-In Vorganges aus der Datenbank über den CheckInContoller geladen.
+	 * Zudem wird die defaultRoomAssignment Methode aufgerufen, die die automatische Zimmerverteilung regelt.
+	 * @throws DatabaseException
+	 * @throws FokusException
+	 * @throws NotContainExeption
+	 * @throws WrongParameterException
+	 */
 	private void loadCheckInData() throws DatabaseException, FokusException, NotContainExeption, WrongParameterException {
 		selectedRooms = new LinkedList<String>();
 		Wrapper wrapper = new Wrapper();
@@ -437,11 +445,8 @@ public class CheckInViewController implements ButtonPressListener {
 		viewMain.tabPLeftMain.setEnabled(true);
 
 		controllerCheckIn.clearLists();
-		try {
-			viewController.initializeMainView();
-		} catch (DatabaseException e) {
-			e.printStackTrace();
-		}
+		viewController.initializeMainView();
+
 		List<TextInput> components = viewMain.getAllCheckInTextFields();
 		for (TextInput comp : components) {
 			comp.setText("");
@@ -943,6 +948,7 @@ public class CheckInViewController implements ButtonPressListener {
 					controllerCheckIn.getGast(), room, selectedPfandTyp,
 					pfandNummer);
 		}
+		viewController.getControllerZusatzLeistungBuchen().clearLists();
 	}
 
 	/**

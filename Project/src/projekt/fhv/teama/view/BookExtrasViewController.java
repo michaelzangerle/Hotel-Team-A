@@ -37,6 +37,10 @@ import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.view.support.AdditionalServicesTableRow;
 import projekt.fhv.teama.view.support.BlockingDialog;
 
+/**
+ * Der BookExtrasViewController regelt den kompletten Ablauf eines Zusatzleistung Buchen Usecases.
+ * @author Team A
+ */
 public class BookExtrasViewController implements ButtonPressListener {
 	private ViewAdditionalServices view;
 	private ViewCurrentGuest viewGuest;
@@ -44,22 +48,25 @@ public class BookExtrasViewController implements ButtonPressListener {
 	private ControllerZusatzleistungBuchen controller;
 	private ArrayList<AdditionalServicesTableRow> tableDataService;
 
+	/**
+	 * Die initizalie Mehtode initialisert den Startscren für den Zusatzleistungsbuchen Vorganges, hierfür werden die 
+	 * benötigten screens sichtbar gemaht und die progress-bar angepasst. Zudem werden Daten benötigte Daten wie Zimmer des Gastes angezeigt.
+	 * @throws FokusException
+	 * @throws DatabaseException
+	 */
 	private void initialize() throws FokusException, DatabaseException {
 		viewGuest.setVisible(false);
 		view.setVisible(true);
 		viewMain.tabPLeftMain.setEnabled(false);
 		viewMain.lvGuestSearch.setEnabled(false);
-		viewMain.progress.setVisible(true);
-		viewMain.lbProgress01.setVisible(true);
-		viewMain.lbProgress02.setVisible(true);
-		viewMain.lbProgress03.setVisible(false);
-		viewMain.lbProgress04.setVisible(false);
-		viewMain.meter.setPercentage(0.5);
-		viewMain.lbProgress01.setTooltipText("Select a room and add services");
-		viewMain.lbProgress02
-				.setTooltipText("Check the overview of the booked services and finish the process by saving");
-		viewMain.meter.getStyles().put("gridFrequency", "0.5");
-
+		
+		view.asProgress.setVisible(true);
+		view.asLBProgress01.setVisible(true);
+		view.asLBProgress02.setVisible(true);
+		view.asLBProgress03.setVisible(false);
+		view.asLBProgress04.setVisible(false);
+		view.asMeter.setPercentage(0.5);
+		
 		List<IAZimmer> rooms = controller.getZimmerVonGast();
 		Wrapper wrapper = new Wrapper();
 
@@ -68,22 +75,29 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 	}
 
+	/**
+	 * Beim Verlassen des Usecases werden die gesetzten Daten im controller gelöscht und die entsprechenden Views / Forms wieder zurückgesetzt.
+	 */
 	public void exit() {
 		controller.clearLists();;
 		view.bpAdditionalServicesForm01.setVisible(true);
 		view.bpAdditionalServicesForm02.setVisible(false);
 		viewMain.tabPLeftMain.setEnabled(true);
 		viewMain.lvGuestSearch.setEnabled(true);
-		viewMain.progress.setVisible(false);
+		view.asProgress.setVisible(false);
+		view.asLBProgress01.setVisible(false);
+		view.asLBProgress02.setVisible(false);
 		view.setVisible(false);
 		viewGuest.setVisible(true);
-		viewMain.lbProgress01.setVisible(true);
-		viewMain.lbProgress02.setVisible(true);
-		viewMain.lbProgress03.setVisible(true);
-		viewMain.lbProgress04.setVisible(true);
 		viewMain.lvGuestSearch.setSelectedIndex(0);
 	}
 
+	/**
+	 * Die setTableData Methode setzt in der TableView die entsprechenden Werte.
+	 * Hierfür wird eine AdditionalServicesTableRow benötigt, die eine Zeile in der Tabelle darstellt und die einzelnen Felder setzt.
+	 * @throws DatabaseException
+	 * @throws FokusException
+	 */
 	public void setTableData() throws DatabaseException, FokusException {	 //TODO geändert
 		Wrapper wrapper = new Wrapper();
 		tableDataService = new ArrayList<AdditionalServicesTableRow>();
@@ -94,10 +108,10 @@ public class BookExtrasViewController implements ButtonPressListener {
 		HashMap<IALeistung, Integer> curMap = new HashMap<IALeistung, Integer>();
 		IAZimmer tempRoom = controller.getAktuellesZimmer();
 
-		if (controller.getGebuchteLeistungen().get(tempRoom) != null) {
+		if (controller.getGebuchteLeistungen().get(tempRoom) != null) {	
 			for (LeistungAnzahl la : controller.getGebuchteLeistungen().get(
 					tempRoom)) {
-				curServices.add(la.getLeistung());
+				curServices.add(la.getLeistung());			
 				curMap.put(la.getLeistung(), la.getAnzahl());
 			}
 		}
@@ -130,6 +144,12 @@ public class BookExtrasViewController implements ButtonPressListener {
 		view.asf1TVAdditionalServices.setRowEditor(view.tableViewRowEditor);
 	}
 
+	/**
+	 * Beim letzten Schritt des Zusatzleistungsbuchen Usecases wird ein Zussammenfassungsfenster angezeigt.
+	 * Hier werden die gewählten Zusatzleistungen pro Zimmer graphisch dargestellt.
+	 * @throws FokusException
+	 * @throws DatabaseException
+	 */
 	public void initializeSummaryWindow() throws FokusException,
 			DatabaseException {
 		int length = view.asf2smTPSummary.getRows().getLength();
@@ -170,6 +190,13 @@ public class BookExtrasViewController implements ButtonPressListener {
 		view.asf2smLBTotal.setText(String.valueOf(total));
 	}
 
+	/**
+	 * insertRowData ist eine Hilfs- Methode für die initializeSummaryWindow Funktion. 
+	 * Hier werden aus den gesetzten Leistungen die Informationen geholt und in neue TableRows gesetzt.
+	 * @param roomNo
+	 * @param roomDescription
+	 * @param services
+	 */
 	private void insertRowData(String roomNo, String roomDescription,
 			List<LeistungAnzahl> services) {
 		TablePane.Row row = new TablePane.Row();
@@ -210,6 +237,10 @@ public class BookExtrasViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * insertRowHeader ist eine Hifsmethode für die initializeSummaryWindow Funktion.
+	 * Hier wird der definierte Header einer neuen TableRow gesetzt.
+	 */
 	private void insertRowHeader() {
 		TablePane.Row row = new TablePane.Row();
 		view.asf2smTPSummary.getRows().add(row);
@@ -236,6 +267,9 @@ public class BookExtrasViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * Hier werden die Action- Events der AdditionalServices- In Views initialisiert und den Event- Listener zugewiesen.
+	 */
 	private void addBookExtrasEventListener() {
 		view.setasf1PBtnNextListener(new ButtonPressListener() {
 			public void buttonPressed(Button arg0) {
@@ -253,37 +287,26 @@ public class BookExtrasViewController implements ButtonPressListener {
 			}
 		});
 		view.asf2PBtnBack.setAction(gotoStep);
-		viewMain.setlbProgress01Listener(new ComponentMouseButtonListener() {
-			public boolean mouseClick(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
-					int arg4) {
-				view.bpAdditionalServicesForm02.setVisible(false);
-				view.bpAdditionalServicesForm01.setVisible(true);
-				viewMain.meter.setPercentage(0.5);
+		
+		view.setlbProgress01Listener(new ComponentMouseButtonListener() {
+			public boolean mouseUp(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
+				gotoStep.perform(arg0);
 				return false;
 			}
 			public boolean mouseDown(Component arg0,
 					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
 				return false;
 			}
-			public boolean mouseUp(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
+			public boolean mouseClick(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3, int arg4) {
 				return false;
 			}
 		});
-		viewMain.setlbProgress02Listener(new ComponentMouseButtonListener() {
+		view.setlbProgress02Listener(new ComponentMouseButtonListener() {
 			public boolean mouseUp(Component arg0,
 					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
-				viewMain.meter.setPercentage(1);
-				view.bpAdditionalServicesForm01.setVisible(false);
-				view.bpAdditionalServicesForm02.setVisible(true);
-				try {
-					initializeSummaryWindow();
-				} catch (FokusException e) {
-					e.printStackTrace();
-				} catch (DatabaseException e) {
-					e.printStackTrace();
-				}
+				gotoStep.perform(arg0);
 				return false;
 			}
 			public boolean mouseDown(Component arg0,
@@ -291,13 +314,15 @@ public class BookExtrasViewController implements ButtonPressListener {
 				return false;
 			}
 			public boolean mouseClick(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
-					int arg4) {
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3, int arg4) {
 				return false;
 			}
 		});
 	}
 
+	/**
+	 * Die cancel- Action ruft ein BlockingDialog auf und ist bei einer Bestätigung für einen korrekten Abbruch des aktuellen Fensters zuständig.
+	 */
 	Action cancel = new Action(true) {
 		@Override
 		public void perform(Component source) {
@@ -319,23 +344,27 @@ public class BookExtrasViewController implements ButtonPressListener {
 		}
 	};
 
+	/**
+	 * Die gotoStep- Action regelt die Steps des Zusatzleistungbuchen Ablaufes und somit die Sichtbarkeit der einzelnen AdditionalServices Forms.
+	 */
 	Action gotoStep = new Action(true) {
 		@Override
 		public void perform(Component source) {
-			if (source.getName().equals("lbProgress01")
+			if (source.getName().equals("asLBProgress01")
 					|| source.getName().equals("asf2PBtnBack")) {
 				view.bpAdditionalServicesForm02.setVisible(false);
 				view.bpAdditionalServicesForm01.setVisible(true);
-				viewMain.meter.setPercentage(0.5);
+				view.asMeter.setPercentage(0.5);
 			}
 
-			if (source.getName().equals("lbProgress02")
+			if (source.getName().equals("asLBProgress02")
 					|| source.getName().equals("asf1PBtnNext")) {
-				viewMain.meter.setPercentage(1);
-				view.bpAdditionalServicesForm01.setVisible(false);
-				view.bpAdditionalServicesForm02.setVisible(true);
+				
 				try {
 					initializeSummaryWindow();
+					view.asMeter.setPercentage(1);
+					view.bpAdditionalServicesForm01.setVisible(false);
+					view.bpAdditionalServicesForm02.setVisible(true);
 				} catch (FokusException e) {
 					e.printStackTrace();
 				} catch (DatabaseException e) {
@@ -345,6 +374,11 @@ public class BookExtrasViewController implements ButtonPressListener {
 		}
 	};
 
+	/**
+	 * Startpunkt des Controllers - hier wird der Zusatzleistungbuchen Vorgang gestartet und die initialize Methode aufgerufen.
+	 * Zudem werden die EventListener gesetzt.
+	 * Bei Nicht- Korrekter initialisierung wird die exit() methode aufgerufen -> Abbruch.
+	 */
 	public void buttonPressed(Button arg0) {
 
 		try {
@@ -358,6 +392,13 @@ public class BookExtrasViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * Konstruktor: Instanzen der viewAdditionalServices, ViewMain, ViewCurrentGuest und dem controller Zusatzleistung Buchen werden dem Zusatzleistungbuchen zugewiesen.
+	 * @param view
+	 * @param viewMain
+	 * @param viewGuest
+	 * @param controller
+	 */
 	public BookExtrasViewController(ViewAdditionalServices view,
 			ViewMain viewMain, ViewCurrentGuest viewGuest,
 			ControllerZusatzleistungBuchen controller) {
@@ -367,11 +408,16 @@ public class BookExtrasViewController implements ButtonPressListener {
 		this.controller = controller;
 	}
 
+	/**
+	 * Der SaveAdditionalService Listener wird beim speichern der neuen Zusatzleistung aufgerufen.
+	 * Hier wird beim Controller die saveLeistungen methode aufgerufen und bei erfolgreichem Ablauf die Leistungen in die Datenbank geschrieben.
+	 */
 	class SaveAdditionalService implements ButtonPressListener {
 
 		public void buttonPressed(Button arg0) {
 			try {
 				controller.saveLeistungen();
+				exit();
 			} catch (FokusException e) {
 				e.printStackTrace();
 			} catch (WrongParameterException e) {
@@ -381,11 +427,13 @@ public class BookExtrasViewController implements ButtonPressListener {
 			} catch (NotContainExeption e) {
 				e.printStackTrace();
 			}
-
-			exit();
 		}
 	}
 
+	/**
+	 * Bei der Auswahl eines Zimmers wird der RoomChangedListener aufgerufen. Anhand der Zimmernummer wird das entsprechende Zimmer 
+	 * vom Controller geholt und die TableView neu gesetzt. 
+	 */
 	class RoomChangedListener implements ListViewSelectionListener {
 		public void selectedItemChanged(ListView arg0, Object arg1) {
 			String text = (String) view.asf1LVBookedRooms.getSelectedItem();
@@ -418,6 +466,11 @@ public class BookExtrasViewController implements ButtonPressListener {
 		}
 	}
 
+	/**
+	 * Der AdditionalServiceListener wird bei Änderung eines Eintrages in der TableView aufgerufen.
+	 * Hier werden mögliche falsch- Eingaben überprüft und die Leistung in dem controller zwischengespeichert.
+	 *
+	 */
 	class AdditionalServiceListener implements TableViewRowListener {
 		@Override
 		public void rowInserted(TableView arg0, int arg1) {

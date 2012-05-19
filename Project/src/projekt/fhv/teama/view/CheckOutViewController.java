@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import org.apache.pivot.collections.ArrayList;
+import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.wtk.Action;
 import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Button;
@@ -21,9 +22,10 @@ import projekt.fhv.teama.view.support.BlockingDialog;
 
 
 /**
- * 
+ * Der CheckOutViewController ist für das Eventhandling des Check-Out Vorgangs zuständig.
+ * Hier werden die vom User ausgelösten Interaktionen ermittelt und an den Check-Out usecase Controller weitergeleitet.
  * @author Team A
- *
+ * @version 1.0
  */
 public class CheckOutViewController implements ButtonPressListener {
 	private ViewCheckOut view; 
@@ -32,7 +34,10 @@ public class CheckOutViewController implements ButtonPressListener {
 	private ControllerCheckOut controller;
 
 	
-	
+	/**
+	 * Der FinishCheckOutListener überprüft ob alle erforderlichen Daten erfüllt sind und schliesst den Check-Out Vorgang ab.
+	 *
+	 */
 	class FinishCheckOutListener implements ButtonPressListener {
 		public void buttonPressed(Button arg0) {
 			if (controller.offeneRechnungspositionenVorhanden()) {
@@ -41,12 +46,36 @@ public class CheckOutViewController implements ButtonPressListener {
 						"All invoice line items must be paid",
 						new ArrayList<String>("OK")));
 				bd.open(view.getDisplay());
+			} else if (!allKeysHandedOver()) {
+				BlockingDialog bd = new BlockingDialog();
+				bd.setContent(new Alert(MessageType.WARNING,
+						"All keys must be handed over",
+						new ArrayList<String>("OK")));
+				bd.open(view.getDisplay());
 			} else {
 				controller.save();
 			}
 		}
 	}
 	
+	/**
+	 * Die allKeysHandedOver überprüft in der ViewList ob alle Schlüssel zurückgenommen worden sind.
+	 * @return boolean
+	 */
+	private boolean allKeysHandedOver () {
+		int length = viewMain.smLVHandedKeys.getListData().getLength();
+		for (int i = 0; i < length; i++) {
+			if (!viewMain.smLVHandedKeys.isItemChecked(i)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * Startpunkt des Controllers - hier wird der Check- Out Vorgang gestartet und die benötigten Daten initialisiert.
+	 * Bei fehlerhafter initialisierung wird der Check- Out Vorgang abgebrochen.
+	 */
 	public void buttonPressed(Button arg0) {
 		try {
 			initialize();
@@ -54,14 +83,16 @@ public class CheckOutViewController implements ButtonPressListener {
 			setHandedKeysTable();
 			setDeposit();
 		} catch (FokusException e) {
-			e.printStackTrace();
 			exit();
 		} catch (DatabaseException e) {
-			e.printStackTrace();
 			exit();
 		}
 	}
 	
+	/**
+	 * set Deposit holt von dem usecase Controller den ausgehändigten Pfand.
+	 * @throws DatabaseException
+	 */
 	public void setDeposit() throws DatabaseException {
 		List<IAAufenthalt> aufenthalte = controller.getAufenthalte();
 		IAAufenthalt aufenthalt = aufenthalte.get(0);
@@ -70,81 +101,74 @@ public class CheckOutViewController implements ButtonPressListener {
 		view.cof2LBDepositNr.setText("Pfand: " + bezeichnung + " Nummer: " + nummer);
 	}
 	
+	/**
+	 * setHandedKeysTable initialisert die LVHandedKeys View. 
+	 * @throws FokusException
+	 * @throws DatabaseException
+	 */
 	public void setHandedKeysTable () throws FokusException, DatabaseException {
 		Wrapper wrapper = new Wrapper();
 		view.cof2LVHandedKeys.setListData(wrapper.getKeyListAdapaterA(controller.getZimmerVonGast()));
 	}
 	
-
+	/**
+	 * 
+	 * @throws FokusException
+	 */
 	private void initialize() throws FokusException {
 		viewMain.tabPLeftMain.setEnabled(false);
 		viewMain.lvGuestSearch.setEnabled(false);
 		viewGuest.setVisible(false);
 		view.setVisible(true);
 		view.bpCheckOutForm01.setVisible(true);
-		viewMain.progress.setVisible(true);
-		viewMain.lbProgress01.setVisible(true);
-		viewMain.lbProgress02.setVisible(true);
-		viewMain.lbProgress03.setVisible(false);
-		viewMain.lbProgress04.setVisible(false);
-		viewMain.lbProgress01
-		.setTooltipText("Generate Invoices for the guest");
-		viewMain.lbProgress02
-		.setTooltipText("Take back room-keys and remove deposit");
-		viewMain.meter.setPercentage(0.5);
+		view.coProgress.setVisible(true);
+		view.coMeter.setPercentage(0.5);
+		view.coLBProgress01.setVisible(true);
+		view.coLBProgress02.setVisible(true);
+		view.coLBProgress03.setVisible(false);
+		view.coLBProgress04.setVisible(false);
 	}
 	
 	private void exit () {
 		viewMain.tabPLeftMain.setEnabled(true);
 		viewMain.lvGuestSearch.setEnabled(true);
 		view.setVisible(false);
+		view.coProgress.setVisible(false);
+		view.coLBProgress01.setVisible(false);
+		view.coLBProgress02.setVisible(false);
 		viewGuest.setVisible(true);
-		viewMain.progress.setVisible(false);
-		viewMain.lbProgress01
-		.setTooltipText("");
-		viewMain.lbProgress02
-		.setTooltipText("");
-		viewMain.lbProgress01.setVisible(false);
-		viewMain.lbProgress02.setVisible(false);
-		viewMain.lbProgress03.setVisible(false);
-		viewMain.lbProgress04.setVisible(false);
-		viewMain.meter.setPercentage(0.5);
+		view.coProgress.setVisible(false);
 	}
 	
 	private void addCheckOutEventListener() {
-		viewMain.setlbProgress01Listener(new ComponentMouseButtonListener() {
-			public boolean mouseClick(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
-					int arg4) {
-				view.bpCheckOutForm02.setVisible(false);
-				view.bpCheckOutForm01.setVisible(true);
-				viewMain.meter.setPercentage(0.5);
+		view.setlbProgress01Listener(new ComponentMouseButtonListener() {
+			public boolean mouseUp(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
 				return false;
 			}
 			public boolean mouseDown(Component arg0,
 					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
 				return false;
 			}
-			public boolean mouseUp(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
+			public boolean mouseClick(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3, int arg4) {
+				gotoStep.perform(arg0);
 				return false;
 			}
 		});
-		viewMain.setlbProgress02Listener(new ComponentMouseButtonListener() {
-			public boolean mouseUp(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
-				viewMain.meter.setPercentage(1);
-				view.bpCheckOutForm01.setVisible(false);
-				view.bpCheckOutForm02.setVisible(true);
+		view.setlbProgress02Listener(new ComponentMouseButtonListener() {
+			public boolean mouseClick(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
+					int arg4) {
+				gotoStep.perform(arg0);
 				return false;
 			}
 			public boolean mouseDown(Component arg0,
 					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
 				return false;
 			}
-			public boolean mouseClick(Component arg0,
-					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3,
-					int arg4) {
+			public boolean mouseUp(Component arg0,
+					org.apache.pivot.wtk.Mouse.Button arg1, int arg2, int arg3) {
 				return false;
 			}
 		});
@@ -152,11 +176,6 @@ public class CheckOutViewController implements ButtonPressListener {
 		view.cof2PBtnCancel.setAction(cancel);
 		view.cof1PBtnNext.setAction(gotoStep);
 		view.cof2PBtnBack.setAction(gotoStep);
-//		view.setcof1PBtnCreateInvoiceListener(new ButtonPressListener(){
-//			public void buttonPressed(Button arg0) {
-//				createInvoice();
-//			}
-//		});
 		view.setcof2BTRemoveDepositListener(new ButtonPressListener() {
 
 			@Override
@@ -167,7 +186,6 @@ public class CheckOutViewController implements ButtonPressListener {
 		});
 		view.setcof2PBtnFinishSaveListener(new FinishCheckOutListener());
 	}
-	
 
 	Action cancel = new Action(true) {
 		@Override
@@ -193,18 +211,19 @@ public class CheckOutViewController implements ButtonPressListener {
 	Action gotoStep = new Action(true) {
 		@Override
 		public void perform(Component source) {
-			if (source.getName().equals("lbProgress01")
+			if (source.getName().equals("coLBProgress01")
 					|| source.getName().equals("cof2PBtnBack")) {
 				view.bpCheckOutForm02.setVisible(false);
 				view.bpCheckOutForm01.setVisible(true);
-				viewMain.meter.setPercentage(0.5);
+				view.coMeter.setPercentage(0.5);
 			}
 
-			if (source.getName().equals("lbProgress02")
+			if (source.getName().equals("coLBProgress02")
 					|| source.getName().equals("cof1PBtnNext")) {
 				viewMain.meter.setPercentage(1);
 				view.bpCheckOutForm01.setVisible(false);
 				view.bpCheckOutForm02.setVisible(true);
+				view.coMeter.setPercentage(1);
 			}
 		}
 	};

@@ -317,6 +317,7 @@ public class ControllerZusatzleistungBuchen
 
 	public void clearLists() {
 		this.gebuchteLeistungen = new HashMap<IAZimmer, List<LeistungAnzahl>>();
+		this.aufenthalte = new Vector<IAAufenthalt>();
 	}
 
 }

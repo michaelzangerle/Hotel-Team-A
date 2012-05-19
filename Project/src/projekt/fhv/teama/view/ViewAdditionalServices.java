@@ -1,51 +1,27 @@
 package projekt.fhv.teama.view;
 
-import java.awt.Color;
 import java.net.URL;
-import java.security.Provider.Service;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Collections.*;
 
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.Bindable;
-import org.apache.pivot.collections.ArrayList;
-import org.apache.pivot.collections.EnumList;
 import org.apache.pivot.collections.Map;
-import org.apache.pivot.collections.adapter.ListAdapter;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.Border;
-import org.apache.pivot.wtk.Bounds;
 import org.apache.pivot.wtk.BoxPane;
 import org.apache.pivot.wtk.ButtonPressListener;
+import org.apache.pivot.wtk.ComponentMouseButtonListener;
 import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListButton;
 import org.apache.pivot.wtk.ListView;
-import org.apache.pivot.wtk.ListViewListener;
 import org.apache.pivot.wtk.ListViewSelectionListener;
 import org.apache.pivot.wtk.Meter;
 import org.apache.pivot.wtk.PushButton;
-import org.apache.pivot.wtk.Spinner;
 import org.apache.pivot.wtk.TablePane;
 import org.apache.pivot.wtk.TableView;
-import org.apache.pivot.wtk.TableView.TableDataBindMapping;
-import org.apache.pivot.wtk.TableViewBindingListener;
-import org.apache.pivot.wtk.TableViewHeader;
-import org.apache.pivot.wtk.TableViewListener;
 import org.apache.pivot.wtk.TableViewRowListener;
-import org.apache.pivot.wtk.TableViewSelectionListener;
 import org.apache.pivot.wtk.TextInput;
-import org.apache.pivot.wtk.Theme;
-import org.apache.pivot.wtk.content.CalendarDateSpinnerData;
 import org.apache.pivot.wtk.content.TableViewRowEditor;
-import org.apache.pivot.wtk.skin.terra.TerraTableViewHeaderSkin;
-import org.apache.pivot.wtk.skin.terra.TerraTheme;
 
 import projekt.fhv.teama.view.support.CurrencyValidator;
-import projekt.fhv.teama.view.support.ExpenseType;
-import projekt.fhv.teama.view.support.Services;
-import projekt.fhv.teama.view.tests.TestData;
 
 /**
  * Übersicht über einen momentan im Hotel eingecheckten Gast.
@@ -109,7 +85,7 @@ public class ViewAdditionalServices extends BoxPane implements Bindable {
 
 	/* TableViews */
 	@BXML
-	TableView asf1TVAdditionalServices; Label asLBProgress01; Label asLBProgress02; Label asLBProgress03; Label asLBProgress04;
+	TableView asf1TVAdditionalServices; @BXML Label asLBProgress01; @BXML Label asLBProgress02; @BXML Label asLBProgress03; @BXML Label asLBProgress04;
 	
 	/* Progressbar UseCase CheckOut */
 	@BXML
@@ -173,5 +149,11 @@ public class ViewAdditionalServices extends BoxPane implements Bindable {
 		asf1TVAdditionalServices.getTableViewRowListeners().add(e);
 	}
 
-
+	public void setlbProgress01Listener (ComponentMouseButtonListener e) {
+		asLBProgress01.getComponentMouseButtonListeners().add(e);
+	}
+    
+    public void setlbProgress02Listener (ComponentMouseButtonListener e) {
+    	asLBProgress02.getComponentMouseButtonListeners().add(e);
+	}
 }

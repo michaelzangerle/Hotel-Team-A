@@ -21,8 +21,6 @@ import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.ComponentKeyListener;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Keyboard;
-import org.apache.pivot.wtk.TextInput;
-import org.apache.pivot.wtk.TextInputContentListener;
 import org.apache.pivot.wtk.Keyboard.KeyLocation;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.ListViewSelectionListener;
@@ -30,10 +28,10 @@ import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Span;
 import org.apache.pivot.wtk.TabPane;
 import org.apache.pivot.wtk.TabPaneSelectionListener;
+import org.apache.pivot.wtk.TextInput;
+import org.apache.pivot.wtk.TextInputContentListener;
 
-import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.personen.IAdresse;
-import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IMitarbeiter;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.controller.exeption.LoginInExeption;
@@ -43,9 +41,9 @@ import projekt.fhv.teama.controller.usecasecontroller.ControllerLogin;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.integrate.IAGast;
 import projekt.fhv.teama.integrate.IAAdresse;
 import projekt.fhv.teama.integrate.IAAufenthalt;
+import projekt.fhv.teama.integrate.IAGast;
 import projekt.fhv.teama.model.ModelAdresse;
 import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.ModelGast;
@@ -68,7 +66,6 @@ import roomanizer.teamb.presentation.forms.invoice.InvoiceStep1;
 import roomanizer.teamb.service.integrate.IBGast;
 import roomanizer.teamb.service.integrate.IBKonsument;
 
-
 /**
  * Der ViewController handelt die Events des Homescreens (ViewMain) ab.
  * 
@@ -88,6 +85,8 @@ public class ViewController implements Application {
 	private Display disp;
 	private ListAdapter<String> cacheListData;
 
+	
+	
 	@Override
 	public void resume() throws Exception {
 
@@ -134,6 +133,11 @@ public class ViewController implements Application {
 	public void suspend() throws Exception {
 	}
 
+	public ControllerZusatzleistungBuchen getControllerZusatzLeistungBuchen () {
+		return controllerZusatzleistung;
+	}
+	
+	
 	/**
 	 * Hier werden die Action- Events des Login Screens initialisiert und den
 	 * Event- Listener zugewiesen.
@@ -174,119 +178,68 @@ public class ViewController implements Application {
 		viewMain.setlvGuestSearchListener(new GuestListListener());
 		viewMain.tiReservationSearch.getTextInputContentListeners().add(
 				new TextInputContentListener.Adapter() {
-					public void textRemoved(TextInput arg0, int arg1, int arg2) {
-						if (cacheListData != null) {
+					public void textRemoved(TextInput textInput, int arg1,
+							int arg2) {
+						String text = textInput.getText();
+
+						if (text.length() == 0) {
 							viewMain.lvReservationSearch
 									.setListData(cacheListData);
 							cacheListData = null;
+							viewMain.lvReservationSearch.setSelectedIndex(0);
+						} else {
+							searchPanelInput(text, viewMain.lvReservationSearch);
 						}
 					}
 					public void textInserted(TextInput textInput, int arg1,
 							int arg2) {
 						String text = textInput.getText();
-						if (cacheListData == null) {
-							cacheListData = (ListAdapter<String>) viewMain.lvReservationSearch
-									.getListData();
-						}
-						List<String> suggestions = new LinkedList<String>();
-						List<String> list = cacheListData.getList();
-						for (String temp : list) {
-							temp = temp.toUpperCase();
-							text = text.toUpperCase();
-							if (temp.contains(text)) {
-								suggestions.add(temp);
-							}
-						}
-						if (suggestions.size() == 0) {
-							List<String> temp = new LinkedList();
-							temp.add("no reservation found");
-							ListAdapter<String> adapter = new ListAdapter<String>(temp);
-							viewMain.lvReservationSearch
-									.setListData(adapter);
-						} else {
-							ListAdapter<String> adapter = new ListAdapter<String>(suggestions);
-							viewMain.lvReservationSearch
-									.setListData(adapter);
-						}
+						searchPanelInput(text, viewMain.lvReservationSearch);
 					}
 				});
-		
-		viewMain.tiArrivingSearch.getTextInputContentListeners().add(new TextInputContentListener.Adapter() {
-			public void textRemoved(TextInput arg0, int arg1, int arg2) {
-				if (cacheListData != null) {
-					viewMain.lvArrivingSearch
-							.setListData(cacheListData);
-					cacheListData = null;
-				}
-			}
-			public void textInserted(TextInput textInput, int arg1,
-					int arg2) {
-				String text = textInput.getText();
-				if (cacheListData == null) {
-					cacheListData = (ListAdapter<String>) viewMain.lvArrivingSearch
-							.getListData();
-				}
-				List<String> suggestions = new LinkedList<String>();
-				List<String> list = cacheListData.getList();
-				for (String temp : list) {
-					temp = temp.toUpperCase();
-					text = text.toUpperCase();
-					if (temp.contains(text)) {
-						suggestions.add(temp);
+
+		viewMain.tiArrivingSearch.getTextInputContentListeners().add(
+				new TextInputContentListener.Adapter() {
+					public void textRemoved(TextInput textInput, int arg1, int arg2) {
+						String text = textInput.getText();
+
+						if (text.length() == 0) {
+							viewMain.lvArrivingSearch
+									.setListData(cacheListData);
+							cacheListData = null;
+							viewMain.lvArrivingSearch.setSelectedIndex(0);
+						} else {
+							searchPanelInput(text, viewMain.lvArrivingSearch);
+						}
 					}
-				}
-				if (suggestions.size() == 0) {
-					List<String> temp = new LinkedList();
-					temp.add("no reservation found");
-					ListAdapter<String> adapter = new ListAdapter<String>(temp);
-					viewMain.lvArrivingSearch
-							.setListData(adapter);
-				} else {
-					ListAdapter<String> adapter = new ListAdapter<String>(suggestions);
-					viewMain.lvArrivingSearch
-							.setListData(adapter);
-				}
-			}
-		});
-		
+					public void textInserted(TextInput textInput, int arg1,
+							int arg2) {
+						String text = textInput.getText();
+						searchPanelInput(text, viewMain.lvArrivingSearch);
+					}
+				});
+
 		viewMain.tiGuestSearch.getTextInputContentListeners().add(
 				new TextInputContentListener.Adapter() {
-					public void textRemoved(TextInput arg0, int arg1, int arg2) {
-						if (cacheListData != null) {
+					public void textRemoved(TextInput textInput, int arg1, int arg2) {
+						String text = textInput.getText();
+
+						if (text.length() == 0) {
 							viewMain.lvGuestSearch
 									.setListData(cacheListData);
 							cacheListData = null;
+							viewMain.lvGuestSearch.setSelectedIndex(0);
+						} else {
+							searchPanelInput(text, viewMain.lvGuestSearch);
 						}
 					}
 					public void textInserted(TextInput textInput, int arg1,
 							int arg2) {
 						String text = textInput.getText();
-						if (cacheListData == null) {
-							cacheListData = (ListAdapter<String>) viewMain.lvGuestSearch.getListData();
-						}
-						List<String> suggestions = new LinkedList<String>();
-						List<String> list = cacheListData.getList();
-						for (String temp : list) {
-							temp = temp.toUpperCase();
-							text = text.toUpperCase();
-							if (temp.contains(text)) {
-								suggestions.add(temp);
-							}
-						}
-						if (suggestions.size() == 0) {
-							List<String> temp = new LinkedList();
-							temp.add("no guest found");
-							ListAdapter<String> adapter = new ListAdapter<String>(temp);
-							viewMain.lvGuestSearch
-									.setListData(adapter);
-						} else {
-							ListAdapter<String> adapter = new ListAdapter<String>(suggestions);
-							viewMain.lvGuestSearch
-									.setListData(adapter);
-						}
+						searchPanelInput(text, viewMain.lvGuestSearch);
 					}
 				});
-		
+
 		bdViewCurrentGuest
 				.setcgf1PBtnBookExtrasListener(new BookExtrasViewController(
 						bdViewAdditionalServices, viewMain, bdViewCurrentGuest,
@@ -301,8 +254,57 @@ public class ViewController implements Application {
 						startInvoiceWindow();
 					}
 				});
-
 	}
+
+	/**
+	 * Hier werden die vorhandenen Reservierungen bzw. Gäste anhand von dem übergebenen String gesucht.
+	 * Es kann dabei nach Nummer der Reservierung / des Gastes und Name des Gastes gesucht werden.
+	 * @param text
+	 * @param lv
+	 */
+	private void searchPanelInput(String text, ListView lv) {
+		if (cacheListData == null) {
+			cacheListData = (ListAdapter<String>) lv.getListData();
+		}
+		List<String> suggestions = new LinkedList<String>();
+		List<String> list = cacheListData.getList();
+		for (String temp : list) {
+			if (temp.toUpperCase().contains(text.toUpperCase())) { 
+				suggestions.add(temp);
+			}
+		}
+		if (suggestions.isEmpty()) {
+			int i = viewMain.tabPLeftMain.getSelectedIndex();
+			switch (i) {
+				case 0 :
+					setListData(lv, "no reservation found");
+					break;
+				case 1 :
+					setListData(lv, "no reservation found");
+					break;
+				case 2 :
+					setListData(lv, "no guest found");
+					break;
+			}
+		} else {
+			ListAdapter<String> adapter = new ListAdapter<String>(suggestions);
+			lv.setListData(adapter);
+			lv.setSelectedIndex(0);
+		}
+	}
+
+	/**
+	 * setzt in der übergebenen ListView einen beliebigen Text.
+	 * @param view
+	 * @param text
+	 */
+	private void setListData(ListView view, String text) {
+		List<String> temp = new LinkedList();
+		temp.add(text);
+		ListAdapter<String> adapter = new ListAdapter<String>(temp);
+		view.setListData(adapter);
+	}
+
 	/**
 	 * Hier wird ein neues Swing Fenster für den Rechnungserstellen Usecase der
 	 * Gruppe B aufgerufen.
@@ -310,8 +312,6 @@ public class ViewController implements Application {
 	public void startInvoiceWindow() {
 		IBGast gast;
 		try {
-			
-			// TODO - gibt IGast zurück 
 			gast = (IBGast) controllerCheckOut.getGast();
 
 			IBKonsument konsument = (IBKonsument) gast;
@@ -379,11 +379,8 @@ public class ViewController implements Application {
 		viewMain.mainContent.add(bdViewCurrentGuest);
 		viewMain.mainContent.add(bdViewCheckOut);
 		controllerCheckOut = new ControllerCheckOut();
-		try {
-			initializeMainView();
-		} catch (DatabaseException e) {
-			e.printStackTrace();
-		}
+		
+		initializeMainView();
 		addMainEventListener();
 	}
 
@@ -393,7 +390,7 @@ public class ViewController implements Application {
 	 * 
 	 * @throws DatabaseException
 	 */
-	public void initializeMainView() throws DatabaseException {
+	public void initializeMainView() {
 		if (controllerCheckIn == null) {
 			controllerCheckIn = new ControllerCheckIn(new ModelReservierung(),
 					new ModelAufenthalt(), new ModelGast(),
@@ -418,10 +415,7 @@ public class ViewController implements Application {
 					wrapper.getReservationListAdapter(controllerCheckIn
 							.getAllReservierungen()));
 		} catch (DatabaseException e) {
-			List<String> list = new Vector<String>();
-			list.add("Currently no reservation available");
-			viewMain.lvReservationSearch.setListData(new ListAdapter<String>(
-					list));
+			setListData(viewMain.lvReservationSearch, "Currently no reservations available");
 		}
 
 		try {
@@ -429,17 +423,12 @@ public class ViewController implements Application {
 					.getGuestListAdapter(controllerCheckIn
 							.getGaesteVonAuftenhalt()));
 		} catch (DatabaseException e) {
-			List<String> list = new Vector<String>();
-			list.add("Currently no guests found");
-			viewMain.lvGuestSearch.setListData(new ListAdapter<String>(list));
+			setListData(viewMain.lvGuestSearch, "Currently no guests available");
 		}
 
 		try {
 			if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
-				List<String> list = new Vector<String>();
-				list.add("Currently no reservation available");
-				viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(
-						list));
+				setListData(viewMain.lvArrivingSearch, "Currently no reservations available");
 			} else {
 				viewMain.lvArrivingSearch.setListData(wrapper
 						.getReservationListAdapter(controllerCheckIn
@@ -449,10 +438,7 @@ public class ViewController implements Application {
 				viewMain.lvArrivingSearch.setSelectedIndex(0);
 			}
 		} catch (DatabaseException e) {
-			List<String> list = new Vector<String>();
-			list.add("Currently no reservation available");
-			viewMain.lvArrivingSearch
-					.setListData(new ListAdapter<String>(list));
+			setListData(viewMain.lvArrivingSearch, "Currently no reservations available");
 		}
 	}
 
@@ -571,10 +557,7 @@ public class ViewController implements Application {
 			try {
 				setSelectedReservation(reservierungsnummer);
 			} catch (DatabaseException e) {
-				List<String> list = new Vector<String>();
-				list.add("No reservation available");
-				viewMain.lvArrivingSearch.setListData(new ListAdapter<String>(
-						list));
+				setListData(viewMain.lvArrivingSearch, "Currently no reservation available");
 			}
 		}
 		@Override
@@ -590,6 +573,16 @@ public class ViewController implements Application {
 		}
 	}
 
+	
+	/**
+	 * Gastdaten, des ausgewählten Gastes, werden in die
+	 * entsprechende Form (inc.currentGuestForm01) gesetzt.
+	 * @param gastNummer
+	 * @throws DatabaseException
+	 * @throws EmptyParameterException
+	 * @throws NotContainExeption
+	 * @throws FokusException
+	 */
 	public void setSelectedGuest(String gastNummer) throws DatabaseException,
 			EmptyParameterException, NotContainExeption, FokusException {
 		if (controllerZusatzleistung == null) {
@@ -629,10 +622,7 @@ public class ViewController implements Application {
 		List<LeistungAnzahl> services = controllerZusatzleistung
 				.bereitsgebuchtLeistungenFuerGast();
 		if (services.size() == 0) {
-			List<String> message = new LinkedList<String>();
-			message.add("Currently no additional service booked");
-			bdViewCurrentGuest.cgf1LVBookedAdditionalServices
-					.setListData(new ListAdapter<String>(message));
+			setListData(bdViewCurrentGuest.cgf1LVBookedAdditionalServices, "Currently no additional service booked");
 		} else {
 			HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
 			for (LeistungAnzahl temp : services) {
@@ -652,6 +642,12 @@ public class ViewController implements Application {
 		}
 	}
 
+	/**
+	 * Der Guestlist- Listener kontrolliert den Ablauf, wenn ein Gast
+	 * im Suchpanel ausgewählt wurde. Hierfür wird die Gastnummer aus
+	 * dem gesetzten Text geparst und die setSelectedGuest Methode
+	 * aufgerufen.
+	 */
 	class GuestListListener implements ListViewSelectionListener {
 
 		@Override
@@ -671,8 +667,8 @@ public class ViewController implements Application {
 			} catch (FokusException e) {
 				e.printStackTrace();
 			}
-
 		}
+
 		public void selectedRangeAdded(ListView arg0, int arg1, int arg2) {
 		}
 		public void selectedRangeRemoved(ListView arg0, int arg1, int arg2) {
@@ -701,10 +697,7 @@ public class ViewController implements Application {
 				cacheListData = null;
 				try {
 					if (controllerCheckIn.getAllReservierungen().size() == 0) {
-						List<String> list = new Vector<String>();
-						list.add("Currently no reservation available");
-						viewMain.lvReservationSearch
-								.setListData(new ListAdapter<String>(list));
+						setListData(viewMain.lvReservationSearch, "Currently no reservation available");
 					} else {
 						ListAdapter<String> reservations = wrapper
 								.getReservationListAdapter(controllerCheckIn
@@ -713,10 +706,7 @@ public class ViewController implements Application {
 						viewMain.lvReservationSearch.setSelectedIndex(0);
 					}
 				} catch (DatabaseException e) {
-					List<String> list = new Vector<String>();
-					list.add("Currently no reservation available");
-					viewMain.lvReservationSearch
-							.setListData(new ListAdapter<String>(list));
+					setListData(viewMain.lvReservationSearch, "Currently no reservation available");
 				}
 			} else if (index == 1) {
 				viewMain.reservationForm01.setVisible(true);
@@ -725,11 +715,7 @@ public class ViewController implements Application {
 				cacheListData = null;
 				try {
 					if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
-						List<String> list = new Vector<String>();
-						list.add("Currently no reservation available");
-						viewMain.lvArrivingSearch
-								.setListData(new ListAdapter<String>(list));
-						viewMain.rf1PBtnCheckIn.setEnabled(false);
+						setListData(viewMain.lvReservationSearch, "Currently no reservation available");
 					} else {
 						ListAdapter<String> curReservations = wrapper
 								.getReservationListAdapter(controllerCheckIn
@@ -738,10 +724,7 @@ public class ViewController implements Application {
 						viewMain.lvArrivingSearch.setSelectedIndex(0);
 					}
 				} catch (DatabaseException e) {
-					List<String> list = new Vector<String>();
-					list.add("Currently no reservation available");
-					viewMain.lvArrivingSearch
-							.setListData(new ListAdapter<String>(list));
+					setListData(viewMain.lvReservationSearch, "Currently no reservation available");
 				}
 			} else if (index == 2) {
 				viewMain.reservationForm01.setVisible(false);
@@ -750,10 +733,7 @@ public class ViewController implements Application {
 				cacheListData = null;
 				try {
 					if (controllerCheckIn.getGaesteVonAuftenhalt().size() == 0) {
-						List<String> list = new Vector<String>();
-						list.add("Currently no guests found");
-						viewMain.lvGuestSearch
-								.setListData(new ListAdapter<String>(list));
+						setListData(viewMain.lvReservationSearch, "Currently no guest available");
 					} else {
 						ListAdapter<String> guests = wrapper
 								.getGuestListAdapter(controllerCheckIn
@@ -762,10 +742,7 @@ public class ViewController implements Application {
 						viewMain.lvGuestSearch.setSelectedIndex(0);
 					}
 				} catch (DatabaseException e) {
-					List<String> list = new Vector<String>();
-					list.add("Currently no guests found");
-					viewMain.lvGuestSearch.setListData(new ListAdapter<String>(
-							list));
+					setListData(viewMain.lvReservationSearch, "Currently no guest available");
 				}
 			}
 			return Vote.APPROVE;

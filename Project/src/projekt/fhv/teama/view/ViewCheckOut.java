@@ -9,6 +9,7 @@ import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.Border;
 import org.apache.pivot.wtk.BoxPane;
 import org.apache.pivot.wtk.ButtonPressListener;
+import org.apache.pivot.wtk.ComponentMouseButtonListener;
 import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.Meter;
@@ -69,7 +70,15 @@ public class ViewCheckOut extends BoxPane implements Bindable {
 	
 	/* Labels */
 	@BXML
-	Label cof2LBDepositNr; Label coLBProgress01; Label coLBProgress02; Label coLBProgress03; Label coLBProgress04;
+	Label cof2LBDepositNr; 
+	@BXML 
+	Label coLBProgress01; 
+	@BXML 
+	Label coLBProgress02; 
+	@BXML 
+	Label coLBProgress03; 
+	@BXML 
+	Label coLBProgress04;
 	
 	/* Progressbar UseCase CheckOut */
 	@BXML
@@ -93,4 +102,12 @@ public class ViewCheckOut extends BoxPane implements Bindable {
 	    public void setcof2PBtnFinishSaveListener(ButtonPressListener e) {
 	    	cof2PBtnFinishSave.getButtonPressListeners().add(e);
 	    }
+	    
+	    public void setlbProgress01Listener (ComponentMouseButtonListener e) {
+	    	coLBProgress01.getComponentMouseButtonListeners().add(e);
+		}
+	    
+	    public void setlbProgress02Listener (ComponentMouseButtonListener e) {
+	    	coLBProgress02.getComponentMouseButtonListeners().add(e);
+		}
 }
