@@ -64,7 +64,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 				tx.rollback();
 			}
 
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw new DatabaseException("ERROR: Error occured while trying to create some entry!");
 
 		} catch (Exception e) {

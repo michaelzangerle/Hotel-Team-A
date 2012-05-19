@@ -1,14 +1,16 @@
-/**
- * 
- */
 package projekt.fhv.teama.integrate;
 
 /**
- * Beschreibt 
+ * Interface für die Integration für die Pfandtyp-Klasse
+ * 
  * @author Team A
- * @version 1.2
+ * @version 1.3
  */
 public interface IAPfandtyp {
-	
+
+	/**
+	 * Gibt die Bezeichnung zurück
+	 * @return String
+	 */
 	String getBezeichnung();
 }

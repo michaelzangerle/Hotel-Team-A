@@ -1,7 +1,9 @@
 package projekt.fhv.teama.classes;
 
 import java.sql.Date;
+import java.util.Set;
 
+import projekt.fhv.teama.classes.leistungen.ILeistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.integrate.IAAufenthalt;
@@ -105,8 +107,20 @@ public interface IAufenthalt extends IModel,IAAufenthalt {
 
 	/**
 	 * Setzen des Werts für das Zimmer Attribut
-	 * @param zimmer IZimmer-Objekt welcher dem Attribut zugewiesen wird
+	 * @param zimmer IZimmer-Objekt welches dem Attribut zugewiesen wird
 	 */
 	public void setZimmer(IZimmer zimmer);
+	
+	/**
+	 * Setzen des Werts für das Leistungen Attribut
+	 * @param Set<ILeistung>-Objekt welches dem Attribut zugewiesen wird
+	 */
+	public Set<ILeistung> getLeistungen();
+	
+	/**
+	 * GIbt den Werts des Leistungen-Attributs zurück
+	 * @return Set<ILeistung>
+	 */
+	public void setLeistungen(Set<ILeistung> leistungen);
 
 }

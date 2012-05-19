@@ -7,7 +7,7 @@ import projekt.fhv.teama.classes.IAufenthaltLeistung;
 import projekt.fhv.teama.hibernate.dao.IAufenthaltLeistungDao;
 
 /**
- * Beschreibt 
+ * Regelt den Zugriff auf die Aufenthalt-Leistung-Tabelle 
  * @author Team A
  * @version 1.2
  */

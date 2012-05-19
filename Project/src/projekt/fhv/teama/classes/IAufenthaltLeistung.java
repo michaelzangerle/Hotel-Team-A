@@ -4,6 +4,12 @@ import java.sql.Date;
 
 import projekt.fhv.teama.classes.leistungen.ILeistung;
 
+/**
+ * Interface für die Klasse AufenthaltLeistung
+ *  
+ * @author Team A
+ * @version 1.2
+ */
 public interface IAufenthaltLeistung extends IModel {
 	
 	/**

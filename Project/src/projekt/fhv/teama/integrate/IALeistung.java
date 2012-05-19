@@ -1,22 +1,22 @@
-/**
- * 
- */
 package projekt.fhv.teama.integrate;
 
 /**
- * Beschreibt 
+ * Interface für die Integration für die Leistung-Klasse
+ * 
  * @author Team A
- * @version 1.2
+ * @version 1.3
  */
 public interface IALeistung {
 
 	/**
-	 * @return
+	 * Gibt den Preis zurück
+	 * @return float
 	 */
 	float getAPreis();
 
 	/**
-	 * @return
+	 * Gibt die Bezeichnung zurück
+	 * @return String
 	 */
 	String getBezeichnung();
 
