@@ -22,7 +22,6 @@ import org.apache.pivot.wtk.Span;
 import org.apache.pivot.wtk.TablePane;
 import org.apache.pivot.wtk.TableView;
 import org.apache.pivot.wtk.TableViewRowListener;
-import org.hibernate.mapping.Collection;
 
 import projekt.fhv.teama.classes.leistungen.IZusatzleistung;
 import projekt.fhv.teama.controller.usecasecontroller.ControllerZusatzleistungBuchen;
@@ -50,7 +49,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 	/**
 	 * Die initizalie Mehtode initialisert den Startscren für den Zusatzleistungsbuchen Vorganges, hierfür werden die 
-	 * benötigten screens sichtbar gemaht und die progress-bar angepasst. Zudem werden Daten benötigte Daten wie Zimmer des Gastes angezeigt.
+	 * benötigten screens sichtbar gemacht und die progress-bar angepasst. Zudem werden Daten benötigte Daten wie Zimmer des Gastes angezeigt.
 	 * @throws FokusException
 	 * @throws DatabaseException
 	 */
@@ -268,7 +267,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 	}
 
 	/**
-	 * Hier werden die Action- Events der AdditionalServices- In Views initialisiert und den Event- Listener zugewiesen.
+	 * Hier werden die Action- Events der AdditionalServices Views initialisiert und den Event- Listener zugewiesen.
 	 */
 	private void addBookExtrasEventListener() {
 		view.setasf1PBtnNextListener(new ButtonPressListener() {

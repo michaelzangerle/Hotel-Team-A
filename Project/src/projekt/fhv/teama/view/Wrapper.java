@@ -121,18 +121,11 @@ public class Wrapper {
 		return new ListAdapter<String>(curRooms);
 	}
 	
-	public ListAdapter<String> getZimmerWithoutPriceListAdapter(List<IZimmer> roomsAvailable) {
-		LinkedList<String> curRooms = new LinkedList<String>();
-		RoomNumberComparator roomNumberComparator = new RoomNumberComparator();
-		Collections.sort(roomsAvailable, roomNumberComparator);
-
-		for (IZimmer room : roomsAvailable) {
-			curRooms.add(room.getNummer() + " | "
-					+ room.getKategorie().getBezeichnung());
-		}
-		return new ListAdapter<String>(curRooms);
-	}
-	
+	/**
+	 * lierfert den Zimmer (ohne Preisangabe) ListAdapter und Sortiert diese
+	 * @param roomsAvailable
+	 * @return
+	 */
 	public ListAdapter<String> getZimmerWithoutPriceListAdapterA(List<IAZimmer> roomsAvailable) {
 		LinkedList<String> curRooms = new LinkedList<String>();
 		RoomNumberComparatorA roomNumberComparator = new RoomNumberComparatorA();
@@ -160,7 +153,11 @@ public class Wrapper {
 		return new ListAdapter<String>(keyNumber);
 	}
 	
-	
+	/**
+	 * liefert den Schlüssel- ListAdapter 
+	 * @param rooms
+	 * @return
+	 */
 	public ListAdapter<String> getKeyListAdapaterA (List<IAZimmer> rooms) {
 		LinkedList<String> keyNumber = new LinkedList<String>();
 		RoomNumberComparatorA roomNumberComparator = new RoomNumberComparatorA();
@@ -198,7 +195,11 @@ public class Wrapper {
 		return new ListAdapter<String>(curPfandTypen);
 	}
 	
-	
+	/**
+	 * liefert den Zusatzleistungs ListAdapter
+	 * @param services
+	 * @return
+	 */
 	public ListAdapter<String> getZusatzleistungListAdapter(HashMap<String, Integer> services) {
 		LinkedList<String> curZusatzleistungen = new LinkedList<String>();
 		for (Map.Entry e : services.entrySet()) {
@@ -207,6 +208,11 @@ public class Wrapper {
 		return new ListAdapter<String>(curZusatzleistungen);
 	}
 	
+	/**
+	 * Sortiert die übergebene Liste 
+	 * @param list
+	 * @return
+	 */
 	public List<IALeistung> getSortedLeistungList (List<IALeistung> list) {
 		ZusatzLeistungComparatorA zusatzleistungComparator = new ZusatzLeistungComparatorA();
 		Collections.sort(list, zusatzleistungComparator);
@@ -308,7 +314,10 @@ public class Wrapper {
 		}
 	}
 	
-	
+	/**
+	 * Der ZusatzLeistungComparator sortiert die Leistungen anhand der Bezeichnung.
+	 *
+	 */
 	public class ZusatzLeistungComparatorA implements Comparator<IALeistung> {
 
 		@Override

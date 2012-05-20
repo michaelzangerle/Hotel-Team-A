@@ -112,7 +112,8 @@ public class CheckOutViewController implements ButtonPressListener {
 	}
 	
 	/**
-	 * 
+	 * Die initialize Methode setzt den StartScreen für den Check- Out Vorgang.
+	 * Zudem werden die Progress bars gesetzt.
 	 * @throws FokusException
 	 */
 	private void initialize() throws FokusException {
@@ -129,6 +130,10 @@ public class CheckOutViewController implements ButtonPressListener {
 		view.coLBProgress04.setVisible(false);
 	}
 	
+	/**
+	 * Die exit Methode wird beim Abschluss bzw. Abbruch des Check-Out Vorganges aufgerufen
+	 * Hier werden die Screens zurückgesetzt und der Homescreen angezeigt.
+	 */
 	private void exit () {
 		viewMain.tabPLeftMain.setEnabled(true);
 		viewMain.lvGuestSearch.setEnabled(true);
@@ -140,6 +145,9 @@ public class CheckOutViewController implements ButtonPressListener {
 		view.coProgress.setVisible(false);
 	}
 	
+	/**
+	 * Hier werden die Action- Events der Check- Out- Views initialisiert und den Event- Listener zugewiesen.
+	 */
 	private void addCheckOutEventListener() {
 		view.setlbProgress01Listener(new ComponentMouseButtonListener() {
 			public boolean mouseUp(Component arg0,
@@ -187,6 +195,9 @@ public class CheckOutViewController implements ButtonPressListener {
 		view.setcof2PBtnFinishSaveListener(new FinishCheckOutListener());
 	}
 
+	/**
+	 * Die cancel- Action ruft ein BlockingDialog auf und ist bei einer Bestätigung für einen korrekten Abbruch des aktuellen Fensters zuständig.
+	 */
 	Action cancel = new Action(true) {
 		@Override
 		public void perform(Component source) {
@@ -208,6 +219,9 @@ public class CheckOutViewController implements ButtonPressListener {
 		}
 	};
 
+	/**
+	 * Die gotoStep- Action regelt die Steps des Check-Out Ablaufes und somit die Sichtbarkeit der einzelnen Check- Out Forms.
+	 */
 	Action gotoStep = new Action(true) {
 		@Override
 		public void perform(Component source) {
@@ -228,6 +242,14 @@ public class CheckOutViewController implements ButtonPressListener {
 		}
 	};
 	
+	
+	/**
+	 *  Konstruktor: Instanzen der viewCheckOut, ViewMain, ViewCurrentGuest und dem controller CheckOut werden dem CheckOutViewController zugewiesen.
+	 * @param view
+	 * @param viewMain
+	 * @param viewGuest
+	 * @param controllerCheckOut
+	 */
 	public CheckOutViewController(ViewCheckOut view, ViewMain viewMain, ViewCurrentGuest viewGuest, ControllerCheckOut controllerCheckOut) {
 		this.view = view;
 		this.viewMain = viewMain;
