@@ -29,14 +29,14 @@ import org.apache.pivot.wtk.*;
  * flexibles und erweiterbares User Interface. 
  * 
  * Der Modulare Ansatz ist in dem BXML Files umgesetzt mit den include Dateien für den
- * Reservierungs und insbsondere den CheckIn Ablauf. (inc.checkInForm01.bxml...)
+ * Reservierungs- und insbsondere den CheckIn Ablauf. (inc.checkInForm01.bxml...)
  * 
  * Aus terminlichen Überlegungen und Relevanz der Umsetzung für die Beurteilung 
- * wurde der Focus auf die Datenbank und Datenbankanbindung sowie Controller gesetzt,
+ * wurde in der Timebox 1 der Focus auf die Datenbank und Datenbankanbindung sowie Controller gesetzt,
  * weshalb die Umsetzung und das Testen des UI mehrheitlich hier in der ViewMain erfolgte.
  * 
- * Eine Aufteilung in die zughörige ViewCheckIn Klasse ist jedoch ohne großen Aufwand
- * möglich. Da auch das Framework Pivot diesen Ansatz vorsieht.
+ * Die Aufteilung wurde konsequent in der Timebox 2 umgesetzt für die UseCases Zusatzleistungen buchen
+ * und Check-Out.
  *
  * @author Team A
  * @version 1.1
