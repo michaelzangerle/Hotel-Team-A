@@ -1,23 +1,19 @@
 package projekt.fhv.teama.model;
 
 import java.sql.Date;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.AufenthaltLeistung;
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.IAufenthaltLeistung;
 import projekt.fhv.teama.classes.leistungen.ILeistung;
-import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.dao.AufenthaltLeistungDao;
 import projekt.fhv.teama.hibernate.dao.IAufenthaltLeistungDao;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.integrate.IAAufenthalt;
 import projekt.fhv.teama.integrate.IALeistung;
-import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.WrongParameterException;
 import projekt.fhv.teama.model.interfaces.IModelAufenhaltLeistung;
 

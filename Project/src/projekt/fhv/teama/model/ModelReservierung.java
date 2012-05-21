@@ -4,8 +4,6 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
-
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
