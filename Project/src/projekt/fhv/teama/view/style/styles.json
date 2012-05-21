@@ -394,7 +394,7 @@
     	   font: { size: "120%", bold: false },       
            horizontalAlignment:'center',
            verticalAlignment:'center',
-          /* backgroundColor: '#cae6b4',*/
+           /* backgroundColor: '#cae6b4', */
            backgroundColor: '#fbe28e',
            color:'#000000',          
            padding:{top:15, left:15, bottom:15, right:15},

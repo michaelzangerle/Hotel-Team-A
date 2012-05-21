@@ -32,7 +32,7 @@
 		</BoxPane>
 		<BoxPane orientation="vertical" styles="{ padding:{top:35, left:0, bottom:0, right:0}, spacing:22, fill:true}">
 		<Label bxml:id="cof1LBHeaderInvoiceItems" text="Invoice items left: " styles="$styles.cof1LBHeader"/>
-		<Label bxml:id="cof1LBStatusInvoiceItems" text="5000 " styles="$styles.cof1LBStatus" preferredHeight="80" preferredWidth="380" />			
+		<Label bxml:id="cof1LBStatusInvoiceItems" text="There are unprocessed invoice items" styles="$styles.cof1LBStatus" preferredHeight="80" preferredWidth="380" />			
 		</BoxPane>
 		</BoxPane>
 		
