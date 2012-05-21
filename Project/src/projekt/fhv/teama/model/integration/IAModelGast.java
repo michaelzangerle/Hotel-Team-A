@@ -8,4 +8,5 @@ public interface IAModelGast {
 	public void setAktuellGast(IAGast gast);
 	
 	IAGast getAktuellGast() throws FokusException;
+	
 }

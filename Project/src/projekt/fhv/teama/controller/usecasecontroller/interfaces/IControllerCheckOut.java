@@ -68,8 +68,10 @@ public interface IControllerCheckOut {
 	/**
 	 * Sind alle Rechnungspositionen beglichen
 	 * @return
+	 * @throws FokusException 
+	 * @throws DatabaseException 
 	 */
-	public abstract boolean offeneRechnungspositionenVorhanden();
+	public abstract boolean offeneRechnungspositionenVorhanden() throws DatabaseException, FokusException;
 
 	/**
 	 * speichern

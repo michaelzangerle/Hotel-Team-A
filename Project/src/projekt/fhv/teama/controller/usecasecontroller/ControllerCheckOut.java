@@ -11,10 +11,12 @@ import projekt.fhv.teama.integrate.IAGast;
 import projekt.fhv.teama.integrate.IAZimmer;
 import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.ModelGast;
+import projekt.fhv.teama.model.ModelRechnungsposition;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.integration.IAModelAufenthalt;
 import projekt.fhv.teama.model.integration.IAModelGast;
+import projekt.fhv.teama.model.integration.IAModelRechnungspostion;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
 
@@ -30,6 +32,7 @@ public class ControllerCheckOut implements IControllerCheckOut {
 	// Models
 	private IAModelGast modelGast;
 	private IAModelAufenthalt modelAufenthalt;
+	private IAModelRechnungspostion modelRechnungsposition;
 
 	// Listen
 	private List<IAAufenthalt> aufenthalte = new Vector<IAAufenthalt>();
@@ -37,6 +40,7 @@ public class ControllerCheckOut implements IControllerCheckOut {
 	public ControllerCheckOut() {
 		modelGast = new ModelGast();
 		modelAufenthalt = new ModelAufenthalt();
+		modelRechnungsposition=new ModelRechnungsposition();
 	}
 
 	public void setGast(IAGast gast) {
@@ -97,17 +101,10 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		return zimmers;
 	}
 
-	/**
-	 * Rechnung erstellen aufrufen
-	 */
-	public void aufrufenRechnungErstellen() {
-		// TODO aufrufenRechnungErstellen Team B
-	}
 
 
-	public boolean offeneRechnungspositionenVorhanden() {
-		// TODO Offene Rechnungspositionen noch vorhanden sind
-		return false;
+	public boolean offeneRechnungspositionenVorhanden() throws DatabaseException, FokusException {
+		return modelRechnungsposition.sindNochPostionenoffen(getGast());
 
 	}
 
