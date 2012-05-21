@@ -10,6 +10,8 @@ import com.sun.pdfview.PDFPrintPage;
 import com.sun.pdfview.PagePanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.Book;
@@ -40,7 +42,7 @@ import roomanizer.teamb.service.contract.controller.IInvoiceController.IInvoiceA
 import roomanizer.teamb.service.integrate.*;
 
 /**
- *
+ * Vorschau der erstellten Rechunung, Möglichkeit zu einer neuen Rechnung stellen + Drucken der erstellten Rechnung
  * @author Amann
  */
 public class InvoiceStep3 extends AbstractFormInvoice implements IActionResult, Observer {
@@ -57,6 +59,10 @@ public class InvoiceStep3 extends AbstractFormInvoice implements IActionResult, 
     private static int totalPages = 0;
     private IInvoiceController controller;
 
+    /**
+     * 
+     * @param controller
+     */
     public InvoiceStep3(IInvoiceController controller) {
         this.controller = controller;
     }
@@ -67,6 +73,8 @@ public class InvoiceStep3 extends AbstractFormInvoice implements IActionResult, 
         setPreferredSize(new Dimension(891, 612));
         setResizable(false);
         setLayout(new BorderLayout());
+        Image img = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("logo_96.png"));
+        this.setIconImage(img);
         pageNr = 1;
         showPDF(pageNr);
         
@@ -167,6 +175,10 @@ public class InvoiceStep3 extends AbstractFormInvoice implements IActionResult, 
 
     }
 
+    /**
+     * 
+     * @throws PrinterException
+     */
     public void printPDF() throws PrinterException {
         PDFPrintPage pages = new PDFPrintPage(pdfFile);
 
@@ -193,6 +205,11 @@ public class InvoiceStep3 extends AbstractFormInvoice implements IActionResult, 
         }
     }
 
+    /**
+     * 
+     * @param pageNr
+     * @throws IOException
+     */
     public void showPDF(int pageNr) throws IOException {
         pdfPanel = new PagePanel();
 

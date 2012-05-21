@@ -4,9 +4,7 @@
  */
 package roomanizer.teamb.presentation.forms.invoice;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -34,7 +32,7 @@ import roomanizer.teamb.service.integrate.IBTeilzahlung;
 import roomanizer.teamb.service.integrate.IBZahlungsmethode;
 
 /**
- *
+ * Step 2, Auflistung aller ausgew√§hlten Rechnungspostionen und Bearbeitung der Zahlungsart
  * @author Andreas Lorenz
  */
 public class InvoiceStep2 extends AbstractFormInvoice implements IActionResult, Observer {
@@ -102,9 +100,9 @@ public class InvoiceStep2 extends AbstractFormInvoice implements IActionResult, 
     @Override
     public void update(Observable o, Object arg) {
         textFieldAmount.setValue(controller.getOpen());
-        labelTotalPrice.setText("TOTAL " + controller.getTotal().toString() + " Ä");
-        labelTotalTaxes.setText("Total Taxes " + controller.getTaxes().toString() + " Ä");
-        labelOpen.setText("Open " + controller.getOpen().setScale(2, RoundingMode.HALF_UP) + " Ä");
+        labelTotalPrice.setText("TOTAL " + controller.getTotal().toString() + " ‚Ç¨");
+        labelTotalTaxes.setText("Total Taxes " + controller.getTaxes().toString() + " ‚Ç¨");
+        labelOpen.setText("Open " + controller.getOpen().setScale(2, RoundingMode.HALF_UP) + " ‚Ç¨");
 
         labelName.setText(controller.getRechnung().getFirstname() + " " + controller.getRechnung().getSurname());
         labelStreet.setText(controller.getRechnung().getAddress());
@@ -112,6 +110,12 @@ public class InvoiceStep2 extends AbstractFormInvoice implements IActionResult, 
         labelCountry.setText(controller.getRechnung().getCountry().toString());
     }
 
+    /**
+     * 
+     * @param form
+     * @param controller
+     * @param invoice1
+     */
     public InvoiceStep2(AbstractForm form, IInvoiceController controller, InvoiceStep1 invoice1) {
         super(form);
         this.controller = controller;
@@ -197,6 +201,9 @@ public class InvoiceStep2 extends AbstractFormInvoice implements IActionResult, 
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        
+        Image img = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("logo_96.png"));
+        this.setIconImage(img);
 
         panelInvoice.setBorder(BorderFactory.createTitledBorder("Invoice"));
         tableInvoiceDetails.getTableHeader().setReorderingAllowed(false);

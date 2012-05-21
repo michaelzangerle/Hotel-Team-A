@@ -4,8 +4,10 @@
  */
 package roomanizer.teamb.presentation.forms.invoice;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
@@ -14,6 +16,8 @@ import roomanizer.teamb.service.contract.controller.IInvoiceController;
 import roomanizer.teamb.service.integrate.IBRechnungsPosition;
 
 /**
+ * TableModel, Auflistung aller Rechnungspositionen mit Datum, Anzahl,
+ * Einzelpreis, Gast
  *
  * @author Johannes
  */
@@ -23,6 +27,10 @@ public class AlleRechnungPostionenTableModel extends AbstractTableModel implemen
     private String[] colNames = {"Invoice Line", "Date", "Amount", "Unit Price", "Total Price", "Guest", "Room", "Options"};
     private int max = 6;
 
+    /**
+     * 
+     * @param controller
+     */
     public AlleRechnungPostionenTableModel(IInvoiceController controller) {
         this.controller = controller;
         controller.addObserver(this);
@@ -41,6 +49,13 @@ public class AlleRechnungPostionenTableModel extends AbstractTableModel implemen
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         if (columnIndex <= this.max) {
+            if (columnIndex == 1) {
+                return Date.class;
+            } else if (columnIndex == 3 || columnIndex == 4) {
+                return BigDecimal.class;
+            } else if (columnIndex == 2) {
+                return Integer.class;
+            }
             return String.class;
         }
         return IBRechnungsPosition.class;
@@ -49,19 +64,17 @@ public class AlleRechnungPostionenTableModel extends AbstractTableModel implemen
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         if (columnIndex <= this.max) {
-            SimpleDateFormat date = new SimpleDateFormat("dd.MM.YYYY");
-            NumberFormat cur = NumberFormat.getCurrencyInstance(Locale.GERMANY);
             switch (columnIndex) {
                 case 0:
                     return controller.getAlle().get(rowIndex).getInvoiceLine();
                 case 1:
-                    return date.format(controller.getAlle().get(rowIndex).getDate());
+                    return new Date(controller.getAlle().get(rowIndex).getDate().getTime());
                 case 2:
-                    return controller.getAlle().get(rowIndex).getAmount().toString();
+                    return controller.getAlle().get(rowIndex).getAmount();
                 case 3:
-                    return cur.format(controller.getAlle().get(rowIndex).getUnitPrice());
+                    return controller.getAlle().get(rowIndex).getUnitPrice();
                 case 4:
-                    return cur.format(controller.getAlle().get(rowIndex).getTotalPrice());
+                    return controller.getAlle().get(rowIndex).getTotalPrice();
                 case 5:
                     if (controller.getAlle().get(rowIndex).getBGast() != null) {
                         return controller.getAlle().get(rowIndex).getBGast().getSurname() + " " + controller.getAlle().get(rowIndex).getBGast().getFirstname();

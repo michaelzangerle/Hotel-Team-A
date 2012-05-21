@@ -28,6 +28,6 @@ public class ApplicationStartUp {
         * steuert.
         */
         DesktopApplicationContext.applyStylesheet("/projekt/fhv/teama/view/style/styles.json");
-    	DesktopApplicationContext.main(ViewController.class, args);    	
+    	DesktopApplicationContext.main(ViewController.class, args);     	
     }
 }

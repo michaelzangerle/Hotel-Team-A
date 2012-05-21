@@ -20,6 +20,7 @@ import roomanizer.teamb.service.contract.controller.IInvoiceController;
 import roomanizer.teamb.service.integrate.*;
 
 /**
+ * Controller für den Usecase Rechnung erstellen
  *
  * @author Johannes
  */
@@ -40,6 +41,11 @@ public class InvoiceController extends Observable implements IInvoiceController 
     private List<IBGast> gaeste;
     private List<IBZimmer> zimmer;
 
+    /**
+     *
+     * @param reservierung
+     * @param gast
+     */
     public InvoiceController(IBKonsument reservierung, IBGast gast) {
         this.reservierung = reservierung;
         this.gast = gast;
@@ -122,6 +128,10 @@ public class InvoiceController extends Observable implements IInvoiceController 
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Getter & Setter">
+    /**
+     *
+     * @param address
+     */
     @Override
     public void setInvoiceAddress(IInvoiceAddress address) {
         this.rechnung.setAddress(address.getAddress());
@@ -133,41 +143,73 @@ public class InvoiceController extends Observable implements IInvoiceController 
         notifyObservers();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public IBRechnung getRechnung() {
         return this.rechnung;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public IBGast getGast() {
         return this.gast;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public IBKonsument getReservierung() {
         return this.reservierung;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public BigDecimal getTotal() {
         return total;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public BigDecimal getOpen() {
         return total.subtract(totalBezahlt);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public BigDecimal getTaxes() {
         return taxes;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getFileName() {
         return fileName;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Date getVon() {
         Date von = new Date();
@@ -179,6 +221,10 @@ public class InvoiceController extends Observable implements IInvoiceController 
         return von;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Date getBis() {
         Date bis = new Date(0);
@@ -190,6 +236,10 @@ public class InvoiceController extends Observable implements IInvoiceController 
         return bis;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<IBGast> getGaeste() {
         if (this.gaeste == null) {
@@ -204,6 +254,10 @@ public class InvoiceController extends Observable implements IInvoiceController 
         return this.gaeste;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<IBZimmer> getZimmer() {
         if (this.zimmer == null) {
@@ -218,6 +272,11 @@ public class InvoiceController extends Observable implements IInvoiceController 
         return this.zimmer;
     }
 
+    /**
+     * Hat der Konsument neue Rechnungspositionen
+     *
+     * @return
+     */
     @Override
     public Boolean hasOpenPositions() {
         return !reservierung.getBOffeneRechnungsPositionen().isEmpty();
@@ -225,35 +284,66 @@ public class InvoiceController extends Observable implements IInvoiceController 
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Positionen">
+    /**
+     * Gibt alle Offenen Rechnungspositionen des Kunsumenten zurück
+     *
+     * @return Liste aller Offenen Rechnungspositionen
+     */
     @Override
     public List<IBRechnungsPosition> getAlle() {
         return new ArrayList<IBRechnungsPosition>(this.alle);
     }
 
+    /**
+     * Gibt alle Ausgewählten Rechnungspositionen zurück
+     *
+     * @return Liste der Ausgewählten Rechnungspositionen
+     */
     @Override
     public List<IBRechnungsPosition> getAusgewaehlte() {
         return new ArrayList<IBRechnungsPosition>(this.rechnung.getRechnungsPositionen());
     }
 
+    /**
+     * Fügt eine Rechnungsposition hinzu
+     *
+     * @param position Position die Hinzugefügt werden soll
+     */
     @Override
     public void addPosition(IBRechnungsPosition position) {
-        this.rechnung.addRechnungsPosition(position);
-        total = total.add(position.getBrutto());
-        taxes = taxes.add(position.getSteuerbetrag());
-        notifyObservers();
-    }
-
-    @Override
-    public void removePosition(IBRechnungsPosition position) throws PayToMuchException {
-        this.rechnung.removeRechnungsPosition(position);
-        total = total.subtract(position.getBrutto());
-        taxes = taxes.subtract(position.getSteuerbetrag());
-        notifyObservers();
-        if (totalBezahlt.doubleValue() > total.doubleValue()) {
-            throw new PayToMuchException();
+        if (!this.rechnung.getRechnungsPositionen().contains(position)) {
+            this.rechnung.addRechnungsPosition(position);
+            total = total.add(position.getBrutto());
+            taxes = taxes.add(position.getSteuerbetrag());
+            notifyObservers();
         }
     }
 
+    /**
+     * Löscht eine Rechnungsposition aus den Ausgewählten Positionen
+     *
+     * @param position Position die gelöscht werden soll
+     * @throws PayToMuchException Wenn der Gast zu viel gezahlt hat
+     */
+    @Override
+    public void removePosition(IBRechnungsPosition position) throws PayToMuchException {
+        if (this.rechnung.getRechnungsPositionen().contains(position)) {
+            this.rechnung.removeRechnungsPosition(position);
+            total = total.subtract(position.getBrutto());
+            taxes = taxes.subtract(position.getSteuerbetrag());
+            notifyObservers();
+            if (totalBezahlt.doubleValue() > total.doubleValue()) {
+                throw new PayToMuchException();
+            }
+        }
+    }
+
+    /**
+     * Position wurde Falsch gebucht
+     *
+     * @param position Falsch gebuchte Positino
+     * @throws PayToMuchException Wenn der Gast zu viel gezahlt hat
+     */
     @Override
     public void clearPosition(IBRechnungsPosition position) throws PayToMuchException {
         IHibernateTransaction tx = IntegrateFacade.getTransaction();
@@ -271,11 +361,23 @@ public class InvoiceController extends Observable implements IInvoiceController 
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Teilzahlungen">
+    /**
+     * Teilzahlungen die für die Rechnung getätigt wurden
+     *
+     * @return Liste der Teilzahlungen
+     */
     @Override
     public List<IBTeilzahlung> getTeilzahlungen() {
         return new ArrayList<IBTeilzahlung>(this.rechnung.getBTeilzahlungen());
     }
 
+    /**
+     * Fügt eine Bezahlung hinzu
+     *
+     * @param methode Methode mit der Bezhalt wurde
+     * @param betrag Betrag der mit der Zahlungsmethode bezahlt wurde
+     * @throws PayToMuchException Der Gast hat zu viel Bezahlt
+     */
     @Override
     public void addBezahlung(IBZahlungsmethode methode, BigDecimal betrag) throws PayToMuchException {
         if (totalBezahlt.add(betrag).doubleValue() <= total.doubleValue()) {
@@ -287,6 +389,11 @@ public class InvoiceController extends Observable implements IInvoiceController 
         notifyObservers();
     }
 
+    /**
+     * Löscht eine Teilzahlung
+     *
+     * @param teilzahlung Teilzahlung die gelöscht werden soll
+     */
     @Override
     public void removeBezahlung(IBTeilzahlung teilzahlung) {
         if (this.rechnung.getBTeilzahlungen().contains(teilzahlung)) {
@@ -296,6 +403,11 @@ public class InvoiceController extends Observable implements IInvoiceController 
         notifyObservers();
     }
 
+    /**
+     * Gibt eine Liste der Möglichen Zahlungsmethoden zurück
+     *
+     * @return Liste der Zahlungsmöglichkeiten
+     */
     @Override
     public List<IBZahlungsmethode> getZahlungsmethoden() {
         return IntegrateFacade.getAllZahlungsmethoden();
@@ -303,6 +415,12 @@ public class InvoiceController extends Observable implements IInvoiceController 
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="PDF">
+    /**
+     * Erstelle das Vorschau PDF
+     *
+     * @deprecated
+     * @return
+     */
     @Override
     public String createPreviewPDF() {
         this.tempFile = this.folder + "temp\\" + this.rechnung.getRechnungsNummer() + ".pdf";
@@ -310,6 +428,11 @@ public class InvoiceController extends Observable implements IInvoiceController 
         return this.tempFile;
     }
 
+    /**
+     * Erstelle das PDF
+     *
+     * @return Pfad zur PDF Datei
+     */
     @Override
     public String createPDF() {
         this.fileName = this.folder + this.rechnung.getRechnungsNummer() + ".pdf";
@@ -326,20 +449,47 @@ public class InvoiceController extends Observable implements IInvoiceController 
     }
     //</editor-fold>
 
+    /**
+     * Gibt eine Liste alle Länder zurück
+     *
+     * @return Liste aller Länder
+     */
     @Override
     public List<IBLand> getLaender() {
         return IntegrateFacade.getAllLaender();
     }
 
+    /**
+     * Alle Rechnungspositionen auswählen
+     *
+     * @param ok an oder abwählen
+     */
     @Override
-    public void chooseAll() {
-        // TODO alle auswählen
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void chooseAll(boolean ok) {
+        if (ok) {
+            for (IBRechnungsPosition position : alle) {
+                if (!getAusgewaehlte().contains(position)) {
+                    addPosition(position);
+                }
+            }
+        } else {
+            for (IBRechnungsPosition position : alle) {
+                if (getAusgewaehlte().contains(position)) {
+                    try {
+                        removePosition(position);
+                    } catch (PayToMuchException ex) {
+                    }
+                }
+            }
+        }
+        notifyObservers();
     }
 
+    /**
+     * Rechnungspositionen neu laden
+     */
     @Override
     public void reload() {
-        // TODO Reload Rechnungspositionen
         if (started) {
             this.alle = reservierung.getBOffeneRechnungsPositionen();
             notifyObservers();

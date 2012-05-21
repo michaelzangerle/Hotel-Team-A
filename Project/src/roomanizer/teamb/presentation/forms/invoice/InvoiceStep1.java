@@ -4,34 +4,14 @@
  */
 package roomanizer.teamb.presentation.forms.invoice;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
+import java.awt.*;
+import java.awt.event.*;
+import java.math.BigDecimal;
+import java.util.*;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
-import javax.swing.RowFilter;
+import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
-
 import roomanizer.teamb.presentation.action.AbortControllerAction;
 import roomanizer.teamb.presentation.action.RedirectAction;
 import roomanizer.teamb.presentation.action.StartControllerAction;
@@ -56,7 +36,7 @@ import roomanizer.teamb.service.integrate.IBRechnungsPosition;
 import roomanizer.teamb.service.integrate.IBZimmer;
 
 /**
- *
+ * Invoice Step 1 ist der erste Screen und beinhaltet neben der Rechnungsadresse, alle Rechnungspositionen
  * @author Amann
  */
 public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, Observer {
@@ -67,18 +47,14 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
     private JComboBox comboBoxCountry;
     private JComboBox comboBoxGuests;
     private JComboBox comboBoxRoom;
-    private com.toedter.calendar.JDateChooser dateChooserFrom;
-    private com.toedter.calendar.JDateChooser dateChooserUntil;
     private JButton btnNext;
     private JScrollPane jScrollPane1;
     private JLabel labelAddress;
     private JLabel labelCountry;
     private JLabel labelFname;
-    private JLabel labelFrom;
     private JLabel labelLname;
     private JLabel labelLocation;
     private JLabel labelPLZ;
-    private JLabel labelUntil;
     private JPanel panelAddress;
     private JPanel panelInvoiceDetails;
     private JTable tableInvoice;
@@ -91,7 +67,11 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
     private Date fromFilter;
     private Date untilFilter;
     private TableRowSorter<AlleRechnungPostionenTableModel> sorter;
-
+    
+    /**
+     * @param form
+     * @param controller
+     */
     public InvoiceStep1(AbstractForm form, IInvoiceController controller) {
         super(form);
         this.controller = controller;
@@ -194,10 +174,6 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
         textFieldPLZ = new JTextField();
         comboBoxCountry = new JComboBox();
         panelInvoiceDetails = new JPanel();
-        labelFrom = new JLabel();
-        dateChooserFrom = new com.toedter.calendar.JDateChooser();
-        labelUntil = new JLabel();
-        dateChooserUntil = new com.toedter.calendar.JDateChooser();
         btnShowAll = new JButton();
         jScrollPane1 = new JScrollPane();
         comboBoxRoom = new JComboBox();
@@ -232,6 +208,9 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
         setSize(new Dimension(891, 612));
         setPreferredSize(new Dimension(891, 612));
         setResizable(false);
+        
+        Image img = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("logo_96.png"));
+        this.setIconImage(img);
 
         panelAddress.setBorder(javax.swing.BorderFactory.createTitledBorder("Invoice Address"));
         labelFname.setText("Firstname");
@@ -252,8 +231,6 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
         panelInvoiceDetails.setBorder(BorderFactory.createTitledBorder("Invoice Detail"));
         panelInvoiceDetails.setName("Invoice Detail");
 
-        labelFrom.setText("From");
-        labelUntil.setText("Until");
         btnShowAll.setText("ShowAll");
 
 
@@ -264,10 +241,34 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
 
         GroupLayout panelInvoiceDetailsLayout = new GroupLayout(panelInvoiceDetails);
         panelInvoiceDetails.setLayout(panelInvoiceDetailsLayout);
-        panelInvoiceDetailsLayout.setHorizontalGroup(
-                panelInvoiceDetailsLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(jScrollPane1).addGroup(panelInvoiceDetailsLayout.createSequentialGroup().addContainerGap().addGroup(panelInvoiceDetailsLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(panelInvoiceDetailsLayout.createSequentialGroup().addComponent(labelFrom).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(dateChooserFrom, GroupLayout.PREFERRED_SIZE, 95, GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(labelUntil).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(dateChooserUntil, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(comboBoxGuests, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(comboBoxRoom, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(btnShowAll)).addGroup(panelInvoiceDetailsLayout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE).addComponent(checkBoxAllItems))).addContainerGap()));
+         panelInvoiceDetailsLayout.setHorizontalGroup(
+            panelInvoiceDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInvoiceDetailsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelInvoiceDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInvoiceDetailsLayout.createSequentialGroup()
+                        .addComponent(comboBoxGuests, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBoxRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnShowAll))
+                    .addComponent(checkBoxAllItems, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
         panelInvoiceDetailsLayout.setVerticalGroup(
-                panelInvoiceDetailsLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(panelInvoiceDetailsLayout.createSequentialGroup().addGap(20, 20, 20).addGroup(panelInvoiceDetailsLayout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(panelInvoiceDetailsLayout.createParallelGroup(GroupLayout.Alignment.TRAILING).addComponent(labelUntil).addComponent(labelFrom).addComponent(dateChooserFrom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(dateChooserUntil, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)).addGroup(panelInvoiceDetailsLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(btnShowAll).addComponent(comboBoxRoom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(comboBoxGuests, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))).addGap(18, 18, 18).addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE).addComponent(checkBoxAllItems).addContainerGap()));
+            panelInvoiceDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInvoiceDetailsLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelInvoiceDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnShowAll)
+                    .addComponent(comboBoxRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxGuests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(checkBoxAllItems))
+        );
 
         btnNext.setText("Next");
 
@@ -282,41 +283,16 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
 
         panelInvoiceDetails.getAccessibleContext().setAccessibleName("");
 
-        //TODO Filter From (Date)
-//        dateChooserFrom.addPropertyChangeListener(new PropertyChangeListener() {
-//
-//            @Override
-//            public void propertyChange(PropertyChangeEvent evt) {
-//                Date expr = dateChooserFrom.getDate();
-////                String expr = evt.getNewValue().toString();
-//                System.out.println("DATE OUTPUT*************************************" + expr);
-//
-//                if (evt.getPropertyName().equals("date")) {
-//                    TableRowFilter fromFilter = new TableRowFilter(expr.toString());
-////                    sorter.setRowFilter(RowFilter.dateFilter(RowFilter.ComparisonType.AFTER, dateChooserFrom.getDate()));
-////                    sorter.setRowFilter(RowFilter.regexFilter(expr));
-//                    sorter.setRowFilter(fromFilter);
-//                    tableInvoice.setRowSorter(sorter);
-//                }
-//            }
-//        });
-
-        //TODO Filter Until(Date)
-
-
-
-        /**
-         * TODO Action Listener für all Invoice Items
-         */
+        //Listener für all Invoice Items
         ActionListener allItemsListener = new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                controller.chooseAll(checkBoxAllItems.isSelected());
             }
         };
         checkBoxAllItems.addActionListener(allItemsListener);
-
+        
         //Filter Guests
         ActionListener guestListener = new ActionListener() {
 
@@ -335,8 +311,9 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
                 tableInvoice.setRowSorter(sorter);
             }
         };
-        comboBoxGuests.addActionListener(guestListener);
 
+        comboBoxGuests.addActionListener(guestListener);
+        
         //Filter Zimmernummer
         ActionListener roomListener = new ActionListener() {
 
@@ -354,8 +331,8 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
                 tableInvoice.setRowSorter(sorter);
             }
         };
-        comboBoxRoom.addActionListener(roomListener);
 
+        comboBoxRoom.addActionListener(roomListener);
         //Remove Filter
         ActionListener removeFilterListener = new ActionListener() {
 
@@ -370,27 +347,36 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
                 comboBoxRoom.setSelectedIndex(0);
             }
         };
+
         btnShowAll.addActionListener(removeFilterListener);
-
         ActionEventHandler handlerCancel = new ActionEventHandler(this);
-        handlerCancel.add(new AbortControllerAction(controller));
-        btnCancel.addActionListener(handlerCancel);
 
+        handlerCancel.add(
+                new AbortControllerAction(controller));
+        btnCancel.addActionListener(handlerCancel);
         //Redirect Action
         ActionEventHandler handlerNext = new ActionEventHandler(this);
-        handlerNext.add(new Step2Action(new Step2Action.IStep2Details() {
+
+        handlerNext.add(
+                new Step2Action(new Step2Action.IStep2Details() {
 
             @Override
             public void isFailed() {
                 JOptionPane.showMessageDialog(null, "Nothing is choosed!", "Choose something", JOptionPane.OK_OPTION);
             }
         }, controller));
-        handlerNext.add(new EditInvoicePersonAction(new EditInvoicePerson(), controller));
-        handlerNext.add(new RedirectAction(new InvoiceStep2(null, controller, this)));
+        handlerNext.add(
+                new EditInvoicePersonAction(new EditInvoicePerson(), controller));
+        handlerNext.add(
+                new RedirectAction(new InvoiceStep2(null, controller, this)));
         btnNext.addActionListener(handlerNext);
-
-
         RechnungsPositionCellEditor ed = new RechnungsPositionCellEditor(controller);
+        DateCellEditor dEditor = new DateCellEditor();
+        BigDecimalCellEditor bEditor = new BigDecimalCellEditor();
+        
+        tableInvoice.setDefaultEditor(Date.class, dEditor);
+        tableInvoice.setDefaultEditor(BigDecimal.class, bEditor);
+        
         tableInvoice.setDefaultEditor(IBRechnungsPosition.class, ed);
         tableInvoice.setDefaultRenderer(IBRechnungsPosition.class, ed);
         tableInvoice.setRowHeight(30);
@@ -414,8 +400,6 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
         textFieldLocation.setText(controller.getRechnung().getLocation());
         textFieldPLZ.setText(controller.getRechnung().getPostalCode());
         comboBoxCountry.setSelectedItem(controller.getRechnung().getCountry());
-        dateChooserFrom.setDate(controller.getVon());
-        dateChooserUntil.setDate(controller.getBis());
     }
 
     @Override
