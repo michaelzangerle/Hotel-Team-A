@@ -79,5 +79,7 @@ public interface IControllerCheckOut {
 	 * @throws FokusException 
 	 */
 	public abstract void save() throws FokusException, DatabaseException;
+	
+	
 
 }

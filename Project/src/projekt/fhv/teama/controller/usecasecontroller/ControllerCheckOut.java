@@ -119,8 +119,7 @@ public class ControllerCheckOut implements IControllerCheckOut {
 				}
 			}
 		}
-		
-		
+
 	}
 
 }

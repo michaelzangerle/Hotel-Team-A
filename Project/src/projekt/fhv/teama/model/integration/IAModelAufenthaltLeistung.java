@@ -14,13 +14,14 @@ import projekt.fhv.teama.integrate.IALeistung;
 import projekt.fhv.teama.model.exception.WrongParameterException;
 
 /**
- * Beschreibt 
+ * Beschreibt  das Interface für den Adapter ModelAufenthalt
  * @author Team A
  * @version 1.2
  */
 public interface IAModelAufenthaltLeistung {
 
 	/**
+	 * Zum Speichern einer Leistung in verbindung zu einem Aufenthalt
 	 * @param leistung
 	 * @param aufenthalt
 	 * @param anzahl
@@ -29,6 +30,7 @@ public interface IAModelAufenthaltLeistung {
 	void save(IALeistung leistung, IAAufenthalt aufenthalt, int anzahl, Date datum) throws WrongParameterException, DatabaseException;
 
 	/**
+	 * Um die Leistungen zu einem Aufenhalt zu holen
 	 * @param auf
 	 * @return
 	 */
