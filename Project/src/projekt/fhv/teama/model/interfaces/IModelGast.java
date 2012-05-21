@@ -6,7 +6,6 @@ import projekt.fhv.teama.classes.personen.IAdresse;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.integrate.IAAdresse;
 import projekt.fhv.teama.integrate.IAGast;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
