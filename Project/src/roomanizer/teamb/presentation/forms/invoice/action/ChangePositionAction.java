@@ -43,7 +43,7 @@ public class ChangePositionAction extends Action<IChangePositionDetails> {
             try {
                 controller.removePosition(position);
             } catch (PayToMuchException ex) {
-                Logger.getLogger(ChangePositionAction.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(ChangePositionAction.class.getName()).log(Level.SEVERE, null, ex);
                 getDetails().isFailed();
             }
         }

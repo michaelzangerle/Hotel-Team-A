@@ -96,7 +96,7 @@ public class InvoiceStep3 extends AbstractFormInvoice implements IActionResult, 
                     showPDF(pageNr);
                     labelPageXFromY.setText("Page "+(pageNr) + " from "+ totalPages);      
                 } catch (IOException ex) {
-                    Logger.getLogger(InvoiceStep3.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(InvoiceStep3.class.getName()).log(Level.SEVERE, null, ex);
                 }                    
             }
         });

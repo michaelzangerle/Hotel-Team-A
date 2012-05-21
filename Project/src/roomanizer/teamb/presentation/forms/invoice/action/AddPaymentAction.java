@@ -42,7 +42,7 @@ public class AddPaymentAction extends Action<IAddPaymentActionDetail> {
         try {
             controller.addBezahlung(getDetails().getZahlungsmethode(), getDetails().getAmount());
         } catch (PayToMuchException ex) {
-            Logger.getLogger(AddPaymentAction.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AddPaymentAction.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;

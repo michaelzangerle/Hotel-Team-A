@@ -35,7 +35,7 @@ public class CommitControllerAction extends Action<IActionDetails> {
             controller.commit();
             return true;
         } catch (Exception ex) {
-            Logger.getLogger(CommitControllerAction.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(CommitControllerAction.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }

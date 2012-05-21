@@ -100,9 +100,9 @@ public class InvoiceStep2 extends AbstractFormInvoice implements IActionResult, 
     @Override
     public void update(Observable o, Object arg) {
         textFieldAmount.setValue(controller.getOpen());
-        labelTotalPrice.setText("TOTAL " + controller.getTotal().toString() + " â‚¬");
-        labelTotalTaxes.setText("Total Taxes " + controller.getTaxes().toString() + " â‚¬");
-        labelOpen.setText("Open " + controller.getOpen().setScale(2, RoundingMode.HALF_UP) + " â‚¬");
+        labelTotalPrice.setText("TOTAL " + controller.getTotal().setScale(2, RoundingMode.HALF_UP).toString() + " €");
+        labelTotalTaxes.setText("Total Taxes " + controller.getTaxes().setScale(2, RoundingMode.HALF_UP).toString() + " €");
+        labelOpen.setText("Open " + controller.getOpen().setScale(2, RoundingMode.HALF_UP) + " €");
 
         labelName.setText(controller.getRechnung().getFirstname() + " " + controller.getRechnung().getSurname());
         labelStreet.setText(controller.getRechnung().getAddress());

@@ -32,7 +32,7 @@ public class ClearPositionAction extends Action<ChangePositionAction.IChangePosi
         try {
             controller.clearPosition(position);
         } catch (PayToMuchException ex) {
-            Logger.getLogger(ClearPositionAction.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ClearPositionAction.class.getName()).log(Level.SEVERE, null, ex);
             getDetails().isFailed();
         }
         return true;
