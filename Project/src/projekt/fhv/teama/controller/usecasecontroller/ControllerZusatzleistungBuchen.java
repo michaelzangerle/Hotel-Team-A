@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Vector;
 
 import projekt.fhv.teama.classes.MyLittleDate;
-import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.controller.usecasecontroller.interfaces.IControllerZusatzleistungBuchen;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.integrate.IAAufenthalt;
@@ -18,22 +17,12 @@ import projekt.fhv.teama.model.ModelArtikel;
 import projekt.fhv.teama.model.ModelAufenthalt;
 import projekt.fhv.teama.model.ModelAufenthaltLeistung;
 import projekt.fhv.teama.model.ModelGast;
-import projekt.fhv.teama.model.ModelLeistung;
 import projekt.fhv.teama.model.ModelZimmer;
 import projekt.fhv.teama.model.ModelZusatzleistung;
 import projekt.fhv.teama.model.exception.EmptyParameterException;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.exception.NotContainExeption;
 import projekt.fhv.teama.model.exception.WrongParameterException;
-import projekt.fhv.teama.model.interfaces.IModelArtikel;
-import projekt.fhv.teama.model.interfaces.IModelAufenhaltLeistung;
-import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
-import projekt.fhv.teama.model.interfaces.IModelGast;
-import projekt.fhv.teama.model.interfaces.IModelLeistung;
-import projekt.fhv.teama.model.interfaces.IModelZimmer;
-import projekt.fhv.teama.model.interfaces.IModelZusatzleistung;
-
-
 
 import projekt.fhv.teama.model.integration.IAModelAufenthalt;
 import projekt.fhv.teama.model.integration.IAModelGast;
