@@ -4,7 +4,6 @@
 package projekt.fhv.teama.model.integration;
 
 import java.sql.Date;
-import java.util.Collection;
 import java.util.List;
 
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;

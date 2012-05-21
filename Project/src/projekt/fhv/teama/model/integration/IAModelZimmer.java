@@ -3,7 +3,6 @@
  */
 package projekt.fhv.teama.model.integration;
 
-import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.integrate.IAZimmer;
 import projekt.fhv.teama.model.exception.FokusException;
 
