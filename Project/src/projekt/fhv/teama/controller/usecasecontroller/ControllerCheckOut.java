@@ -17,8 +17,6 @@ import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.model.integration.IAModelAufenthalt;
 import projekt.fhv.teama.model.integration.IAModelGast;
 import projekt.fhv.teama.model.integration.IAModelRechnungspostion;
-import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
-import projekt.fhv.teama.model.interfaces.IModelGast;
 
 /**
  * Controller zur Steuerung des Check Out Vorganges
