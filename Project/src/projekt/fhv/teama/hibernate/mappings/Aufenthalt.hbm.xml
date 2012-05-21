@@ -61,7 +61,7 @@
 		</many-to-one>
 
 		<property name="checkedOut" type="boolean">
-			<column name="checkedOut" sql-type="tinyint" />
+			<column name="checkedOut" sql-type="tinyint" not-null="true"/>
 		</property>
 		
 	</class>
