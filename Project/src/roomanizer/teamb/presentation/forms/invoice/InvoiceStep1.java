@@ -302,8 +302,8 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
                 String expr = comboBoxGuests.getSelectedItem().toString();
                 TableRowFilter filter = null;
 
-                if (comboBoxGuests.getSelectedIndex() == 0) {
-                    filter = new TableRowFilter("[a-zA-Z_0-9@√∂√º√§√ñ√ú√Ñ-]*" + expr + "[a-zA-Z_0-9@√∂√º√§√ñ√ú√Ñ-]*");
+                if (comboBoxGuests.getSelectedIndex() != 0) {
+                    filter = new TableRowFilter("[a-zA-Z_0-9@‰ˆ¸ƒ÷‹-]*" + expr + "[a-zA-Z_0-9@‰ˆ¸ƒ÷‹-]*");
 
                 }
 
@@ -322,8 +322,8 @@ public class InvoiceStep1 extends AbstractFormInvoice implements IActionResult, 
                 String expr = comboBoxRoom.getSelectedItem().toString();
                 TableRowFilter filter = null;
 
-                if (comboBoxRoom.getSelectedIndex() == 0) {
-                    filter = new TableRowFilter("[a-zA-Z_0-9@√∂√º√§√ñ√ú√Ñ-]*" + expr + "[a-zA-Z_0-9@√∂√º√§√ñ√ú√Ñ-]*");
+                if (comboBoxRoom.getSelectedIndex() != 0) {
+                	 filter = new TableRowFilter("[a-zA-Z_0-9@‰ˆ¸ƒ÷‹-]*" + expr + "[a-zA-Z_0-9@‰ˆ¸ƒ÷‹-]*");
 //                    expr = "[a-zA-z0-9]*";
                 }
 
