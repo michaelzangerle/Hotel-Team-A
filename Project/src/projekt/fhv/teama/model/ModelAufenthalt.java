@@ -99,7 +99,20 @@ public class ModelAufenthalt implements IModelAufenthalt {
 			return aufenthaltModel;
 		else
 			throw new FokusException();
+		
 	}
+
+
+	@Override
+	public void checkOut(IAAufenthalt auf, boolean b, String string) {
+		
+		auf.setPfandNr(string);
+		auf.setCheckedOut(b);
+		aufenthaltDao.saveOrUpdate(auf);
+		
+	}
+	
+
 
 
 

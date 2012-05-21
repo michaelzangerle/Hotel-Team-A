@@ -20,7 +20,6 @@ import projekt.fhv.teama.model.integration.IAModelRechnungspostion;
 import projekt.fhv.teama.model.interfaces.IModelAufenthalt;
 import projekt.fhv.teama.model.interfaces.IModelGast;
 
-
 /**
  * Controller zur Steuerung des Check Out Vorganges
  * 
@@ -40,7 +39,7 @@ public class ControllerCheckOut implements IControllerCheckOut {
 	public ControllerCheckOut() {
 		modelGast = new ModelGast();
 		modelAufenthalt = new ModelAufenthalt();
-		modelRechnungsposition=new ModelRechnungsposition();
+		modelRechnungsposition = new ModelRechnungsposition();
 	}
 
 	public void setGast(IAGast gast) {
@@ -95,23 +94,33 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		}
 
 		for (IAAufenthalt aufenthalt : aufenthalte) {
-			if (aufenthalt.getAGast().equals(getGast()) && aufenthalt.getAZimmer() != null) 
+			if (aufenthalt.getAGast().equals(getGast())
+					&& aufenthalt.getAZimmer() != null)
 				zimmers.add(aufenthalt.getAZimmer());
 		}
 		return zimmers;
 	}
 
-
-
-	public boolean offeneRechnungspositionenVorhanden() throws DatabaseException, FokusException {
+	public boolean offeneRechnungspositionenVorhanden()
+			throws DatabaseException, FokusException {
 		return modelRechnungsposition.sindNochPostionenoffen(getGast());
 
 	}
 
-
-	public void save() {
-		// TODO Speichern des Check Out Vorganges(Schlüssel rückgabe etc)
+	public void save() throws FokusException, DatabaseException {
+		List<IAZimmer> zimmers=getZimmerVonGast();
+		
+		for (IAZimmer zi : zimmers) {
+			for(IAAufenthalt auf:aufenthalte)
+			{
+				if(auf.getAZimmer().equals(zi)&&auf.getAGast().equals(getGast()))
+				{
+					modelAufenthalt.checkOut(auf,true,"");
+				}
+			}
+		}
+		
+		
 	}
-
 
 }
