@@ -166,8 +166,9 @@ public class BookExtrasViewController implements ButtonPressListener {
 				.getGebuchteLeistungen();
 
 		float total = 0;
-		for (Map.Entry e : services.entrySet()) {
+		for (@SuppressWarnings("rawtypes") Map.Entry e : services.entrySet()) {
 			IAZimmer room = (IAZimmer) e.getKey();
+			@SuppressWarnings("unchecked")
 			List<LeistungAnzahl> tempServices = (List<LeistungAnzahl>) e
 					.getValue();
 
@@ -508,6 +509,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		public void rowsRemoved(TableView arg0, int arg1, int arg2) {
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		public void rowsSorted(TableView arg0) {
 			tableDataService = (ArrayList<AdditionalServicesTableRow>) arg0.getTableData(); //TODO geändert

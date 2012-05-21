@@ -1,6 +1,5 @@
 package projekt.fhv.teama.view;
 
-import java.awt.Dimension;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,7 +12,30 @@ import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.*;
+import org.apache.pivot.wtk.Application;
+import org.apache.pivot.wtk.Border;
+import org.apache.pivot.wtk.BoxPane;
+import org.apache.pivot.wtk.ButtonGroup;
+import org.apache.pivot.wtk.ButtonPressListener;
+import org.apache.pivot.wtk.ButtonStateListener;
+import org.apache.pivot.wtk.CalendarButton;
+import org.apache.pivot.wtk.Checkbox;
+import org.apache.pivot.wtk.Component;
+import org.apache.pivot.wtk.ComponentMouseButtonListener;
+import org.apache.pivot.wtk.Display;
+import org.apache.pivot.wtk.Label;
+import org.apache.pivot.wtk.ListButton;
+import org.apache.pivot.wtk.ListButtonSelectionListener;
+import org.apache.pivot.wtk.ListView;
+import org.apache.pivot.wtk.ListViewItemStateListener;
+import org.apache.pivot.wtk.ListViewSelectionListener;
+import org.apache.pivot.wtk.Meter;
+import org.apache.pivot.wtk.PushButton;
+import org.apache.pivot.wtk.RadioButton;
+import org.apache.pivot.wtk.TabPane;
+import org.apache.pivot.wtk.TabPaneSelectionListener;
+import org.apache.pivot.wtk.TextInput;
+import org.apache.pivot.wtk.Window;
 
 
 /**
@@ -49,7 +71,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	ViewController viewController = new ViewController();
 	BXMLSerializer bxmlSerializer = new BXMLSerializer();
 	
-	private Window window = null;
+	//private Window window = null;
 	
 	/**
 	 * Controls für das Fenster festlegen. Die Felder werden bei Deserialisierung

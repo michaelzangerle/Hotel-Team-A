@@ -1,10 +1,8 @@
 package projekt.fhv.teama.view;
 
-import java.awt.Color;
 import java.util.List;
 
 import org.apache.pivot.collections.ArrayList;
-import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.wtk.Action;
 import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Button;
