@@ -29,7 +29,18 @@ public class Aufenthalt implements IAufenthalt {
     private IPfandtyp pfandtyp;
     private Set<ILeistung> leistungen;
     private IZusatzleistung paket;
+    private boolean checkedOut;
     
+	public boolean getCheckedOut() {
+		return checkedOut;
+	}
+
+
+	public void setCheckedOut(boolean checkedOut) {
+		this.checkedOut = checkedOut;
+	}
+
+
 	public Aufenthalt() {
 	}
 	

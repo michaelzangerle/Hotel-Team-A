@@ -47,18 +47,22 @@
 			<column name="pfandTypID" />
 		</many-to-one>
 
-		
-
 		<set name="leistungen" table="aufenthaltleistung" lazy="false">
 			<key>
 				<column name="aufenthaltID" />
 			</key>
 			<one-to-many class="projekt.fhv.teama.classes.AufenthaltLeistung" />
-		</set>	
+		</set>
 
 		<many-to-one name="paket"
-			class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" fetch="join" lazy="false">
+			class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" fetch="join"
+			lazy="false">
 			<column name="paketID" />
 		</many-to-one>
+
+		<property name="checkedOut" type="boolean">
+			<column name="checkedOut" sql-type="tinyint" />
+		</property>
+		
 	</class>
 </hibernate-mapping>
