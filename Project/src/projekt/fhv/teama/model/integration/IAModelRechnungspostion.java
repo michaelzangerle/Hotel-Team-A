@@ -5,6 +5,6 @@ import projekt.fhv.teama.integrate.IAGast;
 
 public interface IAModelRechnungspostion {
 
-	boolean sindNochPostionenoffen(IAGast gast) throws DatabaseException;
+	boolean sindNochPostionenoffen(IAGast gast) throws DatabaseException ;
 
 }
