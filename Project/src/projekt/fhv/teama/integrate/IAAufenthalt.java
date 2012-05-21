@@ -51,4 +51,14 @@ public interface IAAufenthalt {
 	 * @return int
 	 */
 	int getID();
+	
+	/**
+	 * Setzen des Werts für das PfandNr Attribut
+	 * @param pfandNr String-Wert welcher dem Attribut zugewiesen wird
+	 */
+	public void setPfandNr(String pfandNr);
+	
+	void setCheckedOut(boolean b);
+	
+	boolean getCheckedOut();
 }

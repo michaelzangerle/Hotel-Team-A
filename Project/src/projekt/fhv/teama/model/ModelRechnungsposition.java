@@ -31,7 +31,7 @@ public class ModelRechnungsposition implements IModelRechnungspositon {
 				return true;
 		}
 		
-		return true;
+		return false;
 		
 		
 	}

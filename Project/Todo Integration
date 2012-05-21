@@ -1,0 +1,8 @@
+Harry updates:
+
+CheckOutController
+IARechnungsposition
+Adapter für IModelRechnungsposition
+IAModelRechnungsposition Interface
+IAModelAufenthalt neue Methode checkOut()
+IAAufenthalt setCheckedOut(), getCheckedOut(), setPfandNr()

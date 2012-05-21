@@ -46,4 +46,6 @@ public interface IAModelAufenthalt {
 	 * @throws FokusException
 	 */
 	public List<IAGast> getGaesteZumAufenhalt() throws FokusException;
+
+	public void checkOut(IAAufenthalt auf, boolean b, String string);
 }
