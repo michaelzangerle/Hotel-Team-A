@@ -6,8 +6,6 @@ import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.Border;
-import org.apache.pivot.wtk.Form;
-import org.apache.pivot.wtk.PushButton;
 
 
 /**

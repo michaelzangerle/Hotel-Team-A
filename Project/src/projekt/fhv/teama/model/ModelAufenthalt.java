@@ -59,7 +59,7 @@ public class ModelAufenthalt implements IModelAufenthalt {
 			List<IAAufenthalt> currentAufenthalte=new Vector<IAAufenthalt>();
 			List<IAAufenthalt> alleAufenthalte=new Vector<IAAufenthalt>(aufenthaltDao.getAll());
 			for (IAAufenthalt auf : alleAufenthalte) {
-				if((auf.getAVon().before(date)||auf.getAVon().equals(date))&&(auf.getABis().after(date)||auf.getABis().equals(date)))
+				if((auf.getAVon().before(date)||auf.getAVon().equals(date))&&(auf.getABis().after(date)||auf.getABis().equals(date))&&auf.getCheckedOut()==false)
 				{
 					currentAufenthalte.add(auf);
 				}

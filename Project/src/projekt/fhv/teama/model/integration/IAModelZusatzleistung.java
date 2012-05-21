@@ -9,6 +9,7 @@ import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.integrate.IALeistung;
 
 /**
+ * Klasse um die Zusatzleistungen zu erhalten
  * Beschreibt 
  * @author Team A
  * @version 1.2
@@ -16,7 +17,8 @@ import projekt.fhv.teama.integrate.IALeistung;
 public interface IAModelZusatzleistung {
 
 	/**
-	 * @return
+	 * Holt alle Zusatzleistungen aus der Datenbank
+	 * @return List<IALeistung>
 	 * @throws DatabaseException 
 	 */
 	List<IALeistung> getAZusatzleistungen() throws DatabaseException;

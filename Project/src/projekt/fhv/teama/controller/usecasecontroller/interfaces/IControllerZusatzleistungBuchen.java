@@ -2,8 +2,7 @@ package projekt.fhv.teama.controller.usecasecontroller.interfaces;
 import java.util.HashMap;
 import java.util.List;
 
-import projekt.fhv.teama.classes.leistungen.ILeistung;
-import projekt.fhv.teama.classes.zimmer.IZimmer;
+
 import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.integrate.IAAufenthalt;

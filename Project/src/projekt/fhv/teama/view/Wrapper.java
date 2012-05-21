@@ -20,10 +20,8 @@ import projekt.fhv.teama.classes.zimmer.IReservierung;
 import projekt.fhv.teama.classes.zimmer.ITeilreservierung;
 import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.classes.zimmer.IZimmerpreis;
-import projekt.fhv.teama.controller.usecasecontroller.LeistungAnzahl;
 import projekt.fhv.teama.integrate.IALeistung;
 import projekt.fhv.teama.integrate.IAZimmer;
-import projekt.fhv.teama.view.support.AdditionalServicesTableRow;
 
 /**
  * Die Wrapper Klasse ist für das ListAdapter- Management verantwortlich, d.h. die Umwandlung von Objekten zu String listen.
@@ -202,7 +200,7 @@ public class Wrapper {
 	 */
 	public ListAdapter<String> getZusatzleistungListAdapter(HashMap<String, Integer> services) {
 		LinkedList<String> curZusatzleistungen = new LinkedList<String>();
-		for (Map.Entry e : services.entrySet()) {
+		for (@SuppressWarnings("rawtypes") Map.Entry e : services.entrySet()) {
 			curZusatzleistungen.add(e.getValue() + "x " + e.getKey());
 		}
 		return new ListAdapter<String>(curZusatzleistungen);

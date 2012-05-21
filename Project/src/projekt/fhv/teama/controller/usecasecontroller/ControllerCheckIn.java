@@ -1,12 +1,9 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
-import java.security.KeyStore.Entry;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
-
-import org.apache.pivot.wtk.media.ImageListener;
 
 import projekt.fhv.teama.classes.IAufenthalt;
 import projekt.fhv.teama.classes.IPfandtyp;

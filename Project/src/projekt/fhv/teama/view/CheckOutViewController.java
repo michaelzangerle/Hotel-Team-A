@@ -1,10 +1,8 @@
 package projekt.fhv.teama.view;
 
-import java.awt.Color;
 import java.util.List;
 
 import org.apache.pivot.collections.ArrayList;
-import org.apache.pivot.collections.Sequence;
 import org.apache.pivot.wtk.Action;
 import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Button;
@@ -40,20 +38,28 @@ public class CheckOutViewController implements ButtonPressListener {
 	 */
 	class FinishCheckOutListener implements ButtonPressListener {
 		public void buttonPressed(Button arg0) {
-			if (controller.offeneRechnungspositionenVorhanden()) {
-				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(MessageType.WARNING,
-						"All invoice line items must be paid",
-						new ArrayList<String>("OK")));
-				bd.open(view.getDisplay());
-			} else if (!allKeysHandedOver()) {
-				BlockingDialog bd = new BlockingDialog();
-				bd.setContent(new Alert(MessageType.WARNING,
-						"All keys must be handed over",
-						new ArrayList<String>("OK")));
-				bd.open(view.getDisplay());
-			} else {
-				controller.save();
+			try {
+				if (controller.offeneRechnungspositionenVorhanden()) {
+					BlockingDialog bd = new BlockingDialog();
+					bd.setContent(new Alert(MessageType.WARNING,
+							"All invoice line items must be paid",
+							new ArrayList<String>("OK")));
+					bd.open(view.getDisplay());
+				} else if (!allKeysHandedOver()) {
+					BlockingDialog bd = new BlockingDialog();
+					bd.setContent(new Alert(MessageType.WARNING,
+							"All keys must be handed over",
+							new ArrayList<String>("OK")));
+					bd.open(view.getDisplay());
+				} else {
+					controller.save();
+				}
+			} catch (DatabaseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FokusException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
@@ -189,7 +195,7 @@ public class CheckOutViewController implements ButtonPressListener {
 			@Override
 			public void buttonPressed(Button arg0) {
 				view.cof2LBDepositNr.setText("");
-				view.cof2LBDepositNr.getStyles().put("backgroundColor", Color.GREEN);
+				view.cof2LBDepositNr.getStyles().put("backgroundColor", "#cae6b4");
 			}
 		});
 		view.setcof2PBtnFinishSaveListener(new FinishCheckOutListener());

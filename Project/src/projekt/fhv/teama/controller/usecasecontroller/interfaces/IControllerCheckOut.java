@@ -3,7 +3,6 @@ package projekt.fhv.teama.controller.usecasecontroller.interfaces;
 import java.util.List;
 
 
-import projekt.fhv.teama.classes.zimmer.IZimmer;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
 import projekt.fhv.teama.integrate.IAAufenthalt;
 import projekt.fhv.teama.integrate.IAGast;
@@ -79,5 +78,7 @@ public interface IControllerCheckOut {
 	 * @throws FokusException 
 	 */
 	public abstract void save() throws FokusException, DatabaseException;
+	
+	
 
 }

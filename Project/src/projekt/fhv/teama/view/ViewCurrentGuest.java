@@ -1,31 +1,24 @@
 package projekt.fhv.teama.view;
 
-import java.awt.Dimension;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import org.apache.pivot.beans.BXML;
-import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
-import org.apache.pivot.collections.*;
-import org.apache.pivot.serialization.SerializationException;
+import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.Border;
 import org.apache.pivot.wtk.BoxPane;
 import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.CalendarButton;
 import org.apache.pivot.wtk.Component;
-import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Form;
 import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.ListView;
 import org.apache.pivot.wtk.PushButton;
 import org.apache.pivot.wtk.TextInput;
-import org.apache.pivot.wtk.Window;
 
 
 /**
@@ -40,7 +33,7 @@ public class ViewCurrentGuest extends Border implements Bindable {
 
 	ViewController viewController = new ViewController();
 	
-	private Window window = null;
+	//private Window window = null;
 	
 	/**
 	 * Controls für das Fenster festlegen. Die Felder werden bei Deserialisierung

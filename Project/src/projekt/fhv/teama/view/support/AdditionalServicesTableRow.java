@@ -4,6 +4,10 @@
 package projekt.fhv.teama.view.support;
 
 /**
+ * 
+ * Daten-Bean für eine TableRow in der Tabellenansicht Zusatzleistungen buchen
+ * Hält die Daten und aktualisiert diese bei Eintrag in die Tabelle (Databinding)
+ * 
  * @author Team A
  * @version 1.1
  */

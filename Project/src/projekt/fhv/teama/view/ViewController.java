@@ -262,6 +262,7 @@ public class ViewController implements Application {
 	 * @param text
 	 * @param lv
 	 */
+	@SuppressWarnings("unchecked")
 	private void searchPanelInput(String text, ListView lv) {
 		if (cacheListData == null) {
 			cacheListData = (ListAdapter<String>) lv.getListData();
@@ -299,7 +300,7 @@ public class ViewController implements Application {
 	 * @param text
 	 */
 	private void setListData(ListView view, String text) {
-		List<String> temp = new LinkedList();
+		List<String> temp = new LinkedList<String>();
 		temp.add(text);
 		ListAdapter<String> adapter = new ListAdapter<String>(temp);
 		view.setListData(adapter);

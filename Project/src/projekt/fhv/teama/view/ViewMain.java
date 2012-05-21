@@ -1,6 +1,5 @@
 package projekt.fhv.teama.view;
 
-import java.awt.Dimension;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,7 +12,30 @@ import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.*;
+import org.apache.pivot.wtk.Application;
+import org.apache.pivot.wtk.Border;
+import org.apache.pivot.wtk.BoxPane;
+import org.apache.pivot.wtk.ButtonGroup;
+import org.apache.pivot.wtk.ButtonPressListener;
+import org.apache.pivot.wtk.ButtonStateListener;
+import org.apache.pivot.wtk.CalendarButton;
+import org.apache.pivot.wtk.Checkbox;
+import org.apache.pivot.wtk.Component;
+import org.apache.pivot.wtk.ComponentMouseButtonListener;
+import org.apache.pivot.wtk.Display;
+import org.apache.pivot.wtk.Label;
+import org.apache.pivot.wtk.ListButton;
+import org.apache.pivot.wtk.ListButtonSelectionListener;
+import org.apache.pivot.wtk.ListView;
+import org.apache.pivot.wtk.ListViewItemStateListener;
+import org.apache.pivot.wtk.ListViewSelectionListener;
+import org.apache.pivot.wtk.Meter;
+import org.apache.pivot.wtk.PushButton;
+import org.apache.pivot.wtk.RadioButton;
+import org.apache.pivot.wtk.TabPane;
+import org.apache.pivot.wtk.TabPaneSelectionListener;
+import org.apache.pivot.wtk.TextInput;
+import org.apache.pivot.wtk.Window;
 
 
 /**
@@ -29,14 +51,14 @@ import org.apache.pivot.wtk.*;
  * flexibles und erweiterbares User Interface. 
  * 
  * Der Modulare Ansatz ist in dem BXML Files umgesetzt mit den include Dateien für den
- * Reservierungs und insbsondere den CheckIn Ablauf. (inc.checkInForm01.bxml...)
+ * Reservierungs- und insbsondere den CheckIn Ablauf. (inc.checkInForm01.bxml...)
  * 
  * Aus terminlichen Überlegungen und Relevanz der Umsetzung für die Beurteilung 
- * wurde der Focus auf die Datenbank und Datenbankanbindung sowie Controller gesetzt,
+ * wurde in der Timebox 1 der Focus auf die Datenbank und Datenbankanbindung sowie Controller gesetzt,
  * weshalb die Umsetzung und das Testen des UI mehrheitlich hier in der ViewMain erfolgte.
  * 
- * Eine Aufteilung in die zughörige ViewCheckIn Klasse ist jedoch ohne großen Aufwand
- * möglich. Da auch das Framework Pivot diesen Ansatz vorsieht.
+ * Die Aufteilung wurde konsequent in der Timebox 2 umgesetzt für die UseCases Zusatzleistungen buchen
+ * und Check-Out.
  *
  * @author Team A
  * @version 1.1
@@ -49,7 +71,7 @@ public class ViewMain extends Window implements Application, Bindable {
 	ViewController viewController = new ViewController();
 	BXMLSerializer bxmlSerializer = new BXMLSerializer();
 	
-	private Window window = null;
+	//private Window window = null;
 	
 	/**
 	 * Controls für das Fenster festlegen. Die Felder werden bei Deserialisierung

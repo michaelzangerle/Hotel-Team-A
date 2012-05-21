@@ -1,12 +1,11 @@
 package projekt.fhv.teama.view;
 
 import java.net.URL;
+
 import org.apache.pivot.beans.BXML;
-import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.ActivityIndicator;
 import org.apache.pivot.wtk.ApplicationContext;
 import org.apache.pivot.wtk.Border;
 import org.apache.pivot.wtk.ButtonPressListener;
@@ -14,6 +13,7 @@ import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.PushButton;
 import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.Window;
+
 import projekt.fhv.teama.view.support.SHSDateTime;
 
 /**

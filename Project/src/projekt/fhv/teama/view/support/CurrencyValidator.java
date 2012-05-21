@@ -8,6 +8,9 @@ import java.math.BigDecimal;
 import org.apache.pivot.wtk.validation.Validator;
 
 /**
+ * 
+ *  Validator der die Benutzereingabe von Preisen in der Zusatzleistungentabelle
+ *  überprüft
  *  
  *
  * @author Team A
