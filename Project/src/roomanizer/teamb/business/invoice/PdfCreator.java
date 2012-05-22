@@ -4,6 +4,13 @@
  */
 package roomanizer.teamb.business.invoice;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.ColumnText;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfPage;
+import com.itextpdf.text.pdf.PdfPageEventHelper;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -11,39 +18,16 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
-
+import java.util.*;
 import roomanizer.teamb.data.IntegrateFacade;
 import roomanizer.teamb.service.integrate.IBHotel;
 import roomanizer.teamb.service.integrate.IBRechnung;
 import roomanizer.teamb.service.integrate.IBRechnungsPosition;
 import roomanizer.teamb.service.integrate.IBTeilzahlung;
 
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.ExceptionConverter;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfPageEventHelper;
-import com.itextpdf.text.pdf.PdfWriter;
-
 /**
+ * Klasse um ein PDF aus einer Rechnung zu generieren
  *
  * @author Michael
  */
@@ -70,6 +54,9 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
     private String footer;
     private IBHotel stammdaten;
 
+    /**
+     *
+     */
     public PdfCreator() {
         doc = new Document();
         standard = FontFactory.getFont("Verdana", 11);
@@ -85,12 +72,20 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
 
     }
 
+    /**
+     * Erstellt das PDF
+     *
+     * @param filename Dateiname des PDF
+     * @param rechnung Rechnung die ausgedruckt werden soll
+     * @throws FileNotFoundException Datei wurde nicht Gefunden
+     * @throws DocumentException Document konnte nicht erstellt werden
+     */
     @Override
     public void create(String filename, IBRechnung rechnung) throws FileNotFoundException, DocumentException {
         if (filename == null || rechnung == null) {
             return;
         } else {
-            
+
             this.gast_firstname = rechnung.getFirstname();
             this.gast_surname = rechnung.getSurname();
             this.gast_address = rechnung.getAddress();
@@ -104,10 +99,10 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
             Collections.sort(this.rechnungspositionen, new RepoDatumComparator());
 
             File location = new File(filename);
-            if(!new File(location.getParent()).exists()) {
+            if (!new File(location.getParent()).exists()) {
                 new File(location.getParent()).mkdir();
             }
-            
+
             PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(filename));
 
             writer.setPageEvent(new FootWriter());
@@ -123,6 +118,11 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
         }
     }
 
+    /**
+     * @deprecated Veraltet
+     * @param filename
+     * @param rechnung
+     */
     @Override
     public void createPreview(String filename, IBRechnung rechnung) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -134,7 +134,7 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
 
         hotelP.add(new Chunk(stammdaten.getName() + "\n", ueberschrift));
         hotelP.add(stammdaten.getStrasse() + ", " + stammdaten.getPlz() + " " + stammdaten.getOrt() + ", " + stammdaten.getLand() + "\n");
-        hotelP.add("Telefon: " + stammdaten.getTelefonummer() + ", Fax: " + stammdaten.getFaxnummer() + "\n");
+        hotelP.add("Phone: " + stammdaten.getTelefonummer() + ", Fax: " + stammdaten.getFaxnummer() + "\n");
         hotelP.add("_________________________________________________________");
         hotelP.setAlignment(Element.ALIGN_CENTER);
         hotelP.setSpacingAfter(35);
@@ -150,8 +150,8 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
 
         Paragraph rechnungsNrP = new Paragraph();
         rechnungsNrP.setFont(standard);
-        rechnungsNrP.add("Rechnungsnummer: " + rechnungsnummer + "\n");
-        rechnungsNrP.add("Rechnungsdatum: " + date.format(new Date()));
+        rechnungsNrP.add("Invoice Number: " + rechnungsnummer + "\n");
+        rechnungsNrP.add("Invoice Date: " + date.format(new Date()));
         rechnungsNrP.setAlignment(Element.ALIGN_RIGHT);
         doc.add(rechnungsNrP);
 
@@ -160,7 +160,7 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
     private void insertTable() throws DocumentException {
         Paragraph rechnungP = new Paragraph();
         rechnungP.setFont(ueberschrift);
-        rechnungP.add("Rechnung");
+        rechnungP.add("Invoice");
         rechnungP.setSpacingBefore(30);
         rechnungP.setSpacingAfter(15);
         doc.add(rechnungP);
@@ -169,13 +169,13 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
         PdfPTable positionen = new PdfPTable(colsWidth);
         positionen.getDefaultCell().setPadding(5);
 
-        positionen.addCell(new Phrase("Datum", standard));
-        positionen.addCell(new Phrase("Anzahl", standard));
-        positionen.addCell(new Phrase("Bezeichnung", standard));
-        positionen.addCell(new Phrase("Zimmer", standard));
-        positionen.addCell(new Phrase("USt", standard));
-        positionen.addCell(new Phrase("Einzelpreis", standard));
-        positionen.addCell(new Phrase("Gesamt", standard));
+        positionen.addCell(new Phrase("Date", standard));
+        positionen.addCell(new Phrase("Amount", standard));
+        positionen.addCell(new Phrase("Invoice Line", standard));
+        positionen.addCell(new Phrase("Room", standard));
+        positionen.addCell(new Phrase("Taxrate", standard));
+        positionen.addCell(new Phrase("Unit Price", standard));
+        positionen.addCell(new Phrase("Total Price", standard));
 
         HashMap<Timestamp, HashMap<String, RechnungsposHelper>> summary = summarizeRechnungspositionen();
         PdfPCell priceCell = new PdfPCell();
@@ -246,7 +246,7 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
         sum.setHorizontalAlignment(Element.ALIGN_RIGHT);
         sum.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 
-        sum.addCell(new Phrase("Gesamtbetrag netto:", standard));
+        sum.addCell(new Phrase("Subtotal:", standard));
         PdfPCell priceCell = new PdfPCell();
         priceCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         priceCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -270,7 +270,7 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
         total.setHorizontalAlignment(Element.ALIGN_LEFT);
         total.setVerticalAlignment(Element.ALIGN_MIDDLE);
         total.setBorder(Rectangle.TOP);
-        total.setPhrase(new Phrase("Gesamtbetrag brutto:", standard));
+        total.setPhrase(new Phrase("Total:", standard));
         sum.addCell(total);
 
         total.setHorizontalAlignment(Element.ALIGN_RIGHT);
@@ -304,23 +304,23 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
         while (i.hasNext()) {
             IBRechnungsPosition tempR = (IBRechnungsPosition) i.next();
 
-            if(tempR.getTaxRate() != 0) {
+            if (tempR.getTaxRate() != 0) {
                 LinkedList<IBRechnungsPosition> temp = tax.get(tempR.getTaxRate());
 
                 if (temp == null) {
-                   temp = new LinkedList<IBRechnungsPosition>();
+                    temp = new LinkedList<IBRechnungsPosition>();
                 }
 
                 temp.add(tempR);
                 tax.put(tempR.getTaxRate(), temp);
             }
- 
+
         }
 
 
         for (Short s : tax.keySet()) {
             LinkedList<IBRechnungsPosition> taxP = tax.get(s);
-            taxCells.add("+" + s + "% USt");
+            taxCells.add("+" + s + "% VAT");
             BigDecimal sum = new BigDecimal(0);
 
             for (IBRechnungsPosition r : taxP) {
@@ -343,7 +343,7 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
 
         Paragraph teilzahlung = new Paragraph();
         teilzahlung.setFont(ueberschrift);
-        teilzahlung.add("Teilzahlungen");
+        teilzahlung.add("Part Payments");
         teilzahlung.setSpacingBefore(30.0f);
 
         doc.add(teilzahlung);
@@ -387,37 +387,36 @@ public class PdfCreator extends AbstractPDFGenerator implements IPDFGenerator {
         }
     }
 
-    public class FootWriter extends PdfPageEventHelper
-    {
-        public void onEndPage(PdfWriter writer, Document document)
-        {
+    private class FootWriter extends PdfPageEventHelper {
+
+        @Override
+        public void onEndPage(PdfWriter writer, Document document) {
             try {
-              
+
                 Rectangle page = document.getPageSize();
                 PdfPTable head = new PdfPTable(1);
 
-                PdfPCell tmp = new PdfPCell(new Phrase("Geschäftsführer: " + stammdaten.getChef() + " | " + "Telefon: " + stammdaten.getTelefonummer() + " | "
-                + "Fax: " + stammdaten.getFaxnummer() + " | " + "Email: " + stammdaten.getEmail(), footerFont));
+                PdfPCell tmp = new PdfPCell(new Phrase("CEO: " + stammdaten.getChef() + " | " + "Phone: " + stammdaten.getTelefonummer() + " | "
+                        + "Fax: " + stammdaten.getFaxnummer() + " | " + "Email: " + stammdaten.getEmail(), footerFont));
                 tmp.setBorder(Rectangle.NO_BORDER);
                 tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
-                head.addCell(tmp);           
-                
-                tmp.setPhrase(new Phrase("Kontonummer: " + stammdaten.getKontonummer() + " | " + "BLZ: " + stammdaten.getBlz() + " | "
-                + "IBAN: " + stammdaten.getIban() + " | " + "BIC: " + stammdaten.getBic(), footerFont));
+                head.addCell(tmp);
+
+                tmp.setPhrase(new Phrase("Account number: " + stammdaten.getKontonummer() + " | " + "Bank code: " + stammdaten.getBlz() + " | "
+                        + "IBAN: " + stammdaten.getIban() + " | " + "BIC: " + stammdaten.getBic(), footerFont));
                 tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
                 tmp.setBorder(Rectangle.NO_BORDER);
                 head.addCell(tmp);
-                
-                tmp.setPhrase(new Phrase("UID: " + stammdaten.getUid() + " | " + "Firmenbuchnummer: " + stammdaten.getFbn(), footerFont));
+
+                tmp.setPhrase(new Phrase("VAT number: " + stammdaten.getUid() + " | " + "Commercial register number: " + stammdaten.getFbn(), footerFont));
                 tmp.setBorder(Rectangle.NO_BORDER);
                 tmp.setHorizontalAlignment(Element.ALIGN_CENTER);
                 head.addCell(tmp);
 
                 head.setTotalWidth(page.getWidth() - document.leftMargin() - document.rightMargin());
                 head.writeSelectedRows(0, -3, document.leftMargin(), document.bottomMargin(),
-                writer.getDirectContent());
-            }
-            catch (Exception e) {
+                        writer.getDirectContent());
+            } catch (Exception e) {
                 throw new ExceptionConverter(e);
             }
         }
