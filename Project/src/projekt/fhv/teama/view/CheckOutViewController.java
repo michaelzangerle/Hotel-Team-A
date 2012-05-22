@@ -107,8 +107,8 @@ public class CheckOutViewController {
 	 * @return boolean
 	 */
 	public boolean load() {
+		initialize();
 		try {
-			initialize();
 			setHandedKeysTable();
 			setDeposit();
 		} catch (Exception e) {
@@ -148,7 +148,7 @@ public class CheckOutViewController {
 	 * Zudem werden die Progress bars gesetzt.
 	 * @throws FokusException
 	 */
-	private void initialize() throws FokusException {
+	private void initialize() {
 		viewMain.tabPLeftMain.setEnabled(false);
 		viewMain.lvGuestSearch.setEnabled(false);
 		viewGuest.setVisible(false);
@@ -162,6 +162,9 @@ public class CheckOutViewController {
 		view.coLBProgress03.setVisible(false);
 		view.coLBProgress04.setVisible(false);
 		view.cof1PBtnNext.setEnabled(false);
+		view.cof1PBtnCreateInvoice.setEnabled(true);
+		view.cof1LBStatusInvoiceItems.setText("There are open invoice items left");
+		view.cof1LBStatusInvoiceItems.getStyles().put("backgroundColor", "#fbe28e");
 	}
 	
 	/**
@@ -169,6 +172,7 @@ public class CheckOutViewController {
 	 * Hier werden die Screens zurückgesetzt und der Homescreen angezeigt.
 	 */
 	private void exit () {
+		controller.clearLists();
 		viewMain.tabPLeftMain.setEnabled(true);
 		viewMain.lvGuestSearch.setEnabled(true);
 		view.setVisible(false);
@@ -177,7 +181,6 @@ public class CheckOutViewController {
 		view.coLBProgress02.setVisible(false);
 		viewGuest.setVisible(true);
 		view.coProgress.setVisible(false);
-		controller.clearLists();
 	}
 	
 	private void clearForms() {
@@ -189,8 +192,6 @@ public class CheckOutViewController {
 		viewGuest.cgf1TICountry.setText("");
 		viewGuest.cgf1TIStreet.setText("");
 		viewGuest.cgf1TIZip.setText("");
-		view.cof1LBStatusInvoiceItems.setText("There are open invoice items left");
-		view.cof1LBStatusInvoiceItems.getStyles().put("backgroundColor", "#fbe28e");
 		view.cof2LBDepositNr.getStyles().put("backgroundColor", "#fbe28e");
 		List<String> temp = new LinkedList<String>();
 		view.cof2LVHandedKeys.setListData(new ListAdapter<String>(temp));
@@ -236,7 +237,15 @@ public class CheckOutViewController {
 		});
 		view.cof1PBtnCancel.setAction(cancel);
 		view.cof2PBtnCancel.setAction(cancel);
-		view.cof1PBtnNext.setAction(gotoStep);
+//		view.cof1PBtnNext.setAction(gotoStep);
+		view.cof1PBtnNext.getButtonPressListeners().add(new ButtonPressListener() {
+			public void buttonPressed(Button arg0) {
+				viewMain.meter.setPercentage(1);
+				view.bpCheckOutForm01.setVisible(false);
+				view.bpCheckOutForm02.setVisible(true);
+				view.coMeter.setPercentage(1);
+			}
+		});
 		view.cof2PBtnBack.setAction(gotoStep);
 		view.setcof1PBtnUpdateListener(new ButtonPressListener() {
 			public void buttonPressed(Button arg0) {
@@ -276,10 +285,10 @@ public class CheckOutViewController {
 			int i = ((Alert) erg).getSelectedOptionIndex();
 
 			if (erg.getResult() && i == 0) {
+				exit();
 				view.bpCheckOutForm01.setVisible(false);
 				view.bpCheckOutForm02.setVisible(false);
 				view.setVisible(false);
-				exit();
 			}
 		}
 	};
