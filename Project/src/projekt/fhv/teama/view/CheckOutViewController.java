@@ -47,9 +47,13 @@ public class CheckOutViewController {
 		if (!controller.offeneRechnungspositionenVorhanden()) {
 			view.cof1LBStatusInvoiceItems.setText("There are no open invoke items left");
 			view.cof1LBStatusInvoiceItems.getStyles().put("backgroundColor", "#cae6b4");
+			view.cof1PBtnNext.setEnabled(true);
+			view.cof1PBtnCreateInvoice.setEnabled(false);
 		} else {
 			view.cof1LBStatusInvoiceItems.setText("There are open invoice items left");
 			view.cof1LBStatusInvoiceItems.getStyles().put("backgroundColor", "#fbe28e");
+			view.cof1PBtnNext.setEnabled(false);
+			view.cof1PBtnCreateInvoice.setEnabled(true);
 		}
 	}
 	
@@ -157,6 +161,7 @@ public class CheckOutViewController {
 		view.coLBProgress02.setVisible(true);
 		view.coLBProgress03.setVisible(false);
 		view.coLBProgress04.setVisible(false);
+		view.cof1PBtnNext.setEnabled(false);
 	}
 	
 	/**

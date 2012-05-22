@@ -610,11 +610,9 @@ public class ViewController implements Application {
 		bdViewCurrentGuest.cgf1CBArrival.setSelectedDate(d1);
 		bdViewCurrentGuest.cgf1CBDeparture.setSelectedDate(d2);
 
-		List<LeistungAnzahl> services = controllerZusatzleistung
-				.bereitsgebuchtLeistungenFuerGast();
-		if (services.size() == 0) {
-			setListData(bdViewCurrentGuest.cgf1LVBookedAdditionalServices, "Currently no additional service booked");
-		} else {
+		try {
+			List<LeistungAnzahl> services = controllerZusatzleistung
+					.bereitsgebuchtLeistungenFuerGast();
 			HashMap<String, Integer> tempMap = new HashMap<String, Integer>();
 			for (LeistungAnzahl temp : services) {
 				if (temp != null) {
@@ -630,6 +628,8 @@ public class ViewController implements Application {
 			}
 			bdViewCurrentGuest.cgf1LVBookedAdditionalServices
 					.setListData(wrapper.getZusatzleistungListAdapter(tempMap));
+		} catch (DatabaseException e) {
+			setListData(bdViewCurrentGuest.cgf1LVBookedAdditionalServices, "Currently no additional service booked");
 		}
 	}
 
