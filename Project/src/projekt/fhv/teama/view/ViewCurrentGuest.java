@@ -52,7 +52,14 @@ public class ViewCurrentGuest extends Border implements Bindable {
 	@BXML CalendarButton cgf1CBArrival;@BXML CalendarButton cgf1CBDeparture;
 	
 	/* Labels */
-	@BXML Label cgf1LBCurrentGuestDetails;@BXML Label cgf1LBGuestNr;@BXML Label	cgf1LBArrival;@BXML Label cgf1LBDeparture;
+	@BXML 
+	Label cgf1LBCurrentGuestDetails;
+	@BXML 
+	Label cgf1LBGuestNr;
+	@BXML 
+	Label cgf1LBArrival;
+	@BXML 
+	Label cgf1LBDeparture;
 	
 	
 	/* TextInputs */
@@ -69,19 +76,19 @@ public class ViewCurrentGuest extends Border implements Bindable {
 	    	
 	    	Locale.setDefault(Locale.ENGLISH);		
 	    		
-	  		/** Zustände zum Programmstart initialisieren *********************************/
-	  		
-	    	cgf1TIName.setText("Christopher Ericsson");
-	    	cgf1TICity.setText("Motorola");
-	    	cgf1TICountry.setText("Nokia");
-	    	cgf1TIZip.setText("0815");
-	    	cgf1TIStreet.setText("Lumia 9000");
-	    	cgf1TIPhone.setText("+34600 666 666");
-	    	cgf1TIEMail.setText("chris@ericsson.com");
-
-	    	
-	  		
-	  		/** Ende - Zustände zum Programmstart initialisieren **************************/    	
+//	  		/** Zustände zum Programmstart initialisieren *********************************/
+//	  		
+//	    	cgf1TIName.setText("Christopher Ericsson");
+//	    	cgf1TICity.setText("Motorola");
+//	    	cgf1TICountry.setText("Nokia");
+//	    	cgf1TIZip.setText("0815");
+//	    	cgf1TIStreet.setText("Lumia 9000");
+//	    	cgf1TIPhone.setText("+34600 666 666");
+//	    	cgf1TIEMail.setText("chris@ericsson.com");
+//
+//	    	
+//	  		
+//	  		/** Ende - Zustände zum Programmstart initialisieren **************************/    	
 	    	
 	    }
 

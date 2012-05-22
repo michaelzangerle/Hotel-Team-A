@@ -1050,6 +1050,7 @@ public class CheckInViewController implements ButtonPressListener {
 					createStay();
 					viewController.clearReservationPanel();
 					resetCheckInForms();
+					viewMain.tabPLeftMain.setSelectedIndex(2);
 				}
 			} catch (java.text.ParseException e) {
 				e.printStackTrace();

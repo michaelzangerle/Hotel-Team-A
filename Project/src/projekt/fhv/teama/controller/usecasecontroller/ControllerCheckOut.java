@@ -117,7 +117,9 @@ public class ControllerCheckOut implements IControllerCheckOut {
 				}
 			}
 		}
-
 	}
 
+	public void clearLists() {
+		this.aufenthalte = new Vector<IAAufenthalt>();
+	}
 }

@@ -45,7 +45,9 @@ public class ViewCheckOut extends BoxPane implements Bindable {
 	@BXML
 	PushButton cof1PBtnCancel;
 	@BXML
-	PushButton cof1PBtnCreateInvoice;
+	PushButton cof1PBtnCreateInvoice; 
+	@BXML
+	PushButton cof1PBtnUpdate; //TODO geändert
 	@BXML
 	PushButton cof1PBtnNext;
 	@BXML
@@ -78,6 +80,8 @@ public class ViewCheckOut extends BoxPane implements Bindable {
 	Label coLBProgress03; 
 	@BXML 
 	Label coLBProgress04;
+	@BXML
+	Label cof1LBStatusInvoiceItems;
 	
 	/* Progressbar UseCase CheckOut */
 	@BXML
@@ -109,4 +113,8 @@ public class ViewCheckOut extends BoxPane implements Bindable {
 	    public void setlbProgress02Listener (ComponentMouseButtonListener e) {
 	    	coLBProgress02.getComponentMouseButtonListeners().add(e);
 		}
+	    
+	    public void setcof1PBtnUpdateListener(ButtonPressListener e) {
+	    	cof1PBtnUpdate.getButtonPressListeners().add(e);
+	    }
 }

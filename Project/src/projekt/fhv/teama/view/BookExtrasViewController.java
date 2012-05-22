@@ -71,6 +71,10 @@ public class BookExtrasViewController implements ButtonPressListener {
 
 		view.asf1LVBookedRooms.setListData(wrapper
 				.getZimmerWithoutPriceListAdapterA(rooms));
+		
+		if (rooms.size() < 1) {
+			throw new FokusException();
+		}
 
 	}
 
@@ -88,7 +92,9 @@ public class BookExtrasViewController implements ButtonPressListener {
 		view.asLBProgress02.setVisible(false);
 		view.setVisible(false);
 		viewGuest.setVisible(true);
-		viewMain.lvGuestSearch.setSelectedIndex(0);
+		if (viewMain.lvGuestSearch.getListData().getLength() > 0) {
+			viewMain.lvGuestSearch.setSelectedIndex(0);
+		}
 	}
 
 	/**

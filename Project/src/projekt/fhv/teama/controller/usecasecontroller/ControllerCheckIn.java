@@ -70,6 +70,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	private boolean needReloadAufenthalt=true;
 	
 
+
 	/**
 	 * 
 	 * Konstruktor ControllerCheckIn CeckIn Kontroller ist für den Usercase
@@ -310,6 +311,15 @@ public class ControllerCheckIn implements IControllerCheckIn {
 		return modelPfandtyp.getPfandtyps();
 	}
 
+	/**
+	 * Reload Variable setzen - für den Einsatz des Caching Patterns
+	 * 
+	 * @param needReloadAufenthalt
+	 */
+	public void setNeedReloadAufenthalt(boolean needReloadAufenthalt) {
+		this.needReloadAufenthalt = needReloadAufenthalt;
+	}
+	
 	/**
 	 * Gibt alle verfügbaren Zimmer einer Kategorie zurück
 	 * 

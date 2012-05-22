@@ -19,6 +19,7 @@ import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.ComponentKeyListener;
+import org.apache.pivot.wtk.Dialog;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Keyboard;
 import org.apache.pivot.wtk.Keyboard.KeyLocation;
@@ -81,12 +82,11 @@ public class ViewController implements Application {
 	private ControllerCheckIn controllerCheckIn;
 	private ControllerZusatzleistungBuchen controllerZusatzleistung;
 	private ControllerCheckOut controllerCheckOut;
+	private CheckOutViewController checkOutViewController;
 	private Wrapper wrapper;
 	private Display disp;
 	private ListAdapter<String> cacheListData;
 
-	
-	
 	@Override
 	public void resume() throws Exception {
 
@@ -244,12 +244,16 @@ public class ViewController implements Application {
 				.setcgf1PBtnBookExtrasListener(new BookExtrasViewController(
 						bdViewAdditionalServices, viewMain, bdViewCurrentGuest,
 						controllerZusatzleistung));
+		
 		bdViewCurrentGuest
-				.setcgf1PBtnCheckOutListener(new CheckOutViewController(
-						bdViewCheckOut, viewMain, bdViewCurrentGuest,
-						controllerCheckOut));
-		bdViewCheckOut
-				.setcof1PBtnCreateInvoiceListener(new ButtonPressListener() {
+				.setcgf1PBtnCheckOutListener(new ButtonPressListener(){
+					public void buttonPressed(Button arg0) {
+						if (!checkOutViewController.load()){
+							showBlockingDialog("Invalid guest selected", getDisp());
+						}
+					}
+				});
+		bdViewCheckOut.setcof1PBtnCreateInvoiceListener(new ButtonPressListener() {
 					public void buttonPressed(Button arg0) {
 						startInvoiceWindow();
 					}
@@ -336,12 +340,7 @@ public class ViewController implements Application {
 				new ModelMitarbeiter());
 
 		if (username.equals("") || password.equals("")) {
-
-			BlockingDialog bd = new BlockingDialog();
-			bd.setContent(new Alert(MessageType.WARNING,
-					"Please enter your username and password",
-					new ArrayList<String>("OK")));
-			bd.open(getDisp());
+			showBlockingDialog("Please enter your username and password", getDisp());
 			return;
 		}
 
@@ -349,19 +348,9 @@ public class ViewController implements Application {
 			IMitarbeiter ma = controllerLogin.checkLogin(username, password);
 			startMainView(ma.getVorname(), ma.getNachname());
 		} catch (DatabaseException e) {
-			BlockingDialog bd = new BlockingDialog();
-			bd.setContent(new Alert(
-					MessageType.WARNING,
-					"Invalid username or password! Please don´t forget case sensitive",
-					new ArrayList<String>("OK")));
-			bd.open(getDisp());
+			showBlockingDialog("Invalid username or password! Please keep case sensitive in mind", getDisp());
 		} catch (LoginInExeption e) {
-			BlockingDialog bd = new BlockingDialog();
-			bd.setContent(new Alert(
-					MessageType.WARNING,
-					"Invalid username or password! Please don´t forget case sensitive",
-					new ArrayList<String>("OK")));
-			bd.open(getDisp());
+			showBlockingDialog("Invalid username or password! Please keep case sensitive in mind", getDisp());
 		}
 	}
 
@@ -380,7 +369,7 @@ public class ViewController implements Application {
 		viewMain.mainContent.add(bdViewCurrentGuest);
 		viewMain.mainContent.add(bdViewCheckOut);
 		controllerCheckOut = new ControllerCheckOut();
-		
+		checkOutViewController = new CheckOutViewController(bdViewCheckOut, viewMain, bdViewCurrentGuest, controllerCheckOut, this);
 		initializeMainView();
 		addMainEventListener();
 	}
@@ -392,6 +381,7 @@ public class ViewController implements Application {
 	 * @throws DatabaseException
 	 */
 	public void initializeMainView() {
+		
 		if (controllerCheckIn == null) {
 			controllerCheckIn = new ControllerCheckIn(new ModelReservierung(),
 					new ModelAufenthalt(), new ModelGast(),
@@ -654,7 +644,7 @@ public class ViewController implements Application {
 		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
 			String text = (String) listView.getSelectedItem();
-			if (text == null)
+			if (text == null || text.equals("Current no guest available"))
 				return;
 
 			String[] split = text.split(" ");
@@ -664,7 +654,7 @@ public class ViewController implements Application {
 			} catch (EmptyParameterException e) {
 				e.printStackTrace();
 			} catch (NotContainExeption e) {
-				e.printStackTrace();
+				showBlockingDialog("Invalid guest selected", getDisp());
 			} catch (FokusException e) {
 				e.printStackTrace();
 			}
@@ -686,9 +676,6 @@ public class ViewController implements Application {
 	class SearchPanelListener implements TabPaneSelectionListener {
 		@Override
 		public Vote previewSelectedIndexChange(TabPane arg0, int index) {
-			if (arg0 == null) {
-				return Vote.DENY;
-			}
 			clearReservationPanel();
 			Wrapper wrapper = new Wrapper();
 			if (index == 0) {
@@ -716,8 +703,12 @@ public class ViewController implements Application {
 				cacheListData = null;
 				try {
 					if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
-						setListData(viewMain.lvReservationSearch, "Currently no reservation available");
+						setListData(viewMain.lvArrivingSearch, "Currently no reservation available");
+						viewMain.rf1PBtnCheckIn.setEnabled(false);
+						viewMain.lvArrivingSearch.setEnabled(false);
 					} else {
+						viewMain.rf1PBtnCheckIn.setEnabled(true);
+						viewMain.lvArrivingSearch.setEnabled(true);
 						ListAdapter<String> curReservations = wrapper
 								.getReservationListAdapter(controllerCheckIn
 										.getCheckInReservierungen());
@@ -734,8 +725,14 @@ public class ViewController implements Application {
 				cacheListData = null;
 				try {
 					if (controllerCheckIn.getGaesteVonAuftenhalt().size() == 0) {
-						setListData(viewMain.lvReservationSearch, "Currently no guest available");
+						setListData(viewMain.lvGuestSearch, "Currently no guest available");
+						viewMain.lvGuestSearch.setEnabled(false);
+						bdViewCurrentGuest.cgf1PBtnCheckOut.setEnabled(false);
+						bdViewCurrentGuest.cgf1PBtnBookExtras.setEnabled(false);
 					} else {
+						bdViewCurrentGuest.cgf1PBtnCheckOut.setEnabled(true);
+						bdViewCurrentGuest.cgf1PBtnBookExtras.setEnabled(true);
+						viewMain.lvGuestSearch.setEnabled(true);
 						ListAdapter<String> guests = wrapper
 								.getGuestListAdapter(controllerCheckIn
 										.getGaesteVonAuftenhalt());
@@ -757,6 +754,24 @@ public class ViewController implements Application {
 		public void selectedIndexChanged(TabPane arg0, int arg1) {
 		}
 
+	}
+	
+	public void setReloadAufenthalte(boolean needReload) {
+		controllerCheckIn.setNeedReloadAufenthalt(needReload);
+	}
+
+
+	public void showBlockingDialog(String message, Display disp) {
+		BlockingDialog bd = new BlockingDialog();
+		bd.setContent(new Alert(MessageType.WARNING,
+				message,
+				new ArrayList<String>("OK")));
+		Dialog erg = bd.open(disp);
+		
+		int i = ((Alert) erg).getSelectedOptionIndex();
+		if (erg.getResult()) {
+			erg.close();
+		}
 	}
 
 }

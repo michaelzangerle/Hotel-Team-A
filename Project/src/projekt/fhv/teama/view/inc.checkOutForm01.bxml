@@ -51,7 +51,8 @@
 			</BoxPane>
 			<BoxPane  styles="{horizontalAlignment:'right', spacing:15}">
 			<PushButton bxml:id="cof1PBtnCreateInvoice" buttonData="Create Invoice" styles="$styles.btSpecial" enabled="true" />			
-		    <PushButton bxml:id="cof1PBtnNext" buttonData="Next Step" enabled="true"/>			
+		    <PushButton bxml:id="cof1PBtnUpdate" buttonData="Update Invoice Status" enabled="true"/>			
+			<PushButton bxml:id="cof1PBtnNext" buttonData="Next Step" enabled="true"/>			
 			</BoxPane>
 		</TablePane.Row>
 	</TablePane>
