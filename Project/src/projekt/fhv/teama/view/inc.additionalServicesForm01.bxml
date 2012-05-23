@@ -29,7 +29,7 @@
 						<TableView bxml:id="asf1TVAdditionalServices"
 							selectMode="single" cursor="hand">
 							<columns>
-								<TableView.Column name="quantity" width="60"
+								<TableView.Column name="quantity" width="55"
 									headerData="Quantity">
 									<cellRenderer>
 										<content:TableViewTextAreaCellRenderer
@@ -51,14 +51,14 @@
 											styles="{margin:5}"/>
 									</cellRenderer>
 								</TableView.Column>
-								<TableView.Column name="amount" width="80"
+								<TableView.Column name="amount" width="65"
 									headerData="Amount">
 									<cellRenderer>
 										<content:TableViewNumberCellRenderer
 											numberFormat="€ #,##0.00"/>
 									</cellRenderer>
 								</TableView.Column>
-								<TableView.Column name="total" width="80"
+								<TableView.Column name="total" width="1*"
 									headerData="Total">
 									<cellRenderer>
 										<content:TableViewNumberCellRenderer
