@@ -2,7 +2,7 @@
 	 Window Objekt welches durch den Controller aufgerufen werden kann
   -->
 
-<view:ViewLogin title="Smart Hotel System v1.0 | Login" maximized="true" WindowStateListener.windowOpened="init();" icon="@images/team_alpha_logo_icon_32.png"
+<view:ViewLogin title="Smart Hotel System v2.0 | Login" maximized="true" WindowStateListener.windowOpened="init();" icon="@images/team_alpha_logo_icon_32.png"
 	xmlns:bxml="http://pivot.apache.org/bxml" xmlns:view="projekt.fhv.teama.view" xmlns="org.apache.pivot.wtk" >
 	<bxml:script>
 		function init() {  }

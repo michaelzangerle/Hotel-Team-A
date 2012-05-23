@@ -11,7 +11,7 @@
 		<Separator heading=" Generate invoices for guest to check-out " styles="$styles.sprHeading"/>
 		<BoxPane orientation="horizontal" styles="{ padding:{top:3, left:7, bottom:15, right:0}, spacing:20, fill:true}">
 		<BoxPane orientation="vertical" styles="{fill:true}">
-		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" >
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" enabled="false">
 					<Label bxml:id="cof1PrimaryGuest" text="You are creating invoices for guest:" styles="$styles.libHeading"  />
 					<BoxPane  styles="{padding:{top:0, left:0, bottom:0, right:0}}">
 						<TextInput bxml:id="cof1TIGuest" prompt="Guest Name" text="${concatStrings:cgf1TIName.text}" preferredWidth="446" />			
@@ -19,7 +19,7 @@
 		</BoxPane>
 		
 		<!-- Adress ##################################################################################### -->
-		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" >
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" enabled="false">
 					<BoxPane bxml:id="cof1BPAddress" Form.label="Address" styles="{spacing:5, fill:true}">
 						<TextInput bxml:id="cof1TIStreet" text="${cgf1TIStreet.text}" prompt="Street"/>
 						<TextInput bxml:id="cof1TICity" text="${cgf1TICity.text}" prompt="City"/>
@@ -42,7 +42,7 @@
 		<TablePane styles="{padding:12}">
 		<columns>
 			<TablePane.Column width="12*"/>
-			<TablePane.Column width="420"/>
+			<TablePane.Column width="600"/>
 		</columns>
 
 		<TablePane.Row height="1*">

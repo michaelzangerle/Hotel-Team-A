@@ -8,7 +8,7 @@
 		<Label bxml:id="cgf1LBGuestNr" text="4711" styles="$styles.lbHeading1" />
 		</BoxPane>
 		<BoxPane orientation="horizontal" styles="{padding:30, spacing:35}">
-		<Form bxml:id="cgf1Form" styles="{showFlagIcons:true}">
+		<Form bxml:id="cgf1Form" styles="{showFlagIcons:true}" enabled="false">
 			<Form.Section>
 				<TextInput bxml:id="cgf1TIName" Form.label="Name" textKey="name" preferredWidth="350" />
 				<BoxPane orientation="vertical" Form.label="Address">									

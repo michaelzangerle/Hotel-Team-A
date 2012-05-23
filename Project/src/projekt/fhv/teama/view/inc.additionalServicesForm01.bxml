@@ -29,7 +29,7 @@
 						<TableView bxml:id="asf1TVAdditionalServices"
 							selectMode="single" cursor="hand">
 							<columns>
-								<TableView.Column name="quantity" width="70"
+								<TableView.Column name="quantity" width="60"
 									headerData="Quantity">
 									<cellRenderer>
 										<content:TableViewTextAreaCellRenderer
@@ -44,82 +44,34 @@
 									</cellRenderer>
 								</TableView.Column>
 								
-								<TableView.Column name="description" width="160"
+								<TableView.Column name="description" width="220"
 									headerData="Description">
 									<cellRenderer>
 										<content:TableViewTextAreaCellRenderer
 											styles="{margin:5}"/>
 									</cellRenderer>
 								</TableView.Column>
-								<TableView.Column name="amount" width="1*"
+								<TableView.Column name="amount" width="80"
 									headerData="Amount">
 									<cellRenderer>
 										<content:TableViewNumberCellRenderer
 											numberFormat="€ #,##0.00"/>
 									</cellRenderer>
 								</TableView.Column>
-								<TableView.Column name="total" width="1*"
+								<TableView.Column name="total" width="80"
 									headerData="Total">
 									<cellRenderer>
 										<content:TableViewNumberCellRenderer
 											numberFormat="€ #,##0.00"/>
 									</cellRenderer>
 								</TableView.Column>
-							</columns>
-						<!-- <rowEditor>
-								<content:TableViewRowEditor
-									editEffect="horizontal_slide">
-									<cellEditors>
-										<type>
-											<ListButton
-												selectedItemKey="type" name="type" bxml:id="asf1LBtypes"/>
-										</type>
-									</cellEditors>
-								</content:TableViewRowEditor>
-							</rowEditor> -->
-							
+							</columns>							
 							<tableViewSortListeners> function
 								sortChanged(tableView) { var tableData =
 								tableView.getTableData();
 								tableData.setComparator(new
 								org.apache.pivot.wtk.content.TableViewRowComparator(asf1TVAdditionalServices));
 								} </tableViewSortListeners>
-				<!--			<tableData>
-								<collections:ArrayList>
-									<support:AdditionalServicesTableRow
-										quantity="1" type="Travel"
-										description="Ticket #145-XX-71903-09"
-										amount="1286.90" total="5286.90"/>
-									<support:AdditionalServicesTableRow
-										quantity="2" type="Parking"
-										description="2 Parking spots"
-										amount="1286.90" total="5286.90"/>
-									<support:AdditionalServicesTableRow
-										quantity="4" type="Travel"
-										description="Four tickets for hiking"
-										amount="1286.90" total="5286.90"/>
-									<support:AdditionalServicesTableRow
-										quantity="1" type="Parking"
-										description="none" amount="1286.90"
-										total="5286.90"/>
-									<support:AdditionalServicesTableRow
-										quantity="5" type="Meals"
-										description="none" amount="1286.90"
-										total="5286.90"/>
-									<support:AdditionalServicesTableRow
-										quantity="3" type="Travel"
-										description="none" amount="1286.90"
-										total="5286.90"/>
-									<support:AdditionalServicesTableRow
-										quantity="2" type="Meals"
-										description="none" amount="1286.90"
-										total="5286.90"/>
-									<support:AdditionalServicesTableRow
-										quantity="18" type="Travel"
-										description="none" amount="1286.90"
-										total="5286.90"/>
-								</collections:ArrayList>
-							</tableData> -->
 						</TableView>
             <columnHeader>
 				<TableViewHeader tableView="$asf1TVAdditionalServices" sortMode="single_column" styles="{headersPressable:true}"/>

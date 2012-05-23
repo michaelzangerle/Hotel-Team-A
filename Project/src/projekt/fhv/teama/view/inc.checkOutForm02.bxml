@@ -11,7 +11,7 @@
 		<Separator heading=" Take back the keys and remove deposit " styles="$styles.sprHeading"/>
 		<BoxPane orientation="horizontal" styles="{ padding:{top:3, left:7, bottom:15, right:0}, spacing:25, fill:true}">
 		<BoxPane orientation="vertical" styles="{fill:true}">
-		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" >
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" enabled="false">
 					<Label bxml:id="cof2PrimaryGuest" text="You are checking-out guest:" styles="$styles.libHeading"  />
 					<BoxPane  styles="{padding:{top:0, left:0, bottom:0, right:0}}">
 						<TextInput bxml:id="cof2TIGuest" prompt="Guest Name" text="${concatStrings:cgf1TIName.text}" preferredWidth="446" />			
@@ -19,7 +19,7 @@
 		</BoxPane>
 		
 		<!-- Adress ##################################################################################### -->
-		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" >
+		<BoxPane orientation="vertical" styles="$styles.bpContentHorizontalFill" enabled="false">
 					<BoxPane bxml:id="cof2BPAddress" Form.label="Address" styles="{spacing:5, fill:true}">
 						<TextInput bxml:id="cof2TIStreet" text="${cgf1TIStreet.text}" prompt="Street"/>
 						<TextInput bxml:id="cof2TICity" text="${cgf1TICity.text}" prompt="City"/>
