@@ -103,7 +103,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 	 * @throws DatabaseException
 	 * @throws FokusException
 	 */
-	public void setTableData() throws DatabaseException, FokusException {	 //TODO geändert
+	public void setTableData() throws DatabaseException, FokusException {	
 		Wrapper wrapper = new Wrapper();
 		tableDataService = new ArrayList<AdditionalServicesTableRow>();
 		
@@ -193,7 +193,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 		if (countServices == 0) {
 			view.asf2PBtnFinish.setEnabled(false);
 		}
-		view.asf2smLBTotal.setText(String.valueOf(total));
+		view.asf2smLBTotal.setText(String.valueOf(total) + " €");
 	}
 
 	/**
@@ -453,7 +453,7 @@ public class BookExtrasViewController implements ButtonPressListener {
 				view.asf1TISelectedRoom.setText("Nr. " + room.getNummer() + " "
 						+ room.getAKategorie().getBezeichnung()
 						+ " - adding services:");
-				setTableData();	 //TODO geändert
+				setTableData();	
 
 			} catch (EmptyParameterException e) {
 				e.printStackTrace();

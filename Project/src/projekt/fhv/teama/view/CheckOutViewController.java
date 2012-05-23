@@ -45,15 +45,17 @@ public class CheckOutViewController {
 	 */
 	private void updateInvokeItems() throws DatabaseException, FokusException {
 		if (!controller.offeneRechnungspositionenVorhanden()) {
-			view.cof1LBStatusInvoiceItems.setText("There are no open invoke items left");
+			view.cof1LBStatusInvoiceItems.setText("All invoice items processed - please go to step 2");
 			view.cof1LBStatusInvoiceItems.getStyles().put("backgroundColor", "#cae6b4");
 			view.cof1PBtnNext.setEnabled(true);
 			view.cof1PBtnCreateInvoice.setEnabled(false);
+			showBlockingDialog("Invoice item status updated - all invoice items are processed - please proceed to next step.", viewMain.getDisplay());
 		} else {
 			view.cof1LBStatusInvoiceItems.setText("There are open invoice items left");
 			view.cof1LBStatusInvoiceItems.getStyles().put("backgroundColor", "#fbe28e");
 			view.cof1PBtnNext.setEnabled(false);
 			view.cof1PBtnCreateInvoice.setEnabled(true);
+			showBlockingDialog("Invoice item status updated - there are still unprocessed invoice items for this guest - please create another invoice", viewMain.getDisplay());
 		}
 	}
 	
@@ -107,8 +109,8 @@ public class CheckOutViewController {
 	 * @return boolean
 	 */
 	public boolean load() {
-		initialize();
 		try {
+			initialize();
 			setHandedKeysTable();
 			setDeposit();
 		} catch (Exception e) {
@@ -146,9 +148,10 @@ public class CheckOutViewController {
 	/**
 	 * Die initialize Methode setzt den StartScreen für den Check- Out Vorgang.
 	 * Zudem werden die Progress bars gesetzt.
+	 * @throws DatabaseException 
 	 * @throws FokusException
 	 */
-	private void initialize() {
+	private void initialize() throws DatabaseException, FokusException {
 		viewMain.tabPLeftMain.setEnabled(false);
 		viewMain.lvGuestSearch.setEnabled(false);
 		viewGuest.setVisible(false);
@@ -161,10 +164,22 @@ public class CheckOutViewController {
 		view.coLBProgress02.setVisible(true);
 		view.coLBProgress03.setVisible(false);
 		view.coLBProgress04.setVisible(false);
-		view.cof1PBtnNext.setEnabled(false);
-		view.cof1PBtnCreateInvoice.setEnabled(true);
-		view.cof1LBStatusInvoiceItems.setText("There are open invoice items left");
-		view.cof1LBStatusInvoiceItems.getStyles().put("backgroundColor", "#fbe28e");
+		
+		if (controller.offeneRechnungspositionenVorhanden()) {
+			view.cof1LBStatusInvoiceItems.setText("There are open invoice items left");
+			view.cof1LBStatusInvoiceItems.getStyles().put("backgroundColor", "#fbe28e");
+			view.cof1PBtnNext.setEnabled(false);
+			view.cof1PBtnCreateInvoice.setEnabled(true);
+			view.cof1PBtnUpdate.setEnabled(true);
+		} else {
+			view.cof1LBStatusInvoiceItems.setText("All invoice items processed - please go to step 2");
+			view.cof1LBStatusInvoiceItems.getStyles().put("backgroundColor", "#cae6b4");
+			view.cof1PBtnNext.setEnabled(true);
+			view.cof1PBtnCreateInvoice.setEnabled(false);
+			view.cof1PBtnUpdate.setEnabled(false);
+		}
+		view.cof2LBDepositNr.getStyles().put("backgroundColor", "#fbe28e");
+		view.cof2BTRemoveDeposit.setEnabled(true);
 	}
 	
 	/**
@@ -237,7 +252,6 @@ public class CheckOutViewController {
 		});
 		view.cof1PBtnCancel.setAction(cancel);
 		view.cof2PBtnCancel.setAction(cancel);
-//		view.cof1PBtnNext.setAction(gotoStep);
 		view.cof1PBtnNext.getButtonPressListeners().add(new ButtonPressListener() {
 			public void buttonPressed(Button arg0) {
 				viewMain.meter.setPercentage(1);
@@ -262,8 +276,9 @@ public class CheckOutViewController {
 
 			@Override
 			public void buttonPressed(Button arg0) {
-				view.cof2LBDepositNr.setText("");
+				view.cof2LBDepositNr.setText("Deposit successfully removed");
 				view.cof2LBDepositNr.getStyles().put("backgroundColor", "#cae6b4");
+				view.cof2BTRemoveDeposit.setEnabled(false);
 			}
 		});
 		view.setcof2PBtnFinishSaveListener(new FinishCheckOutListener());
@@ -278,8 +293,8 @@ public class CheckOutViewController {
 
 			BlockingDialog bd = new BlockingDialog();
 			bd.setContent(new Alert(MessageType.WARNING,
-					"Cancel the Additional Services Process?"
-							+ " Inputs will not be saved!",
+					"Cancel the check- out process?"
+							+ " paid services will be saved!",
 					new ArrayList<String>("Yes", "No")));
 			Dialog erg = bd.open(source.getDisplay());
 			int i = ((Alert) erg).getSelectedOptionIndex();
@@ -308,7 +323,6 @@ public class CheckOutViewController {
 
 			if (source.getName().equals("coLBProgress02")
 					|| source.getName().equals("cof1PBtnNext")) {
-				viewMain.meter.setPercentage(1);
 				view.bpCheckOutForm01.setVisible(false);
 				view.bpCheckOutForm02.setVisible(true);
 				view.coMeter.setPercentage(1);
