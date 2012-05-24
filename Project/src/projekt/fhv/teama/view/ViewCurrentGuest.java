@@ -33,8 +33,7 @@ public class ViewCurrentGuest extends Border implements Bindable {
 
 	ViewController viewController = new ViewController();
 	
-	//private Window window = null;
-	
+
 	/**
 	 * Controls für das Fenster festlegen. Die Felder werden bei Deserialisierung
 	 * automatisch initialisiert.
@@ -74,22 +73,7 @@ public class ViewCurrentGuest extends Border implements Bindable {
 	    @Override
 		public void initialize(Map<String, Object> arg0, URL arg1, Resources arg2) {
 	    	
-	    	Locale.setDefault(Locale.ENGLISH);		
-	    		
-//	  		/** Zustände zum Programmstart initialisieren *********************************/
-//	  		
-//	    	cgf1TIName.setText("Christopher Ericsson");
-//	    	cgf1TICity.setText("Motorola");
-//	    	cgf1TICountry.setText("Nokia");
-//	    	cgf1TIZip.setText("0815");
-//	    	cgf1TIStreet.setText("Lumia 9000");
-//	    	cgf1TIPhone.setText("+34600 666 666");
-//	    	cgf1TIEMail.setText("chris@ericsson.com");
-//
-//	    	
-//	  		
-//	  		/** Ende - Zustände zum Programmstart initialisieren **************************/    	
-	    	
+	    	Locale.setDefault(Locale.ENGLISH);	
 	    }
 
 

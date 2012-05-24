@@ -29,7 +29,6 @@ public class ViewLogin extends Window implements Bindable {
 	@BXML PushButton pushBLogin = null;
 	@BXML Border bLogin = null;
 	
-//	BXMLSerializer bxmlSerializer = new BXMLSerializer();
 	
 	private static SHSDateTime shsDateTime = new SHSDateTime();
 
@@ -72,5 +71,5 @@ public class ViewLogin extends Window implements Bindable {
 	public void setPushBLoginListener(ButtonPressListener e) {
 		pushBLogin.getButtonPressListeners().add(e);
 	}
-	
+
 }
