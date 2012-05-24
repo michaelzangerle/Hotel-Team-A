@@ -71,7 +71,7 @@ public class CheckOutViewController {
 					showBlockingDialog("All invoice line items must be paid", arg0);
 				} else if (!allKeysHandedOver()) {
 					showBlockingDialog("All keys must be handed over", arg0);
-				} else if (!view.cof2LBDepositNr.getText().equals("")) {
+				} else if (!view.cof2LBDepositNr.getText().equals("Deposit successfully removed")) {
 					showBlockingDialog("Deposit must be handed over", arg0);
 				} else {
 					controller.save();
