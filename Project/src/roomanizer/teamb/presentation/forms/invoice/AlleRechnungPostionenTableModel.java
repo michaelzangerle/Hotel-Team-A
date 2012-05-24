@@ -63,6 +63,7 @@ public class AlleRechnungPostionenTableModel extends AbstractTableModel implemen
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+    	NumberFormat cur = NumberFormat.getCurrencyInstance(Locale.GERMANY);
         if (columnIndex <= this.max) {
             switch (columnIndex) {
                 case 0:
@@ -70,11 +71,11 @@ public class AlleRechnungPostionenTableModel extends AbstractTableModel implemen
                 case 1:
                     return new Date(controller.getAlle().get(rowIndex).getDate().getTime());
                 case 2:
-                    return controller.getAlle().get(rowIndex).getAmount();
+                    return cur.format(controller.getAlle().get(rowIndex).getAmount());
                 case 3:
-                    return controller.getAlle().get(rowIndex).getUnitPrice();
+                    return cur.format(controller.getAlle().get(rowIndex).getUnitPrice());
                 case 4:
-                    return controller.getAlle().get(rowIndex).getTotalPrice();
+                    return cur.format(controller.getAlle().get(rowIndex).getTotalPrice());
                 case 5:
                     if (controller.getAlle().get(rowIndex).getBGast() != null) {
                         return controller.getAlle().get(rowIndex).getBGast().getSurname() + " " + controller.getAlle().get(rowIndex).getBGast().getFirstname();
