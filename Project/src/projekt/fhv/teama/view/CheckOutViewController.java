@@ -2,8 +2,6 @@ package projekt.fhv.teama.view;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Timer;
-import java.util.Vector;
 
 import org.apache.pivot.collections.ArrayList;
 import org.apache.pivot.collections.adapter.ListAdapter;
@@ -18,7 +16,6 @@ import org.apache.pivot.wtk.MessageType;
 
 import projekt.fhv.teama.controller.usecasecontroller.ControllerCheckOut;
 import projekt.fhv.teama.hibernate.exceptions.DatabaseException;
-import projekt.fhv.teama.integrate.IAAdresse;
 import projekt.fhv.teama.integrate.IAAufenthalt;
 import projekt.fhv.teama.model.exception.FokusException;
 import projekt.fhv.teama.view.support.BlockingDialog;
