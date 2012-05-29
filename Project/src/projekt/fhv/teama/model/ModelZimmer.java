@@ -1,5 +1,6 @@
 package projekt.fhv.teama.model;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -147,6 +148,38 @@ public class ModelZimmer implements IModelZimmer {
 	@Override
 	public IAZimmer getAAktullesZimmer() throws FokusException {
 		return (IAZimmer) this.getAktullesZimmer();
+	}
+	
+	public List<IZimmer> getVerfügbareZimmer(IKategorie kategorie,Date von,Date bis) throws DatabaseException
+	{
+		List<IZimmer> verfügbare = new Vector<IZimmer>();
+		List<IZimmer> alle = null;
+		try {
+			alle = new Vector<IZimmer>(zimmerDao.getAll());
+
+		} catch (DatabaseException e) {
+			throw new DatabaseException();
+		}
+
+		for (IZimmer zi : alle) {
+			if (zi.getKategorie().equals(kategorie)
+					&& zi.getZimmerstatus().getKuerzel().equals("FG")) {
+				List<IReservierung> zimmerreserierungen = new Vector<IReservierung>(
+						zi.getReservierungen());
+				if (zimmerreserierungen.size() > 0) {
+					for (IReservierung res : zimmerreserierungen) {
+						if (res.getVon().after(bis)
+								|| res.getBis().before(
+										von))
+							verfügbare.add(zi);
+					}
+				} else {
+					verfügbare.add(zi);
+				}
+
+			}
+		}
+		return verfügbare;
 	}
 
 
