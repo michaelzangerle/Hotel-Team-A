@@ -320,6 +320,7 @@ public class ViewController implements Application {
 			gast = (IBGast) controllerCheckOut.getGast();
 
 			IBKonsument konsument = (IBKonsument) gast;
+			
 			new InvoiceStep1(null, BusinessFactory.newInvoiceController(
 					konsument, gast)).showForm();
 		} catch (FokusException e) {
@@ -406,7 +407,7 @@ public class ViewController implements Application {
 					wrapper.getReservationListAdapter(controllerCheckIn
 							.getAllReservierungen()));
 		} catch (DatabaseException e) {
-			setListData(viewMain.lvReservationSearch, "Currently no reservations available");
+			setListData(viewMain.lvReservationSearch, "Currently no reservations");
 		}
 
 		try {
@@ -414,12 +415,12 @@ public class ViewController implements Application {
 					.getGuestListAdapter(controllerCheckIn
 							.getGaesteVonAuftenhalt()));
 		} catch (DatabaseException e) {
-			setListData(viewMain.lvGuestSearch, "Currently no guests available");
+			setListData(viewMain.lvGuestSearch, "Currently no guests");
 		}
 
 		try {
 			if (controllerCheckIn.getCheckInReservierungen().size() == 0) {
-				setListData(viewMain.lvArrivingSearch, "Currently no reservations available");
+				setListData(viewMain.lvArrivingSearch, "Currently no reservations");
 			} else {
 				viewMain.lvArrivingSearch.setListData(wrapper
 						.getReservationListAdapter(controllerCheckIn
@@ -644,7 +645,7 @@ public class ViewController implements Application {
 		@Override
 		public void selectedItemChanged(ListView listView, Object arg1) {
 			String text = (String) listView.getSelectedItem();
-			if (text == null || text.equals("Current no guest available"))
+			if (text == null || text.equals("Currently no guests"))
 				return;
 
 			String[] split = text.split(" ");
@@ -725,7 +726,7 @@ public class ViewController implements Application {
 				cacheListData = null;
 				try {
 					if (controllerCheckIn.getGaesteVonAuftenhalt().size() == 0) {
-						setListData(viewMain.lvGuestSearch, "Currently no guest available");
+						setListData(viewMain.lvGuestSearch, "Currently no guests");
 						viewMain.lvGuestSearch.setEnabled(false);
 						bdViewCurrentGuest.cgf1PBtnCheckOut.setEnabled(false);
 						bdViewCurrentGuest.cgf1PBtnBookExtras.setEnabled(false);
@@ -740,7 +741,7 @@ public class ViewController implements Application {
 						viewMain.lvGuestSearch.setSelectedIndex(0);
 					}
 				} catch (DatabaseException e) {
-					setListData(viewMain.lvReservationSearch, "Currently no guest available");
+					setListData(viewMain.lvReservationSearch, "Currently no guests");
 				}
 			}
 			return Vote.APPROVE;
