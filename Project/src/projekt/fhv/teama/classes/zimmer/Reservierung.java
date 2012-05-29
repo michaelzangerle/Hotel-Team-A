@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import projekt.fhv.teama.classes.leistungen.IZusatzleistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
@@ -22,6 +23,9 @@ public class Reservierung implements IReservierung{
 	private IPerson person;
 	private IVertragspartner vertragspartner;
 	private boolean bearbeitet;
+	private boolean haustier;
+	
+	private IZusatzleistung paket;
 
 	private Set<IReservierungsOption> optionen = new HashSet<IReservierungsOption>();
 	private Set<IZimmer> zimmer = new HashSet<IZimmer>();
@@ -48,6 +52,22 @@ public class Reservierung implements IReservierung{
 
 	public void setBearbeitet(boolean bearbeitet) {
 		this.bearbeitet = bearbeitet;
+	}
+
+	public Reservierung(Date von, Date bis, IPerson person, IVertragspartner vertragspartner, boolean bearbeitet,
+			boolean haustier, IZusatzleistung paket, Set<IReservierungsOption> optionen, Set<IZimmer> zimmer,
+			Set<IGast> gaeste, Set<ITeilreservierung> teilreservierungen) {
+		this.von = von;
+		this.bis = bis;
+		this.person = person;
+		this.vertragspartner = vertragspartner;
+		this.bearbeitet = bearbeitet;
+		this.haustier = haustier;
+		this.paket = paket;
+		this.optionen = optionen;
+		this.zimmer = zimmer;
+		this.gaeste = gaeste;
+		this.teilreservierungen = teilreservierungen;
 	}
 
 	public Reservierung(Date von, Date bis, IPerson person, Set<IGast> gaeste) {
@@ -147,6 +167,22 @@ public class Reservierung implements IReservierung{
 		return teilreservierungen;
 	}
 
+	public boolean getHaustier() {
+		return haustier;
+	}
+
+	public void setHaustier(boolean haustier) {
+		this.haustier = haustier;
+	}
+
+	public IZusatzleistung getPaket() {
+		return paket;
+	}
+
+	public void setPaket(IZusatzleistung paket) {
+		this.paket = paket;
+	}
+	
 	public void setTeilreservierungen(Set<ITeilreservierung> teilreservierungen) {
 		this.teilreservierungen = teilreservierungen;
 	}

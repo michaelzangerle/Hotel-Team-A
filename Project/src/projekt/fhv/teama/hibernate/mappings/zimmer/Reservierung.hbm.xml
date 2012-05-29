@@ -58,5 +58,13 @@
             <one-to-many class="projekt.fhv.teama.classes.zimmer.Teilreservierung" />
         </set>
         
+         <property name="haustier" type="boolean">
+            <column name="haustier" sql-type="tinyint"/>
+        </property>
+        
+         <many-to-one name="paket" class="projekt.fhv.teama.classes.leistungen.Zusatzleistung" fetch="join" lazy="false">
+            <column name="paketID" />
+        </many-to-one>
+        
     </class>
 </hibernate-mapping>

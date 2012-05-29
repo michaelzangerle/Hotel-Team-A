@@ -17,6 +17,10 @@ import roomanizer.teamb.service.integrate.IBKonsument;
  */
 public interface IGast extends IPerson,IBGast,IBKonsument,IAGast {
 	
+	public String getPasswort();
+
+	public void setPasswort(String passwort);
+	
 	/**
 	 * Um die Gastnummer zu setzen
 	 * @param nummer String

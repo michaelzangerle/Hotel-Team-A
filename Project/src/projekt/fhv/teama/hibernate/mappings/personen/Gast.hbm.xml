@@ -36,5 +36,9 @@
             <one-to-many class="projekt.fhv.teama.classes.Aufenthalt" />
         </set>
         
+        <property name="passwort" type="java.lang.String">
+            <column name="passwort" sql-type="varchar"/>
+        </property>
+        
     </joined-subclass>
 </hibernate-mapping>

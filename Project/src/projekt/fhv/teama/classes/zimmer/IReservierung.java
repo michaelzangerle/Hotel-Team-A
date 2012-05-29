@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.Set;
 
 import projekt.fhv.teama.classes.IModel;
+import projekt.fhv.teama.classes.leistungen.IZusatzleistung;
 import projekt.fhv.teama.classes.personen.IGast;
 import projekt.fhv.teama.classes.personen.IPerson;
 import projekt.fhv.teama.classes.personen.IVertragspartner;
@@ -159,4 +160,12 @@ public interface IReservierung extends IModel {
 	 * @param b boolean
 	 */
 	public void setBearbeitet(boolean b);
+	
+	public boolean getHaustier();
+
+	public void setHaustier(boolean haustier);
+
+	public IZusatzleistung getPaket();
+
+	public void setPaket(IZusatzleistung paket);
 }

@@ -28,9 +28,28 @@ public class Gast extends Person implements IGast {
 	private Set<IReservierung> reservierungen;
 	private Set<IRechnungsposition> rechnungspositionen;
 	private Set<IAufenthalt> aufenthalte;
+	private String passwort;
+
+	public String getPasswort() {
+		return passwort;
+	}
+
+	public void setPasswort(String passwort) {
+		this.passwort = passwort;
+	}
 
 	public String getNummer() {
 		return nummer;
+	}
+
+	public Gast(String nummer, IZimmer zimmer, Set<IReservierung> reservierungen,
+			Set<IRechnungsposition> rechnungspositionen, Set<IAufenthalt> aufenthalte, String passwort) {
+		this.nummer = nummer;
+		this.zimmer = zimmer;
+		this.reservierungen = reservierungen;
+		this.rechnungspositionen = rechnungspositionen;
+		this.aufenthalte = aufenthalte;
+		this.passwort = passwort;
 	}
 
 	public void setNummer(String nummer) {
