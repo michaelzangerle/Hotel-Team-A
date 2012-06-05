@@ -152,7 +152,7 @@ public class ModelReservierung implements IModelReservierung {
 				reservierungsDao.getAll());
 		List<IReservierung> alleCheckIn = new Vector<IReservierung>();
 		for (IReservierung res : reservierungen) {
-			if (!res.getBearbeitet() && res.getVon().compareTo(date) == 0) {
+			if (!res.getBearbeitet() && res.getVon().toString().equals(date.toString())) {
 				alleCheckIn.add(res);
 			}
 		}

@@ -137,7 +137,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 	 * @throws DatabaseException
 	 */
 	public List<IReservierung> getCheckInReservierungen() throws DatabaseException {
-		return modelReservierung.getCheckInReservierungen(MyLittleDate.getDate(2012, 3, 24));
+		return modelReservierung.getCheckInReservierungen(new Date(new java.util.Date().getTime()));
 	}
 
 	/**
@@ -403,7 +403,7 @@ public class ControllerCheckIn implements IControllerCheckIn {
 			return gaestMitMomentanemAufenthalt;
 		else
 		{
-			List<IAAufenthalt>help=modelAufenthalt.getAufenthalte(MyLittleDate.getDate(2012, 3, 25));
+			List<IAAufenthalt>help=modelAufenthalt.getAufenthalte(new Date(new java.util.Date().getTime()));
 			for (IAAufenthalt auf : help) {
 				gaestMitMomentanemAufenthalt.add((IAufenthalt)auf);
 			}

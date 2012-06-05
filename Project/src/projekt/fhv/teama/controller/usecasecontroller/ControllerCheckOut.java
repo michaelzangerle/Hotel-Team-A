@@ -1,5 +1,6 @@
 package projekt.fhv.teama.controller.usecasecontroller;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -76,8 +77,7 @@ public class ControllerCheckOut implements IControllerCheckOut {
 		if (aufenthalte.size() > 0) {
 			return aufenthalte;
 		} else {
-			aufenthalte = modelAufenthalt.getAufenthalte(MyLittleDate.getDate(
-					2012, 3, 25));
+			aufenthalte = modelAufenthalt.getAufenthalte(new Date(new java.util.Date().getTime()));
 			return aufenthalte;
 		}
 	}

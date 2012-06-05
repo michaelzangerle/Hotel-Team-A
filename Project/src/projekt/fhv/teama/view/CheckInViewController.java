@@ -902,16 +902,17 @@ public class CheckInViewController implements ButtonPressListener {
 
 		java.sql.Date von = MyLittleDate.getDate(
 				viewMain.cbArrival.getSelectedDate().year,
-				viewMain.cbArrival.getSelectedDate().month,
-				viewMain.cbArrival.getSelectedDate().day - 1);
+				viewMain.cbArrival.getSelectedDate().month+1,
+				viewMain.cbArrival.getSelectedDate().day + 1);
 		java.sql.Date bis = MyLittleDate.getDate(
 				viewMain.cbDeparture.getSelectedDate().year,
-				viewMain.cbDeparture.getSelectedDate().month,
-				viewMain.cbDeparture.getSelectedDate().day - 1);
+				viewMain.cbDeparture.getSelectedDate().month+1,
+				viewMain.cbDeparture.getSelectedDate().day + 1);
 		java.sql.Date birthdate = MyLittleDate.getDate(
 				viewMain.cbBirthdate.getSelectedDate().year,
 				viewMain.cbBirthdate.getSelectedDate().month,
 				viewMain.cbBirthdate.getSelectedDate().day - 1);
+		
 		if (birthdate != null) {
 			controllerCheckIn.setGeburtsdatum(birthdate);
 		}

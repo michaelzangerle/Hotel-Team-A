@@ -66,8 +66,7 @@ public class ControllerZusatzleistungBuchen
 		if (aufenthalte.size() > 0)
 			return aufenthalte;
 		else {
-			aufenthalte = modelAufenthalt.getAufenthalte(MyLittleDate.getDate(
-					2012, 3, 25));
+			aufenthalte = modelAufenthalt.getAufenthalte(new Date(new java.util.Date().getTime()));
 			return aufenthalte;
 		}
 	}
