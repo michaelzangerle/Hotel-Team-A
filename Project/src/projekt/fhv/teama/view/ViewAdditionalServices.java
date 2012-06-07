@@ -21,6 +21,8 @@ import org.apache.pivot.wtk.TableViewRowListener;
 import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.content.TableViewRowEditor;
 
+import projekt.fhv.teama.view.support.CurrencyValidator;
+
 /**
  * Um den UseCase Zusatzleistungen buchen umzusetzen. Die Felder werden bei
  * Deserialisierung automatisch initialisiert.
@@ -104,13 +106,6 @@ public class ViewAdditionalServices extends BoxPane implements Bindable {
 		TextInput quantityTextInput = new TextInput();
 		quantityTextInput.setTextKey("quantity");
 		tableViewRowEditor.getCellEditors().put("quantity", quantityTextInput);
-
-		// Amount uses a TextInput with strict currency validation
-		TextInput amountTextInput = new TextInput();
-		//amountTextInput.setValidator(new CurrencyValidator());
-		amountTextInput.setStrictValidation(true);
-		amountTextInput.setTextKey("amount");
-		tableViewRowEditor.getCellEditors().put("amount", amountTextInput);
 
 		// Description uses a TextInput
 		TextInput descriptionTextInput = new TextInput();
